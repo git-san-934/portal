@@ -19,6 +19,7 @@ https://git-san-934.github.io/portal/
 | ユーチューブ要約 | https://git-san-934.github.io/youtube-yoyaku/ |
 | 日経ヒートマップ | https://git-san-934.github.io/nikkei-heatmap/ |
 | IR Watch | https://git-san-934.github.io/ir-watch-app/ |
+| Yukashoken Watch | https://git-san-934.github.io/yukashoken-watch/ |
 | コエカレ | https://git-san-934.github.io/koekare/ |
 | 外食履歴 | https://git-san-934.github.io/claude-code-book-template/ |
 
