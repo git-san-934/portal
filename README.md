@@ -21,6 +21,7 @@ https://git-san-934.github.io/portal/
 | 東証株価データベース | https://git-san-934.github.io/tse-price-db/ |
 | IR Watch | https://git-san-934.github.io/ir-watch-app/ |
 | Yukashoken Watch | https://git-san-934.github.io/yukashoken-watch/ |
+| シクリカルバリュー・スクリーナー | https://git-san-934.github.io/stock-tachan-1/ |
 | コエカレ | https://git-san-934.github.io/koekare/ |
 | 外食履歴 | https://git-san-934.github.io/claude-code-book-template/ |
 
