@@ -35,7 +35,7 @@
   const yenFmt = (v) => (v == null ? "—" : `${new Intl.NumberFormat("ja-JP").format(v)}円`);
   const numberFmt = (v) => (v == null ? "—" : new Intl.NumberFormat("ja-JP").format(v));
   const okuFmt = (v) =>
-    v == null ? "—" : `${(v / 1e8).toLocaleString("ja-JP", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}億円`;
+    v == null ? "—" : `${Math.floor(v / 1e8).toLocaleString("ja-JP")}億円`;
   const ratioFmt = (v) =>
     v == null ? "—" : `${v.toLocaleString("ja-JP", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}倍`;
   const pctFmt = (v) =>
