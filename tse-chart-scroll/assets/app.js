@@ -117,18 +117,26 @@
     `;
     card.appendChild(head);
 
-    const meta = document.createElement("div");
-    meta.className = "card-price";
-    meta.textContent = `${item.market || ""}${item.market ? " ・ " : ""}直近終値 ${yenFmt(item.close)}${item.date ? `(${item.date})` : ""}`;
-    card.appendChild(meta);
-
-    if (state.sortKey !== "close") {
-      const sortOption = SORT_OPTIONS.find((opt) => opt.key === state.sortKey);
-      const sortValue = document.createElement("div");
-      sortValue.className = "card-sort-value";
-      sortValue.textContent = `${sortOption.label} ${SORT_VALUE_FMT[state.sortKey](item[state.sortKey])}`;
-      card.appendChild(sortValue);
+    const metaParts = [item.market, item.date ? `${item.date}時点` : null].filter(Boolean);
+    if (metaParts.length) {
+      const meta = document.createElement("div");
+      meta.className = "card-price";
+      meta.textContent = metaParts.join(" ・ ");
+      card.appendChild(meta);
     }
+
+    const metrics = document.createElement("div");
+    metrics.className = "card-metrics";
+    metrics.innerHTML = SORT_OPTIONS.map((opt) => {
+      const activeClass = opt.key === state.sortKey ? " metric-active" : "";
+      return `
+        <div class="metric${activeClass}">
+          <span class="metric-label">${opt.label}</span>
+          <span class="metric-value">${SORT_VALUE_FMT[opt.key](item[opt.key])}</span>
+        </div>
+      `;
+    }).join("");
+    card.appendChild(metrics);
 
     const chartWrap = document.createElement("div");
     chartWrap.className = "chart-wrap";
