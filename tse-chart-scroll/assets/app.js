@@ -5,6 +5,8 @@
   const BATCH_SIZE = 6;
   const MAX_RENDERED = 60; // 古いカードを間引いてDOMを軽く保つ
   const PRUNE_TO = 40;
+  const SLIDE_INTERVAL_MS = 4000;
+  const SWIPE_THRESHOLD_PX = 40;
 
   const SORT_OPTIONS = [
     { key: "market_cap", label: "時価総額" },
@@ -22,6 +24,16 @@
   const feedEl = document.getElementById("feed");
   const sentinelEl = document.getElementById("sentinel");
   const endMessageEl = document.getElementById("end-message");
+  const normalViewEl = document.getElementById("normal-view");
+  const footerEl = document.getElementById("footer");
+  const slideshowEl = document.getElementById("slideshow");
+  const slideshowEnterBtn = document.getElementById("slideshow-enter");
+  const slideshowExitBtn = document.getElementById("slideshow-exit");
+  const slideCardWrapEl = document.getElementById("slide-card-wrap");
+  const slidePositionEl = document.getElementById("slide-position");
+  const slidePrevBtn = document.getElementById("slide-prev");
+  const slideNextBtn = document.getElementById("slide-next");
+  const slidePlayBtn = document.getElementById("slide-play");
 
   const state = {
     allItems: [],
@@ -31,6 +43,9 @@
     cursor: 0,
     renderedCards: [], // { el, code } を先頭が古い順に保持
     historyCache: new Map(),
+    slideIndex: 0,
+    slidePlaying: true,
+    slideTimer: null,
   };
 
   const yenFmt = (v) => (v == null ? "—" : `${new Intl.NumberFormat("ja-JP").format(v)}円`);
@@ -254,6 +269,111 @@
     clearTimeout(filterTimer);
     filterTimer = setTimeout(applyFilterAndSort, 200);
   });
+
+  function updatePlayButton() {
+    slidePlayBtn.textContent = state.slidePlaying ? "⏸" : "▶";
+    slidePlayBtn.setAttribute("aria-label", state.slidePlaying ? "一時停止" : "自動再生");
+  }
+
+  function stopSlideTimer() {
+    if (state.slideTimer) {
+      clearInterval(state.slideTimer);
+      state.slideTimer = null;
+    }
+  }
+
+  function startSlideTimer() {
+    stopSlideTimer();
+    if (!state.slidePlaying) return;
+    state.slideTimer = setInterval(() => goToSlide(state.slideIndex + 1), SLIDE_INTERVAL_MS);
+  }
+
+  function renderSlide() {
+    const item = state.items[state.slideIndex];
+    slideCardWrapEl.innerHTML = "";
+    if (item) slideCardWrapEl.appendChild(buildCard(item));
+    slidePositionEl.textContent = state.items.length
+      ? `${state.slideIndex + 1} / ${state.items.length.toLocaleString("ja-JP")}`
+      : "";
+  }
+
+  function goToSlide(index) {
+    if (!state.items.length) return;
+    const len = state.items.length;
+    state.slideIndex = ((index % len) + len) % len; // 前後どちらへもループ
+    renderSlide();
+  }
+
+  function pauseAndGoToSlide(index) {
+    state.slidePlaying = false;
+    stopSlideTimer();
+    updatePlayButton();
+    goToSlide(index);
+  }
+
+  function enterSlideshow() {
+    if (!state.items.length) return;
+    document.body.classList.add("slideshow-active");
+    normalViewEl.hidden = true;
+    footerEl.hidden = true;
+    slideshowEl.hidden = false;
+    state.slideIndex = 0;
+    state.slidePlaying = true;
+    updatePlayButton();
+    renderSlide();
+    startSlideTimer();
+  }
+
+  function exitSlideshow() {
+    stopSlideTimer();
+    document.body.classList.remove("slideshow-active");
+    slideshowEl.hidden = true;
+    normalViewEl.hidden = false;
+    footerEl.hidden = false;
+  }
+
+  slideshowEnterBtn.addEventListener("click", enterSlideshow);
+  slideshowExitBtn.addEventListener("click", exitSlideshow);
+  slidePrevBtn.addEventListener("click", () => pauseAndGoToSlide(state.slideIndex - 1));
+  slideNextBtn.addEventListener("click", () => pauseAndGoToSlide(state.slideIndex + 1));
+  slidePlayBtn.addEventListener("click", () => {
+    state.slidePlaying = !state.slidePlaying;
+    updatePlayButton();
+    if (state.slidePlaying) startSlideTimer();
+    else stopSlideTimer();
+  });
+
+  document.addEventListener("keydown", (e) => {
+    if (slideshowEl.hidden) return;
+    if (e.key === "ArrowRight") pauseAndGoToSlide(state.slideIndex + 1);
+    else if (e.key === "ArrowLeft") pauseAndGoToSlide(state.slideIndex - 1);
+    else if (e.key === "Escape") exitSlideshow();
+    else if (e.key === " ") {
+      e.preventDefault();
+      slidePlayBtn.click();
+    }
+  });
+
+  let touchStartX = null;
+  slideCardWrapEl.addEventListener(
+    "touchstart",
+    (e) => {
+      touchStartX = e.changedTouches[0].clientX;
+    },
+    { passive: true }
+  );
+  slideCardWrapEl.addEventListener(
+    "touchend",
+    (e) => {
+      if (touchStartX == null) return;
+      const dx = e.changedTouches[0].clientX - touchStartX;
+      touchStartX = null;
+      if (Math.abs(dx) < SWIPE_THRESHOLD_PX) return;
+      if (dx < 0) pauseAndGoToSlide(state.slideIndex + 1);
+      else pauseAndGoToSlide(state.slideIndex - 1);
+    },
+    { passive: true }
+  );
 
   async function init() {
     try {
