@@ -1,0 +1,38 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>東証チャートスクロール</title>
+  <meta name="description" content="東証銘柄の5年チャートを次々にスクロールして眺められるアプリ" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20260920a" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>東証チャートスクロール</h1>
+      <p>銘柄の5年チャート(週次終値)を次々に表示します。下にスクロールすると次の銘柄が読み込まれます。</p>
+      <p class="updated" id="status">読み込み中...</p>
+      <input
+        type="search"
+        id="filter"
+        placeholder="銘柄コード・銘柄名で絞り込み(例: 7203 / トヨタ)"
+        autocomplete="off"
+      />
+    </header>
+
+    <main id="feed" class="feed" aria-live="polite"></main>
+
+    <div id="sentinel" class="sentinel" aria-hidden="true"></div>
+    <p id="end-message" class="end-message" hidden>すべての銘柄を表示しました。</p>
+
+    <footer>
+      データ提供元: <a href="https://git-san-934.github.io/tse-price-db/">東証株価データベース</a>(Yahoo Finance / yfinance 経由)。
+      株式分割等を調整済みの週次終値を使用しています。投資助言ではありません。売買判断はご自身の責任で行ってください。
+    </footer>
+  </div>
+
+  <script src="assets/app.js?v=20260920a"></script>
+</body>
+</html>

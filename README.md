@@ -11,6 +11,7 @@ https://git-san-934.github.io/portal/
 ## 中身
 
 - `index.html` — 入口ページ本体。1ファイルだけで動きます。
+- `tse-chart-scroll/` — 掲載アプリの1つ「東証チャートスクロール」の本体(このリポジトリ内に同梱)。詳細は `tse-chart-scroll/README.md` を参照。
 
 ## 掲載しているアプリ
 
@@ -19,6 +20,7 @@ https://git-san-934.github.io/portal/
 | ユーチューブ要約 | https://git-san-934.github.io/youtube-yoyaku/ |
 | 日経ヒートマップ | https://git-san-934.github.io/nikkei-heatmap/ |
 | 東証株価データベース | https://git-san-934.github.io/tse-price-db/ |
+| 東証チャートスクロール | https://git-san-934.github.io/portal/tse-chart-scroll/ |
 | 自社株買情報 | https://git-san-934.github.io/ir-watch-app/ |
 | Yukashoken Watch | https://git-san-934.github.io/yukashoken-watch/ |
 | シクリカルバリュー・スクリーナー | https://git-san-934.github.io/stock-tachan-1/ |
