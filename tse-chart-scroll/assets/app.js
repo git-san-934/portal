@@ -27,6 +27,7 @@
     allItems: [],
     items: [], // 現在表示対象の配列(絞り込み・並び替え適用後)
     sortKey: DEFAULT_SORT_KEY,
+    sortDir: "desc",
     cursor: 0,
     renderedCards: [], // { el, code } を先頭が古い順に保持
     historyCache: new Map(),
@@ -194,14 +195,15 @@
     renderNextBatch();
   }
 
-  function sortItems(items, key) {
+  function sortItems(items, key, dir) {
+    const mul = dir === "asc" ? 1 : -1;
     return [...items].sort((a, b) => {
       const av = a[key];
       const bv = b[key];
       if (av == null && bv == null) return 0;
-      if (av == null) return 1; // 値なしは末尾へ
+      if (av == null) return 1; // 値なしは順序に関わらず末尾へ
       if (bv == null) return -1;
-      return bv - av; // 降順
+      return mul * (av - bv);
     });
   }
 
@@ -213,22 +215,26 @@
             item.code.toLowerCase().includes(q) || (item.name || "").toLowerCase().includes(q)
         )
       : state.allItems;
-    state.items = sortItems(filtered, state.sortKey);
+    state.items = sortItems(filtered, state.sortKey, state.sortDir);
     resetFeed();
   }
 
   function renderSortToggle() {
     sortToggleEl.innerHTML = "";
     SORT_OPTIONS.forEach((opt) => {
+      const isActive = opt.key === state.sortKey;
       const btn = document.createElement("button");
       btn.type = "button";
-      btn.className = `sort-btn${opt.key === state.sortKey ? " active" : ""}`;
-      btn.textContent = opt.label;
+      btn.className = `sort-btn${isActive ? " active" : ""}`;
+      btn.textContent = isActive ? `${opt.label} ${state.sortDir === "asc" ? "▲" : "▼"}` : opt.label;
       btn.addEventListener("click", () => {
-        if (state.sortKey === opt.key) return;
-        state.sortKey = opt.key;
-        sortToggleEl.querySelectorAll(".sort-btn").forEach((b) => b.classList.remove("active"));
-        btn.classList.add("active");
+        if (state.sortKey === opt.key) {
+          state.sortDir = state.sortDir === "asc" ? "desc" : "asc";
+        } else {
+          state.sortKey = opt.key;
+          state.sortDir = "desc";
+        }
+        renderSortToggle();
         applyFilterAndSort();
       });
       sortToggleEl.appendChild(btn);
@@ -248,7 +254,7 @@
       state.allItems = data.items || [];
       statusEl.textContent = `${state.allItems.length.toLocaleString("ja-JP")}銘柄 ・ データ更新: ${data.updated_at || "不明"}`;
       renderSortToggle();
-      state.items = sortItems(state.allItems, state.sortKey);
+      state.items = sortItems(state.allItems, state.sortKey, state.sortDir);
       renderNextBatch();
     } catch (err) {
       console.error(err);
