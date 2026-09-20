@@ -6,21 +6,49 @@
   const MAX_RENDERED = 60; // 古いカードを間引いてDOMを軽く保つ
   const PRUNE_TO = 40;
 
+  const SORT_OPTIONS = [
+    { key: "market_cap", label: "時価総額" },
+    { key: "close", label: "終値" },
+    { key: "turnover", label: "売買代金" },
+    { key: "pbr", label: "PBR" },
+    { key: "per", label: "PER" },
+    { key: "dividend_yield", label: "配当利回り" },
+  ];
+  const DEFAULT_SORT_KEY = "market_cap";
+
   const statusEl = document.getElementById("status");
   const filterEl = document.getElementById("filter");
+  const sortToggleEl = document.getElementById("sort-toggle");
   const feedEl = document.getElementById("feed");
   const sentinelEl = document.getElementById("sentinel");
   const endMessageEl = document.getElementById("end-message");
 
   const state = {
     allItems: [],
-    items: [], // 現在表示対象の配列(絞り込み適用後)
+    items: [], // 現在表示対象の配列(絞り込み・並び替え適用後)
+    sortKey: DEFAULT_SORT_KEY,
     cursor: 0,
     renderedCards: [], // { el, code } を先頭が古い順に保持
     historyCache: new Map(),
   };
 
   const yenFmt = (v) => (v == null ? "—" : `${new Intl.NumberFormat("ja-JP").format(v)}円`);
+  const numberFmt = (v) => (v == null ? "—" : new Intl.NumberFormat("ja-JP").format(v));
+  const okuFmt = (v) =>
+    v == null ? "—" : `${(v / 1e8).toLocaleString("ja-JP", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}億円`;
+  const ratioFmt = (v) =>
+    v == null ? "—" : `${v.toLocaleString("ja-JP", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}倍`;
+  const pctFmt = (v) =>
+    v == null ? "—" : `${v.toLocaleString("ja-JP", { minimumFractionDigits: 1, maximumFractionDigits: 1 })}%`;
+
+  const SORT_VALUE_FMT = {
+    market_cap: okuFmt,
+    close: yenFmt,
+    turnover: numberFmt,
+    pbr: ratioFmt,
+    per: ratioFmt,
+    dividend_yield: pctFmt,
+  };
 
   function badgeClass(judgment) {
     if (judgment === "高値圏") return "badge-high";
@@ -93,6 +121,14 @@
     meta.textContent = `${item.market || ""}${item.market ? " ・ " : ""}直近終値 ${yenFmt(item.close)}${item.date ? `(${item.date})` : ""}`;
     card.appendChild(meta);
 
+    if (state.sortKey !== "close") {
+      const sortOption = SORT_OPTIONS.find((opt) => opt.key === state.sortKey);
+      const sortValue = document.createElement("div");
+      sortValue.className = "card-sort-value";
+      sortValue.textContent = `${sortOption.label} ${SORT_VALUE_FMT[state.sortKey](item[state.sortKey])}`;
+      card.appendChild(sortValue);
+    }
+
     const chartWrap = document.createElement("div");
     chartWrap.className = "chart-wrap";
     const loading = document.createElement("div");
@@ -158,19 +194,51 @@
     renderNextBatch();
   }
 
+  function sortItems(items, key) {
+    return [...items].sort((a, b) => {
+      const av = a[key];
+      const bv = b[key];
+      if (av == null && bv == null) return 0;
+      if (av == null) return 1; // 値なしは末尾へ
+      if (bv == null) return -1;
+      return bv - av; // 降順
+    });
+  }
+
+  function applyFilterAndSort() {
+    const q = filterEl.value.trim().toLowerCase();
+    const filtered = q
+      ? state.allItems.filter(
+          (item) =>
+            item.code.toLowerCase().includes(q) || (item.name || "").toLowerCase().includes(q)
+        )
+      : state.allItems;
+    state.items = sortItems(filtered, state.sortKey);
+    resetFeed();
+  }
+
+  function renderSortToggle() {
+    sortToggleEl.innerHTML = "";
+    SORT_OPTIONS.forEach((opt) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = `sort-btn${opt.key === state.sortKey ? " active" : ""}`;
+      btn.textContent = opt.label;
+      btn.addEventListener("click", () => {
+        if (state.sortKey === opt.key) return;
+        state.sortKey = opt.key;
+        sortToggleEl.querySelectorAll(".sort-btn").forEach((b) => b.classList.remove("active"));
+        btn.classList.add("active");
+        applyFilterAndSort();
+      });
+      sortToggleEl.appendChild(btn);
+    });
+  }
+
   let filterTimer = null;
   filterEl.addEventListener("input", () => {
     clearTimeout(filterTimer);
-    filterTimer = setTimeout(() => {
-      const q = filterEl.value.trim().toLowerCase();
-      state.items = q
-        ? state.allItems.filter(
-            (item) =>
-              item.code.toLowerCase().includes(q) || (item.name || "").toLowerCase().includes(q)
-          )
-        : state.allItems;
-      resetFeed();
-    }, 200);
+    filterTimer = setTimeout(applyFilterAndSort, 200);
   });
 
   async function init() {
@@ -178,8 +246,9 @@
       const res = await fetch(`${DATA_BASE}latest.json`, { cache: "no-store" });
       const data = await res.json();
       state.allItems = data.items || [];
-      state.items = state.allItems;
       statusEl.textContent = `${state.allItems.length.toLocaleString("ja-JP")}銘柄 ・ データ更新: ${data.updated_at || "不明"}`;
+      renderSortToggle();
+      state.items = sortItems(state.allItems, state.sortKey);
       renderNextBatch();
     } catch (err) {
       console.error(err);
