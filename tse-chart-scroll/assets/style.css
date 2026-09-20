@@ -64,7 +64,8 @@ header p { color: var(--text-sub); font-size: 0.9rem; margin-top: 0.4rem; }
 
 .sort-toggle { display: flex; flex-wrap: wrap; gap: 0.5rem; margin-top: 0.75rem; justify-content: center; }
 .sort-btn {
-  padding: 0.3rem 0.85rem;
+  padding: 0.55rem 0.9rem;
+  min-height: 2.75rem;
   border-radius: 999px;
   border: 1px solid var(--border);
   background: var(--card-bg);
