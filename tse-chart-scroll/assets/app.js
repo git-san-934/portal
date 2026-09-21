@@ -86,7 +86,21 @@
     }
   }
 
-  function buildChartSvg(rows) {
+  function niceTicks(min, max, targetCount) {
+    if (!Number.isFinite(min) || !Number.isFinite(max) || min === max) return [];
+    const roughStep = (max - min) / targetCount;
+    const mag = Math.pow(10, Math.floor(Math.log10(roughStep)));
+    const norm = roughStep / mag;
+    const niceNorm = norm < 1.5 ? 1 : norm < 3 ? 2 : norm < 7 ? 5 : 10;
+    const step = niceNorm * mag;
+    const ticks = [];
+    for (let v = Math.ceil(min / step) * step; v <= max + step * 1e-6; v += step) {
+      ticks.push(Math.round(v * 100) / 100);
+    }
+    return ticks;
+  }
+
+  function buildChart(rows) {
     const w = 640;
     const h = 200;
     const padTop = 10;
@@ -111,12 +125,21 @@
       started = true;
     });
 
+    const ticks = niceTicks(min, max, 4);
+    const gridLines = ticks
+      .map((t) => `<line x1="0" y1="${y(t).toFixed(1)}" x2="${w}" y2="${y(t).toFixed(1)}" class="chart-grid-line" />`)
+      .join("");
+
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", `0 0 ${w} ${h}`);
     svg.setAttribute("preserveAspectRatio", "none");
     svg.classList.add("chart");
-    svg.innerHTML = `<path d="${d.trim()}" fill="none" stroke="var(--accent)" stroke-width="1.8" />`;
-    return svg;
+    svg.innerHTML = `${gridLines}<path d="${d.trim()}" fill="none" stroke="var(--accent)" stroke-width="1.8" />`;
+
+    return {
+      svg,
+      ticks: ticks.map((t) => ({ value: t, yPercent: ((y(t) / h) * 100).toFixed(2) })),
+    };
   }
 
   function buildCard(item) {
@@ -162,10 +185,19 @@
     card.appendChild(chartWrap);
 
     fetchHistoryWeekly(item.code).then((rows) => {
-      const svg = buildChartSvg(rows);
+      const result = buildChart(rows);
       chartWrap.innerHTML = "";
-      if (svg) {
-        chartWrap.appendChild(svg);
+      if (result) {
+        chartWrap.appendChild(result.svg);
+        const yaxis = document.createElement("div");
+        yaxis.className = "chart-yaxis";
+        yaxis.innerHTML = result.ticks
+          .map(
+            (t) =>
+              `<span class="chart-tick" style="top:${t.yPercent}%">${Math.round(t.value).toLocaleString("ja-JP")}円</span>`
+          )
+          .join("");
+        chartWrap.appendChild(yaxis);
       } else {
         const empty = document.createElement("div");
         empty.className = "chart-empty";

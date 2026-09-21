@@ -155,8 +155,26 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .metric-active .metric-label,
 .metric-active .metric-value { color: var(--accent); }
 
-.chart-wrap { margin-top: 0.6rem; }
+.chart-wrap { margin-top: 0.6rem; position: relative; }
 .chart { width: 100%; height: 200px; display: block; }
+.chart-grid-line { stroke: var(--border); stroke-width: 1; }
+
+.chart-yaxis {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+.chart-tick {
+  position: absolute;
+  right: 0.3rem;
+  transform: translateY(-50%);
+  font-size: 0.68rem;
+  color: var(--text-sub);
+  background: var(--card-bg);
+  padding: 0 0.25rem;
+  border-radius: 0.2rem;
+  line-height: 1.4;
+}
 .chart-loading,
 .chart-empty {
   height: 200px;
