@@ -5,7 +5,8 @@
   const BATCH_SIZE = 6;
   const MAX_RENDERED = 60; // 古いカードを間引いてDOMを軽く保つ
   const PRUNE_TO = 40;
-  const SLIDE_INTERVAL_MS = 3000;
+  const SLIDE_SPEED_OPTIONS_MS = [1000, 2000, 3000, 5000];
+  const DEFAULT_SLIDE_INTERVAL_MS = 3000;
   const SWIPE_THRESHOLD_PX = 40;
 
   const SORT_OPTIONS = [
@@ -34,6 +35,7 @@
   const slidePrevBtn = document.getElementById("slide-prev");
   const slideNextBtn = document.getElementById("slide-next");
   const slidePlayBtn = document.getElementById("slide-play");
+  const slideSpeedEl = document.getElementById("slide-speed");
 
   const state = {
     allItems: [],
@@ -46,6 +48,7 @@
     slideIndex: 0,
     slidePlaying: true,
     slideTimer: null,
+    slideIntervalMs: DEFAULT_SLIDE_INTERVAL_MS,
   };
 
   const yenFmt = (v) => (v == null ? "—" : `${new Intl.NumberFormat("ja-JP").format(v)}円`);
@@ -317,8 +320,26 @@
   function startSlideTimer() {
     stopSlideTimer();
     if (!state.slidePlaying) return;
-    state.slideTimer = setInterval(() => goToSlide(state.slideIndex + 1), SLIDE_INTERVAL_MS);
+    state.slideTimer = setInterval(() => goToSlide(state.slideIndex + 1), state.slideIntervalMs);
   }
+
+  function renderSlideSpeed() {
+    slideSpeedEl.innerHTML = "";
+    SLIDE_SPEED_OPTIONS_MS.forEach((ms) => {
+      const btn = document.createElement("button");
+      btn.type = "button";
+      btn.className = `speed-btn${ms === state.slideIntervalMs ? " active" : ""}`;
+      btn.textContent = `${ms / 1000}秒`;
+      btn.addEventListener("click", () => {
+        if (state.slideIntervalMs === ms) return;
+        state.slideIntervalMs = ms;
+        renderSlideSpeed();
+        if (state.slidePlaying) startSlideTimer();
+      });
+      slideSpeedEl.appendChild(btn);
+    });
+  }
+  renderSlideSpeed();
 
   function renderSlide() {
     const item = state.items[state.slideIndex];

@@ -208,7 +208,10 @@ body.slideshow-active { padding: 0.75rem 1rem 1rem; }
 body.slideshow-active header { margin-bottom: 0.5rem; }
 body.slideshow-active h1 { font-size: 1.2rem; }
 
-.slideshow { display: flex; flex-direction: column; gap: 0.6rem; }
+.slideshow { display: flex; flex-direction: column; gap: 0.5rem; }
+.slide-card-wrap .chart,
+.slide-card-wrap .chart-loading,
+.slide-card-wrap .chart-empty { height: 175px; }
 .slideshow[hidden] { display: none; }
 
 .slideshow-topbar {
@@ -261,3 +264,17 @@ body.slideshow-active h1 { font-size: 1.2rem; }
   justify-content: center;
 }
 .slide-play-btn { border-color: var(--accent); color: var(--accent); }
+
+.slide-speed { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+.speed-btn {
+  padding: 0.3rem 0.7rem;
+  min-height: 2.2rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-sub);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.speed-btn.active { color: #fff; background: var(--accent); border-color: var(--accent); }
