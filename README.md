@@ -21,6 +21,7 @@ https://git-san-934.github.io/portal/
 | 日経ヒートマップ | https://git-san-934.github.io/nikkei-heatmap/ |
 | 東証株価データベース | https://git-san-934.github.io/tse-price-db/ |
 | 東証チャートスクロール | https://git-san-934.github.io/portal/tse-chart-scroll/ |
+| 親子上場ウォッチリスト | https://git-san-934.github.io/tse-price-db/oyako.html |
 | 自社株買情報 | https://git-san-934.github.io/ir-watch-app/ |
 | Yukashoken Watch | https://git-san-934.github.io/yukashoken-watch/ |
 | シクリカルバリュー・スクリーナー | https://git-san-934.github.io/stock-tachan-1/ |
