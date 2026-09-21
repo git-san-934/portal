@@ -5,7 +5,7 @@
   const BATCH_SIZE = 6;
   const MAX_RENDERED = 60; // 古いカードを間引いてDOMを軽く保つ
   const PRUNE_TO = 40;
-  const SLIDE_INTERVAL_MS = 4000;
+  const SLIDE_INTERVAL_MS = 1000;
   const SWIPE_THRESHOLD_PX = 40;
 
   const SORT_OPTIONS = [
