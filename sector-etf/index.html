@@ -6,7 +6,7 @@
   <title>業種別ETFチャート一覧</title>
   <meta name="description" content="TOPIX-17業種別ETFと東証銀行業ETFの過去5年チャートを一覧で比べられるページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260923a" />
+  <link rel="stylesheet" href="assets/style.css?v=20260923b" />
 </head>
 <body>
   <div class="wrap">
@@ -28,19 +28,7 @@
     </div>
     <p class="scale-note" id="scale-note"></p>
 
-    <table class="etf-table" id="etf-table" hidden>
-      <thead>
-        <tr>
-          <th scope="col" class="col-name">業種</th>
-          <th scope="col" class="col-chart">5年チャート(日次終値)</th>
-          <th scope="col" class="col-num col-price">終値</th>
-          <th scope="col" class="col-num">1ヶ月</th>
-          <th scope="col" class="col-num">1年</th>
-          <th scope="col" class="col-num">5年</th>
-        </tr>
-      </thead>
-      <tbody id="etf-body"></tbody>
-    </table>
+    <main class="etf-grid" id="etf-grid" hidden></main>
 
     <footer>
       データ提供元: Yahoo Finance(yfinance 経由)。終値は株式分割のみ調整済みで、分配金は含みません
@@ -50,6 +38,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20260923a"></script>
+  <script src="assets/app.js?v=20260923b"></script>
 </body>
 </html>
