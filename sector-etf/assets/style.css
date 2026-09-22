@@ -1,0 +1,222 @@
+:root {
+  --bg: #f7f5f0;
+  --card-bg: #ffffff;
+  --text: #23201b;
+  --text-sub: #6b645a;
+  --border: #e5e0d6;
+  --grid: #eeeae2;
+  --accent: #c8502d;
+  --up: #c8102e;
+  --down: #1a5fb4;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1a17;
+    --card-bg: #262320;
+    --text: #f0ece4;
+    --text-sub: #a89f92;
+    --border: #38342e;
+    --grid: #322e29;
+    --accent: #e0662f;
+    --up: #ff6b81;
+    --down: #6fa8ff;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.wrap { max-width: 64rem; margin: 0 auto; }
+
+header { text-align: center; margin-bottom: 1rem; }
+h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
+.intro { color: var(--text-sub); font-size: 0.9rem; margin: 0.4rem auto 0; max-width: 40rem; }
+.updated { font-size: 0.8rem; margin-top: 0.3rem; }
+.updated.error { color: var(--up); }
+
+.controls {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.5rem 1.5rem;
+  margin-top: 1rem;
+}
+.control-group { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+.control-label { font-size: 0.8rem; color: var(--text-sub); font-weight: 700; }
+.toggle { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+.toggle-btn {
+  padding: 0.45rem 0.85rem;
+  min-height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-sub);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.toggle-btn.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+.toggle-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.scale-note { text-align: center; font-size: 0.78rem; color: var(--text-sub); margin-top: 0.4rem; min-height: 1.3em; }
+
+/* ---------- 一覧表 ---------- */
+.etf-table {
+  width: 100%;
+  margin-top: 1rem;
+  border-collapse: separate;
+  border-spacing: 0;
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  overflow: hidden;
+  font-variant-numeric: tabular-nums;
+  table-layout: fixed;
+}
+.etf-table th {
+  font-size: 0.75rem;
+  color: var(--text-sub);
+  font-weight: 700;
+  text-align: left;
+  padding: 0.6rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+}
+.etf-table td {
+  padding: 0.55rem 0.75rem;
+  border-bottom: 1px solid var(--border);
+  vertical-align: middle;
+}
+.etf-table tbody tr:last-child td { border-bottom: none; }
+.etf-table tbody tr.hovered { background: color-mix(in srgb, var(--accent) 6%, transparent); }
+.etf-table .col-num { text-align: right; white-space: nowrap; width: 5.5rem; }
+.etf-table th.col-price { width: 7.5rem; }
+.col-name { width: 10rem; }
+.col-chart { width: auto; }
+
+.sector { font-weight: 700; font-size: 0.95rem; line-height: 1.35; }
+.code { font-size: 0.75rem; color: var(--text-sub); }
+.code a { color: inherit; }
+.num { font-size: 0.9rem; }
+.pct.up { color: var(--up); }
+.pct.down { color: var(--down); }
+.num-label { display: none; }
+
+/* ---------- チャート ---------- */
+.chart-box {
+  position: relative;
+  height: 76px;
+  margin-bottom: 1rem; /* 年ラベルの分 */
+  touch-action: pan-y;
+  cursor: crosshair;
+}
+.chart-box svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.chart-line { fill: none; stroke: var(--accent); stroke-width: 1.8; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.grid-line { stroke: var(--grid); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.base-line { stroke: var(--text-sub); stroke-width: 1; stroke-dasharray: 3 3; vector-effect: non-scaling-stroke; opacity: 0.7; }
+.tick-label {
+  position: absolute;
+  left: 0;
+  transform: translateY(-100%);
+  font-size: 0.62rem;
+  line-height: 1.2;
+  color: var(--text-sub);
+  pointer-events: none;
+  background: color-mix(in srgb, var(--card-bg) 75%, transparent);
+  padding-right: 0.2rem;
+}
+.year-label {
+  position: absolute;
+  top: 100%;
+  font-size: 0.62rem;
+  line-height: 1.6;
+  color: var(--text-sub);
+  pointer-events: none;
+  padding-left: 0.15rem;
+}
+.crosshair {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 0;
+  border-left: 1px solid var(--text-sub);
+  opacity: 0.55;
+  pointer-events: none;
+}
+.dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 2px var(--card-bg);
+  pointer-events: none;
+}
+.tooltip {
+  position: absolute;
+  top: -0.3rem;
+  transform: translate(-50%, -100%);
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.4rem;
+  white-space: nowrap;
+  pointer-events: none;
+  z-index: 2;
+}
+.tooltip.edge-left { transform: translate(0, -100%); }
+.tooltip.edge-right { transform: translate(-100%, -100%); }
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-sub);
+  line-height: 1.8;
+}
+footer a { color: var(--accent); }
+
+/* ---------- スマホ: 1銘柄1カードの縦積み ---------- */
+@media (max-width: 640px) {
+  body { padding: 1.25rem 1rem 3rem; }
+  .etf-table, .etf-table tbody { display: block; background: none; border: none; box-shadow: none; overflow: visible; }
+  .etf-table thead { display: none; }
+  .etf-table tbody tr {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-areas:
+      "name name price"
+      "chart chart chart"
+      "m1 y1 y5";
+    gap: 0.2rem 1rem;
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 1rem;
+    box-shadow: var(--shadow);
+    padding: 0.8rem 0.9rem 0.6rem;
+    margin-bottom: 0.9rem;
+  }
+  .etf-table td { padding: 0; border: none; }
+  .etf-table td.cell-name { grid-area: name; }
+  .etf-table td.cell-chart { grid-area: chart; padding-top: 0.3rem; }
+  .etf-table td.cell-price { grid-area: price; align-self: start; text-align: right; }
+  .etf-table td.cell-m1 { grid-area: m1; text-align: left; }
+  .etf-table td.cell-y1 { grid-area: y1; text-align: left; }
+  .etf-table td.cell-y5 { grid-area: y5; text-align: left; }
+  .num-label { display: inline; font-size: 0.72rem; color: var(--text-sub); margin-right: 0.3rem; }
+  .chart-box { height: 110px; }
+}
