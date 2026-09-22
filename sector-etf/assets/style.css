@@ -70,53 +70,58 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .toggle-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
 .scale-note { text-align: center; font-size: 0.78rem; color: var(--text-sub); margin-top: 0.4rem; min-height: 1.3em; }
 
-/* ---------- 一覧表 ---------- */
-.etf-table {
-  width: 100%;
+/* ---------- カード一覧(横3列) ---------- */
+.etf-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
   margin-top: 1rem;
-  border-collapse: separate;
-  border-spacing: 0;
+  font-variant-numeric: tabular-nums;
+}
+.etf-card {
   background: var(--card-bg);
   border: 1px solid var(--border);
   border-radius: 1rem;
   box-shadow: var(--shadow);
-  overflow: hidden;
-  font-variant-numeric: tabular-nums;
-  table-layout: fixed;
+  padding: 0.8rem 0.9rem 0.7rem;
+  min-width: 0;
+  display: flex;
+  flex-direction: column;
 }
-.etf-table th {
-  font-size: 0.75rem;
-  color: var(--text-sub);
-  font-weight: 700;
-  text-align: left;
-  padding: 0.6rem 0.75rem;
-  border-bottom: 1px solid var(--border);
-  white-space: nowrap;
-}
-.etf-table td {
-  padding: 0.55rem 0.75rem;
-  border-bottom: 1px solid var(--border);
-  vertical-align: middle;
-}
-.etf-table tbody tr:last-child td { border-bottom: none; }
-.etf-table tbody tr.hovered { background: color-mix(in srgb, var(--accent) 6%, transparent); }
-.etf-table .col-num { text-align: right; white-space: nowrap; width: 5.5rem; }
-.etf-table th.col-price { width: 7.5rem; }
-.col-name { width: 10rem; }
-.col-chart { width: auto; }
+/* 業種名が2行になるカードがあっても、同じ段のチャートの位置をそろえる */
+.etf-card .chart-box { margin-top: auto; }
+.etf-card.hovered { border-color: var(--accent); }
 
+.card-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  gap: 0.3rem 0.6rem;
+  flex-wrap: wrap;
+  margin-bottom: 0.4rem;
+}
+.card-title { min-width: 0; }
 .sector { font-weight: 700; font-size: 0.95rem; line-height: 1.35; }
 .code { font-size: 0.75rem; color: var(--text-sub); }
 .code a { color: inherit; }
-.num { font-size: 0.9rem; }
+.price { font-size: 0.9rem; font-weight: 700; white-space: nowrap; }
+
+.returns {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 0.3rem;
+  margin-top: 0.3rem;
+}
+.returns div { min-width: 0; }
+.returns dt { font-size: 0.68rem; color: var(--text-sub); line-height: 1.3; }
+.returns dd { font-size: 0.85rem; line-height: 1.4; white-space: nowrap; }
 .pct.up { color: var(--up); }
 .pct.down { color: var(--down); }
-.num-label { display: none; }
 
 /* ---------- チャート ---------- */
 .chart-box {
   position: relative;
-  height: 76px;
+  aspect-ratio: 1 / 1;
   margin-bottom: 1rem; /* 年ラベルの分 */
   touch-action: pan-y;
   cursor: crosshair;
@@ -174,7 +179,7 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
   line-height: 1.4;
   padding: 0.25rem 0.5rem;
   border-radius: 0.4rem;
-  white-space: nowrap;
+  white-space: pre;
   pointer-events: none;
   z-index: 2;
 }
@@ -190,33 +195,20 @@ footer {
 }
 footer a { color: var(--accent); }
 
-/* ---------- スマホ: 1銘柄1カードの縦積み ---------- */
+/* ---------- スマホ: 3列のまま文字とすき間を詰める ---------- */
 @media (max-width: 640px) {
-  body { padding: 1.25rem 1rem 3rem; }
-  .etf-table, .etf-table tbody { display: block; background: none; border: none; box-shadow: none; overflow: visible; }
-  .etf-table thead { display: none; }
-  .etf-table tbody tr {
-    display: grid;
-    grid-template-columns: 1fr 1fr 1fr;
-    grid-template-areas:
-      "name name price"
-      "chart chart chart"
-      "m1 y1 y5";
-    gap: 0.2rem 1rem;
-    background: var(--card-bg);
-    border: 1px solid var(--border);
-    border-radius: 1rem;
-    box-shadow: var(--shadow);
-    padding: 0.8rem 0.9rem 0.6rem;
-    margin-bottom: 0.9rem;
-  }
-  .etf-table td { padding: 0; border: none; }
-  .etf-table td.cell-name { grid-area: name; }
-  .etf-table td.cell-chart { grid-area: chart; padding-top: 0.3rem; }
-  .etf-table td.cell-price { grid-area: price; align-self: start; text-align: right; }
-  .etf-table td.cell-m1 { grid-area: m1; text-align: left; }
-  .etf-table td.cell-y1 { grid-area: y1; text-align: left; }
-  .etf-table td.cell-y5 { grid-area: y5; text-align: left; }
-  .num-label { display: inline; font-size: 0.72rem; color: var(--text-sub); margin-right: 0.3rem; }
-  .chart-box { height: 110px; }
+  body { padding: 1.25rem 0.6rem 3rem; }
+  .etf-grid { gap: 0.4rem; }
+  .etf-card { padding: 0.45rem 0.4rem 0.4rem; border-radius: 0.6rem; }
+  .card-head { flex-direction: column; gap: 0; margin-bottom: 0.25rem; }
+  .sector { font-size: 0.72rem; }
+  .code { font-size: 0.62rem; }
+  .price { font-size: 0.68rem; }
+  .returns { grid-template-columns: 1fr; gap: 0; }
+  .returns div { display: flex; justify-content: space-between; gap: 0.2rem; }
+  .returns dt { font-size: 0.6rem; line-height: 1.5; }
+  .returns dd { font-size: 0.66rem; line-height: 1.5; }
+  .tick-label, .year-label { font-size: 0.5rem; }
+  .chart-box { margin-bottom: 0.8rem; }
+  .tooltip { font-size: 0.62rem; }
 }

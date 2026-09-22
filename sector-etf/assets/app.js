@@ -25,8 +25,7 @@
   const PAD_Y = 6;
 
   const statusEl = document.getElementById("status");
-  const tableEl = document.getElementById("etf-table");
-  const bodyEl = document.getElementById("etf-body");
+  const gridEl = document.getElementById("etf-grid");
   const sortToggleEl = document.getElementById("sort-toggle");
   const scaleToggleEl = document.getElementById("scale-toggle");
   const scaleNoteEl = document.getElementById("scale-note");
@@ -37,7 +36,7 @@
     sortKey: "default",
     sortDir: "desc",
     scale: "own",
-    rows: new Map(), // code -> { tr, box, crosshair, dot, tooltip, ... }
+    rows: new Map(), // code -> { card, box, crosshair, dot, tooltip, ... }
     hoverIdx: null,
     hoverCode: null,
   };
@@ -150,7 +149,7 @@
       pen = true;
     });
 
-    const ticks = niceTicks(min, max, 3);
+    const ticks = niceTicks(min, max, 4);
     const grid = ticks
       .map((t) => `<line class="grid-line" x1="0" x2="${W}" y1="${yOf(t).toFixed(1)}" y2="${yOf(t).toFixed(1)}" />`)
       .join("");
@@ -174,18 +173,19 @@
       row.labels.appendChild(lab);
     }
     for (const { i, label } of yearStarts()) {
-      const lab = el("span", "year-label", label);
+      const lab = el("span", "year-label", `'${label.slice(2)}`);
       lab.style.left = `${xPct(i)}%`;
       row.labels.appendChild(lab);
     }
   }
 
   function buildRow(etf) {
-    const tr = el("tr");
-    tr.dataset.code = etf.code;
+    const card = el("article", "etf-card");
+    card.dataset.code = etf.code;
 
-    const nameTd = el("td", "cell-name");
-    nameTd.appendChild(el("div", "sector", etf.sector));
+    const head = el("div", "card-head");
+    const title = el("div", "card-title");
+    title.appendChild(el("div", "sector", etf.sector));
     const codeDiv = el("div", "code");
     const link = el("a", null, etf.code);
     link.href = YAHOO_URL(etf.code);
@@ -193,9 +193,9 @@
     link.rel = "noopener";
     link.title = `${etf.name}(Yahoo!ファイナンス)`;
     codeDiv.appendChild(link);
-    nameTd.appendChild(codeDiv);
+    title.appendChild(codeDiv);
+    head.append(title, el("div", "price", priceFmt(etf.last)));
 
-    const chartTd = el("td", "cell-chart");
     const box = el("div", "chart-box");
     box.setAttribute("role", "img");
     box.setAttribute(
@@ -212,25 +212,21 @@
     const tooltip = el("div", "tooltip");
     crosshair.hidden = dot.hidden = tooltip.hidden = true;
     box.append(svg, labels, crosshair, dot, tooltip);
-    chartTd.appendChild(box);
 
-    const numTd = (cls, label, text, textCls) => {
-      const td = el("td", `col-num ${cls}`);
-      td.appendChild(el("span", "num-label", label));
-      td.appendChild(el("span", textCls, text));
-      return td;
-    };
+    const returns = el("dl", "returns");
+    for (const [label, v] of [
+      ["1ヶ月", etf.m1],
+      ["1年", etf.y1],
+      ["5年", etf.y5],
+    ]) {
+      const item = el("div");
+      item.append(el("dt", null, label), el("dd", pctClass(v), pctText(v)));
+      returns.appendChild(item);
+    }
 
-    tr.append(
-      nameTd,
-      chartTd,
-      numTd("cell-price", "終値", priceFmt(etf.last), "num"),
-      numTd("cell-m1", "1ヶ月", pctText(etf.m1), `num ${pctClass(etf.m1)}`),
-      numTd("cell-y1", "1年", pctText(etf.y1), `num ${pctClass(etf.y1)}`),
-      numTd("cell-y5", "5年", pctText(etf.y5), `num ${pctClass(etf.y5)}`)
-    );
+    card.append(head, box, returns);
 
-    const row = { tr, box, svg, labels, crosshair, dot, tooltip, etf };
+    const row = { card, box, svg, labels, crosshair, dot, tooltip, etf };
     attachHover(row);
     return row;
   }
@@ -265,7 +261,7 @@
   }
 
   function renderOrder() {
-    bodyEl.replaceChildren(...sortedEtfs().map((etf) => state.rows.get(etf.code).tr));
+    gridEl.replaceChildren(...sortedEtfs().map((etf) => state.rows.get(etf.code).card));
   }
 
   function renderToggles() {
@@ -346,7 +342,7 @@
     for (const row of state.rows.values()) {
       const active = state.hoverIdx != null;
       row.crosshair.hidden = !active;
-      row.tr.classList.toggle("hovered", active && row.etf.code === state.hoverCode);
+      row.card.classList.toggle("hovered", active && row.etf.code === state.hoverCode);
       const isSource = active && row.etf.code === state.hoverCode;
       row.dot.hidden = !active;
       row.tooltip.hidden = !isSource;
@@ -365,11 +361,17 @@
       if (isSource) {
         const close = row.etf.close[i];
         const toNow = close ? (row.etf.last / close - 1) * 100 : null;
-        row.tooltip.textContent = `${dateFmt(state.dates[i])}  ${priceFmt(close)}(現在まで ${pctText(toNow)})`;
+        row.tooltip.textContent = `${dateFmt(state.dates[i])}  ${priceFmt(close)}\n現在まで ${pctText(toNow)}`;
         row.tooltip.style.left = left;
+        row.tooltip.style.marginLeft = "0px";
         const frac = xPct(state.hoverIdx);
         row.tooltip.classList.toggle("edge-left", frac < 20);
         row.tooltip.classList.toggle("edge-right", frac > 80);
+        // 画面の端からはみ出す場合は内側へずらす
+        const r = row.tooltip.getBoundingClientRect();
+        const vw = document.documentElement.clientWidth;
+        if (r.right > vw - 4) row.tooltip.style.marginLeft = `${vw - 4 - r.right}px`;
+        else if (r.left < 4) row.tooltip.style.marginLeft = `${4 - r.left}px`;
       }
     }
   }
@@ -400,7 +402,7 @@
       for (const etf of state.etfs) state.rows.set(etf.code, buildRow(etf));
       renderToggles();
       renderOrder();
-      tableEl.hidden = false;
+      gridEl.hidden = false;
       renderAllCharts();
     } catch (err) {
       console.error(err);
