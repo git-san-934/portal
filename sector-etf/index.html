@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>業種別ETFチャート一覧</title>
+  <meta name="description" content="TOPIX-17業種別ETFと東証銀行業ETFの過去5年チャートを一覧で比べられるページ" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20260923a" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>業種別ETFチャート一覧</h1>
+      <p class="intro">NEXT FUNDS TOPIX-17業種別ETF(1617〜1633)と東証銀行業ETF(1615)の過去5年の値動きを並べて比べられます。チャートに触れると、全銘柄の同じ日付に線が出ます。</p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <div class="controls">
+      <div class="control-group">
+        <span class="control-label" id="sort-label">並び替え</span>
+        <div id="sort-toggle" class="toggle" role="group" aria-labelledby="sort-label"></div>
+      </div>
+      <div class="control-group">
+        <span class="control-label" id="scale-label">縦軸</span>
+        <div id="scale-toggle" class="toggle" role="group" aria-labelledby="scale-label"></div>
+      </div>
+    </div>
+    <p class="scale-note" id="scale-note"></p>
+
+    <table class="etf-table" id="etf-table" hidden>
+      <thead>
+        <tr>
+          <th scope="col" class="col-name">業種</th>
+          <th scope="col" class="col-chart">5年チャート(日次終値)</th>
+          <th scope="col" class="col-num col-price">終値</th>
+          <th scope="col" class="col-num">1ヶ月</th>
+          <th scope="col" class="col-num">1年</th>
+          <th scope="col" class="col-num">5年</th>
+        </tr>
+      </thead>
+      <tbody id="etf-body"></tbody>
+    </table>
+
+    <footer>
+      データ提供元: Yahoo Finance(yfinance 経由)。終値は株式分割のみ調整済みで、分配金は含みません
+      (ETFが連動する「配当込み」指数の値動きとは分配金の分だけずれます)。騰落率は各期間の始めの終値と直近終値の比較です。<br />
+      投資助言ではありません。売買判断はご自身の責任で行ってください。<br />
+      <a href="../">← アプリ一覧に戻る</a>
+    </footer>
+  </div>
+
+  <script src="assets/app.js?v=20260923a"></script>
+</body>
+</html>

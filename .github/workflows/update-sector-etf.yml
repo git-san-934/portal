@@ -1,0 +1,56 @@
+name: 業種別ETFデータ更新
+
+on:
+  schedule:
+    - cron: "30 9 * * 1-5" # 平日 18:30 JST(GitHub側の混雑で数十分遅れることがあります)
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - sector-etf/scripts/**
+      - .github/workflows/update-sector-etf.yml
+  pull_request:
+    paths:
+      - sector-etf/scripts/**
+      - .github/workflows/update-sector-etf.yml
+
+permissions:
+  contents: write # etf.json をコミットする
+  actions: write # 更新後に Pages のデプロイを起動する
+
+concurrency:
+  group: sector-etf-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r sector-etf/scripts/requirements.txt
+      - name: 株価を取得
+        run: python sector-etf/scripts/fetch_etf.py
+      # PR では取得できるかの確認だけ行い、コミット・デプロイはしない
+      - name: etf.json をコミット
+        id: commit
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add sector-etf/data/etf.json
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "業種別ETFデータ更新 ($(TZ=Asia/Tokyo date +%F))"
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
+      - name: GitHub Pages を再デプロイ
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main
