@@ -322,10 +322,29 @@
     }
 
     // CSV データを読み込み
-    fetch('dissolution-rankings.csv')
-      .then(res => res.text())
+    const csvPath = new URL('dissolution-rankings.csv', window.location.href).href;
+    console.log('Loading CSV from:', csvPath);
+
+    fetch(csvPath)
+      .then(res => {
+        console.log('Fetch response status:', res.status, res.statusText);
+        if (!res.ok) {
+          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
+        }
+        return res.text();
+      })
       .then(csv => {
+        console.log('CSV loaded, size:', csv.length, 'bytes');
+        if (!csv || csv.trim().length === 0) {
+          throw new Error('CSV is empty');
+        }
         allData = parseCSV(csv);
+        console.log('Parsed', allData.length, 'records');
+
+        if (allData.length === 0) {
+          throw new Error('No data parsed from CSV');
+        }
+
         renderRankings(allData.slice(0, 25)); // 最初は上位25件
 
         searchInput.addEventListener('input', (e) => {
@@ -334,9 +353,21 @@
         });
       })
       .catch(err => {
-        rankingsContainer.innerHTML = '<p style="text-align: center; color: var(--text-sub);">データの読み込みに失敗しました</p>';
-        console.error(err);
+        const errorMsg = err.message || String(err);
+        console.error('Data loading error:', errorMsg, err);
+        rankingsContainer.innerHTML = '<p style="text-align: center; color: var(--text-sub);">データの読み込みに失敗しました: ' + escapeHtml(errorMsg) + '</p>';
       });
+
+    function escapeHtml(text) {
+      const map = {
+        '&': '&amp;',
+        '<': '&lt;',
+        '>': '&gt;',
+        '"': '&quot;',
+        "'": '&#039;'
+      };
+      return text.replace(/[&<>"']/g, m => map[m]);
+    }
   </script>
 </body>
 </html>
