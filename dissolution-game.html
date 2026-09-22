@@ -42,7 +42,7 @@
       padding: 2rem 1.25rem 4rem;
     }
 
-    .wrap { max-width: 50rem; margin: 0 auto; }
+    .wrap { max-width: 90rem; margin: 0 auto; }
 
     header { text-align: center; margin-bottom: 2rem; }
 
@@ -76,35 +76,6 @@
 
     .intro p:last-child { margin-bottom: 0; }
 
-    .controls {
-      display: flex;
-      gap: 1rem;
-      margin-bottom: 2rem;
-      flex-wrap: wrap;
-    }
-
-    .search-box {
-      flex: 1;
-      min-width: 200px;
-      display: flex;
-      gap: 0.5rem;
-    }
-
-    input[type="text"] {
-      flex: 1;
-      padding: 0.6rem 1rem;
-      border: 1px solid var(--border);
-      border-radius: 0.5rem;
-      background: var(--card-bg);
-      color: var(--text);
-      font-size: 0.9rem;
-    }
-
-    input[type="text"]:focus {
-      outline: none;
-      border-color: var(--accent);
-    }
-
     button {
       padding: 0.6rem 1.5rem;
       background: var(--accent);
@@ -119,80 +90,193 @@
 
     button:hover { opacity: 0.9; }
 
-    .rankings {
-      display: flex;
-      flex-direction: column;
-      gap: 1rem;
+    .game-container {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 2rem;
+      margin-bottom: 2rem;
     }
 
-    .rank-card {
-      display: flex;
-      align-items: flex-start;
-      gap: 1rem;
+    @media (max-width: 1200px) {
+      .game-container {
+        grid-template-columns: 1fr;
+      }
+    }
+
+    .panel {
       background: var(--card-bg);
       border: 1px solid var(--border);
-      border-radius: 0.75rem;
-      padding: 1rem;
+      border-radius: 1rem;
+      padding: 1.5rem;
       box-shadow: var(--shadow);
+    }
+
+    .panel h2 {
+      font-size: 1.1rem;
+      margin-bottom: 1rem;
+      color: var(--accent);
+      border-bottom: 2px solid var(--border);
+      padding-bottom: 0.8rem;
+    }
+
+    .ai-rankings {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      max-height: 600px;
+      overflow-y: auto;
+    }
+
+    .ai-rank-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.8rem;
+      background: var(--bg);
+      border-radius: 0.5rem;
+      cursor: move;
+      user-select: none;
+      transition: all 0.2s;
+      border: 2px solid transparent;
+    }
+
+    .ai-rank-item:hover {
+      background: var(--border);
+      transform: translateX(2px);
+    }
+
+    .ai-rank-item.drag-over {
+      border-color: var(--accent);
+      background: rgba(200, 80, 45, 0.1);
+    }
+
+    .rank-badge {
+      flex-shrink: 0;
+      width: 2rem;
+      height: 2rem;
+      display: grid;
+      place-items: center;
+      background: var(--accent);
+      color: var(--accent-text);
+      border-radius: 0.4rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .rank-badge.ai-badge {
+      background: rgba(200, 80, 45, 0.2);
+      color: var(--accent);
+    }
+
+    .rank-info-mini {
+      flex: 1;
+      font-size: 0.85rem;
+    }
+
+    .rank-name {
+      font-weight: 600;
+      margin-bottom: 0.2rem;
+    }
+
+    .rank-code-mini {
+      color: var(--text-sub);
+      font-size: 0.75rem;
+    }
+
+    .user-rankings {
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+      min-height: 600px;
+    }
+
+    .user-rank-item {
+      display: flex;
+      align-items: center;
+      gap: 0.8rem;
+      padding: 0.8rem;
+      background: var(--bg);
+      border-radius: 0.5rem;
+      border: 2px dashed var(--border);
+      transition: all 0.2s;
+    }
+
+    .user-rank-item.drop-target {
+      border-color: var(--accent);
+      background: rgba(200, 80, 45, 0.05);
+    }
+
+    .user-rank-item.filled {
+      border-style: solid;
+      border-color: var(--accent);
+      background: rgba(200, 80, 45, 0.1);
     }
 
     .rank-number {
       flex-shrink: 0;
-      width: 2.5rem;
-      height: 2.5rem;
+      width: 2rem;
+      height: 2rem;
       display: grid;
       place-items: center;
-      background: var(--bg);
-      border-radius: 0.5rem;
-      font-size: 1.2rem;
+      background: var(--accent);
+      color: var(--accent-text);
+      border-radius: 0.4rem;
+      font-weight: 700;
+      font-size: 0.85rem;
+    }
+
+    .user-rank-item.empty {
+      color: var(--text-sub);
+      justify-content: center;
+    }
+
+    .remove-btn {
+      flex-shrink: 0;
+      padding: 0.3rem 0.6rem;
+      font-size: 0.75rem;
+      background: transparent;
+      color: var(--text-sub);
+      border: 1px solid var(--border);
+    }
+
+    .remove-btn:hover {
+      background: var(--border);
+      color: var(--text);
+    }
+
+    .game-controls {
+      display: flex;
+      gap: 1rem;
+      margin-bottom: 2rem;
+      flex-wrap: wrap;
+    }
+
+    .score-display {
+      background: var(--card-bg);
+      border: 2px solid var(--accent);
+      border-radius: 1rem;
+      padding: 2rem;
+      text-align: center;
+      margin-bottom: 2rem;
+    }
+
+    .score-display h3 {
+      font-size: 0.9rem;
+      color: var(--text-sub);
+      margin-bottom: 0.5rem;
+    }
+
+    .score-value {
+      font-size: 2.5rem;
       font-weight: 700;
       color: var(--accent);
+      margin-bottom: 1rem;
     }
 
-    .rank-info { flex: 1; }
-
-    .rank-title {
-      font-size: 1rem;
-      font-weight: 600;
-      margin-bottom: 0.3rem;
-    }
-
-    .rank-code {
-      color: var(--text-sub);
+    .score-detail {
       font-size: 0.85rem;
-      margin-bottom: 0.4rem;
-    }
-
-    .rank-score {
-      display: inline-block;
-      background: var(--accent);
-      color: var(--accent-text);
-      padding: 0.2rem 0.6rem;
-      border-radius: 0.3rem;
-      font-size: 0.8rem;
-      font-weight: 600;
-      margin-bottom: 0.4rem;
-    }
-
-    .rank-reason {
-      font-size: 0.8rem;
       color: var(--text-sub);
       line-height: 1.6;
-    }
-
-    .predict-btn {
-      margin-top: 0.8rem;
-      padding: 0.5rem 1rem;
-      font-size: 0.85rem;
-      background: var(--bg);
-      color: var(--accent);
-      border: 1px solid var(--accent);
-    }
-
-    .predict-btn:hover {
-      background: var(--accent);
-      color: var(--accent-text);
-      opacity: 1;
     }
 
     .footer-note {
@@ -212,15 +296,21 @@
 
     .back-link:hover { text-decoration: underline; }
 
-    .score-badge {
+    .loading {
+      text-align: center;
+      color: var(--text-sub);
+      padding: 2rem;
+    }
+
+    .match-badge {
       display: inline-block;
-      margin-left: 0.5rem;
-      padding: 0.15rem 0.5rem;
-      background: rgba(200, 80, 45, 0.1);
-      color: var(--accent);
-      border-radius: 0.2rem;
-      font-size: 0.8rem;
+      padding: 0.3rem 0.6rem;
+      background: #4caf50;
+      color: white;
+      border-radius: 0.3rem;
+      font-size: 0.7rem;
       font-weight: 600;
+      margin-left: 0.4rem;
     }
   </style>
 </head>
@@ -228,29 +318,42 @@
   <div class="wrap">
     <header>
       <h1>親子上場解消を予想しよう</h1>
-      <p>次に解消される可能性が高い親子上場ペアは？<br>過去3年のデータから AI がランク付けした候補です。</p>
+      <p>AI の優先順位 vs あなたの優先順位<br>25社をランク付けして、予想が当たるかを競います</p>
     </header>
 
     <div class="intro">
-      <h2>このゲームについて</h2>
-      <p>東証に上場している親子上場ペア（親会社と子会社の両方が上場）について、今後解消（子会社の完全子会社化など）される可能性を予想します。</p>
-      <p><strong>予測の根拠：</strong>過去3年（2023-2026年）に実際に解消された110ケースを分析し、次のような要因でスコア付けしています：</p>
-      <ul style="margin-left: 1.5rem; margin-top: 0.5rem;">
-        <li>親会社の過去の解消実績（繰り返し解消する親会社は今後も行う傾向）</li>
-        <li>上場市場セグメント（スタンダード/グロース市場の子会社が解消されやすい）</li>
-        <li>買収費用の効率性（親会社の規模に対して少数株主の買収費用が小さい場合）</li>
-        <li>株価評価（PBR が1倍割れの割安銘柄）</li>
-        <li>親会社の持株比率（50-60%の辛うじて過半数の状態）</li>
-      </ul>
+      <h2>ゲーム概要</h2>
+      <p>東証に上場している親子上場ペア（親会社と子会社の両方が上場）について、今後解消（子会社の完全子会社化など）される可能性が高い順に 25 社をランク付けしてください。</p>
+      <p><strong>AIの予想：</strong>過去3年（2023-2026年）に実際に解消された110ケースを分析し、スコア付けしています。左側の AI のランキングと、あなたの予想の一致度を比較します。</p>
     </div>
 
-    <div class="controls">
-      <div class="search-box">
-        <input type="text" id="searchInput" placeholder="銘柄コード・名前で検索..." />
+    <div class="game-controls">
+      <button id="resetBtn">リセット</button>
+      <button id="exportBtn">結果をエクスポート</button>
+    </div>
+
+    <div id="scoreSection" style="display: none;">
+      <div class="score-display">
+        <h3>あなたのスコア</h3>
+        <div class="score-value"><span id="scoreValue">-</span>点</div>
+        <div class="score-detail">
+          <div>一致度: <span id="matchPercentage">0</span>%</div>
+          <div id="rankDiffDetail"></div>
+        </div>
       </div>
     </div>
 
-    <div id="rankings" class="rankings"></div>
+    <div class="game-container">
+      <div class="panel">
+        <h2>🤖 AI の優先順位（左からドラッグ）</h2>
+        <div id="aiRankings" class="ai-rankings"></div>
+      </div>
+
+      <div class="panel">
+        <h2>👤 あなたの予想（ドロップして配置）</h2>
+        <div id="userRankings" class="user-rankings"></div>
+      </div>
+    </div>
 
     <div class="footer-note">
       スコアはあくまで過去データに基づいた統計的な予想です。<br>
@@ -261,9 +364,13 @@
   </div>
 
   <script>
-    const rankingsContainer = document.getElementById('rankings');
-    const searchInput = document.getElementById('searchInput');
+    const aiRankingsContainer = document.getElementById('aiRankings');
+    const userRankingsContainer = document.getElementById('userRankings');
+    const resetBtn = document.getElementById('resetBtn');
+    const exportBtn = document.getElementById('exportBtn');
     let allData = [];
+    let userRanking = new Array(25).fill(null);
+    let draggedItem = null;
 
     function parseCSV(csv) {
       const lines = csv.trim().split(/\r?\n/);
@@ -281,93 +388,188 @@
       return data;
     }
 
-    function renderRankings(data) {
-      rankingsContainer.innerHTML = '';
-      if (data.length === 0) {
-        rankingsContainer.innerHTML = '<p style="text-align: center; color: var(--text-sub);">該当する銘柄がありません</p>';
-        return;
-      }
-      data.forEach(row => {
-        const card = document.createElement('div');
-        card.className = 'rank-card';
-        card.innerHTML = `
-          <div class="rank-number">${row['順位']}</div>
-          <div class="rank-info">
-            <div class="rank-title">
-              ${row['子会社名']}
-              <span class="score-badge">スコア ${row['スコア']}</span>
-            </div>
-            <div class="rank-code">
-              ${row['子会社コード']} / ${row['市場']} 市場<br>
-              親会社: ${row['親会社']} (${row['親会社コード']})
-            </div>
-            <div class="rank-reason">
-              <strong>理由：</strong> ${row['スコアの根拠'].replace(/ \/ /g, '<br>')}
-            </div>
-            <button class="predict-btn">このペアを予想に追加</button>
+    function renderAIRankings() {
+      aiRankingsContainer.innerHTML = '';
+      allData.forEach((row, idx) => {
+        const item = document.createElement('div');
+        item.className = 'ai-rank-item';
+        item.draggable = true;
+        item.dataset.index = idx;
+        item.innerHTML = `
+          <div class="rank-badge ai-badge">${row['順位']}</div>
+          <div class="rank-info-mini">
+            <div class="rank-name">${row['子会社名']}</div>
+            <div class="rank-code-mini">${row['子会社コード']} - ${row['親会社']}</div>
           </div>
         `;
-        rankingsContainer.appendChild(card);
+
+        item.addEventListener('dragstart', (e) => {
+          draggedItem = idx;
+          e.dataTransfer.effectAllowed = 'move';
+          e.dataTransfer.setData('text/html', item.innerHTML);
+          item.style.opacity = '0.5';
+        });
+
+        item.addEventListener('dragend', (e) => {
+          item.style.opacity = '1';
+        });
+
+        aiRankingsContainer.appendChild(item);
       });
     }
 
-    function filterData(query) {
-      if (!query) return allData;
-      const q = query.toLowerCase();
-      return allData.filter(row =>
-        row['子会社コード'].includes(q) ||
-        row['子会社名'].toLowerCase().includes(q) ||
-        row['親会社'].toLowerCase().includes(q)
-      );
+    function renderUserRankings() {
+      userRankingsContainer.innerHTML = '';
+      for (let i = 0; i < 25; i++) {
+        const slot = document.createElement('div');
+        slot.className = 'user-rank-item empty';
+        slot.dataset.position = i;
+
+        if (userRanking[i] !== null) {
+          const row = allData[userRanking[i]];
+          slot.className = 'user-rank-item filled';
+          slot.innerHTML = `
+            <div class="rank-number">${i + 1}</div>
+            <div class="rank-info-mini">
+              <div class="rank-name">${row['子会社名']}</div>
+              <div class="rank-code-mini">${row['子会社コード']} - AI: 第${row['順位']}位</div>
+            </div>
+            <button class="remove-btn">削除</button>
+          `;
+
+          const removeBtn = slot.querySelector('.remove-btn');
+          removeBtn.addEventListener('click', () => {
+            userRanking[i] = null;
+            renderUserRankings();
+            calculateScore();
+          });
+        } else {
+          slot.innerHTML = `<div class="rank-number">${i + 1}</div><span>ここにドロップ</span>`;
+        }
+
+        slot.addEventListener('dragover', (e) => {
+          e.preventDefault();
+          e.dataTransfer.dropEffect = 'move';
+          slot.classList.add('drop-target');
+        });
+
+        slot.addEventListener('dragleave', () => {
+          slot.classList.remove('drop-target');
+        });
+
+        slot.addEventListener('drop', (e) => {
+          e.preventDefault();
+          slot.classList.remove('drop-target');
+
+          if (draggedItem !== null) {
+            const position = parseInt(slot.dataset.position);
+            userRanking[position] = draggedItem;
+            renderUserRankings();
+            calculateScore();
+          }
+        });
+
+        userRankingsContainer.appendChild(slot);
+      }
+    }
+
+    function calculateScore() {
+      let matchCount = 0;
+      let positionDiffSum = 0;
+
+      for (let i = 0; i < 25; i++) {
+        if (userRanking[i] !== null) {
+          const aiRank = parseInt(allData[userRanking[i]]['順位']) - 1;
+          if (aiRank === i) {
+            matchCount++;
+          } else {
+            positionDiffSum += Math.abs(aiRank - i);
+          }
+        }
+      }
+
+      const fillCount = userRanking.filter(x => x !== null).length;
+      const matchPercentage = fillCount > 0 ? Math.round((matchCount / fillCount) * 100) : 0;
+      const score = Math.max(0, 100 - Math.floor(positionDiffSum / 2));
+
+      document.getElementById('scoreSection').style.display = 'block';
+      document.getElementById('scoreValue').textContent = score;
+      document.getElementById('matchPercentage').textContent = matchPercentage;
+
+      const detail = `完全一致: ${matchCount}/${fillCount}件 | 平均位置ズレ: ${fillCount > 0 ? (positionDiffSum / fillCount).toFixed(1) : 0}位`;
+      document.getElementById('rankDiffDetail').textContent = detail;
+
+      localStorage.setItem('userRanking', JSON.stringify(userRanking));
+      localStorage.setItem('lastScore', JSON.stringify({ score, matchPercentage, matchCount, fillCount }));
+    }
+
+    function resetGame() {
+      if (confirm('ゲームをリセットしますか？')) {
+        userRanking = new Array(25).fill(null);
+        renderUserRankings();
+        document.getElementById('scoreSection').style.display = 'none';
+        localStorage.removeItem('userRanking');
+        localStorage.removeItem('lastScore');
+      }
+    }
+
+    function exportResult() {
+      const score = document.getElementById('scoreValue').textContent;
+      const matchPercentage = document.getElementById('matchPercentage').textContent;
+      const timestamp = new Date().toLocaleString('ja-JP');
+
+      let csv = '順位,子会社コード,子会社名,親会社,AI順位,マッチ\n';
+      for (let i = 0; i < 25; i++) {
+        if (userRanking[i] !== null) {
+          const row = allData[userRanking[i]];
+          const match = (parseInt(row['順位']) - 1 === i) ? '○' : '×';
+          csv += `${i + 1},${row['子会社コード']},${row['子会社名']},${row['親会社']},${row['順位']},${match}\n`;
+        }
+      }
+
+      const blob = new Blob([csv], { type: 'text/csv' });
+      const url = URL.createObjectURL(blob);
+      const a = document.createElement('a');
+      a.href = url;
+      a.download = `dissolution-game-result-${new Date().getTime()}.csv`;
+      a.click();
+      URL.revokeObjectURL(url);
     }
 
     // CSV データを読み込み
     const csvPath = new URL('dissolution-rankings.csv', window.location.href).href;
-    console.log('Loading CSV from:', csvPath);
 
     fetch(csvPath)
       .then(res => {
-        console.log('Fetch response status:', res.status, res.statusText);
-        if (!res.ok) {
-          throw new Error(`HTTP ${res.status}: ${res.statusText}`);
-        }
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
         return res.text();
       })
       .then(csv => {
-        console.log('CSV loaded, size:', csv.length, 'bytes');
         if (!csv || csv.trim().length === 0) {
           throw new Error('CSV is empty');
         }
-        allData = parseCSV(csv);
-        console.log('Parsed', allData.length, 'records');
+        allData = parseCSV(csv).slice(0, 25);
 
         if (allData.length === 0) {
           throw new Error('No data parsed from CSV');
         }
 
-        renderRankings(allData.slice(0, 25)); // 最初は上位25件
+        renderAIRankings();
+        renderUserRankings();
 
-        searchInput.addEventListener('input', (e) => {
-          const filtered = filterData(e.target.value);
-          renderRankings(filtered.slice(0, 50));
-        });
+        const saved = localStorage.getItem('userRanking');
+        if (saved) {
+          userRanking = JSON.parse(saved);
+          renderUserRankings();
+          calculateScore();
+        }
+
+        resetBtn.addEventListener('click', resetGame);
+        exportBtn.addEventListener('click', exportResult);
       })
       .catch(err => {
-        const errorMsg = err.message || String(err);
-        console.error('Data loading error:', errorMsg, err);
-        rankingsContainer.innerHTML = '<p style="text-align: center; color: var(--text-sub);">データの読み込みに失敗しました: ' + escapeHtml(errorMsg) + '</p>';
+        aiRankingsContainer.innerHTML = `<p class="loading">エラー: ${err.message}</p>`;
       });
-
-    function escapeHtml(text) {
-      const map = {
-        '&': '&amp;',
-        '<': '&lt;',
-        '>': '&gt;',
-        '"': '&quot;',
-        "'": '&#039;'
-      };
-      return text.replace(/[&<>"']/g, m => map[m]);
-    }
   </script>
 </body>
 </html>
