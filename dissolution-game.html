@@ -410,7 +410,6 @@
         item.draggable = true;
         item.dataset.index = idx;
         const reason = row['スコアの根拠'] || '';
-        const reasonText = reason.length > 60 ? reason.substring(0, 60) + '...' : reason;
         item.innerHTML = `
           <div style="display: flex; align-items: flex-start; gap: 0.5rem;">
             <div class="rank-badge ai-badge">${row['順位']}</div>
@@ -419,7 +418,7 @@
               <div class="rank-code-mini">${row['子会社コード']} - ${row['親会社']}</div>
             </div>
           </div>
-          ${reason ? `<div class="rank-reason" title="${reason}">${reasonText}</div>` : ''}
+          ${reason ? `<div class="rank-reason">${reason}</div>` : ''}
         `;
 
         item.addEventListener('dragstart', (e) => {
