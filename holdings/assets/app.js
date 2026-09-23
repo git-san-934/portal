@@ -34,6 +34,43 @@
     return e;
   }
 
+  // ---------- LocalStorage 保有データ管理 ----------
+
+  const POSITIONS_KEY = "holdings-positions";
+
+  function getPositions() {
+    try {
+      const data = localStorage.getItem(POSITIONS_KEY);
+      return data ? JSON.parse(data) : {};
+    } catch (e) {
+      console.error("Failed to parse positions from localStorage", e);
+      return {};
+    }
+  }
+
+  function setPosition(code, price, quantity) {
+    const positions = getPositions();
+    if (price > 0 && quantity > 0) {
+      positions[code] = { price: parseFloat(price), quantity: parseFloat(quantity) };
+    } else {
+      delete positions[code];
+    }
+    try {
+      localStorage.setItem(POSITIONS_KEY, JSON.stringify(positions));
+    } catch (e) {
+      console.error("Failed to save positions to localStorage", e);
+    }
+  }
+
+  function calcPnl(currentPrice, acquiredPrice, quantity) {
+    if (!acquiredPrice || !quantity || acquiredPrice <= 0) return null;
+    const totalCost = acquiredPrice * quantity;
+    const currentValue = currentPrice * quantity;
+    const gain = currentValue - totalCost;
+    const gainPct = (gain / totalCost) * 100;
+    return { totalCost, currentValue, gain, gainPct };
+  }
+
   // ---------- 株価データからの計算 ----------
 
   // prices.json の終値から、直近終値・前日比・年初来高値比・1ヶ月/1年騰落率を出す
@@ -235,6 +272,29 @@
       stats.appendChild(item);
     }
 
+    // 保有状況の損益表示
+    const positions = getPositions();
+    const position = positions[stock.code];
+    const currentPrice = st ? st.last : stock.close;
+    if (position && currentPrice) {
+      const pnl = calcPnl(currentPrice, position.price, position.quantity);
+      if (pnl) {
+        const pnlStats = el("dl", "stats pnl");
+        for (const [dt, dd, cls] of [
+          ["取得単価", priceFmt(position.price), "pct"],
+          ["保有株数", `${numFmt.format(position.quantity)}株`, "pct"],
+          ["評価額", priceFmt(pnl.currentValue), "pct"],
+          ["損益", priceFmt(pnl.gain), pctClass(pnl.gain)],
+          ["損益率", pctText(pnl.gainPct), pctClass(pnl.gainPct)],
+        ]) {
+          const item = el("div");
+          item.append(el("dt", null, dt), el("dd", cls, dd));
+          pnlStats.appendChild(item);
+        }
+        card.appendChild(pnlStats);
+      }
+    }
+
     // チェック時点のリスクとリターン
     const rr = el("dl", "stats rr");
     for (const [dt, dd, cls] of [
@@ -287,6 +347,70 @@
 
   function fillList(ul, items) {
     ul.replaceChildren(...(items || []).map((t) => el("li", null, t)));
+  }
+
+  function buildPositionInputs(stocks) {
+    const container = $("position-inputs");
+    const positions = getPositions();
+
+    const table = el("table", "position-inputs-table");
+    const thead = el("thead");
+    const headerRow = el("tr");
+    headerRow.append(
+      el("th", null, "銘柄"),
+      el("th", null, "取得単価(円)"),
+      el("th", null, "保有株数"),
+      el("th", null, "")
+    );
+    thead.appendChild(headerRow);
+    table.appendChild(thead);
+
+    const tbody = el("tbody");
+    for (const stock of stocks) {
+      const position = positions[stock.code] || {};
+      const row = el("tr");
+      const priceInput = el("input");
+      priceInput.type = "number";
+      priceInput.placeholder = "取得単価";
+      priceInput.min = "0";
+      priceInput.step = "0.01";
+      priceInput.value = position.price ? position.price.toString() : "";
+      priceInput.addEventListener("input", () => {
+        const qty = quantityInput.value;
+        setPosition(stock.code, priceInput.value, qty);
+        location.reload();
+      });
+
+      const quantityInput = el("input");
+      quantityInput.type = "number";
+      quantityInput.placeholder = "株数";
+      quantityInput.min = "0";
+      quantityInput.step = "1";
+      quantityInput.value = position.quantity ? position.quantity.toString() : "";
+      quantityInput.addEventListener("input", () => {
+        const price = priceInput.value;
+        setPosition(stock.code, price, quantityInput.value);
+        location.reload();
+      });
+
+      const clearBtn = el("button", "clear-btn");
+      clearBtn.textContent = "削除";
+      clearBtn.addEventListener("click", () => {
+        setPosition(stock.code, 0, 0);
+        location.reload();
+      });
+
+      row.append(
+        el("td", null, `${stock.name}(${stock.code})`),
+        el("td", null, priceInput),
+        el("td", null, quantityInput),
+        el("td", null, clearBtn)
+      );
+      tbody.appendChild(row);
+    }
+    table.appendChild(tbody);
+    container.appendChild(table);
+    $("position-panel").hidden = false;
   }
 
   async function loadJson(url) {
@@ -343,6 +467,9 @@
     }
     $("overview-panel").hidden = false;
     cards.hidden = false;
+
+    // 保有入力フォーム
+    buildPositionInputs(check.stocks);
 
     if (check.next && check.next.length) {
       fillList($("next"), check.next);
