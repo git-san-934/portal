@@ -72,6 +72,9 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
   text-align: right;
   padding: 0 0.3rem 0.3rem;
   border-bottom: 1px solid var(--border);
+  white-space: nowrap;
+  vertical-align: bottom;
+  line-height: 1.3;
 }
 .overview td { padding: 0.45rem 0.3rem; border-bottom: 1px solid var(--grid); text-align: right; white-space: nowrap; }
 .overview tr:last-child td { border-bottom: none; }
@@ -141,6 +144,9 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .memo summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.3rem; }
 .memo ul { padding-left: 1.2rem; }
 .memo li + li { margin-top: 0.2rem; }
+.criteria { margin-top: 0.5rem; }
+.caveat, .risk-note { font-size: 0.78rem; color: var(--text-sub); margin-top: 0.3rem; }
+.stats.rr { margin-top: 0.4rem; padding-top: 0.4rem; border-top: 1px dashed var(--border); }
 
 /* ---------- チャート ---------- */
 .chart-wrap { margin-top: 0.7rem; }
@@ -216,8 +222,11 @@ footer a { color: var(--accent); }
   body { padding: 1.25rem 1rem 3rem; }
   .panel, .card { padding: 0.85rem 0.9rem; }
   .stats { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .stats.rr { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .overview { font-size: 0.8rem; }
   .overview .code { display: none; }
+  .overview th, .overview td { padding-left: 0.15rem; padding-right: 0.15rem; }
+  .overview .badge { font-size: 0.68rem; padding: 0.05rem 0.4rem; }
   .badge-sub { display: block; margin-left: 0; }
   .overview .badge-sub { display: none; }
   .chart-box { aspect-ratio: 2 / 1; }

@@ -4,15 +4,15 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>持ち株チェック</title>
-  <meta name="description" content="持ち株8銘柄を「保有継続/売却/買い増し」の観点で毎日チェックした結果と1年チャート" />
+  <meta name="description" content="持ち株8銘柄を「保有継続/売却/買い増し」のどれにするか、リスクとリターンで毎日チェックした結果と1年チャート" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260923a" />
+  <link rel="stylesheet" href="assets/style.css?v=20260923c" />
 </head>
 <body>
   <div class="wrap">
     <header>
       <h1>持ち株チェック</h1>
-      <p class="intro">持ち株を「保有継続・売却・買い増し」の観点で毎日チェックした結果です。チャートの点線は、チェックで決めた見直しラインです。</p>
+      <p class="intro">持ち株を「保有継続・売却・買い増し」のどれにするか、リスクとリターンで毎日チェックした結果です。チャートの赤い点線は下値目途(割ったら保有理由を点検するライン)です。</p>
       <p class="updated" id="status">読み込み中...</p>
     </header>
 
@@ -20,13 +20,18 @@
       <p class="summary-lead" id="summary-lead"></p>
       <p class="summary-note" id="summary-note"></p>
       <ul class="bullets" id="market"></ul>
+      <details class="memo criteria" id="criteria-box" hidden>
+        <summary>判定基準</summary>
+        <ul id="criteria"></ul>
+        <p class="caveat" id="caveat"></p>
+      </details>
     </section>
 
     <section class="panel overview-panel" id="overview-panel" hidden>
-      <h2 class="panel-title">一覧</h2>
+      <h2 class="panel-title">今日の判定(スコア順)</h2>
       <table class="overview">
         <thead>
-          <tr><th scope="col">銘柄</th><th scope="col">終値</th><th scope="col">前日比</th><th scope="col">目安</th></tr>
+          <tr><th scope="col">銘柄</th><th scope="col">期待<br />リターン</th><th scope="col">リスク</th><th scope="col">スコア</th><th scope="col">判定</th></tr>
         </thead>
         <tbody id="overview"></tbody>
       </table>
@@ -42,11 +47,11 @@
     <footer>
       <span id="sources"></span><br />
       チャートの株価: Yahoo Finance(yfinance 経由)。終値は株式分割のみ調整済みです。<br />
-      「目安」は材料整理であり、売買の推奨ではありません。投資判断は最終的にご自身で行ってください。<br />
+      判定は材料整理であり、売買の推奨ではありません。投資判断は最終的にご自身で行ってください。<br />
       <a href="../">← アプリ一覧に戻る</a>
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20260923a"></script>
+  <script src="assets/app.js?v=20260923c"></script>
 </body>
 </html>

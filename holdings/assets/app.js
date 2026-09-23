@@ -20,6 +20,7 @@
     return v > 0 ? `+${s}%` : v < 0 ? `−${s}%` : `${s}%`;
   };
   const pctClass = (v) => (v == null || v === 0 ? "pct" : v > 0 ? "pct up" : "pct down");
+  const scoreText = (v) => (v == null ? "—" : v < 0 ? `−${Math.abs(v).toFixed(2)}` : v.toFixed(2));
   const dateFmt = (iso) => iso.replace(/-/g, "/");
   const shortDate = (iso) => {
     const [, m, d] = iso.split("-").map(Number);
@@ -234,10 +235,23 @@
       stats.appendChild(item);
     }
 
-    const plan = el("p", "plan");
-    plan.append(el("strong", null, "目安"), document.createTextNode(stock.plan));
+    // チェック時点のリスクとリターン
+    const rr = el("dl", "stats rr");
+    for (const [dt, dd, cls] of [
+      ["期待リターン", pctText(stock.expected_return_pct, 0), pctClass(stock.expected_return_pct)],
+      ["リスク(年率)", stock.risk_pct == null ? "—" : `${stock.risk_pct}%${stock.risk_note ? "*" : ""}`, "pct"],
+      ["R/Rスコア", scoreText(stock.score), "pct"],
+    ]) {
+      const item = el("div");
+      item.append(el("dt", null, dt), el("dd", cls, dd));
+      rr.appendChild(item);
+    }
 
-    card.append(head, stats);
+    const plan = el("p", "plan");
+    plan.append(el("strong", null, "判定"), document.createTextNode(stock.plan));
+
+    card.append(head, stats, rr);
+    if (stock.risk_note) card.appendChild(el("p", "risk-note", `* ${stock.risk_note}`));
     if (prices) card.appendChild(buildChart(prices.dates, prices.close, stock.lines || [], stock.name));
     card.appendChild(plan);
 
@@ -253,17 +267,21 @@
     return card;
   }
 
-  function buildOverviewRow(stock, st) {
+  function buildOverviewRow(stock) {
     const tr = el("tr");
     const nameTd = el("td");
     const a = el("a", null, stock.name);
     a.href = `#s-${stock.code}`;
     nameTd.append(a, el("span", "code", stock.code));
-    const last = st ? st.last : stock.close;
-    const change = st ? st.change : stock.change_pct;
     const verdictTd = el("td");
     verdictTd.appendChild(badge(stock));
-    tr.append(nameTd, el("td", null, priceFmt(last)), el("td", pctClass(change), pctText(change, 2)), verdictTd);
+    tr.append(
+      nameTd,
+      el("td", pctClass(stock.expected_return_pct), pctText(stock.expected_return_pct, 0)),
+      el("td", null, stock.risk_pct == null ? "—" : `${stock.risk_pct}%`),
+      el("td", null, scoreText(stock.score)),
+      verdictTd
+    );
     return tr;
   }
 
@@ -308,6 +326,11 @@
     $("summary-lead").textContent = check.summary || "";
     $("summary-note").textContent = check.note || "";
     fillList($("market"), check.market);
+    if (check.criteria && check.criteria.length) {
+      fillList($("criteria"), check.criteria);
+      $("caveat").textContent = check.caveat || "";
+      $("criteria-box").hidden = false;
+    }
     $("summary").hidden = false;
 
     const overview = $("overview");
@@ -315,7 +338,7 @@
     for (const stock of check.stocks) {
       const close = series.get(stock.code);
       const st = close ? statsFromPrices(prices.dates, close) : null;
-      overview.appendChild(buildOverviewRow(stock, st));
+      overview.appendChild(buildOverviewRow(stock));
       cards.appendChild(buildCard(stock, st, close && st ? { dates: prices.dates, close } : null));
     }
     $("overview-panel").hidden = false;
