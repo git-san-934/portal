@@ -84,7 +84,7 @@
       ["取得単価", priceFmt(position.price), "pct"],
       ["保有株数", `${numFmt.format(position.quantity)}株`, "pct"],
       ["評価額", priceFmt(pnl.currentValue), "pct"],
-      ["損益", priceFmt(pnl.gain), pctClass(pnl.gain)],
+      ["損益", `${pnl.gain > 0 ? "+" : pnl.gain < 0 ? "−" : ""}${priceFmt(Math.abs(pnl.gain))}`, pctClass(pnl.gain)],
       ["損益率", pctText(pnl.gainPct), pctClass(pnl.gainPct)],
     ]) {
       const item = el("div");
@@ -360,6 +360,9 @@
     const container = $("position-inputs");
     const positions = getPositions();
 
+    // Enter キーでも登録できるよう form にする
+    const form = el("form", "position-form");
+    form.noValidate = true;
     const table = el("table", "position-inputs-table");
     const thead = el("thead");
     const headerRow = el("tr");
@@ -372,6 +375,14 @@
     thead.appendChild(headerRow);
     table.appendChild(thead);
 
+    const status = el("p", "position-status");
+    status.setAttribute("role", "status");
+    const setStatus = (text, tone = "") => {
+      status.textContent = text;
+      status.className = `position-status ${tone}`.trim();
+    };
+
+    const rows = [];
     const tbody = el("tbody");
     for (const stock of stocks) {
       const position = positions[stock.code] || {};
@@ -382,7 +393,7 @@
       priceInput.setAttribute("aria-label", `${stock.name}の取得単価`);
       priceInput.placeholder = "取得単価";
       priceInput.min = "0";
-      priceInput.step = "0.01";
+      priceInput.step = "any";
       priceInput.value = position.price ? position.price.toString() : "";
 
       const quantityInput = el("input");
@@ -394,21 +405,16 @@
       quantityInput.step = "1";
       quantityInput.value = position.quantity ? position.quantity.toString() : "";
 
-      // 入力を確定したら(フォーカスを外す・Enter)保存して、カードの損益を書き換える
-      const savePosition = () => {
-        setPosition(stock.code, priceInput.value, quantityInput.value);
-        renderPnl(stock.code);
-      };
-      priceInput.addEventListener("change", savePosition);
-      quantityInput.addEventListener("change", savePosition);
-
+      // 削除はその銘柄だけすぐ消す
       const clearBtn = el("button", "clear-btn");
       clearBtn.type = "button";
       clearBtn.textContent = "削除";
       clearBtn.addEventListener("click", () => {
         priceInput.value = "";
         quantityInput.value = "";
-        savePosition();
+        setPosition(stock.code, 0, 0);
+        renderPnl(stock.code);
+        setStatus(`${stock.name}を削除しました。`);
       });
 
       const priceTd = el("td");
@@ -418,16 +424,49 @@
       const actionTd = el("td");
       actionTd.appendChild(clearBtn);
 
-      row.append(
-        el("td", null, `${stock.name}(${stock.code})`),
-        priceTd,
-        qtyTd,
-        actionTd
-      );
+      row.append(el("td", null, `${stock.name}(${stock.code})`), priceTd, qtyTd, actionTd);
       tbody.appendChild(row);
+      rows.push({ stock, row, priceInput, quantityInput });
     }
     table.appendChild(tbody);
-    container.appendChild(table);
+
+    const actions = el("div", "position-actions");
+    const saveBtn = el("button", "save-btn", "登録");
+    saveBtn.type = "submit";
+    actions.append(saveBtn, status);
+
+    // 入力を変えたら、登録するまで未登録と表示する
+    form.addEventListener("input", () => setStatus("未登録の変更があります。「登録」を押してください。", "pending"));
+
+    form.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const incomplete = [];
+      let saved = 0;
+      for (const { stock, row, priceInput, quantityInput } of rows) {
+        const price = Number(priceInput.value);
+        const qty = Number(quantityInput.value);
+        const hasPrice = priceInput.value !== "" && price > 0;
+        const hasQty = quantityInput.value !== "" && qty > 0;
+        row.classList.toggle("incomplete", hasPrice !== hasQty);
+        if (hasPrice !== hasQty) {
+          incomplete.push(stock.name); // 片方だけの行は保存しない(登録済みの値を消さない)
+          continue;
+        }
+        setPosition(stock.code, hasPrice ? price : 0, hasQty ? qty : 0);
+        renderPnl(stock.code);
+        if (hasPrice) saved++;
+      }
+      if (incomplete.length) {
+        setStatus(`${incomplete.join("、")}は取得単価と株数の両方を入れてください。ほかの銘柄は登録しました。`, "error");
+      } else {
+        const now = new Date();
+        const hm = `${now.getHours()}:${String(now.getMinutes()).padStart(2, "0")}`;
+        setStatus(`${saved}銘柄を登録しました(${hm})。損益は各銘柄のカードに出ます。`, "ok");
+      }
+    });
+
+    form.append(table, actions);
+    container.appendChild(form);
     $("position-panel").hidden = false;
   }
 
