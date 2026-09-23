@@ -316,6 +316,23 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .stats.pf-figures { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0.6rem 0 0.8rem; }
 .pf-table td:nth-child(4), .pf-table th:nth-child(4) { text-align: left; white-space: normal; }
 
+/* ---------- 算定方法 ---------- */
+.method h3 { font-size: 0.92rem; margin: 1rem 0 0.3rem; padding-top: 0.6rem; border-top: 1px solid var(--grid); }
+.method h3:first-of-type { border-top: none; padding-top: 0; margin-top: 0.5rem; }
+.method-list { font-size: 0.86rem; }
+.method-list dt { font-weight: 700; margin-top: 0.6rem; }
+.method-list dd p + p, .method-list dd ul + p { margin-top: 0.25rem; }
+.method-list .bullets { margin-top: 0.1rem; font-size: 0.86rem; }
+.formula {
+  font-variant-numeric: tabular-nums;
+  background: var(--bg);
+  border-radius: 0.4rem;
+  padding: 0.25rem 0.55rem;
+  margin: 0.2rem 0;
+  overflow-wrap: anywhere;
+}
+.method-example { color: var(--text-sub); font-size: 0.82rem; }
+
 footer {
   margin-top: 2rem;
   text-align: center;

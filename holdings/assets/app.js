@@ -699,6 +699,27 @@
     $("position-panel").hidden = false;
   }
 
+  // 算定方法の欄: 比率の目安を定数から入れ、今日のチェックから計算例を1つ示す
+  function renderMethod(check) {
+    for (const e of document.querySelectorAll(".weight-cap")) e.textContent = WEIGHT_CAP;
+    for (const e of document.querySelectorAll(".weight-trim")) e.textContent = WEIGHT_TRIM;
+    const ex =
+      check.stocks.find((s) => s.tone === "add" && s.score != null) ||
+      check.stocks.find((s) => s.expected_return_pct != null && s.risk_pct != null);
+    if (!ex) return;
+    const score = ex.score ?? ex.expected_return_pct / ex.risk_pct;
+    const why =
+      ex.expected_return_pct >= 15 && score >= 0.5
+        ? "+15%以上かつ0.5以上なので買い増し"
+        : ex.expected_return_pct < 0
+          ? "期待リターンがマイナスなので売却検討(一部)"
+          : "買い増しの条件に届かないので保有継続";
+    $("method-example").textContent =
+      `例(${dateFmt(check.checked_on)}のチェック): ${ex.name}は期待リターン${pctText(ex.expected_return_pct, 0)}、リスク${ex.risk_pct}%で、` +
+      `スコア = ${ex.expected_return_pct} ÷ ${ex.risk_pct} ≒ ${score.toFixed(2)}(表示の%は四捨五入後)。${why}。`;
+    $("method-example").hidden = false;
+  }
+
   async function loadJson(url) {
     const res = await fetch(url, { cache: "no-cache" });
     if (!res.ok) throw new Error(`${url}: HTTP ${res.status}`);
@@ -768,6 +789,7 @@
       $("next-panel").hidden = false;
     }
     $("sources").textContent = check.sources ? `チェックのデータ出典: ${check.sources}` : "";
+    renderMethod(check);
   }
 
   load();
