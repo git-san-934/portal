@@ -415,11 +415,18 @@
         position.quantity = undefined;
       });
 
+      const priceTd = el("td");
+      priceTd.appendChild(priceInput);
+      const qtyTd = el("td");
+      qtyTd.appendChild(quantityInput);
+      const actionTd = el("td");
+      actionTd.appendChild(clearBtn);
+
       row.append(
         el("td", null, `${stock.name}(${stock.code})`),
-        el("td", null, priceInput),
-        el("td", null, quantityInput),
-        el("td", null, clearBtn)
+        priceTd,
+        qtyTd,
+        actionTd
       );
       tbody.appendChild(row);
     }
