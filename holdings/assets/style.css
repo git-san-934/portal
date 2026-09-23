@@ -285,6 +285,33 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
   border-color: var(--up);
 }
 
+.position-actions {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 0.6rem 0.9rem;
+  margin-top: 0.8rem;
+}
+
+.save-btn {
+  padding: 0.5rem 1.6rem;
+  border: none;
+  border-radius: 0.4rem;
+  background: var(--accent);
+  color: #fff;
+  font-size: 0.95rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+.save-btn:hover { filter: brightness(1.08); }
+
+.position-status { font-size: 0.82rem; color: var(--text-sub); flex: 1 1 12rem; }
+.position-status.ok { color: var(--tone-add); }
+.position-status.pending { color: var(--tone-trim); }
+.position-status.error { color: var(--up); }
+.position-inputs-table tr.incomplete input:placeholder-shown { border-color: var(--up); }
+
 footer {
   margin-top: 2rem;
   text-align: center;
