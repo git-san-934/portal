@@ -12,6 +12,7 @@ import time
 from datetime import datetime, timedelta, timezone
 from pathlib import Path
 
+import pandas as pd
 import yfinance as yf
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
@@ -31,8 +32,7 @@ def load_codes():
     return [(s["code"], s["name"]) for s in check["stocks"]]
 
 
-def download(codes):
-    tickers = [f"{code}.T" for code, _ in codes]
+def download(tickers):
     last_err = None
     for attempt in range(1, RETRIES + 1):
         try:
@@ -70,9 +70,38 @@ def to_num(v):
     return round(float(v), 2)
 
 
+def count_rows(close, col):
+    return int(close[col].notna().sum()) if col in close.columns else 0
+
+
+def download_all(codes):
+    """全銘柄をまとめて取得し、Yahoo 側の一時的な失敗で行数が足りない銘柄だけ取り直す"""
+    tickers = [f"{code}.T" for code, _ in codes]
+    close = download(tickers)
+    if isinstance(close, pd.Series):  # 1銘柄だけのときは列名を付け直す
+        close = close.to_frame(tickers[0])
+    for attempt in range(1, RETRIES + 1):
+        missing = [t for t in tickers if count_rows(close, t) < MIN_ROWS]
+        if not missing:
+            break
+        print(f"retry {attempt} for {missing}", file=sys.stderr)
+        time.sleep(5 * attempt)
+        try:
+            again = download(missing)
+        except RuntimeError as e:
+            print(f"  {e}", file=sys.stderr)
+            continue
+        if isinstance(again, pd.Series):
+            again = again.to_frame(missing[0])
+        for t in missing:
+            if count_rows(again, t) > count_rows(close, t):
+                close = close.drop(columns=t, errors="ignore").join(again[[t]], how="outer")
+    return close
+
+
 def main():
     codes = load_codes()
-    close = download(codes)
+    close = download_all(codes)
     close = close.dropna(how="all").sort_index()
     dates = [d.strftime("%Y-%m-%d") for d in close.index]
 
