@@ -6,7 +6,7 @@
   <title>持ち株チェック</title>
   <meta name="description" content="持ち株を「保有継続/売却/買い増し」のどれにするか、リスクとリターンで毎日チェックした結果と1年チャート" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260923g" />
+  <link rel="stylesheet" href="assets/style.css?v=20260924a" />
 </head>
 <body>
   <div class="wrap">
@@ -24,6 +24,7 @@
         <summary>判定基準</summary>
         <ul id="criteria"></ul>
         <p class="caveat" id="caveat"></p>
+        <p class="caveat"><a href="#method">計算式と例はページの一番下(リスク・リターンの算定方法)</a></p>
       </details>
     </section>
 
@@ -59,6 +60,75 @@
       <ul class="bullets" id="next"></ul>
     </section>
 
+    <section class="panel method" id="method">
+      <h2 class="panel-title">リスク・リターンの算定方法</h2>
+
+      <h3>銘柄ごとの判定(毎日のチェック)</h3>
+      <dl class="method-list">
+        <dt>期待リターン</dt>
+        <dd>
+          <p class="formula">期待リターン = 理論株価までの上昇余地 + 配当利回り</p>
+          <p class="formula">上昇余地 = 理論株価 ÷ 終値 − 1 / 配当利回り = 予想年間配当 ÷ 終値</p>
+          <p>理論株価は、日本株は IFIS株予報の PER基準の理論株価、米国株(オラクル)は IFIS に載っていないため、アナリストの平均目標株価(stockanalysis.com)を使います。平均目標株価は強気に出やすいので、オラクルは控えめな目標株価でも判定が変わらないかをチェックのメモに併記します。</p>
+        </dd>
+        <dt>リスク</dt>
+        <dd>
+          <p class="formula">リスク = 直近20営業日の日次騰落率(対数)の標準偏差 × √250</p>
+          <p>1日の値動きのばらつきを1年分に換算した年率ボラティリティです。30%なら、1年後の株価がおおよそ±30%の範囲に収まるのが3回に2回程度、という目安です。</p>
+        </dd>
+        <dt>R/Rスコア</dt>
+        <dd>
+          <p class="formula">R/Rスコア = 期待リターン ÷ リスク</p>
+          <p>リスク1あたりに見込めるリターンです。高いほど、値動きの荒さに見合ったリターンが期待できます。</p>
+        </dd>
+        <dt>判定</dt>
+        <dd>
+          <ul class="bullets">
+            <li>買い増し: 期待リターン +15%以上 かつ スコア 0.5以上</li>
+            <li>売却検討(一部): 期待リターンがマイナス</li>
+            <li>保有継続: それ以外</li>
+          </ul>
+          <p>別に、終値が下値目途(日本株は IFIS の PER基準の下値目途、オラクルはアナリスト目標株価の最安値)を割ったら、判定に関係なく保有理由を点検します(チャートの赤い点線)。</p>
+          <p class="method-example" id="method-example" hidden></p>
+        </dd>
+      </dl>
+
+      <h3>あなたの保有で見た判定(このページで計算)</h3>
+      <dl class="method-list">
+        <dt>保有比率</dt>
+        <dd>
+          <p class="formula">評価額 = 終値 × 株数(外国株は × 直近の為替レートで円換算)</p>
+          <p class="formula">保有比率 = 銘柄の評価額 ÷ 登録した銘柄の評価額合計</p>
+        </dd>
+        <dt>保有全体の期待リターン</dt>
+        <dd>
+          <p class="formula">Σ(保有比率 × 各銘柄の期待リターン)</p>
+          <p>判定がまだない銘柄は除き、残りの銘柄の比率で割り直します。</p>
+        </dd>
+        <dt>保有全体のリスク</dt>
+        <dd>
+          <p class="formula">√( Σᵢ Σⱼ 比率ᵢ × 比率ⱼ × 相関ᵢⱼ × リスクᵢ × リスクⱼ )</p>
+          <p>相関は、2銘柄がどちらも取引した直近20日の日次騰落率から出します。値動きが連動しない銘柄を組み合わせるほど、全体のリスクは各銘柄の加重平均より小さくなります(分散効果)。米国の終値は日本時間では翌朝に付くため、日本株との相関は近似です。</p>
+        </dd>
+        <dt>リスク寄与</dt>
+        <dd>
+          <p class="formula">比率ᵢ × Σⱼ(比率ⱼ × 相関ᵢⱼ × リスクᵢ × リスクⱼ) ÷ 全体のリスク²</p>
+          <p>全体のリスクのうち、その銘柄が生んでいる割合です。合計は100%。マイナスは、ほかの銘柄と逆に動いてリスクを打ち消していることを示します。</p>
+        </dd>
+        <dt>保有比率による調整</dt>
+        <dd>
+          <ul class="bullets">
+            <li>比率が <span class="weight-cap">25</span>% を超える銘柄は、判定が買い増しでも見送り(保有継続)</li>
+            <li>比率が <span class="weight-trim">35</span>% を超える銘柄は、判定に関係なく一部売却を検討</li>
+          </ul>
+          <p>保有全体のスコアも、銘柄と同じ基準(期待リターン +15%以上 かつ スコア 0.5以上なら「リスクに見合うリターン」、期待リターンがマイナスなら要注意)で表します。取得単価は損益の表示だけに使い、判定には使いません(買値はこの先のリターンを左右しないため)。</p>
+        </dd>
+      </dl>
+
+      <h3>注意</h3>
+      <p class="caveat" id="method-caveat">理論株価や目標株価はアナリスト予想に基づくため、予想が外れれば判定も変わります。20日のボラティリティと相関は直近の荒れ具合に左右されます。</p>
+    </section>
+
     <footer>
       <span id="sources"></span><br />
       チャートの株価: Yahoo Finance(yfinance 経由)。終値は株式分割のみ調整済みです。<br />
@@ -67,6 +137,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20260923g"></script>
+  <script src="assets/app.js?v=20260924a"></script>
 </body>
 </html>
