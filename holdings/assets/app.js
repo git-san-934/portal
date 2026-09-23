@@ -71,6 +71,29 @@
     return { totalCost, currentValue, gain, gainPct };
   }
 
+  function renderPnl(code, slot = $(`pnl-${code}`)) {
+    if (!slot) return;
+    slot.replaceChildren();
+    const position = getPositions()[code];
+    const currentPrice = Number(slot.dataset.price);
+    if (!position || !currentPrice) return;
+    const pnl = calcPnl(currentPrice, position.price, position.quantity);
+    if (!pnl) return;
+    const pnlStats = el("dl", "stats pnl");
+    for (const [dt, dd, cls] of [
+      ["取得単価", priceFmt(position.price), "pct"],
+      ["保有株数", `${numFmt.format(position.quantity)}株`, "pct"],
+      ["評価額", priceFmt(pnl.currentValue), "pct"],
+      ["損益", priceFmt(pnl.gain), pctClass(pnl.gain)],
+      ["損益率", pctText(pnl.gainPct), pctClass(pnl.gainPct)],
+    ]) {
+      const item = el("div");
+      item.append(el("dt", null, dt), el("dd", cls, dd));
+      pnlStats.appendChild(item);
+    }
+    slot.appendChild(pnlStats);
+  }
+
   // ---------- 株価データからの計算 ----------
 
   // prices.json の終値から、直近終値・前日比・年初来高値比・1ヶ月/1年騰落率を出す
@@ -272,28 +295,11 @@
       stats.appendChild(item);
     }
 
-    // 保有状況の損益表示
-    const positions = getPositions();
-    const position = positions[stock.code];
+    // 保有状況の損益表示(入力欄を変えると renderPnl で書き換える)
+    const pnlSlot = el("div", "pnl-slot");
+    pnlSlot.id = `pnl-${stock.code}`;
     const currentPrice = st ? st.last : stock.close;
-    if (position && currentPrice) {
-      const pnl = calcPnl(currentPrice, position.price, position.quantity);
-      if (pnl) {
-        const pnlStats = el("dl", "stats pnl");
-        for (const [dt, dd, cls] of [
-          ["取得単価", priceFmt(position.price), "pct"],
-          ["保有株数", `${numFmt.format(position.quantity)}株`, "pct"],
-          ["評価額", priceFmt(pnl.currentValue), "pct"],
-          ["損益", priceFmt(pnl.gain), pctClass(pnl.gain)],
-          ["損益率", pctText(pnl.gainPct), pctClass(pnl.gainPct)],
-        ]) {
-          const item = el("div");
-          item.append(el("dt", null, dt), el("dd", cls, dd));
-          pnlStats.appendChild(item);
-        }
-        card.appendChild(pnlStats);
-      }
-    }
+    if (currentPrice) pnlSlot.dataset.price = String(currentPrice);
 
     // チェック時点のリスクとリターン
     const rr = el("dl", "stats rr");
@@ -310,7 +316,8 @@
     const plan = el("p", "plan");
     plan.append(el("strong", null, "判定"), document.createTextNode(stock.plan));
 
-    card.append(head, stats, rr);
+    card.append(head, stats, pnlSlot, rr);
+    renderPnl(stock.code, pnlSlot);
     if (stock.risk_note) card.appendChild(el("p", "risk-note", `* ${stock.risk_note}`));
     if (prices) card.appendChild(buildChart(prices.dates, prices.close, stock.lines || [], stock.name));
     card.appendChild(plan);
@@ -371,6 +378,8 @@
       const row = el("tr");
       const priceInput = el("input");
       priceInput.type = "number";
+      priceInput.inputMode = "decimal";
+      priceInput.setAttribute("aria-label", `${stock.name}の取得単価`);
       priceInput.placeholder = "取得単価";
       priceInput.min = "0";
       priceInput.step = "0.01";
@@ -378,41 +387,28 @@
 
       const quantityInput = el("input");
       quantityInput.type = "number";
+      quantityInput.inputMode = "numeric";
+      quantityInput.setAttribute("aria-label", `${stock.name}の保有株数`);
       quantityInput.placeholder = "株数";
       quantityInput.min = "0";
       quantityInput.step = "1";
       quantityInput.value = position.quantity ? position.quantity.toString() : "";
 
-      // Save on blur (when user moves focus away)
+      // 入力を確定したら(フォーカスを外す・Enter)保存して、カードの損益を書き換える
       const savePosition = () => {
-        const price = priceInput.value;
-        const qty = quantityInput.value;
-        if (price !== position.price?.toString() || qty !== position.quantity?.toString()) {
-          setPosition(stock.code, price, qty);
-          // Update the stored position
-          const updated = getPositions()[stock.code];
-          if (updated) {
-            position.price = updated.price;
-            position.quantity = updated.quantity;
-          } else {
-            position.price = undefined;
-            position.quantity = undefined;
-          }
-        }
+        setPosition(stock.code, priceInput.value, quantityInput.value);
+        renderPnl(stock.code);
       };
-
-      priceInput.addEventListener("blur", savePosition);
-      quantityInput.addEventListener("blur", savePosition);
+      priceInput.addEventListener("change", savePosition);
+      quantityInput.addEventListener("change", savePosition);
 
       const clearBtn = el("button", "clear-btn");
+      clearBtn.type = "button";
       clearBtn.textContent = "削除";
-      clearBtn.addEventListener("click", (e) => {
-        e.preventDefault();
-        setPosition(stock.code, 0, 0);
+      clearBtn.addEventListener("click", () => {
         priceInput.value = "";
         quantityInput.value = "";
-        position.price = undefined;
-        position.quantity = undefined;
+        savePosition();
       });
 
       const priceTd = el("td");
