@@ -37,6 +37,10 @@ ETFS = [
 ]
 
 MIN_ROWS = 200  # これより少ない銘柄があれば取得失敗とみなす
+# 前後の値の中央値からこの倍率以上離れた値は Yahoo 側の誤データとして捨てる
+# (例: 1629 の 2026-03-30〜31 に 288円 → 0.57円 → 288円 という値が入っていた)
+OUTLIER_WINDOW = 11
+OUTLIER_RATIO = 2.0
 RETRIES = 3
 OUT_PATH = Path(__file__).resolve().parent.parent / "data" / "etf.json"
 JST = timezone(timedelta(hours=9))
@@ -66,6 +70,15 @@ def download():
     raise RuntimeError(f"download failed: {last_err}")
 
 
+def drop_outliers(series):
+    med = series.rolling(OUTLIER_WINDOW, center=True, min_periods=3).median()
+    ratio = series / med
+    bad = (ratio > OUTLIER_RATIO) | (ratio < 1 / OUTLIER_RATIO)
+    for d, v in series[bad].items():
+        print(f"  outlier dropped: {d.date()} {v}")
+    return series.mask(bad)
+
+
 def to_num(v):
     if v is None or (isinstance(v, float) and math.isnan(v)):
         return None
@@ -84,7 +97,7 @@ def main():
         if col not in close.columns:
             problems.append(f"{code}: no column")
             continue
-        values = [to_num(v) for v in close[col].tolist()]
+        values = [to_num(v) for v in drop_outliers(close[col].dropna()).reindex(close.index).tolist()]
         n = sum(v is not None for v in values)
         print(f"{code} {sector}: {n} rows, last={next((v for v in reversed(values) if v is not None), None)}")
         if n < MIN_ROWS:
