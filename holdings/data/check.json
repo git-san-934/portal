@@ -239,6 +239,26 @@
         "1Q は営業益+150%だが、関税還付 約478億円を含む。Switch 2 本体販売は前年同期比−34%。通期営業益 3,700億円計画に対し進捗 38.5%。",
         "9/18 に大手証券が中立据え置き、9/7 に別の証券が目標株価 13,200円へ引き上げと評価は割れている。"
       ]
+    },
+    {
+      "code": "ORCL",
+      "ticker": "ORCL",
+      "currency": "USD",
+      "name": "オラクル",
+      "verdict": "未判定",
+      "tone": "hold",
+      "sub": "",
+      "expected_return_pct": null,
+      "risk_pct": null,
+      "score": null,
+      "close": null,
+      "change_pct": null,
+      "from_high_pct": null,
+      "per": "—",
+      "yield": "—",
+      "lines": [],
+      "plan": "米国株(NYSE)。株価はドル建てで表示します。リスク・リターンの判定は次回の日次チェックから載ります。",
+      "memo": []
     }
   ],
   "sources": "松井証券・Yahoo!ファイナンス(株価・指標・20日時系列)、IFIS株予報(理論株価・下値目途)、財経新聞(日経平均)、株帳(日銀)、Invest Leaders・かぶリッジ(任天堂・キオクシア材料)、Investing.com(USS目標株価)。数値はデータ元によってずれがあります。"

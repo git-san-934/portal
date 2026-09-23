@@ -3,7 +3,9 @@
 
   const CHECK_URL = "data/check.json";
   const PRICES_URL = "data/prices.json";
-  const YAHOO_URL = (code) => `https://finance.yahoo.co.jp/quote/${encodeURIComponent(code)}.T`;
+  // 日本株は "<code>.T"、米国株などは check.json の ticker(例: ORCL)
+  const YAHOO_URL = (stock) =>
+    `https://finance.yahoo.co.jp/quote/${encodeURIComponent(stock.currency && stock.currency !== "JPY" ? stock.ticker || stock.code : `${stock.code}.T`)}`;
 
   // チャート座標(SVG viewBox)。preserveAspectRatio="none" で横幅いっぱいに伸ばす
   const W = 1000;
@@ -13,7 +15,11 @@
   const $ = (id) => document.getElementById(id);
 
   const numFmt = new Intl.NumberFormat("ja-JP", { maximumFractionDigits: 1 });
-  const priceFmt = (v) => (v == null ? "—" : `${numFmt.format(v)}円`);
+  const usdFmt = new Intl.NumberFormat("en-US", { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+  const curOf = (stock) => (stock && stock.currency) || "JPY";
+  const priceFmt = (v, cur = "JPY") =>
+    v == null ? "—" : cur === "USD" ? `$${usdFmt.format(v)}` : cur === "JPY" ? `${numFmt.format(v)}円` : `${numFmt.format(v)} ${cur}`;
+  const signedPrice = (v, cur = "JPY") => `${v > 0 ? "+" : v < 0 ? "−" : ""}${priceFmt(Math.abs(v), cur)}`;
   const pctText = (v, digits = 1) => {
     if (v == null) return "—";
     const s = Math.abs(v).toLocaleString("ja-JP", { minimumFractionDigits: digits, maximumFractionDigits: digits });
@@ -71,6 +77,13 @@
     return { totalCost, currentValue, gain, gainPct };
   }
 
+  // 円以外の銘柄の円換算レート(prices.json の fx)。なければ null
+  function fxRate(cur) {
+    if (cur === "JPY") return 1;
+    const fx = book.fx[`${cur}JPY`];
+    return fx && fx.rate ? fx.rate : null;
+  }
+
   function renderPnl(code, slot = $(`pnl-${code}`)) {
     if (!slot) return;
     slot.replaceChildren();
@@ -79,12 +92,20 @@
     if (!position || !currentPrice) return;
     const pnl = calcPnl(currentPrice, position.price, position.quantity);
     if (!pnl) return;
+    const cur = slot.dataset.currency || "JPY";
+    const rate = fxRate(cur);
     const pnlStats = el("dl", "stats pnl");
     for (const [dt, dd, cls] of [
-      ["取得単価", priceFmt(position.price), "pct"],
+      ["取得単価", priceFmt(position.price, cur), "pct"],
       ["保有株数", `${numFmt.format(position.quantity)}株`, "pct"],
-      ["評価額", priceFmt(pnl.currentValue), "pct"],
-      ["損益", `${pnl.gain > 0 ? "+" : pnl.gain < 0 ? "−" : ""}${priceFmt(Math.abs(pnl.gain))}`, pctClass(pnl.gain)],
+      ["評価額", priceFmt(pnl.currentValue, cur), "pct"],
+      ["損益", signedPrice(pnl.gain, cur), pctClass(pnl.gain)],
+      ...(cur !== "JPY" && rate
+        ? [
+            ["評価額(円換算)", priceFmt(Math.round(pnl.currentValue * rate)), "pct"],
+            ["損益(円換算)", signedPrice(Math.round(pnl.gain * rate)), pctClass(pnl.gain)],
+          ]
+        : []),
       ["損益率", pctText(pnl.gainPct), pctClass(pnl.gainPct)],
       ...(book.weights.has(code) ? [["保有比率", `${(book.weights.get(code) * 100).toFixed(1)}%`, "pct"]] : []),
     ]) {
@@ -93,6 +114,18 @@
       pnlStats.appendChild(item);
     }
     slot.appendChild(pnlStats);
+    if (cur !== "JPY") {
+      const fx = book.fx[`${cur}JPY`];
+      slot.appendChild(
+        el(
+          "p",
+          "risk-note",
+          fx
+            ? `損益はドル建て。円換算は1ドル=${fx.rate.toFixed(2)}円(${dateFmt(fx.date)})で、買ったときからの為替の損益は含みません。`
+            : "損益はドル建て。為替レートがまだ取れていないため円換算は出していません。"
+        )
+      );
+    }
   }
 
   // ---------- 保有状況を基準にしたリスク・リターン ----------
@@ -101,14 +134,21 @@
   const WEIGHT_CAP = 25;
   const WEIGHT_TRIM = 35;
 
-  const book = { stocks: [], returns: new Map(), weights: new Map() };
+  const book = { stocks: [], series: new Map(), fx: {}, weights: new Map() };
 
-  // 直近20営業日の日次対数リターン(判定のリスクと同じ期間)
-  function recentReturns(close, days = 20) {
-    const vals = close.filter((v) => v != null).slice(-(days + 1));
-    const r = [];
-    for (let i = 1; i < vals.length; i++) r.push(Math.log(vals[i] / vals[i - 1]));
-    return r;
+  // 2銘柄がどちらも取引した日だけで、直近20日分の日次対数リターンの組を作る
+  // (東証と米国市場は休場日が違うため。米国の終値は日本時間では翌朝に付く点は近似)
+  function pairReturns(ca, cb, days = 20) {
+    const idx = [];
+    for (let i = 0; i < Math.min(ca.length, cb.length); i++) if (ca[i] != null && cb[i] != null) idx.push(i);
+    const use = idx.slice(-(days + 1));
+    const ra = [];
+    const rb = [];
+    for (let k = 1; k < use.length; k++) {
+      ra.push(Math.log(ca[use[k]] / ca[use[k - 1]]));
+      rb.push(Math.log(cb[use[k]] / cb[use[k - 1]]));
+    }
+    return [ra, rb];
   }
 
   function correlation(a, b) {
@@ -131,12 +171,19 @@
   function portfolioStats() {
     const positions = getPositions();
     const held = [];
+    const skipped = [];
     for (const stock of book.stocks) {
       const pos = positions[stock.code];
       const slot = $(`pnl-${stock.code}`);
       const price = slot ? Number(slot.dataset.price) : stock.close;
-      if (!pos || !price) continue;
-      held.push({ stock, pos, price, value: price * pos.quantity, cost: pos.price * pos.quantity });
+      if (!pos) continue;
+      // 比率は円換算の評価額で出す(外国株の取得額も今のレートで換算)
+      const rate = fxRate(curOf(stock));
+      if (!price || !rate) {
+        skipped.push(stock.name);
+        continue;
+      }
+      held.push({ stock, pos, price, value: price * pos.quantity * rate, cost: pos.price * pos.quantity * rate });
     }
     if (!held.length) return null;
     const total = held.reduce((t, h) => t + h.value, 0);
@@ -155,7 +202,7 @@
       const cov = valid.map((hi, i) =>
         valid.map((hj, j) => {
           if (i === j) return sd[i] * sd[i];
-          const rho = correlation(book.returns.get(hi.stock.code) || [], book.returns.get(hj.stock.code) || []);
+          const rho = correlation(...pairReturns(book.series.get(hi.stock.code) || [], book.series.get(hj.stock.code) || []));
           if (rho == null) corrOk = false;
           return (rho == null ? 0.5 : rho) * sd[i] * sd[j];
         })
@@ -165,7 +212,8 @@
       risk = Math.sqrt(variance) * 100;
       valid.forEach((h, i) => (h.riskShare = variance > 0 ? (w[i] * covW[i]) / variance : null));
     }
-    return { held, total, cost, expRet, risk, avgRisk, score: expRet != null && risk ? expRet / risk : null, corrOk };
+    const unjudged = held.filter((h) => !valid.includes(h)).map((h) => h.stock.name);
+    return { held, skipped, unjudged, total, cost, expRet, risk, avgRisk, score: expRet != null && risk ? expRet / risk : null, corrOk };
   }
 
   // 銘柄ごとの判定を、保有比率で調整する
@@ -193,7 +241,7 @@
     }
 
     const gain = pf.total - pf.cost;
-    const signed = (v) => `${v > 0 ? "+" : v < 0 ? "−" : ""}${priceFmt(Math.abs(v))}`;
+    const signed = (v) => signedPrice(v);
     const figures = el("dl", "stats pf-figures");
     for (const [dt, dd, cls] of [
       ["評価額合計", priceFmt(Math.round(pf.total)), "pct"],
@@ -255,6 +303,12 @@
     if (pf.held.length < book.stocks.length) {
       lead.push(`登録済みの${pf.held.length}銘柄だけで計算しています。`);
     }
+    if (pf.unjudged.length) {
+      lead.push(`${pf.unjudged.join("、")}は判定がまだないため、比率には入れ、期待リターンとリスクの計算からは外しています。`);
+    }
+    if (pf.skipped.length) {
+      lead.push(`${pf.skipped.join("、")}は株価か為替レートがまだ取れていないため、計算から外しています。`);
+    }
 
     $("pf-lead").textContent = lead.join("");
     $("pf-figures").replaceChildren(figures);
@@ -263,7 +317,8 @@
     $("pf-notes").hidden = !notes.length;
     $("pf-caveat").textContent =
       `期待リターンとリスクは今日のチェック値を保有比率で加重し、リスクは直近20営業日の銘柄間の相関を反映しています${pf.corrOk ? "" : "(相関が取れない組み合わせは0.5と仮定)"}。` +
-      `リスク寄与は全体のリスクのうちその銘柄が生む割合で、マイナスはほかの銘柄と逆に動いてリスクを打ち消していることを示します。比率の目安: ${WEIGHT_CAP}%超は買い増し見送り、${WEIGHT_TRIM}%超は一部売却を検討。取得単価は損益の表示だけに使い、判定には使いません(買値はこの先のリターンを左右しないため)。`;
+      `リスク寄与は全体のリスクのうちその銘柄が生む割合で、マイナスはほかの銘柄と逆に動いてリスクを打ち消していることを示します。比率の目安: ${WEIGHT_CAP}%超は買い増し見送り、${WEIGHT_TRIM}%超は一部売却を検討。取得単価は損益の表示だけに使い、判定には使いません(買値はこの先のリターンを左右しないため)。` +
+      (pf.held.some((h) => curOf(h.stock) !== "JPY") ? "外国株は今の為替レートで円に換算しています。" : "");
     panel.hidden = false;
   }
 
@@ -309,7 +364,7 @@
 
   // ---------- チャート ----------
 
-  function buildChart(dates, close, lines, name) {
+  function buildChart(dates, close, lines, name, cur = "JPY") {
     const wrap = el("div", "chart-wrap");
     const box = el("div", "chart-box");
     box.setAttribute("role", "img");
@@ -400,7 +455,7 @@
       const left = `${xPct(i)}%`;
       crosshair.style.left = dot.style.left = tooltip.style.left = left;
       dot.style.top = `${(yOf(close[i]) / H) * 100}%`;
-      tooltip.textContent = `${dateFmt(dates[i])}  ${priceFmt(close[i])}\n現在まで ${pctText((last / close[i] - 1) * 100)}`;
+      tooltip.textContent = `${dateFmt(dates[i])}  ${priceFmt(close[i], cur)}\n現在まで ${pctText((last / close[i] - 1) * 100)}`;
       tooltip.classList.toggle("edge-left", xPct(i) < 20);
       tooltip.classList.toggle("edge-right", xPct(i) > 80);
       crosshair.hidden = dot.hidden = tooltip.hidden = false;
@@ -416,7 +471,7 @@
     // 見直しラインまでの距離
     for (const l of lines) {
       const dist = (l.price / last - 1) * 100;
-      wrap.appendChild(el("p", "chart-note", `${l.label} ${priceFmt(l.price)}まで ${pctText(dist)}`));
+      wrap.appendChild(el("p", "chart-note", `${l.label} ${priceFmt(l.price, cur)}まで ${pctText(dist)}`));
     }
     return wrap;
   }
@@ -438,7 +493,7 @@
     const name = el("h2", "card-name", stock.name);
     const code = el("span", "code");
     const link = el("a", null, stock.code);
-    link.href = YAHOO_URL(stock.code);
+    link.href = YAHOO_URL(stock);
     link.target = "_blank";
     link.rel = "noopener";
     link.title = `${stock.name}(Yahoo!ファイナンス)`;
@@ -451,13 +506,13 @@
     const stats = el("dl", "stats");
     const items = st
       ? [
-          [`終値(${shortDate(st.lastDate)})`, priceFmt(st.last), "pct"],
+          [`終値(${shortDate(st.lastDate)})`, priceFmt(st.last, curOf(stock)), "pct"],
           ["前日比", pctText(st.change, 2), pctClass(st.change)],
           ["年初来高値比", pctText(st.fromHigh, 0), pctClass(st.fromHigh)],
           ["1年", pctText(st.y1), pctClass(st.y1)],
         ]
       : [
-          ["終値", priceFmt(stock.close), "pct"],
+          ["終値", priceFmt(stock.close, curOf(stock)), "pct"],
           ["前日比", pctText(stock.change_pct, 2), pctClass(stock.change_pct)],
           ["年初来高値比", pctText(stock.from_high_pct, 0), pctClass(stock.from_high_pct)],
           ["PER / 利回り", `${stock.per} / ${stock.yield}`, "pct"],
@@ -473,6 +528,7 @@
     pnlSlot.id = `pnl-${stock.code}`;
     const currentPrice = st ? st.last : stock.close;
     if (currentPrice) pnlSlot.dataset.price = String(currentPrice);
+    pnlSlot.dataset.currency = curOf(stock);
 
     // チェック時点のリスクとリターン
     const rr = el("dl", "stats rr");
@@ -492,7 +548,7 @@
     card.append(head, stats, pnlSlot, rr);
     renderPnl(stock.code, pnlSlot);
     if (stock.risk_note) card.appendChild(el("p", "risk-note", `* ${stock.risk_note}`));
-    if (prices) card.appendChild(buildChart(prices.dates, prices.close, stock.lines || [], stock.name));
+    if (prices) card.appendChild(buildChart(prices.dates, prices.close, stock.lines || [], stock.name, curOf(stock)));
     card.appendChild(plan);
 
     if (stock.memo && stock.memo.length) {
@@ -541,7 +597,7 @@
     const headerRow = el("tr");
     headerRow.append(
       el("th", null, "銘柄"),
-      el("th", null, "取得単価(円)"),
+      el("th", null, "取得単価"),
       el("th", null, "保有株数"),
       el("th", null, "")
     );
@@ -564,7 +620,7 @@
       priceInput.type = "number";
       priceInput.inputMode = "decimal";
       priceInput.setAttribute("aria-label", `${stock.name}の取得単価`);
-      priceInput.placeholder = "取得単価";
+      priceInput.placeholder = curOf(stock) === "USD" ? "ドル" : curOf(stock) === "JPY" ? "円" : curOf(stock);
       priceInput.min = "0";
       priceInput.step = "any";
       priceInput.value = position.price ? position.price.toString() : "";
@@ -670,12 +726,15 @@
     const series = new Map();
     if (prices) for (const s of prices.stocks) series.set(s.code, s.close);
     book.stocks = check.stocks;
-    for (const [code, close] of series) book.returns.set(code, recentReturns(close));
+    book.series = series;
+    book.fx = (prices && prices.fx) || {};
 
     let status = `チェック日: ${dateFmt(check.checked_on)}(${dateFmt(check.price_date)} 終値ベース)`;
     if (prices) {
       const generated = prices.generated_at ? prices.generated_at.slice(0, 16).replace("T", " ").replace(/-/g, "/") : "—";
       status += ` / 株価データ更新: ${generated}`;
+      const usd = book.fx.USDJPY;
+      if (usd) status += ` / 1ドル=${usd.rate.toFixed(2)}円`;
     }
     $("status").textContent = status;
 

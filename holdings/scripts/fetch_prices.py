@@ -1,6 +1,10 @@
 """持ち株(../data/check.json に載っている銘柄)の過去1年の日次終値を
 yfinance(Yahoo Finance)から取得し、../data/prices.json に書き出す。
 
+日本株は ticker を省略すると "<code>.T"。米国株などは check.json に
+"ticker"(例: "ORCL")と "currency"(例: "USD")を書く。円以外の銘柄があれば
+円換算用の為替レート(例: USDJPY=X)の終値も fx に書き出す。
+
 GitHub Actions(.github/workflows/update-holdings.yml)から定期実行される。
 取得に失敗した銘柄があるときは既存の prices.json を上書きせずに終了コード1で終わる。
 """
@@ -28,8 +32,16 @@ JST = timezone(timedelta(hours=9))
 
 
 def load_codes():
+    """(code, name, yfinance のティッカー, 通貨) の一覧"""
     check = json.loads(CHECK_PATH.read_text(encoding="utf-8"))
-    return [(s["code"], s["name"]) for s in check["stocks"]]
+    return [
+        (s["code"], s["name"], s.get("ticker") or f"{s['code']}.T", s.get("currency") or "JPY")
+        for s in check["stocks"]
+    ]
+
+
+def fx_ticker(currency):
+    return f"{currency}JPY=X"
 
 
 def download(tickers):
@@ -74,9 +86,8 @@ def count_rows(close, col):
     return int(close[col].notna().sum()) if col in close.columns else 0
 
 
-def download_all(codes):
+def download_all(tickers):
     """全銘柄をまとめて取得し、Yahoo 側の一時的な失敗で行数が足りない銘柄だけ取り直す"""
-    tickers = [f"{code}.T" for code, _ in codes]
     close = download(tickers)
     if isinstance(close, pd.Series):  # 1銘柄だけのときは列名を付け直す
         close = close.to_frame(tickers[0])
@@ -101,14 +112,17 @@ def download_all(codes):
 
 def main():
     codes = load_codes()
-    close = download_all(codes)
-    close = close.dropna(how="all").sort_index()
+    currencies = sorted({cur for *_, cur in codes if cur != "JPY"})
+    fx_cols = [fx_ticker(cur) for cur in currencies]
+    close = download_all([t for _, _, t, _ in codes] + fx_cols)
+    # 東証と米国市場で休場日が違うため、どちらかが取引した日を日付に並べ、取引のない日は null
+    stock_cols = [t for _, _, t, _ in codes]
+    close = close.dropna(how="all", subset=[c for c in stock_cols if c in close.columns]).sort_index()
     dates = [d.strftime("%Y-%m-%d") for d in close.index]
 
     stocks = []
     problems = []
-    for code, name in codes:
-        col = f"{code}.T"
+    for code, name, col, currency in codes:
         if col not in close.columns:
             problems.append(f"{code}: no column")
             continue
@@ -117,7 +131,20 @@ def main():
         print(f"{code} {name}: {n} rows, last={next((v for v in reversed(values) if v is not None), None)}")
         if n < MIN_ROWS:
             problems.append(f"{code}: only {n} rows")
-        stocks.append({"code": code, "close": values})
+        entry = {"code": code, "close": values}
+        if currency != "JPY":
+            entry["currency"] = currency
+        stocks.append(entry)
+
+    # 円換算用: 通貨ごとの直近レートとその日付
+    fx = {}
+    for cur, col in zip(currencies, fx_cols):
+        series = close[col].dropna() if col in close.columns else pd.Series(dtype=float)
+        if series.empty:
+            problems.append(f"{col}: no data")
+            continue
+        fx[f"{cur}JPY"] = {"rate": round(float(series.iloc[-1]), 3), "date": series.index[-1].strftime("%Y-%m-%d")}
+        print(f"{col}: {fx[f'{cur}JPY']}")
 
     if problems:
         print("取得に問題があったため prices.json を更新しません:", *problems, sep="\n  ", file=sys.stderr)
@@ -129,6 +156,7 @@ def main():
         "{",
         f"  \"generated_at\": {json.dumps(generated_at)},",
         '  "source": "Yahoo Finance (yfinance)",',
+        *([f"  \"fx\": {json.dumps(fx, separators=(',', ':'))},"] if fx else []),
         f"  \"dates\": {json.dumps(dates, separators=(',', ':'))},",
         '  "stocks": [',
         ",\n".join("    " + json.dumps(s, separators=(",", ":")) for s in stocks),
