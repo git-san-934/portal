@@ -1,0 +1,52 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>持ち株チェック</title>
+  <meta name="description" content="持ち株8銘柄を「保有継続/売却/買い増し」の観点で毎日チェックした結果と1年チャート" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20260923a" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>持ち株チェック</h1>
+      <p class="intro">持ち株を「保有継続・売却・買い増し」の観点で毎日チェックした結果です。チャートの点線は、チェックで決めた見直しラインです。</p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <section class="panel" id="summary" hidden>
+      <p class="summary-lead" id="summary-lead"></p>
+      <p class="summary-note" id="summary-note"></p>
+      <ul class="bullets" id="market"></ul>
+    </section>
+
+    <section class="panel overview-panel" id="overview-panel" hidden>
+      <h2 class="panel-title">一覧</h2>
+      <table class="overview">
+        <thead>
+          <tr><th scope="col">銘柄</th><th scope="col">終値</th><th scope="col">前日比</th><th scope="col">目安</th></tr>
+        </thead>
+        <tbody id="overview"></tbody>
+      </table>
+    </section>
+
+    <main class="cards" id="cards" hidden></main>
+
+    <section class="panel" id="next-panel" hidden>
+      <h2 class="panel-title">次に注目すること</h2>
+      <ul class="bullets" id="next"></ul>
+    </section>
+
+    <footer>
+      <span id="sources"></span><br />
+      チャートの株価: Yahoo Finance(yfinance 経由)。終値は株式分割のみ調整済みです。<br />
+      「目安」は材料整理であり、売買の推奨ではありません。投資判断は最終的にご自身で行ってください。<br />
+      <a href="../">← アプリ一覧に戻る</a>
+    </footer>
+  </div>
+
+  <script src="assets/app.js?v=20260923a"></script>
+</body>
+</html>
