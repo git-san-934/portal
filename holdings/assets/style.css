@@ -312,6 +312,10 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .position-status.error { color: var(--up); }
 .position-inputs-table tr.incomplete input:placeholder-shown { border-color: var(--up); }
 
+.portfolio-panel .summary-lead { font-weight: 400; font-size: 0.9rem; }
+.stats.pf-figures { grid-template-columns: repeat(3, minmax(0, 1fr)); margin: 0.6rem 0 0.8rem; }
+.pf-table td:nth-child(4), .pf-table th:nth-child(4) { text-align: left; white-space: normal; }
+
 footer {
   margin-top: 2rem;
   text-align: center;
@@ -335,5 +339,7 @@ footer a { color: var(--accent); }
   .chart-box { aspect-ratio: 2 / 1; }
   .tick-label, .line-label, .month-label { font-size: 0.55rem; }
   .position-inputs-table { font-size: 0.78rem; }
+  .stats.pf-figures { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .pf-table .badge-sub { display: block; margin-left: 0; }
   .position-inputs-table th, .position-inputs-table td { padding: 0.4rem 0.25rem; }
 }

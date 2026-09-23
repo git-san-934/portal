@@ -86,12 +86,185 @@
       ["評価額", priceFmt(pnl.currentValue), "pct"],
       ["損益", `${pnl.gain > 0 ? "+" : pnl.gain < 0 ? "−" : ""}${priceFmt(Math.abs(pnl.gain))}`, pctClass(pnl.gain)],
       ["損益率", pctText(pnl.gainPct), pctClass(pnl.gainPct)],
+      ...(book.weights.has(code) ? [["保有比率", `${(book.weights.get(code) * 100).toFixed(1)}%`, "pct"]] : []),
     ]) {
       const item = el("div");
       item.append(el("dt", null, dt), el("dd", cls, dd));
       pnlStats.appendChild(item);
     }
     slot.appendChild(pnlStats);
+  }
+
+  // ---------- 保有状況を基準にしたリスク・リターン ----------
+
+  // 1銘柄の比率の目安(既定値)。超えたら買い増しは見送り、さらに超えたら一部売却を検討
+  const WEIGHT_CAP = 25;
+  const WEIGHT_TRIM = 35;
+
+  const book = { stocks: [], returns: new Map(), weights: new Map() };
+
+  // 直近20営業日の日次対数リターン(判定のリスクと同じ期間)
+  function recentReturns(close, days = 20) {
+    const vals = close.filter((v) => v != null).slice(-(days + 1));
+    const r = [];
+    for (let i = 1; i < vals.length; i++) r.push(Math.log(vals[i] / vals[i - 1]));
+    return r;
+  }
+
+  function correlation(a, b) {
+    const n = Math.min(a.length, b.length);
+    if (n < 5) return null;
+    const x = a.slice(-n);
+    const y = b.slice(-n);
+    const mx = x.reduce((t, v) => t + v, 0) / n;
+    const my = y.reduce((t, v) => t + v, 0) / n;
+    let sxy = 0, sxx = 0, syy = 0;
+    for (let i = 0; i < n; i++) {
+      sxy += (x[i] - mx) * (y[i] - my);
+      sxx += (x[i] - mx) ** 2;
+      syy += (y[i] - my) ** 2;
+    }
+    return sxx && syy ? sxy / Math.sqrt(sxx * syy) : null;
+  }
+
+  // 保有銘柄の比率・比率加重の期待リターン・相関込みのリスク・各銘柄のリスク寄与
+  function portfolioStats() {
+    const positions = getPositions();
+    const held = [];
+    for (const stock of book.stocks) {
+      const pos = positions[stock.code];
+      const slot = $(`pnl-${stock.code}`);
+      const price = slot ? Number(slot.dataset.price) : stock.close;
+      if (!pos || !price) continue;
+      held.push({ stock, pos, price, value: price * pos.quantity, cost: pos.price * pos.quantity });
+    }
+    if (!held.length) return null;
+    const total = held.reduce((t, h) => t + h.value, 0);
+    const cost = held.reduce((t, h) => t + h.cost, 0);
+    for (const h of held) h.weight = h.value / total;
+
+    const valid = held.filter((h) => h.stock.expected_return_pct != null && h.stock.risk_pct != null);
+    const vw = valid.reduce((t, h) => t + h.weight, 0);
+    let expRet = null, risk = null, avgRisk = null, corrOk = true;
+    if (valid.length && vw > 0) {
+      expRet = valid.reduce((t, h) => t + h.weight * h.stock.expected_return_pct, 0) / vw;
+      avgRisk = valid.reduce((t, h) => t + h.weight * h.stock.risk_pct, 0) / vw;
+      // 共分散 = 相関 × リスク × リスク(リスクは判定と同じ年率ボラ、相関は直近20営業日)
+      const w = valid.map((h) => h.weight / vw);
+      const sd = valid.map((h) => h.stock.risk_pct / 100);
+      const cov = valid.map((hi, i) =>
+        valid.map((hj, j) => {
+          if (i === j) return sd[i] * sd[i];
+          const rho = correlation(book.returns.get(hi.stock.code) || [], book.returns.get(hj.stock.code) || []);
+          if (rho == null) corrOk = false;
+          return (rho == null ? 0.5 : rho) * sd[i] * sd[j];
+        })
+      );
+      const covW = cov.map((row) => row.reduce((t, c, j) => t + c * w[j], 0));
+      const variance = w.reduce((t, wi, i) => t + wi * covW[i], 0);
+      risk = Math.sqrt(variance) * 100;
+      valid.forEach((h, i) => (h.riskShare = variance > 0 ? (w[i] * covW[i]) / variance : null));
+    }
+    return { held, total, cost, expRet, risk, avgRisk, score: expRet != null && risk ? expRet / risk : null, corrOk };
+  }
+
+  // 銘柄ごとの判定を、保有比率で調整する
+  function verdictForHolding(h) {
+    const pct = h.weight * 100;
+    const base = h.stock.verdict;
+    if (pct > WEIGHT_TRIM && h.stock.tone !== "sell") {
+      return { text: "一部売却を検討", tone: "trim", why: `比率${pct.toFixed(0)}%が目安${WEIGHT_TRIM}%を超えて集中` };
+    }
+    if (h.stock.tone === "add" && pct > WEIGHT_CAP) {
+      return { text: "保有継続", tone: "hold", why: `判定は買い増しだが、比率${pct.toFixed(0)}%が目安${WEIGHT_CAP}%を超えるため見送り` };
+    }
+    return { text: base, tone: h.stock.tone || "hold", why: "" };
+  }
+
+  function renderPortfolio() {
+    const panel = $("portfolio-panel");
+    if (!panel) return;
+    const pf = portfolioStats();
+    book.weights = new Map(pf ? pf.held.map((h) => [h.stock.code, h.weight]) : []);
+    for (const stock of book.stocks) renderPnl(stock.code);
+    if (!pf) {
+      panel.hidden = true;
+      return;
+    }
+
+    const gain = pf.total - pf.cost;
+    const signed = (v) => `${v > 0 ? "+" : v < 0 ? "−" : ""}${priceFmt(Math.abs(v))}`;
+    const figures = el("dl", "stats pf-figures");
+    for (const [dt, dd, cls] of [
+      ["評価額合計", priceFmt(Math.round(pf.total)), "pct"],
+      ["含み損益", signed(Math.round(gain)), pctClass(gain)],
+      ["損益率", pctText((gain / pf.cost) * 100), pctClass(gain)],
+      ["期待リターン", pctText(pf.expRet, 0), pctClass(pf.expRet)],
+      ["リスク(年率)", pf.risk == null ? "—" : `${pf.risk.toFixed(0)}%`, "pct"],
+      ["R/Rスコア", scoreText(pf.score == null ? null : Math.round(pf.score * 100) / 100), "pct"],
+    ]) {
+      const item = el("div");
+      item.append(el("dt", null, dt), el("dd", cls, dd));
+      figures.appendChild(item);
+    }
+
+    const rows = pf.held.slice().sort((a, b) => b.weight - a.weight);
+    const table = el("table", "overview pf-table");
+    const thead = el("thead");
+    const hr = el("tr");
+    for (const h of ["銘柄", "比率", "リスク<br />寄与", "保有基準の判定"]) {
+      const th = el("th");
+      th.scope = "col";
+      th.innerHTML = h;
+      hr.appendChild(th);
+    }
+    thead.appendChild(hr);
+    const tbody = el("tbody");
+    const notes = [];
+    for (const h of rows) {
+      const v = verdictForHolding(h);
+      const tr = el("tr");
+      const nameTd = el("td");
+      const a = el("a", null, h.stock.name);
+      a.href = `#s-${h.stock.code}`;
+      nameTd.append(a, el("span", "code", h.stock.code));
+      const vTd = el("td");
+      vTd.appendChild(el("span", `badge ${v.tone}`, v.text));
+      if (v.text !== h.stock.verdict) vTd.appendChild(el("span", "badge-sub", `(今日の判定: ${h.stock.verdict})`));
+      tr.append(
+        nameTd,
+        el("td", null, `${(h.weight * 100).toFixed(1)}%`),
+        el("td", null, h.riskShare == null ? "—" : `${h.riskShare < -0.005 ? "−" : ""}${Math.abs(h.riskShare * 100).toFixed(0)}%`),
+        vTd
+      );
+      tbody.appendChild(tr);
+      if (v.why) notes.push(`${h.stock.name}: ${v.why}。`);
+      if (h.riskShare != null && h.riskShare >= 0.4) notes.push(`${h.stock.name}だけで全体リスクの${(h.riskShare * 100).toFixed(0)}%を占めています。`);
+    }
+    table.append(thead, tbody);
+
+    // 全体のまとめ
+    const lead = [];
+    if (pf.score != null) {
+      const judge = pf.expRet >= 15 && pf.score >= 0.5 ? "リスクに見合うリターンが見込める水準" : pf.expRet < 0 ? "期待リターンがマイナス" : "リスクに対してリターンは控えめ";
+      lead.push(`保有全体の期待リターンは${pctText(pf.expRet, 0)}、リスクは年率${pf.risk.toFixed(0)}%で、スコア${pf.score.toFixed(2)}(${judge})。`);
+    }
+    if (pf.avgRisk != null && pf.risk != null && pf.avgRisk > 0) {
+      lead.push(`銘柄を組み合わせた分散効果で、リスクは各銘柄の加重平均${pf.avgRisk.toFixed(0)}%から${pf.risk.toFixed(0)}%に下がっています。`);
+    }
+    if (pf.held.length < book.stocks.length) {
+      lead.push(`登録済みの${pf.held.length}銘柄だけで計算しています。`);
+    }
+
+    $("pf-lead").textContent = lead.join("");
+    $("pf-figures").replaceChildren(figures);
+    $("pf-table").replaceChildren(table);
+    fillList($("pf-notes"), notes);
+    $("pf-notes").hidden = !notes.length;
+    $("pf-caveat").textContent =
+      `期待リターンとリスクは今日のチェック値を保有比率で加重し、リスクは直近20営業日の銘柄間の相関を反映しています${pf.corrOk ? "" : "(相関が取れない組み合わせは0.5と仮定)"}。` +
+      `リスク寄与は全体のリスクのうちその銘柄が生む割合で、マイナスはほかの銘柄と逆に動いてリスクを打ち消していることを示します。比率の目安: ${WEIGHT_CAP}%超は買い増し見送り、${WEIGHT_TRIM}%超は一部売却を検討。取得単価は損益の表示だけに使い、判定には使いません(買値はこの先のリターンを左右しないため)。`;
+    panel.hidden = false;
   }
 
   // ---------- 株価データからの計算 ----------
@@ -413,7 +586,7 @@
         priceInput.value = "";
         quantityInput.value = "";
         setPosition(stock.code, 0, 0);
-        renderPnl(stock.code);
+        renderPortfolio();
         setStatus(`${stock.name}を削除しました。`);
       });
 
@@ -453,9 +626,9 @@
           continue;
         }
         setPosition(stock.code, hasPrice ? price : 0, hasQty ? qty : 0);
-        renderPnl(stock.code);
         if (hasPrice) saved++;
       }
+      renderPortfolio();
       if (incomplete.length) {
         setStatus(`${incomplete.join("、")}は取得単価と株数の両方を入れてください。ほかの銘柄は登録しました。`, "error");
       } else {
@@ -496,6 +669,8 @@
 
     const series = new Map();
     if (prices) for (const s of prices.stocks) series.set(s.code, s.close);
+    book.stocks = check.stocks;
+    for (const [code, close] of series) book.returns.set(code, recentReturns(close));
 
     let status = `チェック日: ${dateFmt(check.checked_on)}(${dateFmt(check.price_date)} 終値ベース)`;
     if (prices) {
@@ -527,6 +702,7 @@
 
     // 保有入力フォーム
     buildPositionInputs(check.stocks);
+    renderPortfolio();
 
     if (check.next && check.next.length) {
       fillList($("next"), check.next);
