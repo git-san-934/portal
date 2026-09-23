@@ -375,11 +375,6 @@
       priceInput.min = "0";
       priceInput.step = "0.01";
       priceInput.value = position.price ? position.price.toString() : "";
-      priceInput.addEventListener("input", () => {
-        const qty = quantityInput.value;
-        setPosition(stock.code, priceInput.value, qty);
-        location.reload();
-      });
 
       const quantityInput = el("input");
       quantityInput.type = "number";
@@ -387,17 +382,37 @@
       quantityInput.min = "0";
       quantityInput.step = "1";
       quantityInput.value = position.quantity ? position.quantity.toString() : "";
-      quantityInput.addEventListener("input", () => {
+
+      // Save on blur (when user moves focus away)
+      const savePosition = () => {
         const price = priceInput.value;
-        setPosition(stock.code, price, quantityInput.value);
-        location.reload();
-      });
+        const qty = quantityInput.value;
+        if (price !== position.price?.toString() || qty !== position.quantity?.toString()) {
+          setPosition(stock.code, price, qty);
+          // Update the stored position
+          const updated = getPositions()[stock.code];
+          if (updated) {
+            position.price = updated.price;
+            position.quantity = updated.quantity;
+          } else {
+            position.price = undefined;
+            position.quantity = undefined;
+          }
+        }
+      };
+
+      priceInput.addEventListener("blur", savePosition);
+      quantityInput.addEventListener("blur", savePosition);
 
       const clearBtn = el("button", "clear-btn");
       clearBtn.textContent = "削除";
-      clearBtn.addEventListener("click", () => {
+      clearBtn.addEventListener("click", (e) => {
+        e.preventDefault();
         setPosition(stock.code, 0, 0);
-        location.reload();
+        priceInput.value = "";
+        quantityInput.value = "";
+        position.price = undefined;
+        position.quantity = undefined;
       });
 
       row.append(
