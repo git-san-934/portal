@@ -6,19 +6,23 @@
   <title>業種別ETFチャート一覧</title>
   <meta name="description" content="TOPIX-17業種別ETFと東証銀行業ETFの過去5年チャートを一覧で比べられるページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260923b" />
+  <link rel="stylesheet" href="assets/style.css?v=20260923c" />
 </head>
 <body>
   <div class="wrap">
     <header>
       <h1>業種別ETFチャート一覧</h1>
-      <p class="intro">NEXT FUNDS TOPIX-17業種別ETF(1617〜1633)と東証銀行業ETF(1615)の過去5年の値動きを並べて比べられます。チャートに触れると、全銘柄の同じ日付に線が出ます。</p>
+      <p class="intro">NEXT FUNDS TOPIX-17業種別ETF(1617〜1633)と東証銀行業ETF(1615)の値動きを、1ヶ月・1年・5年の期間で並べて比べられます。チャートに触れると、全銘柄の同じ日付に線が出ます。</p>
       <p class="updated" id="status">読み込み中...</p>
     </header>
 
     <div class="controls">
       <div class="control-group">
-        <span class="control-label" id="sort-label">並び替え</span>
+        <span class="control-label" id="period-label">期間</span>
+        <div id="period-toggle" class="toggle" role="group" aria-labelledby="period-label"></div>
+      </div>
+      <div class="control-group">
+        <span class="control-label" id="sort-label">並び替え(騰落率)</span>
         <div id="sort-toggle" class="toggle" role="group" aria-labelledby="sort-label"></div>
       </div>
       <div class="control-group">
@@ -38,6 +42,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20260923b"></script>
+  <script src="assets/app.js?v=20260923c"></script>
 </body>
 </html>

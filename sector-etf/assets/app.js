@@ -10,13 +10,18 @@
     { key: "y1", label: "1年" },
     { key: "y5", label: "5年" },
   ];
+  const PERIOD_OPTIONS = [
+    { key: "m1", label: "1ヶ月", months: 1 },
+    { key: "y1", label: "1年", months: 12 },
+    { key: "y5", label: "5年", months: null }, // データ全体(約5年)
+  ];
   const SCALE_OPTIONS = [
     { key: "own", label: "銘柄ごと" },
-    { key: "index", label: "共通(5年前=100)" },
+    { key: "index", label: "共通(期間の初め=100)" },
   ];
   const SCALE_NOTES = {
-    own: "縦軸は銘柄ごとに最安値〜最高値で合わせています。形は比べやすいですが、上げ幅の大きさは銘柄間で比べられません。",
-    index: "5年前の終値を100として全銘柄を同じ縦軸で描いています。上げ幅・下げ幅をそのまま比べられます。",
+    own: "縦軸は銘柄ごとに期間中の最安値〜最高値で合わせています。形は比べやすいですが、上げ幅の大きさは銘柄間で比べられません。",
+    index: "期間の初めの終値を100として全銘柄を同じ縦軸で描いています。上げ幅・下げ幅をそのまま比べられます。",
   };
 
   // チャート座標(SVG viewBox)。preserveAspectRatio="none" で横幅いっぱいに伸ばす
@@ -28,6 +33,7 @@
   const gridEl = document.getElementById("etf-grid");
   const sortToggleEl = document.getElementById("sort-toggle");
   const scaleToggleEl = document.getElementById("scale-toggle");
+  const periodToggleEl = document.getElementById("period-toggle");
   const scaleNoteEl = document.getElementById("scale-note");
 
   const state = {
@@ -36,6 +42,9 @@
     sortKey: "default",
     sortDir: "desc",
     scale: "own",
+    period: "y5",
+    start: 0, // 表示期間の最初と最後の日付インデックス
+    end: 0,
     rows: new Map(), // code -> { card, box, crosshair, dot, tooltip, ... }
     hoverIdx: null,
     hoverCode: null,
@@ -98,11 +107,29 @@
     return ticks;
   }
 
-  // 表示モードに応じた系列(銘柄ごと=終値そのまま / 共通=5年前を100に指数化)
+  // 最終日から months ヶ月前の日付(YYYY-MM-DD)
+  function monthsBefore(iso, months) {
+    const [y, m, day] = iso.split("-").map(Number);
+    return new Date(Date.UTC(y, m - 1 - months, day)).toISOString().slice(0, 10);
+  }
+
+  function updateRange() {
+    const opt = PERIOD_OPTIONS.find((o) => o.key === state.period);
+    state.end = state.dates.length - 1;
+    state.start = 0;
+    if (opt.months != null) {
+      const target = monthsBefore(state.dates[state.end], opt.months);
+      const i = state.dates.findIndex((d) => d >= target);
+      state.start = i < 0 ? 0 : i;
+    }
+  }
+
+  // 表示モードに応じた系列(銘柄ごと=終値そのまま / 共通=期間の初めを100に指数化)。期間外は null
   function seriesFor(etf) {
-    if (state.scale === "own") return etf.close;
-    const base = etf.close[etf.firstIdx];
-    return etf.close.map((v) => (v == null || !base ? null : (v / base) * 100));
+    const inRange = etf.close.map((v, i) => (i < state.start || i > state.end ? null : v));
+    if (state.scale === "own") return inRange;
+    const base = inRange[firstNonNull(inRange)];
+    return inRange.map((v) => (v == null || !base ? null : (v / base) * 100));
   }
 
   function extent(values) {
@@ -118,20 +145,38 @@
 
   // ---------- 描画 ----------
 
-  function yearStarts() {
+  // 横軸の目盛り(期間に応じて 年 / 四半期ごとの月 / 週の初めの日付)
+  function xTicks() {
     const out = [];
-    let prevYear = null;
-    state.dates.forEach((d, i) => {
-      const y = d.slice(0, 4);
-      if (y !== prevYear) {
-        if (prevYear !== null) out.push({ i, label: y });
-        prevYear = y;
+    let prevKey = null;
+    for (let i = state.start; i <= state.end; i++) {
+      const d = state.dates[i];
+      const [y, m, day] = d.split("-").map(Number);
+      let key;
+      let label;
+      if (state.period === "y5") {
+        key = y;
+        label = `'${String(y).slice(2)}`;
+      } else if (state.period === "y1") {
+        key = `${y}-${m}`;
+        if (![1, 4, 7, 10].includes(m)) {
+          prevKey = key;
+          continue;
+        }
+        label = m === 1 ? `'${String(y).slice(2)}` : `${m}月`;
+      } else {
+        // 月曜始まりの週番号が変わったら週の初め
+        const t = Date.UTC(y, m - 1, day) / 86400000;
+        key = Math.floor((t + 3) / 7);
+        label = `${m}/${day}`;
       }
-    });
+      if (prevKey !== null && key !== prevKey) out.push({ i, label });
+      prevKey = key;
+    }
     return out;
   }
 
-  const xPct = (i) => (state.dates.length <= 1 ? 50 : (i / (state.dates.length - 1)) * 100);
+  const xPct = (i) => (state.end <= state.start ? 50 : ((i - state.start) / (state.end - state.start)) * 100);
 
   function renderChart(row, etf, sharedExtent) {
     const values = seriesFor(etf);
@@ -153,7 +198,8 @@
     const grid = ticks
       .map((t) => `<line class="grid-line" x1="0" x2="${W}" y1="${yOf(t).toFixed(1)}" y2="${yOf(t).toFixed(1)}" />`)
       .join("");
-    const years = yearStarts()
+    const xt = xTicks();
+    const years = xt
       .map(({ i }) => {
         const x = ((xPct(i) / 100) * W).toFixed(1);
         return `<line class="grid-line" x1="${x}" x2="${x}" y1="0" y2="${H}" />`;
@@ -165,6 +211,11 @@
         : "";
 
     row.svg.innerHTML = `${years}${grid}${base}<path class="chart-line" d="${d}" />`;
+    const periodLabel = PERIOD_OPTIONS.find((o) => o.key === state.period).label;
+    row.box.setAttribute(
+      "aria-label",
+      `${etf.sector}(${etf.code})の${periodLabel}チャート。${periodLabel}騰落率 ${pctText(etf[state.period])}、直近終値 ${priceFmt(etf.last)}`
+    );
 
     row.labels.replaceChildren();
     for (const t of ticks) {
@@ -172,8 +223,8 @@
       lab.style.top = `${(yOf(t) / H) * 100}%`;
       row.labels.appendChild(lab);
     }
-    for (const { i, label } of yearStarts()) {
-      const lab = el("span", "year-label", `'${label.slice(2)}`);
+    for (const { i, label } of xt) {
+      const lab = el("span", "year-label", label);
       lab.style.left = `${xPct(i)}%`;
       row.labels.appendChild(lab);
     }
@@ -198,10 +249,6 @@
 
     const box = el("div", "chart-box");
     box.setAttribute("role", "img");
-    box.setAttribute(
-      "aria-label",
-      `${etf.sector}(${etf.code})の5年チャート。5年騰落率 ${pctText(etf.y5)}、直近終値 ${priceFmt(etf.last)}`
-    );
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
     svg.setAttribute("preserveAspectRatio", "none");
@@ -291,6 +338,23 @@
       })
     );
 
+    periodToggleEl.replaceChildren(
+      ...PERIOD_OPTIONS.map((opt) => {
+        const active = opt.key === state.period;
+        const btn = el("button", `toggle-btn${active ? " active" : ""}`, opt.label);
+        btn.type = "button";
+        btn.setAttribute("aria-pressed", String(active));
+        btn.addEventListener("click", () => {
+          if (state.period === opt.key) return;
+          state.period = opt.key;
+          updateRange();
+          renderToggles();
+          renderAllCharts();
+        });
+        return btn;
+      })
+    );
+
     scaleToggleEl.replaceChildren(
       ...SCALE_OPTIONS.map((opt) => {
         const active = opt.key === state.scale;
@@ -314,7 +378,7 @@
     const onMove = (ev) => {
       const rect = row.box.getBoundingClientRect();
       const frac = Math.min(1, Math.max(0, (ev.clientX - rect.left) / rect.width));
-      state.hoverIdx = Math.round(frac * (state.dates.length - 1));
+      state.hoverIdx = state.start + Math.round(frac * (state.end - state.start));
       state.hoverCode = row.etf.code;
       updateHover();
     };
@@ -331,9 +395,9 @@
 
   // 指定位置に一番近い、値がある日のインデックス
   function nearestWithValue(values, idx) {
-    for (let off = 0; off < values.length; off++) {
-      if (values[idx - off] != null) return idx - off;
-      if (values[idx + off] != null) return idx + off;
+    for (let off = 0; off <= state.end - state.start; off++) {
+      if (idx - off >= state.start && values[idx - off] != null) return idx - off;
+      if (idx + off <= state.end && values[idx + off] != null) return idx + off;
     }
     return -1;
   }
@@ -399,6 +463,7 @@
       const generated = data.generated_at ? data.generated_at.slice(0, 16).replace("T", " ") : "—";
       statusEl.textContent = `${dateFmt(state.dates[0])}〜${dateFmt(lastDate)} の終値(データ更新: ${generated.replace(/-/g, "/")})`;
 
+      updateRange();
       for (const etf of state.etfs) state.rows.set(etf.code, buildRow(etf));
       renderToggles();
       renderOrder();
