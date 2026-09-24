@@ -3,6 +3,7 @@
 
   const CHECK_URL = "data/check.json";
   const PRICES_URL = "data/prices.json";
+  const LIST_URL = "data/holdings.json"; // 銘柄リスト(ページの「銘柄リストの編集」から書き換わる)
   // 日本株は "<code>.T"、米国株などは check.json の ticker(例: ORCL)
   const YAHOO_URL = (stock) =>
     `https://finance.yahoo.co.jp/quote/${encodeURIComponent(stock.currency && stock.currency !== "JPY" ? stock.ticker || stock.code : `${stock.code}.T`)}`;
@@ -699,6 +700,215 @@
     $("position-panel").hidden = false;
   }
 
+  // ---------- 銘柄リストの編集 ----------
+  // 「保存」で、新しいリスト入りの Issue を作る GitHub の画面を開く。リポジトリ所有者が作成すると
+  // .github/workflows/apply-holdings-list.yml が data/holdings.json を書き換える(ページはキーを持たない)
+
+  const REPO = "git-san-934/portal";
+  const ISSUE_TITLE = "持ち株リスト更新";
+
+  const sameList = (a, b) => JSON.stringify(a) === JSON.stringify(b);
+
+  // 銘柄リスト(holdings.json)とチェック結果(check.json)を合わせる。
+  // リストにあってチェックにない銘柄は「未判定」、チェックにあってリストにない銘柄は表示しない
+  function mergeStocks(check, list, missing = []) {
+    if (!list) return check.stocks;
+    const listed = new Map(list.stocks.map((s) => [s.code, s]));
+    const judged = check.stocks
+      .filter((s) => listed.has(s.code))
+      .map((s) => {
+        const l = listed.get(s.code);
+        return { ...s, name: l.name, ticker: l.ticker, currency: l.currency };
+      });
+    const judgedCodes = new Set(judged.map((s) => s.code));
+    const added = list.stocks
+      .filter((s) => !judgedCodes.has(s.code))
+      .map((s) => ({
+        ...s,
+        verdict: "未判定",
+        tone: "hold",
+        sub: "",
+        expected_return_pct: null,
+        risk_pct: null,
+        score: null,
+        close: null,
+        change_pct: null,
+        from_high_pct: null,
+        per: "—",
+        yield: "—",
+        lines: [],
+        plan: missing.includes(s.code)
+          ? "株価を取得できませんでした。銘柄コード(米国株はティッカー)が正しいか、上の「銘柄リストの編集」で確認してください。"
+          : "リストに追加した銘柄です。リスク・リターンの判定は次回の毎日のチェックから載ります。",
+        memo: [],
+      }));
+    return [...judged, ...added];
+  }
+
+  // 1行の入力を holdings.json の1銘柄に直す。問題があればメッセージを返す
+  function parseListRow(market, codeRaw, nameRaw) {
+    const name = nameRaw.trim();
+    const code = codeRaw.trim().toUpperCase();
+    if (!name && !code) return { skip: true };
+    if (!name) return { error: "銘柄名を入れてください" };
+    if (name.length > 40) return { error: "銘柄名は40文字までにしてください" };
+    if (market === "US") {
+      if (!/^[A-Z][A-Z0-9.-]{0,9}$/.test(code)) return { error: "米国株はティッカー(例: ORCL)を入れてください" };
+      return { stock: { code, name, ticker: code.replace(/\./g, "-"), currency: "USD" } };
+    }
+    if (!/^[0-9][0-9A-Z]{3}$/.test(code)) return { error: "日本株は4桁の証券コード(例: 7203、285A)を入れてください" };
+    return { stock: { code, name } };
+  }
+
+  function issueUrl(stocks, summary) {
+    const body = [
+      `持ち株ページから作成: ${summary}`,
+      "",
+      "このまま「Create」(または「Submit new issue」)を押すと、1〜2分で持ち株ページの銘柄リストが更新されます。",
+      "",
+      "```json",
+      JSON.stringify({ stocks }),
+      "```",
+    ].join("\n");
+    const q = new URLSearchParams({ title: `${ISSUE_TITLE}: ${summary}`.slice(0, 120), body });
+    return `https://github.com/${REPO}/issues/new?${q}`;
+  }
+
+  function buildListEditor(list) {
+    const container = $("list-editor");
+    container.replaceChildren();
+    const form = el("form", "position-form");
+    form.noValidate = true;
+    const table = el("table", "position-inputs-table list-table");
+    const thead = el("thead");
+    const hr = el("tr");
+    hr.append(el("th", null, "銘柄名"), el("th", null, "コード"), el("th", null, "市場"), el("th", null, ""));
+    thead.appendChild(hr);
+    const tbody = el("tbody");
+    table.append(thead, tbody);
+
+    const status = el("p", "position-status");
+    status.setAttribute("role", "status");
+    const setStatus = (text, tone = "") => {
+      status.textContent = text;
+      status.className = `position-status ${tone}`.trim();
+    };
+    const dirty = () => setStatus("未保存の変更があります。「保存」を押してください。", "pending");
+
+    const rows = [];
+    const addRow = (stock) => {
+      const tr = el("tr");
+      const name = el("input");
+      name.type = "text";
+      name.placeholder = "例: トヨタ";
+      name.value = stock ? stock.name : "";
+      name.setAttribute("aria-label", "銘柄名");
+      const code = el("input");
+      code.type = "text";
+      code.autocapitalize = "characters";
+      code.spellcheck = false;
+      code.placeholder = "7203";
+      code.value = stock ? stock.code : "";
+      code.setAttribute("aria-label", "証券コード(米国株はティッカー)");
+      const market = el("select");
+      market.setAttribute("aria-label", "市場");
+      for (const [v, t] of [
+        ["JP", "日本"],
+        ["US", "米国"],
+      ]) {
+        const o = el("option", null, t);
+        o.value = v;
+        market.appendChild(o);
+      }
+      market.value = stock && stock.currency === "USD" ? "US" : "JP";
+      market.addEventListener("change", () => (code.placeholder = market.value === "US" ? "ORCL" : "7203"));
+      const del = el("button", "clear-btn", "削除");
+      del.type = "button";
+      const r = { tr, name, code, market, removed: false };
+      del.addEventListener("click", () => {
+        r.removed = !r.removed;
+        tr.classList.toggle("removed", r.removed);
+        del.textContent = r.removed ? "戻す" : "削除";
+        for (const i of [name, code, market]) i.disabled = r.removed;
+        dirty();
+      });
+      for (const i of [name, code, market, del]) {
+        const td = el("td");
+        td.appendChild(i);
+        tr.appendChild(td);
+      }
+      tbody.appendChild(tr);
+      rows.push(r);
+      return r;
+    };
+    for (const s of list.stocks) addRow(s);
+
+    const actions = el("div", "position-actions");
+    const add = el("button", "add-btn", "+ 銘柄を追加");
+    add.type = "button";
+    add.addEventListener("click", () => addRow(null).name.focus());
+    const saveBtn = el("button", "save-btn", "保存");
+    saveBtn.type = "submit";
+    actions.append(add, saveBtn, status);
+
+    form.addEventListener("input", dirty);
+    form.addEventListener("submit", (ev) => {
+      ev.preventDefault();
+      const stocks = [];
+      const errors = [];
+      for (const r of rows) {
+        r.tr.classList.remove("incomplete");
+        if (r.removed) continue;
+        const p = parseListRow(r.market.value, r.code.value, r.name.value);
+        if (p.skip) continue;
+        if (p.error) {
+          r.tr.classList.add("incomplete");
+          errors.push(`${r.name.value.trim() || r.code.value.trim() || "新しい行"}: ${p.error}`);
+          continue;
+        }
+        if (stocks.some((s) => s.code === p.stock.code)) {
+          r.tr.classList.add("incomplete");
+          errors.push(`${p.stock.code} が2回出てきます`);
+          continue;
+        }
+        stocks.push(p.stock);
+      }
+      if (errors.length) return setStatus(errors.join(" / "), "error");
+      if (!stocks.length) return setStatus("銘柄が1つもありません。", "error");
+      if (sameList(stocks, list.stocks)) return setStatus("変更はありません。");
+
+      const before = new Set(list.stocks.map((s) => s.code));
+      const kept = new Set(stocks.map((s) => s.code));
+      const addedNames = stocks.filter((s) => !before.has(s.code)).map((s) => s.name);
+      const removedNames = list.stocks.filter((s) => !kept.has(s.code)).map((s) => s.name);
+      const parts = [];
+      if (addedNames.length) parts.push(`追加 ${addedNames.join("、")}`);
+      if (removedNames.length) parts.push(`削除 ${removedNames.join("、")}`);
+      if (!parts.length) parts.push("修正");
+      const summary = parts.join(" / ");
+      const url = issueUrl(stocks, summary);
+      // ポップアップが止められたときは同じタブで開く
+      const win = window.open(url, "_blank");
+      if (win) win.opener = null;
+      else location.href = url;
+      setStatus(
+        `GitHub の画面を開きました(${summary})。そこで「Create」を押すと1〜2分でリストが更新され、このページを再読み込みすると反映されます。`,
+        "ok"
+      );
+    });
+
+    form.append(table, actions);
+    container.appendChild(form);
+    container.appendChild(
+      el(
+        "p",
+        "caveat",
+        "保存には GitHub へのログインが必要です。銘柄名とコードは公開ページに載ります(取得単価と株数はこのブラウザにだけ保存され、載りません)。"
+      )
+    );
+    $("list-panel").hidden = false;
+  }
+
   // 算定方法の欄: 比率の目安を定数から入れ、今日のチェックから計算例を1つ示す
   function renderMethod(check) {
     for (const e of document.querySelectorAll(".weight-cap")) e.textContent = WEIGHT_CAP;
@@ -744,9 +954,18 @@
       console.warn(err);
     }
 
+    // 銘柄リストがなければ check.json の銘柄をそのまま使う
+    let list = null;
+    try {
+      list = await loadJson(LIST_URL);
+    } catch (err) {
+      console.warn(err);
+    }
+    const stocks = mergeStocks(check, list, (prices && prices.missing) || []);
+
     const series = new Map();
     if (prices) for (const s of prices.stocks) series.set(s.code, s.close);
-    book.stocks = check.stocks;
+    book.stocks = stocks;
     book.series = series;
     book.fx = (prices && prices.fx) || {};
 
@@ -771,7 +990,7 @@
 
     const overview = $("overview");
     const cards = $("cards");
-    for (const stock of check.stocks) {
+    for (const stock of stocks) {
       const close = series.get(stock.code);
       const st = close ? statsFromPrices(prices.dates, close) : null;
       overview.appendChild(buildOverviewRow(stock));
@@ -781,8 +1000,9 @@
     cards.hidden = false;
 
     // 保有入力フォーム
-    buildPositionInputs(check.stocks);
+    buildPositionInputs(stocks);
     renderPortfolio();
+    buildListEditor(list || { stocks: check.stocks.map(({ code, name, ticker, currency }) => ({ code, name, ticker, currency })) });
 
     if (check.next && check.next.length) {
       fillList($("next"), check.next);

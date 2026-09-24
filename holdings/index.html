@@ -6,7 +6,7 @@
   <title>持ち株チェック</title>
   <meta name="description" content="持ち株を「保有継続/売却/買い増し」のどれにするか、リスクとリターンで毎日チェックした結果と1年チャート" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260924a" />
+  <link rel="stylesheet" href="assets/style.css?v=20260924b" />
 </head>
 <body>
   <div class="wrap">
@@ -42,6 +42,14 @@
       <h2 class="panel-title">保有状況</h2>
       <p class="position-note">取得単価と保有株数を入れて「登録」を押すと、各銘柄のカードに損益が出ます。登録した内容はこのブラウザだけに保存されます。</p>
       <div id="position-inputs"></div>
+    </section>
+
+    <section class="panel list-panel" id="list-panel" hidden>
+      <details class="list-box" id="list-box">
+        <summary class="panel-title">銘柄リストの編集(追加・修正・削除)</summary>
+        <p class="position-note">銘柄を追加・修正・削除して「保存」を押すと GitHub の画面が開きます。そこで「Create」を押すと、1〜2分でリストが更新され、株価の自動取得と毎日のチェックの対象になります。</p>
+        <div id="list-editor"></div>
+      </details>
     </section>
 
     <section class="panel portfolio-panel" id="portfolio-panel" hidden>
@@ -137,6 +145,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20260924a"></script>
+  <script src="assets/app.js?v=20260924b"></script>
 </body>
 </html>

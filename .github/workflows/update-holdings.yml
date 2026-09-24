@@ -9,11 +9,13 @@ on:
     paths:
       - holdings/scripts/**
       - holdings/data/check.json
+      - holdings/data/holdings.json
       - .github/workflows/update-holdings.yml
   pull_request:
     paths:
       - holdings/scripts/**
       - holdings/data/check.json
+      - holdings/data/holdings.json
       - .github/workflows/update-holdings.yml
 
 permissions:

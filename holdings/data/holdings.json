@@ -1,0 +1,14 @@
+{
+  "updated_at": "2026-09-24",
+  "stocks": [
+    {"code": "7974", "name": "任天堂"},
+    {"code": "4732", "name": "USS"},
+    {"code": "8411", "name": "みずほFG"},
+    {"code": "5232", "name": "住友大阪セメント"},
+    {"code": "6861", "name": "キーエンス"},
+    {"code": "6961", "name": "エンプラス"},
+    {"code": "6134", "name": "FUJI"},
+    {"code": "285A", "name": "キオクシアHD"},
+    {"code": "ORCL", "name": "オラクル", "ticker": "ORCL", "currency": "USD"}
+  ]
+}
