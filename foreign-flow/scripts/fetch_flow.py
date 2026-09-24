@@ -181,7 +181,7 @@ def short_file_urls():
     urls = {}
     for i, page in enumerate(pages):
         body = html if i == 0 else get(page).content.decode("utf-8", "replace")
-        for u in links(body, r"[^\"]*?(\d{8})_Short_Positions\.xlsx?"):
+        for u in links(body, r"[^\"]*?\d{8}_Short_Positions\.xlsx?"):
             m = re.search(r"(\d{8})_Short_Positions", u)
             urls[m.group(1)] = u
     cutoff = (date.today() - timedelta(days=SHORT_MONTHS * 31)).strftime("%Y%m%d")
