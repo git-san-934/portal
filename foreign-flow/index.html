@@ -6,7 +6,7 @@
   <title>海外投資家の需給</title>
   <meta name="description" content="海外投資家の買い(大量保有・株価と出来高)と売り(空売り残高)のどちらが強まっているかを、銘柄ごとに中長期で比べるダッシュボード" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260924a" />
+  <link rel="stylesheet" href="assets/style.css?v=20260924b" />
 </head>
 <body>
   <div class="wrap">
@@ -39,7 +39,7 @@
       <p class="add-status" id="add-status" role="status"></p>
       <table class="overview">
         <thead>
-          <tr><th scope="col">銘柄</th><th scope="col">空売り残高<br />(13週変化)</th><th scope="col">TOPIX比<br />13週</th><th scope="col">スコア</th><th scope="col">判定</th></tr>
+          <tr><th scope="col">銘柄</th><th scope="col">空売り残高<br />(13週変化)</th><th scope="col">TOPIX比<br />13週</th><th scope="col">貸株料<br />(年率)</th><th scope="col" class="col-score">スコア</th><th scope="col">判定</th></tr>
         </thead>
         <tbody id="overview"></tbody>
       </table>
@@ -78,6 +78,14 @@
             <li>やや売り優勢: −0.5以下 / 売り優勢: −1.5以下</li>
           </ul>
         </dd>
+        <dt>貸株料(参考、スコアには入れない)</dt>
+        <dd>
+          <p>海外のヘッジファンドは、年金や投資信託などが貸し出した株を証券会社経由で借りて空売りします。借りたい人が多く貸し手の在庫が足りなくなると、貸株料(借りるコスト、年率)が上がります。</p>
+          <ul class="bullets">
+            <li>借りやすい: 1%未満 / やや借りにくい: 1%以上 / 借りにくい: 5%以上 / 在庫なし: 借りられる株数が0</li>
+          </ul>
+          <p>借りにくい銘柄は空売りが混み合っているサインです。売り圧力が強い一方、買い戻し(踏み上げ)が起きやすい面もあります。数字は Interactive Brokers 1社の在庫と料率で、市場全体の貸株状況ではないため、判定のスコアには使っていません。</p>
+        </dd>
         <dt>ベスト5の選び方</dt>
         <dd><p>TOPIX 500 のうち、空売り残高が4週・13週とも0.2ポイント超増えておらず、TOPIX比で強く、20日平均の売買代金が5億円以上の銘柄を、合計点の高い順に5つ。</p></dd>
       </dl>
@@ -86,12 +94,12 @@
     </section>
 
     <footer>
-      出典: 日本取引所グループ(空売り残高・投資部門別売買状況・TOPIX構成銘柄)、Yahoo Finance(株価、yfinance 経由)、EDINET(大量保有報告書)<br />
+      出典: 日本取引所グループ(空売り残高・投資部門別売買状況・TOPIX構成銘柄)、Yahoo Finance(株価、yfinance 経由)、EDINET(大量保有報告書)、Interactive Brokers(貸株料・借りられる株数)<br />
       判定は需給の整理であり、売買の推奨ではありません。投資判断は最終的にご自身で行ってください。<br />
       <a href="../">← アプリ一覧に戻る</a>
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20260924a"></script>
+  <script src="assets/app.js?v=20260924b"></script>
 </body>
 </html>
