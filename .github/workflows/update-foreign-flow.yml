@@ -34,7 +34,7 @@ jobs:
         with:
           python-version: "3.12"
       - run: pip install -r foreign-flow/scripts/requirements.txt
-      # JPX の空売り残高ファイル(1日1ファイル・12か月分)は一度取ったら変わらないので使い回す
+      # JPX の空売り残高ファイル(1日1ファイル・12か月分)と FINRA の米国株の空売り残高(月2回)は一度取ったら変わらないので使い回す
       - uses: actions/cache@v4
         with:
           path: foreign-flow/.cache
@@ -55,6 +55,7 @@ jobs:
           git add foreign-flow/data/flow.json
           [ -f foreign-flow/data/edinet_cache.json ] && git add foreign-flow/data/edinet_cache.json
           [ -f foreign-flow/data/borrow_hist.json ] && git add foreign-flow/data/borrow_hist.json
+          [ -f foreign-flow/data/us_shares.json ] && git add foreign-flow/data/us_shares.json
           if git diff --cached --quiet; then
             echo "変更なし"
             exit 0

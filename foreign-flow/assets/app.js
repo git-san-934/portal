@@ -4,7 +4,12 @@
   const FLOW_URL = "data/flow.json";
   const WATCH_KEY = "foreign-flow-watch"; // このページで追加した銘柄コード(ブラウザに保存)
   const EDIT_WATCHLIST_URL = "https://github.com/git-san-934/portal/edit/main/foreign-flow/data/watchlist.json";
-  const YAHOO_URL = (code) => `https://finance.yahoo.co.jp/quote/${encodeURIComponent(code)}.T`;
+  // 日本株は「7974」、米国株は「ORCL」「BRK.B」のようなティッカー
+  const isUSCode = (code) => /^[A-Z]/.test(code);
+  const YAHOO_URL = (code) =>
+    isUSCode(code)
+      ? `https://finance.yahoo.co.jp/quote/${encodeURIComponent(code.replace(/\./g, "-"))}`
+      : `https://finance.yahoo.co.jp/quote/${encodeURIComponent(code)}.T`;
 
   // チャート座標(SVG viewBox)。preserveAspectRatio="none" で横幅いっぱいに伸ばす
   const W = 1000;
@@ -63,19 +68,22 @@
   }
 
   // 貸株料(IBKR、年率%)から借りにくさの目安。在庫なし・高い貸株料は、空売りの需要が貸し手の在庫を上回っているサイン。
-  // 大型株でも年1%前後かかるので、TOPIX500 の中央値(borrow_base)を「普通」とし、その2倍・5倍で区切る
-  let borrowBase = 1;
-  function borrowLevel(b) {
+  // 日本株は大型株でも年1%前後かかるので、TOPIX500 の中央値(borrow_base)を「普通」とし、その2倍・5倍で区切る。
+  // 米国株は S&P 500 の中央値(年0.3%前後)を「普通」にする
+  const borrowBase = { JP: 1, US: 0.3 };
+  function borrowLevel(b, code) {
     if (!b) return null;
+    const base = borrowBase[code && isUSCode(code) ? "US" : "JP"];
     if (b.avail === 0) return { text: "在庫なし", cls: "down" };
-    if (b.fee >= Math.max(5, borrowBase * 5)) return { text: "借りにくい", cls: "down" };
-    if (b.fee >= borrowBase * 2) return { text: "やや借りにくい", cls: "down" };
+    if (b.fee >= Math.max(5, base * 5)) return { text: "借りにくい", cls: "down" };
+    if (b.fee >= base * 2) return { text: "やや借りにくい", cls: "down" };
     return { text: "普通", cls: "" };
   }
 
   const feeText = (b) => (b ? `${b.fee.toFixed(2)}%` : "—");
   const availText = (b) =>
     !b || b.avail == null ? "" : b.avail >= 10000000 ? "1,000万株以上" : `${intFmt.format(b.avail)}株`;
+  const priceText = (v, us) => (us ? `$${v.toLocaleString("en-US", { maximumFractionDigits: 2 })}` : `${numFmt.format(v)}円`);
 
   function reasonsList(score) {
     const ul = el("ul", "reasons");
@@ -85,6 +93,8 @@
 
   // ---------- 市場全体(投資部門別) ----------
 
+  const word = (v) => (v >= 0 ? "買い越し" : "売り越し");
+
   function renderMarket(market) {
     const weeks = (market && market.weeks) || [];
     if (!weeks.length) return;
@@ -92,18 +102,66 @@
     const last4 = recent.slice(-4).reduce((a, w) => a + w.net, 0);
     const last13 = recent.slice(-13).reduce((a, w) => a + w.net, 0);
     const lastW = recent[recent.length - 1];
-    const word = (v) => (v >= 0 ? "買い越し" : "売り越し");
     $("market-lead").textContent =
       `最新週(${lastW.label})は ${intFmt.format(Math.abs(lastW.net))}億円の${word(lastW.net)}。` +
       `直近4週の累計は ${intFmt.format(Math.abs(last4))}億円の${word(last4)}` +
       (recent.length >= 13 ? `、13週では ${intFmt.format(Math.abs(last13))}億円の${word(last13)}です。` : "です。");
 
-    const wrap = $("market-chart");
+    $("market-chart").appendChild(
+      netBars(recent, {
+        aria: `海外投資家の週ごとの差引き(直近${recent.length}週)`,
+        xLabel: (w) => shortDate(w.end),
+        unit: "億円",
+        tip: (w) => `${w.label}\n${word(w.net)} ${intFmt.format(Math.abs(w.net))}億円\n買い ${intFmt.format(w.buy)} / 売り ${intFmt.format(w.sell)}億円`,
+      }),
+    );
+
+    const months = (market.months || []).slice(-6);
+    $("market-note").textContent =
+      (months.length ? `月次: ${months.map((m) => `${Number(m.month.slice(5))}月 ${signed(m.net, 0)}億円`).join(" / ")}。` : "") +
+      "海外投資家は東証の売買代金の約7割を占めます。市場全体の流れなので、銘柄ごとの判定には直接は使っていません。";
+    $("market-panel").hidden = false;
+  }
+
+  // 米国株: 米財務省 TIC の月次(海外投資家の米国株の買い越し・売り越し)
+  function renderUSMarket(us) {
+    const months = ((us && us.tic) || []).slice(-24);
+    if (!months.length) return;
+    const ym = (m) => `${m.month.slice(0, 4)}年${Number(m.month.slice(5))}月`;
+    const last = months[months.length - 1];
+    const sum = (n) => months.slice(-n).reduce((a, m) => a + m.net, 0);
+    const s3 = sum(3);
+    const s12 = sum(12);
+    $("us-market-lead").textContent =
+      `最新の${ym(last)}は ${intFmt.format(Math.abs(last.net))}億ドルの${word(last.net)}。` +
+      `直近3か月の累計は ${intFmt.format(Math.abs(s3))}億ドルの${word(s3)}` +
+      (months.length >= 12 ? `、12か月では ${intFmt.format(Math.abs(s12))}億ドルの${word(s12)}です。` : "です。");
+    $("us-market-chart").appendChild(
+      netBars(months, {
+        aria: `海外投資家の米国株の月ごとの差引き(直近${months.length}か月)`,
+        xLabel: (m) => `${m.month.slice(2, 4)}/${Number(m.month.slice(5))}`,
+        unit: "億ドル",
+        tip: (m) =>
+          `${ym(m)}\n${word(m.net)} ${intFmt.format(Math.abs(m.net))}億ドル` +
+          (m.jp != null ? `\nうち日本の投資家 ${signed(m.jp, 0)}億ドル` : "") +
+          (m.hold ? `\n保有額 ${intFmt.format(m.hold / 10000)}兆ドル` : ""),
+      }),
+    );
+    const jp = months.slice(-3).filter((m) => m.jp != null);
+    $("us-market-note").textContent =
+      (jp.length ? `うち日本の投資家(直近3か月): ${jp.map((m) => `${Number(m.month.slice(5))}月 ${signed(m.jp, 0)}億ドル`).join(" / ")}。` : "") +
+      "米財務省の国際資本統計(TIC)で、公表は約7週間遅れです。市場全体の流れなので、銘柄ごとの判定には使っていません。";
+    $("us-market-panel").hidden = false;
+  }
+
+  // 差引き(プラス・マイナス)の棒グラフ
+  function netBars(recent, { aria, xLabel, unit, tip }) {
+    const frag = el("div");
     const legend = el("div", "legend");
     legend.append(el("span", "pos", "買い越し"), el("span", "neg", "売り越し"));
     const box = el("div", "bars-box");
     box.setAttribute("role", "img");
-    box.setAttribute("aria-label", `海外投資家の週ごとの差引き(直近${recent.length}週)`);
+    box.setAttribute("aria-label", aria);
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
     svg.setAttribute("preserveAspectRatio", "none");
@@ -130,17 +188,16 @@
     recent.forEach((w, i) => {
       if (i % step !== 0 && i !== n - 1) return;
       if (i !== n - 1 && n - 1 - i < step / 2) return;
-      const lab = el("span", `x-label${i === 0 ? " first" : i === n - 1 ? " last" : ""}`, shortDate(w.end));
+      const lab = el("span", `x-label${i === 0 ? " first" : i === n - 1 ? " last" : ""}`, xLabel(w));
       lab.style.left = `${((i + 0.5) / n) * 100}%`;
       labels.appendChild(lab);
     });
-    const top = el("span", "tick-label", `+${intFmt.format(maxAbs)}億円`);
+    const top = el("span", "tick-label", `+${intFmt.format(maxAbs)}${unit}`);
     top.style.top = "12%";
     labels.appendChild(top);
 
     const show = (i) => {
-      const w = recent[i];
-      tooltip.textContent = `${w.label}\n${word(w.net)} ${intFmt.format(Math.abs(w.net))}億円\n買い ${intFmt.format(w.buy)} / 売り ${intFmt.format(w.sell)}億円`;
+      tooltip.textContent = tip(recent[i]);
       const x = ((i + 0.5) / n) * 100;
       tooltip.style.left = `${x}%`;
       tooltip.classList.toggle("edge-left", x < 20);
@@ -153,13 +210,8 @@
       show(i);
     });
     box.addEventListener("pointerleave", () => (tooltip.hidden = true));
-    wrap.append(legend, box);
-
-    const months = (market.months || []).slice(-6);
-    $("market-note").textContent =
-      (months.length ? `月次: ${months.map((m) => `${Number(m.month.slice(5))}月 ${signed(m.net, 0)}億円`).join(" / ")}。` : "") +
-      "海外投資家は東証の売買代金の約7割を占めます。市場全体の流れなので、銘柄ごとの判定には直接は使っていません。";
-    $("market-panel").hidden = false;
+    frag.append(legend, box);
+    return frag;
   }
 
   // ---------- 折れ線チャート(週次) ----------
@@ -261,10 +313,10 @@
 
   // ---------- ベスト5 ----------
 
-  function renderTop5(flow, onAdd) {
-    const ol = $("top5");
+  function renderTop5(flow, onAdd, listId, codes, panelId) {
+    const ol = $(listId);
     ol.textContent = "";
-    for (const code of flow.top5 || []) {
+    for (const code of codes || []) {
       const s = flow.stocks[code];
       if (!s) continue;
       const li = el("li");
@@ -282,11 +334,12 @@
       head.append(name, right);
       const p = s.price || {};
       const sh = s.short || {};
+      const us = isUSCode(code);
       const meta = el(
         "p",
         "top5-meta",
-        `${s.sector || ""}${s.cls ? `・${s.cls}` : ""} / 13週 ${signed(p.r13)}%(TOPIX比 ${signed(p.rel13)}) / 空売り残高 ${(sh.now || 0).toFixed(1)}%(13週 ${signed(sh.d13, 2)})` +
-          (s.borrow ? ` / 貸株料 ${feeText(s.borrow)}(${borrowLevel(s.borrow).text})` : ""),
+        `${s.sector || ""}${s.cls && !us ? `・${s.cls}` : ""} / 13週 ${signed(p.r13)}%(${us ? "S&P500" : "TOPIX"}比 ${signed(p.rel13)}) / 空売り残高 ${(sh.now || 0).toFixed(1)}%${us ? "(浮動株比" : "("}13週 ${signed(sh.d13, 2)})` +
+          (s.borrow ? ` / 貸株料 ${feeText(s.borrow)}(${borrowLevel(s.borrow, code).text})` : ""),
       );
       li.append(head, meta, reasonsList(s.score));
       const actions = el("div", "top5-actions");
@@ -309,7 +362,7 @@
     if (!ol.children.length) {
       ol.appendChild(el("li", null, "今日は条件に合う銘柄がありませんでした。"));
     }
-    $("top5-panel").hidden = false;
+    $(panelId).hidden = false;
   }
 
   // ---------- 銘柄一覧とカード ----------
@@ -341,7 +394,7 @@
     } else td1.textContent = "—";
     const rel = s.price && s.price.rel13;
     const td2 = el("td", pctClass(rel), rel == null ? "—" : `${signed(rel)}`);
-    const lv = borrowLevel(s.borrow);
+    const lv = borrowLevel(s.borrow, code);
     const td5 = el("td", lv && lv.cls ? `pct ${lv.cls}` : null, feeText(s.borrow));
     if (lv) td5.appendChild(el("span", "sub borrow-sub", lv.text));
     const td3 = el("td", "col-score", s.score ? signed(s.score.total, 2) : "—");
@@ -399,6 +452,7 @@
     head.append(name, right);
     card.appendChild(head);
 
+    const us = isUSCode(code);
     if (!s) {
       card.appendChild(el("p", "caveat", "この銘柄のデータがまだありません。"));
     } else {
@@ -406,14 +460,17 @@
       const sh = s.short;
       const stats = el("dl", "stats");
       stats.append(
-        stat("空売り残高(0.5%以上の合計)", sh ? `${numFmt.format(sh.now)}%` : "—", null, sh && sh.n ? `${sh.n}社` : ""),
+        us
+          ? stat("空売り残高(浮動株比・FINRA)", sh ? `${numFmt.format(sh.now)}%` : "—", null, sh && sh.dtc != null ? `買い戻しに${numFmt.format(sh.dtc)}日分` : "")
+          : stat("空売り残高(0.5%以上の合計)", sh ? `${numFmt.format(sh.now)}%` : "—", null, sh && sh.n ? `${sh.n}社` : ""),
         stat("空売り 4週 / 13週の増減", sh ? `${signed(sh.d4, 2)} / ${signed(sh.d13, 2)}` : "—", sh ? pctClass(-(sh.d13 || 0)) : ""),
-        stat("13週 騰落率(TOPIX比)", p.r13 == null ? "—" : `${signed(p.r13)}%`, pctClass(p.r13), p.rel13 == null ? "" : `${signed(p.rel13)}`),
+        stat(`13週 騰落率(${us ? "S&P500" : "TOPIX"}比)`, p.r13 == null ? "—" : `${signed(p.r13)}%`, pctClass(p.r13), p.rel13 == null ? "" : `${signed(p.rel13)}`),
         stat("出来高(普段比)", p.vol_ratio == null ? "—" : `${numFmt.format(p.vol_ratio)}倍`, null, "20日÷120日"),
       );
-      if (flow.borrow) {
+      if (us && s.inst_pct != null) stats.append(stat("機関投資家の保有比率", `${numFmt.format(s.inst_pct)}%`, null, "発行済株式に対して"));
+      if (us ? flow.us && flow.us.borrow : flow.borrow) {
         const b = s.borrow;
-        const lv = borrowLevel(b);
+        const lv = borrowLevel(b, code);
         const chg = b && b.d4 != null ? `4週 ${signed(b.d4, 2)}` : "";
         stats.append(
           stat("貸株料(年率・IBKR)", b ? feeText(b) : "対象外", lv ? `pct ${lv.cls}` : null, lv ? lv.text : "IBKRで空売りできない銘柄"),
@@ -425,12 +482,13 @@
         card.appendChild(partsBlock(s.score));
         if (s.score.reasons.length) card.appendChild(reasonsList(s.score));
       }
-      if (s.weeks && flow.week_dates.length) {
-        const dates = flow.week_dates.slice(-s.weeks.close.length);
+      const weekDates = us ? (flow.us && flow.us.week_dates) || [] : flow.week_dates;
+      if (s.weeks && weekDates.length) {
+        const dates = weekDates.slice(-s.weeks.close.length);
         const charts = el("div", "charts");
         charts.append(
-          lineChart("株価(週足・26週)", dates, s.weeks.close, (v) => `${numFmt.format(v)}円`, { ariaName: `${s.name}の株価` }),
-          lineChart("空売り残高の合計(%)", dates, s.weeks.short, (v, tick) => (tick ? `${numFmt.format(v)}%` : `空売り残高 ${v.toFixed(2)}%`), {
+          lineChart("株価(週足・26週)", dates, s.weeks.close, (v) => priceText(v, us), { ariaName: `${s.name}の株価` }),
+          lineChart(us ? "空売り残高(浮動株比、%)" : "空売り残高の合計(%)", dates, s.weeks.short, (v, tick) => (tick ? `${numFmt.format(v)}%` : `空売り残高 ${v.toFixed(2)}%`), {
             floorZero: true,
             ariaName: `${s.name}の空売り残高`,
           }),
@@ -453,6 +511,29 @@
         }
         t.appendChild(tb);
         det.appendChild(t);
+        card.appendChild(det);
+      }
+      if (s.inst && s.inst.length) {
+        const det = el("details", "memo");
+        det.appendChild(el("summary", null, `主な機関投資家(上位${s.inst.length}社・13F)`));
+        const t = el("table", "mini-table");
+        t.innerHTML = "<thead><tr><th>機関</th><th>保有割合</th><th>前期比</th></tr></thead>";
+        const tb = el("tbody");
+        for (const x of s.inst) {
+          const tr = el("tr");
+          const who = el("td", null, x.who);
+          if (x.foreign) who.appendChild(el("span", "tag", "海外"));
+          if (x.date) who.appendChild(el("span", "via", `${dateFmt(x.date)}時点`));
+          tr.append(
+            who,
+            el("td", "num", x.pct == null ? "—" : `${x.pct.toFixed(2)}%`),
+            el("td", `num ${pctClass(x.chg)}`, x.chg == null ? "—" : `${signed(x.chg)}%`),
+          );
+          tb.appendChild(tr);
+        }
+        t.appendChild(tb);
+        det.appendChild(t);
+        det.appendChild(el("p", "caveat", "米国の機関投資家が四半期ごとに出す報告(13F)。前期比は保有株数の増減で、約45日遅れです。"));
         card.appendChild(det);
       }
       if (flow.edinet && s.holders && s.holders.length) {
@@ -517,12 +598,18 @@
     flow.holdings = flow.holdings || [];
     flow.watch = flow.watch || [];
     flow.week_dates = flow.week_dates || [];
-    if (flow.borrow_base > 0) borrowBase = flow.borrow_base;
-    status.textContent = `空売り残高 ${dateFmt(flow.asof)}時点 / 株価 ${dateFmt(flow.price_date)}終値 / 更新 ${dateFmt((flow.generated_at || "").slice(0, 10))}` + (flow.edinet ? "" : "(大量保有報告書は未使用)") + (flow.borrow ? "" : "(貸株料は取得できませんでした)");
+    if (flow.borrow_base > 0) borrowBase.JP = flow.borrow_base;
+    if (flow.us && flow.us.borrow_base > 0) borrowBase.US = flow.us.borrow_base;
+    status.textContent =
+      `空売り残高 ${dateFmt(flow.asof)}時点 / 株価 ${dateFmt(flow.price_date)}終値 / 更新 ${dateFmt((flow.generated_at || "").slice(0, 10))}` +
+      (flow.edinet ? "" : "(大量保有報告書は未使用)") +
+      (flow.borrow ? "" : "(貸株料は取得できませんでした)") +
+      (flow.us ? `\n米国株: 空売り残高 ${dateFmt(flow.us.asof)}時点(月2回) / 株価 ${dateFmt(flow.us.price_date)}終値` : "");
 
     const rerender = () => {
       renderTracked(flow, onRemove);
-      renderTop5(flow, onAdd);
+      renderTop5(flow, onAdd, "top5", flow.top5, "top5-panel");
+      if (flow.us) renderTop5(flow, onAdd, "us-top5", flow.us.top5, "us-top5-panel");
     };
     function onAdd(code) {
       setAdded([...getAdded(), code]);
@@ -539,12 +626,12 @@
       ev.preventDefault();
       const input = $("add-code");
       const msg = $("add-status");
-      const code = input.value.normalize("NFKC").trim().toUpperCase();
+      const code = input.value.normalize("NFKC").trim().toUpperCase().replace(/[\s\-/]+/g, ".");
       msg.className = "add-status";
       msg.textContent = "";
-      if (!/^[0-9][0-9A-Z]{3}$/.test(code)) {
+      if (!/^[0-9][0-9A-Z]{3}$/.test(code) && !/^[A-Z][A-Z0-9.]{0,7}$/.test(code)) {
         msg.classList.add("error");
-        msg.textContent = "4けたの銘柄コードを入れてください(例: 2201、285A)。";
+        msg.textContent = "日本株は4けたの銘柄コード(例: 2201、285A)、米国株はティッカー(例: AAPL、BRK.B)を入れてください。";
         return;
       }
       if (trackedCodes(flow).includes(code)) {
@@ -557,7 +644,9 @@
         msg.classList.add("error");
         msg.innerHTML = "";
         msg.append(
-          "この銘柄のデータがありません(TOPIX 500 以外で、0.5%以上の空売りの報告もない銘柄)。毎日追跡するには ",
+          isUSCode(code)
+            ? "この銘柄のデータがありません(S&P 500 以外の米国株)。毎日追跡するには "
+            : "この銘柄のデータがありません(TOPIX 500 以外で、0.5%以上の空売りの報告もない銘柄)。毎日追跡するには ",
           Object.assign(el("a", null, "watchlist.json"), { href: EDIT_WATCHLIST_URL, target: "_blank", rel: "noopener" }),
           " に追加してください。翌日の更新から表示されます。",
         );
@@ -570,6 +659,7 @@
     });
 
     renderMarket(flow.market);
+    renderUSMarket(flow.us);
     rerender();
     if (location.hash) $(location.hash.slice(1))?.scrollIntoView();
   }

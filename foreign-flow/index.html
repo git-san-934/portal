@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>海外投資家の需給</title>
-  <meta name="description" content="海外投資家の買い(大量保有・株価と出来高)と売り(空売り残高)のどちらが強まっているかを、銘柄ごとに中長期で比べるダッシュボード" />
+  <meta name="description" content="海外投資家の買い(大量保有・株価と出来高)と売り(空売り残高)のどちらが強まっているかを、日本株と米国株の銘柄ごとに中長期で比べるダッシュボード" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260924c" />
+  <link rel="stylesheet" href="assets/style.css?v=20260924us" />
 </head>
 <body>
   <div class="wrap">
@@ -23,23 +23,36 @@
       <p class="caveat" id="market-note"></p>
     </section>
 
+    <section class="panel" id="us-market-panel" hidden>
+      <h2 class="panel-title">市場全体: 海外投資家の米国株の売買(月次)</h2>
+      <p class="summary-lead" id="us-market-lead"></p>
+      <div id="us-market-chart"></div>
+      <p class="caveat" id="us-market-note"></p>
+    </section>
+
     <section class="panel" id="top5-panel" hidden>
       <h2 class="panel-title">海外マネーが向かいやすい銘柄ベスト5</h2>
       <p class="panel-note">TOPIX 500(大型・中型株)から毎日選び直します。空売りが増えていない銘柄のうち、買い圧力のスコアが高い順です。</p>
       <ol class="top5" id="top5"></ol>
     </section>
 
+    <section class="panel" id="us-top5-panel" hidden>
+      <h2 class="panel-title">米国株ベスト5</h2>
+      <p class="panel-note">S&amp;P 500 から毎日選び直します。日本株と同じ考え方で、空売り(FINRA、月2回)が増えていない銘柄のうち、S&amp;P 500 より強い値動きの銘柄をスコア順に。</p>
+      <ol class="top5" id="us-top5"></ol>
+    </section>
+
     <section class="panel" id="list-panel" hidden>
       <h2 class="panel-title">持ち株と追加した銘柄(スコア順)</h2>
       <form class="add-form" id="add-form" autocomplete="off">
         <label for="add-code">銘柄を追加</label>
-        <input id="add-code" name="code" inputmode="text" placeholder="銘柄コード(例: 2201)" maxlength="5" />
+        <input id="add-code" name="code" inputmode="text" autocapitalize="characters" placeholder="コードかティッカー(例: 2201、AAPL)" maxlength="8" />
         <button type="submit" class="save-btn">追加</button>
       </form>
       <p class="add-status" id="add-status" role="status"></p>
       <table class="overview">
         <thead>
-          <tr><th scope="col">銘柄</th><th scope="col">空売り残高<br />(13週変化)</th><th scope="col">TOPIX比<br />13週</th><th scope="col">貸株料<br />(年率)</th><th scope="col" class="col-score">スコア</th><th scope="col">判定</th></tr>
+          <tr><th scope="col">銘柄</th><th scope="col">空売り残高<br />(13週変化)</th><th scope="col">指数比<br />13週</th><th scope="col">貸株料<br />(年率)</th><th scope="col" class="col-score">スコア</th><th scope="col">判定</th></tr>
         </thead>
         <tbody id="overview"></tbody>
       </table>
@@ -88,18 +101,30 @@
         </dd>
         <dt>ベスト5の選び方</dt>
         <dd><p>TOPIX 500 のうち、空売り残高が4週・13週とも0.2ポイント超増えておらず、TOPIX比で強く、20日平均の売買代金が5億円以上の銘柄を、合計点の高い順に5つ。</p></dd>
+        <dt>米国株</dt>
+        <dd>
+          <p>米国には日本のような「海外投資家の銘柄ごとの売買」や「0.5%以上の空売りの報告」がないため、次のデータで同じ計算をします。指数比は TOPIX の代わりに S&amp;P 500(SPY)と比べます。</p>
+          <ul class="bullets">
+            <li>空売り残高: FINRA が月2回(15日と月末時点、約8営業日後に公表)出す全米の空売り残高を、浮動株数で割った割合。4週・13週前は、その日以前で最も近い回の値</li>
+            <li>買いの圧力(大量保有)の代わりはスコアに入れず、主な機関投資家の四半期ごとの増減(13F)をカードに表示</li>
+            <li>市場全体: 米財務省の国際資本統計(TIC)の、海外投資家による米国株の月次の買い越し・売り越し(うち日本の投資家の分も)</li>
+            <li>貸株料: Interactive Brokers の米国株の料率。普通の目安は S&amp;P 500 の中央値(年0.3%前後)</li>
+            <li>点数: 米国の空売り残高は小口も含む全体の数字で、日本株より水準も振れ幅も大きいため、増減は1.5で割り(日本株は0.75)、「多い」の目安は浮動株の10%、踏み上げは5%以上の銘柄で見ます</li>
+            <li>ベスト5: S&amp;P 500 から、日本株と同じ条件(売買代金は20日平均1億ドル以上)</li>
+          </ul>
+        </dd>
       </dl>
       <h3>注意</h3>
       <p class="caveat">空売り残高は0.5%以上の報告分だけで、それ未満の空売りは含みません。報告の履歴は直近12か月分から作るため、それより前から変化のない空売りは数えられないことがあります。銘柄ごとの海外投資家の売買そのものは公表されていないため、株価と出来高は「買いの圧力」の近似です。</p>
     </section>
 
     <footer>
-      出典: 日本取引所グループ(空売り残高・投資部門別売買状況・TOPIX構成銘柄)、Yahoo Finance(株価、yfinance 経由)、EDINET(大量保有報告書)、Interactive Brokers(貸株料・借りられる株数)<br />
+      出典: 日本取引所グループ(空売り残高・投資部門別売買状況・TOPIX構成銘柄)、Yahoo Finance(株価・浮動株数・機関投資家、yfinance 経由)、EDINET(大量保有報告書)、Interactive Brokers(貸株料・借りられる株数)、FINRA(米国株の空売り残高)、米財務省 TIC(海外投資家の米国株の売買)<br />
       判定は需給の整理であり、売買の推奨ではありません。投資判断は最終的にご自身で行ってください。<br />
       <a href="../">← アプリ一覧に戻る</a>
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20260924c"></script>
+  <script src="assets/app.js?v=20260924us"></script>
 </body>
 </html>
