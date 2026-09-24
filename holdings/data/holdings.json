@@ -9,6 +9,7 @@
     {"code": "6961", "name": "エンプラス"},
     {"code": "6134", "name": "FUJI"},
     {"code": "285A", "name": "キオクシアHD"},
-    {"code": "ORCL", "name": "オラクル", "ticker": "ORCL", "currency": "USD"}
+    {"code": "ORCL", "name": "オラクル", "ticker": "ORCL", "currency": "USD"},
+    {"code": "AUR", "name": "AUR", "ticker": "AUR", "currency": "USD"}
   ]
 }
