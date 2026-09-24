@@ -1,0 +1,72 @@
+name: 持ち株リスト更新
+
+# 持ち株ページの「銘柄リストの編集」で「保存」を押すと、銘柄リスト入りの Issue を作る画面が開く。
+# リポジトリ所有者がその Issue を作ったときだけ、holdings.json を書き換えて Issue を閉じる。
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  contents: write # holdings.json をコミットする
+  issues: write # 結果をコメントして Issue を閉じる
+  actions: write # 株価の取得と Pages のデプロイを起動する
+
+concurrency:
+  group: holdings-list
+  cancel-in-progress: false
+
+jobs:
+  apply:
+    if: >-
+      github.event.issue.user.login == github.repository_owner &&
+      startsWith(github.event.issue.title, '持ち株リスト更新')
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: holdings.json を書き換え
+        id: apply
+        env:
+          ISSUE_BODY: ${{ github.event.issue.body }}
+        run: python holdings/scripts/apply_list.py
+      - name: コミット
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add holdings/data/holdings.json
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "持ち株リスト更新(ページから): $(cat summary.txt)" -m "Issue #${{ github.event.issue.number }}"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では他のワークフローが動かないため、明示的に起動する
+      - name: 株価の取得と再デプロイを起動
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          gh workflow run update-holdings.yml --ref main
+          gh workflow run deploy.yml --ref main
+      - name: 結果をコメントして閉じる
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.issue.number }}
+          OK: ${{ steps.apply.outcome == 'success' && steps.commit.outcome == 'success' }}
+        run: |
+          summary="$(cat summary.txt 2>/dev/null || echo '処理中にエラーが起きました。Actions のログを確認してください。')"
+          if [ "$OK" = "true" ]; then
+            gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "銘柄リストを更新しました。${summary}
+          株価の取得とページへの反映に数分かかります。新しい銘柄は次回の毎日のチェックから判定が載ります。"
+            gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --reason completed
+          else
+            gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "銘柄リストを更新できませんでした。${summary}
+          ページで直してから、もう一度「保存」を押してください。"
+            gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --reason "not planned"
+          fi

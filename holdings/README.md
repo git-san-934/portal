@@ -24,12 +24,17 @@ https://git-san-934.github.io/portal/holdings/
   - `lines` は下値目途などのライン。`price` を入れるとチャートに点線で描きます
 - `data/prices.json` — 自動生成される1年分の日次終値(手で編集しない)
   - `.github/workflows/update-holdings.yml` が平日 17:00(JST)頃に `scripts/fetch_prices.py` を実行し、
-    `check.json` に載っている銘柄の終値を Yahoo Finance(yfinance 経由)から取得してコミットし、GitHub Pages を再デプロイします
+    `holdings.json` に載っている銘柄の終値を Yahoo Finance(yfinance 経由)から取得してコミットし、GitHub Pages を再デプロイします
   - 手動で更新したいときは、GitHub の Actions タブ →「持ち株データ更新」→「Run workflow」
   - 取得に失敗した銘柄があるときは `prices.json` を上書きしません。`prices.json` がないときは、
     チャートなしで `check.json` の数値だけを表示します
-- 銘柄を増やす・減らすときは、`data/check.json` の `stocks` を書き換えます(株価の取得対象も自動で変わります)
-  - 米国株などは `"ticker"`(yfinance のティッカー、例: `"ORCL"`)と `"currency"`(例: `"USD"`)を書きます。
+- `data/holdings.json` — 銘柄リスト(コード・銘柄名、米国株などは `ticker` と `currency`)。株価の取得対象とページに出す銘柄はこのリストで決まります
+  - ページの「銘柄リストの編集」で追加・修正・削除して「保存」を押すと、新しいリスト入りの Issue を作る GitHub の画面が開きます。
+    リポジトリ所有者がその Issue を作ると `.github/workflows/apply-holdings-list.yml` が `scripts/apply_list.py` で
+    形式を確かめてから `holdings.json` を書き換え、株価の取得と再デプロイを起動して Issue を閉じます(ページは GitHub のキーを持ちません)
+  - リストにあって `check.json` にない銘柄は「未判定」として表示し、`check.json` にあってリストにない銘柄は表示しません
+  - 新しく追加した銘柄の株価が1日分も取れないとき(コードの打ち間違いなど)は、その銘柄だけ外して `prices.json` の `missing` に書きます
+  - 米国株などは `"ticker"`(yfinance のティッカー、例: `"ORCL"`)と `"currency"`(例: `"USD"`)を持ちます。
     株価・下値目途(`lines`)はその通貨建て。円以外の銘柄があると `prices.json` の `fx`(例: `USDJPY`)に直近の為替レートが入ります
 - 保有状況(取得単価・株数)はページで入力し、閲覧しているブラウザの localStorage にだけ保存します(リポジトリには載りません)。
   外国株の取得単価はその通貨で入力し、評価額と損益は今の為替レートで円換算して、保有比率と保有全体の計算に使います
@@ -41,3 +46,4 @@ https://git-san-934.github.io/portal/holdings/
 - `assets/style.css` — スタイル(portal / sector-etf と同じデザイントークン)
 - `assets/app.js` — データ読み込み・騰落率計算・チャート描画
 - `scripts/fetch_prices.py` — yfinance から終値を取得して `data/prices.json` を作るスクリプト
+- `scripts/apply_list.py` — ページから作られた Issue の銘柄リストを確かめて `data/holdings.json` に書くスクリプト
