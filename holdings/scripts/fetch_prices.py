@@ -1,12 +1,15 @@
-"""持ち株(../data/check.json に載っている銘柄)の過去1年の日次終値を
+"""持ち株(../data/holdings.json に載っている銘柄)の過去1年の日次終値を
 yfinance(Yahoo Finance)から取得し、../data/prices.json に書き出す。
+holdings.json はページの「銘柄リストの編集」から書き換わる。無いときは check.json の銘柄を使う。
 
-日本株は ticker を省略すると "<code>.T"。米国株などは check.json に
+日本株は ticker を省略すると "<code>.T"。米国株などは holdings.json に
 "ticker"(例: "ORCL")と "currency"(例: "USD")を書く。円以外の銘柄があれば
 円換算用の為替レート(例: USDJPY=X)の終値も fx に書き出す。
 
 GitHub Actions(.github/workflows/update-holdings.yml)から定期実行される。
 取得に失敗した銘柄があるときは既存の prices.json を上書きせずに終了コード1で終わる。
+ただし前回の prices.json に無い(新しく追加された)銘柄が取れないときは、コードの打ち間違いの
+可能性があるので、その銘柄だけ外して "missing" に書き、ほかの銘柄は更新する。
 """
 
 import json
@@ -21,6 +24,7 @@ import yfinance as yf
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 CHECK_PATH = DATA_DIR / "check.json"
+LIST_PATH = DATA_DIR / "holdings.json"
 OUT_PATH = DATA_DIR / "prices.json"
 
 MIN_ROWS = 100  # これより少ない銘柄があれば取得失敗とみなす
@@ -33,11 +37,20 @@ JST = timezone(timedelta(hours=9))
 
 def load_codes():
     """(code, name, yfinance のティッカー, 通貨) の一覧"""
-    check = json.loads(CHECK_PATH.read_text(encoding="utf-8"))
+    path = LIST_PATH if LIST_PATH.exists() else CHECK_PATH
+    stocks = json.loads(path.read_text(encoding="utf-8"))["stocks"]
     return [
         (s["code"], s["name"], s.get("ticker") or f"{s['code']}.T", s.get("currency") or "JPY")
-        for s in check["stocks"]
+        for s in stocks
     ]
+
+
+def previous_codes():
+    """前回の prices.json に載っていた銘柄コード(新しく追加された銘柄の見分けに使う)"""
+    try:
+        return {s["code"] for s in json.loads(OUT_PATH.read_text(encoding="utf-8"))["stocks"]}
+    except (OSError, ValueError, KeyError):
+        return None
 
 
 def fx_ticker(currency):
@@ -120,16 +133,24 @@ def main():
     close = close.dropna(how="all", subset=[c for c in stock_cols if c in close.columns]).sort_index()
     dates = [d.strftime("%Y-%m-%d") for d in close.index]
 
+    prev = previous_codes()
     stocks = []
     problems = []
+    missing = []
     for code, name, col, currency in codes:
         if col not in close.columns:
-            problems.append(f"{code}: no column")
-            continue
-        values = [to_num(v) for v in drop_outliers(close[col].dropna()).reindex(close.index).tolist()]
-        n = sum(v is not None for v in values)
+            values, n = [], 0
+        else:
+            values = [to_num(v) for v in drop_outliers(close[col].dropna()).reindex(close.index).tolist()]
+            n = sum(v is not None for v in values)
         print(f"{code} {name}: {n} rows, last={next((v for v in reversed(values) if v is not None), None)}")
-        if n < MIN_ROWS:
+        if n == 0 and prev is not None and code not in prev:
+            # 新しく追加した銘柄が1日分も取れない: コード違いの可能性。ほかの銘柄の更新は止めない
+            print(f"  {code}: 新しい銘柄の株価が取れないため外します(ティッカー {col})", file=sys.stderr)
+            missing.append(code)
+            continue
+        if n < MIN_ROWS and not (prev is not None and code not in prev and n > 0):
+            # 上場から1年未満の新しい銘柄は行数が少なくても載せる
             problems.append(f"{code}: only {n} rows")
         entry = {"code": code, "close": values}
         if currency != "JPY":
@@ -157,6 +178,7 @@ def main():
         f"  \"generated_at\": {json.dumps(generated_at)},",
         '  "source": "Yahoo Finance (yfinance)",',
         *([f"  \"fx\": {json.dumps(fx, separators=(',', ':'))},"] if fx else []),
+        *([f"  \"missing\": {json.dumps(missing)},"] if missing else []),
         f"  \"dates\": {json.dumps(dates, separators=(',', ':'))},",
         '  "stocks": [',
         ",\n".join("    " + json.dumps(s, separators=(",", ":")) for s in stocks),
