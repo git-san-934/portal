@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>海外投資家の需給</title>
+  <meta name="description" content="海外投資家の買い(大量保有・株価と出来高)と売り(空売り残高)のどちらが強まっているかを、銘柄ごとに中長期で比べるダッシュボード" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20260924a" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>海外投資家の需給</h1>
+      <p class="intro">海外投資家が買えば株価は上がり、空売りすれば下がります。どちらも同時に起きるので、銘柄ごとに「買いの圧力」と「売りの圧力(空売り)」のどちらが強まっているかを、4週・13週の変化で比べます。</p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <section class="panel" id="market-panel" hidden>
+      <h2 class="panel-title">市場全体: 海外投資家の売買(東証プライム)</h2>
+      <p class="summary-lead" id="market-lead"></p>
+      <div id="market-chart"></div>
+      <p class="caveat" id="market-note"></p>
+    </section>
+
+    <section class="panel" id="top5-panel" hidden>
+      <h2 class="panel-title">海外マネーが向かいやすい銘柄ベスト5</h2>
+      <p class="panel-note">TOPIX 500(大型・中型株)から毎日選び直します。空売りが増えていない銘柄のうち、買い圧力のスコアが高い順です。</p>
+      <ol class="top5" id="top5"></ol>
+    </section>
+
+    <section class="panel" id="list-panel" hidden>
+      <h2 class="panel-title">持ち株と追加した銘柄(スコア順)</h2>
+      <form class="add-form" id="add-form" autocomplete="off">
+        <label for="add-code">銘柄を追加</label>
+        <input id="add-code" name="code" inputmode="text" placeholder="銘柄コード(例: 2201)" maxlength="5" />
+        <button type="submit" class="save-btn">追加</button>
+      </form>
+      <p class="add-status" id="add-status" role="status"></p>
+      <table class="overview">
+        <thead>
+          <tr><th scope="col">銘柄</th><th scope="col">空売り残高<br />(13週変化)</th><th scope="col">TOPIX比<br />13週</th><th scope="col">スコア</th><th scope="col">判定</th></tr>
+        </thead>
+        <tbody id="overview"></tbody>
+      </table>
+    </section>
+
+    <main class="cards" id="cards" hidden></main>
+
+    <section class="panel method" id="method">
+      <h2 class="panel-title">判定の仕組み</h2>
+      <h3>「買われると上がる」と「空売りされると下がる」をどう両立させるか</h3>
+      <p class="method-text">海外投資家は一枚岩ではありません。長期で買う年金・アクティブファンドと、短期で空売りするヘッジファンドは別の主体で、同じ銘柄に両方が入っていることもよくあります。そこで「海外が来たかどうか」ではなく、<strong>買いの圧力と売りの圧力のどちらが強まっているか(変化)</strong>を見ます。</p>
+      <dl class="method-list">
+        <dt>売りの圧力(空売り)</dt>
+        <dd>
+          <p class="formula">空売り残高 = 0.5%以上を空売りしている機関の割合の合計(JPXの報告)</p>
+          <p class="formula">点数 = −(0.6 × 13週の増減 + 0.4 × 4週の増減) ÷ 0.75(−2〜+2)</p>
+          <p>空売り残高が増えるほどマイナス、減る(買い戻される)ほどプラス。合計5%以上は、それだけで −0.3。</p>
+        </dd>
+        <dt>買いの圧力(株価と出来高)</dt>
+        <dd>
+          <p class="formula">点数 = 0.6 × TOPIX比13週 ÷ 10 + 0.4 × TOPIX比26週 ÷ 15(−2〜+2)</p>
+          <p>海外投資家は東証の売買の約7割を占めるため、TOPIXより強い値動きを買いの圧力の目安にします。直近20日の出来高が普段(120日平均)の1.3倍以上で上昇なら +0.4、下落なら −0.4。</p>
+        </dd>
+        <dt>買いの圧力(大量保有)</dt>
+        <dd>
+          <p class="formula">点数 = 直近90日の海外勢の保有割合の増減(ポイント)の合計(−2〜+2)</p>
+          <p>5%超を持つ海外ファンドの大量保有報告書・変更報告書(EDINET)。EDINET の API キーを設定したときだけ使います。</p>
+        </dd>
+        <dt>踏み上げ</dt>
+        <dd><p>空売り残高2%以上の銘柄で、4週で0.3ポイント以上買い戻され、株価も上がっていれば +0.4。</p></dd>
+        <dt>判定</dt>
+        <dd>
+          <ul class="bullets">
+            <li>買い優勢: 合計 +1.5以上 / やや買い優勢: +0.5以上</li>
+            <li>中立: −0.5〜+0.5</li>
+            <li>やや売り優勢: −0.5以下 / 売り優勢: −1.5以下</li>
+          </ul>
+        </dd>
+        <dt>ベスト5の選び方</dt>
+        <dd><p>TOPIX 500 のうち、空売り残高が4週・13週とも0.2ポイント超増えておらず、TOPIX比で強く、20日平均の売買代金が5億円以上の銘柄を、合計点の高い順に5つ。</p></dd>
+      </dl>
+      <h3>注意</h3>
+      <p class="caveat">空売り残高は0.5%以上の報告分だけで、それ未満の空売りは含みません。報告の履歴は直近12か月分から作るため、それより前から変化のない空売りは数えられないことがあります。銘柄ごとの海外投資家の売買そのものは公表されていないため、株価と出来高は「買いの圧力」の近似です。</p>
+    </section>
+
+    <footer>
+      出典: 日本取引所グループ(空売り残高・投資部門別売買状況・TOPIX構成銘柄)、Yahoo Finance(株価、yfinance 経由)、EDINET(大量保有報告書)<br />
+      判定は需給の整理であり、売買の推奨ではありません。投資判断は最終的にご自身で行ってください。<br />
+      <a href="../">← アプリ一覧に戻る</a>
+    </footer>
+  </div>
+
+  <script src="assets/app.js?v=20260924a"></script>
+</body>
+</html>

@@ -636,9 +636,9 @@ def score_stock(pm, sh, lh, lh_enabled, asof):
             s = clamp(s - 0.3)
         parts["short"] = round(s, 2)
         if d13 >= 0.3:
-            reasons.append((-abs(s) - 0.1, f"空売り残高が13週で{d13:+.1f}ポイント増(売り圧力が強まる)"))
+            reasons.append((-abs(s) - 0.1, f"空売り残高が13週で{d13:.1f}ポイント増(売り圧力が強まる)"))
         elif d13 <= -0.3:
-            reasons.append((abs(s) + 0.1, f"空売り残高が13週で{d13:+.1f}ポイント減(売り圧力が弱まる)"))
+            reasons.append((abs(s) + 0.1, f"空売り残高が13週で{-d13:.1f}ポイント減(売り圧力が弱まる)"))
         elif now < SHORT_MIN:
             reasons.append((0.05, "目立った空売り(0.5%以上)なし"))
         if now >= 5:
@@ -647,7 +647,8 @@ def score_stock(pm, sh, lh, lh_enabled, asof):
     # 買い圧力(株価と出来高): TOPIX に勝っているか、出来高を伴っているか
     if pm is not None and pm.get("rel13") is not None:
         rel13, rel26 = pm["rel13"], pm.get("rel26") or 0
-        s = clamp(0.6 * rel13 / 10 + 0.4 * rel26 / 15)
+        s13, s26 = 0.6 * clamp(rel13 / 10), 0.4 * clamp(rel26 / 15)
+        s = s13 + s26
         vr, r4 = pm.get("vol_ratio") or 1, pm.get("r4") or 0
         if vr >= 1.3 and r4 > 0:
             s = clamp(s + 0.4)
@@ -657,7 +658,9 @@ def score_stock(pm, sh, lh, lh_enabled, asof):
             reasons.append((-0.5, f"出来高が増えながら下落(直近20日の出来高が普段の{vr:.1f}倍)"))
         parts["trend"] = round(s, 2)
         if abs(rel13) >= 3:
-            reasons.append((s, f"13週でTOPIXより{rel13:+.0f}ポイント{'強い' if rel13 > 0 else '弱い'}"))
+            reasons.append((s13, f"13週でTOPIXより{abs(rel13):.0f}ポイント{'強い' if rel13 > 0 else '弱い'}"))
+        if abs(rel26) >= 10 and (rel26 > 0) != (rel13 > 0):
+            reasons.append((s26, f"26週ではTOPIXより{abs(rel26):.0f}ポイント{'強い' if rel26 > 0 else '弱い'}"))
 
     # 買い圧力(大量保有): 海外勢の5%超の保有の増減(直近90日)
     if lh_enabled:
@@ -812,9 +815,9 @@ def main():
             continue
         if sh["d13"] > 0.2 or sh["d4"] > 0.2 or sc["parts"]["trend"] <= 0 or (pm.get("turnover") or 0) < 5:
             continue
-        cands.append((sc["total"], code))
+        cands.append((sc["total"], pm.get("rel13") or 0, code))
     cands.sort(reverse=True)
-    top5 = [c for _, c in cands[:5]]
+    top5 = [c for *_, c in cands[:5]]
 
     out = {
         "generated_at": datetime.now(JST).isoformat(timespec="minutes"),
