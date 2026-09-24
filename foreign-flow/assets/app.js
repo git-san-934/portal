@@ -62,6 +62,21 @@
     return el("span", `badge ${TONE[score.label] || ""}`, score.label);
   }
 
+  // 貸株料(IBKR、年率%)から借りにくさの目安。在庫なし・高い貸株料は、空売りの需要が貸し手の在庫を上回っているサイン。
+  // 大型株でも年1%前後かかるので、TOPIX500 の中央値(borrow_base)を「普通」とし、その2倍・5倍で区切る
+  let borrowBase = 1;
+  function borrowLevel(b) {
+    if (!b) return null;
+    if (b.avail === 0) return { text: "在庫なし", cls: "down" };
+    if (b.fee >= Math.max(5, borrowBase * 5)) return { text: "借りにくい", cls: "down" };
+    if (b.fee >= borrowBase * 2) return { text: "やや借りにくい", cls: "down" };
+    return { text: "普通", cls: "" };
+  }
+
+  const feeText = (b) => (b ? `${b.fee.toFixed(2)}%` : "—");
+  const availText = (b) =>
+    !b || b.avail == null ? "" : b.avail >= 10000000 ? "1,000万株以上" : `${intFmt.format(b.avail)}株`;
+
   function reasonsList(score) {
     const ul = el("ul", "reasons");
     for (const r of (score && score.reasons) || []) ul.appendChild(el("li", r.tone, r.text));
@@ -270,7 +285,8 @@
       const meta = el(
         "p",
         "top5-meta",
-        `${s.sector || ""}${s.cls ? `・${s.cls}` : ""} / 13週 ${signed(p.r13)}%(TOPIX比 ${signed(p.rel13)}) / 空売り残高 ${(sh.now || 0).toFixed(1)}%(13週 ${signed(sh.d13, 2)})`,
+        `${s.sector || ""}${s.cls ? `・${s.cls}` : ""} / 13週 ${signed(p.r13)}%(TOPIX比 ${signed(p.rel13)}) / 空売り残高 ${(sh.now || 0).toFixed(1)}%(13週 ${signed(sh.d13, 2)})` +
+          (s.borrow ? ` / 貸株料 ${feeText(s.borrow)}(${borrowLevel(s.borrow).text})` : ""),
       );
       li.append(head, meta, reasonsList(s.score));
       const actions = el("div", "top5-actions");
@@ -325,10 +341,15 @@
     } else td1.textContent = "—";
     const rel = s.price && s.price.rel13;
     const td2 = el("td", pctClass(rel), rel == null ? "—" : `${signed(rel)}`);
-    const td3 = el("td", null, s.score ? signed(s.score.total, 2) : "—");
+    const lv = borrowLevel(s.borrow);
+    const td5 = el("td", lv && lv.cls ? `pct ${lv.cls}` : null, feeText(s.borrow));
+    if (lv) td5.appendChild(el("span", "sub borrow-sub", lv.text));
+    const td3 = el("td", "col-score", s.score ? signed(s.score.total, 2) : "—");
     const td4 = el("td");
     td4.appendChild(badge(s.score));
-    tr.append(td0, td1, td2, td3, td4);
+    // スマホではスコアの列を畳み、判定の下に小さく出す
+    if (s.score) td4.appendChild(el("span", "sub score-sub", signed(s.score.total, 2)));
+    tr.append(td0, td1, td2, td5, td3, td4);
     return tr;
   }
 
@@ -390,6 +411,15 @@
         stat("13週 騰落率(TOPIX比)", p.r13 == null ? "—" : `${signed(p.r13)}%`, pctClass(p.r13), p.rel13 == null ? "" : `${signed(p.rel13)}`),
         stat("出来高(普段比)", p.vol_ratio == null ? "—" : `${numFmt.format(p.vol_ratio)}倍`, null, "20日÷120日"),
       );
+      if (flow.borrow) {
+        const b = s.borrow;
+        const lv = borrowLevel(b);
+        const chg = b && b.d4 != null ? `4週 ${signed(b.d4, 2)}` : "";
+        stats.append(
+          stat("貸株料(年率・IBKR)", b ? feeText(b) : "対象外", lv ? `pct ${lv.cls}` : null, lv ? lv.text : "IBKRで空売りできない銘柄"),
+          stat("借りられる株数(IBKR)", b ? availText(b) || "—" : "—", null, chg),
+        );
+      }
       card.appendChild(stats);
       if (s.score) {
         card.appendChild(partsBlock(s.score));
@@ -487,7 +517,8 @@
     flow.holdings = flow.holdings || [];
     flow.watch = flow.watch || [];
     flow.week_dates = flow.week_dates || [];
-    status.textContent = `空売り残高 ${dateFmt(flow.asof)}時点 / 株価 ${dateFmt(flow.price_date)}終値 / 更新 ${dateFmt((flow.generated_at || "").slice(0, 10))}` + (flow.edinet ? "" : "(大量保有報告書は未使用)");
+    if (flow.borrow_base > 0) borrowBase = flow.borrow_base;
+    status.textContent = `空売り残高 ${dateFmt(flow.asof)}時点 / 株価 ${dateFmt(flow.price_date)}終値 / 更新 ${dateFmt((flow.generated_at || "").slice(0, 10))}` + (flow.edinet ? "" : "(大量保有報告書は未使用)") + (flow.borrow ? "" : "(貸株料は取得できませんでした)");
 
     const rerender = () => {
       renderTracked(flow, onRemove);

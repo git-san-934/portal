@@ -16,6 +16,7 @@ https://git-san-934.github.io/portal/foreign-flow/
   - 空売り残高(0.5%以上の報告の合計)と4週・13週の増減、13週騰落率(TOPIX比)、出来高
   - 売りの圧力・買いの圧力の点数、判定の理由
   - 株価と空売り残高の26週チャート、空売りしている機関の一覧、大量保有報告書(EDINET キーがあるとき)
+  - 貸株料(年率)と借りられる株数(Interactive Brokers、参考値。スコアには入れない)
 - 判定の仕組み(計算式)
 
 ## 銘柄の追加
@@ -38,6 +39,8 @@ https://git-san-934.github.io/portal/foreign-flow/
   - TOPIX 500 の銘柄: JPX の TOPIX 構成銘柄一覧
   - 株価・出来高: Yahoo Finance(yfinance 経由)
   - 大量保有報告書: EDINET API(任意)
+  - 貸株料・借りられる株数: Interactive Brokers の公開FTP(`ftp3.interactivebrokers.com`、ユーザー `shortstock`、`japan.txt`)。
+    取れなくても残りで作ります。週ごとの貸株料は `data/borrow_hist.json` に残し、4週・13週の変化に使います
 - 大量保有報告書を使うには、EDINET で API キー(無料)を発行し、リポジトリの
   Settings → Secrets and variables → Actions に `EDINET_API_KEY` という名前で登録します。
   未登録なら大量保有の点数を使わずに判定します。読み取った報告は `data/edinet_cache.json` に保存します

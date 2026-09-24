@@ -6,6 +6,8 @@
 - 投資部門別売買状況(JPX、毎週・毎月): 東証プライムでの海外投資家の買い越し・売り越し(市場全体)。
 - 株価・出来高(Yahoo Finance、yfinance 経由): 13週・26週のTOPIX比騰落率と出来高の増え方。
 - 大量保有報告書(EDINET API): 海外勢の5%超の保有と増減。EDINET_API_KEY があるときだけ。
+- 貸株料・借りられる株数(Interactive Brokers の公開FTP、毎日): 空売りのために株を借りるコスト。
+  1社の在庫なので市場全体ではなく参考値。スコアには入れず、表示と「借りにくさ」の目安にだけ使う。
 
 対象銘柄は、持ち株(holdings/data/check.json の日本株)、../data/watchlist.json、
 TOPIX 500(Core30 + Large70 + Mid400)。「有望銘柄ベスト5」は TOPIX 500 から選ぶ。
@@ -14,6 +16,7 @@ GitHub Actions(.github/workflows/update-foreign-flow.yml)から平日に実行�
 空売り残高と株価のどちらかが取れなかったときは、既存の flow.json を上書きせずに終了コード1で終わる。
 """
 
+import ftplib
 import io
 import json
 import math
@@ -35,6 +38,7 @@ DATA_DIR = ROOT / "data"
 OUT_PATH = DATA_DIR / "flow.json"
 WATCH_PATH = DATA_DIR / "watchlist.json"
 EDINET_CACHE_PATH = DATA_DIR / "edinet_cache.json"
+BORROW_HIST_PATH = DATA_DIR / "borrow_hist.json"
 HOLDINGS_PATH = ROOT.parent / "holdings" / "data" / "check.json"
 # ダウンロードした空売り残高ファイルの置き場(リポジトリには入れない。Actions ではキャッシュする)
 CACHE_DIR = Path(os.environ.get("FLOW_CACHE_DIR") or ROOT / ".cache")
@@ -46,6 +50,9 @@ INVESTOR_ARCHIVE = f"{JPX}/markets/statistics-equities/investor-type/00-01.html"
 TOPIX_WEIGHT = f"{JPX}/automation/markets/indices/topix/files/topixweight_j.csv"
 EDINET_API = "https://api.edinet-fsa.go.jp/api/v2"
 EDINET_CODELIST = "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/codelist/Edinetcode.zip"
+IBKR_FTP_HOSTS = ("ftp2.interactivebrokers.com", "ftp3.interactivebrokers.com")  # ftp3 は時間切れになることがある
+IBKR_FILE = "japan.txt"
+BORROW_WEEKS = 27  # 貸株料の週次履歴を残す週数
 TOPIX_ETF = "1306.T"  # TOPIX 連動ETF。TOPIX比の騰落率に使う
 
 HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; portal-foreign-flow/1.0; +https://git-san-934.github.io/portal/)"}
@@ -620,6 +627,96 @@ def fetch_edinet(targets):
 
 
 # ---------------------------------------------------------------------------
+# 貸株料(Interactive Brokers)
+# ---------------------------------------------------------------------------
+
+
+def parse_avail(v):
+    s = nfkc(v).replace(",", "").lstrip(">")
+    try:
+        return int(float(s))
+    except ValueError:
+        return None
+
+
+def fetch_borrow():
+    """IBKR の日本株の貸株料(年率%)と借りられる株数 (asof, {code: {"fee", "avail"}})。
+
+    ファイルは SYM|CUR|NAME|CON|ISIN|REBATERATE|FEERATE|AVAILABLE| の形で、先頭に #BOF と見出し行がある。
+    """
+    last = None
+    for host in IBKR_FTP_HOSTS:
+        try:
+            buf = io.BytesIO()
+            with ftplib.FTP(host, timeout=60) as ftp:
+                ftp.login("shortstock", "")
+                ftp.retrbinary(f"RETR {IBKR_FILE}", buf.write)
+            text = buf.getvalue().decode("utf-8", "replace")
+            break
+        except ftplib.all_errors as e:
+            last = f"{host}: {e}"
+            log(f"  IBKR FTP {last}")
+    else:
+        raise RuntimeError(last)
+    lines = text.splitlines()
+    asof, cols, out = None, None, {}
+    for line in lines:
+        cells = [c.strip() for c in line.split("|")]
+        if line.startswith("#BOF"):
+            asof = " ".join(c for c in cells[1:] if c)
+            continue
+        if line.startswith("#SYM"):
+            cols = {name.lstrip("#"): j for j, name in enumerate(cells)}
+            continue
+        if line.startswith("#") or cols is None or len(cells) < len(cols) - 1:
+            continue
+        code = norm_code(cells[cols["SYM"]])
+        if not re.fullmatch(r"[0-9][0-9A-Z]{3}", code):
+            continue
+        try:
+            fee = float(cells[cols["FEERATE"]])
+        except (ValueError, KeyError):
+            continue
+        avail = parse_avail(cells[cols["AVAILABLE"]]) if "AVAILABLE" in cols else None
+        # 同じコードが複数行(別の取引所)あるときは、借りられる株数が多い方
+        old = out.get(code)
+        if old is None or (avail or 0) > (old["avail"] or 0):
+            out[code] = {"fee": round(fee, 2), "avail": avail}
+    fees = sorted(v["fee"] for v in out.values())
+    q = lambda f: fees[min(len(fees) - 1, int(len(fees) * f))] if fees else None  # noqa: E731
+    log(f"IBKR 貸株: {len(out)} 銘柄 ({asof or '日時不明'})。貸株料 25%点 {q(0.25)} / 中央値 {q(0.5)} / 90%点 {q(0.9)} / 99%点 {q(0.99)}")
+    if not out:
+        raise RuntimeError("IBKR の貸株ファイルに日本株の行がありません")
+    return asof, out
+
+
+def borrow_history(borrow, codes, today):
+    """週ごとの貸株料を borrow_hist.json に残し、{code: 4週前・13週前の貸株料} を返す"""
+    try:
+        hist = json.loads(BORROW_HIST_PATH.read_text(encoding="utf-8"))
+    except (OSError, ValueError):
+        hist = {}
+    weeks = hist.get("weeks", {})
+    # その週の金曜日をキーにして、週の最新値で上書きする
+    key = (today + timedelta(days=(4 - today.weekday()) % 7)).isoformat()
+    weeks[key] = {c: borrow[c]["fee"] for c in codes if c in borrow}
+    keys = sorted(weeks)[-BORROW_WEEKS:]
+    weeks = {k: weeks[k] for k in keys}
+    BORROW_HIST_PATH.write_text(
+        '{"weeks":{\n' + ",\n".join(f"{json.dumps(k)}:{json.dumps(v, separators=(',', ':'))}" for k, v in weeks.items()) + "\n}}\n",
+        encoding="utf-8",
+    )
+
+    def back(n):
+        target = (date.fromisoformat(key) - timedelta(weeks=n)).isoformat()
+        past = [k for k in keys if k <= target]
+        return weeks[past[-1]] if past else {}
+
+    w4, w13 = back(4), back(13)
+    return {c: (w4.get(c), w13.get(c)) for c in codes}
+
+
+# ---------------------------------------------------------------------------
 # スコア
 # ---------------------------------------------------------------------------
 
@@ -758,6 +855,18 @@ def main():
         problems.append("edinet")
     lh_enabled = lh is not None
 
+    # 貸株料(任意)
+    borrow, borrow_asof, borrow_past, borrow_base = {}, None, {}, None
+    try:
+        borrow_asof, borrow = fetch_borrow()
+        borrow_past = borrow_history(borrow, price_codes, datetime.now(JST).date())
+        # 借りにくさの基準にする「普通の貸株料」: TOPIX500 の中央値(大型株でも年1%前後かかる)
+        base = sorted(borrow[c]["fee"] for c in universe if c in borrow)
+        borrow_base = base[len(base) // 2] if base else None
+    except Exception as e:  # noqa: BLE001 — 参考値なので、取れなくても残りで作る
+        log(f"貸株料を読めませんでした: {e}")
+        problems.append("borrow")
+
     d4, d13, d26 = asof - timedelta(days=28), asof - timedelta(days=91), asof - timedelta(days=182)
     codes = list(dict.fromkeys(price_codes + list(series)))
     stocks = {}
@@ -790,6 +899,14 @@ def main():
             e["short"] = sh
         if sc is not None:
             e["score"] = sc
+        if code in borrow:
+            b = dict(borrow[code])
+            f4, f13 = borrow_past.get(code, (None, None))
+            if f4 is not None:
+                b["d4"] = round(b["fee"] - f4, 2)
+            if f13 is not None:
+                b["d13"] = round(b["fee"] - f13, 2)
+            e["borrow"] = b
         # 週次の株価と空売り残高(チャート用)。持ち株・ウォッチ・TOPIX500 のみ
         if pm is not None:
             wk = pm["weekly"]
@@ -828,6 +945,9 @@ def main():
         "short_range": [short_first.isoformat(), short_last.isoformat()],
         "price_date": close.dropna(how="all").index[-1].strftime("%Y-%m-%d"),
         "edinet": lh_enabled,
+        "borrow": bool(borrow),
+        "borrow_asof": borrow_asof,
+        "borrow_base": borrow_base,
         "problems": problems,
         "topix": {k: rnd(v, 1) for k, v in topix_m.items()},
         "week_dates": week_dates,
@@ -846,7 +966,7 @@ def main():
     log(f"wrote {OUT_PATH} ({len(stocks)} 銘柄、ベスト5: {top5_text})")
     for c in tracked:
         e = stocks.get(c, {})
-        log(f"  {c} {e.get('name')}: {e.get('score', {}).get('label')} {e.get('score', {}).get('total')} short={e.get('short')}")
+        log(f"  {c} {e.get('name')}: {e.get('score', {}).get('label')} {e.get('score', {}).get('total')} short={e.get('short')} borrow={e.get('borrow')}")
 
 
 if __name__ == "__main__":
