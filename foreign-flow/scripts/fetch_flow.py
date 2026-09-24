@@ -750,10 +750,13 @@ def main():
         raise SystemExit("株価の取得に失敗した銘柄が多いため flow.json を更新しません")
 
     # 大量保有(任意)
-    lh = fetch_edinet(set(price_codes))
-    lh_enabled = lh is not None
-    if not lh_enabled and os.environ.get("EDINET_API_KEY"):
+    try:
+        lh = fetch_edinet(set(price_codes))
+    except Exception as e:  # noqa: BLE001 — 大量保有は任意なので、失敗しても残りで判定する
+        log(f"大量保有報告書を読めませんでした: {e}")
+        lh = None
         problems.append("edinet")
+    lh_enabled = lh is not None
 
     d4, d13, d26 = asof - timedelta(days=28), asof - timedelta(days=91), asof - timedelta(days=182)
     codes = list(dict.fromkeys(price_codes + list(series)))
