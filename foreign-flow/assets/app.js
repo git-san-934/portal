@@ -62,13 +62,15 @@
     return el("span", `badge ${TONE[score.label] || ""}`, score.label);
   }
 
-  // 貸株料(IBKR、年率%)から借りにくさの目安。在庫なし・高い貸株料は、空売りの需要が貸し手の在庫を上回っているサイン
+  // 貸株料(IBKR、年率%)から借りにくさの目安。在庫なし・高い貸株料は、空売りの需要が貸し手の在庫を上回っているサイン。
+  // 大型株でも年1%前後かかるので、TOPIX500 の中央値(borrow_base)を「普通」とし、その2倍・5倍で区切る
+  let borrowBase = 1;
   function borrowLevel(b) {
     if (!b) return null;
     if (b.avail === 0) return { text: "在庫なし", cls: "down" };
-    if (b.fee >= 5) return { text: "借りにくい", cls: "down" };
-    if (b.fee >= 1) return { text: "やや借りにくい", cls: "down" };
-    return { text: "借りやすい", cls: "" };
+    if (b.fee >= Math.max(5, borrowBase * 5)) return { text: "借りにくい", cls: "down" };
+    if (b.fee >= borrowBase * 2) return { text: "やや借りにくい", cls: "down" };
+    return { text: "普通", cls: "" };
   }
 
   const feeText = (b) => (b ? `${b.fee.toFixed(2)}%` : "—");
@@ -515,6 +517,7 @@
     flow.holdings = flow.holdings || [];
     flow.watch = flow.watch || [];
     flow.week_dates = flow.week_dates || [];
+    if (flow.borrow_base > 0) borrowBase = flow.borrow_base;
     status.textContent = `空売り残高 ${dateFmt(flow.asof)}時点 / 株価 ${dateFmt(flow.price_date)}終値 / 更新 ${dateFmt((flow.generated_at || "").slice(0, 10))}` + (flow.edinet ? "" : "(大量保有報告書は未使用)") + (flow.borrow ? "" : "(貸株料は取得できませんでした)");
 
     const rerender = () => {

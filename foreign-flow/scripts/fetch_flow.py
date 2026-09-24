@@ -50,7 +50,7 @@ INVESTOR_ARCHIVE = f"{JPX}/markets/statistics-equities/investor-type/00-01.html"
 TOPIX_WEIGHT = f"{JPX}/automation/markets/indices/topix/files/topixweight_j.csv"
 EDINET_API = "https://api.edinet-fsa.go.jp/api/v2"
 EDINET_CODELIST = "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/codelist/Edinetcode.zip"
-IBKR_FTP_HOSTS = ("ftp3.interactivebrokers.com", "ftp2.interactivebrokers.com")
+IBKR_FTP_HOSTS = ("ftp2.interactivebrokers.com", "ftp3.interactivebrokers.com")  # ftp3 は時間切れになることがある
 IBKR_FILE = "japan.txt"
 BORROW_WEEKS = 27  # 貸株料の週次履歴を残す週数
 TOPIX_ETF = "1306.T"  # TOPIX 連動ETF。TOPIX比の騰落率に使う
@@ -682,9 +682,9 @@ def fetch_borrow():
         old = out.get(code)
         if old is None or (avail or 0) > (old["avail"] or 0):
             out[code] = {"fee": round(fee, 2), "avail": avail}
-    log(f"IBKR 貸株: {len(out)} 銘柄 ({asof or '日時不明'})。見出し: {lines[:2]}")
-    for line in lines[2:5]:
-        log(f"  例: {line}")
+    fees = sorted(v["fee"] for v in out.values())
+    q = lambda f: fees[min(len(fees) - 1, int(len(fees) * f))] if fees else None  # noqa: E731
+    log(f"IBKR 貸株: {len(out)} 銘柄 ({asof or '日時不明'})。貸株料 25%点 {q(0.25)} / 中央値 {q(0.5)} / 90%点 {q(0.9)} / 99%点 {q(0.99)}")
     if not out:
         raise RuntimeError("IBKR の貸株ファイルに日本株の行がありません")
     return asof, out
@@ -856,10 +856,13 @@ def main():
     lh_enabled = lh is not None
 
     # 貸株料(任意)
-    borrow, borrow_asof, borrow_past = {}, None, {}
+    borrow, borrow_asof, borrow_past, borrow_base = {}, None, {}, None
     try:
         borrow_asof, borrow = fetch_borrow()
         borrow_past = borrow_history(borrow, price_codes, datetime.now(JST).date())
+        # 借りにくさの基準にする「普通の貸株料」: TOPIX500 の中央値(大型株でも年1%前後かかる)
+        base = sorted(borrow[c]["fee"] for c in universe if c in borrow)
+        borrow_base = base[len(base) // 2] if base else None
     except Exception as e:  # noqa: BLE001 — 参考値なので、取れなくても残りで作る
         log(f"貸株料を読めませんでした: {e}")
         problems.append("borrow")
@@ -944,6 +947,7 @@ def main():
         "edinet": lh_enabled,
         "borrow": bool(borrow),
         "borrow_asof": borrow_asof,
+        "borrow_base": borrow_base,
         "problems": problems,
         "topix": {k: rnd(v, 1) for k, v in topix_m.items()},
         "week_dates": week_dates,
