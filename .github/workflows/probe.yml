@@ -1,0 +1,14 @@
+name: probe
+on:
+  push:
+    branches: [claude/foreign-flow]
+    paths: [.github/probe/**, .github/workflows/probe.yml]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with: {python-version: "3.12"}
+      - run: pip install requests pandas xlrd openpyxl
+      - run: python .github/probe/probe.py
