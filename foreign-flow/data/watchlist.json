@@ -1,0 +1,6 @@
+{
+  "note": "持ち株(holdings/data/check.json)のほかに、毎日追跡したい銘柄。code は東証の銘柄コード。",
+  "stocks": [
+    { "code": "2201", "name": "森永製菓" }
+  ]
+}

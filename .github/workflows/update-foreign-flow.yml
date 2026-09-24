@@ -1,0 +1,71 @@
+name: 海外投資家の需給データ更新
+
+on:
+  schedule:
+    - cron: "30 10 * * 1-5" # 平日 19:30 JST(JPX の空売り残高の公表後。GitHub側の混雑で数十分遅れることがあります)
+  workflow_dispatch:
+  push:
+    branches: [main, claude/foreign-flow]
+    paths:
+      - foreign-flow/scripts/**
+      - foreign-flow/data/watchlist.json
+      - holdings/data/check.json
+      - .github/workflows/update-foreign-flow.yml
+  pull_request:
+    paths:
+      - foreign-flow/scripts/**
+      - foreign-flow/data/watchlist.json
+      - .github/workflows/update-foreign-flow.yml
+
+permissions:
+  contents: write # flow.json をコミットする
+  actions: write # 更新後に Pages のデプロイを起動する
+
+concurrency:
+  group: foreign-flow-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r foreign-flow/scripts/requirements.txt
+      # JPX の空売り残高ファイル(1日1ファイル・12か月分)は一度取ったら変わらないので使い回す
+      - uses: actions/cache@v4
+        with:
+          path: foreign-flow/.cache
+          key: foreign-flow-short-${{ github.run_id }}
+          restore-keys: foreign-flow-short-
+      - name: 需給データを取得
+        env:
+          # 任意: EDINET API のキー(大量保有報告書を読むため)。未設定なら大量保有はスキップ
+          EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
+        run: python foreign-flow/scripts/fetch_flow.py
+      # PR では取得できるかの確認だけ行い、コミット・デプロイはしない
+      - name: flow.json をコミット
+        id: commit
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add foreign-flow/data/flow.json
+          [ -f foreign-flow/data/edinet_cache.json ] && git add foreign-flow/data/edinet_cache.json
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "海外投資家の需給データ更新 ($(TZ=Asia/Tokyo date +%F))"
+          # 持ち株・業種別ETFの更新など、他のコミットが先に入っていても push できるようにする
+          git pull --rebase origin "${GITHUB_REF_NAME}"
+          git push origin "HEAD:${GITHUB_REF_NAME}"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
+      - name: GitHub Pages を再デプロイ
+        if: steps.commit.outputs.changed == 'true' && github.ref_name == 'main'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main
