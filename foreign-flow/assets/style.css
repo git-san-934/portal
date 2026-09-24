@@ -46,7 +46,7 @@ body {
 header { text-align: center; margin-bottom: 1.25rem; }
 h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .intro { color: var(--text-sub); font-size: 0.9rem; margin: 0.4rem auto 0; max-width: 36rem; }
-.updated { font-size: 0.8rem; margin-top: 0.3rem; }
+.updated { font-size: 0.8rem; margin-top: 0.3rem; white-space: pre-line; }
 .updated.error { color: var(--up); }
 
 /* ---------- パネル ---------- */

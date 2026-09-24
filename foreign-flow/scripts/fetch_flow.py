@@ -8,6 +8,7 @@
 - 大量保有報告書(EDINET API): 海外勢の5%超の保有と増減。EDINET_API_KEY があるときだけ。
 - 貸株料・借りられる株数(Interactive Brokers の公開FTP、毎日): 空売りのために株を借りるコスト。
   1社の在庫なので市場全体ではなく参考値。スコアには入れず、表示と「借りにくさ」の目安にだけ使う。
+- 米国株: FINRA の空売り残高・S&P 500 比の株価・米財務省 TIC など(us_flow.py)。失敗しても日本株だけで作る。
 
 対象銘柄は、持ち株(holdings/data/check.json の日本株)、../data/watchlist.json、
 TOPIX 500(Core30 + Large70 + Mid400)。「有望銘柄ベスト5」は TOPIX 500 から選ぶ。
@@ -33,12 +34,15 @@ import pandas as pd
 import requests
 import yfinance as yf
 
+import us_flow as us
+
 ROOT = Path(__file__).resolve().parent.parent
 DATA_DIR = ROOT / "data"
 OUT_PATH = DATA_DIR / "flow.json"
 WATCH_PATH = DATA_DIR / "watchlist.json"
 EDINET_CACHE_PATH = DATA_DIR / "edinet_cache.json"
 BORROW_HIST_PATH = DATA_DIR / "borrow_hist.json"
+US_SHARES_PATH = DATA_DIR / "us_shares.json"
 HOLDINGS_PATH = ROOT.parent / "holdings" / "data" / "check.json"
 # ダウンロードした空売り残高ファイルの置き場(リポジトリには入れない。Actions ではキャッシュする)
 CACHE_DIR = Path(os.environ.get("FLOW_CACHE_DIR") or ROOT / ".cache")
@@ -51,7 +55,6 @@ TOPIX_WEIGHT = f"{JPX}/automation/markets/indices/topix/files/topixweight_j.csv"
 EDINET_API = "https://api.edinet-fsa.go.jp/api/v2"
 EDINET_CODELIST = "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/codelist/Edinetcode.zip"
 IBKR_FTP_HOSTS = ("ftp2.interactivebrokers.com", "ftp3.interactivebrokers.com")  # ftp3 は時間切れになることがある
-IBKR_FILE = "japan.txt"
 BORROW_WEEKS = 27  # 貸株料の週次履歴を残す週数
 TOPIX_ETF = "1306.T"  # TOPIX 連動ETF。TOPIX比の騰落率に使う
 
@@ -435,8 +438,7 @@ def fetch_market(previous):
 # ---------------------------------------------------------------------------
 
 
-def fetch_prices(codes):
-    tickers = [f"{c}.T" for c in codes] + [TOPIX_ETF]
+def fetch_prices(tickers):
     close, volume = [], []
     for i in range(0, len(tickers), 150):
         chunk = tickers[i : i + 150]
@@ -460,7 +462,7 @@ def fetch_prices(codes):
     return c, v
 
 
-def price_metrics(c, v, topix):
+def price_metrics(c, v, topix, unit=1e8):
     s = c.dropna()
     if len(s) < 60:
         return None
@@ -484,7 +486,7 @@ def price_metrics(c, v, topix):
         "rel13": rnd(r13 - t13, 1) if r13 is not None and t13 is not None else None,
         "rel26": rnd(r26 - t26, 1) if r26 is not None and t26 is not None else None,
         "vol_ratio": rnd(v20 / v120, 2) if v120 else None,
-        "turnover": rnd(v20 * last / 1e8, 1),  # 20日平均売買代金(億円)
+        "turnover": rnd(v20 * last / unit, 1),  # 20日平均売買代金(日本株は億円、米国株は百万ドル)
         "weekly": weekly,
     }
 
@@ -639,8 +641,8 @@ def parse_avail(v):
         return None
 
 
-def fetch_borrow():
-    """IBKR の日本株の貸株料(年率%)と借りられる株数 (asof, {code: {"fee", "avail"}})。
+def fetch_borrow(file="japan.txt", us_market=False):
+    """IBKR の貸株料(年率%)と借りられる株数 (asof, {code: {"fee", "avail"}})。日本株は japan.txt、米国株は usa.txt
 
     ファイルは SYM|CUR|NAME|CON|ISIN|REBATERATE|FEERATE|AVAILABLE| の形で、先頭に #BOF と見出し行がある。
     """
@@ -650,7 +652,7 @@ def fetch_borrow():
             buf = io.BytesIO()
             with ftplib.FTP(host, timeout=60) as ftp:
                 ftp.login("shortstock", "")
-                ftp.retrbinary(f"RETR {IBKR_FILE}", buf.write)
+                ftp.retrbinary(f"RETR {file}", buf.write)
             text = buf.getvalue().decode("utf-8", "replace")
             break
         except ftplib.all_errors as e:
@@ -670,9 +672,14 @@ def fetch_borrow():
             continue
         if line.startswith("#") or cols is None or len(cells) < len(cols) - 1:
             continue
-        code = norm_code(cells[cols["SYM"]])
-        if not re.fullmatch(r"[0-9][0-9A-Z]{3}", code):
-            continue
+        if us_market:
+            code = us.us_key(cells[cols["SYM"]])
+            if not us.is_us_code(code) or (cells[cols["CUR"]] if "CUR" in cols else "USD") != "USD":
+                continue
+        else:
+            code = norm_code(cells[cols["SYM"]])
+            if not re.fullmatch(r"[0-9][0-9A-Z]{3}", code):
+                continue
         try:
             fee = float(cells[cols["FEERATE"]])
         except (ValueError, KeyError):
@@ -684,9 +691,9 @@ def fetch_borrow():
             out[code] = {"fee": round(fee, 2), "avail": avail}
     fees = sorted(v["fee"] for v in out.values())
     q = lambda f: fees[min(len(fees) - 1, int(len(fees) * f))] if fees else None  # noqa: E731
-    log(f"IBKR 貸株: {len(out)} 銘柄 ({asof or '日時不明'})。貸株料 25%点 {q(0.25)} / 中央値 {q(0.5)} / 90%点 {q(0.9)} / 99%点 {q(0.99)}")
+    log(f"IBKR 貸株({file}): {len(out)} 銘柄 ({asof or '日時不明'})。貸株料 25%点 {q(0.25)} / 中央値 {q(0.5)} / 90%点 {q(0.9)} / 99%点 {q(0.99)}")
     if not out:
-        raise RuntimeError("IBKR の貸株ファイルに日本株の行がありません")
+        raise RuntimeError(f"IBKR の貸株ファイル {file} に銘柄の行がありません")
     return asof, out
 
 
@@ -716,30 +723,47 @@ def borrow_history(borrow, codes, today):
     return {c: (w4.get(c), w13.get(c)) for c in codes}
 
 
+def with_borrow_change(b, past):
+    """貸株料に4週・13週前からの変化を足す"""
+    b = dict(b)
+    f4, f13 = past or (None, None)
+    if f4 is not None:
+        b["d4"] = round(b["fee"] - f4, 2)
+    if f13 is not None:
+        b["d13"] = round(b["fee"] - f13, 2)
+    return b
+
+
 # ---------------------------------------------------------------------------
 # スコア
 # ---------------------------------------------------------------------------
 
 
-def score_stock(pm, sh, lh, lh_enabled, asof):
-    """買い圧力と売り圧力をそれぞれ点数化(各 −2〜+2)。合計がプラスなら買い優勢。"""
+def score_stock(pm, sh, lh, lh_enabled, asof, bench="TOPIX"):
+    """買い圧力と売り圧力をそれぞれ点数化(各 −2〜+2)。合計がプラスなら買い優勢。
+
+    米国株は bench="S&P500"。空売り残高は浮動株に対する割合(FINRA、小口も含む全体)なので、日本株(0.5%以上の報告の合計)より
+    水準も振れ幅も大きい。そのため米国株は増減を2倍の幅で点数にし、「多い」の目安も10%にする。
+    """
     parts, reasons = {}, []
+    us_market = bench != "TOPIX"
+    scale, heavy, squeeze_min = (1.5, 10, 5) if us_market else (0.75, 5, 2)
 
     # 売り圧力: 空売り残高割合の合計の増減(13週と4週)。増えるほどマイナス
     if sh is not None:
         now, d4, d13 = sh["now"], sh["d4"], sh["d13"]
-        s = clamp(-(0.6 * d13 + 0.4 * d4) / 0.75)
-        if now >= 5:
+        s = clamp(-(0.6 * d13 + 0.4 * d4) / scale)
+        if now >= heavy:
             s = clamp(s - 0.3)
         parts["short"] = round(s, 2)
-        if d13 >= 0.3:
+        if d13 >= 0.3 * scale / 0.75:
             reasons.append((-abs(s) - 0.1, f"空売り残高が13週で{d13:.1f}ポイント増(売り圧力が強まる)"))
-        elif d13 <= -0.3:
+        elif d13 <= -0.3 * scale / 0.75:
             reasons.append((abs(s) + 0.1, f"空売り残高が13週で{-d13:.1f}ポイント減(売り圧力が弱まる)"))
         elif now < SHORT_MIN:
-            reasons.append((0.05, "目立った空売り(0.5%以上)なし"))
-        if now >= 5:
-            reasons.append((-0.4, f"空売り残高が多い(合計{now:.1f}%)"))
+            reasons.append((0.05, "目立った空売り(0.5%以上)なし" if bench == "TOPIX" else "空売りが少ない(浮動株の0.5%未満)"))
+        if now >= heavy:
+            reasons.append((-0.4, f"空売り残高が多い({'浮動株の' if us_market else '合計'}{now:.1f}%)"))
 
     # 買い圧力(株価と出来高): TOPIX に勝っているか、出来高を伴っているか
     if pm is not None and pm.get("rel13") is not None:
@@ -755,9 +779,9 @@ def score_stock(pm, sh, lh, lh_enabled, asof):
             reasons.append((-0.5, f"出来高が増えながら下落(直近20日の出来高が普段の{vr:.1f}倍)"))
         parts["trend"] = round(s, 2)
         if abs(rel13) >= 3:
-            reasons.append((s13, f"13週でTOPIXより{abs(rel13):.0f}ポイント{'強い' if rel13 > 0 else '弱い'}"))
+            reasons.append((s13, f"13週で{bench}より{abs(rel13):.0f}ポイント{'強い' if rel13 > 0 else '弱い'}"))
         if abs(rel26) >= 10 and (rel26 > 0) != (rel13 > 0):
-            reasons.append((s26, f"26週ではTOPIXより{abs(rel26):.0f}ポイント{'強い' if rel26 > 0 else '弱い'}"))
+            reasons.append((s26, f"26週では{bench}より{abs(rel26):.0f}ポイント{'強い' if rel26 > 0 else '弱い'}"))
 
     # 買い圧力(大量保有): 海外勢の5%超の保有の増減(直近90日)
     if lh_enabled:
@@ -781,7 +805,7 @@ def score_stock(pm, sh, lh, lh_enabled, asof):
             reasons.append((s if s else 0.1, f"海外勢の大量保有報告{n}件(90日)。直近は{top['filer']} {chg}"))
 
     # 踏み上げ: 空売りが多い銘柄で買い戻しが進み、株価が上がっている
-    if sh is not None and pm is not None and sh["now"] >= 2 and sh["d4"] <= -0.3 and (pm.get("r4") or 0) > 0:
+    if sh is not None and pm is not None and sh["now"] >= squeeze_min and sh["d4"] <= -0.3 * scale / 0.75 and (pm.get("r4") or 0) > 0:
         parts["squeeze"] = 0.4
         reasons.append((0.6, "空売りの買い戻し(踏み上げ)が進行中"))
 
@@ -796,6 +820,136 @@ def score_stock(pm, sh, lh, lh_enabled, asof):
         "parts": parts,
         "reasons": [{"text": t, "tone": "up" if w > 0 else "down"} for w, t in reasons[:4]],
     }
+
+
+# ---------------------------------------------------------------------------
+# 米国株
+# ---------------------------------------------------------------------------
+
+
+def build_us(previous):
+    """米国株の銘柄データ。戻り値: (flow.json の "us", {key: 銘柄}, {key: 貸株料})"""
+    us_hold, us_watch = us.load_us_targets(HOLDINGS_PATH, WATCH_PATH, log)
+    try:
+        sp = us.fetch_sp500(get, log)
+    except RuntimeError as e:
+        log(f"S&P 500 の構成銘柄を読めませんでした: {e}")
+        sp = {}
+    tracked = list(dict.fromkeys(list(us_hold) + list(us_watch)))
+    keys = list(dict.fromkeys(tracked + list(sp)))
+    if not keys:
+        raise RuntimeError("米国株の対象銘柄がありません")
+    periods = us.fetch_us_shorts(get, CACHE_DIR, datetime.now(JST).date(), log)
+    shares = us.update_shares(US_SHARES_PATH, keys, set(tracked), log)
+
+    close, volume = fetch_prices([us.yf_symbol(k) for k in keys] + [us.SPX_ETF])
+    scol = close.get(us.SPX_ETF)
+    bench = {}
+    if scol is not None:
+        t = scol.dropna()
+        if len(t) > 130:
+            bench = {"r13": (t.iloc[-1] / t.iloc[-66] - 1) * 100, "r26": (t.iloc[-1] / t.iloc[-131] - 1) * 100, "r4": (t.iloc[-1] / t.iloc[-21] - 1) * 100}
+    got = sum(1 for k in keys if us.yf_symbol(k) in close.columns and close[us.yf_symbol(k)].notna().sum() >= 60)
+    log(f"米国株の株価: {got}/{len(keys)} 銘柄")
+    if not bench or got < len(keys) * 0.6:
+        raise RuntimeError("米国株の株価の取得に失敗した銘柄が多いため、米国株は載せません")
+
+    borrow, borrow_base = {}, None
+    try:
+        _, borrow = fetch_borrow("usa.txt", us_market=True)
+        borrow = {k: v for k, v in borrow.items() if k in shares or k in sp}
+        base = sorted(borrow[k]["fee"] for k in sp if k in borrow)
+        borrow_base = base[len(base) // 2] if base else None
+    except Exception as e:  # noqa: BLE001 — 参考値なので、取れなくても残りで作る
+        log(f"米国株の貸株料を読めませんでした: {e}")
+
+    asof = periods[-1][0]
+    d4, d13, d26 = asof - timedelta(days=28), asof - timedelta(days=91), asof - timedelta(days=182)
+    stocks = {}
+    for k in keys:
+        col = us.yf_symbol(k)
+        pm = price_metrics(close[col], volume[col], bench, unit=1e6) if col in close.columns else None
+        fl = (shares.get(k) or {}).get("float")
+        s_list, last = [], None
+        if fl:
+            for d, data in periods:
+                if k in data:
+                    last = data[k]
+                    s_list.append((d, round(data[k][0] / fl * 100, 3), 0.0, 1))
+        sh = None
+        if s_list:
+            now = short_at(s_list, asof)[0]
+            sh = {
+                "now": round(now, 2),
+                "d4": round(now - short_at(s_list, d4)[0], 2) if s_list[0][0] <= d4 else 0.0,
+                "d13": round(now - short_at(s_list, d13)[0], 2) if s_list[0][0] <= d13 else 0.0,
+                "d26": round(now - short_at(s_list, d26)[0], 2) if s_list[0][0] <= d26 else 0.0,
+                "date": s_list[-1][0].isoformat(),
+                "dtc": rnd(last[2], 1) if last and last[2] is not None else None,
+                "qty": int(last[0]) if last else None,
+            }
+        sc = score_stock(pm, sh, None, False, asof, bench="S&P500")
+        info = sp.get(k, {})
+        e = {"name": us_hold.get(k) or us_watch.get(k) or info.get("name") or (shares.get(k) or {}).get("name") or k, "market": "US"}
+        if info.get("sector"):
+            e["sector"] = info["sector"]
+        if k in sp:
+            e["cls"] = "S&P 500"
+        if pm is not None:
+            e["price"] = {x: v for x, v in pm.items() if x != "weekly"}
+            wk = pm["weekly"]
+            e["weeks"] = {"close": [rnd(x, 2) for x in wk.tolist()], "short": [round(short_at(s_list, d.date())[0], 2) for d in wk.index] if s_list else []}
+        if sh is not None:
+            e["short"] = sh
+        if sc is not None:
+            e["score"] = sc
+        if k in borrow:
+            e["borrow"] = borrow[k]
+        if k in tracked:
+            v = shares.get(k) or {}
+            if v.get("inst") is not None:
+                e["inst_pct"] = rnd(v["inst"] * 100, 1)
+            e["inst"] = v.get("holders") or []
+        stocks[k] = e
+
+    week_dates = []
+    if scol is not None:
+        week_dates = [d.strftime("%Y-%m-%d") for d in scol.dropna().resample("W-FRI").last().dropna().iloc[-WEEKS:].index]
+
+    # 米国株ベスト5: S&P 500 から、日本株と同じ条件(売買代金は1億ドル以上)
+    cands = []
+    for k in sp:
+        e = stocks.get(k, {})
+        sc, sh, pm = e.get("score"), e.get("short"), e.get("price")
+        if not sc or not pm or sh is None or "trend" not in sc["parts"]:
+            continue
+        if sh["d13"] > 0.2 or sh["d4"] > 0.2 or sc["parts"]["trend"] <= 0 or (pm.get("turnover") or 0) < 100:
+            continue
+        cands.append((sc["total"], pm.get("rel13") or 0, k))
+    cands.sort(reverse=True)
+    top5 = [k for *_, k in cands[:5]]
+
+    try:
+        tic = us.fetch_tic(get, log, ((previous or {}).get("us") or {}).get("tic"))
+    except Exception as e:  # noqa: BLE001
+        log(f"TIC を読めませんでした: {e}")
+        tic = ((previous or {}).get("us") or {}).get("tic") or []
+
+    out = {
+        "asof": asof.isoformat(),
+        "short_range": [periods[0][0].isoformat(), asof.isoformat()],
+        "price_date": close[scol.name].dropna().index[-1].strftime("%Y-%m-%d"),
+        "bench": {x: rnd(v, 1) for x, v in bench.items()},
+        "week_dates": week_dates,
+        "borrow": bool(borrow),
+        "borrow_base": borrow_base,
+        "top5": top5,
+        "tic": tic,
+        "holdings": list(us_hold),
+        "watch": list(us_watch),
+    }
+    log(f"米国株: {len(stocks)} 銘柄、ベスト5: {', '.join(top5)}")
+    return out, stocks, borrow
 
 
 # ---------------------------------------------------------------------------
@@ -834,7 +988,7 @@ def main():
         problems.append("market")
 
     # 株価(必須)
-    close, volume = fetch_prices(price_codes)
+    close, volume = fetch_prices([f"{c}.T" for c in price_codes] + [TOPIX_ETF])
     tcol = close.get(TOPIX_ETF)
     topix_m = {}
     if tcol is not None:
@@ -859,13 +1013,27 @@ def main():
     borrow, borrow_asof, borrow_past, borrow_base = {}, None, {}, None
     try:
         borrow_asof, borrow = fetch_borrow()
-        borrow_past = borrow_history(borrow, price_codes, datetime.now(JST).date())
         # 借りにくさの基準にする「普通の貸株料」: TOPIX500 の中央値(大型株でも年1%前後かかる)
         base = sorted(borrow[c]["fee"] for c in universe if c in borrow)
         borrow_base = base[len(base) // 2] if base else None
     except Exception as e:  # noqa: BLE001 — 参考値なので、取れなくても残りで作る
         log(f"貸株料を読めませんでした: {e}")
         problems.append("borrow")
+
+    # 米国株(失敗しても日本株だけで作る)
+    try:
+        us_out, us_stocks, us_borrow = build_us(previous)
+    except Exception as e:  # noqa: BLE001
+        log(f"米国株のデータを作れませんでした: {e}")
+        us_out, us_stocks, us_borrow = None, {}, {}
+        problems.append("us")
+    if borrow or us_borrow:
+        # 週ごとの貸株料の履歴は日本株と米国株で1つのファイルにまとめる(コードが重ならない)
+        all_borrow = {**borrow, **us_borrow}
+        borrow_past = borrow_history(all_borrow, price_codes + list(us_stocks), datetime.now(JST).date())
+        for code, e in us_stocks.items():
+            if code in us_borrow:
+                e["borrow"] = with_borrow_change(us_borrow[code], borrow_past.get(code))
 
     d4, d13, d26 = asof - timedelta(days=28), asof - timedelta(days=91), asof - timedelta(days=182)
     codes = list(dict.fromkeys(price_codes + list(series)))
@@ -900,13 +1068,7 @@ def main():
         if sc is not None:
             e["score"] = sc
         if code in borrow:
-            b = dict(borrow[code])
-            f4, f13 = borrow_past.get(code, (None, None))
-            if f4 is not None:
-                b["d4"] = round(b["fee"] - f4, 2)
-            if f13 is not None:
-                b["d13"] = round(b["fee"] - f13, 2)
-            e["borrow"] = b
+            e["borrow"] = with_borrow_change(borrow[code], borrow_past.get(code))
         # 週次の株価と空売り残高(チャート用)。持ち株・ウォッチ・TOPIX500 のみ
         if pm is not None:
             wk = pm["weekly"]
@@ -956,6 +1118,11 @@ def main():
         "top5": top5,
         "market": market,
     }
+    if us_out is not None:
+        out["us"] = us_out
+        out["holdings"] += [c for c in us_out.pop("holdings") if c not in out["holdings"]]
+        out["watch"] += [c for c in us_out.pop("watch") if c not in out["watch"]]
+        stocks.update(us_stocks)
     head = json.dumps(out, ensure_ascii=False, separators=(",", ":"))[:-1]
     lines = [head + ',"stocks":{']
     items = sorted(stocks.items())
@@ -964,7 +1131,7 @@ def main():
     OUT_PATH.write_text("\n".join(lines) + "\n", encoding="utf-8")
     top5_text = ", ".join(f"{c} {stocks[c]['name']}" for c in top5)
     log(f"wrote {OUT_PATH} ({len(stocks)} 銘柄、ベスト5: {top5_text})")
-    for c in tracked:
+    for c in tracked + [c for c in us_stocks if c in out["holdings"] + out["watch"]]:
         e = stocks.get(c, {})
         log(f"  {c} {e.get('name')}: {e.get('score', {}).get('label')} {e.get('score', {}).get('total')} short={e.get('short')} borrow={e.get('borrow')}")
 

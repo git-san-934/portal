@@ -17,15 +17,18 @@ https://git-san-934.github.io/portal/foreign-flow/
   - 売りの圧力・買いの圧力の点数、判定の理由
   - 株価と空売り残高の26週チャート、空売りしている機関の一覧、大量保有報告書(EDINET キーがあるとき)
   - 貸株料(年率)と借りられる株数(Interactive Brokers、参考値。スコアには入れない)
+- 米国株: 持ち株の米国株・ウォッチリスト・S&P 500(米国株ベスト5つき)。米国には日本のような公表がないので、
+  FINRA の空売り残高(浮動株比、月2回)、S&P 500 比の騰落率、主な機関投資家(13F)、米財務省 TIC の海外投資家の米国株の月次売買で代用
 - 判定の仕組み(計算式)
 
 ## 銘柄の追加
 
-- ページの「銘柄を追加」に銘柄コードを入れると、その銘柄が一覧とカードに加わります。
+- ページの「銘柄を追加」に銘柄コード(米国株はティッカー、例: AAPL、BRK.B)を入れると、その銘柄が一覧とカードに加わります。
   追加した銘柄は、閲覧しているブラウザの localStorage にだけ保存します。
-  表示できるのは `flow.json` にある銘柄(TOPIX 500、持ち株、ウォッチリスト、空売りの報告がある銘柄)です
+  表示できるのは `flow.json` にある銘柄(TOPIX 500、S&P 500、持ち株、ウォッチリスト、空売りの報告がある銘柄)です
 - どの端末でも毎日追跡したい銘柄は `data/watchlist.json` の `stocks` に `{ "code": "2201", "name": "森永製菓" }` の形で追加します
-- 持ち株は `holdings/data/check.json` の日本株を自動で読みます(米国株は対象外)
+  (米国株は `{ "code": "TSLA", "name": "テスラ" }`)
+- 持ち株は `holdings/data/check.json` の日本株(円建て)と米国株(米ドル建て)を自動で読みます
 
 ## データについて
 
@@ -41,6 +44,13 @@ https://git-san-934.github.io/portal/foreign-flow/
   - 大量保有報告書: EDINET API(任意)
   - 貸株料・借りられる株数: Interactive Brokers の公開FTP(`ftp3.interactivebrokers.com`、ユーザー `shortstock`、`japan.txt`)。
     取れなくても残りで作ります。週ごとの貸株料は `data/borrow_hist.json` に残し、4週・13週の変化に使います
+  - 米国株(`scripts/us_flow.py`。取れなくても日本株だけで作ります)
+    - 空売り残高: FINRA の Equity Short Interest(`cdn.finra.org/equity/otcmarket/biweekly/shrtYYYYMMDD.csv`、15日と月末時点、約8営業日後に公表)。
+      株数を浮動株数で割って割合にします。ファイルは Actions のキャッシュで使い回します
+    - 浮動株数・機関投資家の保有比率・上位の機関投資家(13F): Yahoo Finance。浮動株数は `data/us_shares.json` にためて月1回取り直します
+    - S&P 500 の銘柄: GitHub の datasets/s-and-p-500-companies
+    - 貸株料: Interactive Brokers の `usa.txt`
+    - 海外投資家の米国株の売買: 米財務省 TIC の SLT Table 1(`ticdata.treasury.gov/Publish/slt_table1.txt`、月次・約7週遅れ)
 - 大量保有報告書を使うには、EDINET で API キー(無料)を発行し、リポジトリの
   Settings → Secrets and variables → Actions に `EDINET_API_KEY` という名前で登録します。
   未登録なら大量保有の点数を使わずに判定します。読み取った報告は `data/edinet_cache.json` に保存します
@@ -52,4 +62,6 @@ https://git-san-934.github.io/portal/foreign-flow/
 - `assets/style.css` — スタイル(portal / holdings と同じデザイントークン)
 - `assets/app.js` — データ読み込み・銘柄追加・チャート描画
 - `scripts/fetch_flow.py` — 公開データを集めて `data/flow.json` を作るスクリプト
+- `scripts/us_flow.py` — 米国株のデータ(FINRA・TIC・浮動株数)を集める部分
+- `data/us_shares.json` — 米国株の浮動株数などのキャッシュ(自動生成)
 - `data/watchlist.json` — 持ち株以外に毎日追跡する銘柄
