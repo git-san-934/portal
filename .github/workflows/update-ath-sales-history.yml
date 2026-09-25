@@ -4,7 +4,7 @@ name: 過去最高値ブレイク 売上履歴(EDINET)
 # それまでの結果をコミットし、次の実行で続きを取る。
 on:
   schedule:
-    - cron: "0 20 * * 6" # 毎週日曜 5:00 JST(新しく出た有価証券報告書を追加)
+    - cron: "0 5 * * 1-5" # 平日 14:00 JST(新しく出た報告書を追加。一覧の更新 16:30 より前)
   workflow_dispatch:
   pull_request:
     paths:
@@ -40,7 +40,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add ath-breakout/data/edinet_docs.json ath-breakout/data/sales_history.json 2>/dev/null || true
+          git add ath-breakout/data/edinet_docs.json ath-breakout/data/sales_history.json ath-breakout/data/buyback.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "変更なし"
             exit 0
