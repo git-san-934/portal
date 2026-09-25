@@ -255,6 +255,8 @@ th:first-child, td:first-child { text-align: left; }
   cursor: pointer;
 }
 
+.dialog-h3 { font-size: 0.95rem; margin: 1rem 0 0.3rem; }
+
 footer {
   margin-top: 2rem;
   text-align: center;

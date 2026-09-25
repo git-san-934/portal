@@ -47,6 +47,8 @@ RATE_NEAR = -0.05  # ブレイク価格以上で、その後の最高値から�
 RATE_CHECK = [20, 40, 60]  # 検証: ブレイクから1・2・3ヶ月後に判定し、そこから1年後(250営業日)の成績を見る
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
+SALES_RECENT_DAYS = 100  # この日数(暦日)以内にブレイクした銘柄の売上を取る(画面の「いま最高値を更新中」用)
+SALES_REFRESH_DAYS = 7  # 取得してからこの日数たつまでは取り直さない
 JST = timezone(timedelta(hours=9))
 
 
@@ -291,6 +293,45 @@ def summarize_rating(samples):
     return out
 
 
+def fetch_sales(codes, today):
+    """年次の売上高(yfinance の損益計算書、直近4〜5期)。data/sales.json にためて、古いものだけ取り直す"""
+    path = DATA_DIR / "sales.json"
+    try:
+        cache = json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+    fetched = 0
+    for code in sorted(codes):
+        old = cache.get(code)
+        if old and old.get("fetched", "") >= (today - timedelta(days=SALES_REFRESH_DAYS)).isoformat():
+            continue
+        try:
+            inc = yf.Ticker(f"{code}.T").income_stmt
+            row = inc.loc["Total Revenue"].dropna().sort_index() if "Total Revenue" in inc.index else pd.Series(dtype=float)
+            annual = [[d.strftime("%Y-%m"), float(v)] for d, v in row.items() if v > 0]
+        except Exception as e:  # noqa: BLE001
+            print(f"  売上 {code}: {e}", file=sys.stderr)
+            continue
+        cache[code] = {"fetched": today.isoformat(), "annual": annual}
+        fetched += 1
+        time.sleep(0.5)
+    path.write_text(
+        "{\n" + ",\n".join(f"  {json.dumps(k)}: {json.dumps(v, separators=(',', ':'))}" for k, v in sorted(cache.items())) + "\n}\n",
+        encoding="utf-8",
+    )
+    print(f"売上: {len(codes)} 銘柄中 {fetched} 銘柄を新たに取得")
+    return cache
+
+
+def sales_summary(entry):
+    """画面用: 決算期ごとの売上と、直近期の前年比"""
+    annual = (entry or {}).get("annual") or []
+    if not annual:
+        return None
+    growth = r4(annual[-1][1] / annual[-2][1] - 1) if len(annual) >= 2 and annual[-2][1] > 0 else None
+    return {"annual": annual, "growth": growth}
+
+
 def main():
     universe = load_universe()
     codes = [u["code"] for u in universe]
@@ -348,6 +389,18 @@ def main():
 
     print(f"{ok}/{len(universe)} 銘柄を取得、ブレイク {len(all_events)} 件")
     print_summary(all_events)
+
+    today = datetime.now(JST).date()
+    since = (today - timedelta(days=SALES_RECENT_DAYS)).isoformat()
+    recent = {e["code"] for e in all_events if e["date"] >= since}
+    try:
+        sales = fetch_sales(recent, today)
+    except Exception as e:  # noqa: BLE001 — 売上が取れなくても株価のデータは更新する
+        print(f"売上を取得できませんでした: {e}", file=sys.stderr)
+        sales = {}
+    for st in stocks:
+        if st["code"] in recent:
+            st["sales"] = sales_summary(sales.get(st["code"]))
     rating = summarize_rating(samples)
     if ok < len(universe) * MIN_OK_RATIO:
         print("取得できた銘柄が少なすぎるため events.json を更新しません", file=sys.stderr)
