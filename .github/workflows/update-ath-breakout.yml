@@ -1,0 +1,58 @@
+name: 過去最高値ブレイクデータ更新
+
+on:
+  schedule:
+    - cron: "30 7 * * 1-5" # 平日 16:30 JST(大引け後の終値)
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - ath-breakout/scripts/**
+      - .github/workflows/update-ath-breakout.yml
+  pull_request:
+    paths:
+      - ath-breakout/scripts/**
+      - .github/workflows/update-ath-breakout.yml
+
+permissions:
+  contents: write # events.json などをコミットする
+  actions: write # 更新後に Pages のデプロイを起動する
+
+concurrency:
+  group: ath-breakout-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 60
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r ath-breakout/scripts/requirements.txt
+      - name: 株価を取得してブレイクを判定
+        run: python ath-breakout/scripts/fetch_ath.py
+      # PR では取得・判定できるかの確認だけ行い、コミット・デプロイはしない
+      - name: データをコミット
+        id: commit
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A ath-breakout/data
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "過去最高値ブレイクデータ更新 ($(TZ=Asia/Tokyo date +%F))"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
+      - name: GitHub Pages を再デプロイ
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

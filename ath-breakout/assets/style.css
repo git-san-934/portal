@@ -1,0 +1,246 @@
+:root {
+  --bg: #f7f5f0;
+  --card-bg: #ffffff;
+  --text: #23201b;
+  --text-sub: #6b645a;
+  --border: #e5e0d6;
+  --grid: #eeeae2;
+  --accent: #c8502d;
+  --band: rgba(200, 80, 45, 0.16);
+  --up: #c8102e;
+  --down: #1a5fb4;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1a17;
+    --card-bg: #262320;
+    --text: #f0ece4;
+    --text-sub: #a89f92;
+    --border: #38342e;
+    --grid: #322e29;
+    --accent: #e0662f;
+    --band: rgba(224, 102, 47, 0.22);
+    --up: #ff6b81;
+    --down: #6fa8ff;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  padding: 2rem 1.25rem 4rem;
+}
+
+.wrap { max-width: 56rem; margin: 0 auto; }
+
+header { text-align: center; margin-bottom: 1rem; }
+h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
+h2 { font-size: 1.05rem; }
+.intro { color: var(--text-sub); font-size: 0.9rem; margin: 0.4rem auto 0; max-width: 40rem; }
+.updated { font-size: 0.8rem; margin-top: 0.3rem; }
+.updated.error { color: var(--up); }
+
+.controls {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.5rem;
+  margin-top: 1rem;
+}
+.control-group { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; justify-content: center; }
+.control-label { font-size: 0.8rem; color: var(--text-sub); font-weight: 700; }
+.toggle { display: flex; flex-wrap: wrap; gap: 0.4rem; justify-content: center; }
+.toggle-btn {
+  padding: 0.45rem 0.85rem;
+  min-height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text-sub);
+  font-size: 0.8rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.toggle-btn.active { color: #fff; background: var(--accent); border-color: var(--accent); }
+.toggle-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+
+main { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 1rem; font-variant-numeric: tabular-nums; }
+
+/* ---------- 要約タイル ---------- */
+.tiles { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 0.75rem; }
+.tile {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 0.8rem 0.9rem;
+  min-width: 0;
+}
+.tile dt { font-size: 0.75rem; color: var(--text-sub); line-height: 1.4; }
+.tile dd { font-size: 1.6rem; font-weight: 700; line-height: 1.3; }
+.tile .sub { font-size: 0.72rem; color: var(--text-sub); }
+
+.panel {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 1rem 1.1rem;
+  min-width: 0;
+}
+.panel-head { display: flex; justify-content: space-between; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.note { font-size: 0.78rem; color: var(--text-sub); margin: 0.2rem 0 0.6rem; }
+
+/* ---------- 表 ---------- */
+.table-scroll { overflow-x: auto; }
+table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
+th, td { padding: 0.4rem 0.5rem; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--grid); }
+th { font-size: 0.72rem; color: var(--text-sub); font-weight: 700; }
+th:first-child, td:first-child { text-align: left; }
+.stats tbody th { text-align: left; color: var(--text); font-size: 0.85rem; }
+.stats .group { border-left: 1px solid var(--grid); }
+.list td.name, .list th.name { text-align: left; }
+.list tbody tr { cursor: pointer; }
+.list tbody tr:hover, .list tbody tr:focus-visible { background: var(--bg); outline: none; }
+.list .code { font-size: 0.72rem; color: var(--text-sub); margin-left: 0.3rem; }
+.pct.up { color: var(--up); }
+.pct.down { color: var(--down); }
+.muted { color: var(--text-sub); }
+.empty { text-align: center; color: var(--text-sub); padding: 1rem; }
+
+.more-btn {
+  display: block;
+  margin: 0.75rem auto 0;
+  padding: 0.45rem 1.2rem;
+  min-height: 2.75rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--card-bg);
+  color: var(--text);
+  font-weight: 700;
+  cursor: pointer;
+}
+
+/* ---------- チャート ---------- */
+.chart-box { position: relative; touch-action: pan-y; cursor: crosshair; margin-bottom: 1.2rem; }
+.path-box { aspect-ratio: 2 / 1; }
+.stock-box { aspect-ratio: 2 / 1; }
+.chart-box svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.chart-line { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.chart-band { fill: var(--band); stroke: none; }
+.grid-line { stroke: var(--grid); stroke-width: 1; vector-effect: non-scaling-stroke; }
+.base-line { stroke: var(--text-sub); stroke-width: 1; stroke-dasharray: 3 3; vector-effect: non-scaling-stroke; opacity: 0.7; }
+.tick-label, .x-label {
+  position: absolute;
+  font-size: 0.66rem;
+  line-height: 1.2;
+  color: var(--text-sub);
+  pointer-events: none;
+  white-space: nowrap;
+}
+.tick-label { left: 0; transform: translateY(-100%); background: color-mix(in srgb, var(--card-bg) 75%, transparent); padding-right: 0.2rem; }
+.x-label { top: 100%; transform: translateX(-50%); padding-top: 0.2rem; }
+.x-label.first { transform: none; }
+.event-dot {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  margin: -4px 0 0 -4px;
+  border-radius: 50%;
+  background: var(--accent);
+  box-shadow: 0 0 0 2px var(--card-bg);
+  pointer-events: none;
+}
+.crosshair { position: absolute; top: 0; bottom: 0; width: 0; border-left: 1px solid var(--text-sub); opacity: 0.55; pointer-events: none; }
+.dot {
+  position: absolute;
+  width: 10px;
+  height: 10px;
+  margin: -5px 0 0 -5px;
+  border-radius: 50%;
+  background: var(--text);
+  box-shadow: 0 0 0 2px var(--card-bg);
+  pointer-events: none;
+}
+.tooltip {
+  position: absolute;
+  top: -0.3rem;
+  transform: translate(-50%, -100%);
+  background: var(--text);
+  color: var(--bg);
+  font-size: 0.72rem;
+  line-height: 1.4;
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.4rem;
+  white-space: pre;
+  pointer-events: none;
+  z-index: 2;
+}
+.tooltip.edge-left { transform: translate(0, -100%); }
+.tooltip.edge-right { transform: translate(-100%, -100%); }
+
+.legend { font-size: 0.75rem; color: var(--text-sub); display: flex; align-items: center; gap: 0.35rem; flex-wrap: wrap; }
+.swatch { display: inline-block; width: 1rem; height: 0.6rem; margin-left: 0.5rem; }
+.swatch:first-child { margin-left: 0; }
+.swatch.line { height: 2px; background: var(--accent); }
+.swatch.band { background: var(--band); }
+.swatch.dot-mark { width: 8px; height: 8px; border-radius: 50%; background: var(--accent); }
+
+/* ---------- 銘柄チャートのダイアログ ---------- */
+.stock-dialog {
+  margin: auto;
+  width: min(52rem, calc(100% - 1.5rem));
+  max-height: calc(100% - 2rem);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  background: var(--card-bg);
+  color: var(--text);
+  padding: 1rem 1.1rem 1.2rem;
+  box-shadow: var(--shadow);
+  font-variant-numeric: tabular-nums;
+}
+.stock-dialog::backdrop { background: rgba(0, 0, 0, 0.45); }
+.dialog-head { display: flex; justify-content: space-between; align-items: flex-start; gap: 0.5rem; margin-bottom: 1.4rem; }
+.dialog-title { font-weight: 700; font-size: 1.05rem; }
+.dialog-sub { font-size: 0.78rem; color: var(--text-sub); }
+.dialog-sub a { color: var(--accent); }
+.close-btn {
+  width: 2.75rem;
+  height: 2.75rem;
+  flex-shrink: 0;
+  border-radius: 50%;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text);
+  font-size: 1.2rem;
+  cursor: pointer;
+}
+
+footer {
+  margin-top: 2rem;
+  text-align: center;
+  font-size: 0.78rem;
+  color: var(--text-sub);
+  line-height: 1.8;
+}
+footer a { color: var(--accent); }
+
+@media (max-width: 640px) {
+  body { padding: 1.25rem 0.75rem 3rem; }
+  .tiles { gap: 0.4rem; }
+  .tile { padding: 0.55rem 0.6rem; border-radius: 0.7rem; }
+  .tile dd { font-size: 1.15rem; }
+  .panel { padding: 0.8rem 0.75rem; }
+  table { font-size: 0.78rem; }
+  th, td { padding: 0.35rem 0.35rem; }
+  .path-box, .stock-box { aspect-ratio: 4 / 3; }
+  .tick-label, .x-label { font-size: 0.58rem; }
+}

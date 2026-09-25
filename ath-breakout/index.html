@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>過去最高値ブレイクのその後</title>
+  <meta name="description" content="日本株が過去最高値を更新したあと、株価がどう動いたかを過去のデータで検証するページ" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20260925a" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>過去最高値ブレイクのその後</h1>
+      <p class="intro">時価総額上位の日本株が「久しぶりに過去最高値を更新した日」を探し、そのあと株価がどう動いたかを集計します。TOPIXと比べて本当に強かったのかも見られます。</p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <div class="controls">
+      <div class="control-group">
+        <span class="control-label" id="gap-label">前回の最高値から</span>
+        <div id="gap-toggle" class="toggle" role="group" aria-labelledby="gap-label"></div>
+      </div>
+      <div class="control-group">
+        <span class="control-label" id="era-label">ブレイクした時期</span>
+        <div id="era-toggle" class="toggle" role="group" aria-labelledby="era-label"></div>
+      </div>
+      <div class="control-group">
+        <span class="control-label" id="size-label">対象</span>
+        <div id="size-toggle" class="toggle" role="group" aria-labelledby="size-label"></div>
+      </div>
+    </div>
+
+    <main id="main" hidden>
+      <section class="tiles" id="tiles" aria-label="要約"></section>
+
+      <section class="panel">
+        <h2>ブレイク後の騰落率</h2>
+        <p class="note">ブレイク日の終値から、それぞれの期間あとの終値までの騰落率です。「TOPIX比」は同じ期間のTOPIX連動ETF(1306)の騰落率を差し引いた値です。</p>
+        <div class="table-scroll"><table class="stats" id="stats"></table></div>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>ブレイク前後の平均的な値動き</h2>
+          <div id="path-toggle" class="toggle" role="group" aria-label="値動きの種類"></div>
+        </div>
+        <p class="note" id="path-note"></p>
+        <div class="chart-box path-box" id="path-chart"></div>
+        <p class="legend"><span class="swatch line"></span>中央値 <span class="swatch band"></span>半数が入る範囲(25〜75%)</p>
+      </section>
+
+      <section class="panel">
+        <h2>いま最高値を更新中の銘柄</h2>
+        <p class="note">直近3ヶ月以内にブレイクした銘柄です。銘柄を押すとチャートが開きます。</p>
+        <div class="table-scroll"><table class="list" id="recent"></table></div>
+      </section>
+
+      <section class="panel">
+        <h2>ブレイクの一覧</h2>
+        <p class="note">上の条件にあうブレイクを新しい順に並べています。銘柄を押すとチャートが開きます。</p>
+        <div class="table-scroll"><table class="list" id="events"></table></div>
+        <button type="button" class="more-btn" id="more" hidden>もっと見る</button>
+      </section>
+    </main>
+
+    <footer>
+      判定のしかた: 分割調整済みの終値で、データ開始から約3年(750営業日)より後に、それまでの最高値を上回った日のうち、
+      前回の最高値から一定期間以上あいたものを「ブレイク」として数えています。<br />
+      データ提供元: Yahoo Finance(yfinance 経由)。日本株は多くが2000年前後からのデータのため、それより前(バブル期など)の高値は含みません。
+      配当は含まず株価だけで比べています。今上場している銘柄だけが対象のため、上場廃止になった銘柄の結果は入っていません(実際より良く見えやすい点に注意)。<br />
+      投資助言ではありません。売買判断はご自身の責任で行ってください。<br />
+      <a href="../">← アプリ一覧に戻る</a>
+    </footer>
+  </div>
+
+  <dialog id="stock-dialog" class="stock-dialog">
+    <div class="dialog-head">
+      <div>
+        <div class="dialog-title" id="dialog-title"></div>
+        <div class="dialog-sub" id="dialog-sub"></div>
+      </div>
+      <button type="button" class="close-btn" id="dialog-close" aria-label="閉じる">×</button>
+    </div>
+    <div class="chart-box stock-box" id="stock-chart"></div>
+    <p class="legend"><span class="swatch dot-mark"></span>ブレイクした日</p>
+    <div class="table-scroll"><table class="list" id="stock-events"></table></div>
+  </dialog>
+
+  <script src="assets/app.js?v=20260925a"></script>
+</body>
+</html>
