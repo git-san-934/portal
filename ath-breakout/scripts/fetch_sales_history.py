@@ -38,6 +38,7 @@ EXCLUDE_RE = re.compile(r"Cost|Ratio|Per|Loss|Profit|Growth|Expense")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)Duration(_NonConsolidatedMember)?$")
 
 START = time.monotonic()
+VERSION = 2  # sales_history.json の読み方の版。上げると全部読み直す
 
 
 def log(*a):
@@ -147,8 +148,13 @@ def parse_rows(rows):
         cands = {k: v for k, v in found.items() if k[1] == nonconsolidated and v.get(0)}
         if cands:
             # 売上高にあたる要素のうち、当期の値がいちばん大きいもの(内訳の項目を避ける)
-            return max(cands.values(), key=lambda v: v[0])
-    return {}
+            (name, _), vals = max(cands.items(), key=lambda kv: kv[1][0])
+            if nonconsolidated:
+                # 連結の売上が見つからず単体を使うとき、連結側にどんな要素があったかを残す(要素名の取りこぼし調査用)
+                cons = sorted({e.split(":")[-1] for e, c, _ in rows if c == "CurrentYearDuration" and "SummaryOfBusinessResults" in e})
+                log(f"    単体の {name} を使用。連結の要素: {', '.join(cons[:12]) or 'なし'}")
+            return vals, ("単体:" if nonconsolidated else "連結:") + name
+    return {}, None
 
 
 def read_csv(key, doc_id):
@@ -165,7 +171,7 @@ def read_csv(key, doc_id):
     return rows
 
 
-XBRL_RE = re.compile(r"<(jpcrp_cor:\w+SummaryOfBusinessResults)\b([^>]*)>([^<]*)<")
+XBRL_RE = re.compile(r"<([\w-]+:\w+SummaryOfBusinessResults)\b([^>]*)>([^<]*)<")
 CTXREF_RE = re.compile(r'contextRef="([^"]+)"')
 
 
@@ -188,6 +194,8 @@ def collect_sales(key, docs):
     opened = 0
     for code in sorted(docs):
         rec = out.setdefault(code, {"annual": {}, "avail": {}, "read": []})
+        if rec.get("v") != VERSION:  # 読み方を変えたら読み直す
+            rec.update({"v": VERSION, "annual": {}, "src": {}, "read": []})
         lst = sorted(docs[code], key=lambda x: x[0], reverse=True)
         # 提出日 = その決算期の売上が出た日(開かない報告書の分も記録できる)
         for submit, period_end, _, _ in lst:
@@ -206,7 +214,9 @@ def collect_sales(key, docs):
                 return out
             try:
                 rows = read_csv(key, doc_id) if csv else []
-                vals = parse_rows(rows) or parse_rows(read_xbrl(key, doc_id))
+                vals, src = parse_rows(rows)
+                if not vals:
+                    vals, src = parse_rows(read_xbrl(key, doc_id))
             except Exception as e:  # noqa: BLE001
                 log(f"  {code} {doc_id}: {e}")
                 continue
@@ -214,7 +224,9 @@ def collect_sales(key, docs):
             opened += 1
             for back, v in vals.items():
                 p = shift_years(period_end, back)
-                rec["annual"].setdefault(p, v)
+                if p not in rec["annual"]:
+                    rec["annual"][p] = v
+                    rec["src"][p] = src  # 成長率は同じ要素どうしで比べる(連結と単体を混ぜない)
             if not vals:
                 log(f"  {code} {doc_id}: 売上高が見つかりませんでした")
             if opened % 50 == 0:
