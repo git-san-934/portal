@@ -332,6 +332,21 @@ def sales_summary(entry):
     return {"annual": annual, "growth": growth}
 
 
+def financial_codes():
+    """銀行・保険など、売上高の代わりに「経常収益」を出している会社(有価証券報告書から集めた sales_history.json で判定)。
+    金利で売上の伸び方が大きく変わるので、画面の有望度の順位は他の業種と分けて付ける"""
+    try:
+        hist = json.loads((DATA_DIR / "sales_history.json").read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return set()
+    codes = set()
+    for code, rec in hist.items():
+        src = rec.get("src") or {}
+        if src and "OrdinaryIncome" in (src[max(src)] or ""):
+            codes.add(code)
+    return codes
+
+
 def main():
     universe = load_universe()
     codes = [u["code"] for u in universe]
@@ -398,9 +413,12 @@ def main():
     except Exception as e:  # noqa: BLE001 — 売上が取れなくても株価のデータは更新する
         print(f"売上を取得できませんでした: {e}", file=sys.stderr)
         sales = {}
+    financial = financial_codes()
     for st in stocks:
         if st["code"] in recent:
             st["sales"] = sales_summary(sales.get(st["code"]))
+        if st["code"] in financial or "銀行" in st["name"]:
+            st["financial"] = True
     rating = summarize_rating(samples)
     if ok < len(universe) * MIN_OK_RATIO:
         print("取得できた銘柄が少なすぎるため events.json を更新しません", file=sys.stderr)

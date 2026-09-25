@@ -93,6 +93,33 @@
     return td;
   }
 
+  // ---------- 有望度の順位(目安) ----------
+  // 過去の検証(2017〜2025年のブレイク)で時期をまたいで一貫したのは「売上の伸び」だけ(5%以上で1年後が約+4pt)。
+  // そこで売上の伸びの段階を主に、評価マーク(ブレイクが続いているか)を従にして点数をつける
+  function salesTier(g) {
+    if (g == null) return 0;
+    return g >= 0.2 ? 3 : g >= 0.1 ? 2 : g >= 0.05 ? 1 : 0;
+  }
+  const GRADE_POINT = { 上: 1, 中: 0.5, 下: 0 };
+  // 銀行・保険は金利で経常収益(売上にあたる数字)が大きく動くので、他の業種とは分けて順位をつける
+  const isFinancial = (s) => !!(s && (s.financial || s.name.includes("銀行")));
+  function promiseRanks(events) {
+    const score = (e) => {
+      const s = state.stockMap.get(e.code);
+      return salesTier(s?.sales?.growth) * 2 + (GRADE_POINT[gradeOf(e, s)] ?? 0);
+    };
+    const growth = (e) => state.stockMap.get(e.code)?.sales?.growth ?? -Infinity;
+    const byScore = (a, b) => score(b) - score(a) || growth(b) - growth(a) || a.code.localeCompare(b.code);
+    const ranks = new Map(); // code -> { rank, financial }
+    for (const financial of [false, true]) {
+      events
+        .filter((e) => isFinancial(state.stockMap.get(e.code)) === financial)
+        .sort(byScore)
+        .forEach((e, i) => ranks.set(e.code, { rank: i + 1, financial }));
+    }
+    return ranks;
+  }
+
   // ---------- 外した銘柄(この端末のブラウザにだけ保存) ----------
 
   function loadHidden() {
@@ -342,8 +369,11 @@
     const stock = (e) => state.stockMap.get(e.code);
     // 並び替えできる列。value が null の銘柄は、どちら向きでも一番下
     const GRADE_ORDER = { 上: 3, 中: 2, 下: 1 };
+    const ranks = promiseRanks([...byCode.values()].filter((e) => !isHidden(e.code)));
     const cols = [
       { label: "" },
+      // 並べるときは、銀行・保険以外の順位 → 銀行・保険の順位
+      { key: "rank", label: "有望度(目安)", value: (e) => (ranks.has(e.code) ? ranks.get(e.code).rank + (ranks.get(e.code).financial ? 10000 : 0) : null) },
       { key: "name", label: "銘柄", value: (e) => e.code },
       { key: "grade", label: "評価", value: (e) => GRADE_ORDER[gradeOf(e, stock(e))] ?? null },
       { key: "sales", label: "売上の伸び(前年比)", value: (e) => stock(e)?.sales?.growth ?? null },
@@ -368,7 +398,7 @@
     const rows = all.filter((e) => !isHidden(e.code));
     table.append(sortHeadRow(cols, state.recentSort, (k) => {
       // 同じ列をもう一度押すと向きを反対に。別の列は大きい(新しい)順から
-      state.recentSort = { key: k, dir: k === key ? -dir : k === "name" ? 1 : -1 };
+      state.recentSort = { key: k, dir: k === key ? -dir : k === "name" || k === "rank" ? 1 : -1 };
       renderRecent();
     }));
     const tbody = el("tbody");
@@ -387,13 +417,15 @@
       btn.addEventListener("keydown", (ev) => ev.stopPropagation());
       const td = el("td");
       td.append(btn);
-      tr.append(td, stockCell(e.code), gradeCell(gradeOf(e, s)), pctCell(s?.sales?.growth ?? null), buybackCell(e.code, latest), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
+      const r = ranks.get(e.code);
+      const rankTd = el("td", r && r.rank <= 3 && !r.financial ? "rank top" : "rank", r ? `${r.financial ? "銀行・保険 " : ""}${r.rank}位` : "—");
+      tr.append(td, rankTd, stockCell(e.code), gradeCell(gradeOf(e, s)), pctCell(s?.sales?.growth ?? null), buybackCell(e.code, latest), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
       tr.append(el("td", null, e.highs ? `${e.highs}日` : "—"), el("td", null, gapText(e.gap)));
       tr.append(pctCell(s ? s.last / e.price - 1 : null), pctCell(s ? s.from_ath : null));
       clickableRow(tr, e.code);
       tbody.append(tr);
     }
-    if (!rows.length) emptyRow(tbody, 11, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
+    if (!rows.length) emptyRow(tbody, 12, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
     table.append(tbody);
 
     const hiddenCodes = Object.keys(state.hidden).filter(isHidden);

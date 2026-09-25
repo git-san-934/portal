@@ -6,7 +6,7 @@
   <title>過去最高値ブレイクのその後</title>
   <meta name="description" content="日本株が過去最高値を更新したあと、株価がどう動いたかを過去のデータで検証するページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260926e" />
+  <link rel="stylesheet" href="assets/style.css?v=20260926g" />
 </head>
 <body>
   <div class="wrap">
@@ -53,7 +53,8 @@
       <section class="panel">
         <h2>いま最高値を更新中の銘柄</h2>
         <p class="note">直近3ヶ月以内にブレイクした銘柄を、最後に最高値を更新した日が新しい順に並べています(見出しを押すと、その項目で並び替えられます。もう一度押すと逆順)。「最初に更新した日」は、久しぶりに最高値を上抜けた日(ブレイク日)です。銘柄を押すとチャートが開きます。「売上の伸び」は直近の決算期の売上高の前年比です。「自社株買い」は、自社株買いの途中に毎月出す「自己株券買付状況報告書」(EDINET)が直近50日以内に出ていれば「実施中」としています。見なくてよくなった銘柄は「外す」で一覧から外せます(この端末だけに記録。また最高値を更新したら自動で戻ります。上の集計には影響しません)。</p>
-        <div class="table-scroll"><table class="list" id="recent"></table></div>
+        <p class="note">「有望度(目安)」は、この一覧の中での順位です。過去のブレイク(2017〜2025年)を調べて、時期をまたいで一貫して差が出たのは売上の伸びだけでした(前年比5%以上の銘柄は、1年後の成績が中央値で約4ポイント良い)。そこで売上の伸び(20%以上・10%以上・5%以上・それ未満の4段階)で大きく分け、同じ段階の中では評価マーク(上→中→下)、売上の伸びが大きい順に並べています。銀行・保険は金利で経常収益(売上にあたる数字)が大きく動くため、ほかの業種とは分けて「銀行・保険 1位」のように別に順位を付けています。差は小さく、売上が20%以上伸びていた銘柄でも、1年後に対象銘柄全体の平均を上回れたのは半分程度でした。将来の値動きの予測ではなく、見る順番の目安として使ってください。</p>
+      <div class="table-scroll"><table class="list" id="recent"></table></div>
         <p class="hidden-note" id="hidden-note" hidden></p>
       </section>
 
@@ -105,6 +106,6 @@
     </div>
   </dialog>
 
-  <script src="assets/app.js?v=20260926e"></script>
+  <script src="assets/app.js?v=20260926g"></script>
 </body>
 </html>
