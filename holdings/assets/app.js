@@ -486,6 +486,14 @@
     return wrap;
   }
 
+  // 東証の取引時間中(15:30 まで)に取った当日の値は終値ではないので、取得時刻を付けて表示する
+  function priceLabel(stock, lastDate) {
+    const g = book.generatedAt; // "2026-09-25T10:31+09:00"
+    if (curOf(stock) === "JPY" && g && g.slice(0, 10) === lastDate && g.slice(11, 16) < "15:30")
+      return `株価(${shortDate(lastDate)} ${g.slice(11, 16)}取得)`;
+    return `終値(${shortDate(lastDate)})`;
+  }
+
   function buildCard(stock, st, prices) {
     const card = el("article", "card");
     card.id = `s-${stock.code}`;
@@ -507,7 +515,7 @@
     const stats = el("dl", "stats");
     const items = st
       ? [
-          [`終値(${shortDate(st.lastDate)})`, priceFmt(st.last, curOf(stock)), "pct"],
+          [priceLabel(stock, st.lastDate), priceFmt(st.last, curOf(stock)), "pct"],
           ["前日比", pctText(st.change, 2), pctClass(st.change)],
           ["年初来高値比", pctText(st.fromHigh, 0), pctClass(st.fromHigh)],
           ["1年", pctText(st.y1), pctClass(st.y1)],
@@ -968,6 +976,7 @@
     book.stocks = stocks;
     book.series = series;
     book.fx = (prices && prices.fx) || {};
+    book.generatedAt = (prices && prices.generated_at) || null;
 
     let status = `チェック日: ${dateFmt(check.checked_on)}(${dateFmt(check.price_date)} 終値ベース)`;
     if (prices) {

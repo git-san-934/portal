@@ -45,11 +45,12 @@ def load_codes():
     ]
 
 
-def previous_codes():
-    """前回の prices.json に載っていた銘柄コード(新しく追加された銘柄の見分けに使う)"""
+def previous_rows():
+    """前回の prices.json に載っていた銘柄ごとの行数(新しく追加された銘柄や、上場1年未満の銘柄の見分けに使う)"""
     try:
-        return {s["code"] for s in json.loads(OUT_PATH.read_text(encoding="utf-8"))["stocks"]}
-    except (OSError, ValueError, KeyError):
+        stocks = json.loads(OUT_PATH.read_text(encoding="utf-8"))["stocks"]
+        return {s["code"]: sum(v is not None for v in s["close"]) for s in stocks}
+    except (OSError, ValueError, KeyError, TypeError):
         return None
 
 
@@ -133,7 +134,7 @@ def main():
     close = close.dropna(how="all", subset=[c for c in stock_cols if c in close.columns]).sort_index()
     dates = [d.strftime("%Y-%m-%d") for d in close.index]
 
-    prev = previous_codes()
+    prev = previous_rows()
     stocks = []
     problems = []
     missing = []
@@ -149,9 +150,14 @@ def main():
             print(f"  {code}: 新しい銘柄の株価が取れないため外します(ティッカー {col})", file=sys.stderr)
             missing.append(code)
             continue
-        if n < MIN_ROWS and not (prev is not None and code not in prev and n > 0):
-            # 上場から1年未満の新しい銘柄は行数が少なくても載せる
-            problems.append(f"{code}: only {n} rows")
+        # 上場から1年未満の銘柄は行数が少ない。新しく追加した銘柄は1日分でもあれば載せ、
+        # 前回も載っていた銘柄は前回の行数(最大 MIN_ROWS)を下回ったときだけ取得失敗とみなす
+        if prev is not None and code not in prev:
+            need = 1
+        else:
+            need = min(MIN_ROWS, prev[code]) if prev else MIN_ROWS
+        if n < need:
+            problems.append(f"{code}: only {n} rows (need {need})")
         entry = {"code": code, "close": values}
         if currency != "JPY":
             entry["currency"] = currency
