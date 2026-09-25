@@ -133,10 +133,12 @@
     a.colSpan = 3;
     const b = el("th", "group", "TOPIX比");
     b.colSpan = 2;
-    h1.append(a, b);
+    const c = el("th", "group", "2013年以降");
+    h1.append(a, b, c);
     const h2 = el("tr");
     ["評価", "中央値", "平均", "上がった割合"].forEach((t) => h2.append(el("th", null, t)));
     ["中央値", "勝った割合"].forEach((t, i) => h2.append(el("th", i === 0 ? "group" : null, t)));
+    h2.append(el("th", "group", "株価の中央値"));
     thead.append(h1, h2);
     const tbody = el("tbody");
     for (const g of ["上", "中", "下"]) {
@@ -149,6 +151,9 @@
       const xm = pctCell(st.exc_median);
       xm.classList.add("group");
       tr.append(xm, el("td", null, rateText(st.exc_win)));
+      const late = pctCell(r.grades[g]?.late?.median ?? null);
+      late.classList.add("group");
+      tr.append(late);
       tbody.append(tr);
     }
     table.append(thead, tbody);
