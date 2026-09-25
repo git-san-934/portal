@@ -43,6 +43,12 @@ JST = timezone(timedelta(hours=9))
 
 # ---------- 対象銘柄 ----------
 
+def norm_code(code):
+    """latest.json は JPX の5桁コード(例: 72030, 285A0)なので、Yahoo で使う4桁(7203, 285A)にそろえる"""
+    code = str(code).strip().removesuffix(".T")
+    return code[:4] if len(code) == 5 and code.endswith("0") else code
+
+
 def load_universe():
     cache = DATA_DIR / "universe.json"
     try:
@@ -56,7 +62,7 @@ def load_universe():
         ]
         items.sort(key=lambda it: it["market_cap"], reverse=True)
         universe = [
-            {"code": str(it["code"]).removesuffix(".T"), "name": it.get("name", ""),
+            {"code": norm_code(it["code"]), "name": it.get("name", ""),
              "market": it.get("market", ""), "market_cap": it["market_cap"]}
             for it in items[:UNIVERSE_SIZE]
         ]
@@ -67,7 +73,10 @@ def load_universe():
         return universe
     except Exception as e:  # noqa: BLE001
         print(f"latest.json を取得できませんでした({e})。前回の universe.json を使います", file=sys.stderr)
-        return json.loads(cache.read_text(encoding="utf-8"))
+        universe = json.loads(cache.read_text(encoding="utf-8"))
+        for u in universe:
+            u["code"] = norm_code(u["code"])
+        return universe
 
 
 # ---------- 株価取得 ----------
@@ -98,7 +107,7 @@ def download(codes):
         time.sleep(2)
     if not frames:
         raise RuntimeError("download failed")
-    close = pd.concat(frames, axis=1).sort_index()
+    close = pd.concat(frames, axis=1, sort=True).sort_index()
     close.columns = [str(c).removesuffix(".T") for c in close.columns]
     return close
 
