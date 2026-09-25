@@ -9,6 +9,7 @@
   data/buyback.json に銘柄ごとに書き出す(この報告書は公開期間が1年なので、直近1年分だけ)
 - 過去の自社株買いは、有価証券報告書のキャッシュフロー計算書「自己株式の取得による支出」(当期・前期)と
   親会社株主に帰属する当期純利益(5期分)から決算期ごとに記録する
+- 営業利益は損益計算書(当期・前期)から決算期ごとに記録する(「主要な経営指標等の推移」には無いことが多い)
 
 GitHub Actions(.github/workflows/update-ath-sales-history.yml)から実行される。
 時間がかかるので TIME_LIMIT で打ち切り、途中までの結果を保存して次回に続きを取る。
@@ -34,7 +35,7 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DOCS_PATH = DATA_DIR / "edinet_docs.json"
 OUT_PATH = DATA_DIR / "sales_history.json"
 BUYBACK_PATH = DATA_DIR / "buyback.json"
-SCAN_VERSION = 3  # 書類一覧から拾う書類を増やしたら上げる(全期間を見直す)
+SCAN_VERSION = 4  # 書類一覧から拾う書類を増やしたら上げる(全期間を見直す)
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-ath-breakout"}
 
@@ -45,10 +46,12 @@ EXCLUDE_RE = re.compile(r"Cost|Ratio|Per|Loss|Profit|Growth|Expense")
 BUYBACK_RE = re.compile(r"(PurchaseOfTreasury|PaymentsForPurchaseOfTreasury|RepurchaseOfTreasury)\w*(FinCF|Financing)\w*$")
 PROFIT_RE = re.compile(r"(ProfitLossAttributableToOwnersOfParent|NetIncomeLossAttributableToOwnersOfParent|NetIncomeLoss)\w*SummaryOfBusinessResults$")
 PROFIT_EXCLUDE_RE = re.compile(r"Per|Ratio|Comprehensive|Diluted|Basic")
+# 損益計算書の営業利益(J-GAAP: OperatingIncome、IFRS: OperatingProfitLossIFRS、米国基準: OperatingIncomeLossUSGAAP など)
+OP_RE = re.compile(r"^Operating(Income|Profit)(Loss)?(IFRS|USGAAP)?(SummaryOfBusinessResults)?$")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)Duration(_NonConsolidatedMember)?$")
 
 START = time.monotonic()
-VERSION = 3  # sales_history.json の読み方の版。上げると全部読み直す
+VERSION = 4  # sales_history.json の読み方の版。上げると全部読み直す
 
 
 def log(*a):
@@ -218,7 +221,7 @@ def read_csv(key, doc_id):
     return rows
 
 
-XBRL_RE = re.compile(r"<([\w-]+:\w+(?:SummaryOfBusinessResults|Treasury\w*))\b([^>]*)>([^<]*)<")
+XBRL_RE = re.compile(r"<([\w-]+:\w+(?:SummaryOfBusinessResults|Treasury\w*)|[\w-]+:Operating(?:Income|Profit)\w*)\b([^>]*)>([^<]*)<")
 CTXREF_RE = re.compile(r'contextRef="([^"]+)"')
 
 
@@ -241,8 +244,10 @@ def collect_sales(key, docs):
     opened = with_bb = 0
     for code in sorted(docs):
         rec = out.setdefault(code, {"annual": {}, "avail": {}, "read": []})
-        if rec.get("v") != VERSION:  # 読み方を変えたら読み直す
-            rec.update({"v": VERSION, "annual": {}, "src": {}, "read": [], "buyback": {}, "profit": {}})
+        if rec.get("v") == 3:  # 版3 → 4 は営業利益を足しただけなので、報告書を開き直して営業利益だけ取る
+            rec.update({"v": VERSION, "read": [], "op": {}})
+        elif rec.get("v") != VERSION:  # 読み方を変えたら読み直す
+            rec.update({"v": VERSION, "annual": {}, "src": {}, "read": [], "buyback": {}, "profit": {}, "op": {}})
         lst = sorted(docs[code], key=lambda x: x[0], reverse=True)
         # 提出日 = その決算期の売上が出た日(開かない報告書の分も記録できる)
         for submit, period_end, _, _ in lst:
@@ -253,8 +258,8 @@ def collect_sales(key, docs):
             if doc_id in rec["read"]:
                 continue
             covered = {shift_years(period_end, n) for n in range(5)}
-            if covered <= set(rec["annual"]) and period_end[:7] in rec["buyback"]:
-                continue  # 新しい決算期がない報告書は開かない(自社株買いは当期・前期分しかないので毎年開く)
+            if covered <= set(rec["annual"]) and period_end[:7] in rec["buyback"] and period_end[:7] in rec["op"]:
+                continue  # 新しい決算期がない報告書は開かない(自社株買い・営業利益は当期・前期分しかないので毎年開く)
             if out_of_time():
                 save(OUT_PATH, out)
                 log(f"時間切れ: 有価証券報告書を {opened} 件読んだところで止めます")
@@ -267,6 +272,7 @@ def collect_sales(key, docs):
                     vals, src = parse_rows(rows)
                 bb = pick(rows, BUYBACK_RE)
                 pf = pick(rows, PROFIT_RE, PROFIT_EXCLUDE_RE, largest=True)
+                op = pick(rows, OP_RE)
             except Exception as e:  # noqa: BLE001
                 log(f"  {code} {doc_id}: {e}")
                 continue
@@ -285,6 +291,11 @@ def collect_sales(key, docs):
                     rec["buyback"][p] = abs(bb.get(back, 0.0))
             for back, v in pf.items():
                 rec["profit"].setdefault(shift_years(period_end, back), v)
+            # 営業利益。載っていない(銀行など)ときは None として、開いたことだけ残す
+            rec["op"][period_end[:7]] = op.get(0)
+            for back, v in op.items():
+                if back and rec["op"].get(shift_years(period_end, back)) is None:
+                    rec["op"][shift_years(period_end, back)] = v
             if not vals:
                 log(f"  {code} {doc_id}: 売上高が見つかりませんでした")
             if opened % 50 == 0:
