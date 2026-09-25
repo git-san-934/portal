@@ -6,7 +6,7 @@
   <title>過去最高値ブレイクのその後</title>
   <meta name="description" content="日本株が過去最高値を更新したあと、株価がどう動いたかを過去のデータで検証するページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260925a" />
+  <link rel="stylesheet" href="assets/style.css?v=20260925b" />
 </head>
 <body>
   <div class="wrap">
@@ -52,8 +52,9 @@
 
       <section class="panel">
         <h2>いま最高値を更新中の銘柄</h2>
-        <p class="note">直近3ヶ月以内にブレイクした銘柄です。銘柄を押すとチャートが開きます。</p>
+        <p class="note">直近3ヶ月以内にブレイクした銘柄です。銘柄を押すとチャートが開きます。見なくてよくなった銘柄は「外す」で一覧から外せます(この端末だけに記録。また最高値を更新したら自動で戻ります。上の集計には影響しません)。</p>
         <div class="table-scroll"><table class="list" id="recent"></table></div>
+        <p class="hidden-note" id="hidden-note" hidden></p>
       </section>
 
       <section class="panel">
@@ -65,7 +66,7 @@
     </main>
 
     <footer>
-      判定のしかた: 分割調整済みの終値で、データ開始から約3年(750営業日)より後に、それまでの最高値を上回った日のうち、
+      判定のしかた: 分割調整済みの終値で、上場(データ開始)から約3ヶ月(60営業日)より後に、それまでの最高値を上回った日のうち、
       前回の最高値から一定期間以上あいたものを「ブレイク」として数えています。<br />
       データ提供元: Yahoo Finance(yfinance 経由)。日本株は多くが2000年前後からのデータのため、それより前(バブル期など)の高値は含みません。
       配当は含まず株価だけで比べています。今上場している銘柄だけが対象のため、上場廃止になった銘柄の結果は入っていません(実際より良く見えやすい点に注意)。<br />
@@ -87,6 +88,6 @@
     <div class="table-scroll"><table class="list" id="stock-events"></table></div>
   </dialog>
 
-  <script src="assets/app.js?v=20260925a"></script>
+  <script src="assets/app.js?v=20260925b"></script>
 </body>
 </html>

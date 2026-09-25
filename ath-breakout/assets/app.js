@@ -30,6 +30,7 @@
   const HORIZON_LABELS = { 5: "1週後", 20: "1ヶ月後", 60: "3ヶ月後", 120: "6ヶ月後", 250: "1年後" };
   const PAGE = 50;
   const RECENT_DAYS = 92; // 「いま最高値を更新中」とみなすブレイクからの日数(暦日)
+  const HIDDEN_KEY = "ath-breakout:hidden"; // 一覧から外した銘柄 { code: 外した時点の最高値日 }
 
   // チャート座標(SVG viewBox)。preserveAspectRatio="none" で横幅いっぱいに伸ばす
   const W = 1000;
@@ -48,6 +49,7 @@
     era: "all",
     size: 0,
     pathKind: "path",
+    hidden: loadHidden(),
     filtered: [],
     shown: PAGE,
   };
@@ -72,6 +74,29 @@
   }
   function pctCell(v) {
     return el("td", pctClass(v), pctText(v));
+  }
+
+  // ---------- 外した銘柄(この端末のブラウザにだけ保存) ----------
+
+  function loadHidden() {
+    try {
+      return JSON.parse(localStorage.getItem(HIDDEN_KEY)) || {};
+    } catch {
+      return {};
+    }
+  }
+  function saveHidden() {
+    try {
+      localStorage.setItem(HIDDEN_KEY, JSON.stringify(state.hidden));
+    } catch {
+      // 保存できなくても、開いている間は外したままにする
+    }
+  }
+  // 外したあとに最高値を更新していれば、また表示する
+  function isHidden(code) {
+    const at = state.hidden[code];
+    const s = state.stockMap.get(code);
+    return at != null && !(s && s.ath_date > at);
   }
 
   // ---------- 集計 ----------
@@ -214,19 +239,49 @@
       if (state.size && (state.rankMap.get(e.code) || Infinity) > state.size) continue;
       byCode.set(e.code, e);
     }
-    const rows = [...byCode.values()].sort((a, b) => (a.date < b.date ? 1 : -1));
-    table.append(headRow(["銘柄", "ブレイク日", "前回の最高値から", "ブレイク後", "最高値から"]));
+    const all = [...byCode.values()].sort((a, b) => (a.date < b.date ? 1 : -1));
+    const rows = all.filter((e) => !isHidden(e.code));
+    table.append(headRow(["", "銘柄", "ブレイク日", "前回の最高値から", "ブレイク後", "最高値から"]));
     const tbody = el("tbody");
     for (const e of rows) {
       const s = state.stockMap.get(e.code);
       const tr = el("tr");
-      tr.append(stockCell(e.code), el("td", null, dateFmt(e.date)), el("td", null, gapText(e.gap)));
+      const btn = el("button", "hide-btn", "外す");
+      btn.type = "button";
+      btn.setAttribute("aria-label", `${s ? s.name : e.code}を一覧から外す`);
+      btn.addEventListener("click", (ev) => {
+        ev.stopPropagation();
+        state.hidden[e.code] = s ? s.ath_date : e.date;
+        saveHidden();
+        renderRecent();
+      });
+      btn.addEventListener("keydown", (ev) => ev.stopPropagation());
+      const td = el("td");
+      td.append(btn);
+      tr.append(td, stockCell(e.code), el("td", null, dateFmt(e.date)), el("td", null, gapText(e.gap)));
       tr.append(pctCell(s ? s.last / e.price - 1 : null), pctCell(s ? s.from_ath : null));
       clickableRow(tr, e.code);
       tbody.append(tr);
     }
-    if (!rows.length) emptyRow(tbody, 5, "この条件にあう最近のブレイクはありません");
+    if (!rows.length) emptyRow(tbody, 6, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
     table.append(tbody);
+
+    const hiddenCodes = Object.keys(state.hidden).filter(isHidden);
+    const note = $("hidden-note");
+    note.textContent = "";
+    note.hidden = !hiddenCodes.length;
+    if (hiddenCodes.length) {
+      const names = hiddenCodes.map((c) => state.stockMap.get(c)?.name || c);
+      note.append(`外した銘柄 ${hiddenCodes.length}件(${names.slice(0, 5).join("、")}${names.length > 5 ? " ほか" : ""}) `);
+      const undo = el("button", "hide-btn", "すべて戻す");
+      undo.type = "button";
+      undo.addEventListener("click", () => {
+        state.hidden = {};
+        saveHidden();
+        renderRecent();
+      });
+      note.append(undo);
+    }
   }
 
   function renderEvents() {

@@ -116,6 +116,20 @@ th:first-child, td:first-child { text-align: left; }
 .muted { color: var(--text-sub); }
 .empty { text-align: center; color: var(--text-sub); padding: 1rem; }
 
+.hide-btn {
+  padding: 0.3rem 0.7rem;
+  min-height: 2.25rem;
+  border-radius: 999px;
+  border: 1px solid var(--border);
+  background: var(--bg);
+  color: var(--text-sub);
+  font-size: 0.75rem;
+  font-weight: 700;
+  cursor: pointer;
+}
+.hide-btn:hover, .hide-btn:focus-visible { color: var(--text); border-color: var(--text-sub); }
+.hidden-note { font-size: 0.78rem; color: var(--text-sub); margin-top: 0.6rem; text-align: right; }
+
 .more-btn {
   display: block;
   margin: 0.75rem auto 0;
