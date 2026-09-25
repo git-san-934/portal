@@ -6,7 +6,7 @@
   <title>過去最高値ブレイクのその後</title>
   <meta name="description" content="日本株が過去最高値を更新したあと、株価がどう動いたかを過去のデータで検証するページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260926b" />
+  <link rel="stylesheet" href="assets/style.css?v=20260926c" />
 </head>
 <body>
   <div class="wrap">
@@ -52,7 +52,7 @@
 
       <section class="panel">
         <h2>いま最高値を更新中の銘柄</h2>
-        <p class="note">直近3ヶ月以内にブレイクした銘柄を、最後に最高値を更新した日が新しい順に並べています。「最初に更新した日」は、久しぶりに最高値を上抜けた日(ブレイク日)です。銘柄を押すとチャートが開きます。見なくてよくなった銘柄は「外す」で一覧から外せます(この端末だけに記録。また最高値を更新したら自動で戻ります。上の集計には影響しません)。</p>
+        <p class="note">直近3ヶ月以内にブレイクした銘柄を、最後に最高値を更新した日が新しい順に並べています。「最初に更新した日」は、久しぶりに最高値を上抜けた日(ブレイク日)です。銘柄を押すとチャートが開きます。「売上の伸び」は直近の決算期の売上高の前年比です。見なくてよくなった銘柄は「外す」で一覧から外せます(この端末だけに記録。また最高値を更新したら自動で戻ります。上の集計には影響しません)。</p>
         <div class="table-scroll"><table class="list" id="recent"></table></div>
         <p class="hidden-note" id="hidden-note" hidden></p>
       </section>
@@ -98,8 +98,13 @@
     <div class="chart-box stock-box" id="stock-chart"></div>
     <p class="legend"><span class="swatch dot-mark"></span>ブレイクした日</p>
     <div class="table-scroll"><table class="list" id="stock-events"></table></div>
+    <div id="stock-sales-wrap" hidden>
+      <h3 class="dialog-h3">売上高の推移</h3>
+      <div class="table-scroll"><table class="list" id="stock-sales"></table></div>
+      <p class="note">出所: Yahoo Finance(yfinance 経由)の年次の損益計算書。直近4〜5期分です。</p>
+    </div>
   </dialog>
 
-  <script src="assets/app.js?v=20260926b"></script>
+  <script src="assets/app.js?v=20260926c"></script>
 </body>
 </html>

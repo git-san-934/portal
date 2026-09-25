@@ -303,7 +303,7 @@
     const athDate = (e) => e.last_high || state.stockMap.get(e.code)?.ath_date || e.date;
     const all = [...byCode.values()].sort((a, b) => athDate(b).localeCompare(athDate(a)) || b.date.localeCompare(a.date));
     const rows = all.filter((e) => !isHidden(e.code));
-    table.append(headRow(["", "銘柄", "評価", "最初に更新した日", "最後に更新した日", "更新した日数", "何年ぶりの高値", "最初の更新から", "最高値から"]));
+    table.append(headRow(["", "銘柄", "評価", "売上の伸び(前年比)", "最初に更新した日", "最後に更新した日", "更新した日数", "何年ぶりの高値", "最初の更新から", "最高値から"]));
     const tbody = el("tbody");
     for (const e of rows) {
       const s = state.stockMap.get(e.code);
@@ -320,13 +320,13 @@
       btn.addEventListener("keydown", (ev) => ev.stopPropagation());
       const td = el("td");
       td.append(btn);
-      tr.append(td, stockCell(e.code), gradeCell(gradeOf(e, s)), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
+      tr.append(td, stockCell(e.code), gradeCell(gradeOf(e, s)), pctCell(s?.sales?.growth ?? null), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
       tr.append(el("td", null, e.highs ? `${e.highs}日` : "—"), el("td", null, gapText(e.gap)));
       tr.append(pctCell(s ? s.last / e.price - 1 : null), pctCell(s ? s.from_ath : null));
       clickableRow(tr, e.code);
       tbody.append(tr);
     }
-    if (!rows.length) emptyRow(tbody, 9, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
+    if (!rows.length) emptyRow(tbody, 10, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
     table.append(tbody);
 
     const hiddenCodes = Object.keys(state.hidden).filter(isHidden);
@@ -567,6 +567,7 @@
     box.textContent = "";
     box.append(el("p", "empty", "読み込み中..."));
     renderStockEvents(code);
+    renderSales(s);
     if (!dialog.open) dialog.showModal();
     try {
       const res = await fetch(STOCK_URL(code));
@@ -618,6 +619,27 @@
       hoverYs: ys,
       tooltipFor: (i) => `${dateFmt(weekDate(i))}の週\n${priceFmt(vals[i])}`,
     });
+  }
+
+  const okuText = (v) => {
+    const oku = v / 1e8;
+    return oku >= 10000 ? `${numFmt.format(Math.round(oku / 1000) / 10)}兆円` : `${Math.round(oku).toLocaleString("ja-JP")}億円`;
+  };
+  function renderSales(s) {
+    const table = $("stock-sales");
+    table.textContent = "";
+    const annual = s?.sales?.annual || [];
+    $("stock-sales-wrap").hidden = !annual.length;
+    if (!annual.length) return;
+    table.append(headRow(["決算期", "売上高", "前年比"]));
+    const tbody = el("tbody");
+    annual.forEach(([period, v], i) => {
+      const tr = el("tr");
+      const prev = i > 0 ? annual[i - 1][1] : null;
+      tr.append(el("td", null, `${period.slice(0, 4)}年${Number(period.slice(5, 7))}月期`), el("td", null, okuText(v)), pctCell(prev ? v / prev - 1 : null));
+      tbody.prepend(tr);
+    });
+    table.append(tbody);
   }
 
   function renderStockEvents(code) {
