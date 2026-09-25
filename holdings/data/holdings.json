@@ -14,6 +14,9 @@
     {"code": "ADBE", "name": "アドビ", "ticker": "ADBE", "currency": "USD"},
     {"code": "CBRS", "name": "セレブラス", "ticker": "CBRS", "currency": "USD"},
     {"code": "CRCL", "name": "サークル", "ticker": "CRCL", "currency": "USD"},
-    {"code": "GLW", "name": "コーニング", "ticker": "GLW", "currency": "USD"}
+    {"code": "GLW", "name": "コーニング", "ticker": "GLW", "currency": "USD"},
+    {"code": "PLTR", "name": "パランティア", "ticker": "PLTR", "currency": "USD"},
+    {"code": "SDGR", "name": "シュレーディンガー", "ticker": "SDGR", "currency": "USD"},
+    {"code": "TSLL", "name": "テスラ2倍", "ticker": "TSLL", "currency": "USD"}
   ]
 }
