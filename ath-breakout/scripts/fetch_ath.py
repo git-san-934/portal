@@ -332,13 +332,45 @@ def sales_summary(entry):
     return {"annual": annual, "growth": growth}
 
 
-def financial_codes():
+def load_history():
+    """有価証券報告書から集めた決算データ(fetch_sales_history.py が作る)"""
+    try:
+        return json.loads((DATA_DIR / "sales_history.json").read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return {}
+
+
+def op_summary(rec):
+    """画面用: 直近の決算期の営業利益の前年比と、営業利益率(とその前年からの変化)。
+    連結と単体を混ぜないよう、比べる数字どうしが同じ種類(連結/単体)のときだけ計算する"""
+    op = {p: v for p, v in (rec or {}).get("op", {}).items() if v is not None}
+    if not op:
+        return None
+    op_src = rec.get("op_src", {})
+    sales, sales_src = rec.get("annual", {}), rec.get("src", {})
+    kind = lambda s: (s or "")[:2]  # "連結" / "単体"
+    p = max(op)
+    y, m = map(int, p.split("-"))
+    q = f"{y - 1:04d}-{m:02d}"
+
+    def margin(x):
+        if x in op and sales.get(x) and kind(op_src.get(x)) == kind(sales_src.get(x)):
+            return op[x] / sales[x]
+        return None
+
+    growth = r4(op[p] / op[q] - 1) if op.get(q, 0) > 0 and kind(op_src.get(p)) == kind(op_src.get(q)) else None
+    mp, mq = margin(p), margin(q)
+    return {
+        "period": p,
+        "growth": growth,
+        "margin": r4(mp) if mp is not None else None,
+        "margin_change": r4(mp - mq) if mp is not None and mq is not None else None,
+    }
+
+
+def financial_codes(hist):
     """銀行・保険など、売上高の代わりに「経常収益」を出している会社(有価証券報告書から集めた sales_history.json で判定)。
     金利で売上の伸び方が大きく変わるので、画面の有望度の順位は他の業種と分けて付ける"""
-    try:
-        hist = json.loads((DATA_DIR / "sales_history.json").read_text(encoding="utf-8"))
-    except (FileNotFoundError, json.JSONDecodeError):
-        return set()
     codes = set()
     for code, rec in hist.items():
         src = rec.get("src") or {}
@@ -413,10 +445,13 @@ def main():
     except Exception as e:  # noqa: BLE001 — 売上が取れなくても株価のデータは更新する
         print(f"売上を取得できませんでした: {e}", file=sys.stderr)
         sales = {}
-    financial = financial_codes()
+    hist = load_history()
+    financial = financial_codes(hist)
     for st in stocks:
         if st["code"] in recent:
             st["sales"] = sales_summary(sales.get(st["code"]))
+            if st["code"] not in financial:
+                st["op"] = op_summary(hist.get(st["code"]))
         if st["code"] in financial or "銀行" in st["name"]:
             st["financial"] = True
     rating = summarize_rating(samples)

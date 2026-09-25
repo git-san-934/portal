@@ -79,6 +79,23 @@
   function pctCell(v) {
     return el("td", pctClass(v), pctText(v));
   }
+  // 営業利益の伸び(5割以上は有望度の順位で点を足すので強調)
+  function opCell(s) {
+    const g = s?.op?.growth ?? null;
+    const td = pctCell(g);
+    if (g != null && g >= OP_JUMP) td.classList.add("strong");
+    if (s?.op?.period) td.title = `${s.op.period.replace("-", "年")}月期(有価証券報告書)`;
+    return td;
+  }
+  // 営業利益率と、前の期からの変化(ポイント)
+  function marginCell(s) {
+    const m = s?.op?.margin;
+    if (m == null) return el("td", "muted", "—");
+    const td = el("td", null, `${(m * 100).toFixed(1)}%`);
+    const d = s.op.margin_change;
+    if (d != null) td.append(el("span", `sub ${pctClass(d)}`, `(${d >= 0 ? "+" : "−"}${Math.abs(d * 100).toFixed(1)})`));
+    return td;
+  }
   // 自社株買い: 直近 BUYBACK_DAYS 日以内に自己株券買付状況報告書を出していれば「実施中」
   function buybackActive(code, today) {
     const last = (state.buyback[code] || []).at(-1);
@@ -101,12 +118,16 @@
     return g >= 0.2 ? 3 : g >= 0.1 ? 2 : g >= 0.05 ? 1 : 0;
   }
   const GRADE_POINT = { 上: 1, 中: 0.5, 下: 0 };
+  // 営業利益が前年から5割以上伸びた銘柄は、2017〜19年・2020〜25年のどちらでも1年後の成績が良かった(中央値で約+10pt)。
+  // 利益率の改善や、それより小さい増益では差が出なかったので、点を足すのはこの条件だけ
+  const OP_JUMP = 0.5;
+  const opPoint = (s) => ((s?.op?.growth ?? -Infinity) >= OP_JUMP ? 4 : 0);
   // 銀行・保険は金利で経常収益(売上にあたる数字)が大きく動くので、他の業種とは分けて順位をつける
   const isFinancial = (s) => !!(s && (s.financial || s.name.includes("銀行")));
   function promiseRanks(events) {
     const score = (e) => {
       const s = state.stockMap.get(e.code);
-      return salesTier(s?.sales?.growth) * 2 + (GRADE_POINT[gradeOf(e, s)] ?? 0);
+      return opPoint(s) + salesTier(s?.sales?.growth) * 2 + (GRADE_POINT[gradeOf(e, s)] ?? 0);
     };
     const growth = (e) => state.stockMap.get(e.code)?.sales?.growth ?? -Infinity;
     const byScore = (a, b) => score(b) - score(a) || growth(b) - growth(a) || a.code.localeCompare(b.code);
@@ -377,6 +398,8 @@
       { key: "name", label: "銘柄", value: (e) => e.code },
       { key: "grade", label: "評価", value: (e) => GRADE_ORDER[gradeOf(e, stock(e))] ?? null },
       { key: "sales", label: "売上の伸び(前年比)", value: (e) => stock(e)?.sales?.growth ?? null },
+      { key: "op", label: "営業利益の伸び", value: (e) => stock(e)?.op?.growth ?? null },
+      { key: "margin", label: "営業利益率(前年差)", value: (e) => stock(e)?.op?.margin ?? null },
       { key: "buyback", label: "自社株買い", value: (e) => (buybackActive(e.code, latest) ? 1 : 0) },
       { key: "first", label: "最初に更新した日", value: (e) => e.date },
       { key: "last", label: "最後に更新した日", value: athDate },
@@ -419,13 +442,13 @@
       td.append(btn);
       const r = ranks.get(e.code);
       const rankTd = el("td", r && r.rank <= 3 && !r.financial ? "rank top" : "rank", r ? `${r.financial ? "銀行・保険 " : ""}${r.rank}位` : "—");
-      tr.append(td, rankTd, stockCell(e.code), gradeCell(gradeOf(e, s)), pctCell(s?.sales?.growth ?? null), buybackCell(e.code, latest), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
+      tr.append(td, rankTd, stockCell(e.code), gradeCell(gradeOf(e, s)), pctCell(s?.sales?.growth ?? null), opCell(s), marginCell(s), buybackCell(e.code, latest), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
       tr.append(el("td", null, e.highs ? `${e.highs}日` : "—"), el("td", null, gapText(e.gap)));
       tr.append(pctCell(s ? s.last / e.price - 1 : null), pctCell(s ? s.from_ath : null));
       clickableRow(tr, e.code);
       tbody.append(tr);
     }
-    if (!rows.length) emptyRow(tbody, 12, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
+    if (!rows.length) emptyRow(tbody, 14, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
     table.append(tbody);
 
     const hiddenCodes = Object.keys(state.hidden).filter(isHidden);
