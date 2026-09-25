@@ -197,6 +197,21 @@ def weekly(s):
     return w.index[0].strftime("%Y-%m-%d"), [None if math.isnan(v) else round(float(v), 1) for v in w]
 
 
+def print_summary(events):
+    """Actions のログで結果をざっと確認するための集計(画面と同じ中央値・勝率)"""
+    for gap in (MIN_GAP, 250, 750):
+        evs = [e for e in events if e["gap"] >= gap]
+        print(f"-- 前回の最高値から{gap}営業日以上: {len(evs)}件")
+        for i, h in enumerate(HORIZONS):
+            r = sorted(e["ret"][i] for e in evs if e["ret"][i] is not None)
+            x = sorted(e["exc"][i] for e in evs if e["exc"][i] is not None)
+            if not r:
+                continue
+            med = lambda v: v[len(v) // 2] * 100 if v else float("nan")
+            win = lambda v: sum(1 for a in v if a > 0) / len(v) * 100 if v else float("nan")
+            print(f"   {h:>3}営業日後: 中央値 {med(r):+.1f}% 上昇 {win(r):.0f}% / TOPIX比 中央値 {med(x):+.1f}% 勝ち {win(x):.0f}% ({len(r)}件)")
+
+
 def main():
     universe = load_universe()
     codes = [u["code"] for u in universe]
@@ -252,6 +267,7 @@ def main():
         )
 
     print(f"{ok}/{len(universe)} 銘柄を取得、ブレイク {len(all_events)} 件")
+    print_summary(all_events)
     if ok < len(universe) * MIN_OK_RATIO:
         print("取得できた銘柄が少なすぎるため events.json を更新しません", file=sys.stderr)
         sys.exit(1)
