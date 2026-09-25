@@ -1,0 +1,51 @@
+name: 過去最高値ブレイク 売上履歴(EDINET)
+
+# 有価証券報告書から対象銘柄の過去の売上高を集める。時間がかかるので、途中で打ち切っても
+# それまでの結果をコミットし、次の実行で続きを取る。
+on:
+  schedule:
+    - cron: "0 20 * * 6" # 毎週日曜 5:00 JST(新しく出た有価証券報告書を追加)
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - ath-breakout/scripts/fetch_sales_history.py
+      - .github/workflows/update-ath-sales-history.yml
+
+permissions:
+  contents: write
+
+concurrency:
+  group: ath-sales-history
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 130
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # PR では PR のブランチに結果をコミットする(検証用)
+          ref: ${{ github.head_ref || github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r ath-breakout/scripts/requirements.txt
+      - name: 有価証券報告書から売上高を集める
+        env:
+          EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
+        run: python ath-breakout/scripts/fetch_sales_history.py
+      - name: 結果をコミット
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add ath-breakout/data/edinet_docs.json ath-breakout/data/sales_history.json 2>/dev/null || true
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "過去最高値ブレイク 売上履歴を更新 ($(TZ=Asia/Tokyo date +%F))"
+          BRANCH="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$BRANCH"
+          git push origin HEAD:"$BRANCH"
