@@ -111,6 +111,23 @@ th:first-child, td:first-child { text-align: left; }
 .list tbody tr { cursor: pointer; }
 .list tbody tr:hover, .list tbody tr:focus-visible { background: var(--bg); outline: none; }
 .list .code { font-size: 0.72rem; color: var(--text-sub); margin-left: 0.3rem; }
+.grade {
+  display: inline-block;
+  min-width: 1.6rem;
+  padding: 0.05rem 0.4rem;
+  border-radius: 0.4rem;
+  border: 1px solid currentColor;
+  font-weight: 700;
+  font-size: 0.8rem;
+  text-align: center;
+  line-height: 1.5;
+}
+.grade.up { color: var(--up); }
+.grade.mid { color: var(--text-sub); }
+.grade.down { color: var(--down); }
+.stats tbody th .grade { margin-right: 0.2rem; }
+.note .grade { margin-right: 0.3rem; }
+.caution { margin-top: 0.6rem; }
 .pct.up { color: var(--up); }
 .pct.down { color: var(--down); }
 .muted { color: var(--text-sub); }

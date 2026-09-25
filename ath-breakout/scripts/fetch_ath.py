@@ -36,6 +36,15 @@ RETRIES = 3
 MIN_OK_RATIO = 0.8  # 対象銘柄のうちこの割合以上取得できなければ失敗とみなす
 OUTLIER_WINDOW = 11
 OUTLIER_RATIO = 2.0
+# 東証の値幅制限では1日にこれを超える値動きは起きないので、株式分割の調整漏れ(Yahoo 側の誤データ)とみなす
+SPLIT_DOWN = 0.6
+SPLIT_UP = 1.67
+
+# ---- 評価マーク(上・中・下)----
+# ブレイク後の株価が「ブレイクした日の終値」と「その後の最高値」からどれだけ離れたかで決める
+RATE_FAIL = -0.05  # ブレイクした日の終値をこれより下回ったら「下」(ブレイク失敗)
+RATE_NEAR = -0.05  # ブレイク価格以上で、その後の最高値からの下落がこれ以内なら「上」
+RATE_CHECK = [20, 40, 60]  # 検証: ブレイクから1・2・3ヶ月後に判定し、そこから1年後(250営業日)の成績を見る
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 JST = timezone(timedelta(hours=9))
@@ -58,6 +67,7 @@ def load_universe():
         items = [
             it for it in items
             if it.get("code") and isinstance(it.get("market_cap"), (int, float))
+            and it.get("market") != "その他"  # ETF・外国株など
             and not any(k in str(it.get("market", "")) for k in ("ETF", "ETN", "REIT", "インフラ"))
         ]
         items.sort(key=lambda it: it["market_cap"], reverse=True)
@@ -119,13 +129,36 @@ def drop_outliers(series):
     return series[~bad]
 
 
+def fix_splits(series):
+    """分割の調整漏れで値が段差のように飛んでいるところは、それより前の値をまとめて掛け直す
+    (例: 1306 の 2014年ごろのデータが分割前の値のまま残っていた)"""
+    r = series / series.shift(1)
+    factor = pd.Series(1.0, index=series.index)
+    for d, v in r[(r < SPLIT_DOWN) | (r > SPLIT_UP)].items():
+        factor[factor.index < d] *= v
+    return series * factor
+
+
+def clean(series):
+    return fix_splits(drop_outliers(series))
+
+
+def grade(price, breakout_price, max_since):
+    """評価マーク。上=ブレイク価格以上で最高値の近くを保っている / 下=ブレイク価格を5%超下回った / 中=その間"""
+    if price / breakout_price - 1 < RATE_FAIL:
+        return "下"
+    if price >= breakout_price and price / max_since - 1 >= RATE_NEAR:
+        return "上"
+    return "中"
+
+
 # ---------- ブレイク判定と、その後の値動き ----------
 
 def r4(v):
     return None if v is None or (isinstance(v, float) and math.isnan(v)) else round(float(v), 4)
 
 
-def find_events(s, bench):
+def find_events(s, bench, samples):
     """s: 1銘柄の終値(欠損なし、日付昇順)。bench: TOPIX連動ETFの終値(同じ日付に前方補完済み)。"""
     vals = s.to_numpy()
     dates = s.index
@@ -193,6 +226,17 @@ def find_events(s, bench):
         ev["path"] = path
         ev["rel"] = rel
         events.append(ev)
+
+        # 評価マークの検証用: ブレイクから k 日後に判定 → そこから1年後の成績
+        for k in RATE_CHECK:
+            j = t + k
+            if j + DD_WINDOW >= n:
+                continue
+            fwd = vals[j + DD_WINDOW] / vals[j] - 1
+            bx = None
+            if b is not None and not math.isnan(b[j]) and not math.isnan(b[j + DD_WINDOW]):
+                bx = fwd - (b[j + DD_WINDOW] / b[j] - 1)
+            samples.append({"date": ev["date"], "grade": grade(vals[j], v, vals[t:j + 1].max()), "ret": fwd, "exc": bx})
     return events
 
 
@@ -217,6 +261,36 @@ def print_summary(events):
             print(f"   {h:>3}営業日後: 中央値 {med(r):+.1f}% 上昇 {win(r):.0f}% / TOPIX比 中央値 {med(x):+.1f}% 勝ち {win(x):.0f}% ({len(r)}件)")
 
 
+def summarize_rating(samples):
+    """評価マークごとの、判定から1年後の成績(全期間と、前半・後半)"""
+    def stats(rows):
+        r = sorted(x["ret"] for x in rows)
+        e = sorted(x["exc"] for x in rows if x["exc"] is not None)
+        if not r:
+            return None
+        return {
+            "n": len(r),
+            "median": r4(r[len(r) // 2]),
+            "mean": r4(sum(r) / len(r)),
+            "win": r4(sum(1 for v in r if v > 0) / len(r)),
+            "exc_median": r4(e[len(e) // 2]) if e else None,
+            "exc_win": r4(sum(1 for v in e if v > 0) / len(e)) if e else None,
+        }
+
+    periods = {"all": lambda d: True, "early": lambda d: d < "2013-01-01", "late": lambda d: d >= "2013-01-01"}
+    out = {"check_days": RATE_CHECK, "horizon": DD_WINDOW, "grades": {}}
+    for g in ("上", "中", "下"):
+        out["grades"][g] = {name: stats([x for x in samples if x["grade"] == g and f(x["date"])]) for name, f in periods.items()}
+    print("-- 評価マークの検証(ブレイク1〜3ヶ月後に判定 → 1年後)")
+    for g, v in out["grades"].items():
+        for name in periods:
+            st = v[name]
+            if st:
+                exc = f"TOPIX比 中央値 {st['exc_median'] * 100:+.1f}% 勝ち {st['exc_win'] * 100:.0f}%" if st["exc_median"] is not None else ""
+                print(f"   {g} {name:5}: n{st['n']:5d} 中央値 {st['median'] * 100:+.1f}% 平均 {st['mean'] * 100:+.1f}% 上昇 {st['win'] * 100:.0f}% {exc}")
+    return out
+
+
 def main():
     universe = load_universe()
     codes = [u["code"] for u in universe]
@@ -224,7 +298,7 @@ def main():
 
     bench = close[BENCH[0]].dropna() if BENCH[0] in close.columns else None
     if bench is not None:
-        bench = drop_outliers(bench)
+        bench = clean(bench)
     else:
         print("TOPIX連動ETFを取得できなかったため、超過リターンは空になります", file=sys.stderr)
 
@@ -232,17 +306,18 @@ def main():
     stocks_dir.mkdir(parents=True, exist_ok=True)
 
     all_events = []
+    samples = []
     stocks = []
     ok = 0
     for u in universe:
         code = u["code"]
         if code not in close.columns:
             continue
-        s = drop_outliers(close[code].dropna())
+        s = clean(close[code].dropna())
         if len(s) < 50:
             continue
         ok += 1
-        evs = find_events(s, bench)
+        evs = find_events(s, bench, samples)
         for ev in evs:
             ev["code"] = code
         all_events.extend(evs)
@@ -273,6 +348,7 @@ def main():
 
     print(f"{ok}/{len(universe)} 銘柄を取得、ブレイク {len(all_events)} 件")
     print_summary(all_events)
+    rating = summarize_rating(samples)
     if ok < len(universe) * MIN_OK_RATIO:
         print("取得できた銘柄が少なすぎるため events.json を更新しません", file=sys.stderr)
         sys.exit(1)
@@ -282,7 +358,9 @@ def main():
         "generated_at": datetime.now(JST).isoformat(timespec="minutes"),
         "source": "Yahoo Finance (yfinance)",
         "benchmark": BENCH[1] if bench is not None else None,
-        "rules": {"min_history": MIN_HISTORY, "min_gap": MIN_GAP, "universe": len(universe)},
+        "rules": {"min_history": MIN_HISTORY, "min_gap": MIN_GAP, "universe": len(universe),
+                  "rate_fail": RATE_FAIL, "rate_near": RATE_NEAR},
+        "rating": rating,
         "horizons": HORIZONS,
         "path_offsets": PATH_OFFSETS,
         "stocks": stocks,

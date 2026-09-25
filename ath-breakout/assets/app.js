@@ -99,6 +99,61 @@
     return at != null && !(s && s.ath_date > at);
   }
 
+  // ---------- 評価マーク(上・中・下) ----------
+  // fetch_ath.py の grade() と同じ決め方。上=ブレイク価格以上で最高値の近く / 下=ブレイク価格を5%超下回った
+  function gradeOf(e, s) {
+    if (!s) return null;
+    const rules = state.data.rules || {};
+    const fail = rules.rate_fail ?? -0.05;
+    const near = rules.rate_near ?? -0.05;
+    if (s.last / e.price - 1 < fail) return "下";
+    if (s.last >= e.price && s.last / s.ath - 1 >= near) return "上";
+    return "中";
+  }
+  const GRADE_CLASS = { 上: "grade up", 中: "grade mid", 下: "grade down" };
+  function gradeCell(g) {
+    const td = el("td");
+    if (g) td.append(el("span", GRADE_CLASS[g], g));
+    else td.textContent = "—";
+    return td;
+  }
+
+  function renderRating() {
+    const r = state.data.rating;
+    const table = $("rating");
+    table.textContent = "";
+    if (!r) {
+      $("rating-panel").hidden = true;
+      return;
+    }
+    const thead = el("thead");
+    const h1 = el("tr");
+    h1.append(el("th", null, ""));
+    const a = el("th", null, "判定から1年後の株価");
+    a.colSpan = 3;
+    const b = el("th", "group", "TOPIX比");
+    b.colSpan = 2;
+    h1.append(a, b);
+    const h2 = el("tr");
+    ["評価", "中央値", "平均", "上がった割合"].forEach((t) => h2.append(el("th", null, t)));
+    ["中央値", "勝った割合"].forEach((t, i) => h2.append(el("th", i === 0 ? "group" : null, t)));
+    thead.append(h1, h2);
+    const tbody = el("tbody");
+    for (const g of ["上", "中", "下"]) {
+      const st = r.grades[g]?.all;
+      if (!st) continue;
+      const tr = el("tr");
+      const th = el("th");
+      th.append(el("span", GRADE_CLASS[g], g), el("span", "code", `${st.n.toLocaleString("ja-JP")}件`));
+      tr.append(th, pctCell(st.median), pctCell(st.mean), el("td", null, rateText(st.win)));
+      const xm = pctCell(st.exc_median);
+      xm.classList.add("group");
+      tr.append(xm, el("td", null, rateText(st.exc_win)));
+      tbody.append(tr);
+    }
+    table.append(thead, tbody);
+  }
+
   // ---------- 集計 ----------
 
   function quantile(sorted, q) {
@@ -243,7 +298,7 @@
     const athDate = (e) => e.last_high || state.stockMap.get(e.code)?.ath_date || e.date;
     const all = [...byCode.values()].sort((a, b) => athDate(b).localeCompare(athDate(a)) || b.date.localeCompare(a.date));
     const rows = all.filter((e) => !isHidden(e.code));
-    table.append(headRow(["", "銘柄", "最初に更新した日", "最後に更新した日", "更新した日数", "何年ぶりの高値", "最初の更新から", "最高値から"]));
+    table.append(headRow(["", "銘柄", "評価", "最初に更新した日", "最後に更新した日", "更新した日数", "何年ぶりの高値", "最初の更新から", "最高値から"]));
     const tbody = el("tbody");
     for (const e of rows) {
       const s = state.stockMap.get(e.code);
@@ -260,13 +315,13 @@
       btn.addEventListener("keydown", (ev) => ev.stopPropagation());
       const td = el("td");
       td.append(btn);
-      tr.append(td, stockCell(e.code), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
+      tr.append(td, stockCell(e.code), gradeCell(gradeOf(e, s)), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
       tr.append(el("td", null, e.highs ? `${e.highs}日` : "—"), el("td", null, gapText(e.gap)));
       tr.append(pctCell(s ? s.last / e.price - 1 : null), pctCell(s ? s.from_ath : null));
       clickableRow(tr, e.code);
       tbody.append(tr);
     }
-    if (!rows.length) emptyRow(tbody, 8, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
+    if (!rows.length) emptyRow(tbody, 9, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
     table.append(tbody);
 
     const hiddenCodes = Object.keys(state.hidden).filter(isHidden);
@@ -603,6 +658,7 @@
     renderStats();
     renderPath();
     renderRecent();
+    renderRating();
     renderEvents();
   }
 

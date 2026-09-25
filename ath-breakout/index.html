@@ -6,7 +6,7 @@
   <title>過去最高値ブレイクのその後</title>
   <meta name="description" content="日本株が過去最高値を更新したあと、株価がどう動いたかを過去のデータで検証するページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260925d" />
+  <link rel="stylesheet" href="assets/style.css?v=20260926a" />
 </head>
 <body>
   <div class="wrap">
@@ -57,6 +57,18 @@
         <p class="hidden-note" id="hidden-note" hidden></p>
       </section>
 
+      <section class="panel" id="rating-panel">
+        <h2>評価マーク(上・中・下)の決め方と過去の成績</h2>
+        <p class="note">
+          <span class="grade up">上</span> ブレイクした日の終値より上にいて、その後の最高値からの下落が5%以内(上昇が続いている)<br />
+          <span class="grade mid">中</span> 上と下の間<br />
+          <span class="grade down">下</span> ブレイクした日の終値を5%より大きく下回った(ブレイク失敗)
+        </p>
+        <p class="note">過去のブレイクについて、ブレイクから1・2・3ヶ月後の時点でこの決め方で評価をつけ、そこから1年後の成績を集計した結果です。</p>
+        <div class="table-scroll"><table class="stats" id="rating"></table></div>
+        <p class="note caution">上ほど成績が良い傾向はありますが差は小さく、「上」でも下がった例はたくさんあります。TOPIXに勝てるかどうかは評価によってほとんど変わりません。過去のデータを機械的に集計したもので、将来の値動きを保証するものではなく、投資助言でもありません。</p>
+      </section>
+
       <section class="panel">
         <h2>ブレイクの一覧</h2>
         <p class="note">上の条件にあうブレイクを新しい順に並べています。銘柄を押すとチャートが開きます。</p>
@@ -88,6 +100,6 @@
     <div class="table-scroll"><table class="list" id="stock-events"></table></div>
   </dialog>
 
-  <script src="assets/app.js?v=20260925d"></script>
+  <script src="assets/app.js?v=20260926a"></script>
 </body>
 </html>
