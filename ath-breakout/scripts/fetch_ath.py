@@ -143,6 +143,9 @@ def find_events(s, bench):
         run_max = v
         last_high_idx = t
         if t < MIN_HISTORY or gap < MIN_GAP:
+            if events:
+                events[-1]["highs"] += 1  # 直前のブレイクからの上昇局面で最高値を更新した日数
+                events[-1]["last_high"] = dates[t].strftime("%Y-%m-%d")
             continue
 
         ev = {
@@ -151,6 +154,8 @@ def find_events(s, bench):
             "gap": int(gap),  # 前回の最高値から何営業日ぶりの更新か
             "prev_date": dates[t - gap].strftime("%Y-%m-%d"),
             "above": r4(v / prev_high - 1),  # 前回の最高値を何%上抜けたか
+            "highs": 1,
+            "last_high": dates[t].strftime("%Y-%m-%d"),
         }
         ret, exc = [], []
         for h in HORIZONS:

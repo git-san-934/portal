@@ -240,10 +240,10 @@
       byCode.set(e.code, e);
     }
     // 直近で最高値を更新した日が新しい銘柄ほど上に
-    const athDate = (e) => state.stockMap.get(e.code)?.ath_date || e.date;
+    const athDate = (e) => e.last_high || state.stockMap.get(e.code)?.ath_date || e.date;
     const all = [...byCode.values()].sort((a, b) => athDate(b).localeCompare(athDate(a)) || b.date.localeCompare(a.date));
     const rows = all.filter((e) => !isHidden(e.code));
-    table.append(headRow(["", "銘柄", "最新の最高値", "ブレイク日", "前回の最高値から", "ブレイク後", "最高値から"]));
+    table.append(headRow(["", "銘柄", "最初に更新した日", "最後に更新した日", "更新した日数", "何年ぶりの高値", "最初の更新から", "最高値から"]));
     const tbody = el("tbody");
     for (const e of rows) {
       const s = state.stockMap.get(e.code);
@@ -260,12 +260,13 @@
       btn.addEventListener("keydown", (ev) => ev.stopPropagation());
       const td = el("td");
       td.append(btn);
-      tr.append(td, stockCell(e.code), el("td", null, dateFmt(athDate(e))), el("td", null, dateFmt(e.date)), el("td", null, gapText(e.gap)));
+      tr.append(td, stockCell(e.code), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
+      tr.append(el("td", null, e.highs ? `${e.highs}日` : "—"), el("td", null, gapText(e.gap)));
       tr.append(pctCell(s ? s.last / e.price - 1 : null), pctCell(s ? s.from_ath : null));
       clickableRow(tr, e.code);
       tbody.append(tr);
     }
-    if (!rows.length) emptyRow(tbody, 7, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
+    if (!rows.length) emptyRow(tbody, 8, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
     table.append(tbody);
 
     const hiddenCodes = Object.keys(state.hidden).filter(isHidden);
