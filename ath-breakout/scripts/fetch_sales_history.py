@@ -6,7 +6,9 @@
 - 決算期ごとに「その売上が世の中に出た日」(有価証券報告書の提出日)も記録する。
   検証ではブレイクした日より前に出ていた売上だけを使い、後から分かった数字を使わないようにする
 - 同じ書類一覧から「自己株券買付状況報告書」(自社株買いの実施中に毎月出す報告書)の提出日も集め、
-  data/buyback.json に銘柄ごとに書き出す
+  data/buyback.json に銘柄ごとに書き出す(この報告書は公開期間が1年なので、直近1年分だけ)
+- 過去の自社株買いは、有価証券報告書のキャッシュフロー計算書「自己株式の取得による支出」(当期・前期)と
+  親会社株主に帰属する当期純利益(5期分)から決算期ごとに記録する
 
 GitHub Actions(.github/workflows/update-ath-sales-history.yml)から実行される。
 時間がかかるので TIME_LIMIT で打ち切り、途中までの結果を保存して次回に続きを取る。
@@ -32,17 +34,21 @@ DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DOCS_PATH = DATA_DIR / "edinet_docs.json"
 OUT_PATH = DATA_DIR / "sales_history.json"
 BUYBACK_PATH = DATA_DIR / "buyback.json"
-SCAN_VERSION = 2  # 書類一覧から拾う書類を増やしたら上げる(全期間を見直す)
+SCAN_VERSION = 3  # 書類一覧から拾う書類を増やしたら上げる(全期間を見直す)
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-ath-breakout"}
 
 # 「主要な経営指標等の推移」の売上高にあたる要素。業種で名前が違う(銀行は経常収益、IFRSは売上収益 など)
 REVENUE_RE = re.compile(r"(NetSales|Revenue|OperatingRevenue|OrdinaryIncome)\w*SummaryOfBusinessResults$")
 EXCLUDE_RE = re.compile(r"Cost|Ratio|Per|Loss|Profit|Growth|Expense")
+# キャッシュフロー計算書の「自己株式の取得による支出」(J-GAAP / IFRS / 米国基準で名前が違う)
+BUYBACK_RE = re.compile(r"(PurchaseOfTreasury|PaymentsForPurchaseOfTreasury|RepurchaseOfTreasury)\w*(FinCF|Financing)\w*$")
+PROFIT_RE = re.compile(r"(ProfitLossAttributableToOwnersOfParent|NetIncomeLossAttributableToOwnersOfParent|NetIncomeLoss)\w*SummaryOfBusinessResults$")
+PROFIT_EXCLUDE_RE = re.compile(r"Per|Ratio|Comprehensive|Diluted|Basic")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)Duration(_NonConsolidatedMember)?$")
 
 START = time.monotonic()
-VERSION = 2  # sales_history.json の読み方の版。上げると全部読み直す
+VERSION = 3  # sales_history.json の読み方の版。上げると全部読み直す
 
 
 def log(*a):
@@ -146,6 +152,29 @@ def shift_years(period_end, n):
     return f"{y - n:04d}-{m:02d}"
 
 
+def pick(rows, name_re, exclude_re=None, largest=False):
+    """rows から name_re にあう要素を {何期前: 値} で返す。連結を優先。largest なら当期の絶対値が最大の要素"""
+    found = {}
+    for elem, ctx, val in rows:
+        name = elem.split(":")[-1]
+        if not name_re.search(name) or (exclude_re and exclude_re.search(name)):
+            continue
+        m = CTX_RE.match(ctx)
+        if not m:
+            continue
+        try:
+            v = float(val)
+        except ValueError:
+            continue
+        found.setdefault((name, bool(m.group(3))), {})[int(m.group(2) or 0)] = v
+    for nonconsolidated in (False, True):
+        cands = {k: v for k, v in found.items() if k[1] == nonconsolidated and 0 in v}
+        if cands:
+            key = (lambda kv: abs(kv[1][0])) if largest else (lambda kv: -len(kv[0][0]))
+            return max(cands.items(), key=key)[1]
+    return {}
+
+
 def parse_rows(rows):
     """rows: (要素名, コンテキスト, 値) → {何期前: 売上高}。連結を優先し、なければ単体"""
     found = {}  # (要素名, 単体か) -> {何期前: 値}
@@ -189,7 +218,7 @@ def read_csv(key, doc_id):
     return rows
 
 
-XBRL_RE = re.compile(r"<([\w-]+:\w+SummaryOfBusinessResults)\b([^>]*)>([^<]*)<")
+XBRL_RE = re.compile(r"<([\w-]+:\w+(?:SummaryOfBusinessResults|Treasury\w*))\b([^>]*)>([^<]*)<")
 CTXREF_RE = re.compile(r'contextRef="([^"]+)"')
 
 
@@ -209,11 +238,11 @@ def read_xbrl(key, doc_id):
 
 def collect_sales(key, docs):
     out = load(OUT_PATH, {})
-    opened = 0
+    opened = with_bb = 0
     for code in sorted(docs):
         rec = out.setdefault(code, {"annual": {}, "avail": {}, "read": []})
         if rec.get("v") != VERSION:  # 読み方を変えたら読み直す
-            rec.update({"v": VERSION, "annual": {}, "src": {}, "read": []})
+            rec.update({"v": VERSION, "annual": {}, "src": {}, "read": [], "buyback": {}, "profit": {}})
         lst = sorted(docs[code], key=lambda x: x[0], reverse=True)
         # 提出日 = その決算期の売上が出た日(開かない報告書の分も記録できる)
         for submit, period_end, _, _ in lst:
@@ -224,8 +253,8 @@ def collect_sales(key, docs):
             if doc_id in rec["read"]:
                 continue
             covered = {shift_years(period_end, n) for n in range(5)}
-            if covered <= set(rec["annual"]):
-                continue  # 新しい決算期がない報告書は開かない
+            if covered <= set(rec["annual"]) and period_end[:7] in rec["buyback"]:
+                continue  # 新しい決算期がない報告書は開かない(自社株買いは当期・前期分しかないので毎年開く)
             if out_of_time():
                 save(OUT_PATH, out)
                 log(f"時間切れ: 有価証券報告書を {opened} 件読んだところで止めます")
@@ -234,7 +263,10 @@ def collect_sales(key, docs):
                 rows = read_csv(key, doc_id) if csv else []
                 vals, src = parse_rows(rows)
                 if not vals:
-                    vals, src = parse_rows(read_xbrl(key, doc_id))
+                    rows = read_xbrl(key, doc_id)
+                    vals, src = parse_rows(rows)
+                bb = pick(rows, BUYBACK_RE)
+                pf = pick(rows, PROFIT_RE, PROFIT_EXCLUDE_RE, largest=True)
             except Exception as e:  # noqa: BLE001
                 log(f"  {code} {doc_id}: {e}")
                 continue
@@ -245,6 +277,14 @@ def collect_sales(key, docs):
                 if p not in rec["annual"]:
                     rec["annual"][p] = v
                     rec["src"][p] = src  # 成長率は同じ要素どうしで比べる(連結と単体を混ぜない)
+            with_bb += bool(bb)
+            # 自己株式の取得による支出(マイナスで載る)。要素がなければ 0(買っていない)として記録
+            for back in (0, 1):
+                p = shift_years(period_end, back)
+                if p not in rec["buyback"] or back == 0:
+                    rec["buyback"][p] = abs(bb.get(back, 0.0))
+            for back, v in pf.items():
+                rec["profit"].setdefault(shift_years(period_end, back), v)
             if not vals:
                 log(f"  {code} {doc_id}: 売上高が見つかりませんでした")
             if opened % 50 == 0:
@@ -252,7 +292,7 @@ def collect_sales(key, docs):
                 log(f"  有価証券報告書 {opened} 件")
             time.sleep(0.3)
     save(OUT_PATH, out)
-    log(f"有価証券報告書を {opened} 件読みました")
+    log(f"有価証券報告書を {opened} 件読みました(うち自己株式の取得の行があったもの {with_bb} 件)")
     return out
 
 
