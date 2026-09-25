@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-09-24",
+  "updated_at": "2026-09-25",
   "stocks": [
     {"code": "7974", "name": "任天堂"},
     {"code": "4732", "name": "USS"},
@@ -10,6 +10,10 @@
     {"code": "6134", "name": "FUJI"},
     {"code": "285A", "name": "キオクシアHD"},
     {"code": "ORCL", "name": "オラクル", "ticker": "ORCL", "currency": "USD"},
-    {"code": "AUR", "name": "AUR", "ticker": "AUR", "currency": "USD"}
+    {"code": "AUR", "name": "AUR", "ticker": "AUR", "currency": "USD"},
+    {"code": "ADBE", "name": "アドビ", "ticker": "ADBE", "currency": "USD"},
+    {"code": "CBRS", "name": "セレブラス", "ticker": "CBRS", "currency": "USD"},
+    {"code": "CRCL", "name": "サークル", "ticker": "CRCL", "currency": "USD"},
+    {"code": "GLW", "name": "コーニング", "ticker": "GLW", "currency": "USD"}
   ]
 }
