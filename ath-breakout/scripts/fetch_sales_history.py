@@ -5,6 +5,8 @@
   新しい報告書から順に読み、まだ持っていない決算期がある報告書だけを開く
 - 決算期ごとに「その売上が世の中に出た日」(有価証券報告書の提出日)も記録する。
   検証ではブレイクした日より前に出ていた売上だけを使い、後から分かった数字を使わないようにする
+- 同じ書類一覧から「自己株券買付状況報告書」(自社株買いの実施中に毎月出す報告書)の提出日も集め、
+  data/buyback.json に銘柄ごとに書き出す
 
 GitHub Actions(.github/workflows/update-ath-sales-history.yml)から実行される。
 時間がかかるので TIME_LIMIT で打ち切り、途中までの結果を保存して次回に続きを取る。
@@ -29,6 +31,8 @@ TIME_LIMIT = 100 * 60  # 秒。これを過ぎたら保存して終わる(次回
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DOCS_PATH = DATA_DIR / "edinet_docs.json"
 OUT_PATH = DATA_DIR / "sales_history.json"
+BUYBACK_PATH = DATA_DIR / "buyback.json"
+SCAN_VERSION = 2  # 書類一覧から拾う書類を増やしたら上げる(全期間を見直す)
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-ath-breakout"}
 
@@ -84,6 +88,9 @@ def universe_codes():
 
 def scan_documents(key, codes):
     cache = load(DOCS_PATH, {"scanned": [], "docs": {}})
+    if cache.get("v") != SCAN_VERSION:
+        cache.update({"v": SCAN_VERSION, "scanned": []})
+    buyback = cache.setdefault("buyback", {})  # 銘柄 -> 自己株券買付状況報告書の提出日
     scanned = set(cache["scanned"])
     today = datetime.now(JST).date()
     first = today - timedelta(days=365 * YEARS - 7)
@@ -101,10 +108,19 @@ def scan_documents(key, codes):
             continue
         for doc in res.get("results") or []:
             sec = (doc.get("secCode") or "").strip()
-            if doc.get("docTypeCode") != "120" or len(sec) != 5:
+            kind = doc.get("docTypeCode")
+            if kind not in ("120", "220") or len(sec) != 5:
                 continue
             code = sec[:4].upper()
-            if code not in codes or not doc.get("periodEnd"):
+            if code not in codes:
+                continue
+            if kind == "220":
+                dates = buyback.setdefault(code, [])
+                if doc["submitDateTime"][:10] not in dates:
+                    dates.append(doc["submitDateTime"][:10])
+                    dates.sort()
+                continue
+            if not doc.get("periodEnd"):
                 continue
             entry = [doc["submitDateTime"][:10], doc["periodEnd"], doc["docID"], doc.get("csvFlag") == "1"]
             lst = cache["docs"].setdefault(code, [])
@@ -118,6 +134,8 @@ def scan_documents(key, codes):
         time.sleep(0.2)
     cache["scanned"] = sorted(s for s in scanned if s >= first.isoformat())
     save(DOCS_PATH, cache)
+    save(BUYBACK_PATH, {"updated": today.isoformat(), "scanned_from": min(cache["scanned"], default=None), "dates": buyback})
+    log(f"自己株券買付状況報告書: {len(buyback)} 銘柄、延べ {sum(map(len, buyback.values()))} 件")
     return cache["docs"]
 
 

@@ -2,6 +2,8 @@
   "use strict";
 
   const DATA_URL = "data/events.json";
+  const BUYBACK_URL = "data/buyback.json";
+  const BUYBACK_DAYS = 50; // 自己株券買付状況報告書は翌月15日までに出るので、これ以内に出ていれば「実施中」
   const STOCK_URL = (code) => `data/stocks/${encodeURIComponent(code)}.json`;
   const YAHOO_URL = (code) => `https://finance.yahoo.co.jp/quote/${encodeURIComponent(code)}.T`;
 
@@ -50,6 +52,7 @@
     size: 0,
     pathKind: "path",
     hidden: loadHidden(),
+    buyback: {}, // code -> 自己株券買付状況報告書の提出日(古い順)
     filtered: [],
     shown: PAGE,
   };
@@ -74,6 +77,15 @@
   }
   function pctCell(v) {
     return el("td", pctClass(v), pctText(v));
+  }
+  // 自社株買い: 直近 BUYBACK_DAYS 日以内に自己株券買付状況報告書を出していれば「実施中」
+  function buybackCell(code, today) {
+    const last = (state.buyback[code] || []).at(-1);
+    if (!last) return el("td", "muted", "—");
+    const days = (new Date(today) - new Date(last)) / 86400000;
+    const td = el("td", days <= BUYBACK_DAYS ? null : "muted", days <= BUYBACK_DAYS ? "実施中" : "—");
+    td.title = `最後の報告書: ${dateFmt(last)}`;
+    return td;
   }
 
   // ---------- 外した銘柄(この端末のブラウザにだけ保存) ----------
@@ -303,7 +315,7 @@
     const athDate = (e) => e.last_high || state.stockMap.get(e.code)?.ath_date || e.date;
     const all = [...byCode.values()].sort((a, b) => athDate(b).localeCompare(athDate(a)) || b.date.localeCompare(a.date));
     const rows = all.filter((e) => !isHidden(e.code));
-    table.append(headRow(["", "銘柄", "評価", "売上の伸び(前年比)", "最初に更新した日", "最後に更新した日", "更新した日数", "何年ぶりの高値", "最初の更新から", "最高値から"]));
+    table.append(headRow(["", "銘柄", "評価", "売上の伸び(前年比)", "自社株買い", "最初に更新した日", "最後に更新した日", "更新した日数", "何年ぶりの高値", "最初の更新から", "最高値から"]));
     const tbody = el("tbody");
     for (const e of rows) {
       const s = state.stockMap.get(e.code);
@@ -320,13 +332,13 @@
       btn.addEventListener("keydown", (ev) => ev.stopPropagation());
       const td = el("td");
       td.append(btn);
-      tr.append(td, stockCell(e.code), gradeCell(gradeOf(e, s)), pctCell(s?.sales?.growth ?? null), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
+      tr.append(td, stockCell(e.code), gradeCell(gradeOf(e, s)), pctCell(s?.sales?.growth ?? null), buybackCell(e.code, latest), el("td", null, dateFmt(e.date)), el("td", null, dateFmt(athDate(e))));
       tr.append(el("td", null, e.highs ? `${e.highs}日` : "—"), el("td", null, gapText(e.gap)));
       tr.append(pctCell(s ? s.last / e.price - 1 : null), pctCell(s ? s.from_ath : null));
       clickableRow(tr, e.code);
       tbody.append(tr);
     }
-    if (!rows.length) emptyRow(tbody, 10, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
+    if (!rows.length) emptyRow(tbody, 11, all.length ? "すべて外しています" : "この条件にあう最近のブレイクはありません");
     table.append(tbody);
 
     const hiddenCodes = Object.keys(state.hidden).filter(isHidden);
@@ -705,6 +717,11 @@
       const res = await fetch(DATA_URL, { cache: "no-cache" });
       if (!res.ok) throw new Error(res.status);
       state.data = await res.json();
+      // 自社株買いのデータは無くても一覧は出す
+      state.buyback = await fetch(BUYBACK_URL, { cache: "no-cache" })
+        .then((r) => (r.ok ? r.json() : {}))
+        .then((b) => b.dates || {})
+        .catch(() => ({}));
     } catch (err) {
       console.error(err);
       statusEl.textContent = "データを読み込めませんでした。初回はデータの自動作成が終わるまでお待ちください。";
