@@ -22,8 +22,8 @@ https://git-san-934.github.io/portal/holdings/
   過去のチェックは git の履歴に残ります
   - `tone` は判定バッジの色: `hold`(保有継続) / `add`(買い増し) / `trim`(売却検討(一部)) / `sell`(売却)
   - `lines` は下値目途などのライン。`price` を入れるとチャートに点線で描きます
-- `data/prices.json` — 自動生成される1年分の日次終値(手で編集しない)
-  - `.github/workflows/update-holdings.yml` が平日 17:00(JST)頃に `scripts/fetch_prices.py` を実行し、
+- `data/prices.json` — 自動生成される1年分の日次終値(手で編集しない)。取引時間中の更新では、当日分は途中の株価(Yahoo の約20分遅れ)で、カードには「株価(取得時刻)」と表示します
+  - `.github/workflows/update-holdings.yml` が平日 9:30・10:30・11:45・13:00・14:00・15:00・16:00・17:00(JST)頃に `scripts/fetch_prices.py` を実行し、
     `holdings.json` に載っている銘柄の終値を Yahoo Finance(yfinance 経由)から取得してコミットし、GitHub Pages を再デプロイします
   - 手動で更新したいときは、GitHub の Actions タブ →「持ち株データ更新」→「Run workflow」
   - 取得に失敗した銘柄があるときは `prices.json` を上書きしません。`prices.json` がないときは、
