@@ -23,9 +23,9 @@ https://git-san-934.github.io/portal/sector-etf/
 ## データについて
 
 - 取得元: Yahoo Finance(yfinance 経由)。登録・費用は不要です
-- `.github/workflows/update-sector-etf.yml` が平日 12:00 と 16:00(JST)頃に `scripts/fetch_etf.py` を実行し、
+- `.github/workflows/update-sector-etf.yml` が平日 9:30、10:30、11:45、13:00、14:00、15:00、16:00(JST)頃に `scripts/fetch_etf.py` を実行し、
   直近5年分の日次終値を `data/etf.json` に書き出してコミットし、GitHub Pages を再デプロイします
-- 12:00 の更新では、その日の値は前場(午前の取引)の終わりまでの値です。16:00 の更新で当日の終値に置き換わります
+- 16:00 より前の更新では、その日の値は取引時間中の途中の値です。16:00 の更新で当日の終値に置き換わります
 - 手動で更新したいときは、GitHub の Actions タブ →「業種別ETFデータ更新」→「Run workflow」
 - 終値は株式分割のみ調整済みで、分配金は含みません。ETFが連動する「配当込み」指数とは分配金の分だけずれます
 - 取得に失敗した銘柄があるときは `data/etf.json` を上書きしません(前回のデータが表示され続けます)
