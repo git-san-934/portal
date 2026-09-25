@@ -52,6 +52,7 @@
     size: 0,
     pathKind: "path",
     hidden: loadHidden(),
+    recentSort: { key: "last", dir: -1 }, // 「いま最高値を更新中」の並び(見出しを押すと切り替え)
     buyback: {}, // code -> 自己株券買付状況報告書の提出日(古い順)
     filtered: [],
     shown: PAGE,
@@ -79,11 +80,15 @@
     return el("td", pctClass(v), pctText(v));
   }
   // 自社株買い: 直近 BUYBACK_DAYS 日以内に自己株券買付状況報告書を出していれば「実施中」
+  function buybackActive(code, today) {
+    const last = (state.buyback[code] || []).at(-1);
+    return !!last && (new Date(today) - new Date(last)) / 86400000 <= BUYBACK_DAYS;
+  }
   function buybackCell(code, today) {
     const last = (state.buyback[code] || []).at(-1);
     if (!last) return el("td", "muted", "—");
-    const days = (new Date(today) - new Date(last)) / 86400000;
-    const td = el("td", days <= BUYBACK_DAYS ? null : "muted", days <= BUYBACK_DAYS ? "実施中" : "—");
+    const active = buybackActive(code, today);
+    const td = el("td", active ? null : "muted", active ? "実施中" : "—");
     td.title = `最後の報告書: ${dateFmt(last)}`;
     return td;
   }
@@ -289,6 +294,28 @@
     thead.append(tr);
     return thead;
   }
+  // 押すと並び替えられる見出し
+  function sortHeadRow(cols, sort, onSort) {
+    const thead = el("thead");
+    const tr = el("tr");
+    for (const c of cols) {
+      const th = el("th", c.label === "銘柄" ? "name" : null);
+      if (!c.key) {
+        tr.append(th);
+        continue;
+      }
+      const active = c.key === sort.key;
+      if (active) th.setAttribute("aria-sort", sort.dir > 0 ? "ascending" : "descending");
+      const btn = el("button", active ? "sort-btn active" : "sort-btn", c.label);
+      btn.type = "button";
+      btn.append(el("span", "sort-mark", active ? (sort.dir > 0 ? "▲" : "▼") : "↕"));
+      btn.addEventListener("click", () => onSort(c.key));
+      th.append(btn);
+      tr.append(th);
+    }
+    thead.append(tr);
+    return thead;
+  }
   function emptyRow(tbody, cols, text) {
     const tr = el("tr");
     const td = el("td", "empty", text);
@@ -311,11 +338,39 @@
       if (state.size && (state.rankMap.get(e.code) || Infinity) > state.size) continue;
       byCode.set(e.code, e);
     }
-    // 直近で最高値を更新した日が新しい銘柄ほど上に
     const athDate = (e) => e.last_high || state.stockMap.get(e.code)?.ath_date || e.date;
-    const all = [...byCode.values()].sort((a, b) => athDate(b).localeCompare(athDate(a)) || b.date.localeCompare(a.date));
+    const stock = (e) => state.stockMap.get(e.code);
+    // 並び替えできる列。value が null の銘柄は、どちら向きでも一番下
+    const GRADE_ORDER = { 上: 3, 中: 2, 下: 1 };
+    const cols = [
+      { label: "" },
+      { key: "name", label: "銘柄", value: (e) => e.code },
+      { key: "grade", label: "評価", value: (e) => GRADE_ORDER[gradeOf(e, stock(e))] ?? null },
+      { key: "sales", label: "売上の伸び(前年比)", value: (e) => stock(e)?.sales?.growth ?? null },
+      { key: "buyback", label: "自社株買い", value: (e) => (buybackActive(e.code, latest) ? 1 : 0) },
+      { key: "first", label: "最初に更新した日", value: (e) => e.date },
+      { key: "last", label: "最後に更新した日", value: athDate },
+      { key: "highs", label: "更新した日数", value: (e) => e.highs ?? null },
+      { key: "gap", label: "何年ぶりの高値", value: (e) => e.gap },
+      { key: "since", label: "最初の更新から", value: (e) => (stock(e) ? stock(e).last / e.price - 1 : null) },
+      { key: "from_ath", label: "最高値から", value: (e) => stock(e)?.from_ath ?? null },
+    ];
+    const { key, dir } = state.recentSort;
+    const col = cols.find((c) => c.key === key);
+    const cmp = (a, b) => (typeof a === "string" ? a.localeCompare(b) : a - b);
+    const all = [...byCode.values()].sort((a, b) => {
+      const va = col.value(a);
+      const vb = col.value(b);
+      if (va == null || vb == null) return (va == null) - (vb == null);
+      // 同じ値のときは、最高値を更新した日が新しい順
+      return dir * cmp(va, vb) || athDate(b).localeCompare(athDate(a)) || b.date.localeCompare(a.date);
+    });
     const rows = all.filter((e) => !isHidden(e.code));
-    table.append(headRow(["", "銘柄", "評価", "売上の伸び(前年比)", "自社株買い", "最初に更新した日", "最後に更新した日", "更新した日数", "何年ぶりの高値", "最初の更新から", "最高値から"]));
+    table.append(sortHeadRow(cols, state.recentSort, (k) => {
+      // 同じ列をもう一度押すと向きを反対に。別の列は大きい(新しい)順から
+      state.recentSort = { key: k, dir: k === key ? -dir : k === "name" ? 1 : -1 };
+      renderRecent();
+    }));
     const tbody = el("tbody");
     for (const e of rows) {
       const s = state.stockMap.get(e.code);
