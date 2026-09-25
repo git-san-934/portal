@@ -293,3 +293,5 @@ footer a { color: var(--accent); }
 .sort-btn:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; border-radius: 0.2rem; }
 .sort-mark { margin-left: 0.2rem; font-size: 0.65rem; opacity: 0.5; }
 .sort-btn.active .sort-mark { opacity: 1; color: var(--accent); }
+.list td.rank { font-weight: 700; }
+.list td.rank.top { color: var(--accent); }
