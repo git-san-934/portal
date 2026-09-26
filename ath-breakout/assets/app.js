@@ -801,6 +801,41 @@
     }
   }
 
+  // ---------- 有望度の成績表(PDCA) ----------
+  // fetch_ath.py が毎日の順位を記録し、1ヶ月・3ヶ月後の成績(TOPIX比)を集計したもの
+  function renderRankReview() {
+    const r = state.data.rank_review;
+    const table = $("rank-review");
+    const note = $("rank-review-note");
+    table.textContent = "";
+    note.textContent = "";
+    if (!r) {
+      note.textContent = "まだ記録がありません。";
+      return;
+    }
+    const hs = Object.entries(r.horizons || {}).filter(([, v]) => v.days > 0);
+    note.textContent = `${dateFmt(r.start)} から毎日の順位を記録しています(${r.days}日分)。` +
+      (hs.length ? "同じ銘柄が何日も続けて数えられるため、件数は銘柄数より多くなります。" : "記録した日から約1ヶ月たつと、ここに結果が出ます。");
+    const rules = $("rank-rules");
+    rules.textContent = "";
+    for (const [d, text] of r.rules || []) rules.append(el("li", null, `${dateFmt(d)}〜 ${text}`));
+    if (!hs.length) return;
+    const label = { 20: "1ヶ月後", 60: "3ヶ月後" };
+    const cell = (g) => {
+      const td = el("td", pctClass(g?.mean), g?.mean == null ? "—" : pctText(g.mean));
+      if (g?.n) td.append(el("span", "sub muted", ` 勝率${Math.round(g.win * 100)}% ・${g.n}件`));
+      return td;
+    };
+    table.append(headRow(["", `上位${r.top}位まで`, `${r.top + 1}位以下`, "銀行・保険", "記録した日"]));
+    const tbody = el("tbody");
+    for (const [h, v] of hs) {
+      const tr = el("tr");
+      tr.append(el("th", null, label[h] || `${h}営業日後`), cell(v.top), cell(v.rest), cell(v.fin), el("td", null, `${dateFmt(v.first)}〜${dateFmt(v.last)}`));
+      tbody.append(tr);
+    }
+    table.append(tbody);
+  }
+
   function renderAll() {
     applyFilter();
     renderTiles();
@@ -808,6 +843,7 @@
     renderPath();
     renderRecent();
     renderRating();
+    renderRankReview();
     renderEvents();
   }
 
