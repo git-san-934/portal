@@ -6,7 +6,7 @@
   <title>過去最高値ブレイクのその後</title>
   <meta name="description" content="日本株が過去最高値を更新したあと、株価がどう動いたかを過去のデータで検証するページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260926h" />
+  <link rel="stylesheet" href="assets/style.css?v=20260926i" />
 </head>
 <body>
   <div class="wrap">
@@ -58,6 +58,22 @@
         <p class="hidden-note" id="hidden-note" hidden></p>
       </section>
 
+      <section class="panel" id="rank-review-panel">
+        <h2>有望度の成績表(答え合わせ)</h2>
+        <p class="note">毎日の「有望度(目安)」の順位を記録し、その日の終値から1ヶ月後・3ヶ月後までの騰落率を、同じ期間のTOPIXと比べています(平均のTOPIX比)。上位の銘柄が6位以下より強ければ、順位の決め方が役に立っていることになります。記録は既定の表示条件(前回の最高値から3ヶ月以上・時価総額上位500)の順位です。</p>
+        <p class="note" id="rank-review-note"></p>
+        <div class="table-scroll"><table class="stats" id="rank-review"></table></div>
+        <h3 class="dialog-h3">順位の決め方の履歴</h3>
+        <ul class="note rule-list" id="rank-rules"></ul>
+        <h3 class="dialog-h3">次に検証する条件</h3>
+        <ol class="note rule-list">
+          <li>業績予想の上方修正</li>
+          <li>業種</li>
+          <li>割安さ(PER・PBR)</li>
+        </ol>
+        <p class="note">新しい条件は、過去のブレイク(2017年以降)で「2017〜19年と2020〜25年のどちらでも同じ向きに、1年後の成績の差が3ポイント以上」あったときだけ順位に入れます。月に1回この成績表を見直し、上位が6位以下に負け続けている条件は重みを下げます。</p>
+      </section>
+
       <section class="panel" id="rating-panel">
         <h2>評価マーク(上・中・下)の決め方と過去の成績</h2>
         <p class="note">
@@ -106,6 +122,6 @@
     </div>
   </dialog>
 
-  <script src="assets/app.js?v=20260926h"></script>
+  <script src="assets/app.js?v=20260926i"></script>
 </body>
 </html>

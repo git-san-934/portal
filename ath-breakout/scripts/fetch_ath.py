@@ -51,6 +51,17 @@ SALES_RECENT_DAYS = 100  # この日数(暦日)以内にブレイクした銘柄
 SALES_REFRESH_DAYS = 7  # 取得してからこの日数たつまでは取り直さない
 JST = timezone(timedelta(hours=9))
 
+# ---------- 有望度の順位の記録と成績表(PDCA) ----------
+# 画面の「いま最高値を更新中の銘柄」の有望度(app.js の promiseRanks)と同じ決め方で毎日の順位を記録し、
+# あとから実際の値動き(TOPIX比)と照らし合わせる。決め方を変えたら RANK_RULES に1行足す
+RANK_RULES = [
+    ["2026-09-26", "営業利益+50%以上の伸びに4点、売上の伸び(20%/10%/5%以上)に6/4/2点、評価マーク 上1・中0.5・下0点。銀行・保険は別に順位"],
+]
+RECENT_DAYS = 92  # 「いま最高値を更新中」とみなすブレイクからの暦日(app.js と同じ)
+REVIEW_TOP = 5  # 成績表で「上位」とする順位
+REVIEW_HORIZONS = [20, 60]  # 記録した日から何営業日後(約1ヶ月・3ヶ月)の成績を見るか
+RANK_HISTORY_PATH = DATA_DIR / "rank_history.json"
+
 
 # ---------- 対象銘柄 ----------
 
@@ -384,6 +395,81 @@ def financial_codes(hist):
     return codes
 
 
+def promise_ranks(events, stock_map):
+    """app.js の promiseRanks と同じ点数で順位をつける。返り値 [(code, 順位, 銀行・保険か)]"""
+    def score(e):
+        st = stock_map[e["code"]]
+        g = (st.get("sales") or {}).get("growth")
+        tier = 0 if g is None else 3 if g >= 0.2 else 2 if g >= 0.1 else 1 if g >= 0.05 else 0
+        op = (st.get("op") or {}).get("growth")
+        gr = grade(st["last"], e["price"], st["ath"])
+        return (4 if op is not None and op >= 0.5 else 0) + tier * 2 + {"上": 1, "中": 0.5, "下": 0}[gr], g if g is not None else -1e9
+
+    out = []
+    for fin in (False, True):
+        group = [e for e in events if bool(stock_map[e["code"]].get("financial")) == fin]
+        group.sort(key=lambda e: (-score(e)[0], -score(e)[1], e["code"]))
+        out += [(e["code"], i + 1, fin) for i, e in enumerate(group)]
+    return out
+
+
+def record_ranks(all_events, stocks, series, bench):
+    """今日の順位を rank_history.json に足し、過去に記録した順位のその後の成績(TOPIX比)を集計する"""
+    stock_map = {st["code"]: st for st in stocks}
+    latest = max(st["last_date"] for st in stocks)
+    since = (datetime.fromisoformat(latest) - timedelta(days=RECENT_DAYS)).date().isoformat()
+    by_code = {}
+    for e in sorted(all_events, key=lambda e: e["date"]):
+        if e["date"] >= since and e["gap"] >= MIN_GAP and e["code"] in stock_map:
+            by_code[e["code"]] = e
+    hist = {}
+    try:
+        hist = json.loads(RANK_HISTORY_PATH.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        pass
+    hist[latest] = {
+        "rules": RANK_RULES[-1][0],
+        "rows": [[c, r, int(f), stock_map[c]["last"]] for c, r, f in promise_ranks(list(by_code.values()), stock_map)],
+    }
+    RANK_HISTORY_PATH.write_text(
+        "{\n" + ",\n".join(f"  {json.dumps(d)}: {json.dumps(v, ensure_ascii=False, separators=(',', ':'))}"
+                            for d, v in sorted(hist.items())) + "\n}\n",
+        encoding="utf-8",
+    )
+
+    # 成績表: 記録した日の終値から h 営業日後の終値までの騰落率 − 同じ期間のTOPIX
+    review = {"start": min(hist), "days": len(hist), "top": REVIEW_TOP, "rules": RANK_RULES, "horizons": {}}
+    if bench is None:
+        return review
+    for h in REVIEW_HORIZONS:
+        groups = {"top": [], "rest": [], "fin": []}
+        dates = []
+        for d, snap in sorted(hist.items()):
+            bi = bench.index.searchsorted(datetime.fromisoformat(d))
+            if bi + h >= len(bench):
+                continue
+            b = float(bench.iloc[bi + h] / bench.iloc[bi] - 1)
+            end = bench.index[bi + h]
+            dates.append(d)
+            for code, rank, fin, _ in snap["rows"]:
+                s = series.get(code)
+                if s is None:
+                    continue
+                i = s.index.searchsorted(datetime.fromisoformat(d))
+                if i >= len(s) or s.index[i] != bench.index[bi] or end not in s.index:
+                    continue
+                x = float(s[end] / s.iloc[i] - 1) - b
+                groups["fin" if fin else "top" if rank <= REVIEW_TOP else "rest"].append(x)
+        review["horizons"][str(h)] = {
+            "days": len(dates),
+            "first": dates[0] if dates else None,
+            "last": dates[-1] if dates else None,
+            **{k: {"n": len(v), "mean": r4(sum(v) / len(v)) if v else None,
+                   "win": r4(sum(x > 0 for x in v) / len(v)) if v else None} for k, v in groups.items()},
+        }
+    return review
+
+
 def main():
     universe = load_universe()
     codes = [u["code"] for u in universe]
@@ -401,6 +487,7 @@ def main():
     all_events = []
     samples = []
     stocks = []
+    series = {}  # code -> 補正済みの終値(順位の成績表用)
     ok = 0
     for u in universe:
         code = u["code"]
@@ -410,6 +497,7 @@ def main():
         if len(s) < 50:
             continue
         ok += 1
+        series[code] = s
         evs = find_events(s, bench, samples)
         for ev in evs:
             ev["code"] = code
@@ -465,6 +553,7 @@ def main():
         sys.exit(1)
 
     all_events.sort(key=lambda e: (e["date"], e["code"]))
+    rank_review = record_ranks(all_events, stocks, series, bench)
     out = {
         "generated_at": datetime.now(JST).isoformat(timespec="minutes"),
         "source": "Yahoo Finance (yfinance)",
@@ -472,6 +561,7 @@ def main():
         "rules": {"min_history": MIN_HISTORY, "min_gap": MIN_GAP, "universe": len(universe),
                   "rate_fail": RATE_FAIL, "rate_near": RATE_NEAR},
         "rating": rating,
+        "rank_review": rank_review,
         "horizons": HORIZONS,
         "path_offsets": PATH_OFFSETS,
         "stocks": stocks,
