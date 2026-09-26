@@ -1,9 +1,10 @@
 {
-  "generated_at": "2026-09-26T09:29+09:00",
+  "generated_at": "2026-09-26T10:39+09:00",
   "source": "Yahoo Finance (yfinance)",
   "benchmark": "TOPIX連動ETF(1306)",
   "rules": {"min_history":60,"min_gap":60,"universe":500,"rate_fail":-0.05,"rate_near":-0.05},
   "rating": {"check_days":[20,40,60],"horizon":250,"grades":{"上":{"all":{"n":3669,"median":0.055,"mean":0.1281,"win":0.5645,"exc_median":0.0002,"exc_win":0.5},"early":{"n":1507,"median":0.0504,"mean":0.1039,"win":0.5561,"exc_median":0.1647,"exc_win":0.7065},"late":{"n":2162,"median":0.0598,"mean":0.145,"win":0.5703,"exc_median":-0.0054,"exc_win":0.4912}},"中":{"all":{"n":2956,"median":0.0498,"mean":0.1157,"win":0.5633,"exc_median":-0.0022,"exc_win":0.4973},"early":{"n":1376,"median":0.0446,"mean":0.1021,"win":0.5494,"exc_median":0.1639,"exc_win":0.6456},"late":{"n":1580,"median":0.0537,"mean":0.1275,"win":0.5753,"exc_median":-0.0079,"exc_win":0.4899}},"下":{"all":{"n":2549,"median":0.0316,"mean":0.0967,"win":0.5398,"exc_median":-0.0085,"exc_win":0.4855},"early":{"n":1161,"median":-0.0109,"mean":0.0441,"win":0.4841,"exc_median":0.0236,"exc_win":0.5484},"late":{"n":1388,"median":0.0728,"mean":0.1407,"win":0.5865,"exc_median":-0.0092,"exc_win":0.4827}}}},
+  "rank_review": {"start":"2026-09-25","days":1,"top":5,"rules":[["2026-09-26","営業利益+50%以上の伸びに4点、売上の伸び(20%/10%/5%以上)に6/4/2点、評価マーク 上1・中0.5・下0点。銀行・保険は別に順位"]],"horizons":{"20":{"days":0,"first":null,"last":null,"top":{"n":0,"mean":null,"win":null},"rest":{"n":0,"mean":null,"win":null},"fin":{"n":0,"mean":null,"win":null}},"60":{"days":0,"first":null,"last":null,"top":{"n":0,"mean":null,"win":null},"rest":{"n":0,"mean":null,"win":null},"fin":{"n":0,"mean":null,"win":null}}}},
   "horizons": [5,20,60,120,250],
   "path_offsets": [-60,-40,-20,-10,-5,0,5,10,20,40,60,90,120,150,180,210,250],
   "stocks": [
