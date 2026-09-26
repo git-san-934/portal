@@ -368,6 +368,11 @@ def op_summary(rec):
     }
 
 
+def is_finance_code(code):
+    """証券コード 8300〜8799 は銀行・証券・保険・その他金融(経常収益を使わない損保・生保もここで拾う)"""
+    return code.isdigit() and 8300 <= int(code) < 8800
+
+
 def financial_codes(hist):
     """銀行・保険など、売上高の代わりに「経常収益」を出している会社(有価証券報告書から集めた sales_history.json で判定)。
     金利で売上の伸び方が大きく変わるので、画面の有望度の順位は他の業種と分けて付ける"""
@@ -450,9 +455,9 @@ def main():
     for st in stocks:
         if st["code"] in recent:
             st["sales"] = sales_summary(sales.get(st["code"]))
-            if st["code"] not in financial:
+            if st["code"] not in financial and not is_finance_code(st["code"]):
                 st["op"] = op_summary(hist.get(st["code"]))
-        if st["code"] in financial or "銀行" in st["name"]:
+        if st["code"] in financial or "銀行" in st["name"] or is_finance_code(st["code"]):
             st["financial"] = True
     rating = summarize_rating(samples)
     if ok < len(universe) * MIN_OK_RATIO:
