@@ -295,3 +295,5 @@ footer a { color: var(--accent); }
 .sort-btn.active .sort-mark { opacity: 1; color: var(--accent); }
 .list td.rank { font-weight: 700; }
 .list td.rank.top { color: var(--accent); }
+.list td.strong { font-weight: 700; }
+.list td .sub { font-size: 0.72rem; margin-left: 0.2rem; }
