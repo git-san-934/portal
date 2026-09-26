@@ -1,0 +1,60 @@
+name: 不祥事株データ更新
+
+on:
+  schedule:
+    - cron: "45 7 * * 1-5" # 平日 16:45 JST(大引け後の終値)
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - scandal-watch/scripts/**
+      - scandal-watch/data/cases.json
+      - .github/workflows/update-scandal-watch.yml
+  pull_request:
+    paths:
+      - scandal-watch/scripts/**
+      - scandal-watch/data/cases.json
+      - .github/workflows/update-scandal-watch.yml
+
+permissions:
+  contents: write # prices.json をコミットする
+  actions: write # 更新後に Pages のデプロイを起動する
+
+concurrency:
+  group: scandal-watch-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r scandal-watch/scripts/requirements.txt
+      - name: 株価を取得してその後の動きを計算
+        run: python scandal-watch/scripts/fetch_prices.py
+      # PR では取得・計算できるかの確認だけ行い、コミット・デプロイはしない
+      - name: データをコミット
+        id: commit
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A scandal-watch/data
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "不祥事株データ更新 ($(TZ=Asia/Tokyo date +%F))"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
+      - name: GitHub Pages を再デプロイ
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

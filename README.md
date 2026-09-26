@@ -16,6 +16,7 @@ https://git-san-934.github.io/portal/
 - `foreign-flow/` — 掲載アプリの1つ「海外投資家の需給」の本体(このリポジトリ内に同梱)。空売り残高・投資部門別売買状況・株価を GitHub Actions が平日に自動取得します。詳細は `foreign-flow/README.md` を参照。
 - `holdings/` — 掲載アプリの1つ「持ち株チェック」の本体(このリポジトリ内に同梱)。毎日のチェック結果は `holdings/data/check.json`、株価データは GitHub Actions が平日に自動更新します。詳細は `holdings/README.md` を参照。
 - `ath-breakout/` — 掲載アプリの1つ「過去最高値ブレイクのその後」の本体(このリポジトリ内に同梱)。株価データの取得とブレイクの判定は GitHub Actions が平日に自動で行います。詳細は `ath-breakout/README.md` を参照。
+- `scandal-watch/` — 掲載アプリの1つ「不祥事株のその後」の本体(このリポジトリ内に同梱)。不祥事の一覧は `scandal-watch/data/cases.json`、その後の株価は GitHub Actions が平日に自動で計算します。詳細は `scandal-watch/README.md` を参照。
 
 ## 掲載しているアプリ
 
@@ -25,6 +26,7 @@ https://git-san-934.github.io/portal/
 | 持ち株チェック | https://git-san-934.github.io/portal/holdings/ |
 | 海外投資家の需給 | https://git-san-934.github.io/portal/foreign-flow/ |
 | 過去最高値ブレイクのその後 | https://git-san-934.github.io/portal/ath-breakout/ |
+| 不祥事株のその後 | https://git-san-934.github.io/portal/scandal-watch/ |
 | 日経ヒートマップ | https://git-san-934.github.io/nikkei-heatmap/ |
 | 東証株価データベース | https://git-san-934.github.io/tse-price-db/ |
 | 東証チャートスクロール | https://git-san-934.github.io/portal/tse-chart-scroll/ |

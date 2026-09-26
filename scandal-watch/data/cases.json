@@ -1,0 +1,537 @@
+{
+  "note": "手で調べて書いた不祥事の一覧。date は問題が最初に広く知られた日(公表・報道・逮捕など)。type は temporary(一時的)/ core(本業に響く)/ watch(見きわめ中)。株価の数字は scripts/fetch_prices.py が prices.json に書き出す",
+  "checked": "2026-09-26",
+  "cases": [
+    {
+      "id": "kobayashi-2024",
+      "name": "小林製薬",
+      "code": "4967",
+      "date": "2024-03-22",
+      "title": "紅麹サプリで健康被害",
+      "what": "紅麹(べにこうじ)を使ったサプリを飲んだ人に腎臓の病気などが出たと公表し、商品を自主回収。のちに亡くなった人との関係も疑われた。株価は2日続けてストップ安。",
+      "type": "core",
+      "why": "健康にかかわる商品で起きた問題で、「安心して使える」という会社の信頼そのものが傷ついた。被害への補償も長く続く。",
+      "after": "2024年8月に紅麹事業からの撤退を発表。2024年12月期に約127億円の特別損失を計上。会長・社長が退任した。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: 小林製薬、株価ストップ安で配分", "url": "https://www.nikkei.com/article/DGXZQOFL254SJ0V20C24A3000000/" },
+        { "title": "小林製薬: 紅麹事業からの撤退に関するお知らせ", "url": "https://www.kobayashi.co.jp/newsrelease/2024/20240808_04/" },
+        { "title": "日本経済新聞: 紅麹で24年12月期に特損127億円", "url": "https://www.nikkei.com/article/DGXZQOUF103O20Q5A210C2000000/" }
+      ]
+    },
+    {
+      "id": "nidec-2025",
+      "name": "ニデック",
+      "code": "6594",
+      "date": "2025-09-03",
+      "title": "不適切な会計の疑い",
+      "what": "経営陣が関わった可能性のある不適切な会計処理が見つかったとして第三者委員会を設置。翌日は売りが殺到し、一時ストップ安。監査法人は決算書に意見を出さなかった。",
+      "type": "core",
+      "why": "決算の数字そのものが信用できるかが問われた。利益の数字が信じられないと、適正な株価も計算できない。",
+      "after": "2025年10月に東証が「特別注意銘柄」に指定(改善しないと上場廃止もありうる状態)。2026年4月に第三者委員会の最終報告。純資産は約1,607億円減る見込みで、2026年3月期末は無配。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: ニデック株がストップ安 不適切会計の疑い", "url": "https://www.nikkei.com/article/DGXZQOUF040IZ0U5A900C2000000/" },
+        { "title": "日本取引所グループ: 特別注意銘柄の指定(ニデック)", "url": "https://www.jpx.co.jp/news/1023/20251027-12.html" },
+        { "title": "ニデック: 事案の概要", "url": "https://www.nidec.com/jp/corporate/internal-control-improvement/overview/" }
+      ]
+    },
+    {
+      "id": "kddi-2026",
+      "name": "KDDI",
+      "code": "9433",
+      "date": "2026-02-06",
+      "title": "子会社の架空取引",
+      "what": "子会社のビッグローブなどの広告の仕事で、実際にはない取引(架空取引)が見つかり、売上が約2,460億円多く計上されていた。約330億円が外部に流れ出たとされ、決算発表を延期した。",
+      "type": "watch",
+      "why": "問題は子会社の広告の仕事で、携帯電話などの本業とは別。ただし外に流れたお金の回収や、管理のしかたの見直しがどこまで進むかはまだ見きわめ中。",
+      "after": "2026年3月、調査委員会が広告の売上の99.7%が架空だったと公表し、ビッグローブの社長が辞任。広告代理事業の再開は断念し、過去3年分の決算を訂正した。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: KDDI、子会社の架空取引で330億円が外部流出", "url": "https://www.nikkei.com/article/DGXZQOUC0676D0W6A200C2000000/" },
+        { "title": "KDDI: 2026年3月期第3四半期決算について", "url": "https://newsroom.kddi.com/ir-news/detail/kddi_ir-1110_4384.html" },
+        { "title": "ITmedia: 売上99.7%が架空取引 調査委が公表", "url": "https://www.itmedia.co.jp/news/articles/2603/31/news121.html" }
+      ]
+    },
+    {
+      "id": "tel-2025",
+      "name": "東京エレクトロン",
+      "code": "8035",
+      "date": "2025-08-07",
+      "title": "TSMCの機密を不正に入手",
+      "what": "台湾の子会社の元社員が、大口のお客さまである台湾TSMCの機密情報の不正な入手に関わっていたことを会社が認めた。",
+      "type": "temporary",
+      "why": "関わったのは台湾子会社の元社員で、本社は起訴されていない。半導体製造装置の需要そのものが減る話ではない。",
+      "after": "2025年12月に台湾の検察が台湾子会社を起訴。2026年に子会社の有罪判決が確定し、罰金が科された。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: 東京エレクトロン「元従業員の関与確認」", "url": "https://www.nikkei.com/article/DGXZQOUC072CV0X00C25A8000000/" },
+        { "title": "日本経済新聞: 台湾検察が東京エレクトロン起訴", "url": "https://www.nikkei.com/article/DGXZQOUC02B970S5A201C2000000/" },
+        { "title": "日本経済新聞: 台湾子会社の有罪判決確定", "url": "https://www.nikkei.com/article/DGXZQOGM2120V0R20C26A5000000/" }
+      ]
+    },
+    {
+      "id": "japanpost-2025",
+      "name": "日本郵政",
+      "code": "6178",
+      "date": "2025-06-05",
+      "title": "運転手の点呼をしていなかった",
+      "what": "子会社の日本郵便で、トラックなどの運転手の飲酒などを確かめる「点呼」が全国の郵便局で正しく行われていなかった。国土交通省はトラック運送事業の許可を取り消した。",
+      "type": "temporary",
+      "why": "日本郵政グループの利益の多くは銀行(ゆうちょ)と保険(かんぽ)が生んでいる。トラック輸送は外部の会社に任せるなどで郵便・荷物は続けられた。",
+      "after": "2025年6月に国土交通省が一般貨物の事業許可を取り消し。自社のトラックが使えなくなった分は、外部の運送会社への委託などで対応した。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: 日本郵政の株価反落 事業許可取り消し報道", "url": "https://www.nikkei.com/nkd/company/article/?DisplayType=1&ng=DGXZQOFL050YS0V00C25A6000000&scode=6178" },
+        { "title": "日本経済新聞: 日本郵便のトラック運送事業、許可取り消し", "url": "https://www.nikkei.com/article/DGXZQOUD248CS0U5A620C2000000/" },
+        { "title": "日本郵便: 点呼業務不備事案に対する行政処分に伴う影響", "url": "https://www.post.japanpost.jp/about/roll-call.html" }
+      ]
+    },
+    {
+      "id": "olts-2025",
+      "name": "オルツ",
+      "code": "260A",
+      "date": "2025-04-25",
+      "title": "売上の水増し(粉飾決算)",
+      "what": "AIの会社。売上を実際より多く見せていた疑いで第三者委員会を設置し、決算発表を延期。株価はストップ安が続いた。",
+      "type": "core",
+      "why": "売上の大部分が作られたものだった。会社の実力そのものがなかったので、「安くなった」とは言えない。",
+      "after": "2025年7月、第三者委員会が売上の最大9割が過大だったと報告。民事再生法を申請し、2025年8月に上場廃止。株はほぼ価値を失った。",
+      "status": "delisted",
+      "delisted": "2025-08-31",
+      "sources": [
+        { "title": "日本経済新聞: オルツ、売上高過大計上で第三者委設置", "url": "https://www.nikkei.com/article/DGXZQOUC2816I0Y5A420C2000000/" },
+        { "title": "日本経済新聞: 売上高の最大9割過大計上 調査結果", "url": "https://www.nikkei.com/article/DGXZQOUC249YD0U5A720C2000000/" },
+        { "title": "日本経済新聞: オルツ、民事再生法申請", "url": "https://www.nikkei.com/article/DGKKZO90365100Q5A730C2TB1000/" }
+      ]
+    },
+    {
+      "id": "zensho-2025",
+      "name": "ゼンショーホールディングス",
+      "code": "7550",
+      "date": "2025-03-22",
+      "title": "すき家でネズミなどの異物混入",
+      "what": "すき家のみそ汁にネズミが入っていたことを公表。その後もゴキブリの混入がわかり、3月31日から約1週間、すき家のほぼ全店を閉めて害虫・害獣の対策を行った。",
+      "type": "temporary",
+      "why": "店の衛生管理の問題で、対策をすれば元に戻せる。ただし客足が戻るかは売上の数字で確かめる必要があった。",
+      "after": "全店を閉めて対策を実施。その後しばらくは、すき家の既存店の売上が前の年を下回った。",
+      "status": "listed",
+      "sources": [
+        { "title": "Bloomberg: みそ汁にネズミ混入でゼンショー株が急落", "url": "https://www.bloomberg.com/jp/news/articles/2025-03-24/STLPOJT1UM0W00" },
+        { "title": "Bloomberg: すき家を全店一時閉店", "url": "https://www.bloomberg.co.jp/news/articles/2025-03-29/STVNKJT1UM0W00" },
+        { "title": "株探: ゼンショーHDが急落", "url": "https://kabutan.jp/news/marketnews/?b=n202503240220" }
+      ]
+    },
+    {
+      "id": "fujimedia-2025",
+      "name": "フジ・メディア・ホールディングス",
+      "code": "4676",
+      "date": "2025-01-17",
+      "title": "タレントをめぐる問題への対応",
+      "what": "元タレントと女性とのトラブルに社員が関わったと報じられた問題で、フジテレビの社長会見が閉じた形で行われ、批判が集まった。多くの会社がCMを取りやめた。",
+      "type": "core",
+      "why": "テレビ広告というフジテレビの稼ぎの柱が大きく減った。一方で株価は上がった(不動産など会社の持つ財産に注目した株主が増え、株主への還元や経営の見直しを求める声が強まったため)。",
+      "after": "2025年3月に第三者委員会が報告書を公表。経営陣が大きく入れ替わった。CMは徐々に戻ったが、広告収入は大きく落ち込んだ。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: CM見合わせドミノ直後に株価急上昇のナゾ", "url": "https://www.nikkei.com/article/DGXZQOUB026JI0S5A900C2000000/" },
+        { "title": "日本経済新聞: 第三者委員会の調査報告書受領(適時開示)", "url": "https://www.nikkei.com/nkd/disclosure/tdnr/20250331504819/" },
+        { "title": "日本経済新聞: フジテレビCM差し止め拡大、50社超に", "url": "https://www.nikkei.com/article/DGXZQOUC203310Q5A120C2000000/" }
+      ]
+    },
+    {
+      "id": "mufg-2024",
+      "name": "三菱UFJフィナンシャル・グループ",
+      "code": "8306",
+      "date": "2024-11-22",
+      "title": "行員が貸金庫から盗んだ",
+      "what": "三菱UFJ銀行の元行員が、お客さまの貸金庫から十数億円分の現金などを盗んでいたことを公表。",
+      "type": "temporary",
+      "why": "1人の行員による犯罪で、銀行の利益に比べると金額は小さい。ただし銀行にとって信頼は大切なので、管理の見直しが必要になった。",
+      "after": "2025年1月に元行員が逮捕。銀行は防犯カメラの増設などの再発防止策を発表し、経営陣の処分も行った。",
+      "status": "listed",
+      "sources": [
+        { "title": "三菱UFJ銀行: 元行員の不祥事について(2024年11月22日)", "url": "https://www.bk.mufg.jp/news/admin/news1122.pdf" },
+        { "title": "三菱UFJ銀行: 対応状況・再発防止策等について(2025年1月16日)", "url": "https://www.bk.mufg.jp/news/news2025/pdf/news0116.pdf" },
+        { "title": "日本経済新聞: 貸金庫問題で追加防止策", "url": "https://www.nikkei.com/article/DGXZQOUB150Z00V10C25A1000000/" }
+      ]
+    },
+    {
+      "id": "nomura-2024",
+      "name": "野村ホールディングス",
+      "code": "8604",
+      "date": "2024-09-25",
+      "title": "国債先物の相場操縦など",
+      "what": "野村證券が国債の先物取引で相場をゆがめる注文(相場操縦)を出していたとして、証券取引等監視委員会が課徴金を求めた。同じ年に、元社員がお客さまへの強盗殺人未遂などの疑いで逮捕される事件もあった。",
+      "type": "temporary",
+      "why": "会社全体の利益に比べて課徴金は小さい。ただし個人のお客さまの信頼に響くかは、預かり資産の動きで確かめる必要があった。",
+      "after": "不祥事が続いたことで、経営陣は報酬を減らし、再発防止策を公表した。",
+      "status": "listed",
+      "sources": [
+        { "title": "証券取引等監視委員会: 野村證券の相場操縦に対する課徴金納付命令の勧告", "url": "https://www.fsa.go.jp/sesc/news/c_2024/2024/20240925-1.html" },
+        { "title": "Bloomberg: 野村HD、傘下証券で相次ぐ不祥事", "url": "https://www.bloomberg.com/jp/news/articles/2024-10-31/SM7POOT1UM0W00" },
+        { "title": "東洋経済: 不祥事相次ぐ野村、問われる再発防止策の実効性", "url": "https://toyokeizai.net/articles/-/845742" }
+      ]
+    },
+    {
+      "id": "ihi-2024",
+      "name": "IHI",
+      "code": "7013",
+      "date": "2024-04-24",
+      "title": "子会社がエンジンの燃費データを改ざん",
+      "what": "子会社のIHI原動機が、船などのエンジンの燃費(燃料消費率)のデータを書きかえていたと伝わり、株価が急落。",
+      "type": "temporary",
+      "why": "問題は子会社の船などのエンジン。IHIの稼ぎの柱である航空機エンジンの仕事とは別だった。",
+      "after": "国土交通省に調査結果を報告。追加の改ざんも見つかったが「悪い材料は出尽くした」と受け止められ、株価は反発した。",
+      "status": "listed",
+      "sources": [
+        { "title": "株探: IHIは後場急落、燃料消費率の測定データ改ざん", "url": "https://kabutan.jp/news/marketnews/?b=n202404240582" },
+        { "title": "MONOist: IHI原動機が国交省に中間報告", "url": "https://monoist.itmedia.co.jp/mn/articles/2406/05/news095.html" },
+        { "title": "会社四季報: IHIが反発、材料出尽くし", "url": "https://shikiho.toyokeizai.net/news/0/811073" }
+      ]
+    },
+    {
+      "id": "toyota-2024",
+      "name": "トヨタ自動車",
+      "code": "7203",
+      "date": "2024-06-03",
+      "title": "車の認証(型式指定)で不正",
+      "what": "国に車を売る許可をもらうための試験(型式指定)で、決められたやり方と違う試験をしていたと公表。マツダ・ホンダ・スズキ・ヤマハ発動機も同じ日に公表した。前の年(2023年12月)には子会社のダイハツで大規模な認証不正が見つかり、全車種の出荷を止めていた。",
+      "type": "temporary",
+      "why": "車の安全性そのものには問題がないと会社は説明。止まったのは一部の車種で、会社全体の販売は大きくは崩れなかった。",
+      "after": "国土交通省が立ち入り検査。対象の車種は一時生産を止めたが、確認が終わると再開した。",
+      "status": "listed",
+      "sources": [
+        { "title": "国土交通省: 自動車メーカー5社の型式指定申請における不正行為について", "url": "https://www.mlit.go.jp/jidosha/jidosha_tk8_000023.html" },
+        { "title": "経済産業省: 自動車メーカー5社の型式指定申請における不正行為について", "url": "https://www.meti.go.jp/press/2024/06/20240603009/20240603009.html" },
+        { "title": "日経クロステック: トヨタなど5社が型式指定申請で不正", "url": "https://xtech.nikkei.com/atcl/nxt/news/24/00908/" }
+      ]
+    },
+    {
+      "id": "sbi-2024",
+      "name": "SBIホールディングス",
+      "code": "8473",
+      "date": "2024-01-12",
+      "title": "SBI証券がIPO株の値動きを操作",
+      "what": "SBI証券が、自分たちが担当した新規上場(IPO)の株の初値を高くするよう、取引先に買い注文を頼んでいた。金融庁は一部の業務を止める命令を出した。",
+      "type": "temporary",
+      "why": "止められたのはIPO株をすすめる仕事の約1週間分。ネット証券の主な稼ぎである売買の手数料などは続いた。",
+      "after": "業務停止期間が終わり通常に戻った。SBI証券はその後もネット証券の口座数を伸ばした。",
+      "status": "listed",
+      "sources": [
+        { "title": "金融庁: 株式会社SBI証券に対する行政処分について", "url": "https://www.fsa.go.jp/news/r5/shouken/20240112/20240112.html" },
+        { "title": "SBIホールディングス: 金融庁による行政処分について", "url": "https://www.sbigroup.co.jp/news/2024/0112_14345.html" },
+        { "title": "日本経済新聞: 金融庁、SBI証券への業務停止命令発表", "url": "https://www.nikkei.com/article/DGXZQOUB123LS0S4A110C2000000/" }
+      ]
+    },
+    {
+      "id": "tokiomarine-2023",
+      "name": "東京海上ホールディングス",
+      "code": "8766",
+      "date": "2023-12-26",
+      "title": "保険料を他社と事前に調整(カルテル)",
+      "what": "企業向けの保険の料金を、大手損保どうしで事前に調整していた。金融庁が大手損保4社に業務改善命令を出した。",
+      "type": "temporary",
+      "why": "課徴金は会社の利益に比べて小さい。業界の見直しの中で、持っている他社の株(政策保有株)の売却を早める方針が示された。",
+      "after": "2024年10月に公正取引委員会が課徴金などの処分。持ち合い株の売却を早める方針を示した。",
+      "status": "listed",
+      "sources": [
+        { "title": "金融庁: 大手損害保険会社に対する行政処分について", "url": "https://www.fsa.go.jp/news/r5/hoken/20231226/20231226.html" },
+        { "title": "日本経済新聞: 損保カルテル4社行政処分 課徴金は総額20億円超", "url": "https://www.nikkei.com/article/DGXZQOUE29BKL0Z21C24A0000000/" },
+        { "title": "ダイヤモンド: 損保カルテル問題を徹底解説", "url": "https://diamond.jp/articles/-/342955" }
+      ]
+    },
+    {
+      "id": "msad-2023",
+      "name": "MS&ADインシュアランスグループ",
+      "code": "8725",
+      "date": "2023-12-26",
+      "title": "保険料を他社と事前に調整(カルテル)",
+      "what": "東京海上などと同じく、企業向け保険の料金を事前に調整していたとして、傘下の三井住友海上とあいおいニッセイ同和損保が業務改善命令を受けた。",
+      "type": "temporary",
+      "why": "課徴金は会社の利益に比べて小さい。保険の仕事そのものが続けられなくなる処分ではなかった。",
+      "after": "2024年10月に公正取引委員会が課徴金などの処分。持ち合い株の売却を早める方針を示した。",
+      "status": "listed",
+      "sources": [
+        { "title": "金融庁: 大手損害保険会社に対する行政処分について", "url": "https://www.fsa.go.jp/news/r5/hoken/20231226/20231226.html" },
+        { "title": "MS&ADホールディングス: 保険料等の調整行為に関する当社グループの対応", "url": "https://www.ms-ad-hd.com/ja/important_notice/notice-02.html" },
+        { "title": "日本経済新聞: 損保カルテル4社行政処分", "url": "https://www.nikkei.com/article/DGXZQOUE29BKL0Z21C24A0000000/" }
+      ]
+    },
+    {
+      "id": "sawai-2023",
+      "name": "サワイグループホールディングス",
+      "code": "4887",
+      "date": "2023-10-23",
+      "title": "胃の薬の品質試験で不正",
+      "what": "子会社の沢井製薬が、胃炎の薬(テプレノン)の品質試験で、2015年ごろから決められたやり方を守っていなかったと公表。株価は6%下落。",
+      "type": "temporary",
+      "why": "不正が見つかったのは1つの薬の試験。ほかの多くの後発薬(ジェネリック)の供給は続いた。ただし薬の会社にとって品質の信頼は大事なので、ほかの薬に広がらないかを見る必要があった。",
+      "after": "会社は原因と再発防止策を公表し、社長が説明した。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: 沢井製薬、胃炎薬で試験不正", "url": "https://www.nikkei.com/article/DGXZQOUF233UN0T21C23A0000000/" },
+        { "title": "日本経済新聞: サワイGHDが6%安", "url": "https://www.nikkei.com/article/DGXZQOFL00016_U3A021C2000000/" },
+        { "title": "メディカルサポネット: 沢井製薬社長に原因・再発防止を聞く", "url": "https://medical-saponet.mynavi.jp/news/newstopics/detail_4239/" }
+      ]
+    },
+    {
+      "id": "eneos-2023",
+      "name": "ENEOSホールディングス",
+      "code": "5020",
+      "date": "2023-12-19",
+      "title": "社長の不適切な行為で解任",
+      "what": "社長が懇親の場で女性に抱きつくなどの不適切な行為をしたとして解任。前の年(2022年8月)にも会長が同じような理由で辞任していた。",
+      "type": "temporary",
+      "why": "経営トップ個人の問題で、ガソリンなどの本業の売上には直接響かない。ただし2年続いたことで、会社の管理のしかたが問われた。",
+      "after": "新しい経営陣に交代。その後も子会社の会長がセクハラで解任されるなど、問題は続いた。",
+      "status": "listed",
+      "sources": [
+        { "title": "ENEOSホールディングス: 2023年12月19日 お知らせ", "url": "https://www.hd.eneos.co.jp/newsrelease/upload_pdf/20231219_01_01.pdf" },
+        { "title": "ENEOSホールディングス: 2022年8月12日 お知らせ", "url": "https://www.hd.eneos.co.jp/newsrelease/upload_image/20220812_01_01_0906370.pdf" },
+        { "title": "日本経済新聞: ENEOSの再生エネ子会社会長、セクハラで解任", "url": "https://www.nikkei.com/article/DGXZQOUC218890R20C24A2000000/" }
+      ]
+    },
+    {
+      "id": "sompo-2023",
+      "name": "SOMPOホールディングス",
+      "code": "8630",
+      "date": "2023-07-25",
+      "title": "ビッグモーターの保険金不正に加担",
+      "what": "中古車販売のビッグモーターが保険金を不正に請求していた問題で、傘下の損保ジャパンが問題を知りながら取引を再開していたことがわかり、批判を受けた。",
+      "type": "temporary",
+      "why": "保険の仕事全体に比べ、ビッグモーター関連の取引は一部。ただし金融庁の処分の重さしだいでは本業に響くおそれがあった。",
+      "after": "2024年1月に金融庁が損保ジャパンとSOMPOホールディングスに業務改善命令。グループのトップが辞任した。",
+      "status": "listed",
+      "sources": [
+        { "title": "損保ジャパン: ビッグモーター社による自動車保険金の不正請求への対応(2023年7月25日)", "url": "https://www.sompo-japan.co.jp/-/media/SJNK/files/news/2023/20230725_1.pdf?la=ja-JP" },
+        { "title": "日本経済新聞: SOMPOが続落 ビッグモーターに37人出向の影響懸念", "url": "https://www.nikkei.com/article/DGXZASFL25HCI_V20C23A7000000/" },
+        { "title": "金融庁: 損害保険ジャパン及びSOMPOホールディングスに対する行政処分", "url": "https://www.fsa.go.jp/news/r5/hoken/20240125/20240125.html" }
+      ]
+    },
+    {
+      "id": "toyotashokki-2023",
+      "name": "豊田自動織機",
+      "code": "6201",
+      "date": "2023-03-17",
+      "title": "フォークリフト用エンジンの認証で不正",
+      "what": "フォークリフトなどのエンジンで、排ガスの試験に不正があったと公表し、国内への出荷を止めた。2024年1月には車のエンジンでも不正が見つかった。",
+      "type": "core",
+      "why": "フォークリフトは会社の中心の事業で、出荷停止は売上に直接響いた。",
+      "after": "トヨタグループが株を買い取る(TOB)ことになり、2026年3月にTOBが成立。2026年6月1日に上場廃止。",
+      "status": "delisted",
+      "delisted": "2026-06-01",
+      "sources": [
+        { "title": "豊田自動織機: フォークリフト用エンジン認証での法規違反に伴う国内出荷停止", "url": "https://www.toyota-shokki.co.jp/news/2023/03/17/005488/index.html" },
+        { "title": "経済産業省: 豊田自動織機の型式指定申請における不正行為について", "url": "https://www.meti.go.jp/press/2023/01/20240129002/20240129002.html" },
+        { "title": "日本経済新聞: 豊田自動織機、6月1日に上場廃止へ", "url": "https://www.nikkei.com/article/DGXZQOFD176ZV0X10C26A4000000/" }
+      ]
+    },
+    {
+      "id": "chugoku-2023",
+      "name": "中国電力",
+      "code": "9504",
+      "date": "2023-03-30",
+      "title": "電力会社どうしのカルテル",
+      "what": "企業向けの電気を売る地域を他の大手電力会社と話し合って分け合っていた(カルテル)として、公正取引委員会が過去最大の課徴金(3社で約1,010億円、うち中国電力は約707億円)を命じた。",
+      "type": "temporary",
+      "why": "課徴金は大きいが一度きりの支払い。電気を売る仕事そのものは続く。",
+      "after": "課徴金を支払い、経営陣が交代。電力会社どうしで新電力の顧客情報をのぞいていた問題でも業務改善命令を受けた。",
+      "status": "listed",
+      "sources": [
+        { "title": "公正取引委員会: 旧一般電気事業者らに対する排除措置命令及び課徴金納付命令等", "url": "https://www.jftc.go.jp/houdou/pressrelease/2023/mar/230330_daisan.html" },
+        { "title": "日本経済新聞: 中国・中部・九州電力に課徴金1010億円命令", "url": "https://www.nikkei.com/article/DGXZQOUE223ZE0S3A320C2000000/" },
+        { "title": "日本経済新聞: 関電など5社に業務改善命令 不正閲覧問題で", "url": "https://www.nikkei.com/article/DGXZQOUA1754Z0X10C23A4000000/" }
+      ]
+    },
+    {
+      "id": "dentsu-2023",
+      "name": "電通グループ",
+      "code": "4324",
+      "date": "2023-02-28",
+      "title": "東京五輪の談合",
+      "what": "東京オリンピック・パラリンピックのテスト大会などの仕事で、受注する会社を事前に決めていた(談合)として、電通グループが起訴された。国や自治体は電通を入札に参加させない処分(指名停止)をした。",
+      "type": "temporary",
+      "why": "指名停止で官公庁の仕事は減ったが、会社の売上の大部分は民間企業の広告と海外の事業。",
+      "after": "2025年に東京地裁が電通グループに罰金3億円の判決。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: 五輪談合、電通など6社7人起訴", "url": "https://www.nikkei.com/article/DGXZQOUE203130Q3A220C2000000/" },
+        { "title": "日本経済新聞: 電通の指名停止広がる", "url": "https://www.nikkei.com/article/DGXZQOUE292AV0Z20C23A1000000/" },
+        { "title": "日本経済新聞: 東京五輪談合、電通グループに罰金3億円", "url": "https://www.nikkei.com/article/DGXZQOUE27AKB0X20C25A1000000/" }
+      ]
+    },
+    {
+      "id": "kansai-2023",
+      "name": "関西電力",
+      "code": "9503",
+      "date": "2023-01-13",
+      "title": "新電力の顧客情報を不正にのぞいた",
+      "what": "送配電を担う子会社が持つ、他の電力会社(新電力)と契約しているお客さまの情報を、関西電力の社員が3年間で15万件以上のぞき、営業に使っていた。電力カルテルにも加わっていた(自分から申し出たため課徴金は免除)。",
+      "type": "temporary",
+      "why": "電気を売る仕事は続き、カルテルの課徴金も免除された。会社の稼ぐ力そのものは大きく変わらなかった。",
+      "after": "2023年4月に経済産業省が業務改善命令。社長ら24人を処分した。",
+      "status": "listed",
+      "sources": [
+        { "title": "関西電力: 新電力顧客情報の取扱いに係る調査結果の報告(2023年1月13日)", "url": "https://www.kepco.co.jp/corporate/pr/2023/pdf/20230113_2j.pdf" },
+        { "title": "日本経済新聞: 関西電力、新電力顧客情報の不正閲覧 3年間に15万件超", "url": "https://www.nikkei.com/article/DGXZQOUF177970X10C23A2000000/" },
+        { "title": "日本経済新聞: 関西電力、不正閲覧で社長ら24人処分", "url": "https://www.nikkei.com/article/DGXZQOUF112RG0R10C23A5000000/" }
+      ]
+    },
+    {
+      "id": "sushiro-2023",
+      "name": "FOOD & LIFE COMPANIES(スシロー)",
+      "code": "3563",
+      "date": "2023-01-30",
+      "title": "客の迷惑行為の動画が拡散",
+      "what": "スシローの店で客が醤油さしをなめるなどした動画がSNSで広まり、株価が下落(時価総額で約168億円分)。",
+      "type": "temporary",
+      "why": "会社自身の不正ではなく、一部の客の迷惑行為。店の対策で防げる問題だった。",
+      "after": "会社は客を訴え、店に防止策を導入。株価はのちに事件前を上回った。",
+      "status": "listed",
+      "sources": [
+        { "title": "ビジネスジャーナル: スシロー、高校生の迷惑行為で株価168億円下落", "url": "https://biz-journal.jp/company/post_332407.html" },
+        { "title": "女性自身: スシロー株が迷惑動画前を超える上昇", "url": "https://jisin.jp/domestic/2175886/" },
+        { "title": "ITmedia: スシローはなぜ本人の謝罪を拒否したのか", "url": "https://www.itmedia.co.jp/business/articles/2302/03/news119.html" }
+      ]
+    },
+    {
+      "id": "kadokawa-2022",
+      "name": "KADOKAWA",
+      "code": "9468",
+      "date": "2022-09-14",
+      "title": "会長が五輪をめぐる贈賄で逮捕",
+      "what": "東京オリンピックのスポンサー選びをめぐり、大会組織委員会の元理事にお金を渡した疑いで会長が逮捕された。",
+      "type": "temporary",
+      "why": "本やアニメ・ゲームなどの本業の売上に直接響く問題ではなかった。",
+      "after": "会長は辞任。第三者委員会(ガバナンス検証委員会)の報告を受けて、管理のしかたを見直した。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: KADOKAWAの角川歴彦会長を逮捕", "url": "https://www.nikkei.com/article/DGXZQOUE146HX0U2A910C2000000/" },
+        { "title": "ITmedia: KADOKAWA会長・角川歴彦氏逮捕", "url": "https://www.itmedia.co.jp/news/articles/2209/14/news169.html" },
+        { "title": "KADOKAWA: 調査報告書に関するお知らせ(2023年1月24日)", "url": "http://www.daisanshaiinkai.com/cms/wp-content/uploads/2022/10/230124_chousa9468.pdf" }
+      ]
+    },
+    {
+      "id": "irjapan-2022",
+      "name": "アイ・アールジャパンホールディングス",
+      "code": "6035",
+      "date": "2022-06-01",
+      "title": "元役員のインサイダー取引の疑い",
+      "what": "株主対応を手伝う会社。元副社長がインサイダー取引などの疑いで証券取引等監視委員会の強制調査を受けたと公表。",
+      "type": "core",
+      "why": "上場企業のお客さまから内部の情報を預かるのが仕事で、その信頼が本業そのもの。お客さまが離れれば売上が落ちる。",
+      "after": "2023年に元副社長が逮捕され、のちに有罪判決。株価は問題前の高値から大きく下がった。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: IRジャパン元役員、証券取引等監視委員会が強制調査", "url": "https://www.nikkei.com/article/DGXZQOUE01C2B0R00C22A6000000/" },
+        { "title": "証券取引等監視委員会: アイ・アールジャパンHD株券に係る取引推奨事件の告発", "url": "https://www.fsa.go.jp/sesc/news/c_2023/2023/20230606-2.html" },
+        { "title": "東洋経済: IRジャパンでインサイダー疑惑が再燃", "url": "https://toyokeizai.net/articles/-/880460" }
+      ]
+    },
+    {
+      "id": "smfg-2022",
+      "name": "三井住友フィナンシャルグループ",
+      "code": "8316",
+      "date": "2022-03-04",
+      "title": "SMBC日興証券の相場操縦",
+      "what": "子会社のSMBC日興証券の幹部らが、大口の株の売買で株価を支える不正な取引(相場操縦)をしたとして逮捕された。",
+      "type": "temporary",
+      "why": "問題は証券子会社の一部の部署。グループの利益の中心である銀行の仕事は影響を受けなかった。",
+      "after": "2022年10月に金融庁がSMBC日興に一部業務停止命令、三井住友FGに改善を求める命令を出した。",
+      "status": "listed",
+      "sources": [
+        { "title": "SMBC日興証券: 相場操縦事案について", "url": "https://www.smbcnikko.co.jp/release2022/" },
+        { "title": "金融庁: SMBC日興証券及び三井住友FGに対する行政処分等", "url": "https://www.fsa.go.jp/news/r4/shouken/20221007/20221007.html" },
+        { "title": "証券取引等監視委員会: SMBC日興証券による相場操縦事件の告発", "url": "https://www.fsa.go.jp/sesc/news/c_2022/2022/20220412-1.html" }
+      ]
+    },
+    {
+      "id": "hino-2022",
+      "name": "日野自動車",
+      "code": "7205",
+      "date": "2022-03-04",
+      "title": "エンジンの排ガス・燃費試験で不正",
+      "what": "トラック用エンジンの排ガスや燃費の試験で不正をしていたと公表。対象は約11万台で、新車の出荷を止めた。株価はストップ安。のちに不正は約20年前からと判明した。",
+      "type": "core",
+      "why": "トラックという本業の商品そのものの問題で、長く売れない車種が出た。北米でも巨額の制裁金を支払うことになった。",
+      "after": "赤字が続き、三菱ふそうと経営統合。統合会社ARCHION(アーチオン)の上場にあわせて、2026年3月30日に日野自動車は上場廃止(株はARCHION株に切りかわった)。",
+      "status": "delisted",
+      "delisted": "2026-03-30",
+      "sources": [
+        { "title": "日野自動車: 2022年3月4日 お知らせ", "url": "https://www.hino.co.jp/corp/for_investors/disclosure/assets/cdb93684d3a40a2d7f04de4cde289ae2_1.pdf" },
+        { "title": "日本経済新聞: 日野自動車株、ストップ安", "url": "https://www.nikkei.com/article/DGXZQOUC0754Q0X00C22A3000000/" },
+        { "title": "Car Watch: 日野は3月30日上場廃止へ", "url": "https://car.watch.impress.co.jp/docs/news/2089824.html" }
+      ]
+    },
+    {
+      "id": "toray-2022",
+      "name": "東レ",
+      "code": "3402",
+      "date": "2022-01-27",
+      "title": "樹脂のUL認証で不正",
+      "what": "電気製品などに使う樹脂の安全認証(米国のUL規格)で、燃えにくさの試験の結果を書きかえるなどの不正を約10年続けていたと公表。",
+      "type": "temporary",
+      "why": "対象は樹脂の一部の品種で、繊維や炭素繊維などほかの主な事業には関係しなかった。",
+      "after": "一部の品種で認証が取り消された。第三者委員会の報告を受けて、管理のしかたを見直した。",
+      "status": "listed",
+      "sources": [
+        { "title": "日経クロステック: 東レもUL規格不正、難燃性が未達", "url": "https://xtech.nikkei.com/atcl/nxt/column/18/00001/06520/" },
+        { "title": "日本経済新聞: 東レ、新たに10品種が認証取り消し", "url": "https://www.nikkei.com/article/DGXZQOUC318XY0R30C22A8000000/" },
+        { "title": "リーガルサーチ: 東レの第三者委員会報告書の概要", "url": "https://legalsearch.jp/portal/daisanshaiinkai/unauthorized-acquisition-of-safety-certifications/" }
+      ]
+    },
+    {
+      "id": "mitsubishielectric-2021",
+      "name": "三菱電機",
+      "code": "6503",
+      "date": "2021-06-29",
+      "title": "鉄道向け空調などの検査不正",
+      "what": "鉄道車両向けのエアコンなどで、約35年にわたり決められた検査をせずに架空のデータを使っていたと報じられた。社長が辞任した。",
+      "type": "temporary",
+      "why": "問題の製品は会社全体の売上から見ると一部で、製品の安全に大きな問題は見つからなかった。",
+      "after": "調査でほかの工場でも不正が見つかった。経営陣を入れ替え、事業の選び直しを進めた。",
+      "status": "listed",
+      "sources": [
+        { "title": "日本経済新聞: 三菱電機、杉山社長が引責辞任へ", "url": "https://www.nikkei.com/article/DGXZQOUC022L50S1A700C2000000/" },
+        { "title": "三菱電機: 品質不適切行為に関する調査状況", "url": "https://www.mitsubishielectric.co.jp/reform/report/index.html" },
+        { "title": "東洋経済: 三菱電機、35年不正で社長辞任", "url": "https://toyokeizai.net/articles/-/439479" }
+      ]
+    },
+    {
+      "id": "nichiiko-2021",
+      "name": "日医工",
+      "code": "4541",
+      "date": "2021-03-03",
+      "title": "薬の製造で不正、業務停止命令",
+      "what": "後発薬(ジェネリック)大手。国に認められていない手順で薬を作っていたなどとして、富山県から32日間の業務停止命令を受けた。",
+      "type": "core",
+      "why": "薬を作るという本業そのものの問題。多くの薬の出荷が止まり、売上が大きく減った。",
+      "after": "赤字が続き、2022年に事業再生ADR(借金の減額などを話し合う手続き)を申請。2023年3月に上場廃止。",
+      "status": "delisted",
+      "delisted": "2023-03-29",
+      "sources": [
+        { "title": "日経メディカル: 日医工に32日間の業務停止命令", "url": "https://medical.nikkeibp.co.jp/leaf/mem/pub/di/trend/202103/569362.html" },
+        { "title": "東洋経済: 日医工、再建への険しすぎる道のり", "url": "https://toyokeizai.net/articles/-/596601" },
+        { "title": "日本経済新聞: 日医工、29日に上場廃止", "url": "https://www.nikkei.com/article/DGXZQOCC287490Y3A320C2000000/" }
+      ]
+    },
+    {
+      "id": "mizuho-2021",
+      "name": "みずほフィナンシャルグループ",
+      "code": "8411",
+      "date": "2021-03-01",
+      "title": "システム障害がくり返し発生",
+      "what": "2021年2月28日にATMが通帳やカードを飲みこむ大きなシステム障害が起き、その後も1年で10回ほど障害が続いた。",
+      "type": "temporary",
+      "why": "お客さまの預金が失われたわけではなく、システムを直せば解決できる問題。ただし信頼の回復には時間がかかった。",
+      "after": "2021年11月に金融庁が業務改善命令。グループのトップ3人が退任した。2024年に命令が解除された。",
+      "status": "listed",
+      "sources": [
+        { "title": "金融庁: みずほ銀行及びみずほFGに対する行政処分について", "url": "https://www.fsa.go.jp/news/r3/ginkou/20211126/20211126.html" },
+        { "title": "みずほフィナンシャルグループ: 金融庁および財務省による行政処分について", "url": "https://www.mizuho-fg.co.jp/release/20211126release_jp.html" },
+        { "title": "東京新聞: みずほ3首脳が総退陣へ", "url": "https://www.tokyo-np.co.jp/article/145009" }
+      ]
+    }
+  ]
+}
