@@ -33,13 +33,13 @@ WORKERS = 4
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
 DOCS_PATH = DATA_DIR / "edinet_docs.json"
 OUT_PATH = DATA_DIR / "ad.json"
-VERSION = 1  # ad.json の読み方の版。上げると全部読み直す
+VERSION = 2  # ad.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-ad-watch"}
 
 # 広告宣伝費(J-GAAP: AdvertisingExpensesSGA、会社独自の要素名も Advertis を含むことが多い)
 AD_RE = re.compile(r"Advertis", re.I)
-AD_EXCLUDE_RE = re.compile(r"Ratio|Per|Provision|Reserve|Payable|Prepaid|Accrued|TextBlock", re.I)
+AD_EXCLUDE_RE = re.compile(r"Revenue|Income|Ratio|Per|Provision|Reserve|Payable|Prepaid|Accrued|TextBlock", re.I)
 REVENUE_RE = re.compile(r"(NetSales|Revenue|OperatingRevenue)\w*SummaryOfBusinessResults$")
 REVENUE_EXCLUDE_RE = re.compile(r"Cost|Ratio|Per|Loss|Profit|Growth|Expense")
 OP_RE = re.compile(r"^Operating(Income|Profit)(Loss)?(IFRS|USGAAP)?(SummaryOfBusinessResults)?$")

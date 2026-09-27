@@ -7,6 +7,7 @@
   const PAGE = 50;
   const BB_DAYS = 45; // 自己株券買付状況報告書がこの日数以内に出ていれば「自社株買い中」
   const MIN_AD = 1e8; // 広告費1億円以上
+  const MIN_RATIO = 0.01; // 売上に占める広告費1%以上(広告にあまり頼らない会社の小さな変化を除く)
 
   const JUDGES = {
     good: { label: "広告が効いている" },
@@ -23,7 +24,7 @@
   ];
 
   const $ = (id) => document.getElementById(id);
-  const state = { rows: [], updated: null, filter: "good", sort: "adG", onlyBB: false, minAd: true, shown: PAGE };
+  const state = { rows: [], updated: null, filter: "good", sort: "adG", onlyBB: false, minAd: true, minRatio: true, shown: PAGE };
 
   // ---------- 表示用の小道具 ----------
 
@@ -76,7 +77,7 @@
     const op1 = rec.op[p1];
     const row = {
       code,
-      name: rec.name || code,
+      name: (rec.name || code).normalize("NFKC").replace(/株式会社/g, "").replace(/[\s\u3000]+/g, " ").trim() || code,
       period: p0,
       ad0,
       adG: growth(ad0, rec.ad[p1]),
@@ -110,7 +111,7 @@
   }
 
   function base() {
-    return state.rows.filter((r) => (!state.onlyBB || r.bb) && (!state.minAd || r.ad0 >= MIN_AD));
+    return state.rows.filter((r) => (!state.onlyBB || r.bb) && (!state.minAd || r.ad0 >= MIN_AD) && (!state.minRatio || (r.ratio ?? 0) >= MIN_RATIO));
   }
 
   function renderFilters() {
@@ -204,6 +205,11 @@
     });
     $("min-ad").addEventListener("change", (e) => {
       state.minAd = e.target.checked;
+      state.shown = PAGE;
+      renderList();
+    });
+    $("min-ratio").addEventListener("change", (e) => {
+      state.minRatio = e.target.checked;
       state.shown = PAGE;
       renderList();
     });
