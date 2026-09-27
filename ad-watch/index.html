@@ -1,0 +1,76 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>広告費ウォッチ</title>
+  <meta name="description" content="上場企業の広告宣伝費と売上の推移を有価証券報告書から集め、広告が売上につながっている会社を探すアプリ" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20260927a" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>広告費ウォッチ</h1>
+      <p class="intro">
+        広告宣伝費を大きく増やすのは、会社が「今売れる」と自信を持っているサインのことがあります。
+        ただし広告費はコストなので、<b>売上がついてきているか</b>とセットで見ることが大切です。
+        このページは、有価証券報告書に載っている広告宣伝費・売上高・営業利益を集めて、
+        「広告にお金を使って、ちゃんと売上が伸びている会社」を探すためのものです。
+      </p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <section class="panel" aria-labelledby="rule-title">
+      <h2 id="rule-title">判定のしかた(直近の決算期と、その前の年を比べます)</h2>
+      <ul class="rules">
+        <li><span class="badge j-good">広告が効いている</span> 広告費+10%以上、売上も+10%以上、営業利益は黒字で前年から大きく減っていない(2割減まで)</li>
+        <li><span class="badge j-miss">空振り気味</span> 広告費+10%以上なのに、売上の伸びが+3%未満</li>
+        <li><span class="badge j-loss">赤字に注意</span> 広告費+10%以上で、営業利益が赤字</li>
+        <li><span class="badge j-up">広告増</span> 広告費+10%以上で、上のどれにもあてはまらない</li>
+      </ul>
+      <p class="note">広告宣伝費を載せていない会社(広告が少ない会社など)は出てきません。数字は年1回の有価証券報告書のものなので、最大1年ほど前の決算期のことがあります。</p>
+    </section>
+
+    <section class="panel" aria-labelledby="pdca-title">
+      <h2 id="pdca-title">使い方</h2>
+      <ol class="pdca">
+        <li><b>探す</b> 「広告が効いている」の中から、気になる会社を選びます。「自社株買い中」がついていれば、株価の支えもあります。</li>
+        <li><b>確かめる</b> 決算説明資料で、何の広告に力を入れて、何が売れているのか(伸びる理由を一言で言えるか)を読みます。</li>
+        <li><b>決める</b> 業績予想や株価の位置も見て、買うかどうかは自分で決めます。</li>
+      </ol>
+    </section>
+
+    <div class="controls">
+      <div id="judge-filter" class="toggle" role="group" aria-label="判定で絞り込み"></div>
+      <div class="opts">
+        <label><input type="checkbox" id="only-bb" /> 自社株買い中だけ</label>
+        <label><input type="checkbox" id="min-ad" checked /> 広告費1億円以上</label>
+        <label class="sort-label">
+          並び順
+          <select id="sort">
+            <option value="adG">広告費の伸びが大きい順</option>
+            <option value="salesG">売上の伸びが大きい順</option>
+            <option value="ratio">売上に占める広告費が大きい順</option>
+            <option value="ad">広告費が多い順</option>
+          </select>
+        </label>
+      </div>
+    </div>
+
+    <p class="count" id="count"></p>
+    <main id="list" class="list" aria-live="polite"></main>
+    <p class="more"><button type="button" id="more" hidden>もっと見る</button></p>
+
+    <footer>
+      データ: EDINET(金融庁)の有価証券報告書。広告宣伝費は損益計算書か「販売費及び一般管理費のうち主要な費目」の注記、
+      売上高は「主要な経営指標等の推移」、営業利益は損益計算書から自動で読み取っています。連結の数字を優先し、なければ単体です。<br />
+      「自社株買い中」は、直近45日以内に自己株券買付状況報告書が出ている会社です。<br />
+      自動で読み取っているため、会社によっては違う項目を拾っていることがあります。気になる会社は報告書で確かめてください。<br />
+      <b>投資助言ではありません。</b>売買の判断はご自身の責任で行ってください。
+    </footer>
+  </div>
+
+  <script src="assets/app.js?v=20260927a"></script>
+</body>
+</html>
