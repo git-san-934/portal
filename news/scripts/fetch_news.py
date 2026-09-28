@@ -619,7 +619,8 @@ def fetch_sec(stocks, sources):
             if ok == 0 and t == tickers[0].get("ticker", tickers[0]["code"]).upper():
                 try:
                     r = requests.get(SEC_SUBMISSIONS.format(cik=cik), headers=SEC_HEADERS, timeout=30)
-                    log(f"    (SEC の応答 {r.status_code}: {clean(r.text)[:200]})")
+                    body = clean(BeautifulSoup(r.text, "html.parser").get_text(" "))
+                    log(f"    (SEC の応答 {r.status_code}: {body[:300]})")
                 except requests.RequestException:
                     pass
             continue

@@ -108,7 +108,6 @@
       const notes = [];
       if (d.tdnet && d.tdnet !== "ok") notes.push(`適時開示: ${d.tdnet}`);
       if (d.edinet !== "ok") notes.push(`EDINET: ${d.edinet}`);
-      if (d.sec !== "ok") notes.push(`SEC: ${d.sec}`);
       $("status").textContent =
         `最終更新 ${t.getMonth() + 1}/${t.getDate()} ${String(t.getHours()).padStart(2, "0")}:${String(t.getMinutes()).padStart(2, "0")}` +
         (notes.length ? `(${notes.join("、")})` : "");
