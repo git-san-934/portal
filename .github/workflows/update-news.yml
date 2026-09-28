@@ -1,0 +1,70 @@
+name: 持ち株の新着情報 更新
+
+# 持ち株の公式サイトのニュースと、EDINET・SEC の提出書類を集める。
+on:
+  schedule:
+    # 毎日 1:00 / 8:30 / 12:45 / 15:45 JST(cron は UTC = JST − 9時間)
+    # GitHub 側の混雑で数分〜数十分遅れることがあります
+    - cron: "0 16 * * *"
+    - cron: "30 23 * * *"
+    - cron: "45 3 * * *"
+    - cron: "45 6 * * *"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - news/scripts/**
+      - news/data/sources.json
+      - .github/workflows/update-news.yml
+  pull_request:
+    paths:
+      - news/scripts/**
+      - news/data/sources.json
+      - .github/workflows/update-news.yml
+
+permissions:
+  contents: write # データをコミットする
+  actions: write # 更新後に Pages のデプロイを起動する
+
+concurrency:
+  group: news-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # PR では PR のブランチに結果をコミットする(検証用)
+          ref: ${{ github.head_ref || github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r news/scripts/requirements.txt
+      - name: 新着情報を集める
+        env:
+          EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
+        run: python news/scripts/fetch_news.py
+      - name: 結果をコミット
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add news/data
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "持ち株の新着情報を更新 ($(TZ=Asia/Tokyo date '+%F %H:%M'))"
+          BRANCH="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$BRANCH"
+          git push origin HEAD:"$BRANCH"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
+      - name: GitHub Pages を再デプロイ
+        if: steps.commit.outputs.changed == 'true' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main
