@@ -1,0 +1,981 @@
+{
+ "updated_at": "2026-09-28T22:01+09:00",
+ "tdnet": "ok",
+ "edinet": "ok",
+ "sec": "取得できませんでした",
+ "stocks": [
+  {
+   "code": "7974",
+   "name": "任天堂",
+   "market": "JP",
+   "home": "https://www.nintendo.co.jp/",
+   "official_status": "取得できませんでした",
+   "official_pages": [
+    "https://www.nintendo.co.jp/ir/news/index.html"
+   ],
+   "items": [
+    {
+     "date": "2026-09-07",
+     "time": "10:27",
+     "title": "大量保有報告書(特例対象株券等)(提出: キャピタル・リサーチ・アンド・マネージメント・カンパニー)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z0EE",
+     "source": "edinet",
+     "first_seen": "2026-09-07T00:00+09:00"
+    },
+    {
+     "date": "2026-06-30",
+     "time": "14:04",
+     "title": "臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YN6O",
+     "source": "edinet",
+     "first_seen": "2026-06-30T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "4732",
+   "name": "USS",
+   "market": "JP",
+   "home": "https://www.ussnet.co.jp/",
+   "official_status": "取得できませんでした",
+   "official_pages": [
+    "https://www.ussnet.co.jp/ir/news/"
+   ],
+   "items": [
+    {
+     "date": "2026-07-23",
+     "time": "10:13",
+     "title": "変更報告書(特例対象株券等)(提出: Fidelity Management & Research Company LLC)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YRCO",
+     "source": "edinet",
+     "first_seen": "2026-07-23T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "8411",
+   "name": "みずほFG",
+   "market": "JP",
+   "home": "https://www.mizuho-fg.co.jp/",
+   "official_status": "取得できませんでした",
+   "official_pages": [
+    "https://www.mizuho-fg.co.jp/release/index.html"
+   ],
+   "items": [
+    {
+     "date": "2026-09-24",
+     "time": "16:00",
+     "title": "自己株式の取得状況および取得終了ならびに自己株式の消却に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120260924539247.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-09-24T00:00+09:00"
+    },
+    {
+     "date": "2026-09-10",
+     "time": "13:53",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z1HL",
+     "source": "edinet",
+     "first_seen": "2026-09-10T00:00+09:00"
+    },
+    {
+     "date": "2026-09-01",
+     "time": "16:00",
+     "title": "自己株式の取得状況に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120260831528910.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-09-01T00:00+09:00"
+    },
+    {
+     "date": "2026-08-10",
+     "time": "13:09",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVPX",
+     "source": "edinet",
+     "first_seen": "2026-08-10T00:00+09:00"
+    },
+    {
+     "date": "2026-07-16",
+     "time": "10:12",
+     "title": "発行登録追補書類(株券、社債券等)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQXQ",
+     "source": "edinet",
+     "first_seen": "2026-07-16T00:00+09:00"
+    },
+    {
+     "date": "2026-07-10",
+     "time": "13:11",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YPYE",
+     "source": "edinet",
+     "first_seen": "2026-07-10T00:00+09:00"
+    },
+    {
+     "date": "2026-07-08",
+     "time": "11:45",
+     "title": "変更報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YP8Y",
+     "source": "edinet",
+     "first_seen": "2026-07-08T00:00+09:00"
+    },
+    {
+     "date": "2026-07-02",
+     "time": "10:23",
+     "title": "発行登録追補書類(株券、社債券等)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YOA9",
+     "source": "edinet",
+     "first_seen": "2026-07-02T00:00+09:00"
+    },
+    {
+     "date": "2026-07-01",
+     "time": "15:13",
+     "title": "訂正発行登録書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YO44",
+     "source": "edinet",
+     "first_seen": "2026-07-01T00:00+09:00"
+    },
+    {
+     "date": "2026-07-01",
+     "time": "15:08",
+     "title": "臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YO3Y",
+     "source": "edinet",
+     "first_seen": "2026-07-01T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "5232",
+   "name": "住友大阪セメント",
+   "market": "JP",
+   "home": "https://www.soc.co.jp/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://www.soc.co.jp/news/",
+    "https://www.soc.co.jp/news/feed/",
+    "https://www.soc.co.jp/ir/news/"
+   ],
+   "items": [
+    {
+     "date": "2026-09-17",
+     "title": "東京都「令和8年度CO2サプライチェーン構築に係る実現可能性調査(FS事業)」に採択 ~清掃工場を起点とした都市型CO2サプライチェーンの構築を目指す~",
+     "url": "https://www.soc.co.jp/?post_type=post&p=88275",
+     "source": "official",
+     "first_seen": "2026-09-17T00:00+09:00"
+    },
+    {
+     "date": "2026-09-14",
+     "title": "株式分割に関する基準日設定公告",
+     "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/09/791b588f573211604865821120e8abaf.pdf",
+     "source": "official",
+     "first_seen": "2026-09-14T00:00+09:00"
+    },
+    {
+     "date": "2026-08-13",
+     "time": "15:55",
+     "title": "大量保有報告書(提出: ゼナーアセットマネジメントエルエルピー)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YW5K",
+     "source": "edinet",
+     "first_seen": "2026-08-13T00:00+09:00"
+    },
+    {
+     "date": "2026-08-05",
+     "time": "16:40",
+     "title": "変更報告書(提出: シルチェスター・インターナショナル・インベスターズ・エルエルピー)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUBP",
+     "source": "edinet",
+     "first_seen": "2026-08-05T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "time": "16:02",
+     "title": "訂正発行登録書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSDA",
+     "source": "edinet",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "time": "16:00",
+     "title": "臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSBP",
+     "source": "edinet",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "title": "株式報酬制度の継続に伴う自己株式の処分に関するお知らせ",
+     "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/bd344ce20b9fc589b587b6ac6ce7eb30.pdf",
+     "source": "official",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "title": "株式報酬制度における株式取得に係る事項の決定に関するお知らせ",
+     "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/7b35bcb5216b89a500d405cb36ea4dc8.pdf",
+     "source": "official",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "title": "株式分割、定款の一部変更、配当予想の修正等に関するお知らせ",
+     "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/915d900d438c60946ef6340569e31740.pdf",
+     "source": "official",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "title": "2026年度(2027年3月期)第1四半期決算説明資料",
+     "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/cdd1b5c4c10842030f7c1efd61a96865.pdf",
+     "source": "official",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "title": "2027年3月期第1四半期決算短信〔日本基準〕(連結)",
+     "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/eff4fb8c0a7a6c4f520ca795b4dfe472.pdf",
+     "source": "official",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-07-31",
+     "time": "10:00",
+     "title": "変更報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSDM",
+     "source": "edinet",
+     "first_seen": "2026-07-31T00:00+09:00"
+    },
+    {
+     "date": "2026-07-07",
+     "time": "16:24",
+     "title": "変更報告書(提出: シルチェスター・インターナショナル・インベスターズ・エルエルピー)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YP89",
+     "source": "edinet",
+     "first_seen": "2026-07-07T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "6861",
+   "name": "キーエンス",
+   "market": "JP",
+   "home": "https://www.keyence.co.jp/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://www.keyence.co.jp/investor/news.jsp",
+    "https://www.keyence.co.jp/investor/"
+   ],
+   "items": [
+    {
+     "date": "2026-09-01",
+     "title": "「Sustainability Information 2026」をサステナビリティサイトに掲載しました",
+     "url": "https://www.keyence.co.jp/sustainability/",
+     "source": "official",
+     "first_seen": "2026-09-01T00:00+09:00"
+    },
+    {
+     "date": "2026-07-29",
+     "title": "2026年度第1四半期決算説明会資料",
+     "url": "https://www.keyence.co.jp/pdf/FinancialResults_202607_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-07-29T00:00+09:00"
+    },
+    {
+     "date": "2026-07-29",
+     "title": "First Quarter of FY2026 Financial Results Materials",
+     "url": "https://www.keyence.co.jp/pdf/FinancialResults_202607_en.pdf",
+     "source": "official",
+     "first_seen": "2026-07-29T00:00+09:00"
+    },
+    {
+     "date": "2026-07-28",
+     "title": "2027年3月期第1四半期決算短信〔日本基準〕(連結)",
+     "url": "https://www.keyence.co.jp/pdf/EarningsRelease_202607_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-07-28T00:00+09:00"
+    },
+    {
+     "date": "2026-07-28",
+     "title": "Summary of Consolidated Financial Results for the 1st Quarter of FY2026 Ended",
+     "url": "https://www.keyence.co.jp/pdf/ConsolidatedFinancialResultsForThe1stQuarterEndedJune_20_2026(JP_GAAP).pdf",
+     "source": "official",
+     "first_seen": "2026-07-28T00:00+09:00"
+    },
+    {
+     "date": "2026-06-18",
+     "title": "投資単位の引下げに関する考え方及び方針等について",
+     "url": "https://www.keyence.co.jp/pdf/PressRelease_20260618.pdf",
+     "source": "official",
+     "first_seen": "2026-06-18T00:00+09:00"
+    },
+    {
+     "date": "2026-06-15",
+     "title": "有価証券報告書第57期 (2025年3月21日-2026年3月20日)",
+     "url": "https://www.keyence.co.jp/pdf/AnnualSecuritiesReport_202606_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-06-15T00:00+09:00"
+    },
+    {
+     "date": "2026-06-15",
+     "title": "アニュアルレポート 2026",
+     "url": "https://www.keyence.co.jp/pdf/AnnualReport_2026_en.pdf",
+     "source": "official",
+     "first_seen": "2026-06-15T00:00+09:00"
+    },
+    {
+     "date": "2026-04-27",
+     "title": "2025年度決算説明会資料",
+     "url": "https://www.keyence.co.jp/pdf/FinancialResults_202604_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-04-27T00:00+09:00"
+    },
+    {
+     "date": "2026-04-27",
+     "title": "FY2025 Financial Results Materials",
+     "url": "https://www.keyence.co.jp/pdf/FinancialResults_202604_en.pdf",
+     "source": "official",
+     "first_seen": "2026-04-27T00:00+09:00"
+    },
+    {
+     "date": "2026-04-24",
+     "title": "2026年3月期決算短信〔日本基準〕(連結)",
+     "url": "https://www.keyence.co.jp/pdf/EarningsRelease_202604_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-04-24T00:00+09:00"
+    },
+    {
+     "date": "2026-04-24",
+     "title": "Summary of Consolidated Financial Results for the FY2025 Year Ended",
+     "url": "https://www.keyence.co.jp/pdf/SummaryOfConsolidatedFinancialResultsForTheYearEndedMarch_20_2026(JP_GAAP).pdf",
+     "source": "official",
+     "first_seen": "2026-04-24T00:00+09:00"
+    },
+    {
+     "date": "2026-04-24",
+     "title": "2026年3月期の連結業績と前期の連結業績との差異に関するお知らせ",
+     "url": "https://www.keyence.co.jp/pdf/PressRelease_20260424_02.pdf",
+     "source": "official",
+     "first_seen": "2026-04-24T00:00+09:00"
+    },
+    {
+     "date": "2026-04-24",
+     "title": "定款の一部変更に関するお知らせ",
+     "url": "https://www.keyence.co.jp/pdf/PressRelease_20260424_03.pdf",
+     "source": "official",
+     "first_seen": "2026-04-24T00:00+09:00"
+    },
+    {
+     "date": "2026-04-24",
+     "title": "取締役の異動に関するお知らせ",
+     "url": "https://www.keyence.co.jp/pdf/PressRelease_20260424_01.pdf",
+     "source": "official",
+     "first_seen": "2026-04-24T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "6961",
+   "name": "エンプラス",
+   "market": "JP",
+   "home": "https://www.enplas.co.jp/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://www.enplas.co.jp/news/",
+    "https://www.enplas.co.jp/category/news/feed/",
+    "https://www.enplas.co.jp/ir/news/"
+   ],
+   "items": [
+    {
+     "date": "2026-09-28",
+     "title": "執行役員人事に関するお知らせ",
+     "url": "https://www.enplas.co.jp/jp/wp-content/uploads/2026/09/20260928_j.pdf",
+     "source": "official",
+     "first_seen": "2026-09-28T00:00+09:00"
+    },
+    {
+     "date": "2026-09-24",
+     "time": "10:25",
+     "title": "変更報告書(特例対象株券等)(提出: 三井住友トラスト・アセットマネジメント株式会社)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z2OA",
+     "source": "edinet",
+     "first_seen": "2026-09-24T00:00+09:00"
+    },
+    {
+     "date": "2026-08-25",
+     "title": "IZB(International Suppliers Fair)出展のご案内",
+     "url": "https://www.enplas.co.jp/news/business-news/9728/",
+     "source": "official",
+     "first_seen": "2026-08-25T00:00+09:00"
+    },
+    {
+     "date": "2026-08-20",
+     "title": "52nd ECOC Exhibition 2026 出展のご案内",
+     "url": "https://www.enplas.co.jp/news/business-news/9721/",
+     "source": "official",
+     "first_seen": "2026-08-20T00:00+09:00"
+    },
+    {
+     "date": "2026-08-06",
+     "title": "テラヘルツ波・共鳴トンネルダイオード シンポジウム出展のご案内",
+     "url": "https://www.enplas.co.jp/news/business-news/9709/",
+     "source": "official",
+     "first_seen": "2026-08-06T00:00+09:00"
+    },
+    {
+     "date": "2026-07-23",
+     "time": "10:53",
+     "title": "変更報告書(特例対象株券等)(提出: 野村アセットマネジメント株式会社)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YRV6",
+     "source": "edinet",
+     "first_seen": "2026-07-23T00:00+09:00"
+    },
+    {
+     "date": "2026-07-17",
+     "title": "取締役等に対する譲渡制限付株式報酬としての自己株式処分の 払込完了に関するお知らせ",
+     "url": "https://www.enplas.co.jp/jp/wp-content/uploads/2026/07/20260717_j.pdf",
+     "source": "official",
+     "first_seen": "2026-07-17T00:00+09:00"
+    },
+    {
+     "date": "2026-07-06",
+     "time": "09:32",
+     "title": "大量保有報告書(特例対象株券等)(提出: 三井住友トラスト・アセットマネジメント株式会社)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YO7W",
+     "source": "edinet",
+     "first_seen": "2026-07-06T00:00+09:00"
+    },
+    {
+     "date": "2026-07-02",
+     "time": "11:33",
+     "title": "臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YOB8",
+     "source": "edinet",
+     "first_seen": "2026-07-02T00:00+09:00"
+    },
+    {
+     "date": "2026-06-26",
+     "title": "取締役等に対する譲渡制限付株式報酬としての自己株式処分に関するお知らせ",
+     "url": "https://www.enplas.co.jp/jp/wp-content/uploads/2026/06/20260626_j.pdf",
+     "source": "official",
+     "first_seen": "2026-06-26T00:00+09:00"
+    },
+    {
+     "date": "2026-06-19",
+     "title": "中止:MTSA 2026での当社レンズアンテナを用いたデモ展示のお知らせ",
+     "url": "https://www.enplas.co.jp/news/business-news/9629/",
+     "source": "official",
+     "first_seen": "2026-06-19T00:00+09:00"
+    },
+    {
+     "date": "2026-06-19",
+     "title": "Microwave Journalへの当社レンズアンテナの記事掲載のお知らせ",
+     "url": "https://www.enplas.co.jp/news/business-news/9627/",
+     "source": "official",
+     "first_seen": "2026-06-19T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "6134",
+   "name": "FUJI",
+   "market": "JP",
+   "home": "https://www.fuji.co.jp/",
+   "official_status": "取得できませんでした",
+   "official_pages": [
+    "https://www.fuji.co.jp/news"
+   ],
+   "items": [
+    {
+     "date": "2026-08-20",
+     "time": "10:25",
+     "title": "変更報告書(特例対象株券等)(提出: 野村證券株式会社)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YXJA",
+     "source": "edinet",
+     "first_seen": "2026-08-20T00:00+09:00"
+    },
+    {
+     "date": "2026-06-30",
+     "time": "09:06",
+     "title": "臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YNBS",
+     "source": "edinet",
+     "first_seen": "2026-06-30T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "285A",
+   "name": "キオクシアHD",
+   "market": "JP",
+   "home": "https://www.kioxia-holdings.com/ja-jp/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://www.kioxia-holdings.com/ja-jp/news.html",
+    "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
+   ],
+   "items": [
+    {
+     "date": "2026-09-15",
+     "title": "一部報道について",
+     "url": "https://www.kioxia-holdings.com/ja-jp/news/2026/20260915-1.html",
+     "source": "official",
+     "first_seen": "2026-09-15T00:00+09:00"
+    },
+    {
+     "date": "2026-09-14",
+     "time": "16:01",
+     "title": "変更報告書(提出: 株式会社 東芝)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z25L",
+     "source": "edinet",
+     "first_seen": "2026-09-14T00:00+09:00"
+    },
+    {
+     "date": "2026-09-11",
+     "time": "17:03",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z1UD",
+     "source": "edinet",
+     "first_seen": "2026-09-11T00:00+09:00"
+    },
+    {
+     "date": "2026-09-09",
+     "title": "「東京ゲームショウ2026」への出展について",
+     "url": "https://www.kioxia.com/ja-jp/personal/news/2026/20260909-1.html",
+     "source": "official",
+     "first_seen": "2026-09-09T00:00+09:00"
+    },
+    {
+     "date": "2026-08-27",
+     "title": "サンディスクコーポレーションとの投資計画に関するお知らせ",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2878649/00.pdf",
+     "source": "official",
+     "first_seen": "2026-08-27T00:00+09:00"
+    },
+    {
+     "date": "2026-08-27",
+     "title": "キオクシアとサンディスク、日本で約5兆円を投資しメモリ分野でのリーダーシップを強化",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20260827-3.html",
+     "source": "official",
+     "first_seen": "2026-08-27T00:00+09:00"
+    },
+    {
+     "date": "2026-08-27",
+     "title": "北上工場 新製造棟(K3棟)の建設について",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20260827-2.html",
+     "source": "official",
+     "first_seen": "2026-08-27T00:00+09:00"
+    },
+    {
+     "date": "2026-08-27",
+     "title": "一部報道について",
+     "url": "https://www.kioxia-holdings.com/ja-jp/news/2026/20260827-1.html",
+     "source": "official",
+     "first_seen": "2026-08-27T00:00+09:00"
+    },
+    {
+     "date": "2026-08-27",
+     "title": "「Maker Faire Tokyo 2026」への出展について",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20260827-1.html",
+     "source": "official",
+     "first_seen": "2026-08-27T00:00+09:00"
+    },
+    {
+     "date": "2026-08-17",
+     "title": "(訂正)「主要株主である筆頭株主の異動に関するお知らせ」の一部訂正について",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2875131/00.pdf",
+     "source": "official",
+     "first_seen": "2026-08-17T00:00+09:00"
+    },
+    {
+     "date": "2026-08-12",
+     "title": "キオクシアとサンディスク、AIおよびデータ集約型アプリケーション向けの新しい高性能QLC 3次元フラッシュメモリ技術を発表",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20260812-1.html",
+     "source": "official",
+     "first_seen": "2026-08-12T00:00+09:00"
+    },
+    {
+     "date": "2026-08-10",
+     "time": "16:00",
+     "title": "変更報告書(提出: 株式会社 東芝)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVH4",
+     "source": "edinet",
+     "first_seen": "2026-08-10T00:00+09:00"
+    },
+    {
+     "date": "2026-08-10",
+     "title": "自己株式の取得状況及び取得終了に関するお知らせ",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2870702/00.pdf",
+     "source": "official",
+     "first_seen": "2026-08-10T00:00+09:00"
+    },
+    {
+     "date": "2026-08-10",
+     "title": "主要株主である筆頭株主の異動に関するお知らせ",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2870704/00.pdf",
+     "source": "official",
+     "first_seen": "2026-08-10T00:00+09:00"
+    },
+    {
+     "date": "2026-08-06",
+     "title": "令和8年熊本地震による被害に対する支援について",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20260806-1.html",
+     "source": "official",
+     "first_seen": "2026-08-06T00:00+09:00"
+    },
+    {
+     "date": "2026-08-05",
+     "title": "GPUダイレクトアクセスに向けて設計された業界初Super High IOPS SSD「KIOXIA GPシリーズ」が「FMS:the Future of Memory and Storage」の「Best of Show Award」を受賞",
+     "url": "https://www.kioxia.com/ja-jp/business/news/2026/20260805-1.html",
+     "source": "official",
+     "first_seen": "2026-08-05T00:00+09:00"
+    },
+    {
+     "date": "2026-07-31",
+     "time": "15:27",
+     "title": "臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YTK3",
+     "source": "edinet",
+     "first_seen": "2026-07-31T00:00+09:00"
+    },
+    {
+     "date": "2026-07-23",
+     "time": "16:00",
+     "title": "変更報告書(提出: 株式会社 東芝)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS0I",
+     "source": "edinet",
+     "first_seen": "2026-07-23T00:00+09:00"
+    },
+    {
+     "date": "2026-07-02",
+     "time": "15:25",
+     "title": "訂正臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YOE0",
+     "source": "edinet",
+     "first_seen": "2026-07-02T00:00+09:00"
+    },
+    {
+     "date": "2026-07-02",
+     "time": "15:25",
+     "title": "臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YOE2",
+     "source": "edinet",
+     "first_seen": "2026-07-02T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "ORCL",
+   "name": "オラクル",
+   "market": "US",
+   "home": "https://www.oracle.com/news/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://www.oracle.com/news/"
+   ],
+   "items": [
+    {
+     "date": "2026-09-23",
+     "title": "Oracle Health Advances Revenue Cycle Management with AI Read the release",
+     "url": "https://www.oracle.com/news/announcement/oracle-health-advances-revenue-cycle-management-with-ai-2026-09-23/",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    },
+    {
+     "date": "2026-09-23",
+     "title": "Read the release",
+     "url": "https://www.oracle.com/news/announcement/oracle-to-advance-cancer-care-with-new-oncology-ehr-2026-09-23/",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "AUR",
+   "name": "AUR",
+   "market": "US",
+   "home": "https://aurora.tech/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://ir.aurora.tech/news-events/press-releases",
+    "https://aurora.tech/newsroom"
+   ],
+   "items": [
+    {
+     "date": "2026-09-23",
+     "title": "Aurora Outlines 2030 Vision to Scale to 30,000 Driverless Trucks at Analyst and Investor Day",
+     "url": "https://ir.aurora.tech/news-events/press-releases/detail/152/aurora-outlines-2030-vision-to-scale-to-30000-driverless-trucks-at-analyst-and-investor-day",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    },
+    {
+     "date": "2026-09-23",
+     "title": "Aurora to Host Analyst & Investor Day on",
+     "url": "https://ir.aurora.tech/news-events/press-releases/detail/151/aurora-to-host-analyst-investor-day-on-september-23-2026",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    },
+    {
+     "date": "2026-08-20",
+     "title": "Aurora to Present at Upcoming Investor Conferences",
+     "url": "https://ir.aurora.tech/news-events/press-releases/detail/150/aurora-to-present-at-upcoming-investor-conferences",
+     "source": "official",
+     "first_seen": "2026-08-20T00:00+09:00"
+    },
+    {
+     "date": "2026-08-20",
+     "title": "Aurora to Host a Retail Investor Town Hall on",
+     "url": "https://ir.aurora.tech/news-events/press-releases/detail/149/aurora-to-host-a-retail-investor-town-hall-on-august-20-2026",
+     "source": "official",
+     "first_seen": "2026-08-20T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "title": "Arrow McLaren Adds Autonomous Trucking Pioneer Aurora as Official Partner",
+     "url": "https://ir.aurora.tech/news-events/press-releases/detail/148/arrow-mclaren-adds-autonomous-trucking-pioneer-aurora-as-official-partner",
+     "source": "official",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-07-29",
+     "title": "Aurora Announces Second Quarter 2026 Results",
+     "url": "https://ir.aurora.tech/news-events/press-releases/detail/147/aurora-announces-second-quarter-2026-results",
+     "source": "official",
+     "first_seen": "2026-07-29T00:00+09:00"
+    },
+    {
+     "date": "2026-07-29",
+     "title": "Aurora to Host Second Quarter 2026 Business Review Conference Call on",
+     "url": "https://ir.aurora.tech/news-events/press-releases/detail/143/aurora-to-host-second-quarter-2026-business-review-conference-call-on-july-29-2026",
+     "source": "official",
+     "first_seen": "2026-07-29T00:00+09:00"
+    },
+    {
+     "date": "2026-07-28",
+     "title": "Charger Logistics to Deploy Second-Generation Driverless Trucks",
+     "url": "https://ir.aurora.tech/news-events/press-releases/detail/146/charger-logistics-to-deploy-second-generation-driverless-trucks",
+     "source": "official",
+     "first_seen": "2026-07-28T00:00+09:00"
+    },
+    {
+     "date": "2026-07-27",
+     "title": "Value Truck to Deploy Aurora’s Second-Generation Driverless Trucks",
+     "url": "https://ir.aurora.tech/news-events/press-releases/detail/145/value-truck-to-deploy-auroras-second-generation-driverless-trucks",
+     "source": "official",
+     "first_seen": "2026-07-27T00:00+09:00"
+    },
+    {
+     "date": "2026-07-22",
+     "title": "Aurora Launches Second-Generation Driverless Trucks in U.S. to Meet Customer Demand",
+     "url": "https://ir.aurora.tech/news-events/press-releases/detail/144/aurora-launches-second-generation-driverless-trucks-in-u-s-to-meet-customer-demand",
+     "source": "official",
+     "first_seen": "2026-07-22T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "ADBE",
+   "name": "アドビ",
+   "market": "US",
+   "home": "https://news.adobe.com/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://news.adobe.com/news"
+   ],
+   "items": [
+    {
+     "date": "2026-04-28",
+     "title": "Content as a Service v3 - Newsroom - All News page - Newscard - Stage - NA - Tuesday, April 28, 2026 at 05:01",
+     "url": "https://milo.adobe.com/tools/caas#~~H4sIAAAAAAAAE5VW728aORD9V1bWSe1JTNhfZndpEiltr1Kkqu0p+RbQaWzPwqpmjWyTEEX87ycvkIRQEpIPZHf83pt5Y4/hgUm06srfa2JD1tKdgxBgPSaN1iR9Y9ofOAuLP+jOWWNmEUQXWkfhNZrjhCLongMtgujKb0IXQWPhvJl9CYJDdqqa20hqdO5sxExLMEVdR9K0zrTYegiwEYvQNggaBemzEfvrIcieSNN6av2FJTzxjde0GrFIIYKevgnyCJ6cb9TZiO0lO++Keg0EU0JFdsQeSz+0bo2msxFrZpP3uHCh9WcjJlD+nlizaBU0M5zQMFpY/XHD7EDuJHoCXQbM6tOInZ/2VXN7vtPcFxVu8gasm2P7ut2u5sNuN8vnW0to1Vf0dOLmuvEfP1x/+PsmHq9O+yHR+el825TQpKadPPM7wyVMqZlM/TBKYkuzTxHckfjdeNBNSyA1zubDJP70spmP73TbvQ/e2GXoWn3Y0Xa5+//6Zp1Hu38HoTuo0/78te35Zozvzs+rJuoN6m0lsOZuqyZJ64BLjiIGdHRwBUBT7Y85cEfK2bD5QQ//oPPZt5dtbUTjt5P+bJDWzbiJxyedRnjwtPSvzfuOnkfRtIqWZyMWh8HtzlFrzJxaslFrLNVkbbcpHu2E/NmI/edI1yMWTS3Vr1YSAKvtrJ2/UfF2UPq4beuBT9ZjdaM92e9GYriU2ZB5M38WnjSSDdnS2MeYY8Obh83zNU7Y8IZJRDdsNxd5H61vpCY27rHOu/rZfjeo2NDbBfVYI7s0rMdoKfVC0TVO3B9UnCPv2Hg1fkz8pbv3X6YPSrt5QuRAFsaCnlkb2yR+YMYeqGHtpC8lG696b+PUkTg6Dnek2C213vVnuHwX3i1ms8YfR5HGzo1FT/25qt+T5Z3yx8HfU/m6K+Mem+Okabsj/k+LQtPjcbTkFtq7X2R/4ST8IElS1mOO0Mrpt4a0Wqu/vIy7nzJPMUUeG31NS7+34KRt5t1sjYOuDzfWZ2NVN0nrGtzU3H3bDtdT6FLtvF51NT1GjPXhO/LCyZehr7QbWzv+ZeaL+fPwdfDxgt7FdvkLKym0IPQ2WFhbdcHrz/nmznAefSNDbtZj3njUwaW7NldTc8eGrKoqtjUhTavQ3l9thGvUjp7vz78LbH3j7wO13ZYRrrt1vVKSc41odOPvv4cvazZk2dOYqy5xN9WbbbgMN0IxEIM8LweQCJUBx7wGTBWHPJEZ1TIpRByzcKCek4QUQmVVAWWpJHCFJQghBWBScx4nSZyW9R6pkEWKclAA5YqAc15BlccFZBVVeZoMyjgWeyRMq7QoihSSskyAiyyHUiYCcozLQZXyIs6SPRLPUXIuEMqyjoErmUNZkwCpVF2npcrLQu2TYorTOslAFCkBJ5SAWZYAirJMeD3Ic0z3SDUNSBVlDXWdK+BpWkDFsYYqr0uhVDyo032SihNKeZUC5qkEXsclIC8ICEWNSSETjtkeaUCcym6L0lICL9MBiCQbAOdZllZ5xlHhHilLKsnLuAIqqQQuRApCJhUMRJlVSZIqXlR7pLgo8jxPEkgprYCjKKCseQlYUsZFxmOZKbYar/4HSlwW5MsMAAA=",
+     "source": "official",
+     "first_seen": "2026-04-28T00:00+09:00"
+    },
+    {
+     "date": "2026-04-28",
+     "title": "https://main--news--adobecom.aem.live/fragments/blog/newsroom-blog-fragment#_inline",
+     "url": "https://news.adobe.com/fragments/blog/newsroom-blog-fragment#_inline",
+     "source": "official",
+     "first_seen": "2026-04-28T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "CBRS",
+   "name": "セレブラス",
+   "market": "US",
+   "home": "https://www.cerebras.ai/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://www.cerebras.ai/company/newsroom",
+    "https://www.cerebras.ai/company/news"
+   ],
+   "items": [
+    {
+     "date": "2026-09-08",
+     "title": "OpenAI’s Ultrafast makes GPT-5.6 Sol up to 14× faster with Cerebras September 08, 2026 News",
+     "url": "https://www.neoteo.com/en/openais-ultrafast-tier-advertises-14-faster-gpt-56-sol-inference-with-cerebras",
+     "source": "official",
+     "first_seen": "2026-09-08T00:00+09:00"
+    },
+    {
+     "date": "2026-08-27",
+     "title": "Andrew Feldman: The 100 Most Influential People in AI 2026 August 27, 2026 News",
+     "url": "https://time.com/collection/time100-ai/2026/andrew-feldman/",
+     "source": "official",
+     "first_seen": "2026-08-27T00:00+09:00"
+    },
+    {
+     "date": "2026-08-13",
+     "title": "OpenAI introduces ‘Ultrafast,’ a new mode that makes GPT-5.6 Sol work at 14x the speed News",
+     "url": "https://techcrunch.com/2026/08/13/openai-introduces-ultrafast-a-new-mode-that-makes-gpt-5-6-sol-work-at-14x-the-speed/",
+     "source": "official",
+     "first_seen": "2026-08-13T00:00+09:00"
+    },
+    {
+     "date": "2026-08-13",
+     "title": "Renting Compute Capacity Is a Huge Business, Cerebras CEO Says August 13, 2026 News",
+     "url": "https://www.bloomberg.com/news/videos/2026-08-13/renting-compute-capacity-is-huge-business-cerebras-ceo-video",
+     "source": "official",
+     "first_seen": "2026-08-13T00:00+09:00"
+    },
+    {
+     "date": "2026-08-12",
+     "title": "Cerebras Systems CEO Andrew Feldman at All-In We Make AI ‘Blisteringly Fast’ August 12, 2026 News",
+     "url": "https://finance.yahoo.com/video/cerebras-systems-ceo-andrew-feldman-142508236.html",
+     "source": "official",
+     "first_seen": "2026-08-12T00:00+09:00"
+    },
+    {
+     "date": "2026-06-01",
+     "title": "India’s AI deal with the UAE challenges U.S. cloud dominance June 01, 2026 News",
+     "url": "https://restofworld.org/2026/india-uae-g42-cerebras-ai-sovereignty/",
+     "source": "official",
+     "first_seen": "2026-06-01T00:00+09:00"
+    },
+    {
+     "date": "2026-05-20",
+     "title": "This CEO Turned a Complex AI Story Into a $95-Billion IPO May 20, 2026 News",
+     "url": "https://www.inc.com/carmine-gallo/this-ceo-turned-a-complex-ai-story-into-a-95-billion-ipo/91346617",
+     "source": "official",
+     "first_seen": "2026-05-20T00:00+09:00"
+    },
+    {
+     "date": "2026-05-14",
+     "title": "Cerebras CEO says AI chip demand is ‘not speculative’ as shares double in blockbuster IPO debut May 14, 2026 News",
+     "url": "https://fortune.com/2026/05/14/cerebras-one-of-the-biggest-ipos-of-the-year/",
+     "source": "official",
+     "first_seen": "2026-05-14T00:00+09:00"
+    },
+    {
+     "date": "2026-05-14",
+     "title": "A.I. Chip Maker Soars 68% in Market Debut, as Tech I.P.O.s Ramp Up May 14, 2026 News",
+     "url": "https://www.nytimes.com/2026/05/14/technology/cerebras-ipo-ai.html",
+     "source": "official",
+     "first_seen": "2026-05-14T00:00+09:00"
+    },
+    {
+     "date": "2026-05-14",
+     "title": "Cerebras Shares Soar in Hotly Anticipated Year for AI Debuts May 14, 2026 News",
+     "url": "https://www.wsj.com/finance/stocks/cerebras-to-kick-off-hotly-anticipated-year-for-artificial-intelligence-ipos-8b08ead7",
+     "source": "official",
+     "first_seen": "2026-05-14T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "CRCL",
+   "name": "サークル",
+   "market": "US",
+   "home": "https://www.circle.com/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://www.circle.com/pressroom"
+   ],
+   "items": [
+    {
+     "date": "2026-09-25",
+     "title": "Circle Announces CFO Transition Plan Jeremy Fox-Geen to step down as Chief Financial Officer and will support a smooth transition",
+     "url": "https://www.circle.com/pressroom/circle-announces-cfo-transition-plan",
+     "source": "official",
+     "first_seen": "2026-09-25T00:00+09:00"
+    },
+    {
+     "date": "2026-09-25",
+     "title": "Circle Foundation Announces Support for United Nations Development Programme and World Food Programme to Advance Digital Payments for Development and Humanitarian Action Circle Foundation Announces Su",
+     "url": "https://www.circle.com/pressroom/circle-foundation-announces-support-for-united-nations-development-programme-and-world-food-programme-to-advance-digital-payments-for-development-and-humanitarian-action",
+     "source": "official",
+     "first_seen": "2026-09-25T00:00+09:00"
+    },
+    {
+     "date": "2026-09-22",
+     "title": "Circle Foundation Announces Inaugural CDFI Grants to Accion Opportunity Fund and Pacific Community Ventures New funding backs AI-powered tools that expand access to capital for small businesses left b",
+     "url": "https://www.circle.com/pressroom/circle-foundation-announces-inaugural-cdfi-grants-to-accion-opportunity-fund-and-pacific-community-ventures",
+     "source": "official",
+     "first_seen": "2026-09-22T00:00+09:00"
+    },
+    {
+     "date": "2026-09-22",
+     "title": "Binance Invests $100 Million in Circle, Expands Strategic Partnership and Renews Commercial Agreement for Five Years Binance Invests $100 Million in Circle, Expands Strategic Partnership and Renews Co",
+     "url": "https://www.circle.com/pressroom/binance-invests-100-million-in-circle-expands-strategic-partnership-and-renews-commercial-agreement-for-five-years",
+     "source": "official",
+     "first_seen": "2026-09-22T00:00+09:00"
+    },
+    {
+     "date": "2026-09-16",
+     "title": "Circle Launches Arc Mainnet, an Economic Operating System for the Internet Arc goes live with more than 100 institutional and ecosystem builders on day one",
+     "url": "https://www.circle.com/pressroom/circle-launches-arc-mainnet-an-economic-operating-system-for-the-internet",
+     "source": "official",
+     "first_seen": "2026-09-16T00:00+09:00"
+    },
+    {
+     "date": "2026-09-08",
+     "title": "Circle Expands Global Payments Infrastructure with Agreement to Acquire Singapore-based Cross-Border Payments Platform, Tazapay Proposed acquisition will bring 60+ banking and fintech partners, 100+ p",
+     "url": "https://www.circle.com/pressroom/circle-expands-global-payments-infrastructure-with-agreement-to-acquire-singapore-based-cross-border-payments-platform-tazapay",
+     "source": "official",
+     "first_seen": "2026-09-08T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "GLW",
+   "name": "コーニング",
+   "market": "US",
+   "home": "https://www.corning.com/",
+   "official_status": "取得できませんでした",
+   "official_pages": [
+    "https://www.corning.com/worldwide/en/about-us/news-events.html"
+   ],
+   "items": []
+  },
+  {
+   "code": "PLTR",
+   "name": "パランティア",
+   "market": "US",
+   "home": "https://www.palantir.com/",
+   "official_status": "取得できませんでした",
+   "official_pages": [
+    "https://investors.palantir.com/news-and-events"
+   ],
+   "items": []
+  },
+  {
+   "code": "SDGR",
+   "name": "シュレーディンガー",
+   "market": "US",
+   "home": "https://www.schrodinger.com/",
+   "official_status": "取得できませんでした",
+   "official_pages": [
+    "https://ir.schrodinger.com/press-releases/default.aspx"
+   ],
+   "items": []
+  },
+  {
+   "code": "TSLL",
+   "name": "テスラ2倍",
+   "market": "US",
+   "home": "https://www.direxion.com/",
+   "official_status": "取得できませんでした",
+   "official_pages": [],
+   "items": []
+  }
+ ]
+}
