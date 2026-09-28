@@ -632,8 +632,10 @@ def main():
         prev = None
     first_run = prev is None
     prev_items = {}
+    prev_codes = set()
     if prev:
         for s in prev.get("stocks", []):
+            prev_codes.add(s["code"])
             for it in s.get("items", []):
                 prev_items[(s["code"], it["url"])] = it
 
@@ -680,8 +682,8 @@ def main():
                 old = prev_items.get((code, it["url"]))
                 if old:
                     first_seen = old["first_seen"]
-                elif first_run:
-                    # 初回は、記事の日付に見つけたことにする(古い記事が全部「新着」にならないように)
+                elif first_run or code not in prev_codes:
+                    # 初回(と、新しく加えた銘柄)は、記事の日付に見つけたことにする(古い記事が全部「新着」にならないように)
                     first_seen = f"{it['date']}T00:00+09:00"
                 else:
                     first_seen = now_iso
