@@ -1,0 +1,43 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>持ち株の新着情報</title>
+  <meta name="description" content="持ち株の公式サイトのニュースと、EDINET・SEC の提出書類を1日4回集めて箇条書きで表示" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20260928a" />
+</head>
+<body>
+  <div class="wrap">
+    <p class="back"><a href="../">← アプリ一覧</a></p>
+    <header>
+      <h1>持ち株の新着情報</h1>
+      <p class="intro">持ち株の公式サイト(ニュース・IR)と EDINET の提出書類を集めています。米国株は EDINET の代わりに SEC の提出書類です。毎日 1:00・8:30・12:45・15:45 に更新します。</p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <nav class="filters" aria-label="情報源で絞り込み">
+      <button type="button" data-filter="all" aria-pressed="true">すべて</button>
+      <button type="button" data-filter="official" aria-pressed="false">公式サイト</button>
+      <button type="button" data-filter="edinet" aria-pressed="false">EDINET</button>
+      <button type="button" data-filter="sec" aria-pressed="false">SEC</button>
+    </nav>
+
+    <section class="panel" id="fresh-panel" hidden>
+      <h2 class="panel-title">新着(この3日間に見つけたもの)</h2>
+      <ul class="news" id="fresh"></ul>
+    </section>
+
+    <nav class="jump" id="jump" aria-label="銘柄へ移動"></nav>
+
+    <div id="stocks"></div>
+
+    <footer>
+      <p>日付は各社サイト・EDINET・SEC に載っている日付です。「新着」はこのページがはじめて見つけてから3日以内のものです。</p>
+      <p>銘柄は「持ち株チェック」の銘柄リストと共通です。公式サイトのURLは <code>news/data/sources.json</code> で変えられます。</p>
+    </footer>
+  </div>
+  <script src="assets/app.js?v=20260928a"></script>
+</body>
+</html>
