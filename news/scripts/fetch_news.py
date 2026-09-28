@@ -3,6 +3,8 @@
 集めるもの:
 - 公式サイト: 各社のニュース・IRニュース一覧のページ(data/sources.json)から、日付つきのリンクを拾う。
   RSS/Atom でもよい。一覧が取れないときは、トップページからニュース一覧らしいページを探す。
+- 適時開示(日本株): 東証の適時開示情報閲覧サービス(TDnet)に各社が出した開示。直近31日。
+  公式サイトがロボットを断っていたり、JavaScript で一覧を描くサイトでも、決算短信などはここで拾える。
 - EDINET(日本株): 各社が出した書類(有価証券報告書・臨時報告書など)と、他社が出したその会社の大量保有報告書。
   EDINET_API_KEY(環境変数)があるときだけ。
 - SEC EDGAR(米国株): 8-K・10-Q・10-K などの提出書類。EDINET の米国版。
@@ -38,6 +40,9 @@ HOLDINGS_PATH = ROOT.parent / "holdings" / "data" / "holdings.json"
 EDINET_API = "https://api.edinet-fsa.go.jp/api/v2"
 EDINET_CODELIST = "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/codelist/Edinetcode.zip"
 EDINET_VIEW = "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?"
+TDNET_LIST = "https://www.release.tdnet.info/inbs/I_list_{page:03d}_{ymd}.html"
+TDNET_CACHE_PATH = DATA_DIR / "tdnet_cache.json"
+TDNET_DAYS = 31  # TDnet の一覧は1か月分だけ公開されている
 SEC_TICKERS = "https://www.sec.gov/files/company_tickers.json"
 SEC_SUBMISSIONS = "https://data.sec.gov/submissions/CIK{cik:010d}.json"
 
@@ -54,7 +59,10 @@ HEADERS = {
     "Accept-Language": "ja,en;q=0.8",
 }
 # SEC はアクセス元の連絡先を User-Agent に書くよう求めている
-SEC_HEADERS = {"User-Agent": "portal-news git-san-934@users.noreply.github.com"}
+SEC_HEADERS = {
+    "User-Agent": "git-san-934 portal-news git-san-934@users.noreply.github.com",
+    "Accept-Encoding": "gzip, deflate",
+}
 
 # SEC の書類のうち載せるもの(Form 4 などの役員売買は件数が多いので除く)
 SEC_FORMS = {
@@ -85,6 +93,10 @@ SKIP_TITLES = re.compile(
     r"news|press releases?|トップ|top|home|次へ|前へ|next|prev(ious)?|\d+)$",
     re.I,
 )
+# 一覧ページ・カテゴリーへのリンク(記事ではない)
+LIST_TITLE = re.compile(r"一覧|を見る$|^(ir|投資家向け|株主・投資家向け)?\s*(ニュース|情報|ニュースリリース|お知らせ)$|view all|see all", re.I)
+LIST_URL = re.compile(r"/(category|tag|tags|categories)/|[?&](cat|category|tag)=", re.I)
+URL_DATE = re.compile(r"(20\d{2})[-/_]?(0[1-9]|1[0-2])[-/_]?(0[1-9]|[12]\d|3[01])(?!\d)")
 NEWS_HINT = re.compile(r"ニュース|お知らせ|リリース|ir\s*ニュース|ir情報|適時開示|news|press|release|announcement", re.I)
 
 
@@ -120,24 +132,29 @@ def make_date(y, m, d):
         return None
 
 
+def find_dates(text):
+    """文字列の中の日付をすべて。[(date, 一致した部分, 位置)]"""
+    out = []
+    for pat, kind in DATE_PATTERNS:
+        for m in pat.finditer(text):
+            g = m.groups()
+            if kind == "ymd":
+                d = make_date(g[0], g[1], g[2])
+            elif kind == "mdy":
+                d = make_date(g[2], MONTHS[g[0][:3].lower()], g[1])
+            elif kind == "dmy":
+                d = make_date(g[2], MONTHS[g[1][:3].lower()], g[0])
+            else:
+                d = make_date(g[2], g[0], g[1])
+            if d:
+                out.append((d, m.group(0), m.start()))
+    return sorted(out, key=lambda x: x[2])
+
+
 def find_date(text):
     """文字列の中の最初の日付。(date, 一致した部分)"""
-    for pat, kind in DATE_PATTERNS:
-        m = pat.search(text)
-        if not m:
-            continue
-        g = m.groups()
-        if kind == "ymd":
-            d = make_date(g[0], g[1], g[2])
-        elif kind == "mdy":
-            d = make_date(g[2], MONTHS[g[0][:3].lower()], g[1])
-        elif kind == "dmy":
-            d = make_date(g[2], MONTHS[g[1][:3].lower()], g[0])
-        else:
-            d = make_date(g[2], g[0], g[1])
-        if d:
-            return d, m.group(0)
-    return None, None
+    got = find_dates(text)
+    return (got[0][0], got[0][1]) if got else (None, None)
 
 
 def plausible(d):
@@ -145,9 +162,16 @@ def plausible(d):
 
 
 def strip_date(text, matched):
+    text = clean(text)
+    # 日付は先頭か末尾にあるときだけ取る(見出しの中の「10月14日開催」などは残す)
     if matched:
-        text = text.replace(matched, " ")
-    text = re.sub(r"^[\s|・:：\-–—/]+|[\s|・:：\-–—/]+$", "", clean(text))
+        m = clean(matched)
+        if text.startswith(m):
+            text = text[len(m):]
+        elif text.endswith(m):
+            text = text[: -len(m)]
+    text = re.sub(r"\(\s*[\d.,]+\s*[kmg]i?b\s*\)|\[?\bpdf\b\]?\s*$", "", text, flags=re.I)
+    text = re.sub(r"^[\s|・:：\-–—/]+|[\s|・:：\-–—/]+$", "", text)
     return text
 
 
@@ -211,25 +235,37 @@ def parse_html(soup, base):
         for _ in range(4):
             if d:
                 break
+            # 他の記事のリンクも含むところまで上がったら、その日付はこの記事のものとは限らない
+            if node is not a and len(node.find_all("a", href=True)) > 2:
+                break
             text = clean(node.get_text(" "))
             if len(text) > 400:
                 break
-            tm = node.find("time") if hasattr(node, "find") else None
+            tm = node.find("time") if node is not a else None
             if tm is not None and tm.get("datetime"):
                 d, _ = find_date(tm["datetime"])
+                matched = clean(tm.get_text(" ")) or None
             if not d:
-                d, matched = find_date(text)
+                # 見出しの外にある日付を優先し、ありえない日付(開催予定日など)は飛ばす
+                cands = [(x, mt) for x, mt, _ in find_dates(text) if plausible(x)]
+                outside = [(x, mt) for x, mt in cands if mt not in anchor]
+                if outside or cands:
+                    d, matched = (outside or cands)[0]
             context = text
             node = node.parent
             if node is None or node.name in ("body", "html"):
                 break
-        if not plausible(d):
+        if not d:
+            m = URL_DATE.search(urlparse(url).path)
+            if m:
+                d, matched = make_date(*m.groups()), None
+        if not plausible(d) or LIST_URL.search(url):
             continue
         title = strip_date(anchor, matched)
         if len(title) < 6 or SKIP_TITLES.match(title):
             title = strip_date(context, matched)
-        # 日付やカテゴリーだけのリンク、ナビゲーションは除く
-        if len(title) < 6 or SKIP_TITLES.match(title):
+        # 日付やカテゴリーだけのリンク、ナビゲーション、一覧へのリンクは除く
+        if len(title) < 6 or SKIP_TITLES.match(title) or LIST_TITLE.search(title):
             continue
         seen.add(url)
         items.append({"date": d.isoformat(), "title": title[:200], "url": url})
@@ -256,7 +292,14 @@ def fetch_page(url):
     if not r.encoding or r.encoding.lower() == "iso-8859-1":
         r.encoding = r.apparent_encoding
     soup = BeautifulSoup(r.text, "html.parser")
-    return parse_html(soup, r.url), soup
+    items = parse_html(soup, r.url)
+    if not items:
+        # 取れなかった理由を調べやすいように、ページの様子をログに残す
+        text = clean(soup.get_text(" "))
+        hits = [m for pat, _ in DATE_PATTERNS for m in pat.finditer(text)][:2]
+        log(f"      (HTML {len(r.text)} 文字、リンク {len(soup.find_all('a'))} 個、日付らしき文字 {len(hits)} 個"
+            + "".join(f" / …{text[max(0, h.start() - 30):h.end() + 50]}…" for h in hits) + ")")
+    return items, soup
 
 
 def discover(home):
@@ -306,7 +349,7 @@ def fetch_official(code, conf):
             for f in feed_links(soup, url)[:2]:
                 if f not in tried:
                     try_page(f)
-    if not items and conf.get("home"):
+    if not items and conf.get("home") and conf.get("discover", True):
         log("    一覧から取れなかったので、トップページから探します")
         for url in discover(conf["home"]):
             if url not in tried:
@@ -316,6 +359,97 @@ def fetch_official(code, conf):
     for e in errors:
         log(f"    失敗 {e}")
     return items, ok_pages, errors
+
+
+# ---------------------------------------------------------------------------
+# 適時開示(TDnet)
+# ---------------------------------------------------------------------------
+
+
+def tdnet_day(d, want):
+    """その日の適時開示のうち、持ち株の分。[開示]"""
+    ymd = d.strftime("%Y%m%d")
+    hits = []
+    for page in range(1, 40):
+        try:
+            r = get(TDNET_LIST.format(page=page, ymd=ymd), retries=2)
+        except RuntimeError as e:
+            if page == 1 and "404" not in str(e):
+                raise
+            break  # ページの終わり(開示の無い日は1ページ目から無い)
+        r.encoding = "utf-8"
+        soup = BeautifulSoup(r.text, "html.parser")
+        rows = soup.select("#main-list-table tr") or soup.find_all("tr")
+        n = 0
+        for tr in rows:
+            code_td = tr.find("td", class_=re.compile("kjCode"))
+            title_td = tr.find("td", class_=re.compile("kjTitle"))
+            if not code_td or not title_td:
+                continue
+            n += 1
+            code = clean(code_td.get_text())
+            if code not in want:
+                continue
+            a = title_td.find("a", href=True)
+            time_td = tr.find("td", class_=re.compile("kjTime"))
+            hits.append({
+                "sec": code,
+                "time": clean(time_td.get_text()) if time_td else "",
+                "title": clean(title_td.get_text(" ")),
+                "url": urljoin(r.url, a["href"]) if a else r.url,
+            })
+        if n < 100:
+            break
+        time.sleep(0.3)
+    return hits
+
+
+def fetch_tdnet(stocks):
+    """{code: [記事]}。取れなければ None"""
+    sec_to_code = {s["code"] + "0": s["code"] for s in stocks if re.fullmatch(r"\d{3}[0-9A-Z]", s["code"])}
+    if not sec_to_code:
+        return {}
+    try:
+        cache = json.loads(TDNET_CACHE_PATH.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+    watch = sorted(sec_to_code)
+    if cache.get("watch") != watch:
+        cache = {"watch": watch, "days": {}}
+    days = cache.setdefault("days", {})
+    start = TODAY - timedelta(days=TDNET_DAYS - 1)
+    fetched, failed = 0, 0
+    d = start
+    while d <= TODAY:
+        ds = d.isoformat()
+        # 前日より前の日は確定しているのでキャッシュを使う
+        if ds in days and d < TODAY - timedelta(days=1):
+            d += timedelta(days=1)
+            continue
+        if d.weekday() >= 5:  # 土日は開示が無い
+            days[ds] = []
+            d += timedelta(days=1)
+            continue
+        try:
+            days[ds] = tdnet_day(d, sec_to_code)
+            fetched += 1
+        except Exception as e:  # noqa: BLE001
+            log(f"  適時開示 {ds}: {e}")
+            failed += 1
+        d += timedelta(days=1)
+    for ds in [k for k in days if k < start.isoformat()]:
+        del days[ds]
+    TDNET_CACHE_PATH.write_text(json.dumps(cache, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
+    log(f"適時開示: {fetched} 日分を取得、{failed} 日失敗")
+    if fetched == 0 and failed:
+        return None
+    out = {}
+    for ds, hits in days.items():
+        for h in hits:
+            out.setdefault(sec_to_code[h["sec"]], []).append({
+                "date": ds, "time": h["time"], "title": h["title"], "url": h["url"],
+            })
+    return out
 
 
 # ---------------------------------------------------------------------------
@@ -433,13 +567,17 @@ def fetch_sec(stocks, sources):
     tickers = [s for s in stocks if s.get("currency") == "USD" and sources.get(s["code"], {}).get("sec", True)]
     if not tickers:
         return {}
-    try:
-        table = get(SEC_TICKERS, headers=SEC_HEADERS).json()
-    except Exception as e:  # noqa: BLE001
-        log(f"SEC: 銘柄一覧を取得できませんでした: {e}")
-        return None
-    cik_of = {row["ticker"].upper(): int(row["cik_str"]) for row in table.values()}
-    out = {}
+    # CIK(SEC の会社番号)は sources.json に書いておく。無い銘柄だけ SEC の一覧から探す
+    cik_of = {(s.get("ticker") or s["code"]).upper(): sources.get(s["code"], {}).get("cik") for s in tickers}
+    if not all(cik_of.values()):
+        try:
+            table = get(SEC_TICKERS, headers=SEC_HEADERS).json()
+            for row in table.values():
+                if not cik_of.get(row["ticker"].upper()) and row["ticker"].upper() in cik_of:
+                    cik_of[row["ticker"].upper()] = int(row["cik_str"])
+        except Exception as e:  # noqa: BLE001
+            log(f"SEC: 銘柄一覧を取得できませんでした: {e}")
+    out, ok = {}, 0
     since = (TODAY - timedelta(days=SEC_DAYS)).isoformat()
     for s in tickers:
         t = (s.get("ticker") or s["code"]).upper()
@@ -452,6 +590,9 @@ def fetch_sec(stocks, sources):
         except Exception as e:  # noqa: BLE001
             log(f"  SEC {t}: {e}")
             continue
+        ok += 1
+        if t not in [x.upper() for x in sub.get("tickers", [])]:
+            log(f"  SEC {t}: CIK {cik} は {sub.get('name')}({sub.get('tickers')})。sources.json の cik を確認してください")
         rec = sub.get("filings", {}).get("recent", {})
         items = []
         for i, form in enumerate(rec.get("form", [])):
@@ -476,7 +617,7 @@ def fetch_sec(stocks, sources):
         out[s["code"]] = items
         log(f"  SEC {t}: {len(items)} 件")
         time.sleep(0.2)
-    return out
+    return out if ok else None
 
 
 # ---------------------------------------------------------------------------
@@ -512,6 +653,7 @@ def main():
         official[s["code"]] = items[:MAX_PER_SOURCE]
         status[s["code"]] = {"official": "ok" if items else "取得できませんでした", "pages": ok_pages or conf.get("pages", [])[:1]}
 
+    tdnet = fetch_tdnet(stocks)
     edinet = fetch_edinet(stocks)
     sec = fetch_sec(stocks, sources)
 
@@ -521,14 +663,20 @@ def main():
         code = s["code"]
         merged = {}
         groups = [("official", official.get(code, []))]
+        if tdnet is not None:
+            groups.append(("tdnet", sorted(tdnet.get(code, []), key=lambda x: (x["date"], x["time"]), reverse=True)[:MAX_PER_SOURCE]))
         if edinet is not None:
             groups.append(("edinet", sorted(edinet.get(code, []), key=lambda x: (x["date"], x.get("time", "")), reverse=True)[:MAX_PER_SOURCE]))
         if sec is not None:
             groups.append(("sec", sec.get(code, [])[:MAX_PER_SOURCE]))
+        seen_titles = set()
         for source, items in groups:
             for it in items:
-                if it["url"] in merged:
+                # 同じ記事が HTML と RSS の両方から、別の URL で取れることがある
+                key = (it["date"], re.sub(r"\W", "", it["title"]).lower()[:40])
+                if it["url"] in merged or key in seen_titles:
                     continue
+                seen_titles.add(key)
                 old = prev_items.get((code, it["url"]))
                 if old:
                     first_seen = old["first_seen"]
@@ -557,6 +705,7 @@ def main():
 
     out = {
         "updated_at": now_iso,
+        "tdnet": "ok" if tdnet is not None else "取得できませんでした",
         "edinet": "ok" if edinet is not None else "取得できませんでした",
         "sec": "ok" if sec is not None else "取得できませんでした",
         "stocks": out_stocks,
@@ -569,11 +718,11 @@ def main():
         counts = {}
         for it in s["items"]:
             counts[it["source"]] = counts.get(it["source"], 0) + 1
-        log(f"  {s['code']:5} {s['name']}: 公式 {counts.get('official', 0)} / EDINET {counts.get('edinet', 0)} / SEC {counts.get('sec', 0)}  ({s['official_status']})")
+        log(f"  {s['code']:5} {s['name']}: 公式 {counts.get('official', 0)} / 適時開示 {counts.get('tdnet', 0)} / EDINET {counts.get('edinet', 0)} / SEC {counts.get('sec', 0)}  ({s['official_status']})")
         for it in s["items"][:3]:
             log(f"      {it['date']} [{it['source']}] {it['title'][:60]}")
     ok_official = sum(1 for s in out_stocks if s["official_status"] == "ok")
-    if ok_official == 0 and edinet is None and sec is None:
+    if ok_official == 0 and tdnet is None and edinet is None and sec is None:
         log("どこからも取得できませんでした")
         sys.exit(1)
 
