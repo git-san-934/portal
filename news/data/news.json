@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-09-28T22:05+09:00",
+ "updated_at": "2026-09-28T22:07+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -976,6 +976,13 @@
      "url": "https://www.circle.com/pressroom/circle-launches-arc-mainnet-an-economic-operating-system-for-the-internet",
      "source": "official",
      "first_seen": "2026-09-16T00:00+09:00"
+    },
+    {
+     "date": "2026-09-08",
+     "title": "Circle Expands Global Payments Infrastructure with Agreement to Acquire Singapore-based Cross-Border Payments Platform, Tazapay Proposed acquisition will bring 60+ banking and fintech partners, 100+ p",
+     "url": "https://www.circle.com/pressroom/circle-expands-global-payments-infrastructure-with-agreement-to-acquire-singapore-based-cross-border-payments-platform-tazapay",
+     "source": "official",
+     "first_seen": "2026-09-28T22:07+09:00"
     }
    ]
   },
