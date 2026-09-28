@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-09-28T22:07+09:00",
+ "updated_at": "2026-09-28T22:16+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -511,8 +511,7 @@
    "home": "https://www.kioxia-holdings.com/ja-jp/",
    "official_status": "ok",
    "official_pages": [
-    "https://www.kioxia-holdings.com/ja-jp/news.html",
-    "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
+    "https://www.kioxia-holdings.com/ja-jp/news.html"
    ],
    "items": [
     {
@@ -631,12 +630,61 @@
      "first_seen": "2026-08-05T00:00+09:00"
     },
     {
+     "date": "2026-08-04",
+     "title": "キオクシアとサンディスク、業界最高のビット密度を実現する新しい3次元フラッシュメモリ技術を発表",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20260804-2.html",
+     "source": "official",
+     "first_seen": "2026-09-28T22:16+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "title": "AI時代をリードするキオクシアのフラッシュストレージソリューションをFMS 2026で提案",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20260804-1.html",
+     "source": "official",
+     "first_seen": "2026-09-28T22:16+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "title": "AIアプリケーション向けSuper High IOPS SSD「KIOXIA GP1シリーズ」の開発について",
+     "url": "https://www.kioxia.com/ja-jp/business/news/2026/20260804-1.html",
+     "source": "official",
+     "first_seen": "2026-09-28T22:16+09:00"
+    },
+    {
+     "date": "2026-08-03",
+     "title": "当社子会社に対する訴訟の判決に関するお知らせ",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2861253/00.pdf",
+     "source": "official",
+     "first_seen": "2026-09-28T22:16+09:00"
+    },
+    {
+     "date": "2026-08-03",
+     "title": "AIワークロード向けCXLTM対応のメモリ拡張モジュールKIOXIA XL1シリーズの出展について",
+     "url": "https://www.kioxia.com/ja-jp/business/news/2026/20260803-1.html",
+     "source": "official",
+     "first_seen": "2026-09-28T22:16+09:00"
+    },
+    {
      "date": "2026-07-31",
      "time": "15:27",
      "title": "臨時報告書",
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YTK3",
      "source": "edinet",
      "first_seen": "2026-07-31T00:00+09:00"
+    },
+    {
+     "date": "2026-07-31",
+     "title": "株式分割及び株式分割に伴う定款の一部変更に関するお知らせ",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2859909/00.pdf",
+     "source": "official",
+     "first_seen": "2026-09-28T22:16+09:00"
+    },
+    {
+     "date": "2026-07-31",
+     "title": "自己株式の取得枠設定に関するお知らせ",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2859913/00.pdf",
+     "source": "official",
+     "first_seen": "2026-09-28T22:16+09:00"
     },
     {
      "date": "2026-07-23",
