@@ -1,5 +1,6 @@
 {
- "updated_at": "2026-09-28T22:00+09:00",
+ "updated_at": "2026-09-28T22:01+09:00",
+ "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
  "stocks": [
@@ -62,12 +63,28 @@
    ],
    "items": [
     {
+     "date": "2026-09-24",
+     "time": "16:00",
+     "title": "自己株式の取得状況および取得終了ならびに自己株式の消却に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120260924539247.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-09-24T00:00+09:00"
+    },
+    {
      "date": "2026-09-10",
      "time": "13:53",
      "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z1HL",
      "source": "edinet",
      "first_seen": "2026-09-10T00:00+09:00"
+    },
+    {
+     "date": "2026-09-01",
+     "time": "16:00",
+     "title": "自己株式の取得状況に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120260831528910.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-09-01T00:00+09:00"
     },
     {
      "date": "2026-08-10",
@@ -147,23 +164,9 @@
      "first_seen": "2026-09-17T00:00+09:00"
     },
     {
-     "date": "2026-09-17",
-     "title": "東京都「令和8年度CO2サプライチェーン構築に係る実現可能性調査(FS事業)」に採択 ~清掃工場を起点とした都市型CO2サプライチェーンの構築を目指す~",
-     "url": "https://www.soc.co.jp/news/88275/",
-     "source": "official",
-     "first_seen": "2026-09-17T00:00+09:00"
-    },
-    {
-     "date": "2026-09-14",
-     "title": "株式分割に関する基準日設定公告 (76.90kb)",
-     "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/09/791b588f573211604865821120e8abaf.pdf",
-     "source": "official",
-     "first_seen": "2026-09-14T00:00+09:00"
-    },
-    {
      "date": "2026-09-14",
      "title": "株式分割に関する基準日設定公告",
-     "url": "https://www.soc.co.jp/news/88198/",
+     "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/09/791b588f573211604865821120e8abaf.pdf",
      "source": "official",
      "first_seen": "2026-09-14T00:00+09:00"
     },
@@ -201,71 +204,36 @@
     },
     {
      "date": "2026-08-04",
-     "title": "株式報酬制度の継続に伴う自己株式の処分に関するお知らせ (153.28kb)",
+     "title": "株式報酬制度の継続に伴う自己株式の処分に関するお知らせ",
      "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/bd344ce20b9fc589b587b6ac6ce7eb30.pdf",
      "source": "official",
      "first_seen": "2026-08-04T00:00+09:00"
     },
     {
      "date": "2026-08-04",
-     "title": "株式報酬制度における株式取得に係る事項の決定に関するお知らせ (119.81kb)",
+     "title": "株式報酬制度における株式取得に係る事項の決定に関するお知らせ",
      "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/7b35bcb5216b89a500d405cb36ea4dc8.pdf",
      "source": "official",
      "first_seen": "2026-08-04T00:00+09:00"
     },
     {
      "date": "2026-08-04",
-     "title": "株式分割、定款の一部変更、配当予想の修正等に関するお知らせ (139.63kb)",
+     "title": "株式分割、定款の一部変更、配当予想の修正等に関するお知らせ",
      "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/915d900d438c60946ef6340569e31740.pdf",
      "source": "official",
      "first_seen": "2026-08-04T00:00+09:00"
     },
     {
      "date": "2026-08-04",
-     "title": "2026年度(2027年3月期)第1四半期決算説明資料 (1347.46kb)",
+     "title": "2026年度(2027年3月期)第1四半期決算説明資料",
      "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/cdd1b5c4c10842030f7c1efd61a96865.pdf",
      "source": "official",
      "first_seen": "2026-08-04T00:00+09:00"
     },
     {
      "date": "2026-08-04",
-     "title": "2027年3月期第1四半期決算短信〔日本基準〕(連結) (543.92kb)",
-     "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/eff4fb8c0a7a6c4f520ca795b4dfe472.pdf",
-     "source": "official",
-     "first_seen": "2026-08-04T00:00+09:00"
-    },
-    {
-     "date": "2026-08-04",
-     "title": "株式報酬制度の継続に伴う自己株式の処分に関するお知らせ",
-     "url": "https://www.soc.co.jp/news/87631/",
-     "source": "official",
-     "first_seen": "2026-08-04T00:00+09:00"
-    },
-    {
-     "date": "2026-08-04",
-     "title": "株式報酬制度における株式取得に係る事項の決定に関するお知らせ",
-     "url": "https://www.soc.co.jp/news/87628/",
-     "source": "official",
-     "first_seen": "2026-08-04T00:00+09:00"
-    },
-    {
-     "date": "2026-08-04",
-     "title": "株式分割、定款の一部変更、配当予想の修正等に関するお知らせ",
-     "url": "https://www.soc.co.jp/news/87622/",
-     "source": "official",
-     "first_seen": "2026-08-04T00:00+09:00"
-    },
-    {
-     "date": "2026-08-04",
-     "title": "2026年度(2027年3月期)第1四半期決算説明資料",
-     "url": "https://www.soc.co.jp/news/87619/",
-     "source": "official",
-     "first_seen": "2026-08-04T00:00+09:00"
-    },
-    {
-     "date": "2026-08-04",
      "title": "2027年3月期第1四半期決算短信〔日本基準〕(連結)",
-     "url": "https://www.soc.co.jp/news/87615/",
+     "url": "https://www.soc.co.jp/sys/wp-content/uploads/2026/08/eff4fb8c0a7a6c4f520ca795b4dfe472.pdf",
      "source": "official",
      "first_seen": "2026-08-04T00:00+09:00"
     },
@@ -294,22 +262,44 @@
    "home": "https://www.keyence.co.jp/",
    "official_status": "ok",
    "official_pages": [
+    "https://www.keyence.co.jp/investor/news.jsp",
     "https://www.keyence.co.jp/investor/"
    ],
    "items": [
-    {
-     "date": "2026-09-01",
-     "title": "IRニュース一覧を見る",
-     "url": "https://www.keyence.co.jp/investor/news.jsp",
-     "source": "official",
-     "first_seen": "2026-09-01T00:00+09:00"
-    },
     {
      "date": "2026-09-01",
      "title": "「Sustainability Information 2026」をサステナビリティサイトに掲載しました",
      "url": "https://www.keyence.co.jp/sustainability/",
      "source": "official",
      "first_seen": "2026-09-01T00:00+09:00"
+    },
+    {
+     "date": "2026-07-29",
+     "title": "2026年度第1四半期決算説明会資料",
+     "url": "https://www.keyence.co.jp/pdf/FinancialResults_202607_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-07-29T00:00+09:00"
+    },
+    {
+     "date": "2026-07-29",
+     "title": "First Quarter of FY2026 Financial Results Materials",
+     "url": "https://www.keyence.co.jp/pdf/FinancialResults_202607_en.pdf",
+     "source": "official",
+     "first_seen": "2026-07-29T00:00+09:00"
+    },
+    {
+     "date": "2026-07-28",
+     "title": "2027年3月期第1四半期決算短信〔日本基準〕(連結)",
+     "url": "https://www.keyence.co.jp/pdf/EarningsRelease_202607_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-07-28T00:00+09:00"
+    },
+    {
+     "date": "2026-07-28",
+     "title": "Summary of Consolidated Financial Results for the 1st Quarter of FY2026 Ended",
+     "url": "https://www.keyence.co.jp/pdf/ConsolidatedFinancialResultsForThe1stQuarterEndedJune_20_2026(JP_GAAP).pdf",
+     "source": "official",
+     "first_seen": "2026-07-28T00:00+09:00"
     },
     {
      "date": "2026-06-18",
@@ -319,9 +309,65 @@
      "first_seen": "2026-06-18T00:00+09:00"
     },
     {
+     "date": "2026-06-15",
+     "title": "有価証券報告書第57期 (2025年3月21日-2026年3月20日)",
+     "url": "https://www.keyence.co.jp/pdf/AnnualSecuritiesReport_202606_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-06-15T00:00+09:00"
+    },
+    {
+     "date": "2026-06-15",
+     "title": "アニュアルレポート 2026",
+     "url": "https://www.keyence.co.jp/pdf/AnnualReport_2026_en.pdf",
+     "source": "official",
+     "first_seen": "2026-06-15T00:00+09:00"
+    },
+    {
+     "date": "2026-04-27",
+     "title": "2025年度決算説明会資料",
+     "url": "https://www.keyence.co.jp/pdf/FinancialResults_202604_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-04-27T00:00+09:00"
+    },
+    {
+     "date": "2026-04-27",
+     "title": "FY2025 Financial Results Materials",
+     "url": "https://www.keyence.co.jp/pdf/FinancialResults_202604_en.pdf",
+     "source": "official",
+     "first_seen": "2026-04-27T00:00+09:00"
+    },
+    {
+     "date": "2026-04-24",
+     "title": "2026年3月期決算短信〔日本基準〕(連結)",
+     "url": "https://www.keyence.co.jp/pdf/EarningsRelease_202604_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-04-24T00:00+09:00"
+    },
+    {
+     "date": "2026-04-24",
+     "title": "Summary of Consolidated Financial Results for the FY2025 Year Ended",
+     "url": "https://www.keyence.co.jp/pdf/SummaryOfConsolidatedFinancialResultsForTheYearEndedMarch_20_2026(JP_GAAP).pdf",
+     "source": "official",
+     "first_seen": "2026-04-24T00:00+09:00"
+    },
+    {
      "date": "2026-04-24",
      "title": "2026年3月期の連結業績と前期の連結業績との差異に関するお知らせ",
      "url": "https://www.keyence.co.jp/pdf/PressRelease_20260424_02.pdf",
+     "source": "official",
+     "first_seen": "2026-04-24T00:00+09:00"
+    },
+    {
+     "date": "2026-04-24",
+     "title": "定款の一部変更に関するお知らせ",
+     "url": "https://www.keyence.co.jp/pdf/PressRelease_20260424_03.pdf",
+     "source": "official",
+     "first_seen": "2026-04-24T00:00+09:00"
+    },
+    {
+     "date": "2026-04-24",
+     "title": "取締役の異動に関するお知らせ",
+     "url": "https://www.keyence.co.jp/pdf/PressRelease_20260424_01.pdf",
      "source": "official",
      "first_seen": "2026-04-24T00:00+09:00"
     }
@@ -341,29 +387,8 @@
    "items": [
     {
      "date": "2026-09-28",
-     "title": "人事 投資家向けニュース",
-     "url": "https://www.enplas.co.jp/category/news/ir-news/jinji/",
-     "source": "official",
-     "first_seen": "2026-09-28T00:00+09:00"
-    },
-    {
-     "date": "2026-09-28",
-     "title": "投資家向けニュース",
-     "url": "https://www.enplas.co.jp/category/ir-news/",
-     "source": "official",
-     "first_seen": "2026-09-28T00:00+09:00"
-    },
-    {
-     "date": "2026-09-28",
      "title": "執行役員人事に関するお知らせ",
      "url": "https://www.enplas.co.jp/jp/wp-content/uploads/2026/09/20260928_j.pdf",
-     "source": "official",
-     "first_seen": "2026-09-28T00:00+09:00"
-    },
-    {
-     "date": "2026-09-28",
-     "title": "執行役員人事に関するお知らせ",
-     "url": "https://www.enplas.co.jp/news/ir-news/9749/",
      "source": "official",
      "first_seen": "2026-09-28T00:00+09:00"
     },
@@ -374,13 +399,6 @@
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z2OA",
      "source": "edinet",
      "first_seen": "2026-09-24T00:00+09:00"
-    },
-    {
-     "date": "2026-08-25",
-     "title": "事業関連ニュース",
-     "url": "https://www.enplas.co.jp/category/business-news/",
-     "source": "official",
-     "first_seen": "2026-08-25T00:00+09:00"
     },
     {
      "date": "2026-08-25",
@@ -413,13 +431,6 @@
     },
     {
      "date": "2026-07-17",
-     "title": "経営 投資家向けニュース",
-     "url": "https://www.enplas.co.jp/category/news/ir-news/keiei/",
-     "source": "official",
-     "first_seen": "2026-07-17T00:00+09:00"
-    },
-    {
-     "date": "2026-07-17",
      "title": "取締役等に対する譲渡制限付株式報酬としての自己株式処分の 払込完了に関するお知らせ",
      "url": "https://www.enplas.co.jp/jp/wp-content/uploads/2026/07/20260717_j.pdf",
      "source": "official",
@@ -440,6 +451,27 @@
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YOB8",
      "source": "edinet",
      "first_seen": "2026-07-02T00:00+09:00"
+    },
+    {
+     "date": "2026-06-26",
+     "title": "取締役等に対する譲渡制限付株式報酬としての自己株式処分に関するお知らせ",
+     "url": "https://www.enplas.co.jp/jp/wp-content/uploads/2026/06/20260626_j.pdf",
+     "source": "official",
+     "first_seen": "2026-06-26T00:00+09:00"
+    },
+    {
+     "date": "2026-06-19",
+     "title": "中止:MTSA 2026での当社レンズアンテナを用いたデモ展示のお知らせ",
+     "url": "https://www.enplas.co.jp/news/business-news/9629/",
+     "source": "official",
+     "first_seen": "2026-06-19T00:00+09:00"
+    },
+    {
+     "date": "2026-06-19",
+     "title": "Microwave Journalへの当社レンズアンテナの記事掲載のお知らせ",
+     "url": "https://www.enplas.co.jp/news/business-news/9627/",
+     "source": "official",
+     "first_seen": "2026-06-19T00:00+09:00"
     }
    ]
   },
@@ -548,13 +580,6 @@
      "first_seen": "2026-08-27T00:00+09:00"
     },
     {
-     "date": "2026-08-27",
-     "title": "IRニュース",
-     "url": "https://www.kioxia-holdings.com/ja-jp/ir/news.html?sumtag=ir-news",
-     "source": "official",
-     "first_seen": "2026-08-27T00:00+09:00"
-    },
-    {
      "date": "2026-08-17",
      "title": "(訂正)「主要株主である筆頭株主の異動に関するお知らせ」の一部訂正について",
      "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2875131/00.pdf",
@@ -598,6 +623,13 @@
      "first_seen": "2026-08-06T00:00+09:00"
     },
     {
+     "date": "2026-08-05",
+     "title": "GPUダイレクトアクセスに向けて設計された業界初Super High IOPS SSD「KIOXIA GPシリーズ」が「FMS:the Future of Memory and Storage」の「Best of Show Award」を受賞",
+     "url": "https://www.kioxia.com/ja-jp/business/news/2026/20260805-1.html",
+     "source": "official",
+     "first_seen": "2026-08-05T00:00+09:00"
+    },
+    {
      "date": "2026-07-31",
      "time": "15:27",
      "title": "臨時報告書",
@@ -636,11 +668,26 @@
    "name": "オラクル",
    "market": "US",
    "home": "https://www.oracle.com/news/",
-   "official_status": "取得できませんでした",
+   "official_status": "ok",
    "official_pages": [
     "https://www.oracle.com/news/"
    ],
-   "items": []
+   "items": [
+    {
+     "date": "2026-09-23",
+     "title": "Oracle Health Advances Revenue Cycle Management with AI Read the release",
+     "url": "https://www.oracle.com/news/announcement/oracle-health-advances-revenue-cycle-management-with-ai-2026-09-23/",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    },
+    {
+     "date": "2026-09-23",
+     "title": "Read the release",
+     "url": "https://www.oracle.com/news/announcement/oracle-to-advance-cancer-care-with-new-oncology-ehr-2026-09-23/",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    }
+   ]
   },
   {
    "code": "AUR",
@@ -732,41 +779,12 @@
    "home": "https://news.adobe.com/",
    "official_status": "ok",
    "official_pages": [
-    "https://news.adobe.com/news",
-    "https://www.adobe.com/investor-relations.html"
+    "https://news.adobe.com/news"
    ],
    "items": [
     {
-     "date": "2026-09-10",
-     "title": "Q3 FY2026 earnings press release",
-     "url": "https://www.adobe.com/cc-shared/assets/investor-relations/pdfs/01906202/au56y4ter.pdf#_blank",
-     "source": "official",
-     "first_seen": "2026-09-10T00:00+09:00"
-    },
-    {
-     "date": "2026-09-10",
-     "title": "Q3 FY2026 earnings script and slides",
-     "url": "https://www.adobe.com/cc-shared/assets/investor-relations/pdfs/01906202/c6yetrerew.pdf#_blank",
-     "source": "official",
-     "first_seen": "2026-09-10T00:00+09:00"
-    },
-    {
-     "date": "2026-09-10",
-     "title": "Q3 FY2026 investor datasheet",
-     "url": "https://www.adobe.com/cc-shared/assets/investor-relations/pdfs/01906202/b75st5a4rwea.pdf#_blank",
-     "source": "official",
-     "first_seen": "2026-09-10T00:00+09:00"
-    },
-    {
-     "date": "2026-09-10",
-     "title": "Watch webcast",
-     "url": "https://event.webcasts.com/starthere.jsp?ei=1768312&tp_key=738bd75c1b&tp_special=8",
-     "source": "official",
-     "first_seen": "2026-09-10T00:00+09:00"
-    },
-    {
      "date": "2026-04-28",
-     "title": "Content as a Service v3 - Newsroom - All News page - Newscard - Stage - NA - Tuesday, at 05:01",
+     "title": "Content as a Service v3 - Newsroom - All News page - Newscard - Stage - NA - Tuesday, April 28, 2026 at 05:01",
      "url": "https://milo.adobe.com/tools/caas#~~H4sIAAAAAAAAE5VW728aORD9V1bWSe1JTNhfZndpEiltr1Kkqu0p+RbQaWzPwqpmjWyTEEX87ycvkIRQEpIPZHf83pt5Y4/hgUm06srfa2JD1tKdgxBgPSaN1iR9Y9ofOAuLP+jOWWNmEUQXWkfhNZrjhCLongMtgujKb0IXQWPhvJl9CYJDdqqa20hqdO5sxExLMEVdR9K0zrTYegiwEYvQNggaBemzEfvrIcieSNN6av2FJTzxjde0GrFIIYKevgnyCJ6cb9TZiO0lO++Keg0EU0JFdsQeSz+0bo2msxFrZpP3uHCh9WcjJlD+nlizaBU0M5zQMFpY/XHD7EDuJHoCXQbM6tOInZ/2VXN7vtPcFxVu8gasm2P7ut2u5sNuN8vnW0to1Vf0dOLmuvEfP1x/+PsmHq9O+yHR+el825TQpKadPPM7wyVMqZlM/TBKYkuzTxHckfjdeNBNSyA1zubDJP70spmP73TbvQ/e2GXoWn3Y0Xa5+//6Zp1Hu38HoTuo0/78te35Zozvzs+rJuoN6m0lsOZuqyZJ64BLjiIGdHRwBUBT7Y85cEfK2bD5QQ//oPPZt5dtbUTjt5P+bJDWzbiJxyedRnjwtPSvzfuOnkfRtIqWZyMWh8HtzlFrzJxaslFrLNVkbbcpHu2E/NmI/edI1yMWTS3Vr1YSAKvtrJ2/UfF2UPq4beuBT9ZjdaM92e9GYriU2ZB5M38WnjSSDdnS2MeYY8Obh83zNU7Y8IZJRDdsNxd5H61vpCY27rHOu/rZfjeo2NDbBfVYI7s0rMdoKfVC0TVO3B9UnCPv2Hg1fkz8pbv3X6YPSrt5QuRAFsaCnlkb2yR+YMYeqGHtpC8lG696b+PUkTg6Dnek2C213vVnuHwX3i1ms8YfR5HGzo1FT/25qt+T5Z3yx8HfU/m6K+Mem+Okabsj/k+LQtPjcbTkFtq7X2R/4ST8IElS1mOO0Mrpt4a0Wqu/vIy7nzJPMUUeG31NS7+34KRt5t1sjYOuDzfWZ2NVN0nrGtzU3H3bDtdT6FLtvF51NT1GjPXhO/LCyZehr7QbWzv+ZeaL+fPwdfDxgt7FdvkLKym0IPQ2WFhbdcHrz/nmznAefSNDbtZj3njUwaW7NldTc8eGrKoqtjUhTavQ3l9thGvUjp7vz78LbH3j7wO13ZYRrrt1vVKSc41odOPvv4cvazZk2dOYqy5xN9WbbbgMN0IxEIM8LweQCJUBx7wGTBWHPJEZ1TIpRByzcKCek4QUQmVVAWWpJHCFJQghBWBScx4nSZyW9R6pkEWKclAA5YqAc15BlccFZBVVeZoMyjgWeyRMq7QoihSSskyAiyyHUiYCcozLQZXyIs6SPRLPUXIuEMqyjoErmUNZkwCpVF2npcrLQu2TYorTOslAFCkBJ5SAWZYAirJMeD3Ic0z3SDUNSBVlDXWdK+BpWkDFsYYqr0uhVDyo032SihNKeZUC5qkEXsclIC8ICEWNSSETjtkeaUCcym6L0lICL9MBiCQbAOdZllZ5xlHhHilLKsnLuAIqqQQuRApCJhUMRJlVSZIqXlR7pLgo8jxPEkgprYCjKKCseQlYUsZFxmOZKbYar/4HSlwW5MsMAAA=",
      "source": "official",
      "first_seen": "2026-04-28T00:00+09:00"
@@ -777,27 +795,6 @@
      "url": "https://news.adobe.com/fragments/blog/newsroom-blog-fragment#_inline",
      "source": "official",
      "first_seen": "2026-04-28T00:00+09:00"
-    },
-    {
-     "date": "2026-04-21",
-     "title": "Investor Presentation",
-     "url": "https://www.adobe.com/cc-shared/assets/investor-relations/pdfs/adbe-investor-session-summit-2026.pdf#_blank",
-     "source": "official",
-     "first_seen": "2026-04-21T00:00+09:00"
-    },
-    {
-     "date": "2026-04-21",
-     "title": "Adobe Announces New $25 Billion Stock Repurchase Program",
-     "url": "https://www.adobe.com/cc-shared/assets/investor-relations/pdfs/b465t3rw34.pdf#_blank",
-     "source": "official",
-     "first_seen": "2026-04-21T00:00+09:00"
-    },
-    {
-     "date": "2026-04-21",
-     "title": "Watch webcast",
-     "url": "https://event.webcasts.com/starthere.jsp?ei=1755523&tp_key=2633efe2ff",
-     "source": "official",
-     "first_seen": "2026-04-21T00:00+09:00"
     }
    ]
   },
@@ -808,19 +805,20 @@
    "home": "https://www.cerebras.ai/",
    "official_status": "ok",
    "official_pages": [
+    "https://www.cerebras.ai/company/newsroom",
     "https://www.cerebras.ai/company/news"
    ],
    "items": [
     {
      "date": "2026-09-08",
-     "title": "OpenAI’s Ultrafast makes GPT-5.6 Sol up to 14× faster with Cerebras News",
+     "title": "OpenAI’s Ultrafast makes GPT-5.6 Sol up to 14× faster with Cerebras September 08, 2026 News",
      "url": "https://www.neoteo.com/en/openais-ultrafast-tier-advertises-14-faster-gpt-56-sol-inference-with-cerebras",
      "source": "official",
      "first_seen": "2026-09-08T00:00+09:00"
     },
     {
      "date": "2026-08-27",
-     "title": "Andrew Feldman: The 100 Most Influential People in AI 2026 News",
+     "title": "Andrew Feldman: The 100 Most Influential People in AI 2026 August 27, 2026 News",
      "url": "https://time.com/collection/time100-ai/2026/andrew-feldman/",
      "source": "official",
      "first_seen": "2026-08-27T00:00+09:00"
@@ -834,49 +832,49 @@
     },
     {
      "date": "2026-08-13",
-     "title": "Renting Compute Capacity Is a Huge Business, Cerebras CEO Says News",
+     "title": "Renting Compute Capacity Is a Huge Business, Cerebras CEO Says August 13, 2026 News",
      "url": "https://www.bloomberg.com/news/videos/2026-08-13/renting-compute-capacity-is-huge-business-cerebras-ceo-video",
      "source": "official",
      "first_seen": "2026-08-13T00:00+09:00"
     },
     {
      "date": "2026-08-12",
-     "title": "Cerebras Systems CEO Andrew Feldman at All-In We Make AI ‘Blisteringly Fast’ News",
+     "title": "Cerebras Systems CEO Andrew Feldman at All-In We Make AI ‘Blisteringly Fast’ August 12, 2026 News",
      "url": "https://finance.yahoo.com/video/cerebras-systems-ceo-andrew-feldman-142508236.html",
      "source": "official",
      "first_seen": "2026-08-12T00:00+09:00"
     },
     {
      "date": "2026-06-01",
-     "title": "India’s AI deal with the UAE challenges U.S. cloud dominance News",
+     "title": "India’s AI deal with the UAE challenges U.S. cloud dominance June 01, 2026 News",
      "url": "https://restofworld.org/2026/india-uae-g42-cerebras-ai-sovereignty/",
      "source": "official",
      "first_seen": "2026-06-01T00:00+09:00"
     },
     {
      "date": "2026-05-20",
-     "title": "This CEO Turned a Complex AI Story Into a $95-Billion IPO News",
+     "title": "This CEO Turned a Complex AI Story Into a $95-Billion IPO May 20, 2026 News",
      "url": "https://www.inc.com/carmine-gallo/this-ceo-turned-a-complex-ai-story-into-a-95-billion-ipo/91346617",
      "source": "official",
      "first_seen": "2026-05-20T00:00+09:00"
     },
     {
      "date": "2026-05-14",
-     "title": "Cerebras CEO says AI chip demand is ‘not speculative’ as shares double in blockbuster IPO debut News",
+     "title": "Cerebras CEO says AI chip demand is ‘not speculative’ as shares double in blockbuster IPO debut May 14, 2026 News",
      "url": "https://fortune.com/2026/05/14/cerebras-one-of-the-biggest-ipos-of-the-year/",
      "source": "official",
      "first_seen": "2026-05-14T00:00+09:00"
     },
     {
      "date": "2026-05-14",
-     "title": "A.I. Chip Maker Soars 68% in Market Debut, as Tech I.P.O.s Ramp Up News",
+     "title": "A.I. Chip Maker Soars 68% in Market Debut, as Tech I.P.O.s Ramp Up May 14, 2026 News",
      "url": "https://www.nytimes.com/2026/05/14/technology/cerebras-ipo-ai.html",
      "source": "official",
      "first_seen": "2026-05-14T00:00+09:00"
     },
     {
      "date": "2026-05-14",
-     "title": "Cerebras Shares Soar in Hotly Anticipated Year for AI Debuts News",
+     "title": "Cerebras Shares Soar in Hotly Anticipated Year for AI Debuts May 14, 2026 News",
      "url": "https://www.wsj.com/finance/stocks/cerebras-to-kick-off-hotly-anticipated-year-for-artificial-intelligence-ipos-8b08ead7",
      "source": "official",
      "first_seen": "2026-05-14T00:00+09:00"
@@ -966,7 +964,7 @@
    "home": "https://www.schrodinger.com/",
    "official_status": "取得できませんでした",
    "official_pages": [
-    "https://ir.schrodinger.com/news-events/press-releases"
+    "https://ir.schrodinger.com/press-releases/default.aspx"
    ],
    "items": []
   },
@@ -975,131 +973,9 @@
    "name": "テスラ2倍",
    "market": "US",
    "home": "https://www.direxion.com/",
-   "official_status": "ok",
-   "official_pages": [
-    "https://www.direxion.com/xchange"
-   ],
-   "items": [
-    {
-     "date": "2026-09-09",
-     "title": "Anthropic: The Biggest IPO Ever Could Also Be a Supply Shock. Article",
-     "url": "https://www.direxion.com/xchange/anthropic-the-biggest-ipo-ever-could-also-be-a-supply-shock",
-     "source": "official",
-     "first_seen": "2026-09-09T00:00+09:00"
-    },
-    {
-     "date": "2026-09-08",
-     "title": "Anthropic IPO ETF: How Traders Can Prepare Before It Lists. Article",
-     "url": "https://www.direxion.com/xchange/anthropic-ipo-etf-how-traders-can-prepare-before-it-lists",
-     "source": "official",
-     "first_seen": "2026-09-08T00:00+09:00"
-    },
-    {
-     "date": "2026-08-26",
-     "title": "From Claude to the Stock Market: Anthropic’s IPO Filing, Explained. Article",
-     "url": "https://www.direxion.com/xchange/from-claude-to-the-stock-market-anthropics-ipo-filing-explained",
-     "source": "official",
-     "first_seen": "2026-08-26T00:00+09:00"
-    },
-    {
-     "date": "2026-08-25",
-     "title": "Ether’s Upgrade Cycle Meets a New Leveraged Tool. Article | EVMU",
-     "url": "https://www.direxion.com/xchange/ethers-upgrade-cycle-meets-a-new-leveraged-tool",
-     "source": "official",
-     "first_seen": "2026-08-25T00:00+09:00"
-    },
-    {
-     "date": "2026-08-25",
-     "title": "The Guidance Vacuum: Rate-Sensitive Sectors Brace for a Data-Only Fed. Article",
-     "url": "https://www.direxion.com/xchange/the-guidance-vacuum-rate-sensitive-sectors-brace-for-a-data-only-fed",
-     "source": "official",
-     "first_seen": "2026-08-25T00:00+09:00"
-    },
-    {
-     "date": "2026-08-03",
-     "title": "SpaceX’s First Public Report Card: What Traders May Watch.",
-     "url": "https://www.direxion.com/xchange/spacexs-first-public-report-card-what-traders-may-watch",
-     "source": "official",
-     "first_seen": "2026-08-03T00:00+09:00"
-    },
-    {
-     "date": "2026-07-17",
-     "title": "ASML Warned You, TSM Confirmed It Article | ASMU | 3 min read",
-     "url": "https://www.direxion.com/xchange/asml-warned-you-tsm-confirmed-it",
-     "source": "official",
-     "first_seen": "2026-07-17T00:00+09:00"
-    },
-    {
-     "date": "2026-07-15",
-     "title": "Memory Leader SK hynix, Now at 2X with SKHL Article | SKHL",
-     "url": "https://www.direxion.com/xchange/memory-leader-sk-hynix-now-at-2x-with-skhl",
-     "source": "official",
-     "first_seen": "2026-07-15T00:00+09:00"
-    },
-    {
-     "date": "2026-07-10",
-     "title": "SK hynix Comes to the U.S.A. Article | 3 min read",
-     "url": "https://www.direxion.com/xchange/sk-hynix-comes-to-the-u-s-a",
-     "source": "official",
-     "first_seen": "2026-07-10T00:00+09:00"
-    },
-    {
-     "date": "2026-07-07",
-     "title": "SpaceX, Concentration Risk, and the Equal-Weight Alternative. Article | 3 min read",
-     "url": "https://www.direxion.com/xchange/spacex-concentration-risk-and-the-equal-weight-alternative",
-     "source": "official",
-     "first_seen": "2026-07-07T00:00+09:00"
-    },
-    {
-     "date": "2026-07-01",
-     "title": "SK hynix, AI Memory Royalty by Proxy Article | 3 min read",
-     "url": "https://www.direxion.com/xchange/sk-hynix-ai-memory-royalty-by-proxy",
-     "source": "official",
-     "first_seen": "2026-07-01T00:00+09:00"
-    },
-    {
-     "date": "2026-06-30",
-     "title": "The Macro Case for Gold Got Louder. The Price Got Cheaper. Article | UGLD | 3 min read",
-     "url": "https://www.direxion.com/xchange/the-macro-case-for-gold-got-louder-the-price-got-cheaper",
-     "source": "official",
-     "first_seen": "2026-06-30T00:00+09:00"
-    },
-    {
-     "date": "2026-06-26",
-     "title": "A New Era at the Fed. Warsh Sets the Tone. Article | 3 min read",
-     "url": "https://www.direxion.com/xchange/a-new-era-at-the-fed-warsh-sets-the-tone",
-     "source": "official",
-     "first_seen": "2026-06-26T00:00+09:00"
-    },
-    {
-     "date": "2026-06-18",
-     "title": "SpaceX as an IPO Live Case Study Article | LOFF | 3 min read",
-     "url": "https://www.direxion.com/xchange/spacex-as-an-ipo-live-case-study",
-     "source": "official",
-     "first_seen": "2026-06-18T00:00+09:00"
-    },
-    {
-     "date": "2026-06-16",
-     "title": "Houston, We Have Liftoff! Trading the SpaceX IPO with LOFF Article | 3 min read",
-     "url": "https://www.direxion.com/xchange/houston-we-have-liftoff-trading-the-spacex-ipo-with-loff",
-     "source": "official",
-     "first_seen": "2026-06-16T00:00+09:00"
-    },
-    {
-     "date": "2026-06-05",
-     "title": "Liftoff: SpaceX Goes Public on June 12 Article | 3 min read",
-     "url": "https://www.direxion.com/xchange/liftoff-spacex-goes-public-on-june-12",
-     "source": "official",
-     "first_seen": "2026-06-05T00:00+09:00"
-    },
-    {
-     "date": "2026-05-27",
-     "title": "BTCU is Built for the Fast-Moving Bitcoin Market Article | BTCU/EVMU ... | 3 min read",
-     "url": "https://www.direxion.com/xchange/btcu-is-built-for-the-fast-moving-bitcoin-market",
-     "source": "official",
-     "first_seen": "2026-05-27T00:00+09:00"
-    }
-   ]
+   "official_status": "取得できませんでした",
+   "official_pages": [],
+   "items": []
   }
  ]
 }
