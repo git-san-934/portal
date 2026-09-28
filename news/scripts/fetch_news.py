@@ -49,6 +49,7 @@ SEC_SUBMISSIONS = "https://data.sec.gov/submissions/CIK{cik:010d}.json"
 JST = timezone(timedelta(hours=9))
 NOW = datetime.now(JST)
 TODAY = NOW.date()
+VERSION = 2  # news.json・キャッシュの作り方の版。上げると、一覧から消えた古い記事を持ち越さず、キャッシュも作り直す
 KEEP_DAYS = 180  # これより古い記事は載せない
 MAX_PER_SOURCE = 20  # 1銘柄・1情報源あたりの最大件数(1回の取得)
 MAX_PER_STOCK = 60  # 1銘柄で残す最大件数
@@ -88,6 +89,8 @@ DATE_PATTERNS = [
     (re.compile(r"(?<!\d)(\d{1,2})[./](\d{1,2})[./](20\d{2})(?!\d)"), "mdy_num"),
 ]
 # 一覧・案内のリンクなど、記事ではないもの
+# 見出しの後ろに付く「続きを読む」の類い
+TRAILING = re.compile(r"\s*(read the release|read more|learn more|continue reading|続きを読む|詳しく見る)\s*$", re.I)
 SKIP_TITLES = re.compile(
     r"^(一覧|もっと見る|more|read more|view all|詳しく|詳細|pdf|html|new|ニュース|ニュースリリース|お知らせ|"
     r"news|press releases?|トップ|top|home|次へ|前へ|next|prev(ious)?|\d+)$",
@@ -171,6 +174,7 @@ def strip_date(text, matched):
         elif text.endswith(m):
             text = text[: -len(m)]
     text = re.sub(r"\(\s*[\d.,]+\s*[kmg]i?b\s*\)|\[?\bpdf\b\]?\s*$", "", text, flags=re.I)
+    text = TRAILING.sub("", text)
     text = re.sub(r"^[\s|・:：\-–—/]+|[\s|・:：\-–—/]+$", "", text)
     return text
 
@@ -265,7 +269,7 @@ def parse_html(soup, base):
         if len(title) < 6 or SKIP_TITLES.match(title):
             title = strip_date(context, matched)
         # 日付やカテゴリーだけのリンク、ナビゲーション、一覧へのリンクは除く
-        if len(title) < 6 or SKIP_TITLES.match(title) or LIST_TITLE.search(title):
+        if len(title) < 6 or SKIP_TITLES.match(title) or LIST_TITLE.search(title) or title.lower().startswith("http"):
             continue
         seen.add(url)
         items.append({"date": d.isoformat(), "title": title[:200], "url": url})
@@ -281,8 +285,29 @@ def feed_links(soup, base):
     return out
 
 
+# Q4 社の IR サイト(米国企業に多い)は一覧を JavaScript で描くので、裏の JSON を読む。
+# categoryId は Q4 の「Press Releases」の既定値
+Q4_FEED = ("/feed/PressRelease.svc/GetPressReleaseList?LanguageId=1&bodyType=0&pressReleaseDateFilter=3"
+           "&categoryId=1cb807d2-208f-4bc3-9133-6a9ad45ac3b0&pageSize=30&pageNumber=0&tagList=&includeTags=true"
+           "&year=-1&excludeSelection=1")
+
+
+def fetch_q4(base):
+    r = get(base.rstrip("/") + Q4_FEED)
+    items = []
+    for row in r.json().get("GetPressReleaseListResult") or []:
+        d, _ = find_date(row.get("PressReleaseDate") or "")
+        link = row.get("LinkToDetailPage") or row.get("LinkToUrl") or ""
+        title = clean(row.get("Headline"))
+        if title and link and plausible(d):
+            items.append({"date": d.isoformat(), "title": title[:200], "url": urljoin(base, link)})
+    return items
+
+
 def fetch_page(url):
-    """1ページ(RSS も可)から記事を拾う。(記事, soup)"""
+    """1ページ(RSS も可)から記事を拾う。(記事, soup)。"q4:" で始まるときは Q4 の IR サイト"""
+    if url.startswith("q4:"):
+        return fetch_q4(url[3:]), None
     r = get(url)
     ctype = r.headers.get("Content-Type", "").lower()
     if "xml" in ctype or r.content.lstrip()[:5] in (b"<?xml", b"<rss ", b"<feed"):
@@ -369,8 +394,8 @@ def fetch_official(code, conf):
 def tdnet_day(d, want):
     """その日の適時開示のうち、持ち株の分。[開示]"""
     ymd = d.strftime("%Y%m%d")
-    hits = []
-    for page in range(1, 40):
+    hits, pages = [], 0
+    for page in range(1, 60):
         try:
             r = get(TDNET_LIST.format(page=page, ymd=ymd), retries=2)
         except RuntimeError as e:
@@ -398,9 +423,11 @@ def tdnet_day(d, want):
                 "title": clean(title_td.get_text(" ")),
                 "url": urljoin(r.url, a["href"]) if a else r.url,
             })
-        if n < 100:
+        if n == 0:
             break
+        pages = page
         time.sleep(0.3)
+    log(f"  適時開示 {d.isoformat()}: {pages} ページ、持ち株 {len(hits)} 件")
     return hits
 
 
@@ -414,8 +441,8 @@ def fetch_tdnet(stocks):
     except (FileNotFoundError, json.JSONDecodeError):
         cache = {}
     watch = sorted(sec_to_code)
-    if cache.get("watch") != watch:
-        cache = {"watch": watch, "days": {}}
+    if cache.get("watch") != watch or cache.get("version") != VERSION:
+        cache = {"version": VERSION, "watch": watch, "days": {}}
     days = cache.setdefault("days", {})
     start = TODAY - timedelta(days=TDNET_DAYS - 1)
     fetched, failed = 0, 0
@@ -589,6 +616,12 @@ def fetch_sec(stocks, sources):
             sub = get(SEC_SUBMISSIONS.format(cik=cik), headers=SEC_HEADERS).json()
         except Exception as e:  # noqa: BLE001
             log(f"  SEC {t}: {e}")
+            if ok == 0 and t == tickers[0].get("ticker", tickers[0]["code"]).upper():
+                try:
+                    r = requests.get(SEC_SUBMISSIONS.format(cik=cik), headers=SEC_HEADERS, timeout=30)
+                    log(f"    (SEC の応答 {r.status_code}: {clean(r.text)[:200]})")
+                except requests.RequestException:
+                    pass
             continue
         ok += 1
         if t not in [x.upper() for x in sub.get("tickers", [])]:
@@ -691,7 +724,7 @@ def main():
                 merged[it["url"]] = {**it, "source": source, "first_seen": first_seen}
         # 一覧から消えた記事や、取得に失敗した情報源の記事も、KEEP_DAYS 日までは残す
         for (c, url), old in prev_items.items():
-            if c == code and url not in merged and old["date"] >= (TODAY - timedelta(days=KEEP_DAYS)).isoformat():
+            if prev.get("version") == VERSION and c == code and url not in merged and old["date"] >= (TODAY - timedelta(days=KEEP_DAYS)).isoformat():
                 merged[url] = old
         items = sorted(merged.values(), key=lambda x: (x["date"], x.get("time", ""), x["first_seen"]), reverse=True)[:MAX_PER_STOCK]
         st = status.get(code, {})
@@ -706,6 +739,7 @@ def main():
         })
 
     out = {
+        "version": VERSION,
         "updated_at": now_iso,
         "tdnet": "ok" if tdnet is not None else "取得できませんでした",
         "edinet": "ok" if edinet is not None else "取得できませんでした",
