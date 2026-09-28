@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-09-28T22:01+09:00",
+ "updated_at": "2026-09-28T22:03+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -891,6 +891,13 @@
     "https://www.circle.com/pressroom"
    ],
    "items": [
+    {
+     "date": "2026-09-28",
+     "title": "Volante Technologies and Circle to advance stablecoin payment and settlement capabilities for financial institutions Collaboration will explore banks’ integration of USDC workflows within existing mul",
+     "url": "https://www.circle.com/pressroom/volante-technologies-and-circle-to-advance-stablecoin-payment-and-settlement-capabilities-for-financial-institutions",
+     "source": "official",
+     "first_seen": "2026-09-28T22:03+09:00"
+    },
     {
      "date": "2026-09-25",
      "title": "Circle Announces CFO Transition Plan Jeremy Fox-Geen to step down as Chief Financial Officer and will support a smooth transition",
