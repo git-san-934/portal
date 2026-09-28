@@ -8,6 +8,7 @@
   --link: #1a5fb4;
   --official: #2f7d4f;
   --edinet: #1a5fb4;
+  --tdnet: #a8661a;
   --sec: #7a4bb0;
   --fresh-bg: #fff4ec;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.05);
@@ -23,6 +24,7 @@
     --link: #8ab8ff;
     --official: #6cc58f;
     --edinet: #6fa8ff;
+    --tdnet: #e0a25a;
     --sec: #c29bf0;
     --fresh-bg: #33261d;
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
@@ -77,6 +79,7 @@ h1 { font-size: 1.5rem; }
 .stock { font-weight: 700; color: var(--text); }
 .badge { font-size: 0.68rem; font-weight: 700; padding: 0 0.45rem; border-radius: 999px; border: 1px solid currentColor; line-height: 1.5; }
 .src-official { color: var(--official); }
+.src-tdnet { color: var(--tdnet); }
 .src-edinet { color: var(--edinet); }
 .src-sec { color: var(--sec); }
 .badge.new { background: var(--accent); border-color: var(--accent); color: #fff; }

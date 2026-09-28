@@ -1,7 +1,7 @@
 (() => {
   const FRESH_HOURS = 72;
   const SHOW = 8; // 銘柄ごとに最初に見せる件数
-  const LABEL = { official: "公式", edinet: "EDINET", sec: "SEC" };
+  const LABEL = { official: "公式", tdnet: "適時開示", edinet: "EDINET", sec: "SEC" };
   let data = null;
   let filter = "all";
 
@@ -106,6 +106,7 @@
       data = d;
       const t = new Date(d.updated_at);
       const notes = [];
+      if (d.tdnet && d.tdnet !== "ok") notes.push(`適時開示: ${d.tdnet}`);
       if (d.edinet !== "ok") notes.push(`EDINET: ${d.edinet}`);
       if (d.sec !== "ok") notes.push(`SEC: ${d.sec}`);
       $("status").textContent =
