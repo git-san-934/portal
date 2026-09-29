@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-09-29T11:38+09:00",
+ "updated_at": "2026-09-29T18:19+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -726,20 +726,6 @@
    "items": [
     {
      "date": "2026-09-23",
-     "title": "Real-World Data and AI Capabilities in Oracle Life Sciences Data Intelligence Help Accelerate Clinical Research and Commercialization",
-     "url": "https://www.oracle.com/news/announcement/oracle-life-sciences-data-intelligence-help-accelerate-clinical-research-and-commercialization-2026-09-23/",
-     "source": "official",
-     "first_seen": "2026-09-23T00:00+09:00"
-    },
-    {
-     "date": "2026-09-23",
-     "title": "Oracle and Buck Institute for Research on Aging Advance Landmark Federal Aging Research Initiative",
-     "url": "https://www.oracle.com/news/announcement/oracle-and-buck-institute-for-research-on-aging-advance-landmark-federal-aging-research-initiative-2026-09-23/",
-     "source": "official",
-     "first_seen": "2026-09-23T00:00+09:00"
-    },
-    {
-     "date": "2026-09-23",
      "title": "Oracle Health Advances Revenue Cycle Management with AI",
      "url": "https://www.oracle.com/news/announcement/oracle-health-advances-revenue-cycle-management-with-ai-2026-09-23/",
      "source": "official",
@@ -749,6 +735,20 @@
      "date": "2026-09-23",
      "title": "Oracle to Advance Cancer Care with New Oncology EHR",
      "url": "https://www.oracle.com/news/announcement/oracle-to-advance-cancer-care-with-new-oncology-ehr-2026-09-23/",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    },
+    {
+     "date": "2026-09-23",
+     "title": "Real-World Data and AI Capabilities in Oracle Life Sciences Data Intelligence Help Accelerate Clinical Research and Commercialization",
+     "url": "https://www.oracle.com/news/announcement/oracle-life-sciences-data-intelligence-help-accelerate-clinical-research-and-commercialization-2026-09-23/",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    },
+    {
+     "date": "2026-09-23",
+     "title": "Oracle and Buck Institute for Research on Aging Advance Landmark Federal Aging Research Initiative",
+     "url": "https://www.oracle.com/news/announcement/oracle-and-buck-institute-for-research-on-aging-advance-landmark-federal-aging-research-initiative-2026-09-23/",
      "source": "official",
      "first_seen": "2026-09-23T00:00+09:00"
     },
@@ -898,9 +898,17 @@
    "home": "https://www.cerebras.ai/",
    "official_status": "ok",
    "official_pages": [
+    "https://www.cerebras.ai/company/newsroom",
     "https://www.cerebras.ai/company/news"
    ],
    "items": [
+    {
+     "date": "2026-09-28",
+     "title": "Cerebras to supply AI systems to cloud computing startup Gimlet Labs News",
+     "url": "https://www.reuters.com/technology/cerebras-supply-ai-systems-cloud-computing-startup-gimlet-labs-2026-09-28/",
+     "source": "official",
+     "first_seen": "2026-09-29T18:19+09:00"
+    },
     {
      "date": "2026-09-28",
      "title": "Cerebras to supply AI systems to cloud computing startup Gimlet Labs September 28, 2026 News",
