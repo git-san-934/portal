@@ -717,6 +717,9 @@
     }
   }
 
+  // 出来高(千株)を読みやすく
+  const volText = (k) => (k >= 100000 ? `${numFmt.format(Math.round(k / 1000) / 10)}億株` : k >= 10 ? `${numFmt.format(Math.round(k / 10) / 100)}万株` : `${numFmt.format(k * 1000)}株`);
+
   // 個別チャートの期間: 標準は直近1年、切り替えで全期間
   const STOCK_RANGES = [
     { key: "1y", label: "1年", weeks: 52 },
@@ -738,6 +741,10 @@
     const weeks = STOCK_RANGES.find((r) => r.key === stockRange).weeks;
     const skip = weeks ? Math.max(0, d.weekly.length - weeks) : 0;
     const vals = d.weekly.slice(skip);
+    const vols = d.volume ? d.volume.slice(skip) : null;
+    // 出来高があるときは、下の VOL_H を出来高の棒、上を株価に使う
+    const VOL_H = vols ? 0.2 : 0;
+    const priceBottom = H * (1 - VOL_H) - (vols ? PAD_Y : 0);
     const start = new Date(`${d.start}T00:00:00Z`).getTime() + skip * 7 * 864e5;
     const weekDate = (i) => new Date(start + i * 7 * 864e5).toISOString().slice(0, 10);
     const present = vals.filter((v) => v != null && v > 0);
@@ -748,11 +755,24 @@
     const f = weeks ? (v) => v : Math.log;
     const fmin = f(min);
     const fmax = f(max);
-    const toY = (v) => (v == null || v <= 0 ? null : (PAD_Y + ((fmax - f(v)) / (fmax - fmin)) * (H - 2 * PAD_Y)) / H);
+    const toY = (v) => (v == null || v <= 0 ? null : (PAD_Y + ((fmax - f(v)) / (fmax - fmin)) * (priceBottom - 2 * PAD_Y)) / H);
     const n = vals.length;
     const xs = vals.map((_, i) => (n > 1 ? i / (n - 1) : 0));
     const ys = vals.map(toY);
     const line = svgEl("path", { class: "chart-line", d: linePath(xs, ys) });
+    const paths = [line];
+    if (vols) {
+      const vmax = Math.max(0, ...vols.filter((v) => v != null));
+      const bw = Math.max(0.5, (W / Math.max(1, n)) * 0.7);
+      let vd = "";
+      vols.forEach((v, i) => {
+        if (!v || !vmax) return;
+        const h = (v / vmax) * H * VOL_H;
+        vd += `M${(xs[i] * W - bw / 2).toFixed(1)},${H}h${bw.toFixed(1)}v${(-h).toFixed(1)}h${(-bw).toFixed(1)}Z`;
+      });
+      paths.unshift(svgEl("path", { class: "vol-bar", d: vd }));
+      paths.unshift(svgEl("line", { x1: 0, x2: W, y1: H * (1 - VOL_H), y2: H * (1 - VOL_H), class: "grid-line" }));
+    }
 
     const hLines = (weeks ? niceTicks(min, max, 5) : logTicks(min, max)).map((v) => ({ y: toY(v), cls: "grid-line", text: numFmt.format(v) }));
     const xLabels = [];
@@ -783,13 +803,13 @@
       .map((i) => ({ x: xs[i], y: ys[i] }));
 
     mountChart(box, {
-      paths: [line],
+      paths,
       hLines,
       xLabels,
       dots,
       hoverXs: xs,
       hoverYs: ys,
-      tooltipFor: (i) => `${dateFmt(weekDate(i))}の週\n${priceFmt(vals[i])}`,
+      tooltipFor: (i) => `${dateFmt(weekDate(i))}の週\n${priceFmt(vals[i])}${vols && vols[i] != null ? `\n出来高 ${volText(vols[i])}` : ""}`,
     });
   }
 
