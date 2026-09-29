@@ -147,8 +147,9 @@ def main() -> int:
             print(f"  {e}", file=sys.stderr)
             errors.append(f"{name}: {e}")
             continue
-        new = {d: v for d, v in fetched.items() if d > last_date and date.fromisoformat(d).weekday() < 5}
-        print(f"  {len(fetched)} 日分を取得。新しい日: {sorted(new) or 'なし'}")
+        # 新しい日に加えて、既存データの抜け(過去の取得漏れ)も埋める
+        new = {d: v for d, v in fetched.items() if d not in existing and date.fromisoformat(d).weekday() < 5}
+        print(f"  {len(fetched)} 日分を取得。追加する日: {sorted(new) or 'なし'}")
         merged = dict(existing)
         merged.update(new)
         source = name
