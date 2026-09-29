@@ -676,6 +676,8 @@
   async function openStock(code) {
     const s = state.stockMap.get(code);
     $("dialog-title").textContent = `${s ? s.name : ""} ${code}`;
+    $("dialog-title").dataset.code = code;
+    stockData = null;
     const sub = $("dialog-sub");
     sub.textContent = s
       ? `最高値 ${priceFmt(s.ath)}(${dateFmt(s.ath_date)}) ・ 直近 ${priceFmt(s.last)}(最高値から ${pctText(s.from_ath)}) ・ データ開始 ${dateFmt(s.first_date)} ・ `
@@ -694,7 +696,9 @@
     try {
       const res = await fetch(STOCK_URL(code));
       if (!res.ok) throw new Error(res.status);
-      drawStock(box, await res.json());
+      stockData = await res.json();
+      if (!dialog.open || $("dialog-title").dataset.code !== code) return;
+      drawStock(box, stockData);
     } catch (err) {
       console.error(err);
       box.textContent = "";
@@ -702,30 +706,65 @@
     }
   }
 
+  // 個別チャートの期間: 標準は直近1年、切り替えで全期間
+  const STOCK_RANGES = [
+    { key: "1y", label: "1年", weeks: 52 },
+    { key: "all", label: "全期間", weeks: null },
+  ];
+  let stockRange = "1y";
+  let stockData = null;
+  renderToggle(
+    $("stock-range"),
+    STOCK_RANGES,
+    () => stockRange,
+    (k) => {
+      stockRange = k;
+      if (stockData) drawStock($("stock-chart"), stockData);
+    },
+  );
+
   function drawStock(box, d) {
-    const vals = d.weekly;
-    const start = new Date(`${d.start}T00:00:00Z`).getTime();
+    const weeks = STOCK_RANGES.find((r) => r.key === stockRange).weeks;
+    const skip = weeks ? Math.max(0, d.weekly.length - weeks) : 0;
+    const vals = d.weekly.slice(skip);
+    const start = new Date(`${d.start}T00:00:00Z`).getTime() + skip * 7 * 864e5;
     const weekDate = (i) => new Date(start + i * 7 * 864e5).toISOString().slice(0, 10);
     const present = vals.filter((v) => v != null && v > 0);
-    const min = Math.min(...present) * 0.9;
-    const max = Math.max(...present) * 1.1;
-    const lmin = Math.log(min);
-    const lmax = Math.log(max);
-    // 長い期間を見るので縦軸は対数(同じ上昇率が同じ高さになる)
-    const toY = (v) => (v == null || v <= 0 ? null : (PAD_Y + ((lmax - Math.log(v)) / (lmax - lmin)) * (H - 2 * PAD_Y)) / H);
+    const pad = weeks ? 0.03 : 0.1;
+    const min = Math.min(...present) * (1 - pad);
+    const max = Math.max(...present) * (1 + pad);
+    // 全期間は縦軸を対数(同じ上昇率が同じ高さになる)、1年は普通の目盛り
+    const f = weeks ? (v) => v : Math.log;
+    const fmin = f(min);
+    const fmax = f(max);
+    const toY = (v) => (v == null || v <= 0 ? null : (PAD_Y + ((fmax - f(v)) / (fmax - fmin)) * (H - 2 * PAD_Y)) / H);
     const n = vals.length;
     const xs = vals.map((_, i) => (n > 1 ? i / (n - 1) : 0));
     const ys = vals.map(toY);
     const line = svgEl("path", { class: "chart-line", d: linePath(xs, ys) });
 
-    const hLines = logTicks(min, max).map((v) => ({ y: toY(v), cls: "grid-line", text: numFmt.format(v) }));
+    const hLines = (weeks ? niceTicks(min, max, 5) : logTicks(min, max)).map((v) => ({ y: toY(v), cls: "grid-line", text: numFmt.format(v) }));
     const xLabels = [];
-    const firstYear = Number(d.start.slice(0, 4));
-    const lastYear = Number(weekDate(n - 1).slice(0, 4));
-    const step = Math.max(1, Math.ceil((lastYear - firstYear) / 6));
-    for (let y = firstYear + 1; y <= lastYear; y += step) {
-      const i = Math.ceil((Date.UTC(y, 0, 1) - start) / (7 * 864e5));
-      if (i > 0 && i < n) xLabels.push({ x: xs[i], text: String(y) });
+    if (weeks) {
+      // 1年表示は2ヶ月ごとの月ラベル(1月だけ年を付ける)
+      const first = new Date(start);
+      let y = first.getUTCFullYear();
+      let m = first.getUTCMonth() + 1;
+      for (;;) {
+        if (m > 11) (m -= 12), (y += 1);
+        const i = Math.ceil((Date.UTC(y, m, 1) - start) / (7 * 864e5));
+        if (i >= n) break;
+        if (i > 0 && m % 2 === 0) xLabels.push({ x: xs[i], text: m === 0 ? `${y}年1月` : `${m + 1}月` });
+        m += 1;
+      }
+    } else {
+      const firstYear = new Date(start).getUTCFullYear();
+      const lastYear = Number(weekDate(n - 1).slice(0, 4));
+      const step = Math.max(1, Math.ceil((lastYear - firstYear) / 6));
+      for (let y = firstYear + 1; y <= lastYear; y += step) {
+        const i = Math.ceil((Date.UTC(y, 0, 1) - start) / (7 * 864e5));
+        if (i > 0 && i < n) xLabels.push({ x: xs[i], text: String(y) });
+      }
     }
     const dots = (d.events || [])
       .map((date) => Math.ceil((new Date(`${date}T00:00:00Z`).getTime() - start) / (7 * 864e5)))
