@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-09-29T11:38+09:00",
+ "updated_at": "2026-09-29T18:19+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -635,35 +635,35 @@
      "title": "キオクシアとサンディスク、業界最高のビット密度を実現する新しい3次元フラッシュメモリ技術を発表",
      "url": "https://www.kioxia.com/ja-jp/about/news/2026/20260804-2.html",
      "source": "official",
-     "first_seen": "2026-09-28T22:16+09:00"
+     "first_seen": "2026-08-04T00:00+09:00"
     },
     {
      "date": "2026-08-04",
      "title": "AI時代をリードするキオクシアのフラッシュストレージソリューションをFMS 2026で提案",
      "url": "https://www.kioxia.com/ja-jp/about/news/2026/20260804-1.html",
      "source": "official",
-     "first_seen": "2026-09-28T22:16+09:00"
+     "first_seen": "2026-08-04T00:00+09:00"
     },
     {
      "date": "2026-08-04",
      "title": "AIアプリケーション向けSuper High IOPS SSD「KIOXIA GP1シリーズ」の開発について",
      "url": "https://www.kioxia.com/ja-jp/business/news/2026/20260804-1.html",
      "source": "official",
-     "first_seen": "2026-09-28T22:16+09:00"
+     "first_seen": "2026-08-04T00:00+09:00"
     },
     {
      "date": "2026-08-03",
      "title": "当社子会社に対する訴訟の判決に関するお知らせ",
      "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2861253/00.pdf",
      "source": "official",
-     "first_seen": "2026-09-28T22:16+09:00"
+     "first_seen": "2026-08-03T00:00+09:00"
     },
     {
      "date": "2026-08-03",
      "title": "AIワークロード向けCXLTM対応のメモリ拡張モジュールKIOXIA XL1シリーズの出展について",
      "url": "https://www.kioxia.com/ja-jp/business/news/2026/20260803-1.html",
      "source": "official",
-     "first_seen": "2026-09-28T22:16+09:00"
+     "first_seen": "2026-08-03T00:00+09:00"
     },
     {
      "date": "2026-07-31",
@@ -678,14 +678,14 @@
      "title": "株式分割及び株式分割に伴う定款の一部変更に関するお知らせ",
      "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2859909/00.pdf",
      "source": "official",
-     "first_seen": "2026-09-28T22:16+09:00"
+     "first_seen": "2026-07-31T00:00+09:00"
     },
     {
      "date": "2026-07-31",
      "title": "自己株式の取得枠設定に関するお知らせ",
      "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2859913/00.pdf",
      "source": "official",
-     "first_seen": "2026-09-28T22:16+09:00"
+     "first_seen": "2026-07-31T00:00+09:00"
     },
     {
      "date": "2026-07-23",
@@ -726,20 +726,6 @@
    "items": [
     {
      "date": "2026-09-23",
-     "title": "Real-World Data and AI Capabilities in Oracle Life Sciences Data Intelligence Help Accelerate Clinical Research and Commercialization",
-     "url": "https://www.oracle.com/news/announcement/oracle-life-sciences-data-intelligence-help-accelerate-clinical-research-and-commercialization-2026-09-23/",
-     "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
-    },
-    {
-     "date": "2026-09-23",
-     "title": "Oracle and Buck Institute for Research on Aging Advance Landmark Federal Aging Research Initiative",
-     "url": "https://www.oracle.com/news/announcement/oracle-and-buck-institute-for-research-on-aging-advance-landmark-federal-aging-research-initiative-2026-09-23/",
-     "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
-    },
-    {
-     "date": "2026-09-23",
      "title": "Oracle Health Advances Revenue Cycle Management with AI",
      "url": "https://www.oracle.com/news/announcement/oracle-health-advances-revenue-cycle-management-with-ai-2026-09-23/",
      "source": "official",
@@ -753,39 +739,53 @@
      "first_seen": "2026-09-23T00:00+09:00"
     },
     {
+     "date": "2026-09-23",
+     "title": "Real-World Data and AI Capabilities in Oracle Life Sciences Data Intelligence Help Accelerate Clinical Research and Commercialization",
+     "url": "https://www.oracle.com/news/announcement/oracle-life-sciences-data-intelligence-help-accelerate-clinical-research-and-commercialization-2026-09-23/",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    },
+    {
+     "date": "2026-09-23",
+     "title": "Oracle and Buck Institute for Research on Aging Advance Landmark Federal Aging Research Initiative",
+     "url": "https://www.oracle.com/news/announcement/oracle-and-buck-institute-for-research-on-aging-advance-landmark-federal-aging-research-initiative-2026-09-23/",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    },
+    {
      "date": "2026-09-12",
      "title": "Larry Ellison Cancels His Plan to Sell Oracle Stock",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/Larry-Ellison-Cancels-His-Plan-to-Sell-Oracle-Stock/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-12T00:00+09:00"
     },
     {
      "date": "2026-09-10",
      "title": "Oracle Announces Q1 Results Driven by Triple Digit Growth in Cloud Infrastructure Revenues",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Q1-Results-Driven-by-Triple-Digit-Growth-in-Cloud-Infrastructure-Revenues/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-10T00:00+09:00"
     },
     {
      "date": "2026-09-02",
      "title": "Oracle Sets the Date for its First Quarter Fiscal Year 2027 Earnings Announcement",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Sets-the-Date-for-its-First-Quarter-Fiscal-Year-2027-Earnings-Announcement/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-02T00:00+09:00"
     },
     {
      "date": "2026-06-10",
      "title": "Oracle Announces Record Q4 and FY 2026 Results Driven by Cloud Infrastructure & Cloud Applications",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Record-Q4-and-FY-2026-Results-Driven-by-Cloud-Infrastructure--Cloud-Applications/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-06-10T00:00+09:00"
     },
     {
      "date": "2026-06-01",
      "title": "Oracle Sets the Date for its Fourth Quarter Fiscal Year 2026 Earnings Announcement",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Sets-the-Date-for-its-Fourth-Quarter-Fiscal-Year-2026-Earnings-Announcement/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-06-01T00:00+09:00"
     }
    ]
   },
@@ -898,9 +898,17 @@
    "home": "https://www.cerebras.ai/",
    "official_status": "ok",
    "official_pages": [
+    "https://www.cerebras.ai/company/newsroom",
     "https://www.cerebras.ai/company/news"
    ],
    "items": [
+    {
+     "date": "2026-09-28",
+     "title": "Cerebras to supply AI systems to cloud computing startup Gimlet Labs News",
+     "url": "https://www.reuters.com/technology/cerebras-supply-ai-systems-cloud-computing-startup-gimlet-labs-2026-09-28/",
+     "source": "official",
+     "first_seen": "2026-09-29T18:19+09:00"
+    },
     {
      "date": "2026-09-28",
      "title": "Cerebras to supply AI systems to cloud computing startup Gimlet Labs September 28, 2026 News",
@@ -1037,7 +1045,7 @@
      "title": "Circle Expands Global Payments Infrastructure with Agreement to Acquire Singapore-based Cross-Border Payments Platform, Tazapay Proposed acquisition will bring 60+ banking and fintech partners, 100+ p",
      "url": "https://www.circle.com/pressroom/circle-expands-global-payments-infrastructure-with-agreement-to-acquire-singapore-based-cross-border-payments-platform-tazapay",
      "source": "official",
-     "first_seen": "2026-09-28T22:07+09:00"
+     "first_seen": "2026-09-08T00:00+09:00"
     }
    ]
   },
@@ -1056,42 +1064,42 @@
      "title": "Corning’s Strong Second-Quarter 2026 Financial Results(1) Demonstrate Progress on Recently Upgraded Springboard Plan",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Cornings-Strong-Second-Quarter-2026-Financial-Results1-Demonstrate-Progress-on-Recently-Upgraded-Springboard-Plan/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-07-28T00:00+09:00"
     },
     {
      "date": "2026-06-24",
      "title": "Corning Announces Quarterly Dividend",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Announces-Quarterly-Dividend-75086b013/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-06-24T00:00+09:00"
     },
     {
      "date": "2026-05-06",
      "title": "Corning Upgrades and Extends Springboard Plan, Outlines New Phase of Accelerating Growth",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Upgrades-and-Extends-Springboard-Plan-Outlines-New-Phase-of-Accelerating-Growth/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-05-06T00:00+09:00"
     },
     {
      "date": "2026-05-06",
      "title": "NVIDIA and Corning Announce Long-Term Partnership To Strengthen U.S. Manufacturing for AI Infrastructure",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/NVIDIA-and-Corning-Announce-Long-Term-Partnership-To-Strengthen-U-S--Manufacturing-for-AI-Infrastructure/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-05-06T00:00+09:00"
     },
     {
      "date": "2026-04-30",
      "title": "Corning Announces Quarterly Dividend",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Announces-Quarterly-Dividend-d3b4631b4/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-04-30T00:00+09:00"
     },
     {
      "date": "2026-04-28",
      "title": "Corning Announces Strong First-Quarter 2026 Financial Results (1)",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Announces-Strong-First-Quarter-2026-Financial-Results-1/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-04-28T00:00+09:00"
     }
    ]
   },
@@ -1110,133 +1118,133 @@
      "title": "Palantir Customers Set New Standard for AI at AIPCon 11",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Customers-Set-New-Standard-for-AI-at-AIPCon-11v2/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-10T00:00+09:00"
     },
     {
      "date": "2026-09-10",
      "title": "NVIDIA and Palantir Bring Sovereign Intelligence to Critical Supply Chains",
      "url": "https://investors.palantir.com/news-details/2026/NVIDIA-and-Palantir-Bring-Sovereign-Intelligence-to-Critical-Supply-Chains/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-10T00:00+09:00"
     },
     {
      "date": "2026-09-10",
      "title": "Palantir and Fujitsu Deepen Partnership to Advance Enterprise AI Transformation, with Fujitsu Strengthening as a Global FDE Partner",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-and-Fujitsu-Deepen-Partnership-to-Advance-Enterprise-AI-Transformation-with-Fujitsu-Strengthening-as-a-Global-FDE-Partner/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-10T00:00+09:00"
     },
     {
      "date": "2026-09-10",
      "title": "Method Security and Palantir Announce The Cardinal Program, Delivering Method’s Autonomous Cyber Systems via Palantir’s Ontology for Cybersecurity",
      "url": "https://investors.palantir.com/news-details/2026/Method-Security-and-Palantir-Announce-The-Cardinal-Program-Delivering-Methods-Autonomous-Cyber-Systems-via-Palantirs-Ontology-for-Cybersecurity/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-10T00:00+09:00"
     },
     {
      "date": "2026-09-08",
      "title": "Palantir and Nebius Partner to Deliver a Complete Sovereign AI Stack to Palantir Customers",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-and-Nebius-Partner-to-Deliver-a-Complete-Sovereign-AI-Stack-to-Palantir-Customers/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-08T00:00+09:00"
     },
     {
      "date": "2026-09-03",
      "title": "PwC and Palantir Expand Strategic Alliance to Help Organizations Scale Enterprise AI",
      "url": "https://investors.palantir.com/news-details/2026/PwC-and-Palantir-Expand-Strategic-Alliance-to-Help-Organizations-Scale-Enterprise-AI/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-03T00:00+09:00"
     },
     {
      "date": "2026-09-02",
      "title": "Peter Zaffino to Join Palantir Technologies as Global Head of Financial Services",
      "url": "https://investors.palantir.com/news-details/2026/Peter-Zaffino-to-Join-Palantir-Technologies-as-Global-Head-of-Financial-Services/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-02T00:00+09:00"
     },
     {
      "date": "2026-09-01",
      "title": "Palantir to Deliver Eight TITAN Systems to the U.S. Army",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-to-Deliver-Eight-TITAN-Systems-to-the-U-S--Army/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-01T00:00+09:00"
     },
     {
      "date": "2026-08-19",
      "title": "Palantir's Sovereignty Bootcamps Draw Nearly 200 Organizations in <30 Days",
      "url": "https://investors.palantir.com/news-details/2026/Palantirs-Sovereignty-Bootcamps-Draw-Nearly-200-Organizations-in-30-Days/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-08-19T00:00+09:00"
     },
     {
      "date": "2026-08-03",
      "title": "Palantir Reports Q2 2026 U.S. Comm Revenue Growth of 149% Y/Y and Revenue Growth of 93% Y/Y; Raises FY 2026 Revenue Guidance to 82% Y/Y Growth and U.S. Comm Revenue Guidance to 134% Y/Y, Crushing Cons",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Reports-Q2-2026-U-S--Comm-Revenue-Growth-of-149-YY-and-Revenue-Growth-of-93-YY-Raises-FY-2026-Revenue-Guidance-to-82-YY-Growth-and-U-S--Comm-Revenue-Guidance-to-134-YY-Crushing-Consensus-Expectations/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-08-03T00:00+09:00"
     },
     {
      "date": "2026-07-13",
      "title": "Palantir Announces Date of Second Quarter 2026 Earnings Release and Webcast",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Announces-Date-of-Second-Quarter-2026-Earnings-Release-and-Webcast/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-07-13T00:00+09:00"
     },
     {
      "date": "2026-07-08",
      "title": "SNP and Palantir Form Strategic Partnership to Accelerate Secure SAP Transformations",
      "url": "https://investors.palantir.com/news-details/2026/SNP-and-Palantir-Form-Strategic-Partnership-to-Accelerate-Secure-SAP-Transformations/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-07-08T00:00+09:00"
     },
     {
      "date": "2026-07-07",
      "title": "Palantir Expands Its Presence in Mexico and Strengthens Its AI Offering in the Insurance Sector with GNP Seguros",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Expands-Its-Presence-in-Mexico-and-Strengthens-Its-AI-Offering-in-the-Insurance-Sector-with-GNP-Seguros/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-07-07T00:00+09:00"
     },
     {
      "date": "2026-06-29",
      "title": "Palantir and Surf Air Mobility Expand Partnership to Accelerate Commercialization of OperatorOS, OwnerOS, and Enterprise Products",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-and-Surf-Air-Mobility-Expand-Partnership-to-Accelerate-Commercialization-of-OperatorOS-OwnerOS-and-Enterprise-Products/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-06-29T00:00+09:00"
     },
     {
      "date": "2026-06-29",
      "title": "Palantir Launches Engine for Deploying NVIDIA Nemotron Open Models in Sovereign Environments",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Launches-Engine-for-Deploying-NVIDIA-Nemotron-Open-Models-in-Sovereign-Environments/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-06-29T00:00+09:00"
     },
     {
      "date": "2026-06-23",
      "title": "Palantir and Zeta Global Announce Strategic Partnership to Build a Unified Data and AI Infrastructure for the Future of Marketing, with Athena by ZetaTM at the Center",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-and-Zeta-Global-Announce-Strategic-Partnership-to-Build-a-Unified-Data-and-AI-Infrastructure-for-the-Future-of-Marketing-with-Athena-by-Zeta-at-the-Center/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-06-23T00:00+09:00"
     },
     {
      "date": "2026-06-22",
      "title": "Palantir Secures Foundational Role in NGC2 Data Layer",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Secures-Foundational-Role-in-NGC2-Data-Layer/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-06-22T00:00+09:00"
     },
     {
      "date": "2026-06-04",
      "title": "McCarthy and Palantir Announce Strategic Partnership to Bring AI to the Construction Field and Beyond",
      "url": "https://investors.palantir.com/news-details/2026/McCarthy-and-Palantir-Announce-Strategic-Partnership-to-Bring-AI-to-the-Construction-Field-and-Beyond/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-06-04T00:00+09:00"
     },
     {
      "date": "2026-06-04",
      "title": "Palantir Announces Availability on Google Cloud Marketplace, Including Two-Way Integrations between BigQuery and Foundry and Deep Connectivity between Gemini and AIP",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Announces-Availability-on-Google-Cloud-Marketplace-Including-Two-Way-Integrations-between-BigQuery-and-Foundry-and-Deep-Connectivity-between-Gemini-and-AIP/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-06-04T00:00+09:00"
     }
    ]
   },
@@ -1255,105 +1263,105 @@
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-5075cce97/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-17T00:00+09:00"
     },
     {
      "date": "2026-09-09",
      "title": "Schrödinger Announces Licensing and Collaboration Agreement with Tectora Therapeutics, a New Biotechnology Company It Co-founded to Advance Immunology and Inflammation Programs",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Announces-Licensing-and-Collaboration-Agreement-with-Tectora-Therapeutics-a-New-Biotechnology-Company-It-Co-founded-to-Advance-Immunology-and-Inflammation-Programs/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-09T00:00+09:00"
     },
     {
      "date": "2026-09-01",
      "title": "Schrödinger to Present at Morgan Stanley Global Healthcare Conference",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Present-at-Morgan-Stanley-Global-Healthcare-Conference/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-01T00:00+09:00"
     },
     {
      "date": "2026-08-14",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-2c6e68bf1/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-08-14T00:00+09:00"
     },
     {
      "date": "2026-08-05",
      "title": "Schrödinger Reports Second Quarter 2026 Financial Results",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Second-Quarter-2026-Financial-Results/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-08-05T00:00+09:00"
     },
     {
      "date": "2026-08-05",
      "title": "Schrödinger Announces Strategic Collaboration and Software Agreement with Bristol Myers Squibb to Deploy AI Co-Scientist Bunsen for Agentic Drug Discovery",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Announces-Strategic-Collaboration-and-Software-Agreement-with-Bristol-Myers-Squibb-to-Deploy-AI-Co-Scientist-Bunsen-for-Agentic-Drug-Discovery/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-08-05T00:00+09:00"
     },
     {
      "date": "2026-07-27",
      "title": "Schrödinger Introduces Bunsen, an AI Co-Scientist for Molecular Discovery",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Introduces-Bunsen-an-AI-Co-Scientist-for-Molecular-Discovery/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-07-27T00:00+09:00"
     },
     {
      "date": "2026-07-22",
      "title": "Schrödinger to Announce Second Quarter 2026 Financial Results on August 5",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Announce-Second-Quarter-2026-Financial-Results-on-August-5/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-07-22T00:00+09:00"
     },
     {
      "date": "2026-07-20",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-159c7142c/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-07-20T00:00+09:00"
     },
     {
      "date": "2026-06-18",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-b4119c564/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-06-18T00:00+09:00"
     },
     {
      "date": "2026-05-22",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-85660ca08/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-05-22T00:00+09:00"
     },
     {
      "date": "2026-05-05",
      "title": "Schrödinger Reports First Quarter 2026 Financial Results",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-First-Quarter-2026-Financial-Results/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-05-05T00:00+09:00"
     },
     {
      "date": "2026-05-04",
      "title": "Schrödinger to Participate in Upcoming Investor Conferences",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Participate-in-Upcoming-Investor-Conferences-c9e0713c7/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-05-04T00:00+09:00"
     },
     {
      "date": "2026-04-21",
      "title": "Schrödinger to Announce First Quarter 2026 Financial Results on May 5",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Announce-First-Quarter-2026-Financial-Results-on-May-5/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-04-21T00:00+09:00"
     },
     {
      "date": "2026-04-17",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-870a86116/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-04-17T00:00+09:00"
     }
    ]
   },
