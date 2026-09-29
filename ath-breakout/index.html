@@ -41,16 +41,6 @@
       </section>
 
       <section class="panel">
-        <div class="panel-head">
-          <h2>ブレイク前後の平均的な値動き</h2>
-          <div id="path-toggle" class="toggle" role="group" aria-label="値動きの種類"></div>
-        </div>
-        <p class="note" id="path-note"></p>
-        <div class="chart-box path-box" id="path-chart"></div>
-        <p class="legend"><span class="swatch line"></span>中央値 <span class="swatch band"></span>半数が入る範囲(25〜75%)</p>
-      </section>
-
-      <section class="panel">
         <h2>いま最高値を更新中の銘柄</h2>
         <p class="note">銘柄を押すとチャートが開き、見出しを押すと並び替えられます。各項目の説明は表の下にあります。</p>
         <div class="table-scroll"><table class="list" id="recent"></table></div>
@@ -92,6 +82,16 @@
         <p class="note">上の条件にあうブレイクを新しい順に並べています。銘柄を押すとチャートが開きます。</p>
         <div class="table-scroll"><table class="list" id="events"></table></div>
         <button type="button" class="more-btn" id="more" hidden>もっと見る</button>
+      </section>
+
+      <section class="panel">
+        <div class="panel-head">
+          <h2>ブレイク前後の平均的な値動き</h2>
+          <div id="path-toggle" class="toggle" role="group" aria-label="値動きの種類"></div>
+        </div>
+        <p class="note" id="path-note"></p>
+        <div class="chart-box path-box" id="path-chart"></div>
+        <p class="legend"><span class="swatch line"></span>中央値 <span class="swatch band"></span>半数が入る範囲(25〜75%)</p>
       </section>
     </main>
 
