@@ -302,3 +302,5 @@ footer a { color: var(--accent); }
 .stats td .sub { font-size: 0.7rem; margin-left: 0.2rem; }
 .stock-range { justify-content: flex-start; margin: 0.6rem 0 0.4rem; }
 .drop-note { display: block; margin-bottom: 0.3rem; }
+.chart-box .vol-bar { fill: var(--text-sub); opacity: 0.35; }
+.swatch.vol { width: 6px; height: 0.7rem; background: var(--text-sub); opacity: 0.5; }

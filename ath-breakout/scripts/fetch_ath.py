@@ -105,7 +105,9 @@ def load_universe():
 # ---------- 株価取得 ----------
 
 def download(codes):
+    """日足の終値と出来高(株数)を返す"""
     frames = []
+    vol_frames = []
     for i in range(0, len(codes), BATCH):
         tickers = [f"{c}.T" for c in codes[i:i + BATCH]]
         last_err = None
@@ -118,9 +120,12 @@ def download(codes):
                 )
                 if not df.empty:
                     close = df["Close"]
+                    volume = df["Volume"]
                     if isinstance(close, pd.Series):
                         close = close.to_frame(tickers[0])
+                        volume = volume.to_frame(tickers[0])
                     frames.append(close)
+                    vol_frames.append(volume)
                     break
                 last_err = "empty result"
             except Exception as e:  # noqa: BLE001 — yfinance は色々な例外を投げる
@@ -132,7 +137,9 @@ def download(codes):
         raise RuntimeError("download failed")
     close = pd.concat(frames, axis=1, sort=True).sort_index()
     close.columns = [str(c).removesuffix(".T") for c in close.columns]
-    return close
+    volume = pd.concat(vol_frames, axis=1, sort=True).sort_index()
+    volume.columns = [str(c).removesuffix(".T") for c in volume.columns]
+    return close, volume
 
 
 def drop_outliers(series):
@@ -253,10 +260,15 @@ def find_events(s, bench, samples):
     return events
 
 
-def weekly(s):
-    """週足(金曜締め)の終値。日付は start から7日ずつなので値だけ持つ(取引のない週は null)"""
+def weekly(s, vol=None):
+    """週足(金曜締め)の終値と出来高(週の合計、千株)。日付は start から7日ずつなので値だけ持つ(取引のない週は null)"""
     w = s.resample("W-FRI").last()
-    return w.index[0].strftime("%Y-%m-%d"), [None if math.isnan(v) else round(float(v), 1) for v in w]
+    closes = [None if math.isnan(v) else round(float(v), 1) for v in w]
+    if vol is None:
+        return w.index[0].strftime("%Y-%m-%d"), closes, None
+    v = vol.reindex(s.index).resample("W-FRI").sum(min_count=1).reindex(w.index)
+    vols = [None if c is None or math.isnan(x) else int(round(float(x) / 1000)) for c, x in zip(closes, v)]
+    return w.index[0].strftime("%Y-%m-%d"), closes, vols
 
 
 def print_summary(events):
@@ -473,7 +485,7 @@ def record_ranks(all_events, stocks, series, bench):
 def main():
     universe = load_universe()
     codes = [u["code"] for u in universe]
-    close = download(codes + [BENCH[0]])
+    close, volume = download(codes + [BENCH[0]])
 
     bench = close[BENCH[0]].dropna() if BENCH[0] in close.columns else None
     if bench is not None:
@@ -519,9 +531,9 @@ def main():
             "days": len(s),
             "events": len(evs),
         })
-        wk_start, wk = weekly(s)
+        wk_start, wk, wk_vol = weekly(s, volume[code] if code in volume.columns else None)
         (stocks_dir / f"{code}.json").write_text(
-            json.dumps({"code": code, "name": u["name"], "start": wk_start, "weekly": wk,
+            json.dumps({"code": code, "name": u["name"], "start": wk_start, "weekly": wk, "volume": wk_vol,
                         "events": [ev["date"] for ev in evs]},
                        ensure_ascii=False, separators=(",", ":")) + "\n",
             encoding="utf-8",
