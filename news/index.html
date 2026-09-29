@@ -6,7 +6,7 @@
   <title>持ち株の新着情報</title>
   <meta name="description" content="持ち株の公式サイトのニュースと、EDINET・SEC の提出書類を1日4回集めて箇条書きで表示" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260928b" />
+  <link rel="stylesheet" href="assets/style.css?v=20260929a" />
 </head>
 <body>
   <div class="wrap">
@@ -15,6 +15,10 @@
       <h1>持ち株の新着情報</h1>
       <p class="intro">持ち株の公式サイト(ニュース・IR)、東証の適時開示、EDINET の提出書類を集めています。米国株は EDINET の代わりに SEC の提出書類です。毎日 1:00・8:30・12:45・15:45 に更新します。</p>
       <p class="updated" id="status">読み込み中...</p>
+      <p class="refresh">
+        <a class="refresh-btn" id="refresh" target="_blank" rel="noopener">今すぐ更新</a>
+        <span class="refresh-note">GitHub の画面が開くので「Create」を押してください。3〜5分でこのページに反映されます(GitHub へのログインが必要です)。</span>
+      </p>
     </header>
 
     <nav class="filters" aria-label="情報源で絞り込み">
@@ -39,6 +43,6 @@
       <p>銘柄は「持ち株チェック」の銘柄リストと共通です。公式サイトのURLは <code>news/data/sources.json</code> で変えられます。</p>
     </footer>
   </div>
-  <script src="assets/app.js?v=20260928b"></script>
+  <script src="assets/app.js?v=20260929a"></script>
 </body>
 </html>

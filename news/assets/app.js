@@ -89,6 +89,14 @@
     $("jump").replaceChildren(...jump);
   }
 
+  // 「今すぐ更新」: 更新依頼の Issue を作る画面を開く。所有者が作ると Actions が更新を起動する
+  // (.github/workflows/request-news-update.yml)
+  const q = new URLSearchParams({
+    title: "新着情報を更新",
+    body: "新着情報ページの「今すぐ更新」から作成。\n\nこのまま「Create」(または「Submit new issue」)を押すと、3〜5分で新着情報ページが更新されます。",
+  });
+  $("refresh").href = `https://github.com/git-san-934/portal/issues/new?${q}`;
+
   document.querySelectorAll(".filters button").forEach((b) =>
     b.addEventListener("click", () => {
       filter = b.dataset.filter;
