@@ -32,6 +32,7 @@
   const HORIZON_LABELS = { 5: "1週後", 20: "1ヶ月後", 60: "3ヶ月後", 120: "6ヶ月後", 250: "1年後" };
   const PAGE = 50;
   const RECENT_DAYS = 92; // 「いま最高値を更新中」とみなすブレイクからの日数(暦日)
+  const DROP_OUT = -0.2; // ブレイク日の終値からこれ以上下がったら一覧から自動で外す
   const HIDDEN_KEY = "ath-breakout:hidden"; // 一覧から外した銘柄 { code: 外した時点の最高値日 }
 
   // チャート座標(SVG viewBox)。preserveAspectRatio="none" で横幅いっぱいに伸ばす
@@ -390,7 +391,12 @@
     const stock = (e) => state.stockMap.get(e.code);
     // 並び替えできる列。value が null の銘柄は、どちら向きでも一番下
     const GRADE_ORDER = { 上: 3, 中: 2, 下: 1 };
-    const ranks = promiseRanks([...byCode.values()].filter((e) => !isHidden(e.code)));
+    // ブレイク日の終値から20%以上下がった銘柄は自動で外す(戻れば、また表示)
+    const dropped = (e) => {
+      const s = stock(e);
+      return !!s && s.last / e.price - 1 <= DROP_OUT;
+    };
+    const ranks = promiseRanks([...byCode.values()].filter((e) => !isHidden(e.code) && !dropped(e)));
     const cols = [
       { label: "" },
       // 並べるときは、銀行・保険以外の順位 → 銀行・保険の順位
@@ -418,7 +424,8 @@
       // 同じ値のときは、最高値を更新した日が新しい順
       return dir * cmp(va, vb) || athDate(b).localeCompare(athDate(a)) || b.date.localeCompare(a.date);
     });
-    const rows = all.filter((e) => !isHidden(e.code));
+    const rows = all.filter((e) => !isHidden(e.code) && !dropped(e));
+    const droppedRows = all.filter((e) => !isHidden(e.code) && dropped(e));
     table.append(sortHeadRow(cols, state.recentSort, (k) => {
       // 同じ列をもう一度押すと向きを反対に。別の列は大きい(新しい)順から
       state.recentSort = { key: k, dir: k === key ? -dir : k === "name" || k === "rank" ? 1 : -1 };
@@ -454,7 +461,11 @@
     const hiddenCodes = Object.keys(state.hidden).filter(isHidden);
     const note = $("hidden-note");
     note.textContent = "";
-    note.hidden = !hiddenCodes.length;
+    note.hidden = !hiddenCodes.length && !droppedRows.length;
+    if (droppedRows.length) {
+      const names = droppedRows.map((e) => stock(e)?.name || e.code);
+      note.append(el("span", "drop-note", `ブレイク日から${Math.round(-DROP_OUT * 100)}%以上下がったため外した銘柄 ${names.length}件(${names.slice(0, 5).join("、")}${names.length > 5 ? " ほか" : ""})`));
+    }
     if (hiddenCodes.length) {
       const names = hiddenCodes.map((c) => state.stockMap.get(c)?.name || c);
       note.append(`外した銘柄 ${hiddenCodes.length}件(${names.slice(0, 5).join("、")}${names.length > 5 ? " ほか" : ""}) `);
