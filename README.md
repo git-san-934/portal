@@ -18,6 +18,7 @@ https://git-san-934.github.io/portal/
 - `news/` — 掲載アプリの1つ「持ち株の新着情報」の本体(このリポジトリ内に同梱)。持ち株の公式サイトのニュースと EDINET(米国株は SEC)の提出書類を GitHub Actions が毎日 1:00・8:30・12:45・15:45 に集めます。詳細は `news/README.md` を参照。
 - `ath-breakout/` — 掲載アプリの1つ「過去最高値ブレイクのその後」の本体(このリポジトリ内に同梱)。株価データの取得とブレイクの判定は GitHub Actions が平日に自動で行います。詳細は `ath-breakout/README.md` を参照。
 - `scandal-watch/` — 掲載アプリの1つ「不祥事株のその後」の本体(このリポジトリ内に同梱)。不祥事の一覧は `scandal-watch/data/cases.json`、その後の株価は GitHub Actions が平日に自動で計算します。詳細は `scandal-watch/README.md` を参照。
+- `nikkei43/` — 掲載アプリの1つ「日経4.3ブル 暴落買いナビ」の本体(このリポジトリ内に同梱)。SBI日本株4.3ブルの基準価額を GitHub Actions が平日の夜と翌朝に自動取得します。詳細は `nikkei43/README.md` を参照。
 - `ad-watch/` — 掲載アプリの1つ「広告費ウォッチ」の本体(このリポジトリ内に同梱)。広告宣伝費・売上高・営業利益は GitHub Actions が毎日 EDINET の有価証券報告書から自動で集めます。詳細は `ad-watch/README.md` を参照。
 
 ## 掲載しているアプリ
@@ -25,6 +26,7 @@ https://git-san-934.github.io/portal/
 | アプリ | リンク先 |
 |---|---|
 | ユーチューブ要約 | https://git-san-934.github.io/youtube-yoyaku/ |
+| 日経4.3ブル 暴落買いナビ | https://git-san-934.github.io/portal/nikkei43/ |
 | 持ち株チェック | https://git-san-934.github.io/portal/holdings/ |
 | 持ち株の新着情報 | https://git-san-934.github.io/portal/news/ |
 | 海外投資家の需給 | https://git-san-934.github.io/portal/foreign-flow/ |

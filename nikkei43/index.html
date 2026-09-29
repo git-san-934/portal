@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>日経4.3ブル 暴落買いナビ</title>
+  <meta name="description" content="SBI日本株4.3ブルの基準価額を毎日分析し、暴落した日に追加でいくら買うかの目安を出すページ" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20260929a" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>日経4.3ブル 暴落買いナビ</h1>
+      <p class="intro">SBI日本株4.3ブル(協会コード 8931317C)の基準価額を毎日分析して、毎日の積立に上乗せする「暴落時の追加額」の目安を出します。</p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <main id="main" hidden>
+      <!-- 今日のアドバイス -->
+      <section class="card advice" id="advice" aria-live="polite">
+        <p class="advice-label" id="advice-when"></p>
+        <p class="advice-amount" id="advice-amount"></p>
+        <p class="advice-reason" id="advice-reason"></p>
+        <div class="ladder" id="ladder"></div>
+        <p class="advice-note" id="advice-note"></p>
+      </section>
+
+      <!-- 数字 -->
+      <section class="tiles" id="tiles"></section>
+
+      <!-- チャート -->
+      <section class="card">
+        <div class="section-head">
+          <h2>基準価額と追加買いの日</h2>
+          <div class="toggle" id="period-toggle" role="group" aria-label="期間"></div>
+        </div>
+        <div class="legend" id="legend-nav"></div>
+        <div class="chart-box tall" id="chart-nav"></div>
+        <h3 class="chart-title">20日高値からの下落率</h3>
+        <div class="chart-box" id="chart-dd"></div>
+        <p class="chart-note">点線は追加買いの目安ライン(−30%・−40%・−50%)。チャートに触れると、その日の値が出ます。</p>
+      </section>
+
+      <!-- 自分の積立 -->
+      <section class="card">
+        <h2>自分の積立シミュレーション</h2>
+        <p class="sub">設定はこの端末のブラウザにだけ保存されます。追加額は下の「追加額の大きさ」の設定どおりに買った場合の計算です。</p>
+        <div class="settings">
+          <label>開始日 <input type="date" id="in-start" /></label>
+          <label>毎日の金額(円) <input type="number" id="in-daily" min="1000" step="1000" inputmode="numeric" /></label>
+          <div class="setting-group">
+            <span class="control-label" id="scale-label">追加額の大きさ</span>
+            <div class="toggle" id="scale-toggle" role="group" aria-labelledby="scale-label"></div>
+          </div>
+        </div>
+        <div class="tiles mine" id="mine"></div>
+      </section>
+
+      <!-- ルールの検証 -->
+      <section class="card">
+        <h2>このルールの過去の成績</h2>
+        <p class="sub" id="bt-sub"></p>
+        <div class="table-wrap">
+          <table class="bt" id="bt-table"></table>
+        </div>
+      </section>
+
+      <section class="card notes">
+        <h2>ルールと注意点</h2>
+        <ul>
+          <li><b>判定の仕方:</b> その日の基準価額が、直近20営業日の最高値から何%下がったかで決めます。前日比ではなく「20日高値から」の方が、過去の検証で成績が安定していました。</li>
+          <li><b>注文のタイミング:</b> 基準価額はその日の夜に出るので、追加買いは<b>次の営業日</b>の注文で行う前提です(過去の成績もこの前提で計算しています)。</li>
+          <li><b>追加資金の用意:</b> 暴落は続けて来ます。2020年3月のように、1ヶ月で何十万円も追加する年があります。下の表の「追加額」の最大の年くらいは、別に現金を取っておくのが目安です。</li>
+          <li><b>持ちすぎに注意:</b> 4.3倍の商品は、過去に最高値から約87%下がったことがあります。資産全体に占める割合を30〜50%までにすると、全体の下げ幅がかなり小さくなりました。</li>
+          <li><b>過去の成績は将来を約束しません。</b> 投資助言ではありません。売買判断はご自身の責任で行ってください。</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      データ: 投資信託協会「投信総合検索ライブラリー」ほか。平日の夜と翌朝に GitHub Actions で自動更新します。<br />
+      <a href="../">← アプリ一覧に戻る</a>
+    </footer>
+  </div>
+
+  <script src="assets/app.js?v=20260929a"></script>
+</body>
+</html>
