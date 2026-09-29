@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-09-29T19:49+09:00",
+ "updated_at": "2026-09-29T22:20+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -724,6 +724,13 @@
     "q4:https://investor.oracle.com"
    ],
    "items": [
+    {
+     "date": "2026-09-29",
+     "title": "Oracle Extends Fusion Agentic Applications with Introduction of Fusion Claw",
+     "url": "https://www.oracle.com/news/announcement/oracle-extends-fusion-agentic-applications-with-introduction-of-fusion-claw-2026-09-29/",
+     "source": "official",
+     "first_seen": "2026-09-29T22:20+09:00"
+    },
     {
      "date": "2026-09-23",
      "title": "Oracle Health Advances Revenue Cycle Management with AI",
