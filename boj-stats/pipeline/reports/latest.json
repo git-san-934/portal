@@ -270,6 +270,66 @@
       "code": "TRADE_IMPORTS_YOY",
       "name": "貿易統計 輸入額 前年同月比",
       "implication": "輸入の伸び。資源価格・為替の動きを強く映す。"
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-08",
+      "dir": "上昇",
+      "detail": "24.9%",
+      "db": "ESTAT",
+      "code": "TRADE_EX_USA_YOY",
+      "name": "貿易統計 輸出 対米国 前年同月比",
+      "implication": ""
+    },
+    {
+      "type": "トレンド転換",
+      "date": "2026-08",
+      "dir": "上昇",
+      "detail": "3期移動平均が12期移動平均を上抜け",
+      "db": "ESTAT",
+      "code": "TRADE_IM_EU_YOY",
+      "name": "貿易統計 輸入 対EU 前年同月比",
+      "implication": ""
+    },
+    {
+      "type": "急変",
+      "date": "2026-08",
+      "dir": "低下",
+      "detail": "-4億円（z=-6.5）",
+      "db": "ESTAT",
+      "code": "TRADE_EX_TW_DRAM",
+      "name": "貿易統計 台湾向け輸出 DRAM（組立済み）",
+      "implication": "台湾向けの DRAM（組立済み）。日本からの出荷は小さく、月ごとの振れが大きい。"
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-08",
+      "dir": "上昇",
+      "detail": "1,521億円",
+      "db": "ESTAT",
+      "code": "TRADE_EX_TW_MEM_DIE",
+      "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ）",
+      "implication": "台湾向けのメモリのウエハー・チップ（未組立）。台湾で組み立てるNANDなどの素材で、メモリ需要の先行指標。"
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-08",
+      "dir": "上昇",
+      "detail": "55%",
+      "db": "ESTAT",
+      "code": "TRADE_EX_TW_MLCC_YOY",
+      "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC） 前年同月比",
+      "implication": ""
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-08",
+      "dir": "上昇",
+      "detail": "2,079億円",
+      "db": "ESTAT",
+      "code": "TRADE_EX_TW_IC",
+      "name": "貿易統計 台湾向け輸出 集積回路 計",
+      "implication": "台湾向けの集積回路の合計（メモリ・ロジックなど）。"
     }
   ],
   "latest": {
@@ -776,6 +836,216 @@
       "prev": 27.9,
       "change": "+0.100%pt",
       "n": 213
+    },
+    "TRADE_EX_USA": {
+      "date": "2026-08",
+      "value": 17244.0,
+      "prev": 20906.0,
+      "change": "-3,662億円",
+      "n": 213
+    },
+    "TRADE_EX_USA_YOY": {
+      "date": "2026-08",
+      "value": 24.9,
+      "prev": 22.0,
+      "change": "+2.900%pt",
+      "n": 201
+    },
+    "TRADE_IM_USA": {
+      "date": "2026-08",
+      "value": 16544.0,
+      "prev": 18116.0,
+      "change": "-1,572億円",
+      "n": 213
+    },
+    "TRADE_IM_USA_YOY": {
+      "date": "2026-08",
+      "value": 55.2,
+      "prev": 58.1,
+      "change": "-2.900%pt",
+      "n": 201
+    },
+    "TRADE_EX_CHINA": {
+      "date": "2026-08",
+      "value": 18091.0,
+      "prev": 20086.0,
+      "change": "-1,995億円",
+      "n": 213
+    },
+    "TRADE_EX_CHINA_YOY": {
+      "date": "2026-08",
+      "value": 20.5,
+      "prev": 25.8,
+      "change": "-5.300%pt",
+      "n": 201
+    },
+    "TRADE_IM_CHINA": {
+      "date": "2026-08",
+      "value": 23612.0,
+      "prev": 27850.0,
+      "change": "-4,238億円",
+      "n": 213
+    },
+    "TRADE_IM_CHINA_YOY": {
+      "date": "2026-08",
+      "value": 22.5,
+      "prev": 26.2,
+      "change": "-3.700%pt",
+      "n": 201
+    },
+    "TRADE_EX_EU": {
+      "date": "2026-08",
+      "value": 8664.0,
+      "prev": 10325.0,
+      "change": "-1,661億円",
+      "n": 213
+    },
+    "TRADE_EX_EU_YOY": {
+      "date": "2026-08",
+      "value": 11.0,
+      "prev": 19.1,
+      "change": "-8.100%pt",
+      "n": 201
+    },
+    "TRADE_IM_EU": {
+      "date": "2026-08",
+      "value": 10969.0,
+      "prev": 11201.0,
+      "change": "-232億円",
+      "n": 213
+    },
+    "TRADE_IM_EU_YOY": {
+      "date": "2026-08",
+      "value": 20.4,
+      "prev": -2.3,
+      "change": "+22.700%pt",
+      "n": 201
+    },
+    "TRADE_EX_ASEAN": {
+      "date": "2026-08",
+      "value": 14820.0,
+      "prev": 17389.0,
+      "change": "-2,569億円",
+      "n": 213
+    },
+    "TRADE_EX_ASEAN_YOY": {
+      "date": "2026-08",
+      "value": 22.3,
+      "prev": 27.8,
+      "change": "-5.500%pt",
+      "n": 201
+    },
+    "TRADE_IM_ASEAN": {
+      "date": "2026-08",
+      "value": 17889.0,
+      "prev": 19593.0,
+      "change": "-1,704億円",
+      "n": 213
+    },
+    "TRADE_IM_ASEAN_YOY": {
+      "date": "2026-08",
+      "value": 27.0,
+      "prev": 31.2,
+      "change": "-4.200%pt",
+      "n": 201
+    },
+    "TRADE_EX_TAIWAN": {
+      "date": "2026-08",
+      "value": 8861.0,
+      "prev": 9088.0,
+      "change": "-227億円",
+      "n": 213
+    },
+    "TRADE_EX_TAIWAN_YOY": {
+      "date": "2026-08",
+      "value": 39.7,
+      "prev": 43.4,
+      "change": "-3.700%pt",
+      "n": 201
+    },
+    "TRADE_EX_TW_NAND": {
+      "date": "2026-08",
+      "value": 181.0,
+      "prev": 115.6,
+      "change": "+65億円",
+      "n": 128
+    },
+    "TRADE_EX_TW_NAND_YOY": {
+      "date": "2026-08",
+      "value": 68.7,
+      "prev": 39.9,
+      "change": "+28.800%pt",
+      "n": 116
+    },
+    "TRADE_EX_TW_DRAM": {
+      "date": "2026-08",
+      "value": 1.8,
+      "prev": 5.9,
+      "change": "-4億円",
+      "n": 128
+    },
+    "TRADE_EX_TW_DRAM_YOY": {
+      "date": "2026-08",
+      "value": 1133.3,
+      "prev": 1328.9,
+      "change": "-195.600%pt",
+      "n": 105
+    },
+    "TRADE_EX_TW_MEM_DIE": {
+      "date": "2026-08",
+      "value": 1520.9,
+      "prev": 1402.7,
+      "change": "+118億円",
+      "n": 128
+    },
+    "TRADE_EX_TW_MEM_DIE_YOY": {
+      "date": "2026-08",
+      "value": 86.0,
+      "prev": 63.9,
+      "change": "+22.100%pt",
+      "n": 116
+    },
+    "TRADE_EX_TW_MLCC": {
+      "date": "2026-08",
+      "value": 136.6,
+      "prev": 152.6,
+      "change": "-16億円",
+      "n": 128
+    },
+    "TRADE_EX_TW_MLCC_YOY": {
+      "date": "2026-08",
+      "value": 55.0,
+      "prev": 50.7,
+      "change": "+4.300%pt",
+      "n": 116
+    },
+    "TRADE_EX_TW_IC": {
+      "date": "2026-08",
+      "value": 2078.7,
+      "prev": 1916.1,
+      "change": "+163億円",
+      "n": 128
+    },
+    "TRADE_EX_TW_IC_YOY": {
+      "date": "2026-08",
+      "value": 66.2,
+      "prev": 52.9,
+      "change": "+13.300%pt",
+      "n": 116
+    },
+    "TRADE_EX_TW_SEMI_EQUIP": {
+      "date": "2026-08",
+      "value": 1077.3,
+      "prev": 1172.2,
+      "change": "-95億円",
+      "n": 128
+    },
+    "TRADE_EX_TW_SEMI_EQUIP_YOY": {
+      "date": "2026-08",
+      "value": 30.7,
+      "prev": 36.2,
+      "change": "-5.500%pt",
+      "n": 116
     }
   },
   "missing": []
