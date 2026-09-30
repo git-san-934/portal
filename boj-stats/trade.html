@@ -1,0 +1,44 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>半導体関連の輸出 国別 - 日銀統計の新着</title>
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20261001a" />
+</head>
+<body>
+  <div class="wrap">
+    <p class="back"><a href="./">← 日銀統計の新着</a></p>
+    <header>
+      <h1>半導体関連の輸出 国別の推移</h1>
+      <p class="intro">財務省の貿易統計(品別国別表)から、品目ごとに日本からの輸出額を輸出先の国別に並べます。上位5か国を個別に、残りを「その他」にまとめています。</p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <nav class="filters" id="items" aria-label="品目"></nav>
+
+    <section class="panel">
+      <h2 class="panel-title" id="item-name"></h2>
+      <nav class="filters" id="measures" aria-label="表示"></nav>
+      <nav class="filters" id="ranges" aria-label="期間"></nav>
+      <nav class="filters" id="avgs" aria-label="平均"></nav>
+      <div class="legend" id="legend"></div>
+      <div class="chart tchart" id="chart"></div>
+      <p class="note sub" id="chart-note"></p>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">国別の最新月 <span class="code" id="latest-month"></span> <span class="code">単月</span></h2>
+      <table class="vals" id="table"></table>
+    </section>
+
+    <footer>
+      <p>出典: <a href="https://www.customs.go.jp/toukei/info/index.htm" target="_blank" rel="noopener">財務省 貿易統計</a>(e-Stat 貿易統計_全国分 品別国別表、輸出、確報・確定値を含む月次の原数値)</p>
+      <p id="hs"></p>
+      <p>※品目の分類は輸出統計品目表のHSコードによります。月々の振れが大きい品目は前年同月比が大きく動きます。</p>
+    </footer>
+  </div>
+  <script src="assets/trade.js?v=20261001a"></script>
+</body>
+</html>
