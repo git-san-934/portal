@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-09-30T11:14+09:00",
+ "updated_at": "2026-09-30T13:02+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -10,11 +10,144 @@
    "name": "任天堂",
    "market": "JP",
    "home": "https://www.nintendo.co.jp/",
-   "official_status": "取得できませんでした",
+   "official_status": "ok",
    "official_pages": [
-    "https://www.nintendo.co.jp/ir/news/index.html"
+    "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-09-30",
+     "title": "『Star Fox』の無料アップデートは本日配信。『Nintendo Music』での楽曲配信や折り紙で作るアーウィンの情報も。",
+     "url": "https://www.nintendo.com/jp/topics/article/397de170-5c61-4586-a937-e4e7127b3a4f",
+     "source": "official",
+     "first_seen": "2026-09-30T00:00+09:00"
+    },
+    {
+     "date": "2026-09-29",
+     "title": "『Minecraft』の世界で始まる新たな冒険。『Minecraft Dungeons II』がNintendo Switch 2 / Nintendo Switchで本日配信。",
+     "url": "https://www.nintendo.com/jp/topics/article/dff1fc71-a113-425b-8161-77573fdf210d",
+     "source": "official",
+     "first_seen": "2026-09-29T00:00+09:00"
+    },
+    {
+     "date": "2026-09-29",
+     "title": "運命を導き、テト1を狙え。テト1カップ「ファイアーエムブレム 万紫千紅 コラボ祭!」開催。",
+     "url": "https://www.nintendo.com/jp/topics/article/e32c58f0-37f1-4958-9eb6-7ab3f021237e",
+     "source": "official",
+     "first_seen": "2026-09-29T00:00+09:00"
+    },
+    {
+     "date": "2026-09-25",
+     "title": "全国のアニメイトにて「ゼルダの伝説」オリジナル商品を発売。",
+     "url": "https://www.nintendo.com/jp/topics/article/568d0d19-99f8-4fd9-97f6-56b841a50fd7",
+     "source": "official",
+     "first_seen": "2026-09-25T00:00+09:00"
+    },
+    {
+     "date": "2026-09-25",
+     "title": "スタジアムの外にも広がるサッカー体験を新たに。『EA SPORTS FCTM 27』がNintendo Switch 2 / Nintendo Switchで本日発売。",
+     "url": "https://www.nintendo.com/jp/topics/article/54116f00-894a-4a30-8229-5db013652894",
+     "source": "official",
+     "first_seen": "2026-09-25T00:00+09:00"
+    },
+    {
+     "date": "2026-09-25",
+     "title": "ニンテンドーeショップ新作ソフト情報 9/25(金)号。",
+     "url": "https://www.nintendo.com/jp/topics/article/e94b27af-d05f-41d9-94ab-dce0d7d26c00",
+     "source": "official",
+     "first_seen": "2026-09-25T00:00+09:00"
+    },
+    {
+     "date": "2026-09-18",
+     "title": "「仕事を読み解くキーワード」のページを更新しました。任天堂ではたらく社員の声を追加しています。",
+     "url": "https://www.nintendo.co.jp/jobs/keyword/index.html",
+     "source": "official",
+     "first_seen": "2026-09-18T00:00+09:00"
+    },
+    {
+     "date": "2026-09-18",
+     "title": "「デザイナー職 キャリア採用説明会」の情報を掲載しました。",
+     "url": "https://www.nintendo.co.jp/jobs/career/session.html",
+     "source": "official",
+     "first_seen": "2026-09-18T00:00+09:00"
+    },
+    {
+     "date": "2026-09-18",
+     "title": "「Hello! インディー」自分だけの英雄で強敵に挑む『Shape of Dreams』",
+     "url": "https://www.nintendo.com/jp/topics/article/32f759f8-b700-48d0-a457-3be20e4cb02a",
+     "source": "official",
+     "first_seen": "2026-09-18T00:00+09:00"
+    },
+    {
+     "date": "2026-09-18",
+     "title": "ニンテンドーeショップ新作ソフト情報 9/18(金)号。",
+     "url": "https://www.nintendo.com/jp/topics/article/4936a483-a958-491f-bf82-f5e049c355f5",
+     "source": "official",
+     "first_seen": "2026-09-18T00:00+09:00"
+    },
+    {
+     "date": "2026-09-17",
+     "title": "『ファイアーエムブレム 万紫千紅』は本日発売。無料アップデートでもらえるコラボ武器(全4種)など、最新情報もご紹介。 ※本作の対象年齢は「15歳以上」です。",
+     "url": "https://www.nintendo.com/jp/topics/article/96a406b3-fa89-44f4-97ff-44fbc0a7aecf",
+     "source": "official",
+     "first_seen": "2026-09-17T00:00+09:00"
+    },
+    {
+     "date": "2026-09-17",
+     "title": "プレゼントを包んでも、おでかけに使っても。「ヨッシー」のラッピンググッズが本日発売。",
+     "url": "https://www.nintendo.com/jp/topics/article/bdbf856a-bc2a-4db4-bd01-ede60f666bbe",
+     "source": "official",
+     "first_seen": "2026-09-17T00:00+09:00"
+    },
+    {
+     "date": "2026-09-17",
+     "title": "「Hello! インディー」見習い魔女のスローライフ『Little Witch in the Woods』",
+     "url": "https://www.nintendo.com/jp/topics/article/ea57d4c2-38f4-4472-997b-9259bd00f0d1",
+     "source": "official",
+     "first_seen": "2026-09-17T00:00+09:00"
+    },
+    {
+     "date": "2026-09-17",
+     "title": "ふたりはいつかまた逢える――。遊撃士エステルとヨシュアの旅の結末を描く『空の軌跡 the 2nd』がNintendo Switch 2 / Nintendo Switchで本日発売。 ※本作の対象年齢は「15歳以上」です。",
+     "url": "https://www.nintendo.com/jp/topics/article/aa22308f-f14d-4167-984e-779b147ac631",
+     "source": "official",
+     "first_seen": "2026-09-17T00:00+09:00"
+    },
+    {
+     "date": "2026-09-16",
+     "title": "「2027年3月期 第2四半期 決算発表予定日」を掲載しました。",
+     "url": "https://www.nintendo.co.jp/ir/schedule/index.html",
+     "source": "official",
+     "first_seen": "2026-09-16T00:00+09:00"
+    },
+    {
+     "date": "2026-09-15",
+     "title": "「開発者に訊きました:ファイアーエムブレム 万紫千紅」を公開しました。 4つの物語が1つに集結するストーリー、体験したことが蓄積され残っていく遊びづくり、ダグザの地を表す音楽やデザインのこだわりなど、開発者みずからの言葉でお届けします。 ※本作の対象年齢は「15歳以上」です。",
+     "url": "https://www.nintendo.com/jp/interview/aacsa/index.html",
+     "source": "official",
+     "first_seen": "2026-09-15T00:00+09:00"
+    },
+    {
+     "date": "2026-09-15",
+     "title": "Nintendo Switch 2 / Nintendo Switchの本体機能をバージョンアップ。新しい機能をご紹介します。",
+     "url": "https://www.nintendo.com/jp/topics/article/fae652aa-9d8a-43d6-86cc-68f217277520",
+     "source": "official",
+     "first_seen": "2026-09-15T00:00+09:00"
+    },
+    {
+     "date": "2026-09-14",
+     "title": "育成・レース・配合を繰り返し、理想の競走馬を目指す。『ダービースタリオン2』の紹介映像が本日公開。",
+     "url": "https://www.nintendo.com/jp/topics/article/013a89a8-c0ec-45c4-8db8-ac71520462a4",
+     "source": "official",
+     "first_seen": "2026-09-14T00:00+09:00"
+    },
+    {
+     "date": "2026-09-11",
+     "title": "ニンテンドーeショップ新作ソフト情報 9/11(金)号。",
+     "url": "https://www.nintendo.com/jp/topics/article/e4aaff58-ca40-4813-b354-5ec04d9904da",
+     "source": "official",
+     "first_seen": "2026-09-11T00:00+09:00"
+    },
     {
      "date": "2026-09-07",
      "time": "10:27",
@@ -270,16 +403,52 @@
    "home": "https://www.keyence.co.jp/",
    "official_status": "ok",
    "official_pages": [
+    "https://www.keyence.co.jp/",
     "https://www.keyence.co.jp/investor/news.jsp",
     "https://www.keyence.co.jp/investor/"
    ],
    "items": [
+    {
+     "date": "2026-09-24",
+     "title": "新商品 測定工数が従来の半分以下に!ワイドエリア三次元測定機「WM-7000シリーズ」登場。 最大25mの大型ワークを1人で測定。スキャンするだけで穴径・穴位置まで自動測定!",
+     "url": "https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/pr/211254001.jsp",
+     "source": "official",
+     "first_seen": "2026-09-30T13:02+09:00"
+    },
+    {
+     "date": "2026-09-24",
+     "title": "新商品 ロボットビジョン・AI検査対応、世界初の新方式3Dカメラ「CG-Rシリーズ」が登場! 外乱光や色むら、対象物の姿勢変化にも左右されない安定検出でチョコ停ゼロへ導きます。",
+     "url": "https://www.keyence.co.jp/products/vision/vision-sys/cg-r/lp/210934001.jsp",
+     "source": "official",
+     "first_seen": "2026-09-30T13:02+09:00"
+    },
+    {
+     "date": "2026-09-24",
+     "title": "新商品 目視によるばらつきや多品種・複雑形状による自動化のハードルも解決。 見逃しのない全周検査を、置くだけ5秒で実現する「QDシリーズ」が登場。",
+     "url": "https://www.keyence.co.jp/products/vision/visual-inspection/qd/pr/210291001.jsp",
+     "source": "official",
+     "first_seen": "2026-09-30T13:02+09:00"
+    },
+    {
+     "date": "2026-09-04",
+     "title": "お知らせ オートスキャン3Dセンサ「LJ-S8000シリーズ」のお客様の声ページを更新しました。 導入の背景や導入メリットなどをお客様の声としてご紹介。",
+     "url": "https://www.keyence.co.jp/products/measure/laser-2d/lj-s8000/voice/",
+     "source": "official",
+     "first_seen": "2026-09-30T13:02+09:00"
+    },
     {
      "date": "2026-09-01",
      "title": "「Sustainability Information 2026」をサステナビリティサイトに掲載しました",
      "url": "https://www.keyence.co.jp/sustainability/",
      "source": "official",
      "first_seen": "2026-09-01T00:00+09:00"
+    },
+    {
+     "date": "2026-08-24",
+     "title": "新商品 業界最長!3眼カメラ搭載 ロングレンジハンディターミナル「BT-A800シリーズ」登場。 従来ロングレンジ機種の読み取り距離2倍以上!現場の作業効率を最大化!",
+     "url": "https://www.keyence.co.jp/products/mobile-computers/handheld-computers/bt-a800/",
+     "source": "official",
+     "first_seen": "2026-09-30T13:02+09:00"
     },
     {
      "date": "2026-07-29",
@@ -488,11 +657,39 @@
    "name": "FUJI",
    "market": "JP",
    "home": "https://www.fuji.co.jp/",
-   "official_status": "取得できませんでした",
+   "official_status": "ok",
    "official_pages": [
-    "https://www.fuji.co.jp/news"
+    "https://www.fuji.co.jp/"
    ],
    "items": [
+    {
+     "date": "2026-09-14",
+     "title": "メディア掲載 企業情報 IR 「週刊東洋経済」記事掲載のお知らせ",
+     "url": "https://www.fuji.co.jp/news/post_135.html",
+     "source": "official",
+     "first_seen": "2026-09-14T00:00+09:00"
+    },
+    {
+     "date": "2026-09-03",
+     "title": "メディア掲載 企業情報 IR 「東洋経済オンライン」記事掲載のお知らせ",
+     "url": "https://www.fuji.co.jp/news/post_134.html",
+     "source": "official",
+     "first_seen": "2026-09-03T00:00+09:00"
+    },
+    {
+     "date": "2026-09-01",
+     "title": "お知らせ IR 統合報告書を発行しました",
+     "url": "https://www.fuji.co.jp/ir/library/pdf/IR2026_J.pdf",
+     "source": "official",
+     "first_seen": "2026-09-01T00:00+09:00"
+    },
+    {
+     "date": "2026-08-31",
+     "title": "お知らせ IR 2027年3月期 第2四半期(中間期)決算開示のお知らせ",
+     "url": "https://www.fuji.co.jp/news/_202731.html",
+     "source": "official",
+     "first_seen": "2026-08-31T00:00+09:00"
+    },
     {
      "date": "2026-08-20",
      "time": "10:25",
@@ -502,12 +699,103 @@
      "first_seen": "2026-08-20T00:00+09:00"
     },
     {
+     "date": "2026-08-19",
+     "title": "お知らせ サステナビリティ IR 2026年度「FTSE JPX Blossom Japan Index」構成銘柄に初選定および「FTSE JPX Blossom Japan Sector Relative Index」に再選定 [PDF:888.1KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/Newly_Selected_for_FTSE_JPX_Blossom_Japan_Index_and_Reselected_for_FTSE_JPX_Blossom_Japan_Sector_Relative_Index_FY2026.pdf.pdf",
+     "source": "official",
+     "first_seen": "2026-08-19T00:00+09:00"
+    },
+    {
+     "date": "2026-08-07",
+     "title": "お知らせ 企業情報 サステナビリティ 令和8年熊本地震への災害支援について [PDF:356.5KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/20260807_donation_kumamoto.pdf",
+     "source": "official",
+     "first_seen": "2026-08-07T00:00+09:00"
+    },
+    {
+     "date": "2026-08-07",
+     "title": "お知らせ IR 2027年3月期 第1四半期決算説明会 書き起こし 新規ウィンドウを開きます",
+     "url": "https://finance.logmi.jp/articles/385336",
+     "source": "official",
+     "first_seen": "2026-08-07T00:00+09:00"
+    },
+    {
+     "date": "2026-07-30",
+     "title": "リリース 製品・事業 AIサーバー関連機器向けの大型重量部品実装技術を確立 [PDF:658.5KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/fuji_SMTPlacementOfLargeHeavyComponents_J.pdf",
+     "source": "official",
+     "first_seen": "2026-07-30T00:00+09:00"
+    },
+    {
+     "date": "2026-07-17",
+     "title": "メディア掲載 企業情報 製品・事業 【TV放送】 NHK名古屋 『まるっと!』 にて当社が紹介されます(7月23日放送) [PDF:377.2KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/20260717_nhk_marutto_notice.pdf",
+     "source": "official",
+     "first_seen": "2026-07-17T00:00+09:00"
+    },
+    {
+     "date": "2026-07-01",
+     "title": "お知らせ 企業情報 コーポレートサイト リニューアルのお知らせ",
+     "url": "https://www.fuji.co.jp/news/20260701.html",
+     "source": "official",
+     "first_seen": "2026-07-01T00:00+09:00"
+    },
+    {
      "date": "2026-06-30",
      "time": "09:06",
      "title": "臨時報告書",
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YNBS",
      "source": "edinet",
      "first_seen": "2026-06-30T00:00+09:00"
+    },
+    {
+     "date": "2026-06-29",
+     "title": "お知らせ 企業情報 役員就任のご挨拶 [PDF:111.8KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/FUJI_OrganizationalChange2026_JP.pdf",
+     "source": "official",
+     "first_seen": "2026-06-29T00:00+09:00"
+    },
+    {
+     "date": "2026-06-17",
+     "title": "お知らせ サステナビリティ IR 「SOMPOサステナビリティ・インデックス」 構成銘柄に初選定 [PDF:533.5KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/2026_SOMPO_Sustainability_Index_J.pdf",
+     "source": "official",
+     "first_seen": "2026-06-17T00:00+09:00"
+    },
+    {
+     "date": "2026-06-01",
+     "title": "リリース 製品・事業 新シリーズのコンパクト汎用実装機「CLT-FG」を発表 [PDF:673.7KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/fuji_clt-fg_j.pdf",
+     "source": "official",
+     "first_seen": "2026-06-01T00:00+09:00"
+    },
+    {
+     "date": "2026-05-28",
+     "title": "リリース 製品・事業 世界初!フィーダーへのテープリール装填工程を自動化する新ユニット 『オートキッティングステーション』を発表 [PDF:1.0MB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/fuji_aks_j.pdf",
+     "source": "official",
+     "first_seen": "2026-05-28T00:00+09:00"
+    },
+    {
+     "date": "2026-05-22",
+     "title": "お知らせ サステナビリティ サプライチェーン全体での脱炭素推進に関する取り組みがCDP「サプライヤー・エンゲージメント評価」で「A」評価 [PDF:604.8KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/E260105_SEA_JP.pdf",
+     "source": "official",
+     "first_seen": "2026-05-22T00:00+09:00"
+    },
+    {
+     "date": "2026-04-09",
+     "title": "リリース 製品・事業 スマートロッカーシステム『Quist』を活用する個人店舗が農林水産大臣賞を受賞 [PDF:744.3KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/doc20260409.pdf",
+     "source": "official",
+     "first_seen": "2026-04-09T00:00+09:00"
+    },
+    {
+     "date": "2026-04-09",
+     "title": "リリース 製品・事業 SMT製造における自動化技術が評価され「2026 NPI Awards」を2部門で受賞 [PDF:948.6KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/FUJI_NPIAwards2026_J.pdf",
+     "source": "official",
+     "first_seen": "2026-04-09T00:00+09:00"
     }
    ]
   },
@@ -893,9 +1181,30 @@
    "home": "https://news.adobe.com/",
    "official_status": "ok",
    "official_pages": [
-    "https://news.adobe.com/news"
+    "https://news.adobe.com/"
    ],
    "items": [
+    {
+     "date": "2026-09-10",
+     "title": "Content as a Service v3 - Newsroom - Homepage - cHTML-Prod - Thursday, September 10, 2026 at 13:23",
+     "url": "https://milo.adobe.com/tools/caas#~~H4sIAAAAAAAAE5VWXW/iOhD9K5F1pd0rYQK09IMWpG5Xq63U3a1ueWvQ1cSeBGsdO7InBVTx31cOoS1soZSHkIzPnJkznnHyxAQ4eU8LjWzADM48DwbWYsJqjYKUNT+hCIs/ceadtUXEo++2wBJyjHgkvo9/3PI7Z2ufypMtrgPBgF1K9RgJDd4PE2YN8inoLBLWeGvAEA+whEXgFHANKephwv55CtHbwhpCQ1cOoU2KNC4TFkkArqfvggg4oSclhwn7K9ioTmofiE8RJLqEPae+a91ZjcOEqSL/iAofSj1MWArid+5sZSRXBeQ4iCqnPzeeNci3oxfQTcAsLxI2uoylehxtFHcrwyZuwPoSzH65dc671TbLo7UkcPIrELZ9qRV9/jT+9O9DZ7K8jEOg0WW5LkookjL5K70FzPkUVT6lQdTtOCwuIj7D9LcirpVBLjQU5aDbudgu5vMzPtbPJ+/sMq9LvVvRern+379Zo2jztxO6gbqMy33b881aqvtnr4isQb3PxJ2drdkEah1w3YMcAzraucK5xowOabgD6VzY/MAHb/B8IXNjMpsqWk/6q0FaFeOhM2nXHOGGcE775n2DjyBVRuJ8mLBOGNy6j4y1JRp0kbEOM3Su3hQClyMNE/a/R50lLJo6zPZmEgDL9ayN3sl4PSgxrMu648paLFOa0N1aAeEQZgNGtnxlzpVgAza37tnm2eDhqbkfQ84GD0wA+IFpDu4YHCmhkU1arNYuf5lbC5INyFXYYkrUYViL4VzoSuIYcv8Gi/dInk2Wk+fA1/W5vx0+MG3GCZYdURgLfBoWtqLxogwvnKMq6LUrrU0uT8y6HWmtxMVCsMmy9T5OHojDw3AHkj2iIR8XMP8Q3ldFoegwF2FdaR0QxqXMPhLlg/SrBnDoK03+Dt0d5GHTzlmLeQQnpt8Uarli2j4w68+LF5tEAqXHOKe/Frxwqqz7fxJ4KZwqX6yTdbev2tZbR+GddOXFtukrbtp+WKkyhfLqbfM2/D8wMrT1i2Ucst/yrm2brpUTGISH6oXEVwJ9UPirbKbZE5ASIUvWYmQJdNDmx/Z+amehkOd1Kad2do/CGglucd8QZ6A9thhUZK9tZcgtbsHk6/BoZGmVITZg3eNe/5SLqSrQQRukTVFZVxlSBbYNUgylih+78QzTuEHxTrvT7sYvX39NEjfyueDhhFsVQgj0XqVKK1rchvdzmNqXyZa1onpqm129CYeAhN7ZicgEFx3o8r7MUn6WiiMue9hHkfVED89Y6MXXTr3TY9HJzo74UXoqeT8Vgp8fH/f5CQgpjvu9Lp6nbDlZ/gEADzwY0QoAAA==",
+     "source": "official",
+     "first_seen": "2026-09-30T13:02+09:00"
+    },
+    {
+     "date": "2026-09-09",
+     "title": "TIME World's Best Companies",
+     "url": "https://time.com/article/2026/09/09/worlds-best-companies-of-2026/",
+     "source": "official",
+     "first_seen": "2026-09-30T13:02+09:00"
+    },
+    {
+     "date": "2026-09-03",
+     "title": "Adobe Newsroom Adobe Announces Anil Chakravarthy to Become President and CEO and Shantanu Narayen to Become Executive Chair on December 1, 2026 September 03, 2026",
+     "url": "https://news.adobe.com/news/2026/09/adobe-announces-anil-chakravarthy-to-become-president-and-ceo",
+     "source": "official",
+     "first_seen": "2026-09-30T13:02+09:00"
+    },
     {
      "date": "2026-04-28",
      "title": "Content as a Service v3 - Newsroom - All News page - Newscard - Stage - NA - Tuesday, April 28, 2026 at 05:01",
