@@ -53,6 +53,7 @@ VERSION = 2  # news.json・キャッシュの作り方の版。上げると、�
 KEEP_DAYS = 180  # これより古い記事は載せない
 MAX_PER_SOURCE = 20  # 1銘柄・1情報源あたりの最大件数(1回の取得)
 MAX_PER_STOCK = 60  # 1銘柄で残す最大件数
+OLD_DAYS = 7  # はじめて見つけた記事でも、これより古い日付なら「新着」にしない
 EDINET_DAYS = 90  # EDINET を遡る日数
 SEC_DAYS = 120
 HEADERS = {
@@ -383,6 +384,12 @@ def fetch_official(code, conf):
                 break
     for e in errors:
         log(f"    失敗 {e}")
+    # "only" があれば、その URL で始まる記事だけにする(トップページの広告や外部リンクを除く)
+    if conf.get("only"):
+        items = [it for it in items if it["url"].startswith(conf["only"])]
+    for it in items:
+        if conf.get("strip_title") and it["title"].startswith(conf["strip_title"]):
+            it["title"] = it["title"][len(conf["strip_title"]):].strip()
     return items, ok_pages, errors
 
 
@@ -717,8 +724,9 @@ def main():
                 old = prev_items.get((code, it["url"]))
                 if old:
                     first_seen = old["first_seen"]
-                elif first_run or (code, source) not in prev_sources:
-                    # 初回(と、新しく加えた銘柄や、はじめて取れた情報源)は、記事の日付に見つけたことにする(古い記事が全部「新着」にならないように)
+                elif first_run or (code, source) not in prev_sources or it["date"] < (TODAY - timedelta(days=OLD_DAYS)).isoformat():
+                    # 初回(と、新しく加えた銘柄や、はじめて取れた情報源)と、日付の古い記事は、記事の日付に見つけたことにする
+                    # (取り先を増やしたときに古い記事が全部「新着」にならないように)
                     first_seen = f"{it['date']}T00:00+09:00"
                 else:
                     first_seen = now_iso

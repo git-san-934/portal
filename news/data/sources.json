@@ -1,5 +1,5 @@
 {
-  "_説明": "銘柄ごとの公式サイト。home はトップページ、pages はニュース・IRニュース一覧のページ(RSS も可)。pages が取れないときは home からニュース一覧を自動で探す。銘柄そのものは holdings/data/holdings.json(持ち株チェック)と共通。 米国株の cik は SEC の会社番号(間違っていればログに出る)。discover: false でトップページからの自動探索をしない。sec: false で SEC を見ない(ETF など)。 pages に q4:https://… と書くと Q4 社の IR サイトの JSON を読む。",
+  "_説明": "銘柄ごとの公式サイト。home はトップページ、pages はニュース・IRニュース一覧のページ(RSS も可)。pages が取れないときは home からニュース一覧を自動で探す。銘柄そのものは holdings/data/holdings.json(持ち株チェック)と共通。 米国株の cik は SEC の会社番号(間違っていればログに出る)。discover: false でトップページからの自動探索をしない。sec: false で SEC を見ない(ETF など)。 pages に q4:https://… と書くと Q4 社の IR サイトの JSON を読む。 only: を書くと、その URL で始まる記事だけを残す。strip_title: は見出しの先頭から取り除く文字。",
   "7974": {"home": "https://www.nintendo.co.jp/", "pages": ["https://www.nintendo.co.jp/news/whatsnew.xml"]},
   "4732": {"home": "https://www.ussnet.co.jp/", "pages": ["https://www.ussnet.co.jp/ir/news/", "https://www.ussnet.co.jp/news/"]},
   "8411": {"home": "https://www.mizuho-fg.co.jp/", "pages": ["https://www.mizuho-fg.co.jp/release/index.html", "https://www.mizuho-fg.co.jp/investors/ir_news/index.html"]},
@@ -10,7 +10,7 @@
   "285A": {"home": "https://www.kioxia-holdings.com/ja-jp/", "pages": ["https://www.kioxia-holdings.com/ja-jp/news.html", "https://www.kioxia-holdings.com/ja-jp/ir/news.html"]},
   "ORCL": {"home": "https://www.oracle.com/news/", "pages": ["https://www.oracle.com/news/", "q4:https://investor.oracle.com"], "cik": 1341439},
   "AUR": {"home": "https://aurora.tech/", "pages": ["https://ir.aurora.tech/news-events/press-releases", "https://aurora.tech/newsroom"], "cik": 1828108},
-  "ADBE": {"home": "https://news.adobe.com/", "pages": ["https://news.adobe.com/", "https://www.adobe.com/investor-relations.html"], "cik": 796343},
+  "ADBE": {"home": "https://news.adobe.com/", "only": "https://news.adobe.com/news/", "strip_title": "Adobe Newsroom", "pages": ["https://news.adobe.com/", "https://www.adobe.com/investor-relations.html"], "cik": 796343},
   "CBRS": {"home": "https://www.cerebras.ai/", "pages": ["https://www.cerebras.ai/company/newsroom", "https://www.cerebras.ai/company/news"], "cik": 2021728},
   "CRCL": {"home": "https://www.circle.com/", "pages": ["https://www.circle.com/pressroom", "https://investor.circle.com/news-events/press-releases"], "cik": 1876042},
   "GLW": {"home": "https://www.corning.com/", "pages": ["q4:https://investor.corning.com", "https://www.corning.com/worldwide/en/about-us/news-events.html"], "cik": 24741},
