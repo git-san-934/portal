@@ -13,12 +13,13 @@
 家計調査 長期時系列 表1-1（二人以上の世帯）: KAKEI_CONS_REAL_YOY ほか実質前年比、KAKEI_CONS_AMOUNT 消費支出額
 小売物価統計 第2表 東京都区部小売価格（直近13か月）: KOURI_TKY_RICE / EGG / GASOLINE
 住民基本台帳人口移動報告 月報 表1: IDOU_TOKYO_AREA_NET / IDOU_TOKYO_NET 転入超過数
-財務省 貿易統計 貿易概況 州別輸出入時系列表（CSV、直近約25か月）: TRADE_EXPORTS / IMPORTS / BALANCE（億円、原数値）と
-  TRADE_EXPORTS_YOY / TRADE_IMPORTS_YOY（前年同月比％、金額から計算）。速報→確報の改定は毎月のファイルで上書きされる
+財務省 貿易統計 貿易概況（CSV、直近約25か月）: series.json で "trade" を指定した TRADE_* 系列
+  （州別の総額、地域(国)別、主要商品別の輸出・輸入。億円の原数値か前年同月比）。速報→確報の改定は毎月のファイルで上書きされる。
+  品目や国を足すときは series.json に1件追加するだけでよい（見出しは表の英語表記: 例 "MOTOR VEHICLES", "USA"）
 ファイルの統計表IDは一覧ページから毎回探す（更新時に変わっても追随するため）。
 Excel は標準ライブラリだけで読む（xlsx.py）。
 """
-import csv, datetime as dt, html, io, json, os, re, urllib.request
+import csv, datetime as dt, html, io, json, os, re, time, urllib.error, urllib.request
 from fetch import ROOT, RAW, load_series, csv_path, read_csv, write_csv
 import xlsx
 
@@ -28,10 +29,16 @@ LFS_TABLE = "表番号 1-a-1"
 LFS_COLUMNS = {"LFS_EMPLOYED": 7, "LFS_UNEMP_RATE": 19}  # 表の列位置（就業者 男女計、完全失業率 男女計）
 
 
-def get(url):
+def get(url, tries=3):
     req = urllib.request.Request(url, headers={"User-Agent": "boj-stats-collector/1.0"})
-    with urllib.request.urlopen(req, timeout=90) as r:
-        return r.read()
+    for n in range(tries):  # 貿易統計の初回取り込みは数百ファイルになるので、一時的な切断は再試行する
+        try:
+            with urllib.request.urlopen(req, timeout=90) as r:
+                return r.read()
+        except (urllib.error.URLError, ConnectionError, TimeoutError):
+            if n == tries - 1:
+                raise
+            time.sleep(5 * (n + 1))
 
 
 def find_file(list_url, table_label):
@@ -200,48 +207,150 @@ def idou(rawdir):
     return out
 
 
-TRADE_LIST = (ESTAT + "/stat-search/files?page=1&layout=datalist&cycle=1&toukei=00350300&tstat=000001013137"
-              "&tclass1=000001013253&tclass2val=0")
+TRADE_BASE = ESTAT + "/stat-search/files?page=1&layout=datalist&cycle=1&toukei=00350300&tstat=000001013137&"
+# 貿易概況の時系列表（年ごとの一覧 → その年の最新月のファイル。ファイルには直近約25か月、単位千円）
+TRADE_TABLES = {
+    "area": ("tclass1=000001013253&tclass2val=0", "州別輸出入時系列表"),
+    "country": ("tclass1=000001013254&tclass2val=0", "地域(国)別輸出入時系列表"),  # 地域ごとに複数ファイル
+    "goods_ex": ("tclass1=000001013256&tclass2=000001013257&tclass3val=0", "主要商品別"),
+    "goods_im": ("tclass1=000001013256&tclass2=000001013258&tclass3val=0", "主要商品別"),
+}
 MONTH_ABBR = {m: i for i, m in enumerate(("Jan", "Feb", "Mar", "Apr", "May", "Jun",
                                           "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"), 1)}
 
 
-def trade(rawdir):
-    """貿易統計（財務省）の州別輸出入時系列表から世界計の輸出・輸入を取る。
-
-    ファイルは年ごとに1つ（その年の最新月までの直近約25か月、単位千円）。
-    普段は最新年だけ、初回（CSVが無いとき）は2009年以降の全年を古い順に読んで、新しいファイルの値で上書きする。
-    """
-    first = not os.path.exists(csv_path("ESTAT", "TRADE_EXPORTS"))
-    page = get(TRADE_LIST).decode("utf-8", "replace")
+def _trade_files(table, first):
+    """表の CSV を古い順に返す。普段は最新年だけ、初回は2009年以降の全年。"""
+    query, _ = TRADE_TABLES[table]
+    page = get(TRADE_BASE + query).decode("utf-8", "replace")
     years = sorted(set(re.findall(r"year=(\d{4})0&(?:amp;)?month=(\d{8})", page)))
     if not years:
-        raise RuntimeError("貿易統計 州別輸出入時系列表 の年一覧が見つからない")
-    exp, imp = {}, {}
+        raise RuntimeError(f"貿易統計 {table} の年一覧が見つからない")
     for y, m in (years if first else years[-1:]):
-        url = find_file(f"{TRADE_LIST}&year={y}0&month={m}", "州別輸出入時系列表")
-        body = get(url)
-        if (y, m) == years[-1]:
-            with open(os.path.join(rawdir, "trade_ik400h.csv"), "wb") as f:
-                f.write(body)
-        for r in csv.reader(io.StringIO(body.decode("utf-8-sig", "replace"))):
-            hit = re.fullmatch(r"(\d{4}) ([A-Z][a-z]{2})\.", r[0].strip()) if r else None
-            if hit and len(r) > 2 and r[1].isdigit() and r[2].isdigit():
-                d = f"{hit.group(1)}-{MONTH_ABBR[hit.group(2)]:02d}"
-                exp[d], imp[d] = int(r[1]), int(r[2])  # 千円
-    if not exp:
-        raise RuntimeError("貿易統計 州別輸出入時系列表 に月次の行が無い")
+        page = get(f"{TRADE_BASE}{query}&year={y}0&month={m}").decode("utf-8", "replace")
+        ids = dict.fromkeys(re.findall(r"file-download\?statInfId=(\d+)&(?:amp;)?fileKind=1", page))
+        for uid in ids:
+            yield get(f"{ESTAT}/stat-search/file-download?statInfId={uid}&fileKind=1")
 
-    def yoy(x):
-        return {d: str(round((v / x[p] - 1) * 100, 1) + 0.0) for d, v in x.items()
-                if (p := f"{int(d[:4]) - 1}{d[4:]}") in x and x[p]}
 
-    oku = lambda v: str(round(v / 1e5))  # 千円 → 億円
-    return {"TRADE_EXPORTS": {d: oku(v) for d, v in exp.items()},
-            "TRADE_IMPORTS": {d: oku(v) for d, v in imp.items()},
-            "TRADE_BALANCE": {d: oku(exp[d] - imp[d]) for d in exp if d in imp},
-            "TRADE_EXPORTS_YOY": yoy(exp), "TRADE_IMPORTS_YOY": yoy(imp)}
+def _trade_parse(body, table):
+    """{(品目・地域名, "EX"/"IM"): {YYYY-MM: 千円}}"""
+    rows = list(csv.reader(io.StringIO(body.decode("utf-8-sig", "replace"))))
+    head, sub = rows[0], rows[1]
+    cols = {}
+    if table in ("area", "country"):  # 名前の列が輸出、次の列が輸入
+        for i, name in enumerate(head):
+            if name.strip() and i + 1 < len(sub) and sub[i].strip() == "Exports":
+                cols[(name.strip(), "EX")] = i
+                cols[(name.strip(), "IM")] = i + 1
+    else:  # 名前の列が金額（次の列は数量）
+        side = "EX" if table == "goods_ex" else "IM"
+        for i, name in enumerate(head[2:], 2):
+            if name.strip() and sub[i].strip() == "Value":
+                cols[(name.strip(), side)] = i
+    out = {k: {} for k in cols}
+    for r in rows[2:]:
+        cell = next((c.strip() for c in r[:2] if re.fullmatch(r"\d{4} [A-Z][a-z]{2}\.", c.strip())), None)
+        if not cell:
+            continue
+        d = f"{cell[:4]}-{MONTH_ABBR[cell[5:8]]:02d}"
+        for k, i in cols.items():
+            if i < len(r) and r[i].strip().isdigit():
+                out[k][d] = int(r[i])
+    return out
 
+
+# 品別国別表（HS 9桁 × 国、年ごと・部ごとのファイル。1ファイル数MB）
+HS_TABLES = {"hs_ex": "tstat=000001013141&tclass1=000001013180&tclass2=000001013181&tclass3val=0",
+             "hs_im": "tstat=000001013141&tclass1=000001013180&tclass2=000001013182&tclass3val=0"}
+HS_FIRST_YEAR = 2016
+
+
+def _hs_values(table, specs, first):
+    """specs: [(hs の接頭辞のタプル, 国コード or None)] → {spec: {YYYY-MM: 千円}}。
+    普段は直近2年（前年同月比のため）、初回は HS_FIRST_YEAR 以降。"""
+    base = TRADE_BASE.replace("tstat=000001013137&", "") + HS_TABLES[table]
+    page = get(base).decode("utf-8", "replace")
+    years = sorted(set(re.findall(r"year=(\d{4})0&(?:amp;)?month=(\d{8})", page)))
+    years = [ym for ym in years if int(ym[0]) >= HS_FIRST_YEAR] if first else years[-2:]
+    chapters = {p[:2] for hs, _ in specs for p in hs}
+    out = {sp: {} for sp in specs}
+    for y, m in years:
+        last = int(m[-2:])  # その年の公表済みの月
+        page = get(f"{base}&year={y}0&month={m}").decode("utf-8", "replace")
+        for mm in re.finditer(r"file-download\?statInfId=(\d+)&(?:amp;)?fileKind=1", page):
+            text = html.unescape(re.sub(r"<[^>]+>", " ", page[max(0, mm.start() - 600):mm.start()]))
+            rng = re.findall(r"(\d\d)(?:-(\d\d))?類", text)
+            if not rng:
+                continue
+            lo, hi = rng[-1][0], rng[-1][1] or rng[-1][0]
+            if not any(lo <= c <= hi for c in chapters):
+                continue
+            body = get(f"{ESTAT}/stat-search/file-download?statInfId={mm.group(1)}&fileKind=1")
+            rows = csv.reader(io.StringIO(body.decode("utf-8-sig", "replace")))
+            head = next(rows)
+            vcol = [i for i, h in enumerate(head) if h.startswith("Value-") and h != "Value-Year"][:last]  # 年により Apr が Apl
+            sums = {sp: [0] * last for sp in specs}
+            seen = set()
+            for r in rows:
+                code = r[2].strip("' ")
+                for sp in specs:
+                    hs, country = sp
+                    if code.startswith(hs):
+                        seen.add(sp)  # その年の表にこの品目がある（無い年は0で埋めない）
+                        if country is None or r[3].strip() == country:
+                            for k, c in enumerate(vcol):
+                                sums[sp][k] += int(r[c] or 0)
+            for sp in seen:
+                for k, v in enumerate(sums[sp]):
+                    out[sp][f"{y}-{k + 1:02d}"] = v
+    return out
+
+
+def trade(rawdir):
+    """財務省 貿易統計（貿易概況）から series.json の "trade" 指定の系列を作る。
+
+    trade = {"table": area|country|goods_ex|goods_im, "item": 表の見出し（英語のまま）,
+             "side": EX|IM|BAL, "calc": value（億円）|yoy（前年同月比％）}
+    品別国別表なら {"table": hs_ex|hs_im, "hs": [HSコードの接頭辞...], "country": 国コード（省略で全世界）,
+                  "side": EX|IM, "calc": ...}。国コードは税関の3桁（台湾 106、中国 105、米国 304 など）
+    """
+    wanted = [s for s in load_series() if s["db"] == "ESTAT" and "trade" in s]
+    tables = {}
+    for s in wanted:
+        t = s["trade"]["table"]
+        tables[t] = tables.get(t, False) or not os.path.exists(csv_path("ESTAT", s["code"]))
+    raw = {}
+    for table in [t for t in tables if t in HS_TABLES]:
+        specs = {(tuple(s["trade"]["hs"]), s["trade"].get("country")) for s in wanted if s["trade"]["table"] == table}
+        for (hs, country), v in _hs_values(table, sorted(specs, key=str), tables.pop(table)).items():
+            raw[(table, (hs, country), "EX" if table == "hs_ex" else "IM")] = v
+    for table, first in tables.items():
+        for n, body in enumerate(_trade_files(table, first)):
+            if table == "area":
+                with open(os.path.join(rawdir, "trade_area.csv"), "wb") as f:
+                    f.write(body)
+            for k, v in _trade_parse(body, table).items():
+                raw.setdefault((table,) + k, {}).update(v)  # 新しいファイルの値で上書き（改定の反映）
+    out = {}
+    for s in wanted:
+        t = s["trade"]
+        if t["side"] == "BAL":
+            ex, im = raw.get((t["table"], t["item"], "EX"), {}), raw.get((t["table"], t["item"], "IM"), {})
+            x = {d: ex[d] - im[d] for d in ex if d in im}
+        elif t["table"] in HS_TABLES:
+            x = raw.get((t["table"], (tuple(t["hs"]), t.get("country")), t["side"]), {})
+        else:
+            x = raw.get((t["table"], t["item"], t["side"]), {})
+        if t.get("calc") == "yoy":
+            out[s["code"]] = {d: str(round((v / x[p] - 1) * 100, 1) + 0.0) for d, v in x.items()
+                              if (p := f"{int(d[:4]) - 1}{d[4:]}") in x and x[p] > 0}
+        else:
+            nd = 1 if t["table"] in HS_TABLES else None  # 細かい品目は小さいので 0.1億円まで
+            out[s["code"]] = {d: str(round(v / 1e5, nd)) for d, v in x.items()}  # 千円 → 億円
+    if wanted and not any(out.values()):
+        raise RuntimeError("貿易統計の表に対象の品目・地域が見つからない")
+    return out
 
 def labour(rawdir):
     body = get(find_file(LFS_LIST, LFS_TABLE))

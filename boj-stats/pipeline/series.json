@@ -611,7 +611,13 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "verified": true
+   "verified": true,
+   "trade": {
+    "table": "area",
+    "item": "Total",
+    "side": "EX",
+    "calc": "value"
+   }
   },
   {
    "db": "ESTAT",
@@ -620,7 +626,13 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "verified": true
+   "verified": true,
+   "trade": {
+    "table": "area",
+    "item": "Total",
+    "side": "IM",
+    "calc": "value"
+   }
   },
   {
    "db": "ESTAT",
@@ -629,7 +641,13 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "verified": true
+   "verified": true,
+   "trade": {
+    "table": "area",
+    "item": "Total",
+    "side": "BAL",
+    "calc": "value"
+   }
   },
   {
    "db": "ESTAT",
@@ -638,7 +656,13 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "trade": {
+    "table": "area",
+    "item": "Total",
+    "side": "EX",
+    "calc": "yoy"
+   }
   },
   {
    "db": "ESTAT",
@@ -647,7 +671,499 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "trade": {
+    "table": "area",
+    "item": "Total",
+    "side": "IM",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_USA",
+   "name": "貿易統計 輸出 対米国",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "USA",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_USA_YOY",
+   "name": "貿易統計 輸出 対米国 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "USA",
+    "side": "EX",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_IM_USA",
+   "name": "貿易統計 輸入 対米国",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "USA",
+    "side": "IM",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_IM_USA_YOY",
+   "name": "貿易統計 輸入 対米国 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "USA",
+    "side": "IM",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_CHINA",
+   "name": "貿易統計 輸出 対中国",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "CHINA",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_CHINA_YOY",
+   "name": "貿易統計 輸出 対中国 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "CHINA",
+    "side": "EX",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_IM_CHINA",
+   "name": "貿易統計 輸入 対中国",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "CHINA",
+    "side": "IM",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_IM_CHINA_YOY",
+   "name": "貿易統計 輸入 対中国 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "CHINA",
+    "side": "IM",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_EU",
+   "name": "貿易統計 輸出 対EU",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "EU",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_EU_YOY",
+   "name": "貿易統計 輸出 対EU 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "EU",
+    "side": "EX",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_IM_EU",
+   "name": "貿易統計 輸入 対EU",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "EU",
+    "side": "IM",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_IM_EU_YOY",
+   "name": "貿易統計 輸入 対EU 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "EU",
+    "side": "IM",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_ASEAN",
+   "name": "貿易統計 輸出 対ASEAN",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "ASEAN",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_ASEAN_YOY",
+   "name": "貿易統計 輸出 対ASEAN 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "ASEAN",
+    "side": "EX",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_IM_ASEAN",
+   "name": "貿易統計 輸入 対ASEAN",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "ASEAN",
+    "side": "IM",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_IM_ASEAN_YOY",
+   "name": "貿易統計 輸入 対ASEAN 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "ASEAN",
+    "side": "IM",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TAIWAN",
+   "name": "貿易統計 輸出 対台湾",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "TAIWAN",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TAIWAN_YOY",
+   "name": "貿易統計 輸出 対台湾 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "country",
+    "item": "TAIWAN",
+    "side": "EX",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_NAND",
+   "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み）",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "854232921"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_NAND_YOY",
+   "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み） 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "854232921"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_DRAM",
+   "name": "貿易統計 台湾向け輸出 DRAM（組立済み）",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "854232911"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_DRAM_YOY",
+   "name": "貿易統計 台湾向け輸出 DRAM（組立済み） 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "854232911"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_MEM_DIE",
+   "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ）",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "854232100"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_MEM_DIE_YOY",
+   "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ） 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "854232100"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_MLCC",
+   "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC）",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "853224"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_MLCC_YOY",
+   "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC） 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "853224"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_IC",
+   "name": "貿易統計 台湾向け輸出 集積回路 計",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "8542"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_IC_YOY",
+   "name": "貿易統計 台湾向け輸出 集積回路 計 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "8542"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "yoy"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_SEMI_EQUIP",
+   "name": "貿易統計 台湾向け輸出 半導体等製造装置",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "8486"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "value"
+   }
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_SEMI_EQUIP_YOY",
+   "name": "貿易統計 台湾向け輸出 半導体等製造装置 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true,
+   "trade": {
+    "table": "hs_ex",
+    "hs": [
+     "8486"
+    ],
+    "country": "106",
+    "side": "EX",
+    "calc": "yoy"
+   }
   }
  ]
 }

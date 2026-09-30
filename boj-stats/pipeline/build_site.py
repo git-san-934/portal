@@ -34,6 +34,7 @@ CATEGORIES = [
     ("物価", lambda s: s["db"] in ("PR01", "PR02", "CPI") or s["code"].startswith(("CPI_", "KOURI_"))),
     ("お金の量・貸出", lambda s: s["db"] in ("MD02", "MD13", "IR04", "LA05")),
     ("景況感・家計の資産", lambda s: s["db"] in ("CO", "FF")),
+    ("貿易（国別・品目別）", lambda s: s["code"].startswith(("TRADE_EX_", "TRADE_IM_"))),
     ("国際収支・貿易", lambda s: s["db"] == "BP01" or s["code"].startswith("TRADE_")),
     ("消費・雇用・人口", lambda s: True),
 ]
