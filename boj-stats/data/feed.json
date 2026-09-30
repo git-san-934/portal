@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-01T06:20+09:00",
+ "generated_at": "2026-10-01T07:43+09:00",
  "report_date": "2026-10-01",
  "days": [
   {
@@ -13,6 +13,60 @@
      "type": "1年高値更新",
      "dir": "上昇",
      "detail": "28%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_USA_YOY",
+     "name": "貿易統計 輸出 対米国 前年同月比",
+     "obs": "2026-08",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "24.9%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_IM_EU_YOY",
+     "name": "貿易統計 輸入 対EU 前年同月比",
+     "obs": "2026-08",
+     "type": "トレンド転換",
+     "dir": "上昇",
+     "detail": "3期移動平均が12期移動平均を上抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_DRAM",
+     "name": "貿易統計 台湾向け輸出 DRAM（組立済み）",
+     "obs": "2026-08",
+     "type": "急変",
+     "dir": "低下",
+     "detail": "-4億円（z=-6.5）"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_MEM_DIE",
+     "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ）",
+     "obs": "2026-08",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "1,521億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_MLCC_YOY",
+     "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC） 前年同月比",
+     "obs": "2026-08",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "55%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_IC",
+     "name": "貿易統計 台湾向け輸出 集積回路 計",
+     "obs": "2026-08",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "2,079億円"
     }
    ]
   },
@@ -408,6 +462,7 @@
   "物価",
   "お金の量・貸出",
   "景況感・家計の資産",
+  "貿易（国別・品目別）",
   "国際収支・貿易",
   "消費・雇用・人口"
  ],
@@ -1631,6 +1686,516 @@
    "value": "28",
    "change": "+0.100%pt",
    "implication": "輸入の伸び。資源価格・為替の動きを強く映す。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_USA": {
+   "name": "貿易統計 輸出 対米国",
+   "db": "ESTAT",
+   "code": "TRADE_EX_USA",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "17,244",
+   "change": "-3,662億円",
+   "implication": "米国向け輸出。自動車が中心で、米国の景気と関税の影響を受けやすい。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_USA_YOY": {
+   "name": "貿易統計 輸出 対米国 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_USA_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "24.9",
+   "change": "+2.900%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_IM_USA": {
+   "name": "貿易統計 輸入 対米国",
+   "db": "ESTAT",
+   "code": "TRADE_IM_USA",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "16,544",
+   "change": "-1,572億円",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_IM_USA_YOY": {
+   "name": "貿易統計 輸入 対米国 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_IM_USA_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "55.2",
+   "change": "-2.900%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_CHINA": {
+   "name": "貿易統計 輸出 対中国",
+   "db": "ESTAT",
+   "code": "TRADE_EX_CHINA",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "18,091",
+   "change": "-1,995億円",
+   "implication": "中国向け輸出。半導体製造装置・電子部品・化学品が多く、中国の景気と輸出規制の影響を受ける。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_CHINA_YOY": {
+   "name": "貿易統計 輸出 対中国 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_CHINA_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "20.5",
+   "change": "-5.300%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_IM_CHINA": {
+   "name": "貿易統計 輸入 対中国",
+   "db": "ESTAT",
+   "code": "TRADE_IM_CHINA",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "23,612",
+   "change": "-4,238億円",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_IM_CHINA_YOY": {
+   "name": "貿易統計 輸入 対中国 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_IM_CHINA_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "22.5",
+   "change": "-3.700%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_EU": {
+   "name": "貿易統計 輸出 対EU",
+   "db": "ESTAT",
+   "code": "TRADE_EX_EU",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "8,664",
+   "change": "-1,661億円",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_EU_YOY": {
+   "name": "貿易統計 輸出 対EU 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_EU_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "11",
+   "change": "-8.100%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_IM_EU": {
+   "name": "貿易統計 輸入 対EU",
+   "db": "ESTAT",
+   "code": "TRADE_IM_EU",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "10,969",
+   "change": "-232億円",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_IM_EU_YOY": {
+   "name": "貿易統計 輸入 対EU 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_IM_EU_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "20.4",
+   "change": "+22.700%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_ASEAN": {
+   "name": "貿易統計 輸出 対ASEAN",
+   "db": "ESTAT",
+   "code": "TRADE_EX_ASEAN",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "14,820",
+   "change": "-2,569億円",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_ASEAN_YOY": {
+   "name": "貿易統計 輸出 対ASEAN 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_ASEAN_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "22.3",
+   "change": "-5.500%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_IM_ASEAN": {
+   "name": "貿易統計 輸入 対ASEAN",
+   "db": "ESTAT",
+   "code": "TRADE_IM_ASEAN",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "17,889",
+   "change": "-1,704億円",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_IM_ASEAN_YOY": {
+   "name": "貿易統計 輸入 対ASEAN 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_IM_ASEAN_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "27",
+   "change": "-4.200%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TAIWAN": {
+   "name": "貿易統計 輸出 対台湾",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TAIWAN",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "8,861",
+   "change": "-227億円",
+   "implication": "台湾向け輸出。半導体の受託製造（TSMCなど）向けの装置・材料・部品が多く、AI・半導体の設備投資の目安。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TAIWAN_YOY": {
+   "name": "貿易統計 輸出 対台湾 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TAIWAN_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "39.7",
+   "change": "-3.700%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_NAND": {
+   "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み）",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_NAND",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "181",
+   "change": "+65億円",
+   "implication": "台湾向けのフラッシュメモリ（組立済み）。NAND の需要と価格の動きを映す。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_NAND_YOY": {
+   "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み） 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_NAND_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "68.7",
+   "change": "+28.800%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_DRAM": {
+   "name": "貿易統計 台湾向け輸出 DRAM（組立済み）",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_DRAM",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "1.8",
+   "change": "-4億円",
+   "implication": "台湾向けの DRAM（組立済み）。日本からの出荷は小さく、月ごとの振れが大きい。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_DRAM_YOY": {
+   "name": "貿易統計 台湾向け輸出 DRAM（組立済み） 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_DRAM_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "1,133",
+   "change": "-195.600%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_MEM_DIE": {
+   "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ）",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_MEM_DIE",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "1,521",
+   "change": "+118億円",
+   "implication": "台湾向けのメモリのウエハー・チップ（未組立）。台湾で組み立てるNANDなどの素材で、メモリ需要の先行指標。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_MEM_DIE_YOY": {
+   "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ） 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_MEM_DIE_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "86",
+   "change": "+22.100%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_MLCC": {
+   "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC）",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_MLCC",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "136.6",
+   "change": "-16億円",
+   "implication": "台湾向けの積層セラミックコンデンサ。スマホ・PC・AIサーバーの部品需要を映し、村田製作所など電子部品株に関係する。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_MLCC_YOY": {
+   "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC） 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_MLCC_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "55",
+   "change": "+4.300%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_IC": {
+   "name": "貿易統計 台湾向け輸出 集積回路 計",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_IC",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "2,079",
+   "change": "+163億円",
+   "implication": "台湾向けの集積回路の合計（メモリ・ロジックなど）。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_IC_YOY": {
+   "name": "貿易統計 台湾向け輸出 集積回路 計 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_IC_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "66.2",
+   "change": "+13.300%pt",
+   "implication": "",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_SEMI_EQUIP": {
+   "name": "貿易統計 台湾向け輸出 半導体等製造装置",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_SEMI_EQUIP",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "1,077",
+   "change": "-95億円",
+   "implication": "台湾向けの半導体製造装置。TSMCなどの設備投資の動きを映し、東京エレクトロンなど装置株に関係する。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EX_TW_SEMI_EQUIP_YOY": {
+   "name": "貿易統計 台湾向け輸出 半導体等製造装置 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EX_TW_SEMI_EQUIP_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "貿易（国別・品目別）",
+   "date": "2026-08",
+   "value": "30.7",
+   "change": "-5.500%pt",
+   "implication": "",
    "source": [
     "財務省 貿易統計（e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
