@@ -34,15 +34,12 @@ https://git-san-934.github.io/portal/
 | 海外投資家の需給 | https://git-san-934.github.io/portal/foreign-flow/ |
 | 過去最高値ブレイクのその後 | https://git-san-934.github.io/portal/ath-breakout/ |
 | 不祥事株のその後 | https://git-san-934.github.io/portal/scandal-watch/ |
-| 広告費ウォッチ | https://git-san-934.github.io/portal/ad-watch/ |
 | 日経ヒートマップ | https://git-san-934.github.io/nikkei-heatmap/ |
 | 東証株価データベース | https://git-san-934.github.io/tse-price-db/ |
 | 東証チャートスクロール | https://git-san-934.github.io/portal/tse-chart-scroll/ |
 | 業種別ETFチャート一覧 | https://git-san-934.github.io/portal/sector-etf/ |
 | 親子上場ウォッチリスト | https://git-san-934.github.io/tse-price-db/oyako.html |
 | 自社株買情報 | https://git-san-934.github.io/ir-watch-app/ |
-| Yukashoken Watch | https://git-san-934.github.io/yukashoken-watch/ |
-| シクリカルバリュー・スクリーナー | https://git-san-934.github.io/stock-tachan-1/ |
 | コエカレ | https://git-san-934.github.io/koekare/ |
 | 外食履歴 | https://git-san-934.github.io/claude-code-book-template/ |
 
