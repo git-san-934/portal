@@ -1,0 +1,64 @@
+name: 日銀統計の新着 データ更新
+
+# 日本銀行の統計API・財務省・総務省統計局・e-Stat から取得し、変化を検知して
+# boj-stats/data/feed.json を作り直す。日銀の公表(8:50)後と、財務省の国債金利(夕方)後の1日2回。
+on:
+  schedule:
+    - cron: "15 1 * * 1-5" # 平日 10:15 JST
+    - cron: "30 9 * * 1-5" # 平日 18:30 JST
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - boj-stats/pipeline/*.py
+      - boj-stats/pipeline/*.sh
+      - .github/workflows/update-boj-stats.yml
+
+permissions:
+  contents: write # データをコミットする
+  actions: write # 更新後に Pages のデプロイを起動する
+
+concurrency:
+  group: boj-stats-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 30
+    env:
+      TZ: Asia/Tokyo # 日付(検知日・公表を見つけた日)を日本時間にする
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # PR では PR のブランチに結果をコミットする(検証用)
+          ref: ${{ github.head_ref || github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: 統計を取得して変化を検知(一部の取得元が失敗しても続ける)
+        run: |
+          sh boj-stats/pipeline/run_daily.sh || echo "::warning::一部の取得に失敗しました"
+          cat boj-stats/pipeline/logs/*.fetch.log || true
+      - name: ページ用のデータを作る
+        run: python boj-stats/pipeline/build_site.py
+      - name: 結果をコミット
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add boj-stats/data boj-stats/pipeline/data boj-stats/pipeline/reports
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "日銀統計の新着 データ更新 ($(date +%F))"
+          BRANCH="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$BRANCH"
+          git push origin HEAD:"$BRANCH"
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
+      - name: GitHub Pages を再デプロイ
+        if: steps.commit.outputs.changed == 'true' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

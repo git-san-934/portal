@@ -1,0 +1,1542 @@
+{
+ "generated_at": "2026-09-30T12:41+00:00",
+ "report_date": "2026-09-30",
+ "days": [
+  {
+   "date": "2026-09-30",
+   "items": [
+    {
+     "kind": "release",
+     "id": "ESTAT_IDOU_TOKYO_AREA_NET",
+     "name": "東京圏の転入超過数（住民基本台帳）",
+     "obs": "2026-08",
+     "value": "3,261",
+     "unit": "人",
+     "change": "+2,423人"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_IDOU_TOKYO_NET",
+     "name": "東京都の転入超過数（住民基本台帳）",
+     "obs": "2026-08",
+     "value": "1,044",
+     "unit": "人",
+     "change": "+1,845人"
+    },
+    {
+     "kind": "signal",
+     "id": "FM01_STRDCLUCV",
+     "name": "無担保コールO/N物 出来高",
+     "obs": "2026-09-28",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "53,807億円"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-29",
+   "items": [
+    {
+     "kind": "signal",
+     "id": "FM01_STRDCLUCV",
+     "name": "無担保コールO/N物 出来高",
+     "obs": "2026-09-25",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "52,322億円"
+    },
+    {
+     "kind": "signal",
+     "id": "MOF_JGB2Y",
+     "name": "国債利回り 2年",
+     "obs": "2026-09-28",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "1.981%"
+    },
+    {
+     "kind": "signal",
+     "id": "MOF_JGB10Y",
+     "name": "国債利回り 10年",
+     "obs": "2026-09-28",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "3.082%"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-28",
+   "items": [
+    {
+     "kind": "signal",
+     "id": "FM01_STRDCLUCON",
+     "name": "無担保コールO/N物レート（平均）",
+     "obs": "2026-09-24",
+     "type": "急変",
+     "dir": "上昇",
+     "detail": "+0.250%pt（z=+201.9）"
+    },
+    {
+     "kind": "signal",
+     "id": "FM01_STRDCLUCON",
+     "name": "無担保コールO/N物レート（平均）",
+     "obs": "2026-09-24",
+     "type": "トレンド転換",
+     "dir": "上昇",
+     "detail": "20期移動平均が60期移動平均を上抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "FM01_STRDCLUCON",
+     "name": "無担保コールO/N物レート（平均）",
+     "obs": "2026-09-24",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "1.227%"
+    },
+    {
+     "kind": "signal",
+     "id": "FM08_FXERD31",
+     "name": "ユーロドル 9時（東京市場）",
+     "obs": "2026-09-24",
+     "type": "急変",
+     "dir": "低下",
+     "detail": "-0.82%（z=-3.0）"
+    },
+    {
+     "kind": "signal",
+     "id": "IR01_MADR1Z_at_D",
+     "name": "基準貸付利率（日次）",
+     "obs": "2026-09-24",
+     "type": "急変",
+     "dir": "上昇",
+     "detail": "+0.250%pt"
+    },
+    {
+     "kind": "signal",
+     "id": "IR01_MADR1Z_at_D",
+     "name": "基準貸付利率（日次）",
+     "obs": "2026-09-24",
+     "type": "トレンド転換",
+     "dir": "上昇",
+     "detail": "20期移動平均が60期移動平均を上抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "IR01_MADR1Z_at_D",
+     "name": "基準貸付利率（日次）",
+     "obs": "2026-09-24",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "1.5%"
+    },
+    {
+     "kind": "signal",
+     "id": "MD01_MABS1AN11",
+     "name": "マネタリーベース平均残高",
+     "obs": "2026-08",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "5,430,070億円"
+    },
+    {
+     "kind": "signal",
+     "id": "MD01_MABS1AN11_at_",
+     "name": "マネタリーベース平均残高 前年比",
+     "obs": "2026-08",
+     "type": "急変",
+     "dir": "低下",
+     "detail": "-1.900%pt（z=-2.3）"
+    },
+    {
+     "kind": "signal",
+     "id": "MD01_MABS1AN11_at_",
+     "name": "マネタリーベース平均残高 前年比",
+     "obs": "2026-08",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "-15.7%"
+    },
+    {
+     "kind": "signal",
+     "id": "MD01_MABS1AN113",
+     "name": "マネタリーベース うち日銀当座預金",
+     "obs": "2026-08",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "4,234,230億円"
+    },
+    {
+     "kind": "signal",
+     "id": "MD06_MASDM_at_07",
+     "name": "日銀当座預金（増減要因）",
+     "obs": "2026-08",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "4,243,220億円"
+    },
+    {
+     "kind": "signal",
+     "id": "MD06_MASDM58",
+     "name": "金融調節 国債買入",
+     "obs": "2026-08",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "23,212億円"
+    },
+    {
+     "kind": "signal",
+     "id": "MOF_JGB2Y",
+     "name": "国債利回り 2年",
+     "obs": "2026-09-25",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "1.948%"
+    },
+    {
+     "kind": "signal",
+     "id": "PR02_PRCS20_5200000000%",
+     "name": "企業向けサービス価格指数 前年比",
+     "obs": "2026-08",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "3.7%"
+    },
+    {
+     "kind": "signal",
+     "id": "IR04_DLLR2CIDBST1",
+     "name": "貸出約定平均金利 残高・国内銀行",
+     "obs": "2026-07",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "1.483%"
+    },
+    {
+     "kind": "signal",
+     "id": "LA05_DLLSDLPB",
+     "name": "資金需要判断DI 企業向け（主要銀行アンケート）",
+     "obs": "2026Q3",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "2期移動平均が4期移動平均を下抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "LA05_DLLSDLPB",
+     "name": "資金需要判断DI 企業向け（主要銀行アンケート）",
+     "obs": "2026Q3",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "-1%pt"
+    },
+    {
+     "kind": "signal",
+     "id": "CO_TK99F1000601GCQ01000",
+     "name": "短観 業況判断DI 大企業製造業",
+     "obs": "2026Q2",
+     "type": "急変",
+     "dir": "上昇",
+     "detail": "+5.000%pt（z=+2.9）"
+    },
+    {
+     "kind": "signal",
+     "id": "CO_TK99F1000601GCQ01000",
+     "name": "短観 業況判断DI 大企業製造業",
+     "obs": "2026Q2",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "22%pt"
+    },
+    {
+     "kind": "signal",
+     "id": "CO_TK99F2000601GCQ01000",
+     "name": "短観 業況判断DI 大企業非製造業",
+     "obs": "2026Q2",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "37%pt"
+    },
+    {
+     "kind": "signal",
+     "id": "CO_TK99F0000204HCQ00000",
+     "name": "短観 企業の物価見通し 1年後",
+     "obs": "2026Q2",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "2.7%"
+    },
+    {
+     "kind": "signal",
+     "id": "FF_FOF_FFAS430A900",
+     "name": "資金循環 家計の金融資産 合計",
+     "obs": "2026Q2",
+     "type": "急変",
+     "dir": "上昇",
+     "detail": "+4.58%（z=+3.2）"
+    },
+    {
+     "kind": "signal",
+     "id": "FF_FOF_FFAS430A900",
+     "name": "資金循環 家計の金融資産 合計",
+     "obs": "2026Q2",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "25,191,289億円"
+    },
+    {
+     "kind": "signal",
+     "id": "FF_FOF_FFAS430A100",
+     "name": "資金循環 家計の現金・預金",
+     "obs": "2026Q2",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "2期移動平均が4期移動平均を下抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "FF_FOF_FFAS430A334",
+     "name": "資金循環 家計の株式等・投資信託",
+     "obs": "2026Q2",
+     "type": "急変",
+     "dir": "上昇",
+     "detail": "+14.03%（z=+3.3）"
+    },
+    {
+     "kind": "signal",
+     "id": "FF_FOF_FFAS430A334",
+     "name": "資金循環 家計の株式等・投資信託",
+     "obs": "2026Q2",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "6,789,608億円"
+    },
+    {
+     "kind": "signal",
+     "id": "BP01_BPBP6JYNFB",
+     "name": "国際収支 金融収支",
+     "obs": "2026-07",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "3期移動平均が12期移動平均を下抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "STAT_CTI_TOTAL_REAL_YOY",
+     "name": "総消費動向指数（実質）前年比",
+     "obs": "2026-07",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "0.6%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_POP_NET_MIGRATION",
+     "name": "人口の社会増減（入国−出国）",
+     "obs": "2026-03",
+     "type": "トレンド転換",
+     "dir": "上昇",
+     "detail": "3期移動平均が12期移動平均を上抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_POP_NET_MIGRATION",
+     "name": "人口の社会増減（入国−出国）",
+     "obs": "2026-03",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "110,464人"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_KAKEI_CONS_REAL_YOY",
+     "name": "家計調査 消費支出 実質前年比（二人以上の世帯）",
+     "obs": "2026-07",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "-3.6%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_KAKEI_GOODS_REAL_YOY",
+     "name": "家計調査 財（商品）支出 実質前年比",
+     "obs": "2026-07",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "-4.9%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_KOURI_TKY_RICE",
+     "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
+     "obs": "2026-08",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "4,326円"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_IDOU_TOKYO_AREA_NET",
+     "name": "東京圏の転入超過数（住民基本台帳）",
+     "obs": "2026-07",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "838人"
+    }
+   ]
+  }
+ ],
+ "categories": [
+  "短期金利・為替",
+  "国債利回り",
+  "日銀の資金供給",
+  "物価",
+  "お金の量・貸出",
+  "景況感・家計の資産",
+  "国際収支",
+  "消費・雇用・人口"
+ ],
+ "series": {
+  "FM01_STRDCLUCON": {
+   "name": "無担保コールO/N物レート（平均）",
+   "db": "FM01",
+   "code": "STRDCLUCON",
+   "freq": "D",
+   "unit": "%",
+   "kind": "rate",
+   "category": "短期金利・為替",
+   "date": "2026-09-28",
+   "value": "1.227",
+   "change": "+0.000%pt",
+   "implication": "短期金利の上昇は利上げ・引締め方向のシグナル。一般に債券（特に短中期）価格には下押し、円には上昇（円高）圧力、銀行株には利ざや改善期待でプラス、REIT・不動産や高PERのグロース株には逆風とされる。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "FM01_STRDCLUCV": {
+   "name": "無担保コールO/N物 出来高",
+   "db": "FM01",
+   "code": "STRDCLUCV",
+   "freq": "D",
+   "unit": "億円",
+   "kind": "level",
+   "category": "短期金利・為替",
+   "date": "2026-09-28",
+   "value": "53,807",
+   "change": "+2.84%",
+   "implication": "出来高の増加は短期金融市場の取引活発化（金利がつく環境への移行、市場機能の回復）を示すことが多い。直接の価格シグナルではなく、金利変化の裏付けとして見る。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "FM08_FXERD04": {
+   "name": "ドル円スポット 17時（東京市場）",
+   "db": "FM08",
+   "code": "FXERD04",
+   "freq": "D",
+   "unit": "円/ドル",
+   "kind": "level",
+   "category": "短期金利・為替",
+   "date": "2026-09-28",
+   "value": "157.23",
+   "change": "-0.55%",
+   "implication": "ドル円の上昇（円安）は一般に輸出関連株や外貨建て資産の円換算額にプラス、輸入物価経由で物価上昇圧力となり、日銀の引締め観測を強めることがある。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "FM08_FXERD31": {
+   "name": "ユーロドル 9時（東京市場）",
+   "db": "FM08",
+   "code": "FXERD31",
+   "freq": "D",
+   "unit": "ドル/ユーロ",
+   "kind": "level",
+   "category": "短期金利・為替",
+   "date": "2026-09-28",
+   "value": "1.1378",
+   "change": "+0.04%",
+   "implication": "ユーロドルの上昇はドル全面安を示す。ドル円と合わせて見ると、円安/円高がドル要因か円要因かの切り分けに使える。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "IR01_MADR1Z_at_D": {
+   "name": "基準貸付利率（日次）",
+   "db": "IR01",
+   "code": "MADR1Z@D",
+   "freq": "D",
+   "unit": "%",
+   "kind": "rate",
+   "category": "短期金利・為替",
+   "date": "2026-09-28",
+   "value": "1.5",
+   "change": "+0.000%pt",
+   "implication": "基準貸付利率は政策金利の変更に連動しやすい。上昇なら利上げ局面入り/継続を示し、影響はコールレート上昇時と同方向でより強い。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "MD01_MABS1AN11": {
+   "name": "マネタリーベース平均残高",
+   "db": "MD01",
+   "code": "MABS1AN11",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "date": "2026-08",
+   "value": "5,430,070",
+   "change": "-2.15%",
+   "implication": "マネタリーベースの伸び鈍化・減少は量的引締め（QT）の進行を示し、長期金利の上昇圧力、債券には逆風、利ざや面で銀行株には相対的にプラスとされる。拡大はその逆。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "MD01_MABS1AN11_at_": {
+   "name": "マネタリーベース平均残高 前年比",
+   "db": "MD01",
+   "code": "MABS1AN11@",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "日銀の資金供給",
+   "date": "2026-08",
+   "value": "-15.7",
+   "change": "-1.900%pt",
+   "implication": "前年比の低下は資金供給の縮小ペース加速を示す（マネタリーベース残高と同じ解釈）。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "MD01_MABS1AN113": {
+   "name": "マネタリーベース うち日銀当座預金",
+   "db": "MD01",
+   "code": "MABS1AN113",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "date": "2026-08",
+   "value": "4,234,230",
+   "change": "-2.74%",
+   "implication": "日銀当座預金の減少は資金供給の縮小（国債買入減額や償還）を反映。長期金利上昇・円高方向の圧力とされる。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "MD06_MASDM_at_07": {
+   "name": "日銀当座預金（増減要因）",
+   "db": "MD06",
+   "code": "MASDM@07",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "date": "2026-08",
+   "value": "4,243,220",
+   "change": "-3.13%",
+   "implication": "日銀当座預金の減少は資金供給の縮小を反映。長期金利上昇・円高方向の圧力とされる。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "MD06_MASDM58": {
+   "name": "金融調節 国債買入",
+   "db": "MD06",
+   "code": "MASDM58",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "日銀の資金供給",
+   "date": "2026-08",
+   "value": "23,212",
+   "change": "-174億円",
+   "implication": "国債買入の減少は日銀の国債需要の後退を意味し、長期金利の上昇（債券価格の下落）圧力となりやすい。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "MD06_MASDM4": {
+   "name": "資金過不足",
+   "db": "MD06",
+   "code": "MASDM4",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "日銀の資金供給",
+   "date": "2026-08",
+   "value": "-159,349",
+   "change": "-76,068億円",
+   "implication": "資金過不足は財政・銀行券要因による市場資金の過不足。大きな不足は短期金利の上振れ要因になりうる。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BS01_MABJMA5B": {
+   "name": "日銀保有 長期国債（月末残高）",
+   "db": "BS01",
+   "code": "MABJMA5B",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "date": "2026-08",
+   "value": "5,199,276",
+   "change": "+0.11%",
+   "implication": "",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "MOF_JGB2Y": {
+   "name": "国債利回り 2年",
+   "db": "MOF",
+   "code": "JGB2Y",
+   "freq": "D",
+   "unit": "%",
+   "kind": "rate",
+   "category": "国債利回り",
+   "date": "2026-09-29",
+   "value": "1.976",
+   "change": "-0.005%pt",
+   "implication": "2年債利回りは今後1〜2年の政策金利予想をよく映す。上昇は追加利上げ観測の強まりを示す。",
+   "source": [
+    "財務省 国債金利情報",
+    "https://www.mof.go.jp/jgbs/reference/interest_rate/index.htm"
+   ]
+  },
+  "MOF_JGB10Y": {
+   "name": "国債利回り 10年",
+   "db": "MOF",
+   "code": "JGB10Y",
+   "freq": "D",
+   "unit": "%",
+   "kind": "rate",
+   "category": "国債利回り",
+   "date": "2026-09-29",
+   "value": "3.082",
+   "change": "+0.000%pt",
+   "implication": "10年債利回りの上昇は債券価格の下落を意味し、住宅ローン固定金利や企業の借入コストの上昇、REIT・高PER株には逆風、利ざや面で銀行・保険株には追い風とされる。日米金利差が縮めば円高要因にもなりうる。",
+   "source": [
+    "財務省 国債金利情報",
+    "https://www.mof.go.jp/jgbs/reference/interest_rate/index.htm"
+   ]
+  },
+  "MOF_JGB30Y": {
+   "name": "国債利回り 30年",
+   "db": "MOF",
+   "code": "JGB30Y",
+   "freq": "D",
+   "unit": "%",
+   "kind": "rate",
+   "category": "国債利回り",
+   "date": "2026-09-29",
+   "value": "4.126",
+   "change": "+0.004%pt",
+   "implication": "超長期金利の上昇は財政や物価への懸念（タームプレミアム）の高まりを映すことが多く、生保・年金の需要動向にも左右される。",
+   "source": [
+    "財務省 国債金利情報",
+    "https://www.mof.go.jp/jgbs/reference/interest_rate/index.htm"
+   ]
+  },
+  "PR01_PRCG20_2200000000": {
+   "name": "国内企業物価指数 総平均",
+   "db": "PR01",
+   "code": "PRCG20_2200000000",
+   "freq": "M",
+   "unit": "2020年=100",
+   "kind": "level",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "136.1",
+   "change": "-0.22%",
+   "implication": "企業物価指数の上昇は仕入れコストの上昇を示す（前年比の説明を参照）。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "PR01_PRCG20_2200000000%": {
+   "name": "国内企業物価指数 前年比",
+   "db": "PR01",
+   "code": "PRCG20_2200000000%",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "7.6",
+   "change": "-0.100%pt",
+   "implication": "企業物価の上昇率の高まりは、川下の消費者物価への転嫁を通じて日銀の利上げ観測を強めやすい。一般に債券には逆風、価格転嫁力のある企業には相対的にプラスとされる。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "PR01_PRCG20_2600000000%": {
+   "name": "輸入物価指数（円ベース）前年比",
+   "db": "PR01",
+   "code": "PRCG20_2600000000%",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "24.8",
+   "change": "-4.500%pt",
+   "implication": "円ベースの輸入物価の上昇は、円安や資源高による輸入インフレを示す。数か月遅れで企業物価・消費者物価に波及しやすい。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "PR02_PRCS20_5200000000%": {
+   "name": "企業向けサービス価格指数 前年比",
+   "db": "PR02",
+   "code": "PRCS20_5200000000%",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "3.7",
+   "change": "+0.100%pt",
+   "implication": "企業向けサービス価格は人件費の比率が高く、賃金上昇の価格転嫁を映す。上昇が続けば物価の基調の強さを示し、利上げ観測につながりやすい。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "MD02_MAM1YAM2M2MO": {
+   "name": "マネーストック M2 前年比",
+   "db": "MD02",
+   "code": "MAM1YAM2M2MO",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "お金の量・貸出",
+   "date": "2026-08",
+   "value": "2",
+   "change": "-0.100%pt",
+   "implication": "マネーストック（M2）の伸びは世の中に出回るお金の増え方。伸びの鈍化は金融引き締めや貸出の減速を映しやすい。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "MD02_MAM1YAM3M3MO": {
+   "name": "マネーストック M3 前年比",
+   "db": "MD02",
+   "code": "MAM1YAM3M3MO",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "お金の量・貸出",
+   "date": "2026-08",
+   "value": "1.2",
+   "change": "-0.100%pt",
+   "implication": "M3の伸び鈍化は預金の増え方が弱まっていることを示し、金融環境の引き締まりの目安になる。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "MD13_FAAPOBAL1_at_": {
+   "name": "銀行貸出（総貸出平残）前年比",
+   "db": "MD13",
+   "code": "FAAPOBAL1@",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "お金の量・貸出",
+   "date": "2026-08",
+   "value": "5.8",
+   "change": "-0.100%pt",
+   "implication": "銀行貸出の伸びは企業・家計の資金需要を映す。金利上昇局面でも伸びが続けば景気の底堅さ、急減速なら引き締め効果の表れとされる。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "IR04_DLLR2CIDBNL1": {
+   "name": "貸出約定平均金利 新規・国内銀行",
+   "db": "IR04",
+   "code": "DLLR2CIDBNL1",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "お金の量・貸出",
+   "date": "2026-07",
+   "value": "1.706",
+   "change": "-0.061%pt",
+   "implication": "新規貸出金利の上昇は政策金利の引き上げが企業・家計の借入コストに波及していることを示す。銀行の利ざや改善にはプラス、借り手には負担増。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "IR04_DLLR2CIDBST1": {
+   "name": "貸出約定平均金利 残高・国内銀行",
+   "db": "IR04",
+   "code": "DLLR2CIDBST1",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "お金の量・貸出",
+   "date": "2026-07",
+   "value": "1.483",
+   "change": "+0.031%pt",
+   "implication": "貸出残高全体の平均金利。新規金利より遅れて動き、銀行収益の改善ペースの目安になる。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "FM04_STTACLUTS1": {
+   "name": "無担保コール残高（平残・出し手）",
+   "db": "FM04",
+   "code": "STTACLUTS1",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "category": "短期金利・為替",
+   "date": "2026-08",
+   "value": "101,504",
+   "change": "+1.94%",
+   "implication": "無担保コールの残高増加は、金利のある世界への移行で短期市場の取引が戻っていることを示す。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "LA05_DLLSDLPB": {
+   "name": "資金需要判断DI 企業向け（主要銀行アンケート）",
+   "db": "LA05",
+   "code": "DLLSDLPB",
+   "freq": "Q",
+   "unit": "%pt",
+   "kind": "rate",
+   "category": "お金の量・貸出",
+   "date": "2026Q3",
+   "value": "-1",
+   "change": "-5.000%pt",
+   "implication": "企業の資金需要DIの上昇は設備投資・運転資金の需要増を示し、景気の強さの目安。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "LA05_DLLSDLPH": {
+   "name": "資金需要判断DI 個人向け（主要銀行アンケート）",
+   "db": "LA05",
+   "code": "DLLSDLPH",
+   "freq": "Q",
+   "unit": "%pt",
+   "kind": "rate",
+   "category": "お金の量・貸出",
+   "date": "2026Q3",
+   "value": "3",
+   "change": "-2.000%pt",
+   "implication": "個人の資金需要DI（住宅ローン等）。金利上昇で低下しやすく、住宅関連の需要の目安。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "CO_TK99F1000601GCQ01000": {
+   "name": "短観 業況判断DI 大企業製造業",
+   "db": "CO",
+   "code": "TK99F1000601GCQ01000",
+   "freq": "Q",
+   "unit": "%pt",
+   "kind": "rate",
+   "category": "景況感・家計の資産",
+   "date": "2026Q2",
+   "value": "22",
+   "change": "+5.000%pt",
+   "implication": "短観の大企業製造業の業況判断DI。上昇は景況感の改善を示し、一般に株式にはプラス、日銀の利上げを後押しする材料とされる。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "CO_TK99F2000601GCQ01000": {
+   "name": "短観 業況判断DI 大企業非製造業",
+   "db": "CO",
+   "code": "TK99F2000601GCQ01000",
+   "freq": "Q",
+   "unit": "%pt",
+   "kind": "rate",
+   "category": "景況感・家計の資産",
+   "date": "2026Q2",
+   "value": "37",
+   "change": "+1.000%pt",
+   "implication": "大企業非製造業の業況判断DI。内需・サービス業の景況感の目安。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "CO_TK99F0000204HCQ00000": {
+   "name": "短観 企業の物価見通し 1年後",
+   "db": "CO",
+   "code": "TK99F0000204HCQ00000",
+   "freq": "Q",
+   "unit": "%",
+   "kind": "rate",
+   "category": "景況感・家計の資産",
+   "date": "2026Q2",
+   "value": "2.7",
+   "change": "+0.100%pt",
+   "implication": "企業が予想する1年後の物価上昇率。高止まりはインフレ期待の定着を示し、日銀の利上げ判断に影響しやすい。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "FF_FOF_FFAS430A900": {
+   "name": "資金循環 家計の金融資産 合計",
+   "db": "FF",
+   "code": "FOF_FFAS430A900",
+   "freq": "Q",
+   "unit": "億円",
+   "kind": "level",
+   "category": "景況感・家計の資産",
+   "date": "2026Q2",
+   "value": "25,191,289",
+   "change": "+4.69%",
+   "implication": "家計の金融資産残高。株価や預金の動きで増減する。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "FF_FOF_FFAS430A100": {
+   "name": "資金循環 家計の現金・預金",
+   "db": "FF",
+   "code": "FOF_FFAS430A100",
+   "freq": "Q",
+   "unit": "億円",
+   "kind": "level",
+   "category": "景況感・家計の資産",
+   "date": "2026Q2",
+   "value": "11,315,943",
+   "change": "+0.52%",
+   "implication": "家計の現金・預金。金利上昇で預金の魅力が増すかどうかの目安。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "FF_FOF_FFAS430A334": {
+   "name": "資金循環 家計の株式等・投資信託",
+   "db": "FF",
+   "code": "FOF_FFAS430A334",
+   "freq": "Q",
+   "unit": "億円",
+   "kind": "level",
+   "category": "景況感・家計の資産",
+   "date": "2026Q2",
+   "value": "6,789,608",
+   "change": "+15.06%",
+   "implication": "家計が持つ株式・投資信託。株価と家計の投資行動（貯蓄から投資へ）を映す。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BP01_BPBP6JYNCB": {
+   "name": "国際収支 経常収支",
+   "db": "BP01",
+   "code": "BPBP6JYNCB",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支",
+   "date": "2026-07",
+   "value": "29,889",
+   "change": "+30,811億円",
+   "implication": "経常収支の黒字拡大は海外から稼ぐ力の強さを示し、中長期的には円高要因とされる。ただし黒字の中心が第一次所得（海外で再投資されやすい）だと円買いにつながりにくい。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BP01_BPBP6JYNTB": {
+   "name": "国際収支 貿易収支",
+   "db": "BP01",
+   "code": "BPBP6JYNTB",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支",
+   "date": "2026-07",
+   "value": "-3,999",
+   "change": "-2,647億円",
+   "implication": "貿易収支の悪化（赤字拡大）は円を売ってドルを買う実需が増えることを意味し、円安要因とされる。資源価格や円安で輸入額が膨らむと悪化しやすい。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BP01_BPBP6JYNSN": {
+   "name": "国際収支 サービス収支",
+   "db": "BP01",
+   "code": "BPBP6JYNSN",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支",
+   "date": "2026-07",
+   "value": "-5,129",
+   "change": "-2,844億円",
+   "implication": "サービス収支。旅行（インバウンド）の黒字とデジタル関連の赤字の差し引き。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BP01_BPBP6JYNPIN": {
+   "name": "国際収支 第一次所得収支",
+   "db": "BP01",
+   "code": "BPBP6JYNPIN",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支",
+   "date": "2026-07",
+   "value": "42,896",
+   "change": "+39,095億円",
+   "implication": "第一次所得収支は海外投資からの利子・配当。日本の経常黒字の柱だが、多くは海外に再投資され円買いにつながりにくいとされる。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BP01_BPBP6JYNFB": {
+   "name": "国際収支 金融収支",
+   "db": "BP01",
+   "code": "BPBP6JYNFB",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支",
+   "date": "2026-07",
+   "value": "17,626",
+   "change": "+7,968億円",
+   "implication": "金融収支のプラスは日本からの資金流出（対外資産の増加）を示す。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BP01_BPBP6JYNFB1": {
+   "name": "国際収支 直接投資",
+   "db": "BP01",
+   "code": "BPBP6JYNFB1",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支",
+   "date": "2026-07",
+   "value": "26,213",
+   "change": "+10,517億円",
+   "implication": "直接投資のプラスは日本企業の海外投資（M&A・工場など）が海外からの投資を上回っていることを示し、円売り要因になりやすい。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BP01_BPBP6JYNFB2": {
+   "name": "国際収支 証券投資",
+   "db": "BP01",
+   "code": "BPBP6JYNFB2",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支",
+   "date": "2026-07",
+   "value": "-6,753",
+   "change": "-96,082億円",
+   "implication": "証券投資のプラスは日本からの外国証券購入（対外証券投資）が多いことを示す。国内金利の上昇で国内回帰が進むと縮小しやすい。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BP01_BPBP6JYNSN2": {
+   "name": "国際収支 旅行収支",
+   "db": "BP01",
+   "code": "BPBP6JYNSN2",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支",
+   "date": "2026-07",
+   "value": "5,585",
+   "change": "+1,133億円",
+   "implication": "旅行収支の黒字はインバウンド消費。円安で拡大しやすく、観光・小売株の業績に関係する。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BP01_BPBP6JYNSN906": {
+   "name": "国際収支 知的財産権等使用料",
+   "db": "BP01",
+   "code": "BPBP6JYNSN906",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支",
+   "date": "2026-07",
+   "value": "236.551",
+   "change": "-2,658億円",
+   "implication": "知的財産権等使用料。海外子会社からのロイヤルティ受取が中心で黒字になりやすい。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "BP01_BPBP6JYNSN907": {
+   "name": "国際収支 通信・コンピュータ・情報サービス",
+   "db": "BP01",
+   "code": "BPBP6JYNSN907",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支",
+   "date": "2026-07",
+   "value": "-1,015",
+   "change": "-643億円",
+   "implication": "通信・コンピュータ・情報サービスの赤字は、クラウドなど海外デジタルサービスへの支払い（いわゆるデジタル赤字）を映す。",
+   "source": [
+    "日本銀行 時系列統計データ検索サイト",
+    "https://www.stat-search.boj.or.jp/"
+   ]
+  },
+  "CPI_CPI_ALL_YOY": {
+   "name": "消費者物価（全国・総合）前年比",
+   "db": "CPI",
+   "code": "CPI_ALL_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "1.9",
+   "change": "+0.000%pt",
+   "implication": "消費者物価の上昇率。2%を上回る状態が続くと日銀の利上げ継続の根拠になりやすく、債券には逆風、実質金利の低下を通じて円安要因にもなりうる。",
+   "source": [
+    "総務省統計局 消費者物価指数",
+    "https://www.stat.go.jp/data/cpi/1.html"
+   ]
+  },
+  "CPI_CPI_CORE_YOY": {
+   "name": "消費者物価（全国・生鮮食品を除く総合）前年比",
+   "db": "CPI",
+   "code": "CPI_CORE_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "1.7",
+   "change": "-0.100%pt",
+   "implication": "日銀が物価目標で重視する「生鮮食品を除く総合（コアCPI）」。2%目標との距離が利上げ判断の中心になる。",
+   "source": [
+    "総務省統計局 消費者物価指数",
+    "https://www.stat.go.jp/data/cpi/1.html"
+   ]
+  },
+  "CPI_CPI_CORECORE_YOY": {
+   "name": "消費者物価（全国・生鮮食品及びエネルギーを除く総合）前年比",
+   "db": "CPI",
+   "code": "CPI_CORECORE_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "1.9",
+   "change": "+0.000%pt",
+   "implication": "エネルギーも除いた「コアコアCPI」は物価の基調（賃金・サービス価格の転嫁）を映す。これが2%を超えて続くかが利上げ継続の鍵とされる。",
+   "source": [
+    "総務省統計局 消費者物価指数",
+    "https://www.stat.go.jp/data/cpi/1.html"
+   ]
+  },
+  "STAT_CPI_TKY_ALL_YOY": {
+   "name": "消費者物価（東京都区部・総合）前年比",
+   "db": "STAT",
+   "code": "CPI_TKY_ALL_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "1.9",
+   "change": "+0.100%pt",
+   "implication": "東京都区部の総合。全国の先行指標。",
+   "source": [
+    "総務省統計局",
+    "https://www.stat.go.jp/"
+   ]
+  },
+  "STAT_CPI_TKY_CORE_YOY": {
+   "name": "消費者物価（東京都区部・生鮮食品を除く総合）前年比",
+   "db": "STAT",
+   "code": "CPI_TKY_CORE_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "1.8",
+   "change": "+0.100%pt",
+   "implication": "東京都区部のコアCPIは全国より約1か月早く公表され、全国の先行指標として市場が注目する。",
+   "source": [
+    "総務省統計局",
+    "https://www.stat.go.jp/"
+   ]
+  },
+  "STAT_CPI_TKY_CORECORE_YOY": {
+   "name": "消費者物価（東京都区部・生鮮食品及びエネルギーを除く総合）前年比",
+   "db": "STAT",
+   "code": "CPI_TKY_CORECORE_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "2",
+   "change": "+0.200%pt",
+   "implication": "東京都区部のコアコア。物価の基調を早めに確認できる。",
+   "source": [
+    "総務省統計局",
+    "https://www.stat.go.jp/"
+   ]
+  },
+  "STAT_CTI_TOTAL_REAL": {
+   "name": "総消費動向指数（実質）",
+   "db": "STAT",
+   "code": "CTI_TOTAL_REAL",
+   "freq": "M",
+   "unit": "2025年=100",
+   "kind": "level",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "100.77",
+   "change": "-0.04%",
+   "implication": "総消費動向指数（実質）の水準。",
+   "source": [
+    "総務省統計局",
+    "https://www.stat.go.jp/"
+   ]
+  },
+  "STAT_CTI_TOTAL_REAL_YOY": {
+   "name": "総消費動向指数（実質）前年比",
+   "db": "STAT",
+   "code": "CTI_TOTAL_REAL_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "0.6",
+   "change": "-0.200%pt",
+   "implication": "総消費動向指数（実質）は家計消費全体の動き。伸びがプラスなら個人消費が物価上昇を上回って増えていることを示し、景気や利上げ継続の支えになる。",
+   "source": [
+    "総務省統計局",
+    "https://www.stat.go.jp/"
+   ]
+  },
+  "ESTAT_LFS_UNEMP_RATE": {
+   "name": "完全失業率（季節調整値）",
+   "db": "ESTAT",
+   "code": "LFS_UNEMP_RATE",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "2.4",
+   "change": "-0.100%pt",
+   "implication": "完全失業率の上昇は労働需給の緩みを示し、賃金上昇の勢いが弱まる要因。利上げ観測の後退につながりやすく、債券にはプラス、円安方向とされる。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_LFS_EMPLOYED": {
+   "name": "就業者数（季節調整値）",
+   "db": "ESTAT",
+   "code": "LFS_EMPLOYED",
+   "freq": "M",
+   "unit": "万人",
+   "kind": "level",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "6,831",
+   "change": "-0.22%",
+   "implication": "就業者数の増加は雇用の底堅さを示し、個人消費や賃金の下支えになる。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_SVC_SALES_YOY": {
+   "name": "サービス産業 売上高前年比（サービス産業計）",
+   "db": "ESTAT",
+   "code": "SVC_SALES_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "5",
+   "change": "+0.500%pt",
+   "implication": "サービス産業の売上高の伸び。個人・企業のサービス需要の強さを示し、物価（サービス価格）の上昇とあわせて見ると実質的な需要の強さがわかる。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_SVC_ICT_YOY": {
+   "name": "サービス産業 売上高前年比（情報通信業）",
+   "db": "ESTAT",
+   "code": "SVC_ICT_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "6.4",
+   "change": "-0.200%pt",
+   "implication": "情報通信業の売上高。IT・通信投資の強さの目安。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_SVC_HOTEL_FOOD_YOY": {
+   "name": "サービス産業 売上高前年比（宿泊業・飲食サービス業）",
+   "db": "ESTAT",
+   "code": "SVC_HOTEL_FOOD_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "6.1",
+   "change": "+4.700%pt",
+   "implication": "宿泊・飲食の売上高。インバウンドや外食需要を映し、旅行・外食関連株に関係する。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_POP_TOTAL": {
+   "name": "総人口（各月1日）",
+   "db": "ESTAT",
+   "code": "POP_TOTAL",
+   "freq": "M",
+   "unit": "人",
+   "kind": "level",
+   "category": "消費・雇用・人口",
+   "date": "2026-04",
+   "value": "122,837,999",
+   "change": "+0.02%",
+   "implication": "総人口の減少は長期的な内需の縮小要因。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_POP_NET_MIGRATION": {
+   "name": "人口の社会増減（入国−出国）",
+   "db": "ESTAT",
+   "code": "POP_NET_MIGRATION",
+   "freq": "M",
+   "unit": "人",
+   "kind": "flow",
+   "category": "消費・雇用・人口",
+   "date": "2026-03",
+   "value": "110,464",
+   "change": "+193,034人",
+   "implication": "社会増減（入国−出国）のプラスは外国人の流入超を示し、人手不足の緩和や住宅需要の下支えになりうる。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_KAKEI_CONS_REAL_YOY": {
+   "name": "家計調査 消費支出 実質前年比（二人以上の世帯）",
+   "db": "ESTAT",
+   "code": "KAKEI_CONS_REAL_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "-3.6",
+   "change": "-0.300%pt",
+   "implication": "家計の実質消費の伸び。マイナスが続くと物価上昇に消費が追いついていないことを示し、日銀の利上げ判断を慎重にさせやすい。月ごとの振れが大きい点に注意。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_KAKEI_GOODS_REAL_YOY": {
+   "name": "家計調査 財（商品）支出 実質前年比",
+   "db": "ESTAT",
+   "code": "KAKEI_GOODS_REAL_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "-4.9",
+   "change": "-1.200%pt",
+   "implication": "モノへの実質支出。物価高の影響を受けやすく、小売関連の需要の目安。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_KAKEI_SVC_REAL_YOY": {
+   "name": "家計調査 サービス支出 実質前年比",
+   "db": "ESTAT",
+   "code": "KAKEI_SVC_REAL_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "-1.2",
+   "change": "+1.100%pt",
+   "implication": "サービスへの実質支出。外食・旅行・娯楽などの需要の強さの目安。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_KAKEI_CONS_AMOUNT": {
+   "name": "家計調査 消費支出（二人以上の世帯、1世帯当たり月額）",
+   "db": "ESTAT",
+   "code": "KAKEI_CONS_AMOUNT",
+   "freq": "M",
+   "unit": "円",
+   "kind": "level",
+   "category": "消費・雇用・人口",
+   "date": "2026-07",
+   "value": "301,245",
+   "change": "+3.56%",
+   "implication": "1世帯当たりの名目の消費支出額。季節性が大きいので前年同月と比べて見る。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_KOURI_TKY_RICE": {
+   "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
+   "db": "ESTAT",
+   "code": "KOURI_TKY_RICE",
+   "freq": "M",
+   "unit": "円",
+   "kind": "level",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "4,326",
+   "change": "-5.21%",
+   "implication": "コメ5kgの店頭価格。消費者物価の食料を左右し、家計の体感物価に影響する。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_KOURI_TKY_EGG": {
+   "name": "東京都区部 小売価格 鶏卵 1パック",
+   "db": "ESTAT",
+   "code": "KOURI_TKY_EGG",
+   "freq": "M",
+   "unit": "円",
+   "kind": "level",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "321",
+   "change": "-0.31%",
+   "implication": "鶏卵の店頭価格。鳥インフルエンザなど供給要因で動きやすい。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_KOURI_TKY_GASOLINE": {
+   "name": "東京都区部 小売価格 ガソリン 1L",
+   "db": "ESTAT",
+   "code": "KOURI_TKY_GASOLINE",
+   "freq": "M",
+   "unit": "円",
+   "kind": "level",
+   "category": "物価",
+   "date": "2026-08",
+   "value": "172",
+   "change": "+0.00%",
+   "implication": "ガソリンの店頭価格。原油価格・為替・補助金の影響を受け、消費者物価のエネルギーを左右する。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_IDOU_TOKYO_AREA_NET": {
+   "name": "東京圏の転入超過数（住民基本台帳）",
+   "db": "ESTAT",
+   "code": "IDOU_TOKYO_AREA_NET",
+   "freq": "M",
+   "unit": "人",
+   "kind": "flow",
+   "category": "消費・雇用・人口",
+   "date": "2026-08",
+   "value": "3,261",
+   "change": "+2,423人",
+   "implication": "東京圏への人口の流入超過。首都圏の住宅需要や不動産（REIT）の下支え要因。3〜4月の転勤・進学期に大きく膨らむ季節性がある。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_IDOU_TOKYO_NET": {
+   "name": "東京都の転入超過数（住民基本台帳）",
+   "db": "ESTAT",
+   "code": "IDOU_TOKYO_NET",
+   "freq": "M",
+   "unit": "人",
+   "kind": "flow",
+   "category": "消費・雇用・人口",
+   "date": "2026-08",
+   "value": "1,044",
+   "change": "+1,845人",
+   "implication": "東京都への流入超過。都心の住宅・オフィス需要の目安。3〜4月に大きい季節性がある。",
+   "source": [
+    "政府統計の総合窓口 e-Stat",
+    "https://www.e-stat.go.jp/"
+   ]
+  }
+ },
+ "disclaimer": "※資産クラスとの関係は過去に一般的に観察されてきた傾向の整理で、将来の値動きや個別銘柄の売買を示すものではありません。"
+}

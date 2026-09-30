@@ -1,0 +1,608 @@
+{
+ "_note": "取得対象の系列。db と code は日本銀行 時系列統計データ検索サイトのもの。verified=false はAPIで未確認（初回取得で確認する）。追加は python3 fetch.py discover <DB> で候補を探して追記。",
+ "series": [
+  {
+   "db": "FM01",
+   "code": "STRDCLUCON",
+   "name": "無担保コールO/N物レート（平均）",
+   "freq": "D",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "FM01",
+   "code": "STRDCLUCV",
+   "name": "無担保コールO/N物 出来高",
+   "freq": "D",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "FM08",
+   "code": "FXERD04",
+   "name": "ドル円スポット 17時（東京市場）",
+   "freq": "D",
+   "unit": "円/ドル",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "FM08",
+   "code": "FXERD31",
+   "name": "ユーロドル 9時（東京市場）",
+   "freq": "D",
+   "unit": "ドル/ユーロ",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "IR01",
+   "code": "MADR1Z@D",
+   "name": "基準貸付利率（日次）",
+   "freq": "D",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "MD01",
+   "code": "MABS1AN11",
+   "name": "マネタリーベース平均残高",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "MD01",
+   "code": "MABS1AN11@",
+   "name": "マネタリーベース平均残高 前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "MD01",
+   "code": "MABS1AN113",
+   "name": "マネタリーベース うち日銀当座預金",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "MD06",
+   "code": "MASDM@07",
+   "name": "日銀当座預金（増減要因）",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "MD06",
+   "code": "MASDM58",
+   "name": "金融調節 国債買入",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "MD06",
+   "code": "MASDM4",
+   "name": "資金過不足",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "BS01",
+   "code": "MABJMA5B",
+   "name": "日銀保有 長期国債（月末残高）",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "MOF",
+   "code": "JGB2Y",
+   "name": "国債利回り 2年",
+   "freq": "D",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "MOF",
+   "code": "JGB10Y",
+   "name": "国債利回り 10年",
+   "freq": "D",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "MOF",
+   "code": "JGB30Y",
+   "name": "国債利回り 30年",
+   "freq": "D",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "PR01",
+   "code": "PRCG20_2200000000",
+   "name": "国内企業物価指数 総平均",
+   "freq": "M",
+   "unit": "2020年=100",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "PR01",
+   "code": "PRCG20_2200000000%",
+   "name": "国内企業物価指数 前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "PR01",
+   "code": "PRCG20_2600000000%",
+   "name": "輸入物価指数（円ベース）前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "PR02",
+   "code": "PRCS20_5200000000%",
+   "name": "企業向けサービス価格指数 前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "MD02",
+   "code": "MAM1YAM2M2MO",
+   "name": "マネーストック M2 前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "MD02",
+   "code": "MAM1YAM3M3MO",
+   "name": "マネーストック M3 前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "MD13",
+   "code": "FAAPOBAL1@",
+   "name": "銀行貸出（総貸出平残）前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "IR04",
+   "code": "DLLR2CIDBNL1",
+   "name": "貸出約定平均金利 新規・国内銀行",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "IR04",
+   "code": "DLLR2CIDBST1",
+   "name": "貸出約定平均金利 残高・国内銀行",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "FM04",
+   "code": "STTACLUTS1",
+   "name": "無担保コール残高（平残・出し手）",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "LA05",
+   "code": "DLLSDLPB",
+   "name": "資金需要判断DI 企業向け（主要銀行アンケート）",
+   "freq": "Q",
+   "unit": "%pt",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "LA05",
+   "code": "DLLSDLPH",
+   "name": "資金需要判断DI 個人向け（主要銀行アンケート）",
+   "freq": "Q",
+   "unit": "%pt",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "CO",
+   "code": "TK99F1000601GCQ01000",
+   "name": "短観 業況判断DI 大企業製造業",
+   "freq": "Q",
+   "unit": "%pt",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "CO",
+   "code": "TK99F2000601GCQ01000",
+   "name": "短観 業況判断DI 大企業非製造業",
+   "freq": "Q",
+   "unit": "%pt",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "CO",
+   "code": "TK99F0000204HCQ00000",
+   "name": "短観 企業の物価見通し 1年後",
+   "freq": "Q",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "FF",
+   "code": "FOF_FFAS430A900",
+   "name": "資金循環 家計の金融資産 合計",
+   "freq": "Q",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "FF",
+   "code": "FOF_FFAS430A100",
+   "name": "資金循環 家計の現金・預金",
+   "freq": "Q",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "FF",
+   "code": "FOF_FFAS430A334",
+   "name": "資金循環 家計の株式等・投資信託",
+   "freq": "Q",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "BP01",
+   "code": "BPBP6JYNCB",
+   "name": "国際収支 経常収支",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "BP01",
+   "code": "BPBP6JYNTB",
+   "name": "国際収支 貿易収支",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "BP01",
+   "code": "BPBP6JYNSN",
+   "name": "国際収支 サービス収支",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "BP01",
+   "code": "BPBP6JYNPIN",
+   "name": "国際収支 第一次所得収支",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "BP01",
+   "code": "BPBP6JYNFB",
+   "name": "国際収支 金融収支",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "BP01",
+   "code": "BPBP6JYNFB1",
+   "name": "国際収支 直接投資",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "BP01",
+   "code": "BPBP6JYNFB2",
+   "name": "国際収支 証券投資",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "BP01",
+   "code": "BPBP6JYNSN2",
+   "name": "国際収支 旅行収支",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "BP01",
+   "code": "BPBP6JYNSN906",
+   "name": "国際収支 知的財産権等使用料",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "BP01",
+   "code": "BPBP6JYNSN907",
+   "name": "国際収支 通信・コンピュータ・情報サービス",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "CPI",
+   "code": "CPI_ALL_YOY",
+   "name": "消費者物価（全国・総合）前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "CPI",
+   "code": "CPI_CORE_YOY",
+   "name": "消費者物価（全国・生鮮食品を除く総合）前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "CPI",
+   "code": "CPI_CORECORE_YOY",
+   "name": "消費者物価（全国・生鮮食品及びエネルギーを除く総合）前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "STAT",
+   "code": "CPI_TKY_ALL_YOY",
+   "name": "消費者物価（東京都区部・総合）前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "STAT",
+   "code": "CPI_TKY_CORE_YOY",
+   "name": "消費者物価（東京都区部・生鮮食品を除く総合）前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "STAT",
+   "code": "CPI_TKY_CORECORE_YOY",
+   "name": "消費者物価（東京都区部・生鮮食品及びエネルギーを除く総合）前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "STAT",
+   "code": "CTI_TOTAL_REAL",
+   "name": "総消費動向指数（実質）",
+   "freq": "M",
+   "unit": "2025年=100",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "STAT",
+   "code": "CTI_TOTAL_REAL_YOY",
+   "name": "総消費動向指数（実質）前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "LFS_UNEMP_RATE",
+   "name": "完全失業率（季節調整値）",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "LFS_EMPLOYED",
+   "name": "就業者数（季節調整値）",
+   "freq": "M",
+   "unit": "万人",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "SVC_SALES_YOY",
+   "name": "サービス産業 売上高前年比（サービス産業計）",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "SVC_ICT_YOY",
+   "name": "サービス産業 売上高前年比（情報通信業）",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "SVC_HOTEL_FOOD_YOY",
+   "name": "サービス産業 売上高前年比（宿泊業・飲食サービス業）",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "POP_TOTAL",
+   "name": "総人口（各月1日）",
+   "freq": "M",
+   "unit": "人",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "POP_NET_MIGRATION",
+   "name": "人口の社会増減（入国−出国）",
+   "freq": "M",
+   "unit": "人",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "KAKEI_CONS_REAL_YOY",
+   "name": "家計調査 消費支出 実質前年比（二人以上の世帯）",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "KAKEI_GOODS_REAL_YOY",
+   "name": "家計調査 財（商品）支出 実質前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "KAKEI_SVC_REAL_YOY",
+   "name": "家計調査 サービス支出 実質前年比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "KAKEI_CONS_AMOUNT",
+   "name": "家計調査 消費支出（二人以上の世帯、1世帯当たり月額）",
+   "freq": "M",
+   "unit": "円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "KOURI_TKY_RICE",
+   "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
+   "freq": "M",
+   "unit": "円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "KOURI_TKY_EGG",
+   "name": "東京都区部 小売価格 鶏卵 1パック",
+   "freq": "M",
+   "unit": "円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "KOURI_TKY_GASOLINE",
+   "name": "東京都区部 小売価格 ガソリン 1L",
+   "freq": "M",
+   "unit": "円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "IDOU_TOKYO_AREA_NET",
+   "name": "東京圏の転入超過数（住民基本台帳）",
+   "freq": "M",
+   "unit": "人",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "IDOU_TOKYO_NET",
+   "name": "東京都の転入超過数（住民基本台帳）",
+   "freq": "M",
+   "unit": "人",
+   "kind": "flow",
+   "verified": true
+  }
+ ]
+}
