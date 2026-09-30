@@ -24,6 +24,7 @@ SOURCES = {
     "STAT": ("総務省統計局", "https://www.stat.go.jp/"),
     "ESTAT": ("政府統計の総合窓口 e-Stat", "https://www.e-stat.go.jp/"),
 }
+TRADE = ("財務省 貿易統計（e-Stat 貿易概況）", "https://www.customs.go.jp/toukei/info/index.htm")
 
 # (見出し, 判定) の順に最初に当てはまったカテゴリに入れる
 CATEGORIES = [
@@ -33,7 +34,7 @@ CATEGORIES = [
     ("物価", lambda s: s["db"] in ("PR01", "PR02", "CPI") or s["code"].startswith(("CPI_", "KOURI_"))),
     ("お金の量・貸出", lambda s: s["db"] in ("MD02", "MD13", "IR04", "LA05")),
     ("景況感・家計の資産", lambda s: s["db"] in ("CO", "FF")),
-    ("国際収支", lambda s: s["db"] == "BP01"),
+    ("国際収支・貿易", lambda s: s["db"] == "BP01" or s["code"].startswith("TRADE_")),
     ("消費・雇用・人口", lambda s: True),
 ]
 
@@ -140,7 +141,7 @@ def main():
             "kind": s["kind"], "category": category(s),
             "date": l and l["date"], "value": l and analyze.num(l["value"]), "change": l and change(s, l["value"], l["prev"]),
             "implication": analyze.IMPLICATIONS.get(s["code"], ""),
-            "source": SOURCES.get(s["db"], BOJ),
+            "source": TRADE if s["code"].startswith("TRADE_") else SOURCES.get(s["db"], BOJ),
         }
 
     out = {
