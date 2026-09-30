@@ -6,11 +6,16 @@
   const WINDOW = 20; // 20営業日の高値からの下落率で判定する
 
   // 追加買いの段階。20日高値からの下落率が th 以下なら、次の営業日に amount 円を上乗せする(「ふつう」の大きさ)
+  // big の段階(大口買い)は、1回の暴落で合計 BIG_CAP まで。使い切ったあとは BIG_FALLBACK を続ける
   const TIERS = [
     { th: -0.3, amount: 30000, color: "var(--tier1)" },
     { th: -0.4, amount: 60000, color: "var(--tier2)" },
-    { th: -0.5, amount: 100000, color: "var(--tier3)" },
+    { th: -0.5, amount: 300000, color: "var(--tier3)", big: true },
+    { th: -0.7, amount: 500000, color: "var(--tier4)", big: true },
   ];
+  const BIG_CAP = 2000000;
+  const BIG_FALLBACK = 100000;
+  const EPISODE_GAP = 60; // 大口買いの合図が60営業日なければ、次は別の暴落として上限を数え直す
   const SCALE_OPTIONS = [
     { key: 0.5, label: "控えめ(½)" },
     { key: 1, label: "ふつう" },
@@ -105,20 +110,41 @@
     });
     return t;
   }
-  const extraOf = (dd, scale) => {
-    const t = tierOf(dd);
-    return t ? TIERS[t - 1].amount * scale : 0;
-  };
+  // start〜end の各日の合図から、次の営業日の追加額を決める。plan.extras[j + 1] が j の合図で買う額。
+  // plan.used / plan.lastBig は end 時点の「今回の暴落」で使った大口買いの額と、最後に大口の合図が出た日
+  function planExtras(start, end, scale) {
+    const extras = {};
+    let used = 0;
+    let lastBig = -Infinity;
+    for (let j = start; j <= end; j++) {
+      const t = tierOf(state.dd[j]);
+      if (!t) continue;
+      const tier = TIERS[t - 1];
+      let a = tier.amount * scale;
+      let capped = false;
+      if (tier.big) {
+        if (j - lastBig > EPISODE_GAP) used = 0;
+        lastBig = j;
+        const b = Math.min(a, Math.max(0, BIG_CAP * scale - used));
+        used += b;
+        capped = b < a;
+        a = Math.max(b, BIG_FALLBACK * scale);
+      }
+      extras[j + 1] = { a, t, capped };
+    }
+    return { extras, used, lastBig };
+  }
 
   // start〜end(両端含む)の日に毎日 daily 円を買い、前の営業日に合図が出ていたら追加額も買う
   function simulate(start, end, daily, scale) {
     let units = 0, invested = 0, extra = 0, count = 0;
+    const { extras } = scale > 0 ? planExtras(start, end - 1, scale) : { extras: {} };
     for (let i = start; i <= end; i++) {
       const nav = state.nav[i];
       units += daily / nav;
       invested += daily;
-      if (scale > 0 && i - 1 >= start) {
-        const a = extraOf(state.dd[i - 1], scale);
+      {
+        const a = extras[i] ? extras[i].a : 0;
         if (a) {
           units += a / nav;
           invested += a;
@@ -138,7 +164,9 @@
     const dd = state.dd[last];
     const t = tierOf(dd);
     const { daily, scale } = state.settings;
-    const extra = extraOf(dd, scale);
+    const plan = planExtras(0, last, scale);
+    const today = plan.extras[last + 1];
+    const extra = today ? today.a : 0;
 
     $("advice").classList.toggle("on", t > 0);
     $("advice-when").textContent = `${dateJa(state.dates[last])} の基準価額で判定 → 次の営業日 ${nextWeekday(state.dates[last])} の注文`;
@@ -156,7 +184,11 @@
       reason += `追加買いの目安(−30%)まで、あと ${(Math.abs(TIERS[0].th - dd) * 100).toFixed(1)}ポイントです。`;
     } else {
       reason += `第${t}段階の暴落ラインを下回っています。`;
-      if (next) reason += ` さらに ${(Math.abs(next.th - dd) * 100).toFixed(1)}ポイント下がると追加額を ${man(next.amount * scale)} に増やします。`;
+      if (today && today.capped) reason += ` 今回の暴落の大口買いは上限(${man(BIG_CAP * scale)})に達したので、${man(extra)} にしています。`;
+      else if (next) reason += ` さらに ${(Math.abs(next.th - dd) * 100).toFixed(1)}ポイント下がると追加額を ${man(next.amount * scale)} に増やします。`;
+    }
+    if (last - plan.lastBig <= EPISODE_GAP) {
+      reason += ` 今回の暴落で使った大口買い: ${man(plan.used)} / 上限 ${man(BIG_CAP * scale)}。`;
     }
     $("advice-reason").textContent = reason;
 
@@ -179,7 +211,7 @@
     const staleDays = (Date.now() - parseISO(state.dates[last]).getTime()) / 86400000;
     $("advice-note").textContent =
       (staleDays > 4 ? "⚠ データが数日更新されていません。最新の基準価額を確かめてから判断してください。 " : "") +
-      "金額の下の値は、今の20日高値で換算した基準価額の目安です。追加額の大きさは「自分の積立シミュレーション」で変えられます。";
+      `金額の下の値は、今の20日高値で換算した基準価額の目安です。−50%以下の大口買いは1回の暴落で合計 ${man(BIG_CAP * scale)} まで(使い切ったあとは ${man(BIG_FALLBACK * scale)} ずつ)。追加額の大きさは「自分の積立シミュレーション」で変えられます。`;
   }
 
   function tile(label, value, sub, cls) {
@@ -341,16 +373,18 @@
     hi += pad;
 
     // 追加買いの日(合図の翌営業日)に印をつける
+    // 大口買いの上限は過去からの続きで数えるので、データの最初から計画する
+    const { extras } = planExtras(0, state.nav.length - 2, scale);
     const marks = [];
     for (let i = Math.max(1, s); i <= e; i++) {
-      const t = tierOf(state.dd[i - 1]);
-      if (t) marks.push({ i, v: state.nav[i], color: TIERS[t - 1].color });
+      const x = extras[i];
+      if (x) marks.push({ i, v: state.nav[i], color: TIERS[x.t - 1].color });
     }
     const tipFor = (i) => {
-      const t = i > 0 ? tierOf(state.dd[i - 1]) : 0;
+      const x = extras[i];
       return (
         `${dateJa(state.dates[i])}\n基準価額 ${yen(state.nav[i])}\n20日高値から ${pctText(state.dd[i])}` +
-        (t ? `\nこの日の追加 ${man(TIERS[t - 1].amount * scale)}` : "")
+        (x ? `\nこの日の追加 ${man(x.a)}${x.capped ? "(上限到達)" : ""}` : "")
       );
     };
 
@@ -384,7 +418,7 @@
 
     let ddLo = 0;
     for (let i = s; i <= e; i++) ddLo = Math.min(ddLo, state.dd[i]);
-    ddLo = Math.min(-0.55, ddLo - 0.03);
+    ddLo = Math.min(-0.75, ddLo - 0.03);
     const setDd = drawChart($("chart-dd"), {
       s, e, lo: ddLo, hi: 0.02,
       series: [{ values: state.dd, cls: "l-dd", area: "a-dd", base: 0 }],
@@ -459,7 +493,7 @@
     const maxYear = rows.reduce((a, b) => (b.rule.extra > a.rule.extra ? b : a), rows[0]);
     const avg = rows.reduce((a, b) => a + b.rule.extra, 0) / rows.length;
     $("bt-sub").textContent =
-      `毎日 ${man(daily)} を買い続けた場合と、そこに暴落時の追加(${TIERS.map((t) => man(t.amount * scale)).join(" / ")})を足した場合の、その年の投資額に対する年末時点の損益率です。` +
+      `毎日 ${man(daily)} を買い続けた場合と、そこに暴落時の追加(${TIERS.map((t) => man(t.amount * scale)).join(" / ")}、大口は1回の暴落で ${man(BIG_CAP * scale)} まで)を足した場合の、その年の投資額に対する年末時点の損益率です。` +
       `追加ありの方が良かった年は ${rows.length}年中 ${wins}年。追加額は平均で年 ${man(avg)}、最も多かった ${maxYear.label} は ${man(maxYear.rule.extra)} でした。`;
   }
 

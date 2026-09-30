@@ -12,6 +12,7 @@
   --tier1: #f0a35e;
   --tier2: #d9622b;
   --tier3: #9c2f12;
+  --tier4: #5e1a08;
   --high: #8a8175;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.05);
 }
@@ -30,6 +31,7 @@
     --tier1: #f7c08a;
     --tier2: #ee8a4f;
     --tier3: #d8552a;
+    --tier4: #b8391a;
     --high: #8f877b;
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
   }
@@ -79,7 +81,7 @@ main { display: flex; flex-direction: column; gap: 1rem; }
 
 .ladder {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(5, minmax(0, 1fr));
   gap: 0.4rem;
   margin-top: 0.8rem;
   text-align: center;
@@ -229,7 +231,7 @@ footer a { color: var(--accent); }
   body { padding: 1.25rem 1rem 3rem; }
   .card { padding: 0.8rem 0.8rem; }
   .advice-amount { font-size: 1.6rem; }
-  .ladder { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+  .ladder { grid-template-columns: repeat(3, minmax(0, 1fr)); }
   .tiles { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .tile dd { font-size: 1rem; }
   .chart-box.tall { height: 12rem; }
