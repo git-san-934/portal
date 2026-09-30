@@ -39,10 +39,10 @@
   const state = {
     dates: [],
     etfs: [], // { code, sector, name, close, last, lastIdx, firstIdx, m1, y1, y5 }
-    sortKey: "default",
+    sortKey: "m1",
     sortDir: "desc",
     scale: "own",
-    period: "y5",
+    period: "m1",
     start: 0, // 表示期間の最初と最後の日付インデックス
     end: 0,
     rows: new Map(), // code -> { card, box, crosshair, dot, tooltip, ... }
