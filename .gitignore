@@ -2,3 +2,6 @@
 Thumbs.db
 __pycache__/
 foreign-flow/.cache/
+boj-stats/pipeline/raw/
+boj-stats/pipeline/logs/
+boj-stats/pipeline/last_fetch.json
