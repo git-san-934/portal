@@ -1,7 +1,21 @@
 {
- "generated_at": "2026-09-30T21:43+09:00",
- "report_date": "2026-09-30",
+ "generated_at": "2026-10-01T06:20+09:00",
+ "report_date": "2026-10-01",
  "days": [
+  {
+   "date": "2026-10-01",
+   "items": [
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_IMPORTS_YOY",
+     "name": "貿易統計 輸入額 前年同月比",
+     "obs": "2026-08",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "28%"
+    }
+   ]
+  },
   {
    "date": "2026-09-30",
    "items": [
@@ -394,7 +408,7 @@
   "物価",
   "お金の量・貸出",
   "景況感・家計の資産",
-  "国際収支",
+  "国際収支・貿易",
   "消費・雇用・人口"
  ],
  "series": {
@@ -966,7 +980,7 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "category": "国際収支",
+   "category": "国際収支・貿易",
    "date": "2026-07",
    "value": "29,889",
    "change": "+30,811億円",
@@ -983,7 +997,7 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "category": "国際収支",
+   "category": "国際収支・貿易",
    "date": "2026-07",
    "value": "-3,999",
    "change": "-2,647億円",
@@ -1000,7 +1014,7 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "category": "国際収支",
+   "category": "国際収支・貿易",
    "date": "2026-07",
    "value": "-5,129",
    "change": "-2,844億円",
@@ -1017,7 +1031,7 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "category": "国際収支",
+   "category": "国際収支・貿易",
    "date": "2026-07",
    "value": "42,896",
    "change": "+39,095億円",
@@ -1034,7 +1048,7 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "category": "国際収支",
+   "category": "国際収支・貿易",
    "date": "2026-07",
    "value": "17,626",
    "change": "+7,968億円",
@@ -1051,7 +1065,7 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "category": "国際収支",
+   "category": "国際収支・貿易",
    "date": "2026-07",
    "value": "26,213",
    "change": "+10,517億円",
@@ -1068,7 +1082,7 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "category": "国際収支",
+   "category": "国際収支・貿易",
    "date": "2026-07",
    "value": "-6,753",
    "change": "-96,082億円",
@@ -1085,7 +1099,7 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "category": "国際収支",
+   "category": "国際収支・貿易",
    "date": "2026-07",
    "value": "5,585",
    "change": "+1,133億円",
@@ -1102,7 +1116,7 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "category": "国際収支",
+   "category": "国際収支・貿易",
    "date": "2026-07",
    "value": "236.551",
    "change": "-2,658億円",
@@ -1119,7 +1133,7 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "category": "国際収支",
+   "category": "国際収支・貿易",
    "date": "2026-07",
    "value": "-1,015",
    "change": "-643億円",
@@ -1535,6 +1549,91 @@
    "source": [
     "政府統計の総合窓口 e-Stat",
     "https://www.e-stat.go.jp/"
+   ]
+  },
+  "ESTAT_TRADE_EXPORTS": {
+   "name": "貿易統計 輸出額（財務省・通関ベース）",
+   "db": "ESTAT",
+   "code": "TRADE_EXPORTS",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支・貿易",
+   "date": "2026-08",
+   "value": "100,433",
+   "change": "-14,661億円",
+   "implication": "通関ベースの輸出額。国際収支より約1か月半早く出る。海外景気と円安の影響を受け、製造業・輸出関連株の業績の先行指標。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_IMPORTS": {
+   "name": "貿易統計 輸入額（財務省・通関ベース）",
+   "db": "ESTAT",
+   "code": "TRADE_IMPORTS",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支・貿易",
+   "date": "2026-08",
+   "value": "111,552",
+   "change": "-9,991億円",
+   "implication": "通関ベースの輸入額。原油・LNGなど資源価格と円安で膨らみやすい。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_BALANCE": {
+   "name": "貿易統計 差引（輸出−輸入）",
+   "db": "ESTAT",
+   "code": "TRADE_BALANCE",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "category": "国際収支・貿易",
+   "date": "2026-08",
+   "value": "-11,119",
+   "change": "-4,670億円",
+   "implication": "貿易収支（通関ベース、原数値）の赤字拡大は円売りの実需を示し、円安要因とされる。1月は赤字、3月は黒字に振れやすい季節性があるので前年同月と比べる。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_EXPORTS_YOY": {
+   "name": "貿易統計 輸出額 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_EXPORTS_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "国際収支・貿易",
+   "date": "2026-08",
+   "value": "19.3",
+   "change": "-3.900%pt",
+   "implication": "輸出の伸び。数量の増減に加え円安による円建て金額の膨らみも含む点に注意。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
+   ]
+  },
+  "ESTAT_TRADE_IMPORTS_YOY": {
+   "name": "貿易統計 輸入額 前年同月比",
+   "db": "ESTAT",
+   "code": "TRADE_IMPORTS_YOY",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "category": "国際収支・貿易",
+   "date": "2026-08",
+   "value": "28",
+   "change": "+0.100%pt",
+   "implication": "輸入の伸び。資源価格・為替の動きを強く映す。",
+   "source": [
+    "財務省 貿易統計（e-Stat 貿易概況）",
+    "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   }
  },
