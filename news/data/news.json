@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-09-30T05:33+09:00",
+ "updated_at": "2026-09-30T11:14+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -157,6 +157,13 @@
     "https://www.soc.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-09-30",
+     "title": "「統合報告書2026」(日本語版)の公開について",
+     "url": "https://www.soc.co.jp/?post_type=post&p=88404",
+     "source": "official",
+     "first_seen": "2026-09-30T11:14+09:00"
+    },
     {
      "date": "2026-09-17",
      "title": "東京都「令和8年度CO2サプライチェーン構築に係る実現可能性調査(FS事業)」に採択 ~清掃工場を起点とした都市型CO2サプライチェーンの構築を目指す~",
