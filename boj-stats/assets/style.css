@@ -124,3 +124,26 @@ code { font-size: 0.75rem; }
 .chart text { fill: var(--text-sub); font-size: 12px; }
 .chart .dot { fill: var(--tdnet); }
 .note { font-size: 0.85rem; }
+
+/* ---- 国別の推移 (trade.html) ---- */
+.tchart { position: relative; }
+.tchart .line { fill: none; stroke-width: 2; stroke-linejoin: round; }
+.tchart .cross { stroke: var(--text-sub); stroke-width: 1; stroke-dasharray: 3 3; }
+.legend { display: flex; flex-wrap: wrap; gap: 0.2rem 0.9rem; font-size: 0.8rem; margin: -0.2rem 0 0.4rem; }
+.legend span { display: inline-flex; align-items: center; gap: 0.35rem; }
+.legend i { display: inline-block; width: 0.9rem; height: 3px; border-radius: 2px; }
+.tip {
+  position: absolute; pointer-events: none; background: var(--card-bg); border: 1px solid var(--border);
+  border-radius: 0.5rem; box-shadow: var(--shadow); padding: 0.35rem 0.55rem; font-size: 0.78rem; line-height: 1.5;
+  white-space: nowrap; font-variant-numeric: tabular-nums;
+}
+.tip b { display: block; font-size: 0.78rem; }
+.tip i { display: inline-block; width: 0.6rem; height: 3px; border-radius: 2px; margin-right: 0.3rem; vertical-align: middle; }
+.swatch { display: inline-block; width: 0.7rem; height: 3px; border-radius: 2px; margin-right: 0.4rem; vertical-align: middle; }
+:root { --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s-other: #9a958c; }
+@media (prefers-color-scheme: dark) {
+  :root { --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s-other: #7d776d; }
+}
+.vals th, .vals td.cname { white-space: nowrap; }
+.tchart ~ .note { margin-top: 0.3rem; }
+#measures, #ranges, #avgs { margin-bottom: 0.5rem; }

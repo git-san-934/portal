@@ -1165,5 +1165,56 @@
     "calc": "yoy"
    }
   }
- ]
+ ],
+ "trade_by_country": [
+  {
+   "key": "NAND",
+   "name": "フラッシュメモリ（NANDなど、組立済み）",
+   "hs": [
+    "854232921"
+   ],
+   "short": "NAND"
+  },
+  {
+   "key": "MEM_DIE",
+   "name": "メモリ（未組立のウエハー・チップ）",
+   "hs": [
+    "854232100"
+   ],
+   "short": "メモリ未組立"
+  },
+  {
+   "key": "DRAM",
+   "name": "DRAM（組立済み）",
+   "hs": [
+    "854232911"
+   ],
+   "short": "DRAM"
+  },
+  {
+   "key": "MLCC",
+   "name": "積層セラミックコンデンサ（MLCC）",
+   "hs": [
+    "853224"
+   ],
+   "short": "MLCC"
+  },
+  {
+   "key": "IC",
+   "name": "集積回路 計",
+   "hs": [
+    "8542"
+   ],
+   "short": "集積回路計"
+  },
+  {
+   "key": "SEMI_EQUIP",
+   "name": "半導体等製造装置",
+   "hs": [
+    "8486"
+   ],
+   "short": "製造装置"
+  }
+ ],
+ "_note_trade_by_country": "貿易統計 品別国別表から、品目ごとに全輸出先の月次輸出額を data/trade_by_country.json に蓄積する（ページ trade.html で国別の推移を表示）。hs は HS コードの接頭辞"
 }

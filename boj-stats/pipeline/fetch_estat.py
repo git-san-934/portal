@@ -266,15 +266,16 @@ HS_TABLES = {"hs_ex": "tstat=000001013141&tclass1=000001013180&tclass2=000001013
 HS_FIRST_YEAR = 2016
 
 
-def _hs_values(table, specs, first):
-    """specs: [(hs の接頭辞のタプル, 国コード or None)] → {spec: {YYYY-MM: 千円}}。
+def _hs_values(table, prefixes, first):
+    """prefixes: [HS の接頭辞のタプル] → {接頭辞: {国コード: {YYYY-MM: 千円}}}。国コード "ALL" は全世界の合計。
+    表に品目がある年の公表済みの月は "ALL" に必ず入る（国の値が無い月は0）。
     普段は直近2年（前年同月比のため）、初回は HS_FIRST_YEAR 以降。"""
     base = TRADE_BASE.replace("tstat=000001013137&", "") + HS_TABLES[table]
     page = get(base).decode("utf-8", "replace")
     years = sorted(set(re.findall(r"year=(\d{4})0&(?:amp;)?month=(\d{8})", page)))
     years = [ym for ym in years if int(ym[0]) >= HS_FIRST_YEAR] if first else years[-2:]
-    chapters = {p[:2] for hs, _ in specs for p in hs}
-    out = {sp: {} for sp in specs}
+    chapters = {p[:2] for hs in prefixes for p in hs}
+    out = {hs: {} for hs in prefixes}
     for y, m in years:
         last = int(m[-2:])  # その年の公表済みの月
         page = get(f"{base}&year={y}0&month={m}").decode("utf-8", "replace")
@@ -290,22 +291,65 @@ def _hs_values(table, specs, first):
             rows = csv.reader(io.StringIO(body.decode("utf-8-sig", "replace")))
             head = next(rows)
             vcol = [i for i, h in enumerate(head) if h.startswith("Value-") and h != "Value-Year"][:last]  # 年により Apr が Apl
-            sums = {sp: [0] * last for sp in specs}
-            seen = set()
+            sums = {}
             for r in rows:
                 code = r[2].strip("' ")
-                for sp in specs:
-                    hs, country = sp
-                    if code.startswith(hs):
-                        seen.add(sp)  # その年の表にこの品目がある（無い年は0で埋めない）
-                        if country is None or r[3].strip() == country:
-                            for k, c in enumerate(vcol):
-                                sums[sp][k] += int(r[c] or 0)
-            for sp in seen:
-                for k, v in enumerate(sums[sp]):
-                    out[sp][f"{y}-{k + 1:02d}"] = v
+                for hs in prefixes:
+                    if code.startswith(hs):  # その年の表にこの品目がある（無い年は0で埋めない）
+                        by = sums.setdefault(hs, {})
+                        for c in (r[3].strip(), "ALL"):
+                            arr = by.setdefault(c, [0] * last)
+                            for k, i in enumerate(vcol):
+                                arr[k] += int(r[i] or 0)
+            for hs, by in sums.items():
+                for c, arr in by.items():
+                    dst = out[hs].setdefault(c, {})
+                    for k, v in enumerate(arr):
+                        dst[f"{y}-{k + 1:02d}"] = v
     return out
 
+
+COUNTRY_JA = {
+    "103": "韓国", "105": "中国", "106": "台湾", "107": "モンゴル", "108": "香港", "110": "ベトナム", "111": "タイ",
+    "112": "シンガポール", "113": "マレーシア", "116": "ブルネイ", "117": "フィリピン", "118": "インドネシア",
+    "120": "カンボジア", "121": "ラオス", "122": "ミャンマー", "123": "インド", "124": "パキスタン", "125": "スリランカ",
+    "127": "バングラデシュ", "129": "マカオ", "133": "イラン", "134": "イラク", "137": "サウジアラビア", "138": "クウェート",
+    "140": "カタール", "141": "オマーン", "143": "イスラエル", "147": "アラブ首長国連邦", "153": "カザフスタン",
+    "202": "ノルウェー", "203": "スウェーデン", "204": "デンマーク", "205": "英国", "206": "アイルランド", "207": "オランダ",
+    "208": "ベルギー", "209": "ルクセンブルク", "210": "フランス", "213": "ドイツ", "215": "スイス", "217": "ポルトガル",
+    "218": "スペイン", "220": "イタリア", "221": "マルタ", "222": "フィンランド", "223": "ポーランド", "224": "ロシア",
+    "225": "オーストリア", "227": "ハンガリー", "230": "ギリシャ", "231": "ルーマニア", "234": "トルコ", "238": "ウクライナ",
+    "245": "チェコ", "246": "スロバキア", "302": "カナダ", "304": "米国", "305": "メキシコ", "312": "パナマ",
+    "324": "プエルトリコ", "401": "コロンビア", "407": "ペルー", "409": "チリ", "410": "ブラジル", "413": "アルゼンチン",
+    "501": "モロッコ", "506": "エジプト", "524": "ナイジェリア", "541": "ケニア", "551": "南アフリカ",
+    "601": "オーストラリア", "606": "ニュージーランド",
+}  # 番号は税関の国名コード（2025年の国別表の合計と照合して確認）。無い国はコードのまま出す
+BY_COUNTRY = os.path.join(os.path.dirname(csv_path("ESTAT", "x")), "trade_by_country.json")
+
+
+def _write_by_country(items, raw):
+    """series.json の trade_by_country の品目ごとに、全輸出先の月次輸出額（億円）を JSON に蓄積する。"""
+    old = json.load(open(BY_COUNTRY, encoding="utf-8")) if os.path.exists(BY_COUNTRY) else {}
+    res = {"_note": "財務省 貿易統計 品別国別表（輸出、億円）。countries[国コード] は月→値（0の月は省略）。ALL は全世界",
+           "names": COUNTRY_JA, "items": []}
+    olditems = {it["key"]: it for it in old.get("items", [])}
+    for it in items:
+        data = raw.get(tuple(it["hs"]), {})
+        prev = olditems.get(it["key"], {})
+        months = sorted(set(prev.get("months", [])) | set(data.get("ALL", {})))
+        countries = {c: dict(v) for c, v in prev.get("countries", {}).items()}
+        fetched = set(data.get("ALL", {}))
+        for c in countries:  # 取り直した月は一度消してから入れ直す（改定で0になった国を残さない）
+            for d in fetched:
+                countries[c].pop(d, None)
+        for c, vals in data.items():
+            for d, v in vals.items():
+                if v:
+                    countries.setdefault(c, {})[d] = round(v / 1e5, 1)
+        res["items"].append({"key": it["key"], "name": it["name"], "short": it.get("short", it["name"]), "hs": it["hs"], "months": months,
+                             "countries": {c: dict(sorted(v.items())) for c, v in sorted(countries.items()) if v}})
+    with open(BY_COUNTRY, "w", encoding="utf-8") as f:
+        json.dump(res, f, ensure_ascii=False, separators=(",", ":"))
 
 def trade(rawdir):
     """財務省 貿易統計（貿易概況）から series.json の "trade" 指定の系列を作る。
@@ -320,11 +364,24 @@ def trade(rawdir):
     for s in wanted:
         t = s["trade"]["table"]
         tables[t] = tables.get(t, False) or not os.path.exists(csv_path("ESTAT", s["code"]))
+    by_country = json.load(open(os.path.join(ROOT, "series.json"), encoding="utf-8")).get("trade_by_country", [])
+    if by_country:
+        tables["hs_ex"] = tables.get("hs_ex", False) or not os.path.exists(BY_COUNTRY)
     raw = {}
     for table in [t for t in tables if t in HS_TABLES]:
-        specs = {(tuple(s["trade"]["hs"]), s["trade"].get("country")) for s in wanted if s["trade"]["table"] == table}
-        for (hs, country), v in _hs_values(table, sorted(specs, key=str), tables.pop(table)).items():
-            raw[(table, (hs, country), "EX" if table == "hs_ex" else "IM")] = v
+        prefixes = {tuple(s["trade"]["hs"]) for s in wanted if s["trade"]["table"] == table}
+        if table == "hs_ex":
+            prefixes |= {tuple(it["hs"]) for it in by_country}
+        hsv = _hs_values(table, sorted(prefixes), tables.pop(table))
+        side = "EX" if table == "hs_ex" else "IM"
+        for s in wanted:
+            t = s["trade"]
+            if t["table"] == table:
+                by = hsv[tuple(t["hs"])]
+                c = by.get(t.get("country") or "ALL", {})
+                raw[(table, (tuple(t["hs"]), t.get("country")), side)] = {d: c.get(d, 0) for d in by.get("ALL", {})}
+        if table == "hs_ex" and by_country:
+            _write_by_country(by_country, hsv)
     for table, first in tables.items():
         for n, body in enumerate(_trade_files(table, first)):
             if table == "area":
