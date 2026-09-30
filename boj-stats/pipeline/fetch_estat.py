@@ -13,10 +13,12 @@
 家計調査 長期時系列 表1-1（二人以上の世帯）: KAKEI_CONS_REAL_YOY ほか実質前年比、KAKEI_CONS_AMOUNT 消費支出額
 小売物価統計 第2表 東京都区部小売価格（直近13か月）: KOURI_TKY_RICE / EGG / GASOLINE
 住民基本台帳人口移動報告 月報 表1: IDOU_TOKYO_AREA_NET / IDOU_TOKYO_NET 転入超過数
+財務省 貿易統計 貿易概況 州別輸出入時系列表（CSV、直近約25か月）: TRADE_EXPORTS / IMPORTS / BALANCE（億円、原数値）と
+  TRADE_EXPORTS_YOY / TRADE_IMPORTS_YOY（前年同月比％、金額から計算）。速報→確報の改定は毎月のファイルで上書きされる
 ファイルの統計表IDは一覧ページから毎回探す（更新時に変わっても追随するため）。
 Excel は標準ライブラリだけで読む（xlsx.py）。
 """
-import datetime as dt, html, json, os, re, urllib.request
+import csv, datetime as dt, html, io, json, os, re, urllib.request
 from fetch import ROOT, RAW, load_series, csv_path, read_csv, write_csv
 import xlsx
 
@@ -198,6 +200,49 @@ def idou(rawdir):
     return out
 
 
+TRADE_LIST = (ESTAT + "/stat-search/files?page=1&layout=datalist&cycle=1&toukei=00350300&tstat=000001013137"
+              "&tclass1=000001013253&tclass2val=0")
+MONTH_ABBR = {m: i for i, m in enumerate(("Jan", "Feb", "Mar", "Apr", "May", "Jun",
+                                          "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"), 1)}
+
+
+def trade(rawdir):
+    """貿易統計（財務省）の州別輸出入時系列表から世界計の輸出・輸入を取る。
+
+    ファイルは年ごとに1つ（その年の最新月までの直近約25か月、単位千円）。
+    普段は最新年だけ、初回（CSVが無いとき）は2009年以降の全年を古い順に読んで、新しいファイルの値で上書きする。
+    """
+    first = not os.path.exists(csv_path("ESTAT", "TRADE_EXPORTS"))
+    page = get(TRADE_LIST).decode("utf-8", "replace")
+    years = sorted(set(re.findall(r"year=(\d{4})0&(?:amp;)?month=(\d{8})", page)))
+    if not years:
+        raise RuntimeError("貿易統計 州別輸出入時系列表 の年一覧が見つからない")
+    exp, imp = {}, {}
+    for y, m in (years if first else years[-1:]):
+        url = find_file(f"{TRADE_LIST}&year={y}0&month={m}", "州別輸出入時系列表")
+        body = get(url)
+        if (y, m) == years[-1]:
+            with open(os.path.join(rawdir, "trade_ik400h.csv"), "wb") as f:
+                f.write(body)
+        for r in csv.reader(io.StringIO(body.decode("utf-8-sig", "replace"))):
+            hit = re.fullmatch(r"(\d{4}) ([A-Z][a-z]{2})\.", r[0].strip()) if r else None
+            if hit and len(r) > 2 and r[1].isdigit() and r[2].isdigit():
+                d = f"{hit.group(1)}-{MONTH_ABBR[hit.group(2)]:02d}"
+                exp[d], imp[d] = int(r[1]), int(r[2])  # 千円
+    if not exp:
+        raise RuntimeError("貿易統計 州別輸出入時系列表 に月次の行が無い")
+
+    def yoy(x):
+        return {d: str(round((v / x[p] - 1) * 100, 1) + 0.0) for d, v in x.items()
+                if (p := f"{int(d[:4]) - 1}{d[4:]}") in x and x[p]}
+
+    oku = lambda v: str(round(v / 1e5))  # 千円 → 億円
+    return {"TRADE_EXPORTS": {d: oku(v) for d, v in exp.items()},
+            "TRADE_IMPORTS": {d: oku(v) for d, v in imp.items()},
+            "TRADE_BALANCE": {d: oku(exp[d] - imp[d]) for d in exp if d in imp},
+            "TRADE_EXPORTS_YOY": yoy(exp), "TRADE_IMPORTS_YOY": yoy(imp)}
+
+
 def labour(rawdir):
     body = get(find_file(LFS_LIST, LFS_TABLE))
     with open(os.path.join(rawdir, "lfs_1-a-1.xlsx"), "wb") as f:
@@ -230,7 +275,7 @@ def main():
     data = {}
     for name, fn in (("労働力調査", labour), ("サービス産業動態統計", services), ("人口推計", population),
                      ("家計調査", kakei), ("小売物価統計", kouri),
-                     ("住民基本台帳人口移動報告", idou)):
+                     ("住民基本台帳人口移動報告", idou), ("貿易統計", trade)):
         try:
             data.update(fn(rawdir))
         except Exception as e:  # 1つ失敗しても他は続ける

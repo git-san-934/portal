@@ -603,6 +603,51 @@
    "unit": "人",
    "kind": "flow",
    "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EXPORTS",
+   "name": "貿易統計 輸出額（財務省・通関ベース）",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_IMPORTS",
+   "name": "貿易統計 輸入額（財務省・通関ベース）",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_BALANCE",
+   "name": "貿易統計 差引（輸出−輸入）",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "flow",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_EXPORTS_YOY",
+   "name": "貿易統計 輸出額 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "TRADE_IMPORTS_YOY",
+   "name": "貿易統計 輸入額 前年同月比",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
   }
  ]
 }

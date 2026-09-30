@@ -1,5 +1,5 @@
 {
-  "date": "2026-09-30",
+  "date": "2026-10-01",
   "alerts": [
     {
       "type": "1年高値更新",
@@ -260,6 +260,16 @@
       "code": "KOURI_TKY_RICE",
       "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
       "implication": "コメ5kgの店頭価格。消費者物価の食料を左右し、家計の体感物価に影響する。"
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-08",
+      "dir": "上昇",
+      "detail": "28%",
+      "db": "ESTAT",
+      "code": "TRADE_IMPORTS_YOY",
+      "name": "貿易統計 輸入額 前年同月比",
+      "implication": "輸入の伸び。資源価格・為替の動きを強く映す。"
     }
   ],
   "latest": {
@@ -731,6 +741,41 @@
       "prev": -801.0,
       "change": "+1,845人",
       "n": 17
+    },
+    "TRADE_EXPORTS": {
+      "date": "2026-08",
+      "value": 100433.0,
+      "prev": 115094.0,
+      "change": "-14,661億円",
+      "n": 225
+    },
+    "TRADE_IMPORTS": {
+      "date": "2026-08",
+      "value": 111552.0,
+      "prev": 121543.0,
+      "change": "-9,991億円",
+      "n": 225
+    },
+    "TRADE_BALANCE": {
+      "date": "2026-08",
+      "value": -11119.0,
+      "prev": -6449.0,
+      "change": "-4,670億円",
+      "n": 225
+    },
+    "TRADE_EXPORTS_YOY": {
+      "date": "2026-08",
+      "value": 19.3,
+      "prev": 23.2,
+      "change": "-3.900%pt",
+      "n": 213
+    },
+    "TRADE_IMPORTS_YOY": {
+      "date": "2026-08",
+      "value": 28.0,
+      "prev": 27.9,
+      "change": "+0.100%pt",
+      "n": 213
     }
   },
   "missing": []
