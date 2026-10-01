@@ -1216,5 +1216,11 @@
    "short": "製造装置"
   }
  ],
- "_note_trade_by_country": "貿易統計 品別国別表から、品目ごとに全輸出先の月次輸出額を data/trade_by_country.json に蓄積する（ページ trade.html で国別の推移を表示）。hs は HS コードの接頭辞"
+ "_note_trade_by_country": "貿易統計 品別国別表から、品目ごとに全輸出先の月次輸出額を data/trade_by_country.json に蓄積する（ページ trade.html で国別の推移を表示）。hs は HS コードの接頭辞",
+ "trade_goods_countries": [
+  "304",
+  "105",
+  "106"
+ ],
+ "_note_trade_goods_countries": "国別概況品別表から、これらの国（税関の国コード: 米国304・中国105・台湾106）向けの主な品目の月次輸出額を data/trade_goods_by_country.json に蓄積（系列ページの品目内訳）"
 }

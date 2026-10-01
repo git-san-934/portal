@@ -147,3 +147,5 @@ code { font-size: 0.75rem; }
 .vals th, .vals td.cname { white-space: nowrap; }
 .tchart ~ .note { margin-top: 0.3rem; }
 #measures, #ranges, #avgs { margin-bottom: 0.5rem; }
+#goods-table { font-size: 0.8rem; }
+#goods-table td.cname { white-space: normal; }

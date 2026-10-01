@@ -351,6 +351,64 @@ def _write_by_country(items, raw):
     with open(BY_COUNTRY, "w", encoding="utf-8") as f:
         json.dump(res, f, ensure_ascii=False, separators=(",", ":"))
 
+# 国別概況品別表（国 × 概況品、年ごとに1ファイル約3MB）。概況品コード → 品目名は2025年の主要商品別表の金額と照合して確認
+GOODS_COUNTRY = "tstat=000001013141&tclass1=000001013198&tclass2=000001013199&tclass3val=0"
+GOODS_JA = {
+    "3": "鉱物性燃料", "50101": "有機化合物", "507": "医薬品", "515": "プラスチック", "603": "ゴム製品", "606": "紙類・同製品",
+    "607": "織物用糸・繊維製品", "609": "非金属鉱物製品", "611": "鉄鋼", "613": "非鉄金属", "615": "金属製品",
+    "70101": "原動機", "70107": "金属加工機械", "70109": "繊維機械", "70119": "建設用・鉱山用機械",
+    "70123": "加熱用・冷却用機器", "70125": "ポンプ・遠心分離機", "70127": "荷役機械", "70129": "ベアリング",
+    "70131": "半導体等製造装置", "7010505": "電算機類（本体）", "7010507": "電算機類の部分品",
+    "70301": "重電機器", "70303": "電気回路等の機器", "70313": "音響・映像機器の部分品", "70315": "通信機",
+    "70319": "電池", "70323": "半導体等電子部品", "70327": "電気計測機器", "7030903": "映像記録・再生機器",
+    "70503": "自動車", "70505": "自動車の部分品", "7050701": "二輪自動車", "70511": "航空機類", "7051301": "船舶",
+    "81101": "科学光学機器", "81301": "写真用・映画用材料",
+}
+GOODS_BY_COUNTRY = os.path.join(os.path.dirname(csv_path("ESTAT", "x")), "trade_goods_by_country.json")
+
+
+def trade_goods(countries):
+    """国ごとに主な品目（GOODS_JA）の月次輸出額（億円）を trade_goods_by_country.json に蓄積する。
+    初回は HS_FIRST_YEAR 以降、普段は直近2年。"""
+    first = not os.path.exists(GOODS_BY_COUNTRY)
+    base = TRADE_BASE.replace("tstat=000001013137&", "") + GOODS_COUNTRY
+    page = get(base).decode("utf-8", "replace")
+    years = sorted(set(re.findall(r"year=(\d{4})0&(?:amp;)?month=(\d{8})", page)))
+    years = [ym for ym in years if int(ym[0]) >= HS_FIRST_YEAR] if first else years[-2:]
+    old = {} if first else json.load(open(GOODS_BY_COUNTRY, encoding="utf-8"))
+    data = {c: {g: dict(v) for g, v in old.get("countries", {}).get(c, {}).items()} for c in countries}
+    months = set(old.get("months", []))
+    for y, m in years:
+        last = int(m[-2:])
+        page = get(f"{base}&year={y}0&month={m}").decode("utf-8", "replace")
+        uid = re.search(r"file-download\?statInfId=(\d+)&(?:amp;)?fileKind=1", page)
+        if not uid:
+            continue
+        rows = csv.reader(io.StringIO(get(f"{ESTAT}/stat-search/file-download?statInfId={uid.group(1)}&fileKind=1")
+                                      .decode("utf-8-sig", "replace")))
+        head = next(rows)
+        vcol = [i for i, h in enumerate(head) if h.startswith("Value-") and h != "Value-Year"][:last]
+        ms = [f"{y}-{k + 1:02d}" for k in range(last)]
+        months |= set(ms)
+        for c in countries:  # 取り直す月は消してから入れ直す
+            for g in data[c].values():
+                for d in ms:
+                    g.pop(d, None)
+        for r in rows:
+            c, g = r[3].strip(), r[2].strip("' ")
+            if c in data and g in GOODS_JA:
+                for d, i in zip(ms, vcol):
+                    v = int(r[i] or 0)
+                    if v:
+                        data[c].setdefault(g, {})[d] = round(v / 1e5, 1)
+    res = {"_note": "財務省 貿易統計 国別概況品別表（輸出、億円、0の月は省略）。countries[国コード][概況品コード][YYYY-MM]",
+           "names": GOODS_JA, "country_names": {c: COUNTRY_JA.get(c, c) for c in countries},
+           "months": sorted(months),
+           "countries": {c: {g: dict(sorted(v.items())) for g, v in sorted(gs.items()) if v} for c, gs in data.items()}}
+    with open(GOODS_BY_COUNTRY, "w", encoding="utf-8") as f:
+        json.dump(res, f, ensure_ascii=False, separators=(",", ":"))
+
+
 def trade(rawdir):
     """財務省 貿易統計（貿易概況）から series.json の "trade" 指定の系列を作る。
 
@@ -405,6 +463,9 @@ def trade(rawdir):
         else:
             nd = 1 if t["table"] in HS_TABLES else None  # 細かい品目は小さいので 0.1億円まで
             out[s["code"]] = {d: str(round(v / 1e5, nd)) for d, v in x.items()}  # 千円 → 億円
+    goods_countries = json.load(open(os.path.join(ROOT, "series.json"), encoding="utf-8")).get("trade_goods_countries", [])
+    if goods_countries:
+        trade_goods(goods_countries)
     if wanted and not any(out.values()):
         raise RuntimeError("貿易統計の表に対象の品目・地域が見つからない")
     return out
