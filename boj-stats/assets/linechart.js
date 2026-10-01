@@ -10,9 +10,12 @@ window.MultiLine = (() => {
   const fmtVal = (v, yoy) =>
     v == null || !isFinite(v) ? "-" : yoy ? `${v >= 0 ? "+" : ""}${v.toFixed(1)}%` : `${v.toLocaleString("ja-JP", { maximumFractionDigits: Math.abs(v) < 10 ? 1 : 0 })}億円`;
 
-  // opts: { months: [YYYY-MM], lines: [{name, color, val(d)}], extra: [{name, val(d)}](吹き出しのみ), yoy: bool, label }
+  // opts: { months: [YYYY-MM], lines: [{name, color, val(d)}], extra: [{name, val(d)}](吹き出しのみ), yoy: bool, label,
+  //         fmt(v): 吹き出しの値(省略で億円/%), tick(v): 軸の目盛り(省略で整数) }
   function draw(box, legend, opts) {
     const { months: ms, lines, extra = [], yoy } = opts;
+    const fmt = opts.fmt || ((v) => fmtVal(v, yoy));
+    const tick = opts.tick || ((v) => (yoy ? `${Math.round(v)}%` : Math.round(v).toLocaleString("ja-JP")));
     if (legend) {
       legend.replaceChildren(
         ...lines.map((s) => {
@@ -61,7 +64,7 @@ window.MultiLine = (() => {
     for (let i = 0; i <= 4; i++) {
       const v = lo + ((hi - lo) * i) / 4;
       add("line", { class: "grid", x1: L, x2: W - R, y1: sy(v), y2: sy(v) });
-      add("text", { x: L - 6, y: sy(v) + 4, "text-anchor": "end" }, yoy ? `${Math.round(v)}%` : Math.round(v).toLocaleString("ja-JP"));
+      add("text", { x: L - 6, y: sy(v) + 4, "text-anchor": "end" }, tick(v));
     }
     if (lo < 0 && hi > 0) add("line", { class: "grid", x1: L, x2: W - R, y1: sy(0), y2: sy(0), "stroke-dasharray": "4 3" });
     add("text", { x: L, y: H - 6 }, fmtMonth(ms[0]));
@@ -96,7 +99,7 @@ window.MultiLine = (() => {
           sw.style.background = s.color;
           row.append(sw);
         }
-        row.append(`${s.name} ${fmtVal(s.val(d), yoy)}`);
+        row.append(`${s.name} ${fmt(s.val(d))}`);
         tip.append(row);
       }
       tip.hidden = false;

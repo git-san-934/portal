@@ -12,7 +12,7 @@
     <p class="back"><a href="./">← 日銀統計の新着</a></p>
     <header>
       <h1>半導体関連の輸出 国別の推移</h1>
-      <p class="intro">財務省の貿易統計(品別国別表)から、品目ごとに日本からの輸出額を輸出先の国別に並べます。上位5か国を個別に、残りを「その他」にまとめています。</p>
+      <p class="intro">財務省の貿易統計(品別国別表)から、品目ごとに日本からの輸出額・数量・単価(輸出額÷数量)を輸出先の国別に並べます。上位5か国を個別に、残りを「その他」にまとめています。</p>
       <p class="updated" id="status">読み込み中...</p>
     </header>
 
@@ -20,6 +20,7 @@
 
     <section class="panel">
       <h2 class="panel-title" id="item-name"></h2>
+      <nav class="filters" id="kinds" aria-label="指標"></nav>
       <nav class="filters" id="measures" aria-label="表示"></nav>
       <nav class="filters" id="ranges" aria-label="期間"></nav>
       <nav class="filters" id="avgs" aria-label="平均"></nav>
@@ -39,7 +40,7 @@
       <p>※品目の分類は輸出統計品目表のHSコードによります。月々の振れが大きい品目は前年同月比が大きく動きます。</p>
     </footer>
   </div>
-  <script src="assets/linechart.js?v=20261001b"></script>
-  <script src="assets/trade.js?v=20261001b"></script>
+  <script src="assets/linechart.js?v=20261001c"></script>
+  <script src="assets/trade.js?v=20261001c"></script>
 </body>
 </html>
