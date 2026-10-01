@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>系列の詳細 - 日銀統計の新着</title>
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261001b" />
+  <link rel="stylesheet" href="assets/style.css?v=20261002a" />
 </head>
 <body>
   <div class="wrap">
@@ -31,6 +31,22 @@
       <table class="vals" id="goods-table"></table>
     </section>
 
+    <section class="panel" id="qp-panel" hidden>
+      <h2 class="panel-title">数量と単価 <span class="code" id="qp-sub"></span></h2>
+      <div id="qp-body">
+        <nav class="filters" id="qp-mode" aria-label="表示"></nav>
+        <nav class="filters" id="qp-avg" aria-label="平均"></nav>
+        <h3 class="chart-head" id="qp-qty-head"></h3>
+        <div class="chart tchart" id="qp-qty"></div>
+        <h3 class="chart-head" id="qp-price-head"></h3>
+        <div class="legend" id="qp-price-legend"></div>
+        <div class="chart tchart" id="qp-price"></div>
+        <table class="vals" id="qp-table" style="font-size:0.8rem"></table>
+      </div>
+      <p class="note sub" id="qp-note"></p>
+      <p class="note sub"><a id="qp-link">輸出先の国ごとの比較(半導体関連の輸出 国別)</a></p>
+    </section>
+
     <section class="panel" id="implication-panel" hidden>
       <h2 class="panel-title">見方</h2>
       <p class="note" id="implication"></p>
@@ -54,5 +70,6 @@
   <script src="assets/series.js?v=20260930a"></script>
   <script src="assets/linechart.js?v=20261001c"></script>
   <script src="assets/goods.js?v=20261001b"></script>
+  <script src="assets/unitprice.js?v=20261002a"></script>
 </body>
 </html>
