@@ -68,6 +68,7 @@ h1 { font-size: 1.5rem; }
   padding: 1rem 1.1rem; box-shadow: var(--shadow); margin-bottom: 1rem;
 }
 .panel-title { font-size: 1.05rem; display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
+.chart-head { font-size: 0.9rem; font-weight: 600; margin: 0.9rem 0 0.3rem; }
 .code { color: var(--text-sub); font-size: 0.8rem; font-weight: 400; }
 
 .jump { display: flex; flex-wrap: wrap; gap: 0.35rem 0.8rem; font-size: 0.85rem; margin: 0 0 1rem; }
