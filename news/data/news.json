@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-01T05:39+09:00",
+ "updated_at": "2026-10-01T11:16+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,20 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-01",
+     "title": "『ゼノブレイド2 Nintendo Switch 2 Edition』のパッケージ版が本日より発売開始。アップグレードパス / ダウンロード版は配信中。 ※本作の対象年齢は「15歳以上」です。",
+     "url": "https://www.nintendo.com/jp/topics/article/cf2ecdd9-7072-408b-99b5-40bd7b48e884",
+     "source": "official",
+     "first_seen": "2026-10-01T11:16+09:00"
+    },
+    {
+     "date": "2026-10-01",
+     "title": "キャラクターフィギュアがゲットできる『ドンキーコング バナンザ DKアイランド&エメラルドラッシュ』の期間限定イベント(全12回)が、月替わりで遊べるように。",
+     "url": "https://www.nintendo.com/jp/topics/article/ceab0dcc-3faf-4ff0-bbf2-e2ed3984315d",
+     "source": "official",
+     "first_seen": "2026-10-01T11:16+09:00"
+    },
     {
      "date": "2026-09-30",
      "title": "『Star Fox』の無料アップデートは本日配信。『Nintendo Music』での楽曲配信や折り紙で作るアーウィンの情報も。",
@@ -810,6 +824,13 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-10-01",
+     "title": "キオクシア岩手株式会社がRBA監査でプラチナ・ステータスを取得",
+     "url": "https://www.kioxia-holdings.com/ja-jp/news/2026/20261001-1.html",
+     "source": "official",
+     "first_seen": "2026-10-01T11:16+09:00"
+    },
     {
      "date": "2026-09-15",
      "title": "一部報道について",
