@@ -266,10 +266,11 @@ HS_TABLES = {"hs_ex": "tstat=000001013141&tclass1=000001013180&tclass2=000001013
 HS_FIRST_YEAR = 2016
 
 
-def _hs_values(table, prefixes, first):
+def _hs_values(table, prefixes, first, qty=None):
     """prefixes: [HS の接頭辞のタプル] → {接頭辞: {国コード: {YYYY-MM: 千円}}}。国コード "ALL" は全世界の合計。
     表に品目がある年の公表済みの月は "ALL" に必ず入る（国の値が無い月は0）。
-    普段は直近2年（前年同月比のため）、初回は HS_FIRST_YEAR 以降。"""
+    普段は直近2年（前年同月比のため）、初回は HS_FIRST_YEAR 以降。
+    qty に dict を渡すと数量も {接頭辞: {"units": [(単位1, 単位2)...], "q": [{国: {月: 数量1}}, {国: {月: 数量2}}]}} で入れる。"""
     base = TRADE_BASE.replace("tstat=000001013137&", "") + HS_TABLES[table]
     page = get(base).decode("utf-8", "replace")
     years = sorted(set(re.findall(r"year=(\d{4})0&(?:amp;)?month=(\d{8})", page)))
@@ -291,21 +292,33 @@ def _hs_values(table, prefixes, first):
             rows = csv.reader(io.StringIO(body.decode("utf-8-sig", "replace")))
             head = next(rows)
             vcol = [i for i, h in enumerate(head) if h.startswith("Value-") and h != "Value-Year"][:last]  # 年により Apr が Apl
-            sums = {}
+            sums, qsums = {}, {}
             for r in rows:
                 code = r[2].strip("' ")
                 for hs in prefixes:
                     if code.startswith(hs):  # その年の表にこの品目がある（無い年は0で埋めない）
                         by = sums.setdefault(hs, {})
+                        qby = qsums.setdefault(hs, ({}, {}))
+                        if qty is not None:
+                            qty.setdefault(hs, {"units": set(), "q": ({}, {})})["units"].add((r[4].strip(), r[5].strip()))
                         for c in (r[3].strip(), "ALL"):
                             arr = by.setdefault(c, [0] * last)
-                            for k, i in enumerate(vcol):
+                            q1, q2 = (qb.setdefault(c, [0] * last) for qb in qby)
+                            for k, i in enumerate(vcol):  # 数量1・数量2 は金額の2列・1列前
                                 arr[k] += int(r[i] or 0)
+                                q1[k] += int(r[i - 2] or 0)
+                                q2[k] += int(r[i - 1] or 0)
             for hs, by in sums.items():
                 for c, arr in by.items():
                     dst = out[hs].setdefault(c, {})
                     for k, v in enumerate(arr):
                         dst[f"{y}-{k + 1:02d}"] = v
+                if qty is not None:
+                    for qb, qd in zip(qsums[hs], qty[hs]["q"]):
+                        for c, arr in qb.items():
+                            dst = qd.setdefault(c, {})
+                            for k, v in enumerate(arr):
+                                dst[f"{y}-{k + 1:02d}"] = v
     return out
 
 
@@ -327,27 +340,66 @@ COUNTRY_JA = {
 BY_COUNTRY = os.path.join(os.path.dirname(csv_path("ESTAT", "x")), "trade_by_country.json")
 
 
-def _write_by_country(items, raw):
-    """series.json の trade_by_country の品目ごとに、全輸出先の月次輸出額（億円）を JSON に蓄積する。"""
+QTY_UNITS = {"NO": ("個", 1), "TH": ("個", 1000), "KG": ("kg", 1)}  # 税関の単位 → (表示の単位, 倍率)
+
+
+def _qty_unit(q):
+    """品目のすべての HS コード・年で同じ単位の数量列を選ぶ → (列 0|1, 単位, 倍率)。揃わなければ None"""
+    if not q:
+        return None
+    for col in (0, 1):
+        units = {u[col] for u in q["units"]}
+        if len(units) == 1 and (u := units.pop()) in QTY_UNITS:
+            return (col,) + QTY_UNITS[u]
+    return None
+
+
+def _merge_months(prev, data, fetched, conv):
+    """国→月→値の蓄積に取り直した月を入れ直す（改定で0になった国を残さないよう、一度消してから入れる）"""
+    out = {c: dict(v) for c, v in prev.items()}
+    for c in out:
+        for d in fetched:
+            out[c].pop(d, None)
+    for c, vals in data.items():
+        for d, v in vals.items():
+            if v:
+                out.setdefault(c, {})[d] = conv(v)
+    return {c: dict(sorted(v.items())) for c, v in sorted(out.items()) if v}
+
+
+def _by_country_needs_qty():
+    """数量を入れる前の trade_by_country.json なら、数量を過去分まで取り直す"""
+    if not os.path.exists(BY_COUNTRY):
+        return True
+    return any("qty_unit" not in it for it in json.load(open(BY_COUNTRY, encoding="utf-8")).get("items", []))
+
+
+def _write_by_country(items, raw, qraw, refetched=False):
+    """series.json の trade_by_country の品目ごとに、全輸出先の月次輸出額（億円）と数量を JSON に蓄積する。
+    数量は品目の HS コードの単位が揃うときだけ（集積回路計のように個とkgが混ざる品目は入れない）。"""
     old = json.load(open(BY_COUNTRY, encoding="utf-8")) if os.path.exists(BY_COUNTRY) else {}
-    res = {"_note": "財務省 貿易統計 品別国別表（輸出、億円）。countries[国コード] は月→値（0の月は省略）。ALL は全世界",
+    res = {"_note": "財務省 貿易統計 品別国別表（輸出、億円）。countries[国コード] は月→値（0の月は省略）。ALL は全世界。"
+                    "qty は同じ形の数量（単位 qty_unit、千個は個に換算）。単価は 金額÷数量",
            "names": COUNTRY_JA, "items": []}
     olditems = {it["key"]: it for it in old.get("items", [])}
     for it in items:
         data = raw.get(tuple(it["hs"]), {})
         prev = olditems.get(it["key"], {})
         months = sorted(set(prev.get("months", [])) | set(data.get("ALL", {})))
-        countries = {c: dict(v) for c, v in prev.get("countries", {}).items()}
         fetched = set(data.get("ALL", {}))
-        for c in countries:  # 取り直した月は一度消してから入れ直す（改定で0になった国を残さない）
-            for d in fetched:
-                countries[c].pop(d, None)
-        for c, vals in data.items():
-            for d, v in vals.items():
-                if v:
-                    countries.setdefault(c, {})[d] = round(v / 1e5, 1)
-        res["items"].append({"key": it["key"], "name": it["name"], "short": it.get("short", it["name"]), "hs": it["hs"], "months": months,
-                             "countries": {c: dict(sorted(v.items())) for c, v in sorted(countries.items()) if v}})
+        row = {"key": it["key"], "name": it["name"], "short": it.get("short", it["name"]), "hs": it["hs"], "months": months,
+               "countries": _merge_months(prev.get("countries", {}), data, fetched, lambda v: round(v / 1e5, 1))}
+        q = qraw.get(tuple(it["hs"]))
+        unit = _qty_unit(q)
+        if unit and (refetched or prev.get("qty_unit") == unit[1]):
+            col, name, mult = unit
+            row["qty_unit"] = name
+            row["qty"] = _merge_months(prev.get("qty", {}) if not refetched else {}, q["q"][col], fetched, lambda v: v * mult)
+        elif unit is None and (refetched or "qty_unit" in prev):
+            row["qty_unit"] = None  # 単位が揃わない（取り直し済みの印として None を残す）
+        elif "qty_unit" in prev:
+            row["qty_unit"], row["qty"] = prev["qty_unit"], prev.get("qty", {})
+        res["items"].append(row)
     with open(BY_COUNTRY, "w", encoding="utf-8") as f:
         json.dump(res, f, ensure_ascii=False, separators=(",", ":"))
 
@@ -424,13 +476,15 @@ def trade(rawdir):
         tables[t] = tables.get(t, False) or not os.path.exists(csv_path("ESTAT", s["code"]))
     by_country = json.load(open(os.path.join(ROOT, "series.json"), encoding="utf-8")).get("trade_by_country", [])
     if by_country:
-        tables["hs_ex"] = tables.get("hs_ex", False) or not os.path.exists(BY_COUNTRY)
+        tables["hs_ex"] = tables.get("hs_ex", False) or _by_country_needs_qty()
     raw = {}
     for table in [t for t in tables if t in HS_TABLES]:
         prefixes = {tuple(s["trade"]["hs"]) for s in wanted if s["trade"]["table"] == table}
         if table == "hs_ex":
             prefixes |= {tuple(it["hs"]) for it in by_country}
-        hsv = _hs_values(table, sorted(prefixes), tables.pop(table))
+        first = tables.pop(table)
+        qraw = {}
+        hsv = _hs_values(table, sorted(prefixes), first, qraw if table == "hs_ex" else None)
         side = "EX" if table == "hs_ex" else "IM"
         for s in wanted:
             t = s["trade"]
@@ -439,7 +493,7 @@ def trade(rawdir):
                 c = by.get(t.get("country") or "ALL", {})
                 raw[(table, (tuple(t["hs"]), t.get("country")), side)] = {d: c.get(d, 0) for d in by.get("ALL", {})}
         if table == "hs_ex" and by_country:
-            _write_by_country(by_country, hsv)
+            _write_by_country(by_country, hsv, qraw, first)
     for table, first in tables.items():
         for n, body in enumerate(_trade_files(table, first)):
             if table == "area":

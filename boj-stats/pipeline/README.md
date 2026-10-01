@@ -30,6 +30,8 @@
   品目・国を足すときは series.json に "trade" 付きの系列を1件足す（書き方は fetch_estat.py の trade() を参照）。
 - 2026-10-01: 半導体関連の国別推移。series.json の trade_by_country（品目ごとの HS 接頭辞）について、品別国別表から全輸出先の月次輸出額を
   data/trade_by_country.json に蓄積（2016年〜、億円）。portal の boj-stats/trade.html が国別の輸出額・前年同月比を表示する。
+- 2026-10-01: 同じ JSON に数量（qty、単位 qty_unit。千個は個に換算）を追加。品目の HS コードの単位が揃うときだけ入れ、
+  揃わない品目（集積回路計）は qty_unit が null。数量の無い古い JSON なら2016年から取り直す。trade.html で数量と単価（金額÷数量）も表示する。
 
 - 2026-10-01: 国別の輸出系列ページ（米国・中国・台湾）に主な品目の内訳。国別概況品別表から series.json の trade_goods_countries の国について
   主な品目（fetch_estat.py GOODS_JA、概況品コード）の月次輸出額を data/trade_goods_by_country.json に蓄積。ページ側は assets/goods.js。
