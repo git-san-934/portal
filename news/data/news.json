@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-02T06:18+09:00",
+ "updated_at": "2026-10-02T08:10+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -820,8 +820,7 @@
    "home": "https://www.kioxia-holdings.com/ja-jp/",
    "official_status": "ok",
    "official_pages": [
-    "https://www.kioxia-holdings.com/ja-jp/news.html",
-    "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
+    "https://www.kioxia-holdings.com/ja-jp/news.html"
    ],
    "items": [
     {
@@ -1113,89 +1112,6 @@
    ]
   },
   {
-   "code": "AUR",
-   "name": "AUR",
-   "market": "US",
-   "home": "https://aurora.tech/",
-   "official_status": "ok",
-   "official_pages": [
-    "https://ir.aurora.tech/news-events/press-releases",
-    "https://aurora.tech/newsroom"
-   ],
-   "items": [
-    {
-     "date": "2026-09-23",
-     "title": "Aurora Outlines 2030 Vision to Scale to 30,000 Driverless Trucks at Analyst and Investor Day",
-     "url": "https://ir.aurora.tech/news-events/press-releases/detail/152/aurora-outlines-2030-vision-to-scale-to-30000-driverless-trucks-at-analyst-and-investor-day",
-     "source": "official",
-     "first_seen": "2026-09-23T00:00+09:00"
-    },
-    {
-     "date": "2026-09-23",
-     "title": "Aurora to Host Analyst & Investor Day on",
-     "url": "https://ir.aurora.tech/news-events/press-releases/detail/151/aurora-to-host-analyst-investor-day-on-september-23-2026",
-     "source": "official",
-     "first_seen": "2026-09-23T00:00+09:00"
-    },
-    {
-     "date": "2026-08-20",
-     "title": "Aurora to Present at Upcoming Investor Conferences",
-     "url": "https://ir.aurora.tech/news-events/press-releases/detail/150/aurora-to-present-at-upcoming-investor-conferences",
-     "source": "official",
-     "first_seen": "2026-08-20T00:00+09:00"
-    },
-    {
-     "date": "2026-08-20",
-     "title": "Aurora to Host a Retail Investor Town Hall on",
-     "url": "https://ir.aurora.tech/news-events/press-releases/detail/149/aurora-to-host-a-retail-investor-town-hall-on-august-20-2026",
-     "source": "official",
-     "first_seen": "2026-08-20T00:00+09:00"
-    },
-    {
-     "date": "2026-08-04",
-     "title": "Arrow McLaren Adds Autonomous Trucking Pioneer Aurora as Official Partner",
-     "url": "https://ir.aurora.tech/news-events/press-releases/detail/148/arrow-mclaren-adds-autonomous-trucking-pioneer-aurora-as-official-partner",
-     "source": "official",
-     "first_seen": "2026-08-04T00:00+09:00"
-    },
-    {
-     "date": "2026-07-29",
-     "title": "Aurora Announces Second Quarter 2026 Results",
-     "url": "https://ir.aurora.tech/news-events/press-releases/detail/147/aurora-announces-second-quarter-2026-results",
-     "source": "official",
-     "first_seen": "2026-07-29T00:00+09:00"
-    },
-    {
-     "date": "2026-07-29",
-     "title": "Aurora to Host Second Quarter 2026 Business Review Conference Call on",
-     "url": "https://ir.aurora.tech/news-events/press-releases/detail/143/aurora-to-host-second-quarter-2026-business-review-conference-call-on-july-29-2026",
-     "source": "official",
-     "first_seen": "2026-07-29T00:00+09:00"
-    },
-    {
-     "date": "2026-07-28",
-     "title": "Charger Logistics to Deploy Second-Generation Driverless Trucks",
-     "url": "https://ir.aurora.tech/news-events/press-releases/detail/146/charger-logistics-to-deploy-second-generation-driverless-trucks",
-     "source": "official",
-     "first_seen": "2026-07-28T00:00+09:00"
-    },
-    {
-     "date": "2026-07-27",
-     "title": "Value Truck to Deploy Aurora’s Second-Generation Driverless Trucks",
-     "url": "https://ir.aurora.tech/news-events/press-releases/detail/145/value-truck-to-deploy-auroras-second-generation-driverless-trucks",
-     "source": "official",
-     "first_seen": "2026-07-27T00:00+09:00"
-    },
-    {
-     "date": "2026-07-22",
-     "title": "Aurora Launches Second-Generation Driverless Trucks in U.S. to Meet Customer Demand",
-     "url": "https://ir.aurora.tech/news-events/press-releases/detail/144/aurora-launches-second-generation-driverless-trucks-in-u-s-to-meet-customer-demand",
-     "source": "official",
-     "first_seen": "2026-07-22T00:00+09:00"
-    }
-   ]
-  },
-  {
    "code": "ADBE",
    "name": "アドビ",
    "market": "US",
@@ -1436,6 +1352,13 @@
     "q4:https://investors.palantir.com"
    ],
    "items": [
+    {
+     "date": "2026-10-01",
+     "title": "Palantir and Armada Partner to Accelerate Sovereign AI Infrastructure",
+     "url": "https://investors.palantir.com/news-details/2026/Palantir-and-Armada-Partner-to-Accelerate-Sovereign-AI-Infrastructure/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-02T08:10+09:00"
+    },
     {
      "date": "2026-09-10",
      "title": "Palantir Customers Set New Standard for AI at AIPCon 11",
