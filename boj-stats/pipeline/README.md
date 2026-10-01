@@ -31,6 +31,8 @@
 - 2026-10-01: 半導体関連の国別推移。series.json の trade_by_country（品目ごとの HS 接頭辞）について、品別国別表から全輸出先の月次輸出額を
   data/trade_by_country.json に蓄積（2016年〜、億円）。portal の boj-stats/trade.html が国別の輸出額・前年同月比を表示する。
 
+- 2026-10-01: 国別の輸出系列ページ（米国・中国・台湾）に主な品目の内訳。国別概況品別表から series.json の trade_goods_countries の国について
+  主な品目（fetch_estat.py GOODS_JA、概況品コード）の月次輸出額を data/trade_goods_by_country.json に蓄積。ページ側は assets/goods.js。
 日次の当座預金残高速報やオペ結果は日銀本体サイト（www.boj.or.jp）の個別ページ公表で、APIには月次しか無いため未対応。
 長期金利（財務省の国債金利CSV）や株価は日銀統計外なので、必要なら別ソースとして追加する。
 

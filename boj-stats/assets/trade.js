@@ -12,7 +12,6 @@
   const fmtMonth = (d) => `${d.slice(0, 4)}年${+d.slice(5)}月`;
   const fmtVal = (v, m) =>
     v == null || isNaN(v) ? "-" : m === "yoy" ? `${v >= 0 ? "+" : ""}${v.toFixed(1)}%` : `${v.toLocaleString("ja-JP", { maximumFractionDigits: v < 10 ? 1 : 0 })}億円`;
-  const prevYear = (d) => `${+d.slice(0, 4) - 1}${d.slice(4)}`;
   const params = new URLSearchParams(location.search);
   const state = { item: params.get("item"), measure: params.get("m") || "value", years: +(params.get("y") || 5), avg: params.get("a") === "3" ? 3 : 1 };
   let feed;
@@ -36,123 +35,23 @@
     return { months, series };
   }
 
-  // n か月の合計(n=1 は単月)。月の並びは items.months
-  let monthIdx = {}, monthList = [];
-  const sumN = (s, d, n) => {
-    const i = monthIdx[d];
-    if (i == null || i - n + 1 < 0) return NaN;
-    let t = 0;
-    for (let k = i - n + 1; k <= i; k++) t += s.v[monthList[k]] || 0;
-    return t;
-  };
-  const value = (s, d, m, n = state.avg) => {
-    const x = sumN(s, d, n);
-    if (m !== "yoy") return x / n;
-    const p = sumN(s, prevYear(d), n);
-    return p > 0 ? (x / p - 1) * 100 : NaN;
-  };
+  let calc = () => NaN;
+  const value = (s, d, m, n = state.avg) => calc(s.v, d, m === "yoy", n);
 
   function draw(it) {
     const { months, series } = build(it);
-    monthList = months;
-    monthIdx = Object.fromEntries(months.map((d, i) => [d, i]));
+    calc = MultiLine.series(months);
     const m = state.measure;
     const lines = series.filter((s) => s.color);
     let ms = months.filter((d) => isFinite(value(series[series.length - 1], d, m)));
     if (state.years) ms = ms.slice(-12 * state.years);
-    const box = $("chart");
-    $("legend").replaceChildren(
-      ...lines.map((s) => {
-        const sp = el("span");
-        const i = el("i");
-        i.style.background = s.color;
-        sp.append(i, s.name);
-        return sp;
-      })
-    );
-    if (ms.length < 2) {
-      box.replaceChildren(el("p", "empty", "チャートを描くだけの値がありません"));
-      return;
-    }
-    const W = 440, H = 260, L = 58, R = 12, T = 12, B = 26;
-    const vals = lines.flatMap((s) => ms.map((d) => value(s, d, m))).filter((v) => isFinite(v));
-    let lo = m === "yoy" ? Math.min(0, ...vals) : 0, hi = Math.max(...vals, 1);
-    if (m === "yoy") {
-      // 前年が小さい月の極端な伸び率で軸がつぶれないよう、上下1%を切る
-      const sorted = [...vals].sort((a, b) => a - b);
-      lo = Math.min(0, sorted[Math.floor(sorted.length * 0.01)]);
-      hi = Math.max(0, sorted[Math.ceil(sorted.length * 0.99) - 1]);
-    }
-    const pad = (hi - lo) * 0.06;
-    if (m === "yoy") lo -= pad;
-    hi += pad;
-    const sx = (i) => L + (i / (ms.length - 1)) * (W - L - R);
-    const sy = (v) => T + (1 - (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo)) * (H - T - B);
-    const ns = "http://www.w3.org/2000/svg";
-    const svg = document.createElementNS(ns, "svg");
-    svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
-    svg.setAttribute("role", "img");
-    svg.setAttribute("aria-label", `${it.name} 国別の${m === "yoy" ? "前年同月比" : "輸出額"}`);
-    const add = (tag, attrs, text, parent = svg) => {
-      const e = document.createElementNS(ns, tag);
-      for (const k in attrs) e.setAttribute(k, attrs[k]);
-      if (text != null) e.textContent = text;
-      parent.append(e);
-      return e;
-    };
-    for (let i = 0; i <= 4; i++) {
-      const v = lo + ((hi - lo) * i) / 4;
-      add("line", { class: "grid", x1: L, x2: W - R, y1: sy(v), y2: sy(v) });
-      add("text", { x: L - 6, y: sy(v) + 4, "text-anchor": "end" }, m === "yoy" ? `${Math.round(v)}%` : Math.round(v).toLocaleString("ja-JP"));
-    }
-    if (lo < 0 && hi > 0) add("line", { class: "grid", x1: L, x2: W - R, y1: sy(0), y2: sy(0), "stroke-dasharray": "4 3" });
-    add("text", { x: L, y: H - 6 }, fmtMonth(ms[0]));
-    add("text", { x: W - R, y: H - 6, "text-anchor": "end" }, fmtMonth(ms[ms.length - 1]));
-    for (const s of [...lines].reverse()) {
-      let d = "", pen = false;
-      ms.forEach((mo, i) => {
-        const v = value(s, mo, m);
-        if (!isFinite(v)) { pen = false; return; }
-        d += `${pen ? "L" : "M"}${sx(i).toFixed(1)},${sy(v).toFixed(1)}`;
-        pen = true;
-      });
-      add("path", { class: "line", d }).style.stroke = s.color;
-    }
-    const cross = add("line", { class: "cross", y1: T, y2: H - B, visibility: "hidden" });
-    const hit = add("rect", { x: L, y: T, width: W - L - R, height: H - T - B, fill: "transparent" });
-    const tip = el("div", "tip");
-    tip.hidden = true;
-    const move = (ev) => {
-      const r = svg.getBoundingClientRect();
-      const px = ((ev.clientX - r.left) / r.width) * W;
-      const i = Math.max(0, Math.min(ms.length - 1, Math.round(((px - L) / (W - L - R)) * (ms.length - 1))));
-      const d = ms[i];
-      cross.setAttribute("x1", sx(i));
-      cross.setAttribute("x2", sx(i));
-      cross.setAttribute("visibility", "visible");
-      tip.replaceChildren(el("b", null, fmtMonth(d)));
-      for (const s of series) {
-        const row = el("div");
-        if (s.color) {
-          const sw = el("i");
-          sw.style.background = s.color;
-          row.append(sw);
-        }
-        row.append(`${s.name} ${fmtVal(value(s, d, m), m)}`);
-        tip.append(row);
-      }
-      tip.hidden = false;
-      const x = (sx(i) / W) * r.width;
-      tip.style.left = `${x > r.width / 2 ? x - tip.offsetWidth - 10 : x + 10}px`;
-      tip.style.top = "8px";
-    };
-    hit.addEventListener("pointermove", move);
-    hit.addEventListener("pointerdown", move);
-    hit.addEventListener("pointerleave", () => {
-      tip.hidden = true;
-      cross.setAttribute("visibility", "hidden");
+    MultiLine.draw($("chart"), $("legend"), {
+      months: ms,
+      lines: lines.map((s) => ({ name: s.name, color: s.color, val: (d) => value(s, d, m) })),
+      extra: series.filter((s) => !s.color).map((s) => ({ name: s.name, val: (d) => value(s, d, m) })),
+      yoy: m === "yoy",
+      label: `${it.name} 国別の${m === "yoy" ? "前年同月比" : "輸出額"}`,
     });
-    box.replaceChildren(svg, tip);
     $("chart-note").textContent =
       (state.avg === 3 ? "直近3か月の平均(前年比は3か月合計どうし)。" : "") +
       (m === "yoy" ? "前年同月比は前年同月の輸出がある月だけ描きます。極端な値は軸の端で切っています(値は表と吹き出しで確認できます)。" : "単位は億円。");

@@ -5,7 +5,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>系列の詳細 - 日銀統計の新着</title>
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261001a" />
+  <link rel="stylesheet" href="assets/style.css?v=20261001b" />
 </head>
 <body>
   <div class="wrap">
@@ -20,6 +20,15 @@
     <section class="panel">
       <nav class="filters" id="ranges" aria-label="期間"></nav>
       <div class="chart" id="chart"></div>
+    </section>
+
+    <section class="panel" id="goods-panel" hidden>
+      <h2 class="panel-title">主な品目 <span class="code" id="goods-sub"></span></h2>
+      <nav class="filters" id="goods-avg" aria-label="平均"></nav>
+      <div class="legend" id="goods-legend"></div>
+      <div class="chart tchart" id="goods-chart"></div>
+      <p class="note sub" id="goods-note"></p>
+      <table class="vals" id="goods-table"></table>
     </section>
 
     <section class="panel" id="implication-panel" hidden>
@@ -43,5 +52,7 @@
     </footer>
   </div>
   <script src="assets/series.js?v=20260930a"></script>
+  <script src="assets/linechart.js?v=20261001b"></script>
+  <script src="assets/goods.js?v=20261001b"></script>
 </body>
 </html>
