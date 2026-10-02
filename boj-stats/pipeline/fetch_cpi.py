@@ -7,8 +7,8 @@ series.json の db が "CPI" の系列が対象。
 公表の前年比は指数の丸め前の値から計算されるため、小数第1位で±0.1ずれることがある。
 https://www.stat.go.jp/data/cpi/1.html
 """
-import csv, datetime as dt, io, json, os, urllib.request
-from fetch import ROOT, RAW, load_series, csv_path, read_csv, write_csv
+import csv, datetime as dt, io, os, urllib.request
+from fetch import RAW, load_series, csv_path, read_csv, write_csv, load_summary, save_summary, guarded
 
 URLS = {"2020": "https://www.stat.go.jp/data/cpi/2020/csv/zmi2020aa.csv",
         "2025": "https://www.stat.go.jp/data/cpi/2025/csv/zmi2025aa.csv"}
@@ -43,8 +43,7 @@ def main():
     today = dt.date.today().isoformat()
     rawdir = os.path.join(RAW, today)
     os.makedirs(rawdir, exist_ok=True)
-    lf = os.path.join(ROOT, "last_fetch.json")
-    summary = json.load(open(lf, encoding="utf-8")) if os.path.exists(lf) else {"date": today, "updated": [], "errors": []}
+    summary = load_summary()
     try:
         data = {base: get(url, rawdir) for base, url in URLS.items()}
     except Exception as e:
@@ -54,9 +53,13 @@ def main():
         for s in series:
             key = s["code"].replace("_YOY", "")
             idx = {}
-            for base, (header, rows) in data.items():
-                col = header.index(COLUMNS[key])
-                idx[base] = {m: float(r[col]) for m, r in rows.items() if len(r) > col and r[col]}
+            try:
+                for base, (header, rows) in data.items():
+                    col = header.index(COLUMNS[key])
+                    idx[base] = {m: float(r[col]) for m, r in rows.items() if len(r) > col and r[col]}
+            except ValueError as e:  # 列見出しの変更や数値でない値
+                summary["errors"].append(f"CPI/{s['code']}: {type(e).__name__}: {e}")
+                continue
             path = csv_path("CPI", s["code"])
             rows = read_csv(path)
             before = dict(rows)
@@ -70,10 +73,9 @@ def main():
             if new or revised:
                 summary["updated"].append({"db": "CPI", "code": s["code"], "new": len(new),
                                            "revised": len(revised), "latest": max(rows)})
-    with open(lf, "w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
+    save_summary(summary)
     return 1 if data is None else 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(guarded("CPI", main))

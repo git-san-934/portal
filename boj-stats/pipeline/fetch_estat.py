@@ -20,7 +20,7 @@
 Excel は標準ライブラリだけで読む（xlsx.py）。
 """
 import csv, datetime as dt, html, io, json, os, re, time, urllib.error, urllib.request
-from fetch import ROOT, RAW, load_series, csv_path, read_csv, write_csv
+from fetch import ROOT, RAW, load_series, csv_path, read_csv, write_csv, load_summary, save_summary, guarded
 import xlsx
 
 ESTAT = "https://www.e-stat.go.jp"
@@ -461,6 +461,9 @@ def trade_goods(countries):
         json.dump(res, f, ensure_ascii=False, separators=(",", ":"))
 
 
+SIDE_ERRORS = []  # 系列の他に作るファイル（国別推移など）の失敗。main() が errors に移す
+
+
 def trade(rawdir):
     """財務省 貿易統計（貿易概況）から series.json の "trade" 指定の系列を作る。
 
@@ -493,7 +496,10 @@ def trade(rawdir):
                 c = by.get(t.get("country") or "ALL", {})
                 raw[(table, (tuple(t["hs"]), t.get("country")), side)] = {d: c.get(d, 0) for d in by.get("ALL", {})}
         if table == "hs_ex" and by_country:
-            _write_by_country(by_country, hsv, qraw, first)
+            try:  # 国別推移の JSON が作れなくても、系列の取り込みは続ける
+                _write_by_country(by_country, hsv, qraw, first)
+            except Exception as e:
+                SIDE_ERRORS.append(f"ESTAT 貿易統計（国別推移 trade_by_country.json）: {type(e).__name__}: {e}")
     for table, first in tables.items():
         for n, body in enumerate(_trade_files(table, first)):
             if table == "area":
@@ -519,7 +525,10 @@ def trade(rawdir):
             out[s["code"]] = {d: str(round(v / 1e5, nd)) for d, v in x.items()}  # 千円 → 億円
     goods_countries = json.load(open(os.path.join(ROOT, "series.json"), encoding="utf-8")).get("trade_goods_countries", [])
     if goods_countries:
-        trade_goods(goods_countries)
+        try:  # 国別の品目内訳が作れなくても、系列の取り込みは続ける
+            trade_goods(goods_countries)
+        except Exception as e:
+            SIDE_ERRORS.append(f"ESTAT 貿易統計（国別の品目内訳 trade_goods_by_country.json）: {type(e).__name__}: {e}")
     if wanted and not any(out.values()):
         raise RuntimeError("貿易統計の表に対象の品目・地域が見つからない")
     return out
@@ -546,39 +555,49 @@ def labour(rawdir):
     return out
 
 
+# (エラーに付ける名前, 取得関数, その取得元の系列コードの接頭辞)。名前と接頭辞は status.py が失敗した系列を見分けるのにも使う
+SOURCES = (("労働力調査", labour, ("LFS_",)),
+           ("サービス産業動態統計", services, ("SVC_",)),
+           ("人口推計", population, ("POP_",)),
+           ("家計調査", kakei, ("KAKEI_",)),
+           ("小売物価統計", kouri, ("KOURI_",)),
+           ("住民基本台帳人口移動報告", idou, ("IDOU_",)),
+           ("貿易統計", trade, ("TRADE_",)))
+
+
 def main():
     series = [s for s in load_series() if s["db"] == "ESTAT"]
     today = dt.date.today().isoformat()
     rawdir = os.path.join(RAW, today)
     os.makedirs(rawdir, exist_ok=True)
-    lf = os.path.join(ROOT, "last_fetch.json")
-    summary = json.load(open(lf, encoding="utf-8")) if os.path.exists(lf) else {"date": today, "updated": [], "errors": []}
-    data = {}
-    for name, fn in (("労働力調査", labour), ("サービス産業動態統計", services), ("人口推計", population),
-                     ("家計調査", kakei), ("小売物価統計", kouri),
-                     ("住民基本台帳人口移動報告", idou), ("貿易統計", trade)):
+    summary = load_summary()
+    data, failed = {}, set()
+    for name, fn, prefixes in SOURCES:
         try:
             data.update(fn(rawdir))
         except Exception as e:  # 1つ失敗しても他は続ける
             summary["errors"].append(f"ESTAT {name}: {type(e).__name__}: {e}")
-    if data:
-        for s in series:
-            path = csv_path("ESTAT", s["code"])
-            rows = read_csv(path)
-            before = dict(rows)
-            if s["code"] not in data:
-                continue
-            rows.update(data[s["code"]])
-            write_csv(path, rows)
-            new = set(rows) - set(before)
-            revised = [k for k in before if rows.get(k) != before[k]]
-            if new or revised:
-                summary["updated"].append({"db": "ESTAT", "code": s["code"], "new": len(new),
-                                           "revised": len(revised), "latest": max(rows)})
-    with open(lf, "w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
+            failed.update(prefixes)
+    summary["errors"] += SIDE_ERRORS
+    for s in series:
+        if s["code"] not in data:
+            # 取得元は成功したのにこの系列だけ値が無い（表の見出しが変わったなど）
+            if not s["code"].startswith(tuple(failed)):
+                summary["errors"].append(f"ESTAT/{s['code']}: データが返らなかった（表の見出しや形式が変わった可能性）")
+            continue
+        path = csv_path("ESTAT", s["code"])
+        rows = read_csv(path)
+        before = dict(rows)
+        rows.update(data[s["code"]])
+        write_csv(path, rows)
+        new = set(rows) - set(before)
+        revised = [k for k in before if rows.get(k) != before[k]]
+        if new or revised:
+            summary["updated"].append({"db": "ESTAT", "code": s["code"], "new": len(new),
+                                       "revised": len(revised), "latest": max(rows)})
+    save_summary(summary)
     return 0 if data else 1
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(guarded("ESTAT", main))

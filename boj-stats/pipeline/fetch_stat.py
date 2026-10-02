@@ -6,8 +6,8 @@ series.json の db が "STAT" の系列が対象。
 - CTI_TOTAL_REAL: 総消費動向指数（実質、2025年基準、傾向推計値）。最新の公表列を使う（毎月過去に遡って改定される）
 - CTI_TOTAL_REAL_YOY: 上の前年同月比
 """
-import csv, datetime as dt, io, json, os, urllib.request
-from fetch import ROOT, RAW, load_series, csv_path, read_csv, write_csv
+import csv, datetime as dt, io, os, urllib.request
+from fetch import RAW, load_series, csv_path, read_csv, write_csv, load_summary, save_summary, guarded
 
 BASE = "https://www.stat.go.jp"
 TKY_URL = BASE + "/data/cpi/2025/csv/tmi2025aa.csv"
@@ -34,8 +34,8 @@ def yoy_series(idx):
     return out
 
 
-def build(rawdir):
-    """{code: {date: value}} を返す。"""
+def tokyo_cpi(rawdir):
+    """東京都区部の消費者物価の前年比。{code: {date: value}} を返す。"""
     res = {}
     rows = get_rows(TKY_URL, rawdir)
     header = rows[0]
@@ -43,6 +43,11 @@ def build(rawdir):
     for code, name in TKY_COLUMNS.items():
         col = header.index(name)
         res[code] = yoy_series({m: float(r[col]) for m, r in months.items() if len(r) > col and r[col]})
+    return res
+
+
+def cti(rawdir):
+    """総消費動向指数（実質）とその前年比。"""
     rows = get_rows(CTI_URL, rawdir)
     idx = {}
     for r in rows:
@@ -50,9 +55,13 @@ def build(rawdir):
             vals = [x for x in r[2:] if x]
             if vals:
                 idx[f"{r[0][:4]}-{r[0][6:8]}"] = float(vals[0])  # 左端が最新の公表
-    res["CTI_TOTAL_REAL"] = {m: f"{v:.2f}" for m, v in idx.items()}
-    res["CTI_TOTAL_REAL_YOY"] = yoy_series(idx)
-    return res
+    if not idx:
+        raise RuntimeError("総消費動向指数のCSVに月次の行が見つからない")
+    return {"CTI_TOTAL_REAL": {m: f"{v:.2f}" for m, v in idx.items()}, "CTI_TOTAL_REAL_YOY": yoy_series(idx)}
+
+
+# (エラーに付ける名前, 取得関数, その取得元の系列コードの接頭辞)。名前と接頭辞は status.py が失敗した系列を見分けるのにも使う
+SOURCES = (("東京都区部CPI", tokyo_cpi, ("CPI_TKY_",)), ("総消費動向指数", cti, ("CTI_",)))
 
 
 def main():
@@ -60,29 +69,30 @@ def main():
     today = dt.date.today().isoformat()
     rawdir = os.path.join(RAW, today)
     os.makedirs(rawdir, exist_ok=True)
-    lf = os.path.join(ROOT, "last_fetch.json")
-    summary = json.load(open(lf, encoding="utf-8")) if os.path.exists(lf) else {"date": today, "updated": [], "errors": []}
-    try:
-        data = build(rawdir)
-    except Exception as e:
-        summary["errors"].append(f"STAT: {type(e).__name__}: {e}")
-        data = None
+    summary = load_summary()
+    data = {}
+    for name, fn, _ in SOURCES:
+        try:
+            data.update(fn(rawdir))
+        except Exception as e:  # 1つ失敗しても他は続ける
+            summary["errors"].append(f"STAT {name}: {type(e).__name__}: {e}")
     if data:
         for s in series:
+            if s["code"] not in data:
+                continue
             path = csv_path("STAT", s["code"])
             rows = read_csv(path)
             before = dict(rows)
-            rows.update(data.get(s["code"], {}))
+            rows.update(data[s["code"]])
             write_csv(path, rows)
             new = set(rows) - set(before)
             revised = [k for k in before if rows.get(k) != before[k]]
             if new or revised:
                 summary["updated"].append({"db": "STAT", "code": s["code"], "new": len(new),
                                            "revised": len(revised), "latest": max(rows)})
-    with open(lf, "w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
-    return 1 if data is None else 0
+    save_summary(summary)
+    return 0 if data else 1
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(guarded("STAT", main))

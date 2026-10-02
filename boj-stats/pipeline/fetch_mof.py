@@ -6,8 +6,8 @@ series.json の db が "MOF" の系列が対象（code は JGB2Y / JGB10Y / JGB3
 結果は last_fetch.json の updated / errors に追記する（fetch.py の後に実行する前提）。
 https://www.mof.go.jp/jgbs/reference/interest_rate/index.htm
 """
-import csv, datetime as dt, io, json, os, urllib.request
-from fetch import ROOT, DATA, RAW, load_series, csv_path, read_csv, write_csv
+import csv, datetime as dt, io, os, urllib.request
+from fetch import RAW, load_series, csv_path, read_csv, write_csv, load_summary, save_summary, guarded
 
 URL_ALL = "https://www.mof.go.jp/jgbs/reference/interest_rate/data/jgbcm_all.csv"
 URL_CUR = "https://www.mof.go.jp/jgbs/reference/interest_rate/jgbcm.csv"
@@ -40,8 +40,7 @@ def main():
     today = dt.date.today().isoformat()
     rawdir = os.path.join(RAW, today)
     os.makedirs(rawdir, exist_ok=True)
-    lf = os.path.join(ROOT, "last_fetch.json")
-    summary = json.load(open(lf, encoding="utf-8")) if os.path.exists(lf) else {"date": today, "updated": [], "errors": []}
+    summary = load_summary()
     first = not all(os.path.exists(csv_path("MOF", s["code"])) for s in series)
     try:
         header, body = get(URL_ALL if first else URL_CUR, rawdir)
@@ -50,7 +49,11 @@ def main():
         body = None
     if body is not None:
         for s in series:
-            col = header.index(s["code"].replace("JGB", "").replace("Y", "年"))
+            try:
+                col = header.index(s["code"].replace("JGB", "").replace("Y", "年"))
+            except ValueError:  # 表の列見出しが変わったとき
+                summary["errors"].append(f"MOF/{s['code']}: CSVに列が見つからない")
+                continue
             path = csv_path("MOF", s["code"])
             rows = read_csv(path)
             before = dict(rows)
@@ -64,10 +67,9 @@ def main():
             if new or revised:
                 summary["updated"].append({"db": "MOF", "code": s["code"], "new": len(new),
                                            "revised": len(revised), "latest": max(rows)})
-    with open(lf, "w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
+    save_summary(summary)
     return 1 if body is None else 0
 
 
 if __name__ == "__main__":
-    raise SystemExit(main())
+    raise SystemExit(guarded("MOF", main))

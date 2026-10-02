@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """ポータルの「日銀統計の新着」ページ用データ ../data/feed.json を作る。
 
-run_daily.sh（取得→analyze.py）の後に実行する。
+run_daily.sh（取得→status.py→analyze.py）の後に実行する。
 - 公表: 月次・四半期の系列で、最新の観測期が前回と変わったもの（reports/releases_log.csv に記録）
 - 変化検知: reports/signals_log.csv（analyze.py が書く）
 日次の系列（金利・為替など）は毎日値が入るので新着には載せず、「毎日の値」に最新値を出す。
@@ -145,12 +145,29 @@ def main():
             "source": TRADE if s["code"].startswith("TRADE_") else SOURCES.get(s["db"], BOJ),
         }
 
+    # 取り込み状況（status.py が書く）。失敗した系列と長く更新の無い系列をページに出す
+    fetch_status = None
+    try:
+        with open(os.path.join(REPORTS, "status.json"), encoding="utf-8") as f:
+            st = json.load(f)
+        fetch_status = {
+            "checked_at": st["checked_at"], "counts": st["counts"], "total": len(st["series"]),
+            "problems": [{"id": k, "name": v["name"], "state": v["state"], "error": v["error"],
+                          "latest": v["latest"], "last_ok": v["last_ok"], "last_new": v["last_new"]}
+                         for k, v in st["series"].items() if v["state"] in ("error", "stale")],
+            "other_errors": [e for e in st["errors"]
+                             if not any(v["error"] == e for v in st["series"].values())],
+        }
+    except (OSError, ValueError, KeyError):
+        pass
+
     out = {
         "generated_at": dt.datetime.now().astimezone().isoformat(timespec="minutes"),
         "report_date": today,
         "days": [{"date": d, "items": days[d]} for d in sorted(days, reverse=True)],
         "categories": [c for c, _ in CATEGORIES],
         "series": info,
+        "fetch_status": fetch_status,
         "disclaimer": analyze.DISCLAIMER,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

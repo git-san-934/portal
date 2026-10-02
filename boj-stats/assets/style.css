@@ -48,6 +48,14 @@ header { margin-bottom: 1.25rem; }
 h1 { font-size: 1.5rem; }
 .intro { color: var(--text-sub); font-size: 0.9rem; margin-top: 0.4rem; }
 .updated { font-size: 0.85rem; margin-top: 0.4rem; font-weight: 600; }
+.status-row { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; margin-top: 0.4rem; }
+.status-row .updated { margin-top: 0; }
+.refresh { font-size: 0.78rem; padding: 0.2rem 0.65rem; border: 1px solid var(--border); border-radius: 999px; background: var(--card-bg); color: var(--link); text-decoration: none; }
+.refresh:hover { border-color: var(--link); }
+.fetch-status { font-size: 0.8rem; margin-top: 0.25rem; color: var(--text-sub); }
+.fetch-status.warn { color: var(--accent); }
+.fetch-status summary { cursor: pointer; font-weight: 600; }
+.fetch-status ul { margin: 0.3rem 0 0; padding-left: 1.2rem; color: var(--text); }
 
 .refresh { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.7rem; margin-top: 0.6rem; }
 .refresh-btn {

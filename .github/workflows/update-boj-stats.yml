@@ -29,16 +29,16 @@ jobs:
       TZ: Asia/Tokyo # 日付(検知日・公表を見つけた日)を日本時間にする
     steps:
       - uses: actions/checkout@v4
-        with:
-          # PR では PR のブランチに結果をコミットする(検証用)
-          ref: ${{ github.head_ref || github.ref }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
       - name: 統計を取得して変化を検知(一部の取得元が失敗しても続ける)
+        id: fetch
         run: |
-          sh boj-stats/pipeline/run_daily.sh || echo "::warning::一部の取得に失敗しました"
+          rc=0
+          sh boj-stats/pipeline/run_daily.sh || rc=$?
           cat boj-stats/pipeline/logs/*.fetch.log || true
+          echo "rc=$rc" >> "$GITHUB_OUTPUT"
       - name: ページ用のデータを作る
         run: python boj-stats/pipeline/build_site.py
       - name: 結果をコミット
@@ -51,10 +51,14 @@ jobs:
             echo "変更なし"
             exit 0
           fi
+          # PR では取得と表示の確認だけにして、PR のブランチにはコミットしない
+          if [ "${{ github.event_name }}" = "pull_request" ]; then
+            git diff --cached --stat | tail -3
+            exit 0
+          fi
           git commit -m "日銀統計の新着 データ更新 ($(date +%F))"
-          BRANCH="${{ github.head_ref || github.ref_name }}"
-          git pull --rebase origin "$BRANCH"
-          git push origin HEAD:"$BRANCH"
+          git pull --rebase origin "${{ github.ref_name }}"
+          git push origin HEAD:"${{ github.ref_name }}"
           echo "changed=true" >> "$GITHUB_OUTPUT"
       # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
       - name: GitHub Pages を再デプロイ
@@ -62,3 +66,18 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run deploy.yml --ref main
+      # 取得の失敗や長く更新の無い系列は、ジョブを失敗にせず(メールは送らない)注釈と実行の要約に残す。
+      # ページの「前回の取得」と、共有フォルダの日次ルーチンの報告でも分かる
+      - name: 取得の失敗を記録する
+        if: steps.fetch.outputs.rc != '0'
+        run: |
+          python3 - <<'PY'
+          import json
+          st = json.load(open("boj-stats/pipeline/reports/status.json", encoding="utf-8"))
+          for e in st["errors"]:
+              print(f"::warning title=取得エラー::{e}")
+          for v in st["series"].values():
+              if v["state"] == "stale":
+                  print(f"::warning title=長く更新なし::{v['name']}（{v['db']}/{v['code']}）最新 {v['latest']}、最後に新しい値が入った日 {v['last_new']}")
+          PY
+          echo "一部の取得に失敗しました。取れた分はページに反映済みです。" >> "$GITHUB_STEP_SUMMARY"
