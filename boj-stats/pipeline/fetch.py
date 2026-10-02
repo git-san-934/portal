@@ -10,7 +10,7 @@
 取得したAPIの生レスポンスは raw/YYYY-MM-DD/ に保存。標準ライブラリのみで動作。
 API仕様: https://www.stat-search.boj.or.jp/info/api_manual.pdf
 """
-import csv, datetime as dt, gzip, json, os, sys, time, urllib.parse, urllib.request
+import csv, datetime as dt, gzip, json, os, sys, time, traceback, urllib.error, urllib.parse, urllib.request
 from collections import defaultdict
 
 BASE = "https://www.stat-search.boj.or.jp/api/v1"
@@ -26,16 +26,58 @@ def api(endpoint, **params):
     params.setdefault("lang", "jp")
     url = f"{BASE}/{endpoint}?{urllib.parse.urlencode(params, safe=',@')}"
     req = urllib.request.Request(url, headers={"Accept-Encoding": "gzip", "User-Agent": "boj-stats-collector/1.0"})
-    with urllib.request.urlopen(req, timeout=60) as r:
-        body = r.read()
-        if r.headers.get("Content-Encoding") == "gzip":
-            body = gzip.decompress(body)
+    for n in range(3):  # 一時的な接続エラー（SSLの切断など）は少し待って取り直す
+        try:
+            with urllib.request.urlopen(req, timeout=60) as r:
+                body = r.read()
+                if r.headers.get("Content-Encoding") == "gzip":
+                    body = gzip.decompress(body)
+            break
+        except (urllib.error.URLError, ConnectionError, TimeoutError) as e:
+            if n == 2 or (isinstance(e, urllib.error.HTTPError) and e.code < 500):
+                raise
+            time.sleep(10 * (n + 1))
     return json.loads(body.decode("utf-8"))
 
 
 def load_series():
     with open(os.path.join(ROOT, "series.json"), encoding="utf-8") as f:
         return json.load(f)["series"]
+
+
+def load_summary():
+    """今日の last_fetch.json を読む。無いときや前回の日付のままのときは空から始める
+    （fetch.py が途中で落ちても、後の取得元が前回の結果に追記しないように）。"""
+    today = dt.date.today().isoformat()
+    lf = os.path.join(ROOT, "last_fetch.json")
+    try:
+        with open(lf, encoding="utf-8") as f:
+            summary = json.load(f)
+        if summary.get("date") == today:
+            return summary
+    except (OSError, ValueError):
+        pass
+    return {"date": today, "updated": [], "errors": []}
+
+
+def save_summary(summary):
+    path = os.path.join(ROOT, "last_fetch.json")
+    with open(path + ".tmp", "w", encoding="utf-8") as f:
+        json.dump(summary, f, ensure_ascii=False, indent=2)
+    os.replace(path + ".tmp", path)
+
+
+def guarded(db, main):
+    """main() が想定外の例外で落ちても、その失敗を last_fetch.json の errors に残して 1 を返す。
+    取得元ごとのスクリプトの入口で使う（落ちた取得元があっても記録が残り、次の取得元は続けて動く）。"""
+    try:
+        return main()
+    except Exception as e:
+        traceback.print_exc()
+        summary = load_summary()
+        summary["errors"].append(f"{db}: 想定外のエラー {type(e).__name__}: {e}")
+        save_summary(summary)
+        return 1
 
 
 def csv_path(db, code):
@@ -87,61 +129,63 @@ def fetch(years=None):
 
     summary = {"date": today.isoformat(), "updated": [], "errors": []}
     for (db, freq), items in groups.items():
-        for i in range(0, len(items), MAX_CODES):
-            chunk = items[i:i + MAX_CODES]
-            has_all = all(os.path.exists(csv_path(db, s["code"])) for s in chunk)
-            back = years * 12 if years else (3 if has_all else 120)
-            start = (today.replace(day=1) - dt.timedelta(days=31 * back)).strftime("%Y%m")
-            if freq == "Q":  # 四半期の開始期は YYYY0Q
-                start = start[:4] + "01"
-            params = {"db": db, "code": ",".join(s["code"] for s in chunk), "startDate": start}
-            pos = None
-            while True:
-                if pos:
-                    params["startPosition"] = pos
-                try:
-                    res = api("getDataCode", **params)
-                except Exception as e:  # ネットワーク遮断など
-                    summary["errors"].append(f"{db}/{freq}: {type(e).__name__}: {e}")
-                    break
-                with open(os.path.join(rawdir, f"{db}_{freq}_{pos or 0}.json"), "w", encoding="utf-8") as f:
-                    json.dump(res, f, ensure_ascii=False)
-                if str(res.get("STATUS")) != "200":
-                    summary["errors"].append(f"{db}/{freq}: {res.get('MESSAGEID')} {res.get('MESSAGE')}")
-                    break
-                returned = set()
-                for d in res.get("RESULTSET") or res.get("data") or []:
-                    code = d.get("SERIES_CODE")
-                    returned.add(code)
-                    path = csv_path(db, code)
-                    rows = read_csv(path)
-                    before = dict(rows)
-                    v = d.get("VALUES")
-                    # APIは VALUES の中に SURVEY_DATES と VALUES を入れ子で返す
-                    dates, vals = (v.get("SURVEY_DATES"), v.get("VALUES")) if isinstance(v, dict) else (d.get("SURVEY_DATES"), v)
-                    for date, val in zip(dates or [], vals or []):
-                        if val is None or val == "":
-                            continue
-                        rows[norm_date(date, freq)] = str(val)
-                    write_csv(path, rows)
-                    new = sorted(set(rows) - set(before))
-                    revised = [k for k in before if k in rows and rows[k] != before[k]]
-                    if new or revised:
-                        summary["updated"].append({"db": db, "code": code, "new": len(new),
-                                                   "revised": len(revised), "latest": max(rows) if rows else None})
-                for s in chunk:
-                    if s["code"] not in returned and pos is None:
-                        summary["errors"].append(f"{db}/{s['code']}: データが返らなかった（コード誤りの可能性）")
-                pos = res.get("NEXTPOSITION")
-                if not pos:
-                    break
+        try:  # 1つのDBで想定外のエラーが出ても他のDBは続ける
+            for i in range(0, len(items), MAX_CODES):
+                chunk = items[i:i + MAX_CODES]
+                has_all = all(os.path.exists(csv_path(db, s["code"])) for s in chunk)
+                back = years * 12 if years else (3 if has_all else 120)
+                start = (today.replace(day=1) - dt.timedelta(days=31 * back)).strftime("%Y%m")
+                if freq == "Q":  # 四半期の開始期は YYYY0Q
+                    start = start[:4] + "01"
+                params = {"db": db, "code": ",".join(s["code"] for s in chunk), "startDate": start}
+                pos = None
+                while True:
+                    if pos:
+                        params["startPosition"] = pos
+                    try:
+                        res = api("getDataCode", **params)
+                    except Exception as e:  # ネットワーク遮断など
+                        summary["errors"].append(f"{db}/{freq}: {type(e).__name__}: {e}")
+                        break
+                    with open(os.path.join(rawdir, f"{db}_{freq}_{pos or 0}.json"), "w", encoding="utf-8") as f:
+                        json.dump(res, f, ensure_ascii=False)
+                    if str(res.get("STATUS")) != "200":
+                        summary["errors"].append(f"{db}/{freq}: {res.get('MESSAGEID')} {res.get('MESSAGE')}")
+                        break
+                    returned = set()
+                    for d in res.get("RESULTSET") or res.get("data") or []:
+                        code = d.get("SERIES_CODE")
+                        returned.add(code)
+                        path = csv_path(db, code)
+                        rows = read_csv(path)
+                        before = dict(rows)
+                        v = d.get("VALUES")
+                        # APIは VALUES の中に SURVEY_DATES と VALUES を入れ子で返す
+                        dates, vals = (v.get("SURVEY_DATES"), v.get("VALUES")) if isinstance(v, dict) else (d.get("SURVEY_DATES"), v)
+                        for date, val in zip(dates or [], vals or []):
+                            if val is None or val == "":
+                                continue
+                            rows[norm_date(date, freq)] = str(val)
+                        write_csv(path, rows)
+                        new = sorted(set(rows) - set(before))
+                        revised = [k for k in before if k in rows and rows[k] != before[k]]
+                        if new or revised:
+                            summary["updated"].append({"db": db, "code": code, "new": len(new),
+                                                       "revised": len(revised), "latest": max(rows) if rows else None})
+                    for s in chunk:
+                        if s["code"] not in returned and pos is None:
+                            summary["errors"].append(f"{db}/{s['code']}: データが返らなかった（コード誤りの可能性）")
+                    pos = res.get("NEXTPOSITION")
+                    if not pos:
+                        break
+                    time.sleep(SLEEP)
                 time.sleep(SLEEP)
-            time.sleep(SLEEP)
+        except Exception as e:
+            summary["errors"].append(f"{db}/{freq}: 想定外のエラー {type(e).__name__}: {e}")
 
-    with open(os.path.join(ROOT, "last_fetch.json"), "w", encoding="utf-8") as f:
-        json.dump(summary, f, ensure_ascii=False, indent=2)
+    save_summary(summary)
     print(json.dumps(summary, ensure_ascii=False, indent=2))
-    return 1 if summary["errors"] and not summary["updated"] else 0
+    return 1 if summary["errors"] else 0
 
 
 def discover(db, freq=None):
@@ -164,4 +208,4 @@ if __name__ == "__main__":
     if args and args[0] == "discover":
         sys.exit(discover(args[1], args[2] if len(args) > 2 else None))
     years = int(args[args.index("--years") + 1]) if "--years" in args else None
-    sys.exit(fetch(years))
+    sys.exit(guarded("BOJ", lambda: fetch(years)))

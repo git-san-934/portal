@@ -130,6 +130,48 @@
     $("cats").replaceChildren(...cats.filter(Boolean));
   }
 
+  // 取り込み状況: 失敗した系列・長く更新の無い系列があれば、最終更新の下に出す
+  function renderFetchStatus(st) {
+    const box = $("fetch-status");
+    if (!st) return;
+    const problems = st.problems || [];
+    const others = st.other_errors || [];
+    if (!problems.length && !others.length) {
+      box.textContent = `前回の取得: 全${st.total}系列 正常`;
+      box.className = "fetch-status ok";
+      return;
+    }
+    const failed = problems.filter((p) => p.state === "error");
+    const stale = problems.filter((p) => p.state === "stale");
+    const parts = [];
+    if (failed.length) parts.push(`${failed.length}系列が取得できませんでした(表示はそれより前に取れた値です)`);
+    if (stale.length) parts.push(`${stale.length}系列はしばらく新しい値が入っていません`);
+    if (others.length) parts.push("ほかに取得エラーがありました");
+    const sum = document.createElement("summary");
+    sum.textContent = `前回の取得: ${parts.join("。")}`;
+    const ul = document.createElement("ul");
+    for (const p of problems) {
+      const li = document.createElement("li");
+      const a = document.createElement("a");
+      a.href = `series.html?id=${encodeURIComponent(p.id)}`;
+      a.textContent = p.name;
+      const why = p.state === "error"
+        ? `取得失敗(最後に成功: ${p.last_ok ? fmtDate(p.last_ok) : "不明"})`
+        : `${fmtDate(p.last_new)}から新しい値なし(最新 ${p.latest})`;
+      li.append(a, ` … ${why}`);
+      ul.append(li);
+    }
+    for (const e of others) {
+      const li = document.createElement("li");
+      li.textContent = e;
+      ul.append(li);
+    }
+    const det = document.createElement("details");
+    det.append(sum, ul);
+    box.replaceChildren(det);
+    box.className = "fetch-status warn";
+  }
+
   document.querySelectorAll(".filters button").forEach((b) =>
     b.addEventListener("click", () => {
       filter = b.dataset.filter;
@@ -147,6 +189,7 @@
       data = d;
       const t = new Date(d.generated_at);
       $("status").textContent = `最終更新: ${fmtDate(d.report_date)} ${t.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo" })}`;
+      renderFetchStatus(d.fetch_status);
       $("disclaimer").textContent = d.disclaimer;
       renderFeed();
       renderTables();

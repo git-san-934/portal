@@ -8,7 +8,8 @@
 | series.json | 取得する系列の一覧（DB・系列コード・頻度・種類）。ここに追記すれば対象が増える |
 | fetch.py | APIから取得して data/<DB>_<CODE>.csv に追記・改定反映。`python3 fetch.py discover FM08 D` で日次系列の候補一覧 |
 | analyze.py | 変化検知。reports/YYYY-MM-DD.md, reports/latest.json, reports/signals_log.csv（検知履歴） |
-| run_daily.sh | 取得→分析をまとめて実行（日次ルーチン用） |
+| status.py | 取り込みの成功・失敗を系列ごとに記録。reports/status.json（系列ごとの状態）, reports/fetch_history.csv（実行ごとの記録） |
+| run_daily.sh | 取得→取り込み状況の記録→分析をまとめて実行（日次ルーチン用） |
 | raw/ | APIの生レスポンス（日付ごと） |
 
 ## 現在の対象
@@ -37,6 +38,18 @@
   主な品目（fetch_estat.py GOODS_JA、概況品コード）の月次輸出額を data/trade_goods_by_country.json に蓄積。ページ側は assets/goods.js。
 日次の当座預金残高速報やオペ結果は日銀本体サイト（www.boj.or.jp）の個別ページ公表で、APIには月次しか無いため未対応。
 長期金利（財務省の国債金利CSV）や株価は日銀統計外なので、必要なら別ソースとして追加する。
+
+## 取り込みの成功・失敗
+- 取得元（日銀API・財務省・統計局・e-Stat の各統計）ごとに独立して動き、1つが失敗しても残りは取り込む。
+  一時的な接続エラーは日銀APIと e-Stat で自動で取り直す
+- 失敗は last_fetch.json の errors に「DB: 内容」「DB/系列コード: 内容」「ESTAT 統計名: 内容」の形で残る。スクリプトが想定外のエラーで落ちても「DB: 想定外のエラー …」として残る
+- status.py が系列ごとに状態を判定して reports/status.json に書く: new（新しい値あり）/ unchanged（公表待ち）/ error（今回失敗）/
+  stale（新しい値が日次8日・月次50日・四半期110日を超えて入っていない。取得元の形式変更などで黙って止まっている疑い）。
+  最後に成功した日（last_ok）、連続失敗回数（fail_streak）、最後に新しい値が入った日（last_new）も持つ
+- reports/fetch_history.csv に実行ごとの件数とエラーを1行ずつ追記する
+- error か stale があれば run_daily.sh は終了コード 1。共有フォルダの日次ルーチンはその日にスレッドで知らせ、
+  portal の GitHub Actions は取れた分をコミット・デプロイした後でジョブを失敗にする（GitHub から失敗のメールが届く）。
+  portal のページにも「前回の取得」として失敗した系列が出る
 
 ## 検知ルール
 - 急変: 前回比が過去の変化の標準偏差の2.5倍超。金利系は0.05%pt以上の動きも急変扱い
