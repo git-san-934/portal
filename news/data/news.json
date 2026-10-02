@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-02T08:10+09:00",
+ "updated_at": "2026-10-02T11:24+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,27 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-02",
+     "title": "「ゼルダの伝説40周年コンサート」は、2027年1月より全国5都市で開催。チケットの先行申込(抽選)も受付中。",
+     "url": "https://www.nintendo.com/jp/topics/article/a65622f7-c603-4685-bef7-2e98feb50bf4",
+     "source": "official",
+     "first_seen": "2026-10-02T11:24+09:00"
+    },
+    {
+     "date": "2026-10-02",
+     "title": "「アニメソング大集合『カラオケJOYSOUND for Nintendo Switch』10日間無料キャンペーン」開催。",
+     "url": "https://www.nintendo.com/jp/topics/article/8c957f1f-99e5-449f-808f-b4c81f184d2f",
+     "source": "official",
+     "first_seen": "2026-10-02T11:24+09:00"
+    },
+    {
+     "date": "2026-10-02",
+     "title": "ニンテンドーeショップ新作ソフト情報 10/2(金)号。",
+     "url": "https://www.nintendo.com/jp/topics/article/d33dd7e0-e58b-4b05-b22c-4c3b93d2f050",
+     "source": "official",
+     "first_seen": "2026-10-02T11:24+09:00"
+    },
     {
      "date": "2026-10-01",
      "title": "『ゼノブレイド2 Nintendo Switch 2 Edition』のパッケージ版が本日より発売開始。アップグレードパス / ダウンロード版は配信中。 ※本作の対象年齢は「15歳以上」です。",
@@ -820,7 +841,8 @@
    "home": "https://www.kioxia-holdings.com/ja-jp/",
    "official_status": "ok",
    "official_pages": [
-    "https://www.kioxia-holdings.com/ja-jp/news.html"
+    "https://www.kioxia-holdings.com/ja-jp/news.html",
+    "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
     {
