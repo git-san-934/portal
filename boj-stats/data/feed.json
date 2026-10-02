@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-02T16:00+09:00",
- "report_date": "2026-10-02",
+ "generated_at": "2026-10-03T00:57+09:00",
+ "report_date": "2026-10-03",
  "days": [
   {
    "date": "2026-10-02",
@@ -2422,6 +2422,18 @@
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   }
+ },
+ "fetch_status": {
+  "checked_at": "2026-10-03T00:57+09:00",
+  "counts": {
+   "new": 0,
+   "unchanged": 102,
+   "error": 0,
+   "stale": 0
+  },
+  "total": 102,
+  "problems": [],
+  "other_errors": []
  },
  "disclaimer": "※資産クラスとの関係は過去に一般的に観察されてきた傾向の整理で、将来の値動きや個別銘柄の売買を示すものではありません。"
 }
