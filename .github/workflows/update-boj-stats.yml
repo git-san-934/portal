@@ -66,19 +66,18 @@ jobs:
         env:
           GH_TOKEN: ${{ github.token }}
         run: gh workflow run deploy.yml --ref main
-      # 取れた分はコミット・デプロイした後で、取得の失敗や長く更新の無い系列があればジョブを失敗にする。
-      # 失敗した定時実行は GitHub からメールで届き、Actions の一覧でも赤くなる
-      - name: 取得の失敗を知らせる
+      # 取得の失敗や長く更新の無い系列は、ジョブを失敗にせず(メールは送らない)注釈と実行の要約に残す。
+      # ページの「前回の取得」と、共有フォルダの日次ルーチンの報告でも分かる
+      - name: 取得の失敗を記録する
         if: steps.fetch.outputs.rc != '0'
         run: |
           python3 - <<'PY'
           import json
           st = json.load(open("boj-stats/pipeline/reports/status.json", encoding="utf-8"))
           for e in st["errors"]:
-              print(f"::error title=取得エラー::{e}")
+              print(f"::warning title=取得エラー::{e}")
           for v in st["series"].values():
               if v["state"] == "stale":
-                  print(f"::error title=長く更新なし::{v['name']}（{v['db']}/{v['code']}）最新 {v['latest']}、最後に新しい値が入った日 {v['last_new']}")
+                  print(f"::warning title=長く更新なし::{v['name']}（{v['db']}/{v['code']}）最新 {v['latest']}、最後に新しい値が入った日 {v['last_new']}")
           PY
           echo "一部の取得に失敗しました。取れた分はページに反映済みです。" >> "$GITHUB_STEP_SUMMARY"
-          exit 1
