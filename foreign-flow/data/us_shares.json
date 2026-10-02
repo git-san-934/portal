@@ -43,7 +43,6 @@
 "ARE":{"float":154683053,"inst":0.99578005,"name":"Alexandria Real Estate Equities","date":"2026-09-24"},
 "ARES":{"float":219696237,"inst":0.93544,"name":"Ares Management Corporation","date":"2026-09-24"},
 "ATO":{"float":168201066,"inst":0.97826,"name":"Atmos Energy Corporation","date":"2026-09-24"},
-"AUR":{"float":1522416466,"inst":0.85143,"name":"Aurora Innovation, Inc.","date":"2026-09-25","holders":[{"who":"T. Rowe Price Investment Management, Inc.","pct":17.53,"chg":2.5,"date":"2026-06-30","foreign":false},{"who":"Uber Technologies, Inc","pct":15.13,"chg":-20.7,"date":"2026-06-30","foreign":false},{"who":"Morgan Stanley","pct":12.52,"chg":11.2,"date":"2026-06-30","foreign":false},{"who":"Vanguard Portfolio Management LLC","pct":4.88,"chg":-6.0,"date":"2026-06-30","foreign":false},{"who":"Capital Research Global Investors","pct":4.86,"chg":0.4,"date":"2026-06-30","foreign":false},{"who":"Capital International Investors","pct":4.55,"chg":100.0,"date":"2026-06-30","foreign":false},{"who":"Vanguard Capital Management LLC","pct":4.08,"chg":1.1,"date":"2026-06-30","foreign":false},{"who":"Blackrock Inc.","pct":4.01,"chg":10.0,"date":"2026-06-30","foreign":false}]},
 "AVGO":{"float":4714961954,"inst":0.7981,"name":"Broadcom Inc.","date":"2026-09-24"},
 "AVY":{"float":75223520,"inst":1.00416,"name":"Avery Dennison Corporation","date":"2026-09-24"},
 "AWK":{"float":198323582,"inst":1.0702701,"name":"American Water Works Company, I","date":"2026-09-24"},
