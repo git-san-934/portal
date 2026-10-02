@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-02T22:11+09:00",
+ "updated_at": "2026-10-03T05:30+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1070,11 +1070,102 @@
    ],
    "items": [
     {
+     "date": "2026-10-02",
+     "title": "Oracle Announces Commitment to Absorb $300 Million in Rising Point Beach Energy Costs for Wisconsin Residents",
+     "url": "https://www.oracle.com/news/announcement/oracle-announces-commitment-to-absorb-rising-point-beach-energy-costs-2026-10-02/",
+     "source": "official",
+     "first_seen": "2026-10-03T05:30+09:00"
+    },
+    {
+     "date": "2026-10-01",
+     "title": "Oracle and King Faisal Specialist Hospital & Research Centre to Advance Healthcare Innovation in Saudi Arabia",
+     "url": "https://www.oracle.com/news/announcement/oracle-and-king-faisal-specialist-hospital-research-centre-to-advance-healthcare-innovation-2026-10-01/",
+     "source": "official",
+     "first_seen": "2026-10-03T05:30+09:00"
+    },
+    {
+     "date": "2026-09-30",
+     "title": "Project Jupiter Statement on Southern New Mexico Floods",
+     "url": "https://www.oracle.com/news/announcement/project-jupiter-statement-on-southern-new-mexico-floods-2026-09-30/",
+     "source": "official",
+     "first_seen": "2026-10-03T05:30+09:00"
+    },
+    {
+     "date": "2026-09-30",
+     "title": "Oracle Financial Services Wins 11 Categories in Chartis RiskTech100 2027 Report",
+     "url": "https://www.oracle.com/news/announcement/oracle-financial-services-wins-11-categories-in-chartis-riskrech100-2027-report-2026-09-30/",
+     "source": "official",
+     "first_seen": "2026-10-03T05:30+09:00"
+    },
+    {
+     "date": "2026-09-30",
+     "title": "NTT DOCOMO BUSINESS Migrates Critical Database Platform to Oracle Autonomous AI Database",
+     "url": "https://www.oracle.com/news/announcement/ntt-docomo-business-migrates-critical-database-platform-to-oracle-autonomous-ai-database-2026-09-30/",
+     "source": "official",
+     "first_seen": "2026-10-03T05:30+09:00"
+    },
+    {
+     "date": "2026-09-29",
+     "title": "NetApp and Oracle to Launch Fully Managed Cloud Storage Service for Demanding AI and Enterprise Workloads",
+     "url": "https://www.oracle.com/news/announcement/netapp-and-oracle-to-launch-fully-managed-cloud-storage-service-for-demanding-ai-and-enterprise-workloads-2026-09-29/",
+     "source": "official",
+     "first_seen": "2026-10-03T05:30+09:00"
+    },
+    {
+     "date": "2026-09-29",
+     "title": "Union Workers Power Project Jupiter—and New Mexico’s Future",
+     "url": "https://www.oracle.com/news/announcement/blog/union-workers-power-project-jupiter-and-new-mexicos-future-2026-09-29/",
+     "source": "official",
+     "first_seen": "2026-10-03T05:30+09:00"
+    },
+    {
+     "date": "2026-09-29",
+     "title": "Oracle Brings New Agentic Capabilities to the Fight Against Financial Crime",
+     "url": "https://www.oracle.com/news/announcement/oracle-brings-new-agentic-capabilities-to-the-fight-against-financial-crime-2026-09-29/",
+     "source": "official",
+     "first_seen": "2026-10-03T05:30+09:00"
+    },
+    {
      "date": "2026-09-29",
      "title": "Oracle Extends Fusion Agentic Applications with Introduction of Fusion Claw",
      "url": "https://www.oracle.com/news/announcement/oracle-extends-fusion-agentic-applications-with-introduction-of-fusion-claw-2026-09-29/",
      "source": "official",
      "first_seen": "2026-09-29T22:20+09:00"
+    },
+    {
+     "date": "2026-09-28",
+     "title": "One Million Union Craft Hours Building Michigans Future",
+     "url": "https://www.oracle.com/news/announcement/blog/one-million-union-craft-hours-building-michigans-future-2026-09-28/",
+     "source": "official",
+     "first_seen": "2026-10-03T05:30+09:00"
+    },
+    {
+     "date": "2026-09-28",
+     "title": "Oracle Integration with Swift’s Ledger Helps Banks Connect Tokenized Deposit Infrastructures Across Institutions",
+     "url": "https://www.oracle.com/news/announcement/oracle-integration-with-swifts-ledger-helps-banks-connect-tokenized-deposit-infrastructures-across-institutions-2026-09-28/",
+     "source": "official",
+     "first_seen": "2026-10-03T05:30+09:00"
+    },
+    {
+     "date": "2026-09-24",
+     "title": "Oracle Health and ID.me Team to Simplify Secure Access to Health Data",
+     "url": "https://www.oracle.com/news/announcement/oracle-health-and-id-me-team-to-simplify-secure-access-to-health-data-2026-09-24/",
+     "source": "official",
+     "first_seen": "2026-09-24T00:00+09:00"
+    },
+    {
+     "date": "2026-09-24",
+     "title": "Oracle Named a Leader in the IDC MarketScape for Worldwide Trade Finance Systems 2026 Vendor Assessment",
+     "url": "https://www.oracle.com/news/announcement/oracle-named-a-leader-in-the-idc-marketscape-for-worldwide-trade-finance-systems-2026-vendor-assessment-2026-09-24/",
+     "source": "official",
+     "first_seen": "2026-09-24T00:00+09:00"
+    },
+    {
+     "date": "2026-09-24",
+     "title": "Oracle and Wild Bio Join Forces to Advance AI-Driven Agriculture",
+     "url": "https://www.oracle.com/news/announcement/oracle-and-wild-bio-join-forces-to-advance-ai-driven-agriculture-2026-09-24/",
+     "source": "official",
+     "first_seen": "2026-09-24T00:00+09:00"
     },
     {
      "date": "2026-09-23",
@@ -1101,6 +1192,20 @@
      "date": "2026-09-23",
      "title": "Oracle and Buck Institute for Research on Aging Advance Landmark Federal Aging Research Initiative",
      "url": "https://www.oracle.com/news/announcement/oracle-and-buck-institute-for-research-on-aging-advance-landmark-federal-aging-research-initiative-2026-09-23/",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    },
+    {
+     "date": "2026-09-23",
+     "title": "Oracle Expands Digital Assets Data Nexus to Help Banks Operationalize Digital Money",
+     "url": "https://www.oracle.com/news/announcement/oracle-expands-digital-assets-data-nexus-to-help-banks-operationalize-digital-money-2026-09-23/",
+     "source": "official",
+     "first_seen": "2026-09-23T00:00+09:00"
+    },
+    {
+     "date": "2026-09-23",
+     "title": "Co-op Live Sets the Stage for Connected Operations with Oracle Cloud Applications",
+     "url": "https://www.oracle.com/news/announcement/co-op-live-sets-the-stage-for-connected-operations-with-oracle-cloud-applications-2026-09-23/",
      "source": "official",
      "first_seen": "2026-09-23T00:00+09:00"
     },
