@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-02T11:24+09:00",
+ "updated_at": "2026-10-02T19:03+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -35,6 +35,13 @@
      "url": "https://www.nintendo.com/jp/topics/article/d33dd7e0-e58b-4b05-b22c-4c3b93d2f050",
      "source": "official",
      "first_seen": "2026-10-02T11:24+09:00"
+    },
+    {
+     "date": "2026-10-02",
+     "title": "「仕事を読み解くキーワード」のページを更新しました。任天堂ではたらく社員の声を追加しています。",
+     "url": "https://www.nintendo.co.jp/jobs/keyword/index.html",
+     "source": "official",
+     "first_seen": "2026-09-18T00:00+09:00"
     },
     {
      "date": "2026-10-01",
@@ -91,13 +98,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/e94b27af-d05f-41d9-94ab-dce0d7d26c00",
      "source": "official",
      "first_seen": "2026-09-25T00:00+09:00"
-    },
-    {
-     "date": "2026-09-18",
-     "title": "「仕事を読み解くキーワード」のページを更新しました。任天堂ではたらく社員の声を追加しています。",
-     "url": "https://www.nintendo.co.jp/jobs/keyword/index.html",
-     "source": "official",
-     "first_seen": "2026-09-18T00:00+09:00"
     },
     {
      "date": "2026-09-18",
@@ -211,6 +211,14 @@
     "https://www.ussnet.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-10-02",
+     "time": "16:00",
+     "title": "ファシリティ型自己株式取得における調整取引完了のお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261002545384.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-02T00:00+09:00"
+    },
     {
      "date": "2026-07-23",
      "time": "10:13",
