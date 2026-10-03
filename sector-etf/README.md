@@ -18,6 +18,10 @@ https://git-san-934.github.io/portal/sector-etf/
 - チャートに触れる(マウスを乗せる)と、全銘柄の同じ日付に縦線が出て、触れた銘柄にはその日の終値と
   そこから現在までの騰落率を表示
 - コードのリンクから Yahoo!ファイナンスの銘柄ページを開ける
+- チャート(またはカード右下の「個別銘柄一覧 →」)を押すと、その業種の個別銘柄一覧(`sector.html?code=<ETFコード>`)が別タブで開く
+  - 同じ TOPIX-17業種に分類される東証上場銘柄を、5年チャート(週次)・終値・時価総額・PER・PBR・配当利回り・高値圏/安値圏の判定つきで一覧表示
+  - 市場(プライム/スタンダード/グロース)・33業種での絞り込み、時価総額 [初期表示] などでの並び替え、コード・銘柄名での検索ができる
+  - ETFの組入銘柄そのものではなく「同じ業種に分類される上場銘柄」の一覧。規模区分が「TOPIX外」の銘柄はETFが連動する指数に含まれない
 - スマートフォンでも横3列のまま、文字とすき間を詰めて表示します
 
 ## データについて
@@ -28,6 +32,9 @@ https://git-san-934.github.io/portal/sector-etf/
 - 16:00 より前の更新では、その日の値は取引時間中の途中の値です。16:00 の更新で当日の終値に置き換わります
 - 手動で更新したいときは、GitHub の Actions タブ →「業種別ETFデータ更新」→「Run workflow」
 - 終値は株式分割のみ調整済みで、分配金は含みません。ETFが連動する「配当込み」指数とは分配金の分だけずれます
+- 業種ごとの個別銘柄は、同じワークフローが `scripts/fetch_sector_members.py` で日本取引所グループの
+  「東証上場銘柄一覧」(月1回程度更新)を取得し、TOPIX-17業種コードごとに `data/sector_members.json` へまとめます。
+  株価・指標は [東証株価データベース](https://git-san-934.github.io/tse-price-db/) の `latest.json` と `history_weekly/` をブラウザから直接読みます
 - 取得に失敗した銘柄があるときは `data/etf.json` を上書きしません(前回のデータが表示され続けます)
 - yfinance は Yahoo Finance の非公式ラッパーのため、予告なく動かなくなる可能性があります
 - **投資助言ではありません。** 売買判断はご自身の責任で行ってください
@@ -35,9 +42,11 @@ https://git-san-934.github.io/portal/sector-etf/
 ## ファイル構成
 
 - `index.html` — ページ本体
+- `sector.html` / `assets/sector.js` / `assets/sector.css` — 業種ごとの個別銘柄一覧ページ
 - `assets/style.css` — スタイル(portal / tse-chart-scroll と同じデザイントークン)
 - `assets/app.js` — データ読み込み・騰落率計算・チャート描画・並び替え
 - `scripts/fetch_etf.py` — yfinance から終値を取得して `data/etf.json` を作るスクリプト
-- `data/etf.json` — 自動生成されるデータ(手で編集しない)
+- `scripts/fetch_sector_members.py` — JPX の東証上場銘柄一覧から業種ごとの銘柄を `data/sector_members.json` に書き出すスクリプト
+- `data/etf.json` / `data/sector_members.json` — 自動生成されるデータ(手で編集しない)
 
 対象ETFを増やす・減らすときは、`scripts/fetch_etf.py` の `ETFS` を書き換えてください。

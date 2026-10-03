@@ -20,7 +20,7 @@ on:
       - .github/workflows/update-sector-etf.yml
 
 permissions:
-  contents: write # etf.json をコミットする
+  contents: write # etf.json / sector_members.json をコミットする
   actions: write # 更新後に Pages のデプロイを起動する
 
 concurrency:
@@ -38,6 +38,10 @@ jobs:
       - run: pip install -r sector-etf/scripts/requirements.txt
       - name: 株価を取得
         run: python sector-etf/scripts/fetch_etf.py
+      # 業種ごとの個別銘柄一覧(JPX の東証上場銘柄一覧)。失敗しても株価の更新は止めない(PR では失敗にする)
+      - name: 業種別の個別銘柄一覧を取得
+        continue-on-error: ${{ github.event_name != 'pull_request' }}
+        run: python sector-etf/scripts/fetch_sector_members.py
       # PR では取得できるかの確認だけ行い、コミット・デプロイはしない
       - name: etf.json をコミット
         id: commit
@@ -46,6 +50,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add sector-etf/data/etf.json
+          git add sector-etf/data/sector_members.json 2>/dev/null || true
           if git diff --cached --quiet; then
             echo "変更なし"
             exit 0
