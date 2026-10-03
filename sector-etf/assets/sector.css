@@ -47,8 +47,20 @@
 .stock-head .s-num { font-size: 0.72rem; }
 .s-judge { text-align: center; }
 .s-name { min-width: 0; }
-.s-name a { color: var(--text); font-weight: 700; font-size: 0.92rem; text-decoration: none; }
+.s-name a { color: var(--accent); font-weight: 700; font-size: 0.92rem; text-decoration: none; }
 .s-name a:hover, .s-name a:focus-visible { text-decoration: underline; }
+.yj-mark {
+  display: inline-block;
+  margin-left: 0.35rem;
+  padding: 0 0.3rem;
+  border: 1px solid currentColor;
+  border-radius: 3px;
+  font-size: 0.64rem;
+  font-weight: 700;
+  line-height: 1.4;
+  vertical-align: 0.1em;
+  white-space: nowrap;
+}
 .s-meta { font-size: 0.72rem; color: var(--text-sub); line-height: 1.4; }
 .s-label { display: none; }
 

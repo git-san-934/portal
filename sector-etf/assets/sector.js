@@ -153,6 +153,8 @@
     link.href = YAHOO_URL(it.code);
     link.target = "_blank";
     link.rel = "noopener";
+    link.title = "Yahoo!ファイナンスで開く";
+    link.appendChild(el("span", "yj-mark", "Yahoo! ↗"));
     name.appendChild(link);
     const meta = [it.code, it.market, it.s33, it.size || "TOPIX外"].filter(Boolean).join(" · ");
     name.appendChild(el("div", "s-meta", meta));
@@ -286,7 +288,7 @@
       const label = etfCode === 1615 ? "銀行業(東証)" : sector.name;
       document.title = `${label}の個別銘柄一覧`;
       titleEl.textContent = `${label}の個別銘柄`;
-      introEl.textContent = `ETF ${etfCode} と同じ業種(TOPIX-17「${sector.name}」)に分類される東証上場銘柄です。銘柄名を押すと Yahoo!ファイナンスが開きます。`;
+      introEl.textContent = `ETF ${etfCode} と同じ業種(TOPIX-17「${sector.name}」)に分類される東証上場銘柄です。銘柄名(「Yahoo! ↗」の付いたリンク)を押すと、その銘柄の Yahoo!ファイナンスが別のタブで開きます。`;
 
       const priceByCode = new Map((latest?.items || []).map((p) => [p.code, p]));
       state.items = sector.stocks.map((s) => {
