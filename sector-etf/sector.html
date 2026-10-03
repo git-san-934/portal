@@ -1,0 +1,62 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>業種別 個別銘柄一覧</title>
+  <meta name="description" content="TOPIX-17業種ごとに、その業種に分類される東証上場銘柄を一覧で表示します" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20261003a" />
+  <link rel="stylesheet" href="assets/sector.css?v=20261003a" />
+</head>
+<body>
+  <div class="wrap">
+    <p class="back"><a href="./">← 業種別ETFチャート一覧</a></p>
+    <header>
+      <h1 id="title">業種別 個別銘柄一覧</h1>
+      <p class="intro" id="intro"></p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <div class="controls">
+      <div class="control-group" id="s33-group" hidden>
+        <span class="control-label" id="s33-label">業種</span>
+        <div id="s33-toggle" class="toggle" role="group" aria-labelledby="s33-label"></div>
+      </div>
+      <div class="control-group">
+        <span class="control-label" id="market-label">市場</span>
+        <div id="market-toggle" class="toggle" role="group" aria-labelledby="market-label"></div>
+      </div>
+      <div class="control-group">
+        <span class="control-label" id="sort-label">並び替え</span>
+        <div id="sort-toggle" class="toggle" role="group" aria-labelledby="sort-label"></div>
+      </div>
+    </div>
+    <input type="search" id="filter" class="filter" placeholder="銘柄コード・銘柄名で絞り込み" autocomplete="off" />
+    <p class="count" id="count"></p>
+
+    <div class="stock-list" id="stock-list" hidden>
+      <div class="stock-row stock-head" aria-hidden="true">
+        <span class="s-name">銘柄</span>
+        <span class="s-chart">5年チャート(週次)</span>
+        <span class="s-num">終値</span>
+        <span class="s-num">時価総額</span>
+        <span class="s-num">PER</span>
+        <span class="s-num">PBR</span>
+        <span class="s-num">配当利回り</span>
+        <span class="s-judge">判定</span>
+      </div>
+      <div id="rows"></div>
+    </div>
+
+    <footer>
+      業種分類: 日本取引所グループ「東証上場銘柄一覧」の TOPIX-17業種区分。
+      株価・指標: <a href="https://git-san-934.github.io/tse-price-db/">東証株価データベース</a>(Yahoo Finance / yfinance 経由)。<br />
+      ETFの組入銘柄そのものではなく、同じ業種に分類される上場銘柄の一覧です。「TOPIX外」の銘柄はETFが連動する指数には含まれません。<br />
+      投資助言ではありません。売買判断はご自身の責任で行ってください。
+    </footer>
+  </div>
+
+  <script src="assets/sector.js?v=20261003a"></script>
+</body>
+</html>

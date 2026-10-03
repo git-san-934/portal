@@ -89,7 +89,17 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
   flex-direction: column;
 }
 /* 業種名が2行になるカードがあっても、同じ段のチャートの位置をそろえる */
-.etf-card .chart-box { margin-top: auto; }
+.etf-card .chart-box { margin-top: auto; cursor: pointer; }
+.members-link {
+  display: block;
+  margin-top: 0.4rem;
+  text-align: right;
+  font-size: 0.78rem;
+  font-weight: 700;
+  color: var(--accent);
+  text-decoration: none;
+}
+.members-link:hover, .members-link:focus-visible { text-decoration: underline; }
 .etf-card.hovered { border-color: var(--accent); }
 
 .card-head {
@@ -200,6 +210,7 @@ footer a { color: var(--accent); }
   body { padding: 1.25rem 0.6rem 3rem; }
   .etf-grid { gap: 0.4rem; }
   .etf-card { padding: 0.45rem 0.4rem 0.4rem; border-radius: 0.6rem; }
+  .members-link { font-size: 0.64rem; margin-top: 0.3rem; }
   .card-head { flex-direction: column; gap: 0; margin-bottom: 0.25rem; }
   .sector { font-size: 0.72rem; }
   .code { font-size: 0.62rem; }

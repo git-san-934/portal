@@ -3,6 +3,7 @@
 
   const DATA_URL = "data/etf.json";
   const YAHOO_URL = (code) => `https://finance.yahoo.co.jp/quote/${encodeURIComponent(code)}.T`;
+  const MEMBERS_URL = (code) => `sector.html?code=${encodeURIComponent(code)}`;
 
   const SORT_OPTIONS = [
     { key: "default", label: "業種順" },
@@ -173,7 +174,8 @@
       if (prevKey !== null && key !== prevKey) out.push({ i, label });
       prevKey = key;
     }
-    return out;
+    // 祝日明けなどで目盛りが近すぎると文字が重なるので、間隔の狭いものは間引く
+    return out.filter((t, n) => n === 0 || xPct(t.i) - xPct(out[n - 1].i) >= 12);
   }
 
   const xPct = (i) => (state.end <= state.start ? 50 : ((i - state.start) / (state.end - state.start)) * 100);
@@ -249,6 +251,9 @@
 
     const box = el("div", "chart-box");
     box.setAttribute("role", "img");
+    box.title = "押すとこの業種の個別銘柄一覧を開きます";
+    // チャートを押すと、その業種の個別銘柄一覧を別タブで開く
+    box.addEventListener("click", () => window.open(MEMBERS_URL(etf.code), "_blank", "noopener"));
     const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
     svg.setAttribute("viewBox", `0 0 ${W} ${H}`);
     svg.setAttribute("preserveAspectRatio", "none");
@@ -271,7 +276,12 @@
       returns.appendChild(item);
     }
 
-    card.append(head, box, returns);
+    const members = el("a", "members-link", "個別銘柄一覧 →");
+    members.href = MEMBERS_URL(etf.code);
+    members.target = "_blank";
+    members.rel = "noopener";
+
+    card.append(head, box, returns, members);
 
     const row = { card, box, svg, labels, crosshair, dot, tooltip, etf };
     attachHover(row);
