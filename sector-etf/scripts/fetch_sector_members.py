@@ -8,14 +8,18 @@ JPX の一覧は月1回程度の更新なので、内容が変わらなければ
 
 import io
 import json
+import re
 import sys
 import time
+import urllib.parse
 import urllib.request
 from pathlib import Path
 
 import pandas as pd
 
-JPX_URL = "https://www.jpx.co.jp/markets/statistics-equities/misc/tvdivq0000001vg2-att/data_j.xls"
+# 一覧ファイルの URL は時々変わるので、掲載ページからリンクを探す(見つからなければ既知の URL)
+JPX_PAGE_URL = "https://www.jpx.co.jp/markets/statistics-equities/misc/01.html"
+JPX_FALLBACK_URL = "https://www.jpx.co.jp/markets/statistics-equities/misc/tvdivq0000001vg2-att/data_j.xls"
 OUT_PATH = Path(__file__).resolve().parent.parent / "data" / "sector_members.json"
 RETRIES = 3
 MIN_STOCKS = 3000  # これより少なければ取得失敗とみなして上書きしない
@@ -29,18 +33,36 @@ SECTOR17 = {
 }
 
 
-def download() -> bytes:
+def get(url: str) -> bytes:
     last_err = None
     for attempt in range(1, RETRIES + 1):
         try:
-            req = urllib.request.Request(JPX_URL, headers={"User-Agent": "Mozilla/5.0"})
+            req = urllib.request.Request(url, headers={"User-Agent": "Mozilla/5.0"})
             with urllib.request.urlopen(req, timeout=60) as res:
                 return res.read()
         except Exception as e:  # noqa: BLE001
             last_err = e
-            print(f"download attempt {attempt} failed: {e}", file=sys.stderr)
+            print(f"GET {url} attempt {attempt} failed: {e}", file=sys.stderr)
             time.sleep(10 * attempt)
-    raise RuntimeError(f"download failed: {last_err}")
+    raise RuntimeError(f"download failed: {url}: {last_err}")
+
+
+def find_list_url() -> str:
+    try:
+        html = get(JPX_PAGE_URL).decode("utf-8", errors="replace")
+        m = re.search(r'href="([^"]*data_j\.xlsx?)"', html)
+        if m:
+            return urllib.parse.urljoin(JPX_PAGE_URL, m.group(1))
+        print("一覧ページに data_j.xls へのリンクが見つかりません", file=sys.stderr)
+    except Exception as e:  # noqa: BLE001
+        print(f"一覧ページを読めませんでした: {e}", file=sys.stderr)
+    return JPX_FALLBACK_URL
+
+
+def download() -> bytes:
+    url = find_list_url()
+    print(f"JPX 一覧: {url}")
+    return get(url)
 
 
 def clean(v):
