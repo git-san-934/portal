@@ -6,7 +6,7 @@
   <title>持ち株チェック</title>
   <meta name="description" content="持ち株を「保有継続/売却/買い増し」のどれにするか、リスクとリターンで毎日チェックした結果と1年チャート" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20260925a" />
+  <link rel="stylesheet" href="assets/style.css?v=20261004a" />
 </head>
 <body>
   <div class="wrap">
@@ -14,6 +14,10 @@
       <h1>持ち株チェック</h1>
       <p class="intro">持ち株を「保有継続・売却・買い増し」のどれにするか、リスクとリターンで毎日チェックした結果です。チャートの赤い点線は下値目途(割ったら保有理由を点検するライン)です。</p>
       <p class="updated" id="status">読み込み中...</p>
+      <p class="refresh">
+        <a class="refresh-btn" id="refresh" href="https://github.com/git-san-934/portal/issues/new?title=%E6%8C%81%E3%81%A1%E6%A0%AA%E3%81%AE%E6%A0%AA%E4%BE%A1%E3%82%92%E6%9B%B4%E6%96%B0&amp;body=%E6%8C%81%E3%81%A1%E6%A0%AA%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E3%80%8C%E6%A0%AA%E4%BE%A1%E3%82%92%E4%BB%8A%E3%81%99%E3%81%90%E6%9B%B4%E6%96%B0%E3%80%8D%E3%81%8B%E3%82%89%E4%BD%9C%E6%88%90%E3%80%82%0A%0A%E3%81%93%E3%81%AE%E3%81%BE%E3%81%BE%E3%80%8CCreate%E3%80%8D%28%E3%81%BE%E3%81%9F%E3%81%AF%E3%80%8CSubmit+new+issue%E3%80%8D%29%E3%82%92%E6%8A%BC%E3%81%99%E3%81%A8%E3%80%812%E3%80%9C5%E5%88%86%E3%81%A7%E6%8C%81%E3%81%A1%E6%A0%AA%E3%83%9A%E3%83%BC%E3%82%B8%E3%81%AE%E6%A0%AA%E4%BE%A1%E3%81%8C%E6%9B%B4%E6%96%B0%E3%81%95%E3%82%8C%E3%81%BE%E3%81%99%E3%80%82" target="_blank" rel="noopener">株価を今すぐ更新</a>
+        <span class="refresh-note">GitHub の画面が開くので「Create」を押してください。2〜5分で株価とチャートが新しくなり、このページを再読み込みすると反映されます(GitHub へのログインが必要です)。判定は毎日のチェックで更新されます。</span>
+      </p>
     </header>
 
     <section class="panel" id="summary" hidden>
@@ -145,6 +149,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20260925a"></script>
+  <script src="assets/app.js?v=20261004a"></script>
 </body>
 </html>

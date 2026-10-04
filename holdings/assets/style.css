@@ -49,6 +49,13 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .updated { font-size: 0.8rem; margin-top: 0.3rem; }
 .updated.error { color: var(--up); }
 
+.refresh { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.7rem; margin-top: 0.6rem; }
+.refresh-btn {
+  font-size: 0.85rem; font-weight: 700; padding: 0.3rem 0.9rem; border-radius: 999px;
+  background: var(--accent); color: #fff; text-decoration: none;
+}
+.refresh-note { font-size: 0.75rem; color: var(--text-sub); flex: 1 1 14rem; }
+
 /* ---------- パネル(まとめ・一覧・次に注目) ---------- */
 .panel {
   background: var(--card-bg);
