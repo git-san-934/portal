@@ -32,6 +32,9 @@ https://git-san-934.github.io/portal/holdings/
   - ページの「銘柄リストの編集」で追加・修正・削除して「保存」を押すと、新しいリスト入りの Issue を作る GitHub の画面が開きます。
     リポジトリ所有者がその Issue を作ると `.github/workflows/apply-holdings-list.yml` が `scripts/apply_list.py` で
     形式を確かめてから `holdings.json` を書き換え、株価の取得と再デプロイを起動して Issue を閉じます(ページは GitHub のキーを持ちません)
+  - ページ上部の「株価を今すぐ更新」を押すと、更新依頼の Issue を作る GitHub の画面が開きます。
+    リポジトリ所有者がその Issue を作ると `.github/workflows/request-holdings-update.yml` が株価の取得(`update-holdings.yml`)を起動して
+    Issue を閉じます(取得後の再デプロイは `update-holdings.yml` が行います)
   - リストにあって `check.json` にない銘柄は「未判定」として表示し、`check.json` にあってリストにない銘柄は表示しません
   - 新しく追加した銘柄の株価が1日分も取れないとき(コードの打ち間違いなど)は、その銘柄だけ外して `prices.json` の `missing` に書きます
   - 米国株などは `"ticker"`(yfinance のティッカー、例: `"ORCL"`)と `"currency"`(例: `"USD"`)を持ちます。

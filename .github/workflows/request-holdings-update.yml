@@ -1,0 +1,38 @@
+name: 持ち株の株価 手動更新
+
+# 持ち株ページの「株価を今すぐ更新」を押すと、更新依頼の Issue を作る画面が開く。
+# リポジトリ所有者がその Issue を作ったときだけ、株価の取得(update-holdings.yml)を起動して Issue を閉じる。
+# (ページから直接 Actions を動かすにはトークンが要るため、新着情報の「今すぐ更新」と同じ仕組みにしている)
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write # 結果をコメントして Issue を閉じる
+  actions: write # 株価の取得を起動する(取得後の再デプロイは update-holdings.yml が行う)
+
+jobs:
+  request:
+    if: >-
+      github.event.issue.user.login == github.repository_owner &&
+      startsWith(github.event.issue.title, '持ち株の株価を更新')
+    runs-on: ubuntu-latest
+    steps:
+      - name: 株価の取得を起動
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update-holdings.yml --repo "$GITHUB_REPOSITORY" --ref main
+      - name: 結果をコメントして閉じる
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.issue.number }}
+          OK: ${{ job.status == 'success' }}
+        run: |
+          if [ "$OK" = "true" ]; then
+            gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "株価の更新を始めました。2〜5分ほどで持ち株ページに反映されます。"
+            gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --reason completed
+          else
+            gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "更新を始められませんでした。Actions のログを確認してください。"
+            gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --reason "not planned"
+          fi
