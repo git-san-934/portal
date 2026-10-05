@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-05T04:19+09:00",
+ "updated_at": "2026-10-05T09:19+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1069,6 +1069,13 @@
     "q4:https://investor.oracle.com"
    ],
    "items": [
+    {
+     "date": "2026-10-04",
+     "title": "Oracle Announces $10 Million Partnership with the Nashville Symphony",
+     "url": "https://www.oracle.com/news/announcement/oracle-announces-partnership-with-nashville-symphony-2026-10-04/",
+     "source": "official",
+     "first_seen": "2026-10-05T09:19+09:00"
+    },
     {
      "date": "2026-10-02",
      "title": "Oracle Announces Commitment to Absorb $300 Million in Rising Point Beach Energy Costs for Wisconsin Residents",
