@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-05T09:19+09:00",
+ "updated_at": "2026-10-05T09:22+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1766,9 +1766,11 @@
    "code": "SPCX",
    "name": "スペースx",
    "market": "US",
-   "home": null,
-   "official_status": "未登録",
-   "official_pages": [],
+   "home": "https://www.spacex.com/",
+   "official_status": "取得できませんでした",
+   "official_pages": [
+    "q4:https://investors.spacex.com"
+   ],
    "items": []
   }
  ]
