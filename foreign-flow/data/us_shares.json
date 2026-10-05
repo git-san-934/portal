@@ -415,6 +415,7 @@
 "SNPS":{"float":190523237,"inst":0.93086,"name":"Synopsys, Inc.","date":"2026-09-24"},
 "SO":{"float":1147648109,"inst":0.74231005,"name":"Southern Company (The)","date":"2026-09-24"},
 "SOLV":{"float":144089280,"inst":0.75908995,"name":"Solventum Corporation","date":"2026-09-24"},
+"SPCX":{"float":4340232865,"inst":0.48366,"name":"Space Exploration Technologies ","date":"2026-10-05","holders":[{"who":"Alphabet Inc.","pct":7.16,"chg":100.0,"date":"2026-06-30","foreign":false},{"who":"Valor Management LLC","pct":6.54,"chg":100.0,"date":"2026-06-30","foreign":false},{"who":"FMR, LLC","pct":3.93,"chg":100.0,"date":"2026-06-30","foreign":false},{"who":"Vy Capital Management Co. Ltd.","pct":3.53,"chg":100.0,"date":"2026-06-30","foreign":false},{"who":"Gigafund Management Company, LLC","pct":2.23,"chg":100.0,"date":"2026-06-30","foreign":false},{"who":"Public Investment Fund","pct":2.0,"chg":100.0,"date":"2026-06-30","foreign":false},{"who":"BAMCO Inc.","pct":1.89,"chg":100.0,"date":"2026-06-30","foreign":false},{"who":"D1 Capital Partners, LP","pct":1.64,"chg":100.0,"date":"2026-06-30","foreign":false}]},
 "SPG":{"float":319851523,"inst":0.96135,"name":"Simon Property Group, Inc.","date":"2026-09-24"},
 "SPGI":{"float":294086584,"inst":0.90814,"name":"S&P Global Inc.","date":"2026-09-24"},
 "SRE":{"float":652553313,"inst":0.93754995,"name":"DBA Sempra","date":"2026-09-24"},
