@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-05T09:59+09:00",
+ "generated_at": "2026-10-05T16:00+09:00",
  "report_date": "2026-10-05",
  "days": [
   {
@@ -2519,7 +2519,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-05T09:59+09:00",
+  "checked_at": "2026-10-05T16:00+09:00",
   "counts": {
    "new": 0,
    "unchanged": 102,
