@@ -305,10 +305,27 @@ def fetch_q4(base):
     return items
 
 
+# スペースXの公式サイトは JavaScript で描くので、裏の JSON(Updates の一覧)を読む
+SPACEX_UPDATES = "https://content.spacex.com/api/spacex-website/updates"
+
+
+def fetch_spacex():
+    items = []
+    for row in get(SPACEX_UPDATES).json():
+        d, _ = find_date(row.get("date") or "")
+        title = clean(row.get("title"))
+        link = row.get("link") or (f"https://www.spacex.com/updates/#{row['updateId']}" if row.get("updateId") else "")
+        if title and link and plausible(d):
+            items.append({"date": d.isoformat(), "title": title[:200], "url": link})
+    return items
+
+
 def fetch_page(url):
     """1ページ(RSS も可)から記事を拾う。(記事, soup)。"q4:" で始まるときは Q4 の IR サイト"""
     if url.startswith("q4:"):
         return fetch_q4(url[3:]), None
+    if url == "spacex:":
+        return fetch_spacex(), None
     r = get(url)
     ctype = r.headers.get("Content-Type", "").lower()
     if "xml" in ctype or r.content.lstrip()[:5] in (b"<?xml", b"<rss ", b"<feed"):
