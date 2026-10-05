@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-05T09:19+09:00",
+ "updated_at": "2026-10-05T09:24+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1766,10 +1766,98 @@
    "code": "SPCX",
    "name": "スペースx",
    "market": "US",
-   "home": null,
-   "official_status": "未登録",
-   "official_pages": [],
-   "items": []
+   "home": "https://www.spacex.com/",
+   "official_status": "ok",
+   "official_pages": [
+    "q4:https://ir.spacex.com",
+    "spacex:"
+   ],
+   "items": [
+    {
+     "date": "2026-09-15",
+     "title": "Starship to Orbit",
+     "url": "https://www.spacex.com/updates/#orbital-starship",
+     "source": "official",
+     "first_seen": "2026-09-15T00:00+09:00"
+    },
+    {
+     "date": "2026-08-27",
+     "title": "SpaceX to Participate in the Goldman Sachs Communacopia and Technology Conference",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-to-Participate-in-the-Goldman-Sachs-Communacopia-and-Technology-Conference-2026-hMRDqGksMV/default.aspx",
+     "source": "official",
+     "first_seen": "2026-08-27T00:00+09:00"
+    },
+    {
+     "date": "2026-08-06",
+     "title": "Breaking Ground on Terafab in Texas",
+     "url": "https://www.spacex.com/updates/#terafab",
+     "source": "official",
+     "first_seen": "2026-08-06T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "title": "SpaceX Reports Second Quarter 2026 Results",
+     "url": "https://ir.spacex.com/files/doc_financials/2026/q2/SpaceX-Reports-Second-Quarter-2026-Results.pdf",
+     "source": "official",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-07-20",
+     "title": "SpaceX to Post Second Quarter 2026 Results and Host Webcast on August 4, 2026",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-to-Post-Second-Quarter-2026-Results-and-Host-Webcast-on-August-4-2026-2026-g8layJlbFm/default.aspx",
+     "source": "official",
+     "first_seen": "2026-07-20T00:00+09:00"
+    },
+    {
+     "date": "2026-06-23",
+     "title": "SpaceX Announces Pricing of $25 Billion Inaugural Bond Issuance",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-Announces-Pricing-of-25-Billion-Inaugural-Bond-Issuance-2026-33VwNgsx3O/default.aspx",
+     "source": "official",
+     "first_seen": "2026-06-23T00:00+09:00"
+    },
+    {
+     "date": "2026-06-22",
+     "title": "Space Exploration Technologies Corp. Announces Inaugural Bond Issuance",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Inaugural-Bond-Issuance-2026-VOzvzAjhMA/default.aspx",
+     "source": "official",
+     "first_seen": "2026-06-22T00:00+09:00"
+    },
+    {
+     "date": "2026-06-15",
+     "title": "Space Exploration Technologies Corp. Announces Closing of Initial Public Offering, Including Full Exercise of Underwriters’ Option to Purchase Additional Shares",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Closing-of-Initial-Public-Offering-Including-Full-Exercise-of-Underwriters-Option-to-Purchase-Additional-Shares-2026-RgoR-Y1Vwh/default.aspx",
+     "source": "official",
+     "first_seen": "2026-06-15T00:00+09:00"
+    },
+    {
+     "date": "2026-06-11",
+     "title": "Space Exploration Technologies Corp. Announces Pricing of Initial Public Offering",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Pricing-of-Initial-Public-Offering/default.aspx",
+     "source": "official",
+     "first_seen": "2026-06-11T00:00+09:00"
+    },
+    {
+     "date": "2026-06-04",
+     "title": "Space Exploration Technologies Corp. Announces Launch of Initial Public Offering",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Launch-of-Initial-Public-Offering/default.aspx",
+     "source": "official",
+     "first_seen": "2026-06-04T00:00+09:00"
+    },
+    {
+     "date": "2026-05-21",
+     "title": "FIRST STARSHIP INTERPLANETARY HUMAN SPACEFLIGHT MISSION",
+     "url": "https://www.spacex.com/updates/#first-starship-interplanetary-mission",
+     "source": "official",
+     "first_seen": "2026-05-21T00:00+09:00"
+    },
+    {
+     "date": "2026-05-12",
+     "title": "Introducing Starship V3",
+     "url": "https://www.spacex.com/updates/#starship-v3",
+     "source": "official",
+     "first_seen": "2026-05-12T00:00+09:00"
+    }
+   ]
   }
  ]
 }

@@ -1,5 +1,5 @@
 {
-  "_説明": "銘柄ごとの公式サイト。home はトップページ、pages はニュース・IRニュース一覧のページ(RSS も可)。pages が取れないときは home からニュース一覧を自動で探す。銘柄そのものは holdings/data/holdings.json(持ち株チェック)と共通。 米国株の cik は SEC の会社番号(間違っていればログに出る)。discover: false でトップページからの自動探索をしない。sec: false で SEC を見ない(ETF など)。 pages に q4:https://… と書くと Q4 社の IR サイトの JSON を読む。 only: を書くと、その URL で始まる記事だけを残す。strip_title: は見出しの先頭から取り除く文字。",
+  "_説明": "銘柄ごとの公式サイト。home はトップページ、pages はニュース・IRニュース一覧のページ(RSS も可)。pages が取れないときは home からニュース一覧を自動で探す。銘柄そのものは holdings/data/holdings.json(持ち株チェック)と共通。 米国株の cik は SEC の会社番号(間違っていればログに出る)。discover: false でトップページからの自動探索をしない。sec: false で SEC を見ない(ETF など)。 pages に q4:https://… と書くと Q4 社の IR サイトの JSON を読む。spacex: はスペースXの Updates(JSON)。 only: を書くと、その URL で始まる記事だけを残す。strip_title: は見出しの先頭から取り除く文字。",
   "7974": {"home": "https://www.nintendo.co.jp/", "pages": ["https://www.nintendo.co.jp/news/whatsnew.xml"]},
   "4732": {"home": "https://www.ussnet.co.jp/", "pages": ["https://www.ussnet.co.jp/ir/news/", "https://www.ussnet.co.jp/news/"]},
   "8411": {"home": "https://www.mizuho-fg.co.jp/", "pages": ["https://www.mizuho-fg.co.jp/release/index.html", "https://www.mizuho-fg.co.jp/investors/ir_news/index.html"]},
@@ -16,5 +16,6 @@
   "GLW": {"home": "https://www.corning.com/", "pages": ["q4:https://investor.corning.com", "https://www.corning.com/worldwide/en/about-us/news-events.html"], "cik": 24741},
   "PLTR": {"home": "https://www.palantir.com/", "pages": ["q4:https://investors.palantir.com", "https://www.palantir.com/newsroom/press-releases/"], "cik": 1321655},
   "SDGR": {"home": "https://www.schrodinger.com/", "pages": ["q4:https://ir.schrodinger.com", "https://ir.schrodinger.com/press-releases/default.aspx"], "cik": 1490978},
-  "TSLL": {"home": "https://www.direxion.com/", "pages": [], "discover": false, "sec": false}
+  "TSLL": {"home": "https://www.direxion.com/", "pages": [], "discover": false, "sec": false},
+  "SPCX": {"home": "https://www.spacex.com/", "pages": ["q4:https://ir.spacex.com", "spacex:"], "discover": false}
 }
