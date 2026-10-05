@@ -17,7 +17,7 @@ https://git-san-934.github.io/portal/news/
 
 ## 更新のタイミング
 
-`.github/workflows/update-news.yml` が毎日 1:00・5:41・6:41・7:41・8:30・12:45・15:45(日本時間)に動きます。
+`.github/workflows/update-news.yml` が毎日 1:00・5:41・6:41・7:41・8:23・12:45・15:45(日本時間)に動きます。
 GitHub 側の混雑で数時間遅れることがあります。ページの「今すぐ更新」を押すと、更新依頼の Issue を作る画面が開き、
 所有者がそのまま作成すると `.github/workflows/request-news-update.yml` が更新を起動します(3〜5分で反映)。Actions の画面から手動でも実行できます。
 
