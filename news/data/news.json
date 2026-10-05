@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-05T09:30+09:00",
+ "updated_at": "2026-10-05T17:56+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-05",
+     "title": "『Nintendo Today!』の「ゼルダの伝説 コレクション・カード」で「ムジュラの仮面 パック」を配信中。『Nintendo Music』で「ムジュラの仮面」の楽曲も配信予定。アイコンパーツも登場。",
+     "url": "https://www.nintendo.com/jp/topics/article/8c4941f0-c924-4d46-864d-967ea8338f42",
+     "source": "official",
+     "first_seen": "2026-10-05T17:56+09:00"
+    },
     {
      "date": "2026-10-02",
      "title": "「ゼルダの伝説40周年コンサート」は、2027年1月より全国5都市で開催。チケットの先行申込(抽選)も受付中。",
@@ -211,6 +218,14 @@
     "https://www.ussnet.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-10-05",
+     "time": "15:30",
+     "title": "2027年3月期第2四半期USSグループ中古車オークション実績(速報)",
+     "url": "https://www.release.tdnet.info/inbs/140120261005545960.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-05T17:56+09:00"
+    },
     {
      "date": "2026-10-02",
      "time": "16:00",
@@ -705,6 +720,21 @@
     "https://www.fuji.co.jp/"
    ],
    "items": [
+    {
+     "date": "2026-10-05",
+     "time": "11:23",
+     "title": "変更報告書(特例対象株券等)(提出: 株式会社三菱UFJフィナンシャル・グループ)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z5CV",
+     "source": "edinet",
+     "first_seen": "2026-10-05T17:56+09:00"
+    },
+    {
+     "date": "2026-10-05",
+     "title": "リリース 製品・事業 FUJI、Broadcom「Tomahawk® 6 – Davisson」の実装に業界で初めて成功 [PDF:661.9KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/fuji_placement_of_tomahawk6_J.pdf",
+     "source": "official",
+     "first_seen": "2026-10-05T17:56+09:00"
+    },
     {
      "date": "2026-09-14",
      "title": "メディア掲載 企業情報 IR 「週刊東洋経済」記事掲載のお知らせ",
