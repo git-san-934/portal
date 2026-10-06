@@ -6,7 +6,7 @@
   <title>日銀統計の新着</title>
   <meta name="description" content="日本銀行などの経済統計の新しい公表と大きな変化を毎日集めて箇条書きで表示" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261002b" />
+  <link rel="stylesheet" href="assets/style.css?v=20261006a" />
 </head>
 <body>
   <div class="wrap">
@@ -19,7 +19,7 @@
         <a class="refresh" href="https://github.com/git-san-934/portal/actions/workflows/update-boj-stats.yml" target="_blank" rel="noopener" title="GitHub で「Run workflow」を押すと取り込みが始まり、数分でこのページに反映されます">今すぐ更新</a>
       </div>
       <div class="fetch-status" id="fetch-status"></div>
-      <p class="links"><a href="trade.html">半導体関連の輸出(NAND・DRAM・MLCC・製造装置など)の国別の推移 →</a></p>
+      <p class="links"><a href="trade.html">半導体関連の輸出(NAND・DRAM・MLCC・製造装置など)の国別の推移<span class="title-date" id="trade-updated"></span> →</a></p>
     </header>
 
     <nav class="filters" aria-label="種類で絞り込み">
@@ -47,6 +47,6 @@
       <p>集める統計は <code>boj-stats/pipeline/series.json</code> で変えられます。</p>
     </footer>
   </div>
-  <script src="assets/app.js?v=20261002a"></script>
+  <script src="assets/app.js?v=20261006a"></script>
 </body>
 </html>
