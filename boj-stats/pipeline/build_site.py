@@ -127,7 +127,8 @@ def main():
         })
     for r in read_rows(os.path.join(REPORTS, "signals_log.csv")):
         s = key.get((r["db"], r["code"]))
-        if not s or r["detected_on"] < since:
+        # 毎日値が出る金利・為替・国債利回りは新着に載せない（「毎日の値」に出す）
+        if not s or s["freq"] == "D" or r["detected_on"] < since:
             continue
         days.setdefault(r["detected_on"], []).append({
             "kind": "signal", "id": sid(s), "name": s["name"], "obs": r["obs_date"],
