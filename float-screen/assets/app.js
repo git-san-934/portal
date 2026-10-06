@@ -18,6 +18,10 @@
       fmt: (r) => `<a href="${QUOTE}${encodeURIComponent(r.c)}.T" target="_blank" rel="noopener">${esc(r.n)}</a>` },
     { key: "mkt", label: "市場", cls: "left", get: (r) => r.m || "", fmt: (r) => esc((r.m || "").replace(/（.*）/, "")) },
     { key: "fixed", label: "割合", get: fixedOf, fmt: (r) => pct(fixedOf(r)), hit: true },
+    { key: "bb", label: "大株主", get: (r) => r.bb, fmt: (r) => pct(r.bb) },
+    { key: "bf", label: "投資信託等", get: (r) => r.bf, fmt: (r) => pct(r.bf) },
+    { key: "bx", label: "外国人", get: (r) => r.bx, fmt: (r) => pct(r.bx) },
+    { key: "bo", label: "その他", get: (r) => r.bo, fmt: (r) => pct(r.bo) },
     { key: "gm", label: "粗利率", get: (r) => r.g, fmt: (r) => pct(r.g) },
     { key: "cash", label: "保有現金(億円)", get: (r) => r.cash, fmt: (r) => oku(r.cash) },
     { key: "yield", label: "配当利回り", get: (r) => r.y, fmt: (r) => pct(r.y, 2) + (r.yc ? '<span class="warn" title="株式分割や特別配当で実際とずれている可能性があります">※</span>' : "") },
@@ -89,7 +93,7 @@
       th.onclick = () => {
         const k = th.dataset.key;
         if (state.sort === k) state.desc = !state.desc;
-        else { state.sort = k; state.desc = ["gm", "cash", "yield", "dps", "buy", "buyamt", "trs"].includes(k); }
+        else { state.sort = k; state.desc = ["bb", "bf", "bx", "bo", "gm", "cash", "yield", "dps", "buy", "buyamt", "trs"].includes(k); }
         render();
       };
     });
