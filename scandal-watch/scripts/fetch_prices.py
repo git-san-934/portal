@@ -26,7 +26,7 @@ BOTTOM_WINDOW = 120  # 底値を探す期間(営業日、約半年)
 CHART_BEFORE = 250  # チャートに出す期間: 基準日の約1年前から
 RETRIES = 3
 MIN_OK_RATIO = 0.6  # 上場中の銘柄のうちこの割合以上取得できなければ失敗とみなす
-SPLIT_DOWN = 0.6  # 1日でこれ未満・SPLIT_UP超の段差は株式分割の調整漏れとみなす(ath-breakout と同じ)
+SPLIT_DOWN = 0.6  # 1日でこれ未満・SPLIT_UP超の段差は株式分割の調整漏れとみなす
 SPLIT_UP = 1.67
 
 DATA_DIR = Path(__file__).resolve().parent.parent / "data"
