@@ -1,5 +1,5 @@
 {
-  "updated_at": "2026-10-04",
+  "updated_at": "2026-10-07",
   "stocks": [
     {"code": "7974", "name": "任天堂"},
     {"code": "4732", "name": "USS"},
@@ -17,6 +17,11 @@
     {"code": "PLTR", "name": "パランティア", "ticker": "PLTR", "currency": "USD"},
     {"code": "SDGR", "name": "シュレーディンガー", "ticker": "SDGR", "currency": "USD"},
     {"code": "TSLL", "name": "テスラ2倍", "ticker": "TSLL", "currency": "USD"},
-    {"code": "SPCX", "name": "スペースx", "ticker": "SPCX", "currency": "USD"}
+    {"code": "SPCX", "name": "スペースx", "ticker": "SPCX", "currency": "USD"},
+    {"code": "4092", "name": "日本化学"},
+    {"code": "4078", "name": "堺化学"},
+    {"code": "6752", "name": "パナソニック"},
+    {"code": "5802", "name": "住友電工"},
+    {"code": "1417", "name": "ミライト・ワン"}
   ]
 }
