@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>不動株の少ない銘柄</title>
+  <meta name="description" content="有価証券報告書の大株主・役員持株・自己株式から不動株割合を計算し、東証銘柄を一覧で並べ替えて探せるページ" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20261006" />
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>不動株の少ない銘柄</h1>
+      <p class="intro">大株主・役員・自己株式などで動かない株（不動株）が少ない東証銘柄の一覧です。各社の有価証券報告書から計算しています。見出しを押すと、その項目で並び替えられます（もう一度押すと逆順）。</p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <div class="controls">
+      <div class="control-group">
+        <span class="control-label" id="def-label">不動株の数え方</span>
+        <div id="def-toggle" class="toggle" role="group" aria-labelledby="def-label"></div>
+      </div>
+      <div class="control-group">
+        <span class="control-label" id="max-label">不動株割合</span>
+        <div id="max-toggle" class="toggle" role="group" aria-labelledby="max-label"></div>
+      </div>
+      <div class="control-group">
+        <span class="control-label" id="mkt-label">市場</span>
+        <div id="mkt-toggle" class="toggle" role="group" aria-labelledby="mkt-label"></div>
+      </div>
+      <div class="control-group">
+        <input type="search" id="q" class="search" placeholder="銘柄名・コードで絞り込み" aria-label="銘柄名・コードで絞り込み" />
+      </div>
+    </div>
+
+    <main>
+      <section class="panel">
+        <div class="panel-head">
+          <h2 id="list-title">一覧</h2>
+          <span class="count" id="count"></span>
+        </div>
+        <p class="note">銘柄名を押すと、その会社の「事業の内容」（有価証券報告書）が開きます。<a class="dl" href="data/stock_screen.xlsx" download>Excelでダウンロード</a></p>
+        <div class="table-scroll"><table id="list"></table></div>
+      </section>
+
+      <section class="panel">
+        <h2>各項目の説明</h2>
+        <ul class="note">
+          <li><b>不動株割合（東証式）</b>: 10%以上を持つ大株主＋役員の持株＋自己株式の合計が、発行済株式に占める割合。信託銀行の信託口や海外の預かり名義（マスタートラスト、日本カストディ銀行、STATE STREET など）は投資家の預かり株なので数えていません。東証の定義では銀行・保険・事業会社の持ち合い株も不動株ですが、有価証券報告書からは見分けられないため入れていません（実際の不動株はこれより多めです）。</li>
+          <li><b>不動株割合（四季報式）</b>: 上位10大株主＋役員の持株＋自己株式の合計の割合（会社四季報の「特定株」と同じ考え方）。上位10名には信託口も入るので、5%未満の会社はほぼありません。</li>
+          <li>役員が大株主欄にも載っている場合は二重に数えないようにしています（10位の株数以上を持つ役員は大株主に含まれるとみなす）。</li>
+          <li><b>粗利率</b>: 売上総利益 ÷ 売上高（連結優先）。銀行・保険など売上総利益のない業種は「-」です。</li>
+          <li><b>保有現金</b>: 連結の現金及び預金（IFRSの会社は現金及び現金同等物）。</li>
+          <li><b>配当利回り</b>: 直近の決算期の1株配当 ÷ 最新の株価。決算期のあとに株式分割した銘柄は、有価証券報告書のPER×EPSと今の株価の差から分割を推定して調整しています。期中の分割や特別配当で高く出ることがあるので、8%を超えるものや調整したものには「※」を付けています。</li>
+          <li><b>自社株買</b>: 直近の有価証券報告書で、取締役会（または株主総会）決議による自社株買いをした記載があれば「実施」、取得額はキャッシュ・フロー計算書の自己株式の取得額です。報告書を出したあとに発表された自社株買いは入っていません（最新の発表は「自社株買情報」アプリで確認できます）。</li>
+        </ul>
+      </section>
+    </main>
+
+    <footer>
+      データ: 各社の有価証券報告書（EDINET）、株価は Yahoo Finance（yfinance 経由）、市場区分は日本取引所グループの東証上場銘柄一覧。<br />
+      数値は機械的に読み取ったもので、誤りが含まれることがあります。投資助言ではありません。<br />
+      <a href="../">← アプリ一覧に戻る</a>
+    </footer>
+  </div>
+  <script src="assets/app.js?v=20261006"></script>
+</body>
+</html>
