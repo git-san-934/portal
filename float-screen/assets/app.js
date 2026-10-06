@@ -1,5 +1,5 @@
 (() => {
-  const VIEWER = "https://git-san-934.github.io/stock-yukasyouken-jigyou/companies/";
+  const QUOTE = "https://finance.yahoo.co.jp/quote/";
   const state = { def: "b", max: 0.05, mkt: "all", q: "", sort: "fixed", desc: false, data: null };
 
   const DEFS = [["b", "東証式"], ["a", "四季報式"]];
@@ -14,7 +14,7 @@
   const COLS = [
     { key: "code", label: "コード", cls: "left", get: (r) => r.c, fmt: (r) => r.c },
     { key: "name", label: "銘柄名", cls: "left name", get: (r) => r.n,
-      fmt: (r) => `<a href="${VIEWER}${encodeURIComponent(r.c)}.html" target="_blank" rel="noopener">${esc(r.n)}</a>` },
+      fmt: (r) => `<a href="${QUOTE}${encodeURIComponent(r.c)}.T" target="_blank" rel="noopener">${esc(r.n)}</a>` },
     { key: "mkt", label: "市場", cls: "left", get: (r) => r.m || "", fmt: (r) => esc((r.m || "").replace(/（.*）/, "")) },
     { key: "fixed", label: "不動株割合", get: fixedOf, fmt: (r) => pct(fixedOf(r)), hit: true },
     { key: "gm", label: "粗利率", get: (r) => r.g, fmt: (r) => pct(r.g) },
