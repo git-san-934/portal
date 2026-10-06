@@ -1,0 +1,49 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>持ち株サイトの新着ページ</title>
+  <meta name="description" content="持ち株(日本株)の公式サイト全体を毎日巡回して、新しく増えたページ・PDF を一覧にする" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20261006a" />
+</head>
+<body>
+  <div class="wrap">
+    <p class="back"><a href="../">← アプリ一覧</a></p>
+    <header>
+      <h1>持ち株サイトの新着ページ</h1>
+      <p class="intro">持ち株(日本株)の公式サイト全体を毎日 5:00 に巡回して、前の日までになかったページや PDF を一覧にしています。サイトマップとサイト内のリンクから URL を集め、robots.txt を守って間をあけて読んでいます。</p>
+      <p class="updated" id="status">読み込み中...</p>
+      <p class="refresh">
+        <a class="refresh-btn" id="refresh" target="_blank" rel="noopener">今すぐ更新</a>
+        <span class="refresh-note">GitHub の画面が開くので「Create」を押してください。サイトの巡回に時間がかかるため、10〜30分でこのページに反映されます(GitHub へのログインが必要です)。</span>
+      </p>
+    </header>
+
+    <nav class="filters" id="filters" aria-label="銘柄で絞り込み"></nav>
+
+    <section class="panel">
+      <h2 class="panel-title">新しく見つかったページ <span class="code" id="count"></span></h2>
+      <div id="days"></div>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">巡回の状況</h2>
+      <div class="table-wrap">
+        <table class="sites">
+          <thead><tr><th>銘柄</th><th>状態</th><th class="num">URL数</th></tr></thead>
+          <tbody id="sites"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <footer>
+      <p>はじめて巡回した日は、サイトの今の姿を記録するだけで、一覧には載せません。次の日から、増えたページが載ります。一覧は直近90日分です。</p>
+      <p>「更新日」はサイトマップに書かれている最終更新日です(書かれていないサイトもあります)。「NEW」は見つけてから3日以内のものです。</p>
+      <p>銘柄は「持ち株チェック」の銘柄リストのうち日本株です。公式サイトのURLは「持ち株の新着情報」と共通で、<code>news/data/sources.json</code> で変えられます。</p>
+    </footer>
+  </div>
+  <script src="assets/app.js?v=20261006a"></script>
+</body>
+</html>
