@@ -20,7 +20,7 @@
    "sitemap_files": 2,
    "crawled_pages": 200,
    "status": "ok",
-   "new": 6
+   "new": 0
   },
   {
    "code": "8411",
@@ -106,66 +106,5 @@
    "new": 0
   }
  ],
- "items": [
-  {
-   "code": "4732",
-   "url": "https://www.ussnet.co.jp/en/ir/contact/<mt:ArchiveLink replace=",
-   "title": "\">",
-   "link_text": "\">",
-   "kind": "page",
-   "lastmod": null,
-   "via": "link",
-   "found_at": "2026-10-06T19:45:57+09:00"
-  },
-  {
-   "code": "4732",
-   "url": "https://www.ussnet.co.jp/en/ir/news/archive/<MTVar name=",
-   "title": "/index.html\">Archive",
-   "link_text": "/index.html\">Archive",
-   "kind": "page",
-   "lastmod": null,
-   "via": "link",
-   "found_at": "2026-10-06T19:45:57+09:00"
-  },
-  {
-   "code": "4732",
-   "url": "https://www.ussnet.co.jp/en/ir/stock/<mt:ArchiveLink replace=",
-   "title": "\">",
-   "link_text": "\">",
-   "kind": "page",
-   "lastmod": null,
-   "via": "link",
-   "found_at": "2026-10-06T19:45:57+09:00"
-  },
-  {
-   "code": "4732",
-   "url": "https://www.ussnet.co.jp/ir/contact/form/<mt:ArchiveLink replace=",
-   "title": "\">",
-   "link_text": "\">",
-   "kind": "page",
-   "lastmod": null,
-   "via": "link",
-   "found_at": "2026-10-06T19:45:57+09:00"
-  },
-  {
-   "code": "4732",
-   "url": "https://www.ussnet.co.jp/ir/news/archive/<MTVar name=",
-   "title": "/index.html\">過去の情報はこちら",
-   "link_text": "/index.html\">過去の情報はこちら",
-   "kind": "page",
-   "lastmod": null,
-   "via": "link",
-   "found_at": "2026-10-06T19:45:57+09:00"
-  },
-  {
-   "code": "4732",
-   "url": "https://www.ussnet.co.jp/ir/sitemap/<mt:ArchiveLink replace=",
-   "title": "\">",
-   "link_text": "\">",
-   "kind": "page",
-   "lastmod": null,
-   "via": "link",
-   "found_at": "2026-10-06T19:45:57+09:00"
-  }
- ]
+ "items": []
 }

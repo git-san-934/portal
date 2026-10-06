@@ -74,6 +74,8 @@ SKIP_EXT = re.compile(
     re.I,
 )
 DOC_EXT = re.compile(r"\.(?:pdf|xlsx?|docx?|pptx?|csv)$", re.I)
+# 作りかけのテンプレートが残ったリンクなど、URL として壊れているもの(<mt:...> や {{ ... }}、引用符入り)
+BROKEN_URL = re.compile(r"[<>\"{}]|%3C|%3E|%7B|%7D", re.I)
 # 追跡用などの、ページの中身を変えないクエリ
 DROP_PARAMS = re.compile(r"^(?:utm_.*|fbclid|gclid|yclid|msclkid|mc_[ce]id|_ga|_gl|sessionid|sid|phpsessid|jsessionid)$", re.I)
 
@@ -92,8 +94,11 @@ def base_domain(host):
 
 def normalize(url, https=True):
     """比べるための URL の形にそろえる。拾わない URL なら None。"""
+    url = url.strip().replace(" ", "%20")
+    if BROKEN_URL.search(url):
+        return None
     try:
-        p = urlparse(url.strip())
+        p = urlparse(url)
     except ValueError:
         return None
     if p.scheme not in ("http", "https") or not p.netloc:
@@ -314,7 +319,7 @@ def check(site, prev):
 
     seen_path = SEEN_DIR / f"{site.code}.txt"
     first = not seen_path.exists()
-    seen = set() if first else set(seen_path.read_text(encoding="utf-8").split())
+    seen = set() if first else set(filter(None, seen_path.read_text(encoding="utf-8").splitlines()))
     new = sorted(current - seen)
     seen_path.write_text("".join(u + "\n" for u in sorted(seen | current)), encoding="utf-8")
     status.update(status="ok", last_ok_at=status["checked_at"], known=len(seen | current), new=0 if first else len(new))

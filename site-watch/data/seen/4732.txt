@@ -180,8 +180,6 @@ https://www.ussnet.co.jp/en/corporate/principle/index.html
 https://www.ussnet.co.jp/en/corporate/strategy/index.html
 https://www.ussnet.co.jp/en/index.html
 https://www.ussnet.co.jp/en/ir/calendar/index.html
-https://www.ussnet.co.jp/en/ir/contact/<mt:ArchiveLink
-https://www.ussnet.co.jp/en/ir/contact/<mt:ArchiveLink replace=
 https://www.ussnet.co.jp/en/ir/contact/form/index.html
 https://www.ussnet.co.jp/en/ir/contact/index.html
 https://www.ussnet.co.jp/en/ir/disclaimer/index.html
@@ -278,12 +276,8 @@ https://www.ussnet.co.jp/en/ir/news/2024/index.html
 https://www.ussnet.co.jp/en/ir/news/2025/index.html
 https://www.ussnet.co.jp/en/ir/news/2026/index.html
 https://www.ussnet.co.jp/en/ir/news/archive/2021/index.html
-https://www.ussnet.co.jp/en/ir/news/archive/<MTVar
-https://www.ussnet.co.jp/en/ir/news/archive/<MTVar name=
 https://www.ussnet.co.jp/en/ir/news/index.html
 https://www.ussnet.co.jp/en/ir/sitemap/index.html
-https://www.ussnet.co.jp/en/ir/stock/<mt:ArchiveLink
-https://www.ussnet.co.jp/en/ir/stock/<mt:ArchiveLink replace=
 https://www.ussnet.co.jp/en/ir/stock/analyst/index.html
 https://www.ussnet.co.jp/en/ir/stock/dividend/index.html
 https://www.ussnet.co.jp/en/ir/stock/index.html
@@ -418,8 +412,6 @@ https://www.ussnet.co.jp/ir/contact/corporate/management/index.html
 https://www.ussnet.co.jp/ir/contact/corporate/message/index.html
 https://www.ussnet.co.jp/ir/contact/corporate/principle/index.html
 https://www.ussnet.co.jp/ir/contact/corporate/strategy/index.html
-https://www.ussnet.co.jp/ir/contact/form/<mt:ArchiveLink
-https://www.ussnet.co.jp/ir/contact/form/<mt:ArchiveLink replace=
 https://www.ussnet.co.jp/ir/contact/form/index.html
 https://www.ussnet.co.jp/ir/contact/index.html
 https://www.ussnet.co.jp/ir/contact/ir/calendar/index.html
@@ -1433,11 +1425,7 @@ https://www.ussnet.co.jp/ir/news/archive/2018/index.html
 https://www.ussnet.co.jp/ir/news/archive/2019/index.html
 https://www.ussnet.co.jp/ir/news/archive/2020/index.html
 https://www.ussnet.co.jp/ir/news/archive/2021/index.html
-https://www.ussnet.co.jp/ir/news/archive/<MTVar
-https://www.ussnet.co.jp/ir/news/archive/<MTVar name=
 https://www.ussnet.co.jp/ir/news/index.html
-https://www.ussnet.co.jp/ir/sitemap/<mt:ArchiveLink
-https://www.ussnet.co.jp/ir/sitemap/<mt:ArchiveLink replace=
 https://www.ussnet.co.jp/ir/sitemap/index.html
 https://www.ussnet.co.jp/ir/stock/analyst/index.html
 https://www.ussnet.co.jp/ir/stock/dividend/index.html
@@ -1944,5 +1932,3 @@ https://www.ussnet.co.jp/sustainability/social/customer/index.html
 https://www.ussnet.co.jp/sustainability/social/employee/index.html
 https://www.ussnet.co.jp/sustainability/social/index.html
 https://www.ussnet.co.jp/terms/index.html
-name=
-replace=
