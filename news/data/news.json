@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-07T08:04+09:00",
+ "updated_at": "2026-10-07T08:29+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1900,6 +1900,383 @@
      "url": "https://www.spacex.com/updates/#starship-v3",
      "source": "official",
      "first_seen": "2026-05-12T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "4092",
+   "name": "日本化学",
+   "market": "JP",
+   "home": null,
+   "official_status": "未登録",
+   "official_pages": [],
+   "items": [
+    {
+     "date": "2026-10-06",
+     "time": "11:47",
+     "title": "大量保有報告書(特例対象株券等)(提出: 野村證券株式会社)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z63T",
+     "source": "edinet",
+     "first_seen": "2026-10-06T00:00+09:00"
+    },
+    {
+     "date": "2026-10-05",
+     "time": "16:00",
+     "title": "自己株式の取得状況に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261005546002.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-05T00:00+09:00"
+    },
+    {
+     "date": "2026-09-10",
+     "time": "11:20",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z0HQ",
+     "source": "edinet",
+     "first_seen": "2026-09-10T00:00+09:00"
+    },
+    {
+     "date": "2026-08-20",
+     "time": "10:43",
+     "title": "大量保有報告書(提出: Teacher Retirement System of Texas)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YXLO",
+     "source": "edinet",
+     "first_seen": "2026-08-20T00:00+09:00"
+    },
+    {
+     "date": "2026-08-18",
+     "time": "16:02",
+     "title": "変更報告書(短期大量譲渡)(提出: 株式会社C&I Holdings)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YXBI",
+     "source": "edinet",
+     "first_seen": "2026-08-18T00:00+09:00"
+    },
+    {
+     "date": "2026-08-17",
+     "time": "16:01",
+     "title": "変更報告書(提出: 株式会社C&I Holdings)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWUV",
+     "source": "edinet",
+     "first_seen": "2026-08-17T00:00+09:00"
+    },
+    {
+     "date": "2026-08-13",
+     "time": "16:00",
+     "title": "変更報告書(提出: 株式会社C&I Holdings)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YW6Z",
+     "source": "edinet",
+     "first_seen": "2026-08-13T00:00+09:00"
+    },
+    {
+     "date": "2026-08-12",
+     "time": "16:00",
+     "title": "変更報告書(提出: 株式会社C&I Holdings)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVVE",
+     "source": "edinet",
+     "first_seen": "2026-08-12T00:00+09:00"
+    },
+    {
+     "date": "2026-08-10",
+     "time": "16:15",
+     "title": "臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVHP",
+     "source": "edinet",
+     "first_seen": "2026-08-10T00:00+09:00"
+    },
+    {
+     "date": "2026-08-10",
+     "time": "16:12",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YU9E",
+     "source": "edinet",
+     "first_seen": "2026-08-10T00:00+09:00"
+    },
+    {
+     "date": "2026-08-06",
+     "time": "14:05",
+     "title": "変更報告書(特例対象株券等)(提出: 野村證券株式会社)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YU79",
+     "source": "edinet",
+     "first_seen": "2026-08-06T00:00+09:00"
+    },
+    {
+     "date": "2026-08-05",
+     "time": "16:01",
+     "title": "変更報告書(提出: 株式会社C&I Holdings)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YU28",
+     "source": "edinet",
+     "first_seen": "2026-08-05T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "time": "09:41",
+     "title": "大量保有報告書(提出: 前田 桃子)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YT74",
+     "source": "edinet",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-08-04",
+     "time": "09:39",
+     "title": "変更報告書(短期大量譲渡)(提出: 増野 繁)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YT9Q",
+     "source": "edinet",
+     "first_seen": "2026-08-04T00:00+09:00"
+    },
+    {
+     "date": "2026-07-29",
+     "time": "16:12",
+     "title": "変更報告書(提出: 株式会社C&I Holdings)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSPW",
+     "source": "edinet",
+     "first_seen": "2026-07-29T00:00+09:00"
+    },
+    {
+     "date": "2026-07-28",
+     "time": "16:02",
+     "title": "変更報告書(提出: 株式会社C&I Holdings)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS4W",
+     "source": "edinet",
+     "first_seen": "2026-07-28T00:00+09:00"
+    },
+    {
+     "date": "2026-07-24",
+     "time": "16:00",
+     "title": "変更報告書(提出: 株式会社C&I Holdings)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YS37",
+     "source": "edinet",
+     "first_seen": "2026-07-24T00:00+09:00"
+    },
+    {
+     "date": "2026-07-23",
+     "time": "16:01",
+     "title": "大量保有報告書(提出: 株式会社C&I Holdings)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YRU2",
+     "source": "edinet",
+     "first_seen": "2026-07-23T00:00+09:00"
+    },
+    {
+     "date": "2026-07-23",
+     "time": "16:00",
+     "title": "変更報告書(短期大量譲渡)(提出: 株式会社STYLE BLEACH)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YRU6",
+     "source": "edinet",
+     "first_seen": "2026-07-23T00:00+09:00"
+    },
+    {
+     "date": "2026-07-16",
+     "time": "16:01",
+     "title": "大量保有報告書(提出: 株式会社STYLE BLEACH)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQVO",
+     "source": "edinet",
+     "first_seen": "2026-07-16T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "4078",
+   "name": "堺化学",
+   "market": "JP",
+   "home": null,
+   "official_status": "未登録",
+   "official_pages": [],
+   "items": [
+    {
+     "date": "2026-10-01",
+     "time": "13:52",
+     "title": "訂正自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z5L3",
+     "source": "edinet",
+     "first_seen": "2026-10-01T00:00+09:00"
+    },
+    {
+     "date": "2026-10-01",
+     "time": "10:34",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z5K9",
+     "source": "edinet",
+     "first_seen": "2026-10-01T00:00+09:00"
+    },
+    {
+     "date": "2026-09-08",
+     "time": "15:00",
+     "title": "自己株式の取得状況及び取得終了に関するお知らせ (会社法第459条第1項の規定による定款の定めに基づく自己株式の取得)",
+     "url": "https://www.release.tdnet.info/inbs/140120260908533027.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-09-08T00:00+09:00"
+    },
+    {
+     "date": "2026-09-01",
+     "time": "15:16",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZX1",
+     "source": "edinet",
+     "first_seen": "2026-09-01T00:00+09:00"
+    },
+    {
+     "date": "2026-08-20",
+     "time": "17:06",
+     "title": "変更報告書(短期大量譲渡)(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YXTV",
+     "source": "edinet",
+     "first_seen": "2026-08-20T00:00+09:00"
+    },
+    {
+     "date": "2026-08-20",
+     "time": "17:04",
+     "title": "訂正報告書(大量保有報告書・変更報告書)(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YXS0",
+     "source": "edinet",
+     "first_seen": "2026-08-20T00:00+09:00"
+    },
+    {
+     "date": "2026-08-17",
+     "time": "16:56",
+     "title": "変更報告書(短期大量譲渡)(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YX67",
+     "source": "edinet",
+     "first_seen": "2026-08-17T00:00+09:00"
+    },
+    {
+     "date": "2026-08-14",
+     "time": "16:21",
+     "title": "訂正報告書(大量保有報告書・変更報告書)(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YWBQ",
+     "source": "edinet",
+     "first_seen": "2026-08-14T00:00+09:00"
+    },
+    {
+     "date": "2026-08-13",
+     "time": "17:00",
+     "title": "変更報告書(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YVVH",
+     "source": "edinet",
+     "first_seen": "2026-08-13T00:00+09:00"
+    },
+    {
+     "date": "2026-08-06",
+     "time": "13:32",
+     "title": "変更報告書(特例対象株券等)(提出: 三井住友DSアセットマネジメント株式会社)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YUE1",
+     "source": "edinet",
+     "first_seen": "2026-08-06T00:00+09:00"
+    },
+    {
+     "date": "2026-08-03",
+     "time": "11:01",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YTPF",
+     "source": "edinet",
+     "first_seen": "2026-08-03T00:00+09:00"
+    },
+    {
+     "date": "2026-07-29",
+     "time": "16:46",
+     "title": "変更報告書(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YSSH",
+     "source": "edinet",
+     "first_seen": "2026-07-29T00:00+09:00"
+    },
+    {
+     "date": "2026-07-17",
+     "time": "16:36",
+     "title": "訂正報告書(大量保有報告書・変更報告書)(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQZR",
+     "source": "edinet",
+     "first_seen": "2026-07-17T00:00+09:00"
+    },
+    {
+     "date": "2026-07-17",
+     "time": "16:36",
+     "title": "変更報告書(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQYR",
+     "source": "edinet",
+     "first_seen": "2026-07-17T00:00+09:00"
+    },
+    {
+     "date": "2026-07-16",
+     "time": "09:35",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQX7",
+     "source": "edinet",
+     "first_seen": "2026-07-16T00:00+09:00"
+    },
+    {
+     "date": "2026-07-15",
+     "time": "16:17",
+     "title": "変更報告書(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YQN2",
+     "source": "edinet",
+     "first_seen": "2026-07-15T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "6752",
+   "name": "パナソニック",
+   "market": "JP",
+   "home": null,
+   "official_status": "未登録",
+   "official_pages": [],
+   "items": [
+    {
+     "date": "2026-08-28",
+     "time": "09:57",
+     "title": "発行登録追補書類(株券、社債券等)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZ4B",
+     "source": "edinet",
+     "first_seen": "2026-08-28T00:00+09:00"
+    },
+    {
+     "date": "2026-08-03",
+     "time": "09:00",
+     "title": "訂正発行登録書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YTKU",
+     "source": "edinet",
+     "first_seen": "2026-08-03T00:00+09:00"
+    }
+   ]
+  },
+  {
+   "code": "5802",
+   "name": "住友電工",
+   "market": "JP",
+   "home": null,
+   "official_status": "未登録",
+   "official_pages": [],
+   "items": []
+  },
+  {
+   "code": "1417",
+   "name": "ミライト・ワン",
+   "market": "JP",
+   "home": null,
+   "official_status": "未登録",
+   "official_pages": [],
+   "items": [
+    {
+     "date": "2026-10-05",
+     "time": "12:00",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z61F",
+     "source": "edinet",
+     "first_seen": "2026-10-05T00:00+09:00"
+    },
+    {
+     "date": "2026-09-03",
+     "time": "12:00",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z06R",
+     "source": "edinet",
+     "first_seen": "2026-09-03T00:00+09:00"
+    },
+    {
+     "date": "2026-08-05",
+     "time": "12:00",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YU2R",
+     "source": "edinet",
+     "first_seen": "2026-08-05T00:00+09:00"
     }
    ]
   }
