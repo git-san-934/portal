@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-06T10:26+09:00",
+ "updated_at": "2026-10-06T10:52+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,27 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-06",
+     "title": "「マイマリオ(MY MARIO)」の公式サイトを更新しました。 つみきシリーズの新商品「のせかえメロディーカー」や、Nintendo Switchソフト「かおルイージ」「かおピーチ」の情報を掲載。コマどりマリオ第8話、第9話も公開しています。",
+     "url": "https://www.nintendo.com/jp/my-mario/index.html",
+     "source": "official",
+     "first_seen": "2026-10-06T10:52+09:00"
+    },
+    {
+     "date": "2026-10-06",
+     "title": "3本のソフトからお好きな1本を選択してダウンロードできるお得な「Nintendo Switch 2(日本語・国内専用) 選べるソフトセット」が登場。",
+     "url": "https://www.nintendo.com/jp/topics/article/965576b6-1e14-409c-8da6-515804839baf",
+     "source": "official",
+     "first_seen": "2026-10-06T10:52+09:00"
+    },
+    {
+     "date": "2026-10-06",
+     "title": "「マイマリオ」に「のせかえメロディーカー」が登場。「かおルイージ」「かおピーチ」の配信や、キャラクターのつみきを使った「かおあそび」、「コマどりマリオ」最新話もご紹介。",
+     "url": "https://www.nintendo.com/jp/topics/article/92bfdd2b-48b0-40bb-a1d9-5ebd6a5d451b",
+     "source": "official",
+     "first_seen": "2026-10-06T10:52+09:00"
+    },
     {
      "date": "2026-10-06",
      "title": "ニュースリリース「3本のソフトからお好きな1本を選択してダウンロードできる「Nintendo Switch 2(日本語・国内専用) 選べるソフト セット」を発売」を公開しました。",
