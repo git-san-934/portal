@@ -115,6 +115,7 @@ https://recruit.fuji.co.jp/interview/interview10.html
 https://recruit.fuji.co.jp/interview/interview11.html
 https://recruit.fuji.co.jp/interview/interview12.html
 https://recruit.fuji.co.jp/recruit/
+https://recruit.fuji.co.jp/recruit/?media=26864
 https://recruit.fuji.co.jp/recruit/education.html
 https://recruit.fuji.co.jp/recruit/faq.html
 https://recruit.fuji.co.jp/recruit/referral.html
@@ -1013,6 +1014,11 @@ https://www.fuji.co.jp/news/assets/pdf/fuji_clt-fg_j.pdf
 https://www.fuji.co.jp/news/assets/pdf/fuji_placement_of_tomahawk6_E.pdf
 https://www.fuji.co.jp/news/assets/pdf/fuji_placement_of_tomahawk6_J.pdf
 https://www.fuji.co.jp/news/nikkei.html
+https://www.fuji.co.jp/news/pdf/20220317_Fuji_to_donate_towards_humanitarian_aid_for_the_Ukraine_emergency_situation_J.pdf
+https://www.fuji.co.jp/news/pdf/20260807_donation_kumamoto.pdf
+https://www.fuji.co.jp/news/pdf/DonationTWN_JP.pdf
+https://www.fuji.co.jp/news/pdf/NP_donations2024.pdf
+https://www.fuji.co.jp/news/pdf/TS_donations2023.pdf
 https://www.fuji.co.jp/news/pdf/fuji_SMTPlacementOfLargeHeavyComponents_J.pdf
 https://www.fuji.co.jp/news/post_134.html
 https://www.fuji.co.jp/news/post_135.html
@@ -1121,6 +1127,9 @@ https://www.fuji.co.jp/sustainability/environment/
 https://www.fuji.co.jp/sustainability/environment/climate.html
 https://www.fuji.co.jp/sustainability/environment/e_climate_target_achievement.html
 https://www.fuji.co.jp/sustainability/environment/management-data.html
+https://www.fuji.co.jp/sustainability/environment/pdf/20240408_ISO14001_environment.pdf
+https://www.fuji.co.jp/sustainability/environment/pdf/20250601_environment_5forces.pdf
+https://www.fuji.co.jp/sustainability/environment/pdf/202604_FFT_ISO14001.pdf
 https://www.fuji.co.jp/sustainability/environment/policy.html
 https://www.fuji.co.jp/sustainability/environment/products.html
 https://www.fuji.co.jp/sustainability/environment/resource.html
@@ -1131,11 +1140,17 @@ https://www.fuji.co.jp/sustainability/evaluation.html
 https://www.fuji.co.jp/sustainability/governance/
 https://www.fuji.co.jp/sustainability/governance/compliance.html
 https://www.fuji.co.jp/sustainability/governance/governance.html
+https://www.fuji.co.jp/sustainability/governance/pdf/202510_IEC62443-4-1.pdf
+https://www.fuji.co.jp/sustainability/governance/pdf/202510_ISO27001.pdf
+https://www.fuji.co.jp/sustainability/governance/pdf/2026.7.1_Corporate_Governance_Report.pdf
+https://www.fuji.co.jp/sustainability/governance/pdf/datauploadsFUJI_EthicsAndCompliancePolicy_revised_2.pdf
 https://www.fuji.co.jp/sustainability/governance/risk-management.html
 https://www.fuji.co.jp/sustainability/governance/security.html
 https://www.fuji.co.jp/sustainability/governance/tax-compliance.html
 https://www.fuji.co.jp/sustainability/guidelines/
 https://www.fuji.co.jp/sustainability/guidelines/gri.html
+https://www.fuji.co.jp/sustainability/guidelines/pdf/compliance-policy.pdf
+https://www.fuji.co.jp/sustainability/guidelines/pdf/human-rights-policy.pdf
 https://www.fuji.co.jp/sustainability/health
 https://www.fuji.co.jp/sustainability/management/
 https://www.fuji.co.jp/sustainability/management/collaboration.html
@@ -1147,6 +1162,8 @@ https://www.fuji.co.jp/sustainability/management/stakeholders.html
 https://www.fuji.co.jp/sustainability/message.html
 https://www.fuji.co.jp/sustainability/news.html
 https://www.fuji.co.jp/sustainability/nurturing
+https://www.fuji.co.jp/sustainability/pdf/202506_social_fuji_multi-stakeholder-policy.pdf
+https://www.fuji.co.jp/sustainability/pdf/Declaration_of_partnership_building20260113.pdf
 https://www.fuji.co.jp/sustainability/social/
 https://www.fuji.co.jp/sustainability/social/contribution.html
 https://www.fuji.co.jp/sustainability/social/customers.html
@@ -1158,6 +1175,8 @@ https://www.fuji.co.jp/sustainability/social/health/strategy.html
 https://www.fuji.co.jp/sustainability/social/human-rights.html
 https://www.fuji.co.jp/sustainability/social/investors.html
 https://www.fuji.co.jp/sustainability/social/nurturing.html
+https://www.fuji.co.jp/sustainability/social/pdf/20240408_ISO9001_quality.pdf
+https://www.fuji.co.jp/sustainability/social/pdf/Sokaijyuku_training.pdf
 https://www.fuji.co.jp/sustainability/social/quality.html
 https://www.fuji.co.jp/sustainability/social/safety.html
 https://www.fuji.co.jp/sustainability/social/suppliers.html
