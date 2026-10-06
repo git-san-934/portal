@@ -22,7 +22,7 @@ https://git-san-934.github.io/portal/site-watch/
 
 ## 更新のタイミング
 
-`.github/workflows/update-site-watch.yml` が毎日 5:00(日本時間)に動きます。GitHub 側の混雑で遅れることがあります。
+`.github/workflows/update-site-watch.yml` が毎日 5:04・8:48・11:50(日本時間)に動きます。GitHub 側の混雑で遅れることがあります。
 ページの「今すぐ更新」を押すと、更新依頼の Issue を作る画面が開き、所有者がそのまま作成すると
 `.github/workflows/request-site-watch-update.yml` が巡回を起動します(巡回に10〜30分かかります)。
 ページ自体は GitHub のキーを持ちません。Actions の画面(「持ち株サイトの新着ページ 更新」→「Run workflow」)から手動でも実行できます。
