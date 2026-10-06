@@ -161,6 +161,13 @@ def main():
     except (OSError, ValueError, KeyError):
         pass
 
+    trade_updated = None  # 半導体関連の国別推移（trade.html）のデータの更新日
+    try:
+        with open(os.path.join(ROOT, "data", "trade_by_country.json"), encoding="utf-8") as f:
+            trade_updated = json.load(f).get("updated")
+    except (OSError, ValueError):
+        pass
+
     out = {
         "generated_at": dt.datetime.now().astimezone().isoformat(timespec="minutes"),
         "report_date": today,
@@ -168,6 +175,7 @@ def main():
         "categories": [c for c, _ in CATEGORIES],
         "series": info,
         "fetch_status": fetch_status,
+        "trade_updated": trade_updated,
         "disclaimer": analyze.DISCLAIMER,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

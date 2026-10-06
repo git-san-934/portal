@@ -400,6 +400,8 @@ def _write_by_country(items, raw, qraw, refetched=False):
         elif "qty_unit" in prev:
             row["qty_unit"], row["qty"] = prev["qty_unit"], prev.get("qty", {})
         res["items"].append(row)
+    # 更新日: 値（月・国・数量）が前回から変わった日。変わらなければ前回の日付のまま
+    res["updated"] = old.get("updated") if res["items"] == old.get("items") else dt.date.today().isoformat()
     with open(BY_COUNTRY, "w", encoding="utf-8") as f:
         json.dump(res, f, ensure_ascii=False, separators=(",", ":"))
 

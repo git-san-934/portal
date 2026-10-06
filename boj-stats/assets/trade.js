@@ -10,6 +10,7 @@
   const COLORS = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)", "var(--s5)"];
   const OTHER = "var(--s-other)";
   const fmtMonth = (d) => `${d.slice(0, 4)}年${+d.slice(5)}月`;
+  const fmtDay = (d) => d.split("-").map(Number).join("/");
   const fmtVal = (v, m) =>
     v == null || isNaN(v) ? "-" : m === "yoy" ? `${v >= 0 ? "+" : ""}${v.toFixed(1)}%` : `${v.toLocaleString("ja-JP", { maximumFractionDigits: v < 10 ? 1 : 0 })}億円`;
   // 数量は億・万で縮める。kg はトンで出す
@@ -169,6 +170,7 @@
       feed = data;
       const lastMonth = feed.items.map((x) => x.months[x.months.length - 1]).sort().pop();
       $("status").textContent = lastMonth ? `${fmtMonth(lastMonth)}分まで` : "";
+      if (feed.updated) $("title-date").textContent = `(${fmtDay(feed.updated)} 更新)`;
       buttons($("items"), feed.items.map((x) => [x.short || x.name, x.key]), state.item || feed.items[0].key, (v) => { state.item = v; render(); });
       buttons($("kinds"), Object.entries(KINDS).map(([k, label]) => [label, k]), state.kind, (v) => { state.kind = v; render(); });
       buttons($("measures"), [["実額", "value"], ["前年同月比", "yoy"]], state.measure, (v) => { state.measure = v; render(); });

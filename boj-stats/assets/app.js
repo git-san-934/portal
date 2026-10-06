@@ -10,6 +10,7 @@
     if (text != null) e.textContent = text;
     return e;
   };
+  const fmtDay = (d) => d.split("-").map(Number).join("/");
   const fmtDate = (d) => {
     const [y, m, day] = d.split("-").map(Number);
     const wd = "日月火水木金土"[new Date(y, m - 1, day).getDay()];
@@ -190,6 +191,7 @@
       const t = new Date(d.generated_at);
       $("status").textContent = `最終更新: ${fmtDate(d.report_date)} ${t.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo" })}`;
       renderFetchStatus(d.fetch_status);
+      if (d.trade_updated) $("trade-updated").textContent = ` (${fmtDay(d.trade_updated)} 更新)`;
       $("disclaimer").textContent = d.disclaimer;
       renderFeed();
       renderTables();
