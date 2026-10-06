@@ -1,0 +1,38 @@
+name: 持ち株サイトの新着ページ 手動更新
+
+# 新着ページの一覧の「今すぐ更新」を押すと、更新依頼の Issue を作る画面が開く。
+# リポジトリ所有者がその Issue を作ったときだけ、サイトの巡回(update-site-watch.yml)を起動して Issue を閉じる。
+# (ページから直接 Actions を動かすにはトークンが要るため、持ち株の新着情報の「今すぐ更新」と同じ仕組みにしている)
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write # 結果をコメントして Issue を閉じる
+  actions: write # サイトの巡回を起動する
+
+jobs:
+  request:
+    if: >-
+      github.event.issue.user.login == github.repository_owner &&
+      startsWith(github.event.issue.title, 'サイトの新着ページを更新')
+    runs-on: ubuntu-latest
+    steps:
+      - name: サイトの巡回を起動
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update-site-watch.yml --repo "$GITHUB_REPOSITORY" --ref main
+      - name: 結果をコメントして閉じる
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.issue.number }}
+          OK: ${{ job.status == 'success' }}
+        run: |
+          if [ "$OK" = "true" ]; then
+            gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "サイトの巡回を始めました。10〜30分ほどで新着ページの一覧に反映されます。"
+            gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --reason completed
+          else
+            gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "更新を始められませんでした。Actions のログを確認してください。"
+            gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --reason "not planned"
+          fi
