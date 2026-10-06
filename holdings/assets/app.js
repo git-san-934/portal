@@ -1021,5 +1021,24 @@
     renderMethod(check);
   }
 
+  // ページ末尾(フッター)が見えたら「ページトップへ」ボタンを出す
+  function setupToTop() {
+    const btn = $("to-top");
+    const footer = document.querySelector("footer");
+    if (!btn || !footer) return;
+    btn.addEventListener("click", () => {
+      const reduce = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+      window.scrollTo({ top: 0, behavior: reduce ? "auto" : "smooth" });
+    });
+    if ("IntersectionObserver" in window) {
+      new IntersectionObserver((entries) => {
+        btn.hidden = !entries.some((e) => e.isIntersecting);
+      }).observe(footer);
+    } else {
+      btn.hidden = false;
+    }
+  }
+
+  setupToTop();
   load();
 })();
