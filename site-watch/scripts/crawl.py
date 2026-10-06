@@ -227,9 +227,14 @@ class Site:
                         urls[u] = lastmod
         return urls, len(done)
 
-    def crawl_links(self):
-        """トップページなどからリンクをたどる。見つけた URL → リンクの文字、読んだページ → タイトル。"""
+    def crawl_links(self, known_pages):
+        """トップページなどからリンクをたどる。
+
+        返すもの: 見つけた URL → リンクの文字、読んだページ → タイトル、読んだページ数、
+        読めたページの集合、前回までにも読んだページ(known_pages)からリンクされていた URL の集合。
+        """
         found, titles = {}, {}
+        crawled, from_known = set(), set()
         queue = deque()
         queued = set()
         for s in self.starts:
@@ -254,6 +259,8 @@ class Site:
             found.setdefault(final, "")
             if "html" not in r.headers.get("Content-Type", "html"):
                 continue
+            crawled.add(final)
+            hub = final in known_pages
             soup = BeautifulSoup(r.content, "html.parser")
             if soup.title and soup.title.string:
                 titles[final] = clean(soup.title.string)
@@ -264,10 +271,12 @@ class Site:
                     continue
                 if not found.get(u):
                     found[u] = clean(a.get_text(" ", strip=True))[:120]
+                if hub:
+                    from_known.add(u)
                 if kind_of(u) == "page" and u not in queued:
                     queued.add(u)
                     queue.append((u, href))
-        return found, titles, pages
+        return found, titles, pages, crawled, from_known
 
     def title_of(self, url):
         if not self.allowed(url) or self.out_of_time():
@@ -277,6 +286,17 @@ class Site:
             return ""
         soup = BeautifulSoup(r.content, "html.parser")
         return clean(soup.title.string) if soup.title and soup.title.string else ""
+
+
+def read_lines(path):
+    try:
+        return set(filter(None, path.read_text(encoding="utf-8").splitlines()))
+    except FileNotFoundError:
+        return set()
+
+
+def write_lines(path, lines):
+    path.write_text("".join(u + "\n" for u in sorted(lines)), encoding="utf-8")
 
 
 def clean(s):
@@ -305,8 +325,10 @@ def check(site, prev):
         status["status"] = err
         return status, []
 
+    pages_path = SEEN_DIR / f"{site.code}.pages.txt"
+    known_pages = read_lines(pages_path)
     sitemap, n_maps = site.read_sitemaps()
-    links, titles, pages = site.crawl_links()
+    links, titles, pages, crawled, from_known = site.crawl_links(known_pages)
     status.update(sitemap_files=n_maps, sitemap_urls=len(sitemap), crawled_pages=pages)
     current = set(sitemap) | set(links)
     if not current:
@@ -319,9 +341,13 @@ def check(site, prev):
 
     seen_path = SEEN_DIR / f"{site.code}.txt"
     first = not seen_path.exists()
-    seen = set() if first else set(filter(None, seen_path.read_text(encoding="utf-8").splitlines()))
+    seen = read_lines(seen_path)
     new = sorted(current - seen)
-    seen_path.write_text("".join(u + "\n" for u in sorted(seen | current)), encoding="utf-8")
+    write_lines(seen_path, seen | current)
+    write_lines(pages_path, known_pages | crawled)
+    # リンクだけで見つけた URL は、前回までにも読んだページに新しく現れたときだけ「新しい」とする。
+    # はじめて読んだページ(1回に読む数に上限があるため、日によって奥のページまで届く)にあった古いリンクは、記録だけにする
+    new = [u for u in new if u in sitemap or u in from_known]
     status.update(status="ok", last_ok_at=status["checked_at"], known=len(seen | current), new=0 if first else len(new))
     if first:
         # 初回はサイトの今の姿を記録するだけ(全部を「新着」にしない)
@@ -330,7 +356,8 @@ def check(site, prev):
 
     if sitemap and not prev.get("sitemap_urls"):
         # 前回はサイトマップが読めず、今回はじめて読めた → サイトマップだけに載っているものは記録だけにする
-        new = [u for u in new if u in links]
+        new = [u for u in new if u in from_known]
+    status["new"] = len(new)
     # 新しいもの: 最終更新日の新しい順 → URL 順
     new.sort(key=lambda u: sitemap.get(u) or "", reverse=True)
     if len(new) > MAX_ITEMS_PER_RUN:
@@ -419,7 +446,7 @@ def main():
 
     # 使われなくなった銘柄の記録は消す(銘柄リストから外したとき)
     for p in SEEN_DIR.glob("*.txt"):
-        if p.stem not in known_codes:
+        if p.name.split(".")[0] not in known_codes:
             p.unlink()
 
     if all(s["status"] != "ok" for s in statuses):
