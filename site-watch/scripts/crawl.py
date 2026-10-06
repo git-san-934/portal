@@ -15,7 +15,7 @@ URL の集め方:
 
 銘柄は持ち株チェックと共通(holdings/data/holdings.json)。日本株(currency が無いか JPY)だけを見る。
 公式サイトの URL は持ち株の新着情報と共通(news/data/sources.json の home と pages)。
-data/sites.json で銘柄ごとに上書きできる(home / starts / exclude)。
+data/sites.json で銘柄ごとに上書きできる(home / starts / exclude / skip)。
 
 結果:
 - data/seen/<コード>.txt — これまでに見つけた URL(1行1つ、並べ替え済み)。初回はこれを作るだけで、新着には載せない
@@ -305,7 +305,11 @@ def check(site, prev):
     status.update(sitemap_files=n_maps, sitemap_urls=len(sitemap), crawled_pages=pages)
     current = set(sitemap) | set(links)
     if not current:
-        status["status"] = "ページを読めませんでした" + (f"({site.log[0].split(': ', 1)[-1]})" if site.log else "")
+        reason = site.log[0].split(": ", 1)[-1] if site.log else ""
+        if reason in ("HTTP 401", "HTTP 403"):
+            status["status"] = f"サイトにアクセスを断られました({reason})"
+        else:
+            status["status"] = "ページを読めませんでした" + (f"({reason})" if reason else "")
         return status, []
 
     seen_path = SEEN_DIR / f"{site.code}.txt"
@@ -380,6 +384,9 @@ def main():
         src = sources.get(code, {})
         cfg = {"home": src.get("home"), "starts": [p for p in src.get("pages", []) if p.startswith("http")]}
         cfg.update(overrides.get(code, {}))
+        if cfg.get("skip"):
+            statuses.append({"code": code, "name": h["name"], "home": cfg.get("home"), "status": f"巡回しません({cfg['skip']})"})
+            continue
         if not cfg.get("home"):
             statuses.append({"code": code, "name": h["name"], "home": None, "status": "公式サイトの URL が未登録です(news/data/sources.json に追加してください)"})
             continue

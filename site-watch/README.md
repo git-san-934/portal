@@ -29,7 +29,9 @@ https://git-san-934.github.io/portal/site-watch/
 
 - 銘柄: 「持ち株チェック」の銘柄リスト(`holdings/data/holdings.json`)のうち日本株(`currency` がないもの)
 - 公式サイトのURL: 「持ち株の新着情報」と共通(`news/data/sources.json` の `home` と `pages`)
-- 銘柄ごとの上書き: `data/sites.json`(`home`・`starts`・`exclude`)。英語版のページを外したいときなどに使います
+- 銘柄ごとの上書き: `data/sites.json`(`home`・`starts`・`exclude`・`skip`)。英語版のページを外したいとき、巡回しない銘柄を決めるときに使います
+  - 任天堂(7974)は、サイトの利用条件でスクレイピングが禁止されているため `skip` にしています(ニュースは「持ち株の新着情報」が RSS で見ています)
+  - サイトがアクセスを断る場合(みずほFG は HTTP 403)は、巡回の状況にそう表示し、毎日試し直します
 
 ## ファイル
 
