@@ -1,39 +1,7 @@
 {
- "generated_at": "2026-10-07T08:12+09:00",
+ "generated_at": "2026-10-07T08:28+09:00",
  "report_date": "2026-10-07",
  "days": [
-  {
-   "date": "2026-10-06",
-   "items": [
-    {
-     "kind": "signal",
-     "id": "FM08_FXERD31",
-     "name": "ユーロドル 9時（東京市場）",
-     "obs": "2026-10-02",
-     "type": "トレンド転換",
-     "dir": "低下",
-     "detail": "20期移動平均が60期移動平均を下抜け"
-    },
-    {
-     "kind": "signal",
-     "id": "FM08_FXERD31",
-     "name": "ユーロドル 9時（東京市場）",
-     "obs": "2026-10-02",
-     "type": "1年安値更新",
-     "dir": "低下",
-     "detail": "1.1248ドル/ユーロ"
-    },
-    {
-     "kind": "signal",
-     "id": "MOF_JGB30Y",
-     "name": "国債利回り 30年",
-     "obs": "2026-10-05",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "4.166%"
-    }
-   ]
-  },
   {
    "date": "2026-10-05",
    "items": [
@@ -75,48 +43,12 @@
     },
     {
      "kind": "signal",
-     "id": "FM01_STRDCLUCV",
-     "name": "無担保コールO/N物 出来高",
-     "obs": "2026-10-01",
-     "type": "急変",
-     "dir": "上昇",
-     "detail": "+17.00%（z=+2.6）"
-    },
-    {
-     "kind": "signal",
-     "id": "FM08_FXERD31",
-     "name": "ユーロドル 9時（東京市場）",
-     "obs": "2026-10-01",
-     "type": "1年安値更新",
-     "dir": "低下",
-     "detail": "1.1327ドル/ユーロ"
-    },
-    {
-     "kind": "signal",
      "id": "MD06_MASDM58",
      "name": "金融調節 国債買入",
      "obs": "2026-09",
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "23,172億円"
-    },
-    {
-     "kind": "signal",
-     "id": "MOF_JGB10Y",
-     "name": "国債利回り 10年",
-     "obs": "2026-10-02",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "3.097%"
-    },
-    {
-     "kind": "signal",
-     "id": "MOF_JGB30Y",
-     "name": "国債利回り 30年",
-     "obs": "2026-10-02",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "4.148%"
     },
     {
      "kind": "signal",
@@ -260,24 +192,6 @@
     },
     {
      "kind": "signal",
-     "id": "FM01_STRDCLUCV",
-     "name": "無担保コールO/N物 出来高",
-     "obs": "2026-09-30",
-     "type": "急変",
-     "dir": "低下",
-     "detail": "-19.80%（z=-3.1）"
-    },
-    {
-     "kind": "signal",
-     "id": "FM08_FXERD31",
-     "name": "ユーロドル 9時（東京市場）",
-     "obs": "2026-09-30",
-     "type": "1年安値更新",
-     "dir": "低下",
-     "detail": "1.1341ドル/ユーロ"
-    },
-    {
-     "kind": "signal",
      "id": "MD01_MABS1AN11",
      "name": "マネタリーベース平均残高",
      "obs": "2026-09",
@@ -293,15 +207,6 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "4,136,678億円"
-    },
-    {
-     "kind": "signal",
-     "id": "MOF_JGB10Y",
-     "name": "国債利回り 10年",
-     "obs": "2026-10-01",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "3.092%"
     },
     {
      "kind": "signal",
@@ -406,15 +311,6 @@
      "type": "1年高値更新",
      "dir": "上昇",
      "detail": "2,079億円"
-    },
-    {
-     "kind": "signal",
-     "id": "FM01_STRDCLUCV",
-     "name": "無担保コールO/N物 出来高",
-     "obs": "2026-09-29",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "55,072億円"
     }
    ]
   },
@@ -438,116 +334,12 @@
      "value": "1,044",
      "unit": "人",
      "change": "+1,845人"
-    },
-    {
-     "kind": "signal",
-     "id": "FM01_STRDCLUCV",
-     "name": "無担保コールO/N物 出来高",
-     "obs": "2026-09-28",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "53,807億円"
-    }
-   ]
-  },
-  {
-   "date": "2026-09-29",
-   "items": [
-    {
-     "kind": "signal",
-     "id": "FM01_STRDCLUCV",
-     "name": "無担保コールO/N物 出来高",
-     "obs": "2026-09-25",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "52,322億円"
-    },
-    {
-     "kind": "signal",
-     "id": "MOF_JGB2Y",
-     "name": "国債利回り 2年",
-     "obs": "2026-09-28",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "1.981%"
-    },
-    {
-     "kind": "signal",
-     "id": "MOF_JGB10Y",
-     "name": "国債利回り 10年",
-     "obs": "2026-09-28",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "3.082%"
     }
    ]
   },
   {
    "date": "2026-09-28",
    "items": [
-    {
-     "kind": "signal",
-     "id": "FM01_STRDCLUCON",
-     "name": "無担保コールO/N物レート（平均）",
-     "obs": "2026-09-24",
-     "type": "急変",
-     "dir": "上昇",
-     "detail": "+0.250%pt（z=+201.9）"
-    },
-    {
-     "kind": "signal",
-     "id": "FM01_STRDCLUCON",
-     "name": "無担保コールO/N物レート（平均）",
-     "obs": "2026-09-24",
-     "type": "トレンド転換",
-     "dir": "上昇",
-     "detail": "20期移動平均が60期移動平均を上抜け"
-    },
-    {
-     "kind": "signal",
-     "id": "FM01_STRDCLUCON",
-     "name": "無担保コールO/N物レート（平均）",
-     "obs": "2026-09-24",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "1.227%"
-    },
-    {
-     "kind": "signal",
-     "id": "FM08_FXERD31",
-     "name": "ユーロドル 9時（東京市場）",
-     "obs": "2026-09-24",
-     "type": "急変",
-     "dir": "低下",
-     "detail": "-0.82%（z=-3.0）"
-    },
-    {
-     "kind": "signal",
-     "id": "IR01_MADR1Z_at_D",
-     "name": "基準貸付利率（日次）",
-     "obs": "2026-09-24",
-     "type": "急変",
-     "dir": "上昇",
-     "detail": "+0.250%pt"
-    },
-    {
-     "kind": "signal",
-     "id": "IR01_MADR1Z_at_D",
-     "name": "基準貸付利率（日次）",
-     "obs": "2026-09-24",
-     "type": "トレンド転換",
-     "dir": "上昇",
-     "detail": "20期移動平均が60期移動平均を上抜け"
-    },
-    {
-     "kind": "signal",
-     "id": "IR01_MADR1Z_at_D",
-     "name": "基準貸付利率（日次）",
-     "obs": "2026-09-24",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "1.5%"
-    },
     {
      "kind": "signal",
      "id": "MD01_MABS1AN11",
@@ -601,15 +393,6 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "23,212億円"
-    },
-    {
-     "kind": "signal",
-     "id": "MOF_JGB2Y",
-     "name": "国債利回り 2年",
-     "obs": "2026-09-25",
-     "type": "1年高値更新",
-     "dir": "上昇",
-     "detail": "1.948%"
     },
     {
      "kind": "signal",
