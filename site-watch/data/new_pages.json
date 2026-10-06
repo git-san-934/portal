@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-10-06T19:45:57+09:00",
+ "updated_at": "2026-10-06T20:06:55+09:00",
  "keep_days": 90,
  "sites": [
   {
@@ -12,21 +12,21 @@
    "code": "4732",
    "name": "USS",
    "home": "https://www.ussnet.co.jp/",
-   "checked_at": "2026-10-06T19:45:57+09:00",
+   "checked_at": "2026-10-06T20:06:55+09:00",
    "baseline_on": "2026-10-06",
-   "last_ok_at": "2026-10-06T19:45:57+09:00",
-   "known": 1948,
+   "last_ok_at": "2026-10-06T20:06:55+09:00",
+   "known": 1967,
    "sitemap_urls": 666,
    "sitemap_files": 2,
    "crawled_pages": 200,
    "status": "ok",
-   "new": 0
+   "new": 33
   },
   {
    "code": "8411",
    "name": "みずほFG",
    "home": "https://www.mizuho-fg.co.jp/",
-   "checked_at": "2026-10-06T19:45:57+09:00",
+   "checked_at": "2026-10-06T20:06:55+09:00",
    "baseline_on": null,
    "last_ok_at": null,
    "known": 0,
@@ -39,9 +39,9 @@
    "code": "5232",
    "name": "住友大阪セメント",
    "home": "https://www.soc.co.jp/",
-   "checked_at": "2026-10-06T19:45:57+09:00",
+   "checked_at": "2026-10-06T20:06:55+09:00",
    "baseline_on": "2026-10-06",
-   "last_ok_at": "2026-10-06T19:45:57+09:00",
+   "last_ok_at": "2026-10-06T20:06:55+09:00",
    "known": 3167,
    "sitemap_urls": 2335,
    "sitemap_files": 8,
@@ -53,9 +53,9 @@
    "code": "6861",
    "name": "キーエンス",
    "home": "https://www.keyence.co.jp/",
-   "checked_at": "2026-10-06T19:45:57+09:00",
+   "checked_at": "2026-10-06T20:06:55+09:00",
    "baseline_on": "2026-10-06",
-   "last_ok_at": "2026-10-06T19:45:57+09:00",
+   "last_ok_at": "2026-10-06T20:06:55+09:00",
    "known": 30525,
    "sitemap_urls": 29042,
    "sitemap_files": 1,
@@ -67,9 +67,9 @@
    "code": "6961",
    "name": "エンプラス",
    "home": "https://www.enplas.co.jp/",
-   "checked_at": "2026-10-06T19:45:57+09:00",
+   "checked_at": "2026-10-06T20:06:55+09:00",
    "baseline_on": "2026-10-06",
-   "last_ok_at": "2026-10-06T19:45:57+09:00",
+   "last_ok_at": "2026-10-06T20:06:55+09:00",
    "known": 1088,
    "sitemap_urls": 246,
    "sitemap_files": 2,
@@ -81,9 +81,9 @@
    "code": "6134",
    "name": "FUJI",
    "home": "https://www.fuji.co.jp/",
-   "checked_at": "2026-10-06T19:45:57+09:00",
+   "checked_at": "2026-10-06T20:06:55+09:00",
    "baseline_on": "2026-10-06",
-   "last_ok_at": "2026-10-06T19:45:57+09:00",
+   "last_ok_at": "2026-10-06T20:06:55+09:00",
    "known": 1165,
    "sitemap_urls": 591,
    "sitemap_files": 1,
@@ -95,9 +95,9 @@
    "code": "285A",
    "name": "キオクシアHD",
    "home": "https://www.kioxia-holdings.com/ja-jp/",
-   "checked_at": "2026-10-06T19:45:57+09:00",
+   "checked_at": "2026-10-06T20:06:55+09:00",
    "baseline_on": "2026-10-06",
-   "last_ok_at": "2026-10-06T19:45:57+09:00",
+   "last_ok_at": "2026-10-06T20:06:55+09:00",
    "known": 615,
    "sitemap_urls": 417,
    "sitemap_files": 3,
@@ -106,5 +106,336 @@
    "new": 0
   }
  ],
- "items": []
+ "items": [
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00002703.pdf",
+   "title": "子会社の業務提携に関するお知らせ （7.6 KB）",
+   "link_text": "子会社の業務提携に関するお知らせ （7.6 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00002704.pdf",
+   "title": "固定資産の取得に関するお知らせ （6.1 KB）",
+   "link_text": "固定資産の取得に関するお知らせ （6.1 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00002706.pdf",
+   "title": "子会社の業務提携に関するお知らせ （5.0 KB）",
+   "link_text": "子会社の業務提携に関するお知らせ （5.0 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00002708.pdf",
+   "title": "平成13年3月期業績予想（連結･単独）の修正に関するお知らせ （8.1 KB）",
+   "link_text": "平成13年3月期業績予想（連結･単独）の修正に関するお知らせ （8.1 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00002710.pdf",
+   "title": "新株引受権方式によるストックオプションの付与に関するお知らせ （11.0 KB）",
+   "link_text": "新株引受権方式によるストックオプションの付与に関するお知らせ （11.0 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00002711.pdf",
+   "title": "JU大阪との業務提携に関するお知らせ （6.1 KB）",
+   "link_text": "JU大阪との業務提携に関するお知らせ （6.1 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00002920.pdf",
+   "title": "子会社の設立に関するお知らせ （4.9 KB）",
+   "link_text": "子会社の設立に関するお知らせ （4.9 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00003155.pdf",
+   "title": "無担保新株引受権付社債の発行に関するお知らせ （9.9 KB）",
+   "link_text": "無担保新株引受権付社債の発行に関するお知らせ （9.9 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00003244.pdf",
+   "title": "新株引受権方式によるストックオプションの付与に関するお知らせ （4.9 KB）",
+   "link_text": "新株引受権方式によるストックオプションの付与に関するお知らせ （4.9 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00003442.pdf",
+   "title": "子会社の異動を伴う株式の取得について （9.8 KB）",
+   "link_text": "子会社の異動を伴う株式の取得について （9.8 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00003443.pdf",
+   "title": "人事異動に関するお知らせ （4.4 KB）",
+   "link_text": "人事異動に関するお知らせ （4.4 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00003748.pdf",
+   "title": "第1回無担保転換社債発行に関するお知らせ （31.6 KB）",
+   "link_text": "第1回無担保転換社債発行に関するお知らせ （31.6 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00003749.pdf",
+   "title": "平成14年3月期（第22期）配当予想の修正に関するお知らせ （9.8 KB）",
+   "link_text": "平成14年3月期（第22期）配当予想の修正に関するお知らせ （9.8 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00003750.pdf",
+   "title": "株主優待制度の新設に関するお知らせ （9.6 KB）",
+   "link_text": "株主優待制度の新設に関するお知らせ （9.6 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00003789.pdf",
+   "title": "人事異動に関するお知らせ （6.7 KB）",
+   "link_text": "人事異動に関するお知らせ （6.7 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00003809.pdf",
+   "title": "利率決定および転換価額等確定に関するお知らせ （10.4 KB）",
+   "link_text": "利率決定および転換価額等確定に関するお知らせ （10.4 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00004368.pdf",
+   "title": "トルコ共和国における合弁会社の設立に関するお知らせ （89.6 KB）",
+   "link_text": "トルコ共和国における合弁会社の設立に関するお知らせ （89.6 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00004420.pdf",
+   "title": "固定資産の取得に関するお知らせ （8.9 KB）",
+   "link_text": "固定資産の取得に関するお知らせ （8.9 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00004567.pdf",
+   "title": "合併に関するお知らせ (18kb) （18.2 KB）",
+   "link_text": "合併に関するお知らせ (18kb) （18.2 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00005177.pdf",
+   "title": "主要株主ならびに筆頭株主の異動に関するお知らせ （7.3 KB）",
+   "link_text": "主要株主ならびに筆頭株主の異動に関するお知らせ （7.3 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00005193.pdf",
+   "title": "主要株主ならびに筆頭株主の異動に関するお知らせ （7.2 KB）",
+   "link_text": "主要株主ならびに筆頭株主の異動に関するお知らせ （7.2 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00005831.pdf",
+   "title": "イタリアにおける関連会社設立に関するお知らせ （12.2 KB）",
+   "link_text": "イタリアにおける関連会社設立に関するお知らせ （12.2 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00007472.pdf",
+   "title": "自己株式の取得に関するお知らせ （7.2 KB）",
+   "link_text": "自己株式の取得に関するお知らせ （7.2 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00007473.pdf",
+   "title": "ストック・オプション（新株予約権）に関するお知らせ （14.9 KB）",
+   "link_text": "ストック・オプション（新株予約権）に関するお知らせ （14.9 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00007474.pdf",
+   "title": "事業用土地の再評価の実施に関するお知らせ （7.4 KB）",
+   "link_text": "事業用土地の再評価の実施に関するお知らせ （7.4 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00008016.pdf",
+   "title": "ストック・オプション（新株予約権）の割当に関するお知らせ （9.4 KB）",
+   "link_text": "ストック・オプション（新株予約権）の割当に関するお知らせ （9.4 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00008256.pdf",
+   "title": "ストック・オプション（新株予約権）の払込金額等決定のお知らせ （6.4 KB）",
+   "link_text": "ストック・オプション（新株予約権）の払込金額等決定のお知らせ （6.4 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00008940.pdf",
+   "title": "固定資産の譲渡の方針決定に関するお知らせ （6.8 KB）",
+   "link_text": "固定資産の譲渡の方針決定に関するお知らせ （6.8 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00009050.pdf",
+   "title": "平成15年3月期（第23期）配当予想の修正に関するお知らせ （6.1 KB）",
+   "link_text": "平成15年3月期（第23期）配当予想の修正に関するお知らせ （6.1 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00010606.pdf",
+   "title": "株式会社ジェイ・エー・エー九州に対する支援に関するお知らせ （5.9 KB）",
+   "link_text": "株式会社ジェイ・エー・エー九州に対する支援に関するお知らせ （5.9 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00010607.pdf",
+   "title": "１単位の株式数の変更に関するお知らせ （5.3 KB）",
+   "link_text": "１単位の株式数の変更に関するお知らせ （5.3 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/00010608.pdf",
+   "title": "イタリア国における中古車オークション会場オープンに関するお知らせ （6.6 KB）",
+   "link_text": "イタリア国における中古車オークション会場オープンに関するお知らせ （6.6 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  },
+  {
+   "code": "4732",
+   "url": "https://www.ussnet.co.jp/ir/item/e3ed1e009584d1465ede3117793f07805e333040.pdf",
+   "title": "固定資産の譲渡に関するお知らせ （12.4 KB）",
+   "link_text": "固定資産の譲渡に関するお知らせ （12.4 KB）",
+   "kind": "pdf",
+   "lastmod": null,
+   "via": "link",
+   "found_at": "2026-10-06T20:06:55+09:00"
+  }
+ ]
 }
