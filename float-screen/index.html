@@ -3,26 +3,26 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>不動株の少ない銘柄</title>
-  <meta name="description" content="有価証券報告書の大株主・役員持株・自己株式から不動株割合を計算し、東証銘柄を一覧で並べ替えて探せるページ" />
+  <title>浮動株の少ない銘柄</title>
+  <meta name="description" content="有価証券報告書の株主構成から浮動株割合を計算し、東証銘柄を一覧で並べ替えて探せるページ" />
   <meta name="theme-color" content="#f7f5f0" />
   <link rel="stylesheet" href="assets/style.css?v=20261006" />
 </head>
 <body>
   <div class="wrap">
     <header>
-      <h1>不動株の少ない銘柄</h1>
-      <p class="intro">大株主・役員・自己株式などで動かない株（不動株）が少ない東証銘柄の一覧です。各社の有価証券報告書から計算しています。見出しを押すと、その項目で並び替えられます（もう一度押すと逆順）。</p>
+      <h1>浮動株の少ない銘柄</h1>
+      <p class="intro">市場で売買されやすい個人投資家の持ち分（浮動株）が少ない東証銘柄の一覧です。各社の有価証券報告書の株主構成から計算しています。見出しを押すと、その項目で並び替えられます（もう一度押すと逆順）。</p>
       <p class="updated" id="status">読み込み中...</p>
     </header>
 
     <div class="controls">
       <div class="control-group">
-        <span class="control-label" id="def-label">不動株の数え方</span>
+        <span class="control-label" id="def-label">割合の種類</span>
         <div id="def-toggle" class="toggle" role="group" aria-labelledby="def-label"></div>
       </div>
       <div class="control-group">
-        <span class="control-label" id="max-label">不動株割合</span>
+        <span class="control-label" id="max-label">割合</span>
         <div id="max-toggle" class="toggle" role="group" aria-labelledby="max-label"></div>
       </div>
       <div class="control-group">
@@ -47,6 +47,7 @@
       <section class="panel">
         <h2>各項目の説明</h2>
         <ul class="note">
+          <li><b>浮動株割合</b>（初期表示）: （全株式 − 大株主 − 投資信託など金融機関 − 外国人 − その他の法人など）÷ 全株式。有価証券報告書の「所有者別状況」の<b>個人その他</b>の割合から、自己株式、大株主上位10名のうち個人、役員の持株を差し引いて計算しています。大株主の個人は名前（漢字・ひらがなの氏名）で見分けているため、資産管理会社を通した保有は「その他の法人」側に入ります。</li>
           <li><b>不動株割合（東証式）</b>: 10%以上を持つ大株主＋役員の持株＋自己株式の合計が、発行済株式に占める割合。信託銀行の信託口や海外の預かり名義（マスタートラスト、日本カストディ銀行、STATE STREET など）は投資家の預かり株なので数えていません。東証の定義では銀行・保険・事業会社の持ち合い株も不動株ですが、有価証券報告書からは見分けられないため入れていません（実際の不動株はこれより多めです）。</li>
           <li><b>不動株割合（四季報式）</b>: 上位10大株主＋役員の持株＋自己株式の合計の割合（会社四季報の「特定株」と同じ考え方）。上位10名には信託口も入るので、5%未満の会社はほぼありません。</li>
           <li>役員が大株主欄にも載っている場合は二重に数えないようにしています（10位の株数以上を持つ役員は大株主に含まれるとみなす）。</li>
@@ -64,6 +65,6 @@
       <a href="../">← アプリ一覧に戻る</a>
     </footer>
   </div>
-  <script src="assets/app.js?v=20261006b"></script>
+  <script src="assets/app.js?v=20261006c"></script>
 </body>
 </html>
