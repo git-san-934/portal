@@ -1,22 +1,23 @@
 (() => {
   const QUOTE = "https://finance.yahoo.co.jp/quote/";
-  const state = { def: "b", max: 0.05, mkt: "all", q: "", sort: "fixed", desc: false, data: null };
+  const state = { def: "f", max: 0.05, mkt: "all", q: "", sort: "fixed", desc: false, data: null };
 
-  const DEFS = [["b", "東証式"], ["a", "四季報式"]];
+  const DEFS = [["f", "浮動株割合"], ["b", "不動株割合（東証式）"], ["a", "特定株比率（四季報式）"]];
   const MAXES = [[0.05, "5%未満"], [0.1, "10%未満"], [0.2, "20%未満"], [Infinity, "すべて"]];
   const MKTS = [["all", "すべて"], ["プライム", "プライム"], ["スタンダード", "スタンダード"], ["グロース", "グロース"]];
 
   const pct = (v, d = 1) => (v == null ? "-" : (v * 100).toFixed(d) + "%");
   const yen = (v) => (v == null ? "-" : Math.round(v).toLocaleString("ja-JP"));
   const oku = (v) => (v == null ? "-" : (v / 100).toLocaleString("ja-JP", { maximumFractionDigits: v >= 10000 ? 0 : 1 }));
-  const fixedOf = (r) => (state.def === "b" ? r.b : r.a);
+  const fixedOf = (r) => r[state.def];
+  const defName = () => DEFS.find((x) => x[0] === state.def)[1];
 
   const COLS = [
     { key: "code", label: "コード", cls: "left", get: (r) => r.c, fmt: (r) => r.c },
     { key: "name", label: "銘柄名", cls: "left name", get: (r) => r.n,
       fmt: (r) => `<a href="${QUOTE}${encodeURIComponent(r.c)}.T" target="_blank" rel="noopener">${esc(r.n)}</a>` },
     { key: "mkt", label: "市場", cls: "left", get: (r) => r.m || "", fmt: (r) => esc((r.m || "").replace(/（.*）/, "")) },
-    { key: "fixed", label: "不動株割合", get: fixedOf, fmt: (r) => pct(fixedOf(r)), hit: true },
+    { key: "fixed", label: "割合", get: fixedOf, fmt: (r) => pct(fixedOf(r)), hit: true },
     { key: "gm", label: "粗利率", get: (r) => r.g, fmt: (r) => pct(r.g) },
     { key: "cash", label: "保有現金(億円)", get: (r) => r.cash, fmt: (r) => oku(r.cash) },
     { key: "yield", label: "配当利回り", get: (r) => r.y, fmt: (r) => pct(r.y, 2) + (r.yc ? '<span class="warn" title="株式分割や特別配当で実際とずれている可能性があります">※</span>' : "") },
@@ -64,15 +65,15 @@
       return (typeof a === "string" ? a.localeCompare(b, "ja") : a - b) * dir;
     });
 
-    const defName = state.def === "b" ? "東証式" : "四季報式";
     const maxName = MAXES.find((m) => m[0] === state.max)[1];
     document.getElementById("list-title").textContent =
-      state.max === Infinity ? "全銘柄" : `不動株割合（${defName}）${maxName}の銘柄`;
+      state.max === Infinity ? "全銘柄" : `${defName()}${maxName}の銘柄`;
     document.getElementById("count").textContent = `${rows.length.toLocaleString("ja-JP")}社`;
 
     const head = COLS.map((c) => {
       const s = state.sort === c.key ? " sorted" + (state.desc ? " desc" : "") : "";
-      return `<th class="${(c.cls || "").split(" ")[0]}${s}" data-key="${c.key}" aria-sort="${s ? (state.desc ? "descending" : "ascending") : "none"}">${c.label}</th>`;
+      const label = c.key === "fixed" ? defName() : c.label;
+      return `<th class="${(c.cls || "").split(" ")[0]}${s}" data-key="${c.key}" aria-sort="${s ? (state.desc ? "descending" : "ascending") : "none"}">${label}</th>`;
     }).join("");
     const body = rows.length
       ? rows.map((r) => "<tr>" + COLS.map((c) => {
