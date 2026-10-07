@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-07T19:35+09:00",
+ "updated_at": "2026-10-07T22:56+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1431,6 +1431,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-07",
+     "title": "Tereina, an SAP-backed company, and Circle Bring USDC and EURC into Enterprise Workflows, Starting with the SAP Ecosystem Behind 84% of Global Commerce Partnership will integrate USDC and EURC into Te",
+     "url": "https://www.circle.com/pressroom/tereina-an-sap-backed-company-and-circle-bring-usdc-and-eurc-into-enterprise-workflows-starting-with-the-sap-ecosystem-behind-84-of-global-commerce",
+     "source": "official",
+     "first_seen": "2026-10-07T22:56+09:00"
+    },
+    {
      "date": "2026-09-28",
      "title": "Volante Technologies and Circle to advance stablecoin payment and settlement capabilities for financial institutions Collaboration will explore banks’ integration of USDC workflows within existing mul",
      "url": "https://www.circle.com/pressroom/volante-technologies-and-circle-to-advance-stablecoin-payment-and-settlement-capabilities-for-financial-institutions",
@@ -1491,6 +1498,13 @@
     "q4:https://investor.corning.com"
    ],
    "items": [
+    {
+     "date": "2026-10-07",
+     "title": "Corning Announces Quarterly Dividend",
+     "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Announces-Quarterly-Dividend-301b59234/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-07T22:56+09:00"
+    },
     {
      "date": "2026-07-28",
      "title": "Corning’s Strong Second-Quarter 2026 Financial Results(1) Demonstrate Progress on Recently Upgraded Springboard Plan",
