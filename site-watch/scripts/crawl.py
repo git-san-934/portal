@@ -16,6 +16,7 @@ URL の集め方:
 銘柄は持ち株チェックと共通(holdings/data/holdings.json)。日本株(currency が無いか JPY)だけを見る。
 公式サイトの URL は持ち株の新着情報と共通(news/data/sources.json の home と pages)。
 data/sites.json で銘柄ごとに上書きできる(home / starts / exclude / skip)。
+どちらにも無い銘柄(新しく追加した銘柄など)は、Yahoo Finance の会社情報から公式サイトを探して data/auto_sites.json に記録する。
 
 結果:
 - data/seen/<コード>.txt — これまでに見つけた URL(1行1つ、並べ替え済み)。初回はこれを作るだけで、新着には載せない
@@ -45,6 +46,7 @@ DATA_DIR = ROOT / "data"
 SEEN_DIR = DATA_DIR / "seen"
 OUT_PATH = DATA_DIR / "new_pages.json"
 SITES_PATH = DATA_DIR / "sites.json"
+AUTO_PATH = DATA_DIR / "auto_sites.json"  # 自動で見つけた公式サイト(Yahoo Finance の会社情報から)
 HOLDINGS_PATH = ROOT.parent / "holdings" / "data" / "holdings.json"
 SOURCES_PATH = ROOT.parent / "news" / "data" / "sources.json"
 
@@ -401,10 +403,30 @@ def run(site, prev):
     return status, items
 
 
+def find_home(code):
+    """公式サイトの URL を Yahoo Finance の会社情報(yfinance)から探す。見つからなければ None。"""
+    try:
+        import yfinance as yf
+
+        url = (yf.Ticker(f"{code}.T").info or {}).get("website") or ""
+    except Exception as e:  # ネットワークや yfinance の不調で全体を止めない
+        print(f"{code}: 公式サイトを探せませんでした({type(e).__name__})")
+        return None
+    url = url.strip()
+    if not url:
+        return None
+    if not url.startswith("http"):
+        url = "https://" + url
+    p = urlparse(url)
+    return urlunparse((p.scheme, p.netloc.lower(), p.path or "/", "", "", ""))
+
+
 def main():
     holdings = load_json(HOLDINGS_PATH, {}).get("stocks", [])
     sources = load_json(SOURCES_PATH, {})
     overrides = load_json(SITES_PATH, {})
+    auto = load_json(AUTO_PATH, {})
+    auto_changed = False
     old = load_json(OUT_PATH, {})
     prev = {s["code"]: s for s in old.get("sites", [])}
 
@@ -420,9 +442,22 @@ def main():
             statuses.append({"code": code, "name": h["name"], "home": cfg.get("home"), "status": f"巡回しません({cfg['skip']})"})
             continue
         if not cfg.get("home"):
-            statuses.append({"code": code, "name": h["name"], "home": None, "status": "公式サイトの URL が未登録です(news/data/sources.json に追加してください)"})
+            # 登録がない銘柄(新しく追加した銘柄など)は、公式サイトを自動で探して記録する
+            if code not in auto:
+                home = find_home(code)
+                if home:
+                    auto[code] = {"home": home, "found_on": NOW.date().isoformat()}
+                    auto_changed = True
+                    print(f"{code} {h['name']}: 公式サイトを自動で登録しました {home}")
+            if code in auto:
+                cfg["home"] = auto[code]["home"]
+        if not cfg.get("home"):
+            statuses.append({"code": code, "name": h["name"], "home": None, "status": "公式サイトが見つかりませんでした(site-watch/data/sites.json に home を書いてください)"})
             continue
         sites.append(Site(code, h["name"], cfg))
+
+    if auto_changed:
+        AUTO_PATH.write_text(json.dumps(auto, ensure_ascii=False, indent=1) + "\n", encoding="utf-8")
 
     if not sites:
         sys.exit("巡回するサイトがありません")

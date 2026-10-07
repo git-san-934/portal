@@ -100,9 +100,8 @@
     const rows = data.sites.map((s) => {
       const tr = el("tr");
       const name = el("td", "name");
-      if (s.home) name.append(link(s.home, s.name));
-      else name.append(el("span", null, s.name));
-      name.append(el("span", "sub", s.code));
+      name.append(el("span", null, s.name), el("span", "sub", s.code));
+      if (s.home) name.append(link(s.home, "公式サイト ↗", "home"));
       const st = el("td", s.status === "ok" ? "ok" : "warn");
       st.textContent = s.status === "ok" ? `OK(${fmtTime(s.checked_at)})` : s.status;
       if (s.status !== "ok" && s.last_ok_at) st.append(el("span", "sub", ` 前回OK ${fmtTime(s.last_ok_at)}`));

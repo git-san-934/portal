@@ -46,13 +46,14 @@ jobs:
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"
       # GITHUB_TOKEN での push では他のワークフローが動かないため、明示的に起動する
-      - name: 株価・新着情報の取得と再デプロイを起動
+      - name: 株価・新着情報・サイト巡回と再デプロイを起動
         if: steps.commit.outputs.changed == 'true'
         env:
           GH_TOKEN: ${{ github.token }}
         run: |
           gh workflow run update-holdings.yml --ref main
           gh workflow run update-news.yml --ref main
+          gh workflow run update-site-watch.yml --ref main
           gh workflow run deploy.yml --ref main
       - name: 結果をコメントして閉じる
         if: always()

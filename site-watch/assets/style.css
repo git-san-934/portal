@@ -103,3 +103,4 @@ p.empty { margin-left: 0; }
 footer { margin-top: 2rem; font-size: 0.78rem; color: var(--text-sub); }
 footer p + p { margin-top: 0.4rem; }
 code { font-size: 0.75rem; }
+.sites .home { display: block; font-size: 0.75rem; }
