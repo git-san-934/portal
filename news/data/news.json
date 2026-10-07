@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-07T12:28+09:00",
+ "updated_at": "2026-10-07T12:48+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2149,8 +2149,8 @@
    "code": "4078",
    "name": "堺化学",
    "market": "JP",
-   "home": null,
-   "official_status": "未登録",
+   "home": "https://www.sakai-chem.co.jp/",
+   "official_status": "取得できませんでした",
    "official_pages": [],
    "items": [
     {
