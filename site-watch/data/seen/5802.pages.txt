@@ -79,6 +79,7 @@ https://sumitomoelectric.com/jp/plastics
 https://sumitomoelectric.com/jp/powders
 https://sumitomoelectric.com/jp/power-generation-systems
 https://sumitomoelectric.com/jp/pr-news-articles
+https://sumitomoelectric.com/jp/pr-news-articles?top=176
 https://sumitomoelectric.com/jp/pr-news-articles?top=177
 https://sumitomoelectric.com/jp/pr-news-articles?top=178
 https://sumitomoelectric.com/jp/pr-news-articles?top=179
@@ -106,6 +107,7 @@ https://sumitomoelectric.com/jp/press/2026/03/prs027
 https://sumitomoelectric.com/jp/press/2026/03/prs029
 https://sumitomoelectric.com/jp/press/2026/04/prs030
 https://sumitomoelectric.com/jp/press/2026/04/prs031
+https://sumitomoelectric.com/jp/press/2026/04/prs032
 https://sumitomoelectric.com/jp/press/2026/04/prs033
 https://sumitomoelectric.com/jp/press/2026/04/prs035
 https://sumitomoelectric.com/jp/press/2026/04/prs036
@@ -161,6 +163,7 @@ https://sumitomoelectric.com/jp/ptfe
 https://sumitomoelectric.com/jp/publications
 https://sumitomoelectric.com/jp/raw-materials
 https://sumitomoelectric.com/jp/rd
+https://sumitomoelectric.com/jp/rd/analysis-technology
 https://sumitomoelectric.com/jp/rd/automotive
 https://sumitomoelectric.com/jp/rd/awards
 https://sumitomoelectric.com/jp/rd/electronics
