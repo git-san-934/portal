@@ -9,6 +9,9 @@
   const pct = (v, d = 1) => (v == null ? "-" : (v * 100).toFixed(d) + "%");
   const yen = (v) => (v == null ? "-" : Math.round(v).toLocaleString("ja-JP"));
   const oku = (v) => (v == null ? "-" : (v / 100).toLocaleString("ja-JP", { maximumFractionDigits: v >= 10000 ? 0 : 1 }));
+  const num = (v, d = 1) => (v == null ? "-" : v.toLocaleString("ja-JP", { minimumFractionDigits: d, maximumFractionDigits: d }));
+  const sgn = (v) => (v == null ? "-" : (v > 0 ? "+" : "") + (v * 100).toFixed(1) + "%");
+  const mark = (v, yes, no = "-") => (v == null ? "-" : v ? yes : no);
   const fixedOf = (r) => r[state.def];
   const defName = () => DEFS.find((x) => x[0] === state.def)[1];
 
@@ -25,11 +28,31 @@
     { key: "gm", label: "粗利率", get: (r) => r.g, fmt: (r) => pct(r.g) },
     { key: "om", label: "営業利益率", get: (r) => r.om, fmt: (r) => pct(r.om) },
     { key: "cash", label: "保有現金(億円)", get: (r) => r.cash, fmt: (r) => oku(r.cash) },
+    { key: "mc", label: "時価総額(億円)", get: (r) => r.mc, fmt: (r) => oku(r.mc) },
+    { key: "pe", label: "PER(倍)", get: (r) => r.pe, fmt: (r) => num(r.pe) },
+    { key: "pb", label: "PBR(倍)", get: (r) => r.pb, fmt: (r) => num(r.pb, 2) },
+    { key: "roe", label: "ROE", get: (r) => r.roe, fmt: (r) => pct(r.roe) },
+    { key: "er", label: "自己資本比率", get: (r) => r.er, fmt: (r) => pct(r.er) },
+    { key: "cm", label: "現金÷時価総額", get: (r) => r.cm, fmt: (r) => pct(r.cm, 0) },
+    { key: "nc", label: "ネットキャッシュ÷時価総額", get: (r) => r.nc, fmt: (r) => pct(r.nc, 0) },
+    { key: "sg", label: "売上の伸び", get: (r) => r.sg, fmt: (r) => sgn(r.sg) },
+    { key: "og", label: "営業利益の伸び", get: (r) => r.og, fmt: (r) => sgn(r.og) },
     { key: "yield", label: "配当利回り", get: (r) => r.y, fmt: (r) => pct(r.y, 2) + (r.yc ? '<span class="warn" title="株式分割や特別配当で実際とずれている可能性があります">※</span>' : "") },
     { key: "dps", label: "1株配当(円)", get: (r) => r.d, fmt: (r) => (r.d == null ? "-" : r.d.toLocaleString("ja-JP")) },
     { key: "buy", label: "自社株買", cls: "left buy", get: (r) => r.bs * 1e15 + (r.ba || 0),
       fmt: (r) => (r.bs ? "実施" : r.ba >= 1 ? "単元未満等のみ" : "なし"), rowCls: (r) => (r.bs ? "yes" : "") },
     { key: "buyamt", label: "取得額(億円)", get: (r) => r.ba, fmt: (r) => (r.ba ? oku(r.ba) : "-") },
+    { key: "cc", label: "資本コスト・PBRへの言及", cls: "left", get: (r) => r.cc, fmt: (r) => mark(r.cc, "あり"), rowCls: (r) => (r.cc ? "yes" : "") },
+    { key: "rt", label: "ROE目標", get: (r) => r.rt, fmt: (r) => pct(r.rt) },
+    { key: "dp", label: "配当方針", cls: "left", get: (r) => r.dp || "", fmt: (r) => esc(r.dp || "-") },
+    { key: "xc", label: "政策保有株の縮減方針", cls: "left", get: (r) => r.xc, fmt: (r) => mark(r.xc, "あり"), rowCls: (r) => (r.xc ? "yes" : "") },
+    { key: "xm", label: "政策保有株÷時価総額", get: (r) => r.xm, fmt: (r) => pct(r.xm) },
+    { key: "pa", label: "親会社", cls: "left", get: (r) => r.pa, fmt: (r) => mark(r.pa, "あり") },
+    { key: "cs", label: "社長就任", cls: "left", get: (r) => r.cs || "", fmt: (r) => esc(r.cs || "-") },
+    { key: "nw", label: "新社長", cls: "left", get: (r) => r.nw, fmt: (r) => mark(r.nw, "新社長"), rowCls: (r) => (r.nw ? "yes" : "") },
+    { key: "em", label: "従業員数", get: (r) => r.em, fmt: (r) => yen(r.em) },
+    { key: "ag", label: "平均年齢", get: (r) => r.ag, fmt: (r) => num(r.ag) },
+    { key: "sl", label: "平均年収(万円)", get: (r) => r.sl, fmt: (r) => yen(r.sl) },
     { key: "trs", label: "自己株式", get: (r) => r.t, fmt: (r) => pct(r.t) },
     { key: "top1", label: "筆頭株主", cls: "left", get: (r) => r.top1 || "", fmt: (r) => esc(r.top1 || "") },
     { key: "fy", label: "決算期", cls: "left", get: (r) => r.fy || "", fmt: (r) => (r.fy || "").slice(0, 7) },
@@ -94,7 +117,8 @@
       th.onclick = () => {
         const k = th.dataset.key;
         if (state.sort === k) state.desc = !state.desc;
-        else { state.sort = k; state.desc = ["bb", "bf", "bx", "bo", "gm", "om", "cash", "yield", "dps", "buy", "buyamt", "trs"].includes(k); }
+        else { state.sort = k; state.desc = ["bb", "bf", "bx", "bo", "gm", "om", "cash", "yield", "dps", "buy", "buyamt", "trs",
+          "mc", "roe", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "sl"].includes(k); }
         render();
       };
     });
