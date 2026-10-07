@@ -24507,6 +24507,7 @@ https://www.keyence.co.jp/resources/a-caliper-like-tool-that-can-do-3d-measureme
 https://www.keyence.co.jp/resources/aerospace-case-studies-solo-measure-large-products_267233.jsp
 https://www.keyence.co.jp/resources/ai-ocr-license-bt-ocr2_136604.jsp
 https://www.keyence.co.jp/resources/automotive-case-studies-solo-measure-large-products_267190.jsp
+https://www.keyence.co.jp/resources/automotive-handy-terminal-cases_136591.jsp
 https://www.keyence.co.jp/resources/automotive-industry-solutions_193132.jsp
 https://www.keyence.co.jp/resources/bt-management-tool_136481.jsp
 https://www.keyence.co.jp/resources/case-studies-automotive_193327.jsp
@@ -24527,9 +24528,11 @@ https://www.keyence.co.jp/resources/digitaltransformation_271011.jsp
 https://www.keyence.co.jp/resources/dpm-mobile-device-code-reading-the-perfect-guide_193396.jsp
 https://www.keyence.co.jp/resources/easily-measure-distortion-in-large-objects_267224.jsp
 https://www.keyence.co.jp/resources/easy-creation-with-no-code_136605.jsp
+https://www.keyence.co.jp/resources/electronic-device-handy-terminal-cases_136593.jsp
 https://www.keyence.co.jp/resources/electronics-industry-solutions_193134.jsp
 https://www.keyence.co.jp/resources/equipment-case-studies-solo-measure-large-products_267215.jsp
 https://www.keyence.co.jp/resources/excel-integration-techniques_193394.jsp
+https://www.keyence.co.jp/resources/food-pharma-cosmetics-handy-terminal-cases_136592.jsp
 https://www.keyence.co.jp/resources/for-current-cmm-users-the-right-fit-measuring-tool_254382.jsp
 https://www.keyence.co.jp/resources/fully-automatic-measurement-high-precision-case-studies_286066.jsp
 https://www.keyence.co.jp/resources/fully-automatic-measurement-lithium-ion-battery-case-studies_286068.jsp
@@ -24538,6 +24541,8 @@ https://www.keyence.co.jp/resources/handheld-cmm-on-site-machining-use-cases_254
 https://www.keyence.co.jp/resources/handheld-probe-cmm-application-case-studies_254353.jsp
 https://www.keyence.co.jp/resources/handheld-terminal-development-case-study-java-application-development_136523.jsp
 https://www.keyence.co.jp/resources/handheld-terminal-development-case-study-net-maui-application-development_136526.jsp
+https://www.keyence.co.jp/resources/handheld-terminal-development-case-study-xamarin-application-development_136524.jsp
+https://www.keyence.co.jp/resources/handy-terminal-poka-yoke_136612.jsp
 https://www.keyence.co.jp/resources/im-x-series-best-for-low-volume-high-mix_286052.jsp
 https://www.keyence.co.jp/resources/im-x-series-implementation-results-measurement-scenes_286049.jsp
 https://www.keyence.co.jp/resources/im-x-series-measure-resin-molded-parts-in-5-seconds_286051.jsp
@@ -24557,7 +24562,9 @@ https://www.keyence.co.jp/resources/mold-management-techniques-using-barcodes_13
 https://www.keyence.co.jp/resources/new-alternative-to-convex_267219.jsp
 https://www.keyence.co.jp/resources/not-laser-tracker-its-keyence-wm_267195.jsp
 https://www.keyence.co.jp/resources/our-innovations-in-static-eliminators_135255.jsp
+https://www.keyence.co.jp/resources/outstanding-reading-performance_136441.jsp
 https://www.keyence.co.jp/resources/poe-basic-knowledge_193395.jsp
+https://www.keyence.co.jp/resources/prevent-shipping-errors-automotive_136409.jsp
 https://www.keyence.co.jp/resources/quickly-measure-and-visualize-weld-distortion_267188.jsp
 https://www.keyence.co.jp/resources/remote-monitoring-solutions_193335.jsp
 https://www.keyence.co.jp/resources/secret-to-training-versatile-inspectors-fast_286039.jsp
