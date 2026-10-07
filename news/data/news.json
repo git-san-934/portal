@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-07T12:24+09:00",
+ "updated_at": "2026-10-07T12:28+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1907,9 +1907,11 @@
    "code": "4092",
    "name": "日本化学",
    "market": "JP",
-   "home": null,
-   "official_status": "未登録",
-   "official_pages": [],
+   "home": "https://www.nippon-chem.co.jp/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://www.nippon-chem.co.jp/news/feed/"
+   ],
    "items": [
     {
      "date": "2026-10-06",
@@ -1928,12 +1930,47 @@
      "first_seen": "2026-10-05T00:00+09:00"
     },
     {
+     "date": "2026-10-05",
+     "title": "自己株式の取得状況に関するお知らせ",
+     "url": "https://www.nippon-chem.co.jp/news/13379",
+     "source": "official",
+     "first_seen": "2026-10-05T00:00+09:00"
+    },
+    {
+     "date": "2026-09-14",
+     "title": "BS朝日『トップの源流』に当社社長の棚橋が出演します",
+     "url": "https://www.nippon-chem.co.jp/news/12806",
+     "source": "official",
+     "first_seen": "2026-09-14T00:00+09:00"
+    },
+    {
      "date": "2026-09-10",
      "time": "11:20",
      "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z0HQ",
      "source": "edinet",
      "first_seen": "2026-09-10T00:00+09:00"
+    },
+    {
+     "date": "2026-09-04",
+     "title": "自己株式の取得状況に関するお知らせ",
+     "url": "https://www.nippon-chem.co.jp/news/12582",
+     "source": "official",
+     "first_seen": "2026-09-04T00:00+09:00"
+    },
+    {
+     "date": "2026-08-31",
+     "title": "令和8年熊本地震による被害に対する支援について",
+     "url": "https://www.nippon-chem.co.jp/news/12490",
+     "source": "official",
+     "first_seen": "2026-08-31T00:00+09:00"
+    },
+    {
+     "date": "2026-08-24",
+     "title": "格付更新に関するお知らせ",
+     "url": "https://www.nippon-chem.co.jp/news/12290",
+     "source": "official",
+     "first_seen": "2026-08-24T00:00+09:00"
     },
     {
      "date": "2026-08-20",
@@ -1949,6 +1986,20 @@
      "title": "変更報告書(短期大量譲渡)(提出: 株式会社C&I Holdings)",
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YXBI",
      "source": "edinet",
+     "first_seen": "2026-08-18T00:00+09:00"
+    },
+    {
+     "date": "2026-08-18",
+     "title": "2026年3月期第1四半期 決算説明資料(更新版)",
+     "url": "https://www.nippon-chem.co.jp/news/12054",
+     "source": "official",
+     "first_seen": "2026-08-18T00:00+09:00"
+    },
+    {
+     "date": "2026-08-18",
+     "title": "チタン酸バリウムの生産能力増強について",
+     "url": "https://www.nippon-chem.co.jp/news/12032",
+     "source": "official",
      "first_seen": "2026-08-18T00:00+09:00"
     },
     {
@@ -1989,6 +2040,27 @@
      "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YU9E",
      "source": "edinet",
+     "first_seen": "2026-08-10T00:00+09:00"
+    },
+    {
+     "date": "2026-08-10",
+     "title": "2027年3月期第1四半期 決算補足説明資料",
+     "url": "https://www.nippon-chem.co.jp/news/11953",
+     "source": "official",
+     "first_seen": "2026-08-10T00:00+09:00"
+    },
+    {
+     "date": "2026-08-10",
+     "title": "2027年3月期第1四半期 決算短信",
+     "url": "https://www.nippon-chem.co.jp/news/11950",
+     "source": "official",
+     "first_seen": "2026-08-10T00:00+09:00"
+    },
+    {
+     "date": "2026-08-10",
+     "title": "業績予想の修正に関するお知らせ",
+     "url": "https://www.nippon-chem.co.jp/news/11882",
+     "source": "official",
      "first_seen": "2026-08-10T00:00+09:00"
     },
     {
@@ -2215,10 +2287,124 @@
    "code": "6752",
    "name": "パナソニック",
    "market": "JP",
-   "home": null,
-   "official_status": "未登録",
-   "official_pages": [],
+   "home": "https://holdings.panasonic/jp/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://news.panasonic.com/jp/"
+   ],
    "items": [
+    {
+     "date": "2026-10-06",
+     "title": "製品・サービス 現場映像活用サービス「Cameleo」が新たに「AI定期巡回」を2026年12月より提供開始",
+     "url": "https://news.panasonic.com/jp/press/jn261006-1",
+     "source": "official",
+     "first_seen": "2026-10-06T00:00+09:00"
+    },
+    {
+     "date": "2026-10-06",
+     "title": "製品・サービス 住宅用次世代防犯ソリューションの実現に向けてGoogle Homeと協業",
+     "url": "https://news.panasonic.com/jp/press/jn261006-2",
+     "source": "official",
+     "first_seen": "2026-10-06T00:00+09:00"
+    },
+    {
+     "date": "2026-10-05",
+     "title": "3 2026年10月5日 技術・研究開発 プレスリリース パナソニック ホールディングス、健康状態の変化の兆しを捉えるAI技術「予兆ソリューション」を開発",
+     "url": "https://news.panasonic.com/jp/press/jn261005-1",
+     "source": "official",
+     "first_seen": "2026-10-05T00:00+09:00"
+    },
+    {
+     "date": "2026-10-05",
+     "title": "5 2026年10月5日 企業・経営 トピックス パナソニック エレクトリックワークスが「レインボーフェスタ!2026」に協賛。労働組合と共に、従業員参加による横断幕企画を通じ、誰もが自分らしくいられる社会への想いを発信",
+     "url": "https://news.panasonic.com/jp/topics/206902",
+     "source": "official",
+     "first_seen": "2026-10-05T00:00+09:00"
+    },
+    {
+     "date": "2026-10-05",
+     "title": "6 2026年10月5日 サステナビリティ トピックス パナソニック、冷蔵庫AIカメラで無理なく手軽な「使いきり(食品ロス削減)」をサポート ~大阪府主催「食品ロス削減キャンペーン」キックオフイベントに出展~",
+     "url": "https://news.panasonic.com/jp/topics/206901",
+     "source": "official",
+     "first_seen": "2026-10-05T00:00+09:00"
+    },
+    {
+     "date": "2026-09-30",
+     "title": "1 2026年9月30日 製品・サービス プレスリリース 充電式ニッケル水素電池「エネループ」に対応したUSB Type-C入力の急速充電器を新発売",
+     "url": "https://news.panasonic.com/jp/press/jn260930-1",
+     "source": "official",
+     "first_seen": "2026-09-30T00:00+09:00"
+    },
+    {
+     "date": "2026-09-30",
+     "title": "3 2026年9月30日 製品・サービス プレスリリース テクニクス ワイヤレスヘッドホン EAH-A1000を発売",
+     "url": "https://news.panasonic.com/jp/press/jn260930-2",
+     "source": "official",
+     "first_seen": "2026-09-30T00:00+09:00"
+    },
+    {
+     "date": "2026-09-29",
+     "title": "2 2026年9月29日 製品・サービス プレスリリース パナソニックがヘアードライヤー ナノケア EH-NB70を発売",
+     "url": "https://news.panasonic.com/jp/press/jn260929-2",
+     "source": "official",
+     "first_seen": "2026-09-29T00:00+09:00"
+    },
+    {
+     "date": "2026-09-28",
+     "title": "4 2026年9月28日 製品・サービス プレスリリース 新「ナノイーX(72兆)」がカビ抑制時間を従来比1/2に短縮",
+     "url": "https://news.panasonic.com/jp/press/jn260928-2",
+     "source": "official",
+     "first_seen": "2026-09-28T00:00+09:00"
+    },
+    {
+     "date": "2026-09-25",
+     "title": "6 2026年9月25日 製品・サービス トピックス 市販市場向けカーナビゲーションの生産を2027年3月までに終了、生産終了後もアフターサービスを提供",
+     "url": "https://news.panasonic.com/jp/topics/206878",
+     "source": "official",
+     "first_seen": "2026-09-25T00:00+09:00"
+    },
+    {
+     "date": "2026-09-24",
+     "title": "経営基本方針(創業者・理念) / Stories 松下幸之助「最高の経営とは」――パナソニックの歴史ものがたり Episode 10",
+     "url": "https://news.panasonic.com/jp/stories/18954",
+     "source": "official",
+     "first_seen": "2026-09-24T00:00+09:00"
+    },
+    {
+     "date": "2026-09-16",
+     "title": "3 2026年9月16日 技術・研究開発 プレスリリース パナソニック エナジー、リチウムイオン電池の研究開発拠点「エナジーイノベーションスクエア」を大阪・門真に新設し本格稼働を開始",
+     "url": "https://news.panasonic.com/jp/press/jn260916-2",
+     "source": "official",
+     "first_seen": "2026-09-16T00:00+09:00"
+    },
+    {
+     "date": "2026-09-14",
+     "title": "2 2026年9月14日 製品・サービス プレスリリース ブルーレイディスクレコーダー 全自動ディーガ 5機種を発売",
+     "url": "https://news.panasonic.com/jp/press/jn260914-2",
+     "source": "official",
+     "first_seen": "2026-09-14T00:00+09:00"
+    },
+    {
+     "date": "2026-09-11",
+     "title": "企業・経営 / Stories 社外取締役対談:グループ成長戦略を策定した取締役会の姿 松井しのぶ氏 × 瀬戸潤子氏",
+     "url": "https://news.panasonic.com/jp/stories/19001",
+     "source": "official",
+     "first_seen": "2026-09-11T00:00+09:00"
+    },
+    {
+     "date": "2026-09-01",
+     "title": "1 2026年9月1日 企業・経営 プレスリリース 電動工具事業の事業移管手続き完了に関するお知らせ",
+     "url": "https://news.panasonic.com/jp/press/jn260901-1",
+     "source": "official",
+     "first_seen": "2026-09-01T00:00+09:00"
+    },
+    {
+     "date": "2026-09-01",
+     "title": "6 2026年9月1日 企業・経営 Stories AI時代のモノづくり人財を育成~国立高専機構とパナソニックの挑戦",
+     "url": "https://news.panasonic.com/jp/stories/18907",
+     "source": "official",
+     "first_seen": "2026-09-01T00:00+09:00"
+    },
     {
      "date": "2026-08-28",
      "time": "09:57",
@@ -2241,18 +2427,100 @@
    "code": "5802",
    "name": "住友電工",
    "market": "JP",
-   "home": null,
-   "official_status": "未登録",
-   "official_pages": [],
-   "items": []
+   "home": "https://sumitomoelectric.com/jp/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://sumitomoelectric.com/jp/pr-news-articles"
+   ],
+   "items": [
+    {
+     "date": "2026-10-02",
+     "title": "その他 横浜製作所に新研究棟 研究6号館「PRISM Lab.」を開設 最先端設備を導入、光通信技術の研究開発体制を強化",
+     "url": "https://sumitomoelectric.com/jp/pr-news-articles?top=178",
+     "source": "official",
+     "first_seen": "2026-10-02T00:00+09:00"
+    },
+    {
+     "date": "2026-10-02",
+     "title": "横浜製作所に新研究棟 研究6号館「PRISM Lab.」を開設 最先端設備を導入、光通信技術の研究開発体制を強化",
+     "url": "https://sumitomoelectric.com/jp/press/2026/10/prs109",
+     "source": "official",
+     "first_seen": "2026-10-02T00:00+09:00"
+    },
+    {
+     "date": "2026-09-01",
+     "title": "社長ブログを更新しました",
+     "url": "https://sumitomoelectric.com/jp/news/new_blog",
+     "source": "official",
+     "first_seen": "2026-09-01T00:00+09:00"
+    },
+    {
+     "date": "2026-08-25",
+     "title": "令和8年熊本地震被害に対する支援について",
+     "url": "https://sumitomoelectric.com/jp/press/2026/08/prs096",
+     "source": "official",
+     "first_seen": "2026-08-25T00:00+09:00"
+    },
+    {
+     "date": "2026-08-19",
+     "title": "松本会長 Photo Diaryを更新しました",
+     "url": "https://sumitomoelectric.com/jp/news/new_photo_diary",
+     "source": "official",
+     "first_seen": "2026-08-19T00:00+09:00"
+    },
+    {
+     "date": "2026-07-31",
+     "title": "IR Fact Book 2026年度(2027年3月期)第1版を掲載",
+     "url": "https://sumitomoelectric.com/jp/pr-news-articles?top=177",
+     "source": "official",
+     "first_seen": "2026-07-31T00:00+09:00"
+    },
+    {
+     "date": "2026-07-31",
+     "title": "Fact Book 2026年度(2027年3月期)第1版を掲載",
+     "url": "https://sumitomoelectric.com/jp/ir/library",
+     "source": "official",
+     "first_seen": "2026-07-31T00:00+09:00"
+    },
+    {
+     "date": "2026-06-30",
+     "title": "受賞 IEC活動推進会議より2026年議長賞を受賞~電気絶縁材料測定の標準化とEV充電カプラの国際規格化に貢献~",
+     "url": "https://sumitomoelectric.com/jp/pr-news-articles?top=781",
+     "source": "official",
+     "first_seen": "2026-06-30T00:00+09:00"
+    },
+    {
+     "date": "2026-06-30",
+     "title": "IEC活動推進会議より2026年議長賞を受賞~電気絶縁材料測定の標準化とEV充電カプラの国際規格化に貢献~",
+     "url": "https://sumitomoelectric.com/jp/press/2026/06/prs077",
+     "source": "official",
+     "first_seen": "2026-06-30T00:00+09:00"
+    },
+    {
+     "date": "2026-06-19",
+     "title": "一般社団法人 電気学会より第82回電気学術振興賞 進歩賞を受賞~超高圧電力ケーブルの空間電荷測定・解析システムを共同開発~",
+     "url": "https://sumitomoelectric.com/jp/press/2026/06/prs068",
+     "source": "official",
+     "first_seen": "2026-06-19T00:00+09:00"
+    },
+    {
+     "date": "2026-05-28",
+     "title": "第156期定時株主総会招集ご通知及び第156期定時株主総会その他の電子提供措置事項(交付書面省略事項)を掲載",
+     "url": "https://sumitomoelectric.com/jp/ir/meeting",
+     "source": "official",
+     "first_seen": "2026-05-28T00:00+09:00"
+    }
+   ]
   },
   {
    "code": "1417",
    "name": "ミライト・ワン",
    "market": "JP",
-   "home": null,
-   "official_status": "未登録",
-   "official_pages": [],
+   "home": "https://www.mirait-one.com/",
+   "official_status": "ok",
+   "official_pages": [
+    "https://www.mirait-one.com/info/"
+   ],
    "items": [
     {
      "date": "2026-10-05",
@@ -2261,6 +2529,27 @@
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z61F",
      "source": "edinet",
      "first_seen": "2026-10-05T00:00+09:00"
+    },
+    {
+     "date": "2026-09-30",
+     "title": "人事・組織 2026年9月30日 株式会社ミライト・ワン 重要人事等 #重要人事",
+     "url": "https://www.mirait-one.com/info/001993.html",
+     "source": "official",
+     "first_seen": "2026-09-30T00:00+09:00"
+    },
+    {
+     "date": "2026-09-10",
+     "title": "IRサイト更新情報(月次受注状況のお知らせ(8月分))",
+     "url": "https://www.mirait-one.com/info/001973.html",
+     "source": "official",
+     "first_seen": "2026-09-10T00:00+09:00"
+    },
+    {
+     "date": "2026-09-10",
+     "title": "#月次受注状況",
+     "url": "https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=月次受注状況&sort=0",
+     "source": "official",
+     "first_seen": "2026-09-10T00:00+09:00"
     },
     {
      "date": "2026-09-03",
