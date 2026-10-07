@@ -16,7 +16,7 @@ https://git-san-934.github.io/portal/
 - `foreign-flow/` — 掲載アプリの1つ「海外投資家の需給」の本体(このリポジトリ内に同梱)。空売り残高・投資部門別売買状況・株価を GitHub Actions が平日に自動取得します。詳細は `foreign-flow/README.md` を参照。
 - `holdings/` — 掲載アプリの1つ「持ち株チェック」の本体(このリポジトリ内に同梱)。毎日のチェック結果は `holdings/data/check.json`、株価データは GitHub Actions が平日に自動更新します。詳細は `holdings/README.md` を参照。
 - `news/` — 掲載アプリの1つ「持ち株の新着情報」の本体(このリポジトリ内に同梱)。持ち株の公式サイトのニュースと EDINET(米国株は SEC)の提出書類を GitHub Actions が毎日 1:00・5:41・6:41・7:41・8:23・12:45・15:45 に集めます。詳細は `news/README.md` を参照。
-- `site-watch/` — 掲載アプリの1つ「持ち株サイトの新着ページ」の本体(このリポジトリ内に同梱)。持ち株(日本株)の公式サイト全体を GitHub Actions が毎日 5:04・8:48・11:50 に巡回し、新しく増えたページ・PDF を一覧にします。詳細は `site-watch/README.md` を参照。
+- `site-watch/` — 掲載アプリの1つ「持ち株サイトの新着ページ」の本体(このリポジトリ内に同梱)。持ち株(日本株)の公式サイト全体を GitHub Actions が毎日 5:04・8:48・11:50・17:34 に巡回し、新しく増えたページ・PDF を一覧にします。詳細は `site-watch/README.md` を参照。
 - `boj-stats/` — 掲載アプリの1つ「日銀統計の新着」の本体(このリポジトリ内に同梱)。日本銀行の統計APIと財務省・総務省統計局・e-Stat のデータを GitHub Actions が平日 10:15・18:30 に取得し、新しい公表と大きな変化を一覧にします。詳細は `boj-stats/README.md` を参照。
 - `scandal-watch/` — 掲載アプリの1つ「不祥事株のその後」の本体(このリポジトリ内に同梱)。不祥事の一覧は `scandal-watch/data/cases.json`、その後の株価は GitHub Actions が平日に自動で計算します。詳細は `scandal-watch/README.md` を参照。
 - `nikkei43/` — 掲載アプリの1つ「日経4.3ブル 暴落買いナビ」の本体(このリポジトリ内に同梱)。SBI日本株4.3ブルの基準価額を GitHub Actions が平日の夜と翌朝に自動取得します。詳細は `nikkei43/README.md` を参照。

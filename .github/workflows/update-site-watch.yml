@@ -3,10 +3,11 @@ name: 持ち株サイトの新着ページ 更新
 # 持ち株(日本株)の公式サイト全体を巡回して、前回までになかったページ・PDF を一覧にする。
 on:
   schedule:
-    # 毎日 5:04 / 8:48 / 11:50 JST(cron は UTC = JST − 9時間)。GitHub 側の混雑で数分〜数十分遅れることがあります
+    # 毎日 5:04 / 8:48 / 11:50 / 17:34 JST(cron は UTC = JST − 9時間)。GitHub 側の混雑で数分〜数十分遅れることがあります
     - cron: "4 20 * * *" # 5:04 JST
     - cron: "48 23 * * *" # 8:48 JST
     - cron: "50 2 * * *" # 11:50 JST
+    - cron: "34 8 * * *" # 17:34 JST
   workflow_dispatch:
   push:
     branches: [main]
