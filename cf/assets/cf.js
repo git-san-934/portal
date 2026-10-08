@@ -13,7 +13,8 @@
   D.acq = neg(C.acq).map(v => v == null ? 0 : r1(v));
   const ok = (...a) => a.every(v => v != null);
   D.fcf = D.op.map((v, i) => ok(v, D.capex[i]) ? v - D.capex[i] : null);
-  D.future = D.capex.map((v, i) => v == null ? null : v + (D.rd[i] || 0));
+  const hasRd = D.rd.some(v => v != null);  // 研究開発費が一部の年だけ欠けている場合は、その年の合計を出さない
+  D.future = D.capex.map((v, i) => v == null || (hasRd && D.rd[i] == null) ? null : v + (D.rd[i] || 0));
   D.futRatio = D.future.map((v, i) => ok(v, D.sales[i]) ? +(v / D.sales[i] * 100).toFixed(1) : null);
   D.ret = D.div.map((v, i) => v == null ? null : v + (D.buy[i] || 0));
   D.dso = D.recv.map((v, i) => ok(v, D.sales[i]) ? Math.round(v / D.sales[i] * 365) : null);

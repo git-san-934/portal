@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>キオクシアHD 投資分析</title>
+  <meta name="description" content="キオクシアHD（285A）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>キオクシアHD（285A）は何に投資しているか</h1>
+    <p>2024年12月に上場したため、有価証券報告書は2025年3月期と2026年3月期の2回分です。前期の数字も使い、<strong>2024年3月期〜2026年3月期の3年間</strong>をまとめました。国際会計基準（IFRS）で、単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>投資のほぼすべてが、フラッシュメモリの工場です</b>。四日市工場と北上工場の製造設備と建物に、年2,300〜3,100億円を投じています。研究開発費も年1,300〜1,400億円あります。</li>
+      <li><b>2027年3月期は、設備投資を約4,500億円に増やす計画です</b>。2026年3月期（2,837億円）の約1.6倍です。次の世代（第8世代BiCS FLASH）の製造設備を入れます。</li>
+      <li><b>この2年は、設備投資が減価償却費（年約3,100億円）を下回っていました</b>。メモリの値下がりで赤字だった2024年3月期のあと、投資を抑えていたためです。2027年3月期の計画で、再び減価償却費を上回ります。</li>
+      <li><b>AI向けの需要で、業績は急回復しました</b>。売上収益は1兆766億円から2兆3,376億円に増え、営業損益は2,527億円の赤字から8,704億円の黒字に変わりました。</li>
+      <li><b>借入金は約1兆円あります</b>。2026年3月期は、米ドル建ての社債を発行し、優先株式（3,230億円）を償還しました。配当はまだありません。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">メモリは、値段が大きく上下する商品です。2024年3月期は値下がりで赤字でしたが、2026年3月期は生成AI用のデータセンター向けの需要が強く、販売単価も出荷量も増えました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・返済など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上収益に占める割合（右の目盛り）です。2024年3月期は研究開発費の数字がないため、合計を出していません。売上が増えたため、比率は下がっています。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較（2027年3月期は計画）</h3>
+    <p class="sub">メモリの工場は、設備がすぐに古くなるため、減価償却費が大きくなります。設備投資が減価償却費を下回ると、工場の設備は少しずつ減っていきます。</p>
+    <div class="chart" id="c-dep2"></div>
+  </section>
+
+  <section>
+    <h2>④ 投資の中身</h2>
+    <h3>工場：四日市と北上</h3>
+    <ul class="timeline">
+      <li><div class="y">2025年3月期（2,256億円）</div>四日市工場の第7製造棟と、北上工場の第2製造棟への投資。生産能力を増やすための建物、内装、動力設備、製造設備</li>
+      <li><div class="y">2026年3月期（2,837億円）</div>製造設備と、建物の内装関連の設備</li>
+      <li><div class="y">2027年3月期（計画 約4,500億円）</div>四日市工場と北上工場の前工程（チップをつくる工程）の製造設備と建物。第8世代BiCS FLASHの製造設備を含む。すべて自己資金の予定</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">四日市工場と北上工場は、米国のSandiskと共同で運営しています。2025年3月期の有報では、設備投資の目安を「メモリの景気の波を平均して、売上収益の20%以内」としていました。</p>
+
+    <h3>国の補助金</h3>
+    <p class="sub">投資CFには、政府からの補助金の受け取りが含まれています。半導体の国内生産を支える国の支援です。</p>
+    <div class="chart" id="c-grant"></div>
+
+    <h3>研究開発：次の世代のメモリ</h3>
+    <p>2024年4月に「先端技術研究所」をつくり、次世代メモリの研究を強めています。2026年3月期の主な成果は、第8世代BiCS FLASHを使った企業向けSSDや、データセンター向けの光でつなぐSSD（試作品）などです。</p>
+  </section>
+
+  <section>
+    <h2>⑤ 借入金と資金の使い道</h2>
+    <p class="sub">借入金・社債の年度末の残高です。2025年3月期に返済を進めたあと、2026年3月期は社債を発行して増えました。</p>
+    <div class="chart" id="c-debt"></div>
+    <p style="margin-top:.6rem">2026年3月期は、本業のフリーCF（3,329億円）を、優先株式の償還や借入金の返済に使いました。配当や自社株買いはまだ行っていません。現金は4,707億円に増えました。</p>
+  </section>
+
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>4,500億円の投資と、メモリの値段</b>：メモリは、値段が高い時期に各社が投資を増やし、その後の供給過剰で値下がりする、ということを繰り返してきました。投資の結果が出るのは、値段が下がる時期と重なるかもしれません。</li>
+      <li><b>売掛金</b>：営業債権は2,386億円から6,606億円に増えました。きちんと回収されるかを確認します。</li>
+      <li><b>借入金と配当</b>：借入金を減らすのか、配当を始めるのか、お金の使い道に注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET キオクシアホールディングス株式会社 有価証券報告書（2025年3月期・2026年3月期）の連結財務諸表（IFRS）とXBRLデータ。2024年3月期は、2025年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+  window.CF.extra = {
+    debt: [11113, 7777, 10476],
+    grant: [186, 437, 564],
+  };
+  // 2027年3月期の計画を足したグラフ用に、年度を1つ延ばす
+  window.CF_CHARTS = {
+    'c-grant': [[{ name: '補助金の受け取り', key: 'grant', color: '--c-op', type: 'bar' }], { h: 220 }],
+    'c-debt': [[{ name: '借入金・社債', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }],
+  };
+  window.CF_ROWS = [
+    ['売上収益', 'sales'], ['営業利益', 'opinc'], ['純利益', 'net'], null,
+    ['営業CF', 'op', 1], ['　減価償却費', 'dep'], ['投資CF', 'inv', 1], ['　うち設備投資', 'capex', 0, -1], ['　うち補助金', 'grant'],
+    ['財務CF', 'fin', 1], null,
+    ['本業のフリーCF', 'fcf', 1], ['研究開発費', 'rd'], ['借入金・社債', 'debt'], ['売掛金など', 'recv'], ['現金残高', 'cash', 1],
+  ];
+</script>
+<script src="../assets/cf.js"></script>
+<script>
+  // 設備投資と減価償却費：2027年3月期の計画（4,500億円）を加えて描く
+  (function () {
+    const el = document.getElementById('c-dep2');
+    const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    const D = window.CFD;
+    const labels = ['24/3', '25/3', '26/3', '27/3計画'];
+    const cap = [...D.capex, 4500], dep = [...D.dep, null];
+    function draw() {
+      const W = 640, H = 260, L = 62, T = 14, B = 34, max = 5000;
+      const y = v => T + (1 - v / max) * (H - T - B), cw = (W - L - 8) / 4;
+      let s = `<svg viewBox="0 0 ${W} ${H}" role="img">`;
+      for (let v = 0; v <= max; v += 1000) s += `<line x1="${L}" x2="${W - 8}" y1="${y(v)}" y2="${y(v)}" stroke="${css('--grid')}"/><text x="${L - 6}" y="${y(v) + 5}" text-anchor="end">${v.toLocaleString()}</text>`;
+      labels.forEach((lb, i) => {
+        const x = L + cw * i + cw / 2;
+        s += `<text x="${x}" y="${H - 6}" text-anchor="middle">${lb}</text>`;
+        [[cap[i], '--c-capex', -1], [dep[i], '--c-dep', 0]].forEach(([v, c, o]) => {
+          if (v == null) return;
+          s += `<rect x="${x + o * 34 + 2}" y="${y(v)}" width="30" height="${y(0) - y(v)}" rx="2" fill="${css(c)}" ${i === 3 ? 'opacity=".55"' : ''}/>`;
+          s += `<text x="${x + o * 34 + 17}" y="${y(v) - 5}" text-anchor="middle">${Math.round(v).toLocaleString()}</text>`;
+        });
+      });
+      el.innerHTML = s + '</svg>';
+      let lg = el.nextElementSibling;
+      if (!lg || !lg.classList.contains('legend')) { lg = document.createElement('div'); lg.className = 'legend'; el.after(lg); }
+      lg.innerHTML = `<span style="--sw:${css('--c-capex')}">設備投資（27/3は計画）</span><span style="--sw:${css('--c-dep')}">減価償却費</span>`;
+    }
+    draw(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+  })();
+</script>
+</body>
+</html>
