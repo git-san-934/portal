@@ -30088,6 +30088,8 @@ https://www.keyence.co.jp/support/user/mobile-computers/bt_dx/knowledge/ocr/tips
 https://www.keyence.co.jp/support/user/mobile-computers/bt_dx/knowledge/ocr/tips_002.jsp
 https://www.keyence.co.jp/support/user/mobile-computers/bt_dx/knowledge/other/tips_001.jsp
 https://www.keyence.co.jp/support/user/mobile-computers/bt_dx/knowledge/other/tips_002.jsp
+https://www.keyence.co.jp/support/user/mobile-computers/bt_dx/knowledge/other/tips_003.jsp
+https://www.keyence.co.jp/support/user/mobile-computers/bt_dx/knowledge/other/tips_004.jsp
 https://www.keyence.co.jp/support/user/mobile-computers/dx-a800/
 https://www.keyence.co.jp/support/user/mobile-computers/dx-a800/manual/
 https://www.keyence.co.jp/support/user/mobile-computers/dx-a800/software-activation/

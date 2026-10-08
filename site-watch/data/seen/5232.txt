@@ -56,6 +56,7 @@ https://www.soc.co.jp/?p=88245&post_type=post
 https://www.soc.co.jp/?p=88275&post_type=post
 https://www.soc.co.jp/?p=88360&post_type=post
 https://www.soc.co.jp/?p=88404&post_type=post
+https://www.soc.co.jp/?p=88527&post_type=post
 https://www.soc.co.jp/asbestos/
 https://www.soc.co.jp/asbestos/52559/
 https://www.soc.co.jp/asbestos/52561/
@@ -1058,6 +1059,7 @@ https://www.soc.co.jp/news/87631/
 https://www.soc.co.jp/news/88198/
 https://www.soc.co.jp/news/88275/
 https://www.soc.co.jp/news/88404/
+https://www.soc.co.jp/news/88527/
 https://www.soc.co.jp/news/page/2/
 https://www.soc.co.jp/news/page/28/
 https://www.soc.co.jp/news/page/29/
@@ -3072,6 +3074,7 @@ https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20060427_News_Release.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20060428_01_News_Release.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20060428_News_Release.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20060512_News_Release.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20060608_News_Release.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/249fbea2452fae648c5303f4b8f5c74f.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/29a5797e84041df39faf0a1840fda2a2.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/69fd61c09d7bb0674b67a8a5223dcfbc1.pdf
@@ -3163,5 +3166,6 @@ https://www.soc.co.jp/sys/wp-content/uploads/2026/08/soc_IRK_202608.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2026/09/4aa6ddb91252e8619ec20d4626077c96.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2026/09/791b588f573211604865821120e8abaf.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2026/09/d09b0d2c9224dfd073925425599c8bd9.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2026/10/702558cf6573d6a34b9790485f8f1949.pdf
 https://www.soc.co.jp/tochigi
 https://www.soc.co.jp/tochigi/
