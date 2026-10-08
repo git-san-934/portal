@@ -115,6 +115,7 @@ code { font-size: 0.75rem; }
 .sub { display: block; font-size: 0.82rem; color: var(--text-sub); }
 .badge.release { color: var(--official); }
 .badge.signal { color: var(--tdnet); }
+.badge.news { color: var(--sec); }
 .up { color: #c0392b; }
 .down { color: #1a5fb4; }
 @media (prefers-color-scheme: dark) { .up { color: #ff8a7a; } .down { color: #8ab8ff; } }

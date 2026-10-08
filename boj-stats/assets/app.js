@@ -55,6 +55,18 @@
       for (const g of groups.values()) {
         const it = g[0];
         const li = el("li", "item");
+        if (it.kind === "news") {
+          // 日銀ホームページの新着情報: 日銀のページへ直接リンク
+          const meta = el("span", "meta");
+          meta.append(el("span", "badge news", "日銀"), el("span", null, it.time));
+          const a = el("a", "title", it.name);
+          a.href = it.url;
+          a.target = "_blank";
+          a.rel = "noopener";
+          li.append(meta, a);
+          ul.append(li);
+          continue;
+        }
         const meta = el("span", "meta");
         meta.append(el("span", `badge ${it.kind}`, it.kind === "release" ? "公表" : "変化"));
         meta.append(el("span", null, fmtObs(it.obs)));

@@ -7,7 +7,7 @@ mkdir -p logs
 d=$(date +%F)
 rc=0
 : > "logs/$d.fetch.log"
-for s in fetch.py fetch_mof.py fetch_cpi.py fetch_stat.py fetch_estat.py; do
+for s in fetch.py fetch_mof.py fetch_cpi.py fetch_stat.py fetch_estat.py fetch_boj_news.py; do
   python3 "$s" >> "logs/$d.fetch.log" 2>&1 || rc=1
 done
 python3 status.py > "logs/$d.status.log" 2>&1 || rc=1
