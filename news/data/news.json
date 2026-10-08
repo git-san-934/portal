@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-08T10:16+09:00",
+ "updated_at": "2026-10-08T11:14+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,20 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-08",
+     "title": "ディズニーやピクサーの世界を舞台に、光と闇が織りなす物語。3つのパッケージをセットにした『KINGDOM HEARTS Collection [I~III]』が、Nintendo Switch 2 で本日発売。",
+     "url": "https://www.nintendo.com/jp/topics/article/4a70ddcf-0562-410c-9b0f-23cbe7817730",
+     "source": "official",
+     "first_seen": "2026-10-08T11:14+09:00"
+    },
+    {
+     "date": "2026-10-08",
+     "title": "Nintendo Switch 2 ソフト『Nintendo Switch Sports Resort』のCMを公開しました。",
+     "url": "https://www.nintendo.com/jp/games/switch2/aacha/index.html",
+     "source": "official",
+     "first_seen": "2026-10-08T11:14+09:00"
+    },
     {
      "date": "2026-10-06",
      "title": "「マイマリオ(MY MARIO)」の公式サイトを更新しました。 つみきシリーズの新商品「のせかえメロディーカー」や、Nintendo Switchソフト「かおルイージ」「かおピーチ」の情報を掲載。コマどりマリオ第8話、第9話も公開しています。",
