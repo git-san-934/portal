@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-08T12:28+09:00",
+ "updated_at": "2026-10-08T19:56+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-08",
+     "title": "2028年度 プレエントリー受付を開始しました。理工系の採用イベントへのお申し込みも受付中です。",
+     "url": "https://www.nintendo.co.jp/jobs/recruit/index.html",
+     "source": "official",
+     "first_seen": "2026-10-08T19:56+09:00"
+    },
     {
      "date": "2026-10-08",
      "title": "ディズニーやピクサーの世界を舞台に、光と闇が織りなす物語。3つのパッケージをセットにした『KINGDOM HEARTS Collection [I~III]』が、Nintendo Switch 2 で本日発売。",
@@ -390,6 +397,13 @@
     "https://www.soc.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-10-08",
+     "title": "秋芳鉱山 船積バース延伸工事が完了 〜2バース化による安定供給体制を強化、「第7回土木賞」を受賞〜",
+     "url": "https://www.soc.co.jp/?post_type=post&p=88527",
+     "source": "official",
+     "first_seen": "2026-10-08T19:56+09:00"
+    },
     {
      "date": "2026-09-30",
      "title": "「統合報告書2026」(日本語版)の公開について",
@@ -770,6 +784,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-08",
+     "title": "メディア掲載 企業情報 IR 「日経ヴェリタス」記事掲載のお知らせ",
+     "url": "https://www.fuji.co.jp/news/post_136.html",
+     "source": "official",
+     "first_seen": "2026-10-08T19:56+09:00"
+    },
+    {
      "date": "2026-10-05",
      "time": "11:23",
      "title": "変更報告書(特例対象株券等)(提出: 株式会社三菱UFJフィナンシャル・グループ)",
@@ -918,6 +939,14 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-10-08",
+     "time": "16:00",
+     "title": "変更報告書(提出: 株式会社 東芝)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z6ZB",
+     "source": "edinet",
+     "first_seen": "2026-10-08T19:56+09:00"
+    },
     {
      "date": "2026-10-01",
      "title": "キオクシア岩手株式会社がRBA監査でプラチナ・ステータスを取得",
@@ -2336,6 +2365,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-08",
+     "title": "サステナビリティ パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
+     "url": "https://news.panasonic.com/jp/press/jn261008-1",
+     "source": "official",
+     "first_seen": "2026-10-08T19:56+09:00"
+    },
+    {
      "date": "2026-10-07",
      "title": "1 2026年10月7日 企業・経営 トピックス パナソニックグループ、第20回キッズデザイン賞の特別表彰「KIDS DESIGN 100 LEGACY AWARD」を受賞",
      "url": "https://news.panasonic.com/jp/topics/206906",
@@ -2351,15 +2387,15 @@
     },
     {
      "date": "2026-10-06",
-     "title": "製品・サービス 現場映像活用サービス「Cameleo」が新たに「AI定期巡回」を2026年12月より提供開始",
-     "url": "https://news.panasonic.com/jp/press/jn261006-1",
+     "title": "2 2026年10月6日 製品・サービス プレスリリース 住宅用次世代防犯ソリューションの実現に向けてGoogle Homeと協業",
+     "url": "https://news.panasonic.com/jp/press/jn261006-2",
      "source": "official",
      "first_seen": "2026-10-06T00:00+09:00"
     },
     {
      "date": "2026-10-06",
-     "title": "2 2026年10月6日 製品・サービス プレスリリース 住宅用次世代防犯ソリューションの実現に向けてGoogle Homeと協業",
-     "url": "https://news.panasonic.com/jp/press/jn261006-2",
+     "title": "3 2026年10月6日 製品・サービス プレスリリース 現場映像活用サービス「Cameleo」が新たに「AI定期巡回」を2026年12月より提供開始",
+     "url": "https://news.panasonic.com/jp/press/jn261006-1",
      "source": "official",
      "first_seen": "2026-10-06T00:00+09:00"
     },
