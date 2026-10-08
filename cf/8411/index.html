@@ -1,0 +1,155 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>みずほFG 投資分析</title>
+  <meta name="description" content="みずほFG（8411）が何に投資しているかを、有価証券報告書から7年分たどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>みずほFG（8411）は何に投資しているか</h1>
+    <p>有価証券報告書の連結財務諸表と「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です（貸出金などは<strong>兆円</strong>）。</p>
+  </header>
+
+  <section>
+    <h2>銀行は見方が少し違います</h2>
+    <p>銀行では、預金を受け入れたり、お金を貸し出したりするたびに、キャッシュフロー計算書の数字が動きます。そのため営業CFは、年によって<b>＋16兆円から−4.8兆円まで</b>大きく振れ、ほかの会社のように「本業で稼いだお金」としては読めません。</p>
+    <p style="margin-top:.4rem">このページでは、みずほの投資を次の3つに分けて見ます。</p>
+    <ul style="margin-top:.3rem">
+      <li><b>お金の運用</b>：預金をどれだけ貸出金や有価証券に回しているか</li>
+      <li><b>システムと拠点への投資</b>：設備投資（ソフトウェアを含む）</li>
+      <li><b>買収と出資</b>：ほかの会社を買ったり、株式を持ったりすること</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>純利益は7年で2.8倍になりました</b>。4,486億円から1兆2,486億円に増えました。金利の上昇で貸出金の利息が増えたことに加え、手数料収入（役務取引等収益）も7,788億円から1兆3,119億円に伸びています。</li>
+      <li><b>最大の設備投資は勘定系システム「MINORI」の刷新です</b>。総額1,151億円の計画で、2026年3月末までに922億円を支払いました（完成予定は2026年12月）。システムを含む設備投資は、年1,400億円から3,400億円に増えています。</li>
+      <li><b>買収で、証券・M&Aの仲介・決済の分野を広げています</b>。米国のM&A助言会社Greenhill（2023年）、楽天証券（49%、2023年）、楽天カード（14.99%、2024年）、法人カードのUPSIDER（76.9%、2025年）を取得しました。インドの投資銀行Avendus（60%超）も取得に合意しています。</li>
+      <li><b>その一方で、取引先の株式（政策保有株）を売っています</b>。2026年3月期は、上場株を3,776億円分売却しました。</li>
+      <li><b>株主への還元が急に増えました</b>。2026年3月期は、配当3,687億円と自社株買い4,043億円で、合計7,730億円です（純利益の約62%）。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2026年3月期の数字</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section>
+    <h2>① 利益の推移</h2>
+    <p class="sub">経常利益（銀行の本業を含むふだんの利益）と、親会社株主に帰属する当期純利益です。2023年3月期以降、日本と海外の金利上昇を追い風に大きく伸びました。</p>
+    <div class="chart" id="c-profit"></div>
+    <h3>収入の中身：貸出金の利息と手数料</h3>
+    <p class="sub">貸出金の利息は、海外の金利上昇で2023〜24年3月期に急に増えました。手数料収入は、金利に頼らない収入として、7年で約1.7倍に増えています。</p>
+    <div class="chart" id="c-income"></div>
+  </section>
+
+  <section>
+    <h2>② お金の運用：預金をどこに回しているか</h2>
+    <p class="sub">年度末の残高です（単位：兆円）。預金は7年で131兆円から166兆円に増えました。その多くを、企業などへの貸出金（84兆円 → 100兆円）と、国債などの有価証券に回しています。</p>
+    <div class="chart" id="c-bs"></div>
+    <p class="sub" style="margin-top:.5rem">有価証券は、金利が上がった2023年3月期から減らし、2026年3月期に再び増やしました。金利が上がると、持っている債券の価格は下がります。そのため、どれだけ債券を持つかは、銀行にとって大きな判断です。</p>
+  </section>
+
+  <section>
+    <h2>③ システムと拠点への投資</h2>
+    <p class="sub">有形固定資産と無形固定資産（ソフトウェアなど）の取得による支出と、減価償却費です。2022年3月期にいったん減ったあと、2024年3月期から再び大きく増えています。</p>
+    <div class="chart" id="c-dep"></div>
+    <h3>年度ごとの主な投資（有報「設備投資等の概要」より）</h3>
+    <ul class="timeline">
+      <li><div class="y">2021年3月期</div>みずほ丸の内タワーの新築（2020年9月完成）。みずほ銀行の投資額は1,061億円</li>
+      <li><div class="y">2022〜23年3月期</div>事務・システムセンターや国内外の拠点の更新。みずほ銀行の投資額は年約510億円</li>
+      <li><div class="y">2024年3月期</div>大阪事務センターと、研修施設などの「HARUMI WAVE GARDEN」の新築。みずほ銀行の投資額は1,904億円</li>
+      <li><div class="y">2025年3月期</div>MINORIシステムの刷新が本格化。みずほ銀行の投資額は2,760億円</li>
+      <li><div class="y">2026年3月期</div>MINORIの刷新が続く。みずほ銀行の投資額は3,084億円、みずほ証券は357億円（個人向けの顧客対応の仕組みの強化など）</li>
+    </ul>
+    <h3>これからの計画（2026年3月末時点）</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>案件</th><th>総額</th><th>支払い済み</th><th>完成予定</th></tr></thead>
+      <tbody>
+        <tr><td>MINORI（勘定系システム）の刷新</td><td>1,151</td><td>922</td><td>2026年12月</td></tr>
+        <tr><td>営業店の端末の入れ替え</td><td>256</td><td>57</td><td>2026年12月</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">MINORIは、みずほ銀行の預金や送金を扱う中心のシステムです。過去にシステム障害が続いたこともあり、安定して動かすための投資が続いています。</p>
+  </section>
+
+  <section>
+    <h2>④ 買収と出資</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>時期</th><th>相手</th><th style="text-align:left">内容</th></tr></thead>
+      <tbody>
+        <tr><td>2023年12月</td><td>Greenhill（米国）</td><td style="text-align:left">M&A助言会社。100%取得</td></tr>
+        <tr><td>2023年12月</td><td>楽天証券</td><td style="text-align:left">29%を追加取得し、49%に</td></tr>
+        <tr><td>2024年11月</td><td>楽天カード</td><td style="text-align:left">14.99%を取得</td></tr>
+        <tr><td>2025年9月</td><td>UPSIDER</td><td style="text-align:left">法人向けカード・融資。76.9%取得し子会社に</td></tr>
+        <tr><td>2025年12月</td><td>Avendus（インド）</td><td style="text-align:left">投資銀行。60%超の取得に合意（当局の認可待ち）</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">子会社にするための買収の支出は、2024年3月期に391億円（Greenhillなど）、2026年3月期に542億円（UPSIDERなど）でした。銀行の規模から見ると小さい額ですが、<b>個人の証券・カード</b>と、<b>海外のM&A助言</b>という、金利に頼らない分野に集中しています。</p>
+    <div class="warn"><p>一方で、取引先の株式（政策保有株）は減らしています。2026年3月期は、上場株190銘柄を3,776億円分売却しました。株価の下落リスクを減らし、売ったお金を成長分野や還元に回す流れです。</p></div>
+  </section>
+
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、純利益（線）を比べています。</p>
+    <div class="chart" id="c-ret2"></div>
+    <p style="margin-top:.6rem">2024年3月期までは、配当がほとんどでした。2025年3月期から自社株買いを始め、2026年3月期は4,043億円になりました。利益が増えた分を、還元にも回しています。</p>
+  </section>
+
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円（貸出金・有価証券・預金は兆円）。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナスを表します。</p>
+  </section>
+
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>MINORIの刷新</b>：2026年12月に完成予定です。予定どおり終わるか、障害が起きないかが最も大事な点です。</li>
+      <li><b>日本の金利</b>：日本の金利が上がると、預金と貸出金の利ざやが広がり、利益が増えやすくなります。一方で、持っている債券の価格は下がります。</li>
+      <li><b>買収した会社の成果</b>：Greenhill、楽天証券・楽天カード、UPSIDER、Avendusが、手数料収入の伸びにつながるかを確認します。</li>
+      <li><b>還元の続け方</b>：自社株買いが毎年続くか、政策保有株の売却がどこまで進むかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社みずほフィナンシャルグループ 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+  window.CF.extra = {
+    loans: [83.5, 83.7, 84.7, 88.7, 92.8, 94.1, 99.8],
+    secs: [34.9, 43.7, 44.6, 37.4, 38.2, 34.3, 42.6],
+    deposits: [131.2, 133.3, 138.8, 150.5, 159.9, 158.7, 165.9],
+    loanInt: [12423, 9424, 8779, 17510, 27875, 27393, 27857],
+    fees: [7788, 8440, 9056, 9155, 10602, 11154, 13119],
+  };
+  window.CF_CHARTS = {
+    'c-profit': [[{ name: '経常利益', key: 'opinc', color: '--c-dep', type: 'bar' }, { name: '純利益', key: 'net', color: '--c-op', type: 'bar' }], { h: 260 }],
+    'c-income': [[{ name: '貸出金の利息', key: 'loanInt', color: '--c-rd', type: 'bar' }, { name: '手数料収入', key: 'fees', color: '--c-op', type: 'bar' }], { h: 260 }],
+    'c-bs': [[{ name: '貸出金', key: 'loans', color: '--c-capex', type: 'bar', stack: 'a' }, { name: '有価証券', key: 'secs', color: '--c-rd', type: 'bar', stack: 'a' }, { name: '預金', key: 'deposits', color: '--c-line', type: 'line' }]],
+    'c-ret2': [[{ name: '配当', key: 'div', color: '--c-div', type: 'bar', stack: 'r' }, { name: '自社株買い', key: 'buy', color: '--c-buy', type: 'bar', stack: 'r' }, { name: '純利益', key: 'net', color: '--c-line', type: 'line' }], { h: 280 }],
+    // 銀行では営業CF・フリーCFのグラフは使わない
+    'c-flow': [[]], 'c-future': [[]], 'c-ret': [[]], 'c-pl': [[]], 'c-recv': [[]],
+  };
+  window.CF_KPIS = [['純利益', 'net'], ['貸出金（兆円）', 'loans'], ['設備投資', 'capex', 'dep', '減価償却費'], ['配当＋自社株買い', 'ret']];
+  window.CF_ROWS = [
+    ['経常収益', 'sales'], ['経常利益', 'opinc'], ['純利益', 'net', 1], ['　貸出金の利息', 'loanInt'], ['　手数料収入', 'fees'], null,
+    ['貸出金（兆円）', 'loans'], ['有価証券（兆円）', 'secs'], ['預金（兆円）', 'deposits'], null,
+    ['設備投資', 'capex', 1], ['減価償却費', 'dep'], ['子会社の買収', 'acq'], ['減損損失', 'imp'], null,
+    ['配当', 'div'], ['自社株買い', 'buy'], ['還元の合計', 'ret', 1],
+  ];
+</script>
+<script src="../assets/cf.js"></script>
+</body>
+</html>
