@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-08T14:21+09:00",
+ "generated_at": "2026-10-08T16:21+09:00",
  "report_date": "2026-10-08",
  "days": [
   {
@@ -184,6 +184,13 @@
      "type": "トレンド転換",
      "dir": "低下",
      "detail": "3期移動平均が12期移動平均を下抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/recruit/rec261008a.htm",
+     "name": "金融経済調査および統計作成事務に関する「短期リサーチスタッフ」の募集について",
+     "url": "https://www.boj.or.jp/about/recruit/rec261008a.htm",
+     "time": "15:00"
     },
     {
      "kind": "news",
@@ -3121,7 +3128,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-08T14:21+09:00",
+  "checked_at": "2026-10-08T16:21+09:00",
   "counts": {
    "new": 0,
    "unchanged": 102,
