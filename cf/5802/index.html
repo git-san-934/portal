@@ -1,0 +1,162 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>住友電工 投資分析</title>
+  <meta name="description" content="住友電気工業（5802）のキャッシュフロー計算書から、何に投資しているかを7年分たどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>住友電気工業（5802）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>設備投資の半分は、自動車のワイヤーハーネスです</b>。設備投資は年1,700〜2,400億円で、そのうち自動車関連事業が約5割（年900〜1,300億円）を占めます。</li>
+      <li><b>2027年3月期は、設備投資を3,500億円に増やす計画です</b>。前期（約2,400億円）の約1.4倍です。最も増えるのは情報通信関連事業で、238億円から720億円へ約3倍にします。</li>
+      <li><b>理由は、AIデータセンター向けの光製品です</b>。2026年3月期の情報通信関連事業は、光配線製品・光ケーブル・光デバイスの需要で、売上が46%増え、利益は199億円から774億円になりました。利益率は23.7%で、自動車関連（6.1%）の約4倍です。</li>
+      <li><b>電力ケーブルなどの環境エネルギー関連にも投資を増やしました</b>。2025年3月期から、年約500億円と以前の2倍近くになっています。</li>
+      <li><b>借入金を減らし、配当を増やしています</b>。借入金・社債などは8,987億円（2023年3月期）から6,205億円に減り、配当は390億円から866億円に増えました。自社株買いはしていません。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上高は7年で約1.6倍、営業利益は約3.3倍になりました。利益率の高い情報通信関連の伸びで、営業利益率は4%前後から8%台に上がりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2022年3月期は営業CFが760億円に減り、借入を増やしました。2024年3月期からは、フリーCFで借入金を返しています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は6年で1,188億円から1,629億円に増えました。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資と減価償却費（年1,600〜2,100億円）はほぼ同じで、今の設備を保ちながら少しずつ増やしてきました。2027年3月期の計画（3,500億円）は、減価償却費を大きく上回ります。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+
+  <section>
+    <h2>④ 投資の中身</h2>
+    <h3>事業ごとの設備投資</h3>
+    <p class="sub">有報「設備投資等の概要」と「設備の新設、除却等の計画」の金額です。2027年3月期は計画で、色を薄くしています。</p>
+    <div class="chart" id="c-seg"></div>
+    <div class="tbl" style="margin-top:.6rem"><table>
+      <thead><tr><th>事業</th><th>主な製品</th><th>26/3実績</th><th>27/3計画</th></tr></thead>
+      <tbody>
+        <tr><td>自動車関連</td><td style="text-align:left">ワイヤーハーネス、防振ゴム</td><td>1,206</td><td>1,470</td></tr>
+        <tr><td>情報通信関連</td><td style="text-align:left">光ファイバ・ケーブル、光配線、光・電子デバイス</td><td>237</td><td>720</td></tr>
+        <tr><td>環境エネルギー関連</td><td style="text-align:left">電力ケーブル、送配電機器、モーター用の巻線</td><td>516</td><td>630</td></tr>
+        <tr><td>エレクトロニクス関連</td><td style="text-align:left">フレキシブルプリント回路（FPC）、電子ワイヤー</td><td>282</td><td>490</td></tr>
+        <tr><td>産業素材関連他</td><td style="text-align:left">超硬工具、特殊金属線、焼結部品</td><td>190</td><td>190</td></tr>
+        <tr class="sum"><td>合計</td><td></td><td>2,432</td><td>3,500</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">会社は、事業が多いため個別のプロジェクトではなく、事業ごとの金額で計画を開示しています。目的は「主として受注対応や合理化」とされています。</p>
+
+    <h3>2026年3月期の事業の状況</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>事業</th><th>売上高</th><th>営業利益</th><th>利益率</th></tr></thead>
+      <tbody>
+        <tr><td>自動車関連</td><td>29,372</td><td>1,797</td><td>6.1%</td></tr>
+        <tr><td>環境エネルギー関連</td><td>11,788</td><td>906</td><td>7.7%</td></tr>
+        <tr><td>情報通信関連</td><td>3,266</td><td>774</td><td>23.7%</td></tr>
+        <tr><td>エレクトロニクス関連</td><td>4,091</td><td>395</td><td>9.7%</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">売上高はセグメント間の取引を含みます。情報通信関連は売上が全体の6%ほどですが、営業利益では2割近くを稼ぐようになりました。</p>
+  </section>
+
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+    <p style="margin-top:.6rem">2023年3月期をピークに、借入金を2,800億円近く減らしました。2027年3月期は設備投資が大きく増えるため、フリーCFは小さくなる見込みです。</p>
+  </section>
+
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。2020年3月期の研究開発費は、比べられる数字がないため空欄にしています。</p>
+  </section>
+
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>光製品への3倍の投資</b>：AIデータセンターの需要が続くかどうかで、720億円の投資の成果が決まります。</li>
+      <li><b>自動車関連の利益率</b>：投資の半分を占める事業の利益率は6%台です。ここが上がるかも大事です。</li>
+      <li><b>3,500億円の投資とフリーCF</b>：投資を増やしながら、借入金の返済と増配を続けられるかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 住友電気工業株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+  window.CF.rd[0] = null;  // 2020年3月期は販管費の研究開発費しか取れず、ほかの年と比べられない
+  window.CF.extra = { debt: [5860, 6347, 8073, 8987, 7350, 6880, 6205] };
+  window.CF_CHARTS = {
+    'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }],
+  };
+  window.CF_ROWS = [
+    ['売上高', 'sales'], ['営業利益', 'opinc'], ['純利益', 'net'], null,
+    ['営業CF', 'op', 1], ['　減価償却費', 'dep'], ['投資CF', 'inv', 1], ['　うち設備投資', 'capex', 0, -1],
+    ['財務CF', 'fin', 1], ['　うち配当', 'div', 0, -1], null,
+    ['本業のフリーCF', 'fcf', 1], ['研究開発費', 'rd'], ['減損損失', 'imp'], ['借入金・社債など', 'debt'], ['現金残高', 'cash', 1],
+  ];
+</script>
+<script src="../assets/cf.js"></script>
+<script>
+  (function () {
+    const el = document.getElementById('c-seg');
+    const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    const labels = ['21/3', '22/3', '23/3', '24/3', '25/3', '26/3', '27/3計画'];
+    const S = [
+      ['自動車', '--c-dep', [893, 1063, 1147, 1115, 1294, 1206, 1470]],
+      ['情報通信', '--c-rd', [249, 198, 163, 146, 180, 237, 720]],
+      ['環境エネルギー', '--c-op', [301, 285, 340, 259, 505, 516, 630]],
+      ['エレクトロニクス', '--c-buy', [119, 191, 232, 223, 243, 282, 490]],
+      ['産業素材他', '--c-fin', [161, 160, 202, 196, 211, 190, 190]],
+    ];
+    function draw() {
+      const W = 640, H = 300, L = 62, T = 14, B = 34, max = 4000;
+      const y = v => T + (1 - v / max) * (H - T - B), cw = (W - L - 8) / labels.length;
+      let s = `<svg viewBox="0 0 ${W} ${H}" role="img">`;
+      for (let v = 0; v <= max; v += 1000) s += `<line x1="${L}" x2="${W - 8}" y1="${y(v)}" y2="${y(v)}" stroke="${css('--grid')}"/><text x="${L - 6}" y="${y(v) + 5}" text-anchor="end">${v.toLocaleString()}</text>`;
+      labels.forEach((lb, i) => {
+        const x = L + cw * i + cw / 2 - 17, op = i === 6 ? 'opacity=".55"' : '';
+        let acc = 0;
+        S.forEach(([, c, d]) => { s += `<rect x="${x}" y="${y(acc + d[i])}" width="34" height="${y(acc) - y(acc + d[i])}" fill="${css(c)}" ${op}/>`; acc += d[i]; });
+        s += `<text x="${x + 17}" y="${y(acc) - 5}" text-anchor="middle">${acc.toLocaleString()}</text><text x="${x + 17}" y="${H - 6}" text-anchor="middle">${lb}</text>`;
+      });
+      el.innerHTML = s + '</svg>';
+      let lg = el.nextElementSibling;
+      if (!lg || !lg.classList.contains('legend')) { lg = document.createElement('div'); lg.className = 'legend'; el.after(lg); }
+      lg.innerHTML = S.map(([n, c]) => `<span style="--sw:${css(c)}">${n}</span>`).join('');
+    }
+    draw(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+  })();
+</script>
+</body>
+</html>
