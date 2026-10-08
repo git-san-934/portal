@@ -4,6 +4,7 @@
 run_daily.sh（取得→status.py→analyze.py）の後に実行する。
 - 公表: 月次・四半期の系列で、最新の観測期が前回と変わったもの（reports/releases_log.csv に記録）
 - 変化検知: reports/signals_log.csv（analyze.py が書く）
+- 日銀の新着: reports/boj_news.csv（fetch_boj_news.py が書く。日本銀行ホームページの新着情報）
 日次の系列（金利・為替など）は毎日値が入るので新着には載せず、「毎日の値」に最新値を出す。
 標準ライブラリのみ。
 """
@@ -133,6 +134,15 @@ def main():
         days.setdefault(r["detected_on"], []).append({
             "kind": "signal", "id": sid(s), "name": s["name"], "obs": r["obs_date"],
             "type": r["type"], "dir": r["dir"], "detail": r["detail"],
+        })
+
+    # 日銀ホームページの新着情報（fetch_boj_news.py が書く。為替相場は除いてある）
+    for r in read_rows(os.path.join(REPORTS, "boj_news.csv")):
+        day = r["published"][:10]
+        if day < since:
+            continue
+        days.setdefault(day, []).append({
+            "kind": "news", "id": r["url"], "name": r["title"], "url": r["url"], "time": r["published"][11:16],
         })
 
     info = {}

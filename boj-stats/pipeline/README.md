@@ -9,6 +9,7 @@
 | fetch.py | APIから取得して data/<DB>_<CODE>.csv に追記・改定反映。`python3 fetch.py discover FM08 D` で日次系列の候補一覧 |
 | analyze.py | 変化検知。reports/YYYY-MM-DD.md, reports/latest.json, reports/signals_log.csv（検知履歴） |
 | status.py | 取り込みの成功・失敗を系列ごとに記録。reports/status.json（系列ごとの状態）, reports/fetch_history.csv（実行ごとの記録） |
+| fetch_boj_news.py | 日本銀行ホームページ「新着情報（総合）」のRSSを reports/boj_news.csv に蓄積（RSSは約1か月分なので毎回足していく）。為替相場のお知らせは除く。ページの新着に「日銀」として載る |
 | run_daily.sh | 取得→取り込み状況の記録→分析をまとめて実行（日次ルーチン用） |
 | raw/ | APIの生レスポンス（日付ごと） |
 

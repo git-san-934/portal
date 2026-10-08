@@ -4,16 +4,16 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>日銀統計の新着</title>
-  <meta name="description" content="日本銀行などの経済統計の新しい公表と大きな変化を毎日集めて箇条書きで表示" />
+  <meta name="description" content="日本銀行などの経済統計の新しい公表と大きな変化、日銀の新着情報を毎日集めて箇条書きで表示" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261006a" />
+  <link rel="stylesheet" href="assets/style.css?v=20261008a" />
 </head>
 <body>
   <div class="wrap">
     <p class="back"><a href="../">← アプリ一覧</a></p>
     <header>
       <h1>日銀統計の新着</h1>
-      <p class="intro">日本銀行の統計(金利・為替・資金供給・物価・貸出・短観・国際収支など)と、国債利回り・貿易統計・消費者物価・家計調査などの政府統計を平日に集めています。新しく公表された値と、大きな変化(急変・トレンド転換・1年高値/安値)を日付ごとに並べます。項目を押すとチャートと過去の値が見られます。</p>
+      <p class="intro">日本銀行の統計(金利・為替・資金供給・物価・貸出・短観・国際収支など)と、国債利回り・貿易統計・消費者物価・家計調査などの政府統計を平日に集めています。新しく公表された値と、大きな変化(急変・トレンド転換・1年高値/安値)、日本銀行ホームページの新着情報を日付ごとに並べます。項目を押すとチャートと過去の値が見られます。</p>
       <div class="status-row">
         <p class="updated" id="status">読み込み中...</p>
         <a class="refresh" href="https://github.com/git-san-934/portal/actions/workflows/update-boj-stats.yml" target="_blank" rel="noopener" title="GitHub で「Run workflow」を押すと取り込みが始まり、数分でこのページに反映されます">今すぐ更新</a>
@@ -27,6 +27,7 @@
       <button type="button" data-filter="all" aria-pressed="true">すべて</button>
       <button type="button" data-filter="release" aria-pressed="false">新しい公表</button>
       <button type="button" data-filter="signal" aria-pressed="false">大きな変化</button>
+      <button type="button" data-filter="news" aria-pressed="false">日銀の新着</button>
     </nav>
 
     <section class="panel">
@@ -44,10 +45,10 @@
 
     <footer>
       <p id="disclaimer"></p>
-      <p>「新しい公表」は月次・四半期の統計で、最新の期がこのページで初めて見つかった日に載せます。毎日値が出る金利・為替・国債利回りは新着に載せず、「毎日の値」にまとめています。</p>
+      <p>「新しい公表」は月次・四半期の統計で、最新の期がこのページで初めて見つかった日に載せます。毎日値が出る金利・為替・国債利回りは新着に載せず、「毎日の値」にまとめています。「日銀」は日本銀行ホームページの新着情報(総合)で、為替相場のお知らせは除いています。</p>
       <p>集める統計は <code>boj-stats/pipeline/series.json</code> で変えられます。</p>
     </footer>
   </div>
-  <script src="assets/app.js?v=20261006a"></script>
+  <script src="assets/app.js?v=20261008a"></script>
 </body>
 </html>
