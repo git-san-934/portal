@@ -1,0 +1,152 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>パナソニックHD 投資分析</title>
+  <meta name="description" content="パナソニックHD（6752）のキャッシュフロー計算書から、何に投資しているかを7年分たどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>パナソニックHD（6752）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。国際会計基準（IFRS）で、単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>この7年の最大の投資先は、EV（電気自動車）用の電池です</b>。電池を手がけるエナジー事業の設備投資は、2022年3月期の361億円から2025年3月期は5,011億円へ、約14倍になりました。中心は米国カンザス州の新工場で、2026年3月期に稼働を始めました。</li>
+      <li><b>EVの市場が冷え込み、投資を減らし始めました</b>。2027年3月期の計画では、エナジー事業の設備投資は2,380億円で、前期のほぼ半分です。代わりに、データセンター向けの蓄電システムなど「AIインフラ」への投資を増やす方向です。</li>
+      <li><b>大きな買収は、米国のBlue Yonderです</b>。サプライチェーン管理のソフトウェア会社で、2021年9月に残りの80%を取得して完全子会社にしました（子会社の取得の支出は5,832億円）。</li>
+      <li><b>同時に、事業の売却も進めています</b>。2025年3月期に車載機器の子会社（パナソニック オートモーティブシステムズ）を、2026年3月期に住宅建材の子会社（パナソニック ハウジングソリューションズ、YKKへ）を手放しました。</li>
+      <li><b>2026年3月期は、構造改革に1,697億円をかけました</b>。人員の最適化や拠点の統廃合のための費用で、営業利益は2,364億円に減りました。設備投資が営業CFを上回り、本業のフリーCFは2年続けてマイナスです。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上収益は7〜8兆円台で推移しています。2026年3月期は、車載機器事業が連結から外れたことなどで減収になり、構造改革の費用で減益になりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2022年3月期の投資CFの大きなマイナスは、Blue Yonderの買収です。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上収益に占める割合（右の目盛り）です。研究開発費は年4,200〜4,900億円で安定し、増えたのは設備投資です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2024年3月期から、設備投資が減価償却費（年約4,000億円）を大きく上回っています。電池工場を新しく建てた分です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+
+  <section>
+    <h2>④ 投資の中身</h2>
+    <h3>電池（エナジー事業）とそれ以外の設備投資</h3>
+    <p class="sub">有報「設備投資等の概要」の有形固定資産の投資額です。2027年3月期は計画です。2025年3月期は、電池が設備投資全体の3分の2を占めました。</p>
+    <div class="chart" id="c-seg"></div>
+    <ul class="timeline" style="margin-top:.8rem">
+      <li><div class="y">2022年3月期</div>Blue Yonderを完全子会社化（ソフトウェア）。エナジー事業の設備投資は361億円</li>
+      <li><div class="y">2023年3月期</div>エナジー事業が906億円に。二次電池の増産</li>
+      <li><div class="y">2024年3月期</div>エナジー事業が2,921億円に。北米の新工場の建設が本格化</li>
+      <li><div class="y">2025年3月期</div>エナジー事業が5,011億円で最大に。車載機器の子会社を売却</li>
+      <li><div class="y">2026年3月期</div>カンザス工場が稼働。エナジー事業は4,316億円。住宅建材の子会社をYKKへ売却。構造改革費用1,697億円</li>
+      <li><div class="y">2027年3月期（計画）</div>設備投資は全体で4,800億円（前期比24%減）。エナジー事業は2,380億円で、車載電池に加えてAIインフラ関連への投資を含む</li>
+    </ul>
+
+    <h3>電池事業の今（2026年3月期）</h3>
+    <p>エナジー事業の売上は9,842億円（前期比13%増）、利益は698億円（504億円減）でした。会社の説明は次のとおりです。</p>
+    <ul>
+      <li>車載電池：米国の政策の影響でEVの市況が悪化しました。カンザス工場製の電池の販売は増えましたが、工場の固定費、米国の関税、国内工場の販売減などで減益です。</li>
+      <li>産業・民生向け：生成AIの広がりで、データセンター向けの蓄電システムの販売が大きく伸びました。</li>
+    </ul>
+    <p style="margin-top:.4rem">今後は、データセンター向けの電池の生産に、車載用の生産ラインの一部も使う計画です。メキシコでの蓄電モジュールの新工場の建設も決めています。</p>
+  </section>
+
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と本業のフリーCF（線）を比べています。自社株買いは7年間ありません。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は700億円から1,121億円に増えました。電池への大型投資が続いた2025〜26年3月期は、フリーCFがマイナスでも配当を続け、事業の売却で得たお金（2年で約1,700億円）なども使っています。</p>
+  </section>
+
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>カンザス工場の稼働率</b>：数千億円を投じた工場が、EVの需要が弱いなかで利益を出せるかが最大の注目点です。</li>
+      <li><b>AIインフラへの切り替え</b>：データセンター向けの電池や電子材料が、EV電池の落ち込みを補えるかを確認します。</li>
+      <li><b>構造改革の効果</b>：2026年3月期に1,697億円をかけた固定費の削減で、翌年以降の利益が増えるかを確認します。</li>
+      <li><b>フリーCFの回復</b>：設備投資を4,800億円に減らす計画です。フリーCFがプラスに戻るかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET パナソニック ホールディングス株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表（IFRS）とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形資産の取得による支出」の合計です。事業別のグラフは有報本文の有形固定資産の投資額で、金額は少し違います。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+  window.CF.extra = {
+    restr: [123, 0, 380, 106, 115, 87, 1697],
+    sold: [483, 1304, 74, 109, 27, 662, 1056],
+  };
+  window.CF_CHARTS = {};
+  window.CF_ROWS = [
+    ['売上収益', 'sales'], ['営業利益', 'opinc'], ['純利益', 'net'], ['構造改革の費用', 'restr'], null,
+    ['営業CF', 'op', 1], ['　減価償却費', 'dep'], ['投資CF', 'inv', 1], ['　うち設備投資', 'capex', 0, -1], ['　うち子会社の取得', 'acq', 0, -1], ['　うち子会社の売却', 'sold'],
+    ['財務CF', 'fin', 1], ['　うち配当', 'div', 0, -1], null,
+    ['本業のフリーCF', 'fcf', 1], ['研究開発費', 'rd'], ['現金残高', 'cash', 1],
+  ];
+</script>
+<script src="../assets/cf.js"></script>
+<script>
+  // 事業別の設備投資（2027年3月期の計画を含むため、年度の軸を独自に描く）
+  (function () {
+    const el = document.getElementById('c-seg');
+    const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+    const labels = ['21/3', '22/3', '23/3', '24/3', '25/3', '26/3', '27/3計画'];
+    const energy = [null, 361, 906, 2921, 5011, 4316, 2380];
+    const other = [null, 2010, 2185, 2759, 2678, 1975, 2420];
+    const total2021 = 2310;
+    function draw() {
+      const W = 640, H = 300, L = 62, T = 14, B = 34, max = 8000;
+      const y = v => T + (1 - v / max) * (H - T - B), cw = (W - L - 8) / labels.length;
+      let s = `<svg viewBox="0 0 ${W} ${H}" role="img">`;
+      for (let v = 0; v <= max; v += 2000) s += `<line x1="${L}" x2="${W - 8}" y1="${y(v)}" y2="${y(v)}" stroke="${css('--grid')}"/><text x="${L - 6}" y="${y(v) + 5}" text-anchor="end">${v.toLocaleString()}</text>`;
+      labels.forEach((lb, i) => {
+        const x = L + cw * i + cw / 2 - 17, op = i === 6 ? 'opacity=".55"' : '';
+        s += `<text x="${x + 17}" y="${H - 6}" text-anchor="middle">${lb}</text>`;
+        if (i === 0) { s += `<rect x="${x}" y="${y(total2021)}" width="34" height="${y(0) - y(total2021)}" rx="2" fill="${css('--c-fin')}"/>`; return; }
+        s += `<rect x="${x}" y="${y(other[i])}" width="34" height="${y(0) - y(other[i])}" rx="2" fill="${css('--c-dep')}" ${op}/>`;
+        s += `<rect x="${x}" y="${y(other[i] + energy[i])}" width="34" height="${y(other[i]) - y(other[i] + energy[i])}" rx="2" fill="${css('--c-capex')}" ${op}/>`;
+        s += `<text x="${x + 17}" y="${y(other[i] + energy[i]) - 5}" text-anchor="middle">${energy[i].toLocaleString()}</text>`;
+      });
+      el.innerHTML = s + '</svg>';
+      let lg = el.nextElementSibling;
+      if (!lg || !lg.classList.contains('legend')) { lg = document.createElement('div'); lg.className = 'legend'; el.after(lg); }
+      lg.innerHTML = `<span style="--sw:${css('--c-capex')}">エナジー（電池）※数字</span><span style="--sw:${css('--c-dep')}">そのほかの事業</span><span style="--sw:${css('--c-fin')}">21/3（事業の区分が違うため合計のみ）</span>`;
+    }
+    draw(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+  })();
+</script>
+</body>
+</html>
