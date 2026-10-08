@@ -12,6 +12,7 @@
   const num = (v, d = 1) => (v == null ? "-" : v.toLocaleString("ja-JP", { minimumFractionDigits: d, maximumFractionDigits: d }));
   const sgn = (v) => (v == null ? "-" : (v > 0 ? "+" : "") + (v * 100).toFixed(1) + "%");
   const mark = (v, yes, no = "-") => (v == null ? "-" : v ? yes : no);
+  const txt = (t) => (t ? `<span title="${esc(t)}">${esc(t.length > 40 ? t.slice(0, 40) + "…" : t)}</span>` : "-");
   const fixedOf = (r) => r[state.def];
   const defName = () => DEFS.find((x) => x[0] === state.def)[1];
 
@@ -37,6 +38,18 @@
     { key: "nc", label: "ネットキャッシュ÷時価総額", get: (r) => r.nc, fmt: (r) => pct(r.nc, 0) },
     { key: "sg", label: "売上の伸び", get: (r) => r.sg, fmt: (r) => sgn(r.sg) },
     { key: "og", label: "営業利益の伸び", get: (r) => r.og, fmt: (r) => sgn(r.og) },
+    { key: "oc", label: "営業CF(億円)", get: (r) => r.oc, fmt: (r) => oku(r.oc) },
+    { key: "ic", label: "投資CF(億円)", get: (r) => r.ic, fmt: (r) => oku(r.ic) },
+    { key: "fc", label: "フリーCF(億円)", get: (r) => r.fc, fmt: (r) => oku(r.fc) },
+    { key: "cx", label: "設備投資(億円)", get: (r) => r.cx, fmt: (r) => oku(r.cx) },
+    { key: "cxs", label: "設備投資÷売上", get: (r) => r.cxs, fmt: (r) => pct(r.cxs) },
+    { key: "cxd", label: "設備投資÷減価償却", get: (r) => r.cxd, fmt: (r) => num(r.cxd, 2) },
+    { key: "ma", label: "M&A(億円)", get: (r) => r.ma, fmt: (r) => oku(r.ma) },
+    { key: "sp", label: "投資有価証券の取得(億円)", get: (r) => r.sp, fmt: (r) => oku(r.sp) },
+    { key: "ct", label: "当期の設備投資の内容", cls: "left text", get: (r) => r.ct || "", fmt: (r) => txt(r.ct) },
+    { key: "pl", label: "新設計画", cls: "left", get: (r) => r.pl, fmt: (r) => mark(r.pl, "あり", "なし"), rowCls: (r) => (r.pl ? "yes" : "") },
+    { key: "pa2", label: "計画額(億円)", get: (r) => r.pa2, fmt: (r) => oku(r.pa2) },
+    { key: "pt", label: "今後の設備投資計画", cls: "left text", get: (r) => r.pt || "", fmt: (r) => txt(r.pt) },
     { key: "yield", label: "配当利回り", get: (r) => r.y, fmt: (r) => pct(r.y, 2) + (r.yc ? '<span class="warn" title="株式分割や特別配当で実際とずれている可能性があります">※</span>' : "") },
     { key: "dps", label: "1株配当(円)", get: (r) => r.d, fmt: (r) => (r.d == null ? "-" : r.d.toLocaleString("ja-JP")) },
     { key: "buy", label: "自社株買", cls: "left buy", get: (r) => r.bs * 1e15 + (r.ba || 0),
@@ -119,7 +132,7 @@
         const k = th.dataset.key;
         if (state.sort === k) state.desc = !state.desc;
         else { state.sort = k; state.desc = ["bb", "bf", "bx", "bo", "gm", "om", "cash", "yield", "dps", "buy", "buyamt", "trs",
-          "mc", "roe", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "tn", "sl"].includes(k); }
+          "mc", "roe", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "tn", "sl", "oc", "ic", "fc", "cx", "cxs", "cxd", "ma", "sp", "pl", "pa2"].includes(k); }
         render();
       };
     });
