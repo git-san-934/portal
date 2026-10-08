@@ -122,7 +122,7 @@
       <li><b>2024〜25年3月期は、工場の建て替えで投資が多い時期</b>でした。岡崎工場の建て替え（計画は約85〜96億円）が中心で、設備投資は2年続けて約145億円と、減価償却費の1.6〜1.7倍でした。</li>
       <li><b>「将来への投資」（設備投資＋研究開発費）は、年170〜230億円を保っています</b>。2024〜25年3月期は売上が落ちても投資を減らさず、売上に対する比率は約18%まで上がりました。</li>
       <li><b>M&Aは減損で終わりつつあります</b>。2026年3月期に、半導体向けのファスフォードテクノロジ（2018年に子会社化）について、のれんなど<b>97億円を減損</b>しました。前の期にも、シンガポール子会社で9億円を減損しています。</li>
-      <li><b>2026年3月期は、売上が42%増えたのに、営業CFは92億円に減りました</b>。売掛金が291億円増えたことが原因で、代金を回収すれば戻る種類のお金です。ただし、設備投資を差し引いた本業のフリーCFは7年で初めてマイナスになりました。</li>
+      <li><b>2026年3月期は、売上が42%増えたのに、営業CFは92億円に減りました</b>。売掛金が291億円増えたことが原因で、代金を回収すれば戻る種類のお金です。ただし、設備投資を差し引いた本業のフリーCFは7年で初めてマイナスになりました。くわしくは「①-2 売掛金の中身」を見てください。</li>
     </ul>
   </section>
 
@@ -136,6 +136,29 @@
     <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（配当・自社株買いなど）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。</p>
     <div class="chart" id="c1"></div>
     <div class="legend" id="l1"></div>
+  </section>
+
+  <section>
+    <h2>①-2 売掛金の中身（2026年3月期）</h2>
+    <p class="sub">2026年3月期に営業CFが減った一番の理由は、売掛金（まだ受け取っていない売上代金）が増えたことです。棒は年度末の売掛金（受取手形を含む）、線は回収までの日数の目安（売掛金 ÷ 年間売上 × 365日、右の目盛り）です。</p>
+    <div class="chart" id="c6"></div>
+    <div class="legend" id="l6"></div>
+    <div class="kpis" style="margin-top:.8rem">
+      <div class="kpi"><div class="l">売掛金</div><div class="v">653</div><div class="d">前期 348（+305）</div></div>
+      <div class="kpi"><div class="l">回収日数の目安</div><div class="v">132日</div><div class="d">これまで 91〜100日</div></div>
+      <div class="kpi"><div class="l">下期の売上</div><div class="v">1,011</div><div class="d">上期 795</div></div>
+      <div class="kpi"><div class="l">貸倒引当金</div><div class="v">1.5</div><div class="d">売掛金の0.2%</div></div>
+    </div>
+    <h3>わかること</h3>
+    <ul>
+      <li><b>期の後半に売上が集中しました</b>。下期の売上は1,011億円で、上期の795億円を大きく上回りました。増えた売上の中心は、タイ・インドなどアジアのAIサーバー向け設備です。</li>
+      <li><b>以前は「売掛金 ≒ 第4四半期の売上」でした</b>。たとえば2023年3月期は、売掛金421億円に対して第4四半期の売上が379億円です。今回の653億円は、決算期末の直前に大きな出荷があったことを示しています。四半期ごとの売上は、2025年3月期から有報に載らなくなったため、確認できません。</li>
+      <li><b>回収日数は132日に延びました</b>。下期の売上と比べても比率が上がっています（54% → 65%）。売上の増加だけでなく、支払いまでの期間が長い取引先が増えた可能性があります。</li>
+      <li><b>増えた分の約9割はFUJI本体の売掛金です</b>。本体の売掛金は251億円から537億円に増えました。そのうちグループ会社向けは最大134億円で、残りは日本から海外の顧客へ直接輸出した分と考えられます。</li>
+      <li><b>回収できなくなる心配のサインは小さいです</b>。貸倒引当金は売掛金の0.2%です。前受金（契約負債）も30億円から62億円に倍増し、代金を先に受け取る取引も増えています。</li>
+      <li>売上の1割を超える大口の取引先は、中国のアメリカンテック1社だけです（売上217億円、前の期は173億円）。</li>
+    </ul>
+    <div class="warn"><p>取引先ごとの売掛金の内訳は、有報には載っていません。2026年11月ごろに提出される半期報告書で、<b>売掛金が減って営業CFが戻っているか</b>を確認するのが一番確実です。</p></div>
   </section>
 
   <section>
@@ -245,10 +268,12 @@ const D = {
   cash:   [439,604,595,600,625,580,532],
   imp:    [0,8,15,2,0,9,97],
   soft:   [null,40,38,35,42,45,51],
+  recv:   [352,364,390,421,322,348,653],
 };
 D.fcf = D.op.map((v,i)=>v-D.capex[i]);
 D.future = D.capex.map((v,i)=>v+D.rd[i]);
 D.futRatio = D.future.map((v,i)=>+(v/D.sales[i]*100).toFixed(1));
+D.dso = D.recv.map((v,i)=>Math.round(v/D.sales[i]*365));
 D.ret = D.div.map((v,i)=>v+D.buy[i]);
 D.softOther = D.capex.map((v,i)=>D.soft[i]==null?null:v-D.soft[i]);
 
@@ -280,7 +305,7 @@ function chart(id, legendId, series, opt={}) {
   let rmax=0; rl.forEach(sr=>D[sr.key].forEach(v=>rmax=Math.max(rmax,v)));
   const rstep = niceStep(rmax/4); rmax = Math.ceil(rmax/rstep)*rstep;
   const yr = v => T + (1-v/rmax)*(H-T-B);
-  if(opt.right){ for(let v=0; v<=rmax+1e-9; v+=rstep) s += `<text x="${W-R+6}" y="${yr(v)+4}">${v}%</text>`; }
+  if(opt.right){ for(let v=0; v<=rmax+1e-9; v+=rstep) s += `<text x="${W-R+6}" y="${yr(v)+4}">${v}${opt.runit||'%'}</text>`; }
   const gw = Math.min(cw*0.78/groups.length, 34);
   Y.forEach((lab,i)=>{
     s += `<text x="${x0(i)+cw/2}" y="${H-6}" text-anchor="middle">${lab}</text>`;
@@ -307,7 +332,7 @@ function chart(id, legendId, series, opt={}) {
   el.querySelectorAll('.hit').forEach(r=>{
     const show = e => {
       const i=+r.dataset.i, pt = e.touches?e.touches[0]:e;
-      tip.innerHTML = `<b style="color:inherit">${Y[i]}期</b><br>` + series.map(sr=>`${sr.name}：${fmt(D[sr.key][i])}${sr.axis==='r'?'%':''}`).join('<br>');
+      tip.innerHTML = `<b style="color:inherit">${Y[i]}期</b><br>` + series.map(sr=>`${sr.name}：${fmt(D[sr.key][i])}${sr.axis==='r'?(sr.unit||'%'):''}`).join('<br>');
       tip.style.display='block';
       const tw = tip.offsetWidth; tip.style.left = Math.min(pt.clientX+12, innerWidth-tw-8)+'px'; tip.style.top = (pt.clientY+12)+'px';
     };
@@ -338,6 +363,10 @@ function render(){
     {name:'装着機のソフトウェア',key:'soft',color:'--c-rd',type:'bar',stack:'c'},
     {name:'その他の設備投資',key:'softOther',color:'--c-dep',type:'bar',stack:'c'},
   ],{h:220});
+  chart('c6','l6',[
+    {name:'売掛金',key:'recv',color:'--c-op',type:'bar'},
+    {name:'回収日数の目安',key:'dso',color:'--c-line',type:'line',axis:'r',unit:'日'},
+  ],{right:true,runit:'日',h:260});
   chart('c5','l5',[
     {name:'配当',key:'div',color:'--c-div',type:'bar',stack:'r'},
     {name:'自社株買い',key:'buy',color:'--c-buy',type:'bar',stack:'r'},
@@ -355,7 +384,7 @@ document.getElementById('kpis').innerHTML = k.map(([l,v,d])=>`<div class="kpi"><
 
 const rows = [
   ['売上高','sales'],['営業利益','opinc'],['純利益','net'],null,
-  ['営業CF','op',1],['　うち売掛金の増減','ar'],['　うち在庫の増減','invt'],['　減価償却費','dep'],
+  ['営業CF','op',1],['　うち売掛金の増減','ar'],['売掛金の残高','recv'],['回収日数の目安（日）','dso'],['　うち在庫の増減','invt'],['　減価償却費','dep'],
   ['投資CF','inv',1],['　うち設備投資','capex',0,-1],['　うちソフトウェア（有報本文）','soft'],
   ['財務CF','fin',1],['　うち配当','div',0,-1],['　うち自社株買い','buy',0,-1],null,
   ['本業のフリーCF','fcf',1],['研究開発費','rd'],['減損損失','imp'],['現金残高','cash',1],
