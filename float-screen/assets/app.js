@@ -52,6 +52,7 @@
     { key: "nw", label: "新社長", cls: "left", get: (r) => r.nw, fmt: (r) => mark(r.nw, "新社長"), rowCls: (r) => (r.nw ? "yes" : "") },
     { key: "em", label: "従業員数", get: (r) => r.em, fmt: (r) => yen(r.em) },
     { key: "ag", label: "平均年齢", get: (r) => r.ag, fmt: (r) => num(r.ag) },
+    { key: "tn", label: "平均勤続年数", get: (r) => r.tn, fmt: (r) => num(r.tn) },
     { key: "sl", label: "平均年収(万円)", get: (r) => r.sl, fmt: (r) => yen(r.sl) },
     { key: "trs", label: "自己株式", get: (r) => r.t, fmt: (r) => pct(r.t) },
     { key: "top1", label: "筆頭株主", cls: "left", get: (r) => r.top1 || "", fmt: (r) => esc(r.top1 || "") },
@@ -118,7 +119,7 @@
         const k = th.dataset.key;
         if (state.sort === k) state.desc = !state.desc;
         else { state.sort = k; state.desc = ["bb", "bf", "bx", "bo", "gm", "om", "cash", "yield", "dps", "buy", "buyamt", "trs",
-          "mc", "roe", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "sl"].includes(k); }
+          "mc", "roe", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "tn", "sl"].includes(k); }
         render();
       };
     });
