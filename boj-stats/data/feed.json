@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-08T12:42+09:00",
+ "generated_at": "2026-10-08T14:21+09:00",
  "report_date": "2026-10-08",
  "days": [
   {
@@ -184,6 +184,107 @@
      "type": "トレンド転換",
      "dir": "低下",
      "detail": "3期移動平均が12期移動平均を下抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/brp/rer/rera261008.htm",
+     "name": "各地域からみた景気の現状（2026年10月支店長会議における報告）",
+     "url": "https://www.boj.or.jp/research/brp/rer/rera261008.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/brp/rer/rer261008.htm",
+     "name": "地域経済報告（さくらレポート、2026年10月）",
+     "url": "https://www.boj.or.jp/research/brp/rer/rer261008.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/other/toukai/toukai.xlsx",
+     "name": "東海地域業況判断DI（9月）",
+     "url": "https://www.boj.or.jp/statistics/other/toukai/toukai.xlsx",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/other/kantou/kantou.xlsx",
+     "name": "関東甲信越地域業況判断DI（9月）",
+     "url": "https://www.boj.or.jp/statistics/other/kantou/kantou.xlsx",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/br/bop_06/bpdata/diiqcy.htm",
+     "name": "業種別・地域別直接投資（2026年第2四半期）",
+     "url": "https://www.boj.or.jp/statistics/br/bop_06/bpdata/diiqcy.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-07",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/market/short/call/call.xlsx",
+     "name": "コール市場残高（9月）",
+     "url": "https://www.boj.or.jp/statistics/market/short/call/call.xlsx",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/cai/index.htm",
+     "name": "消費活動指数",
+     "url": "https://www.boj.or.jp/research/research_data/cai/index.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260930.htm",
+     "name": "営業毎旬報告（9月30日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260930.htm",
+     "time": "10:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mbt/mbt2609.pdf",
+     "name": "マネタリーベースと日本銀行の取引（9月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mbt/mbt2609.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/tseifu/release/2026/seifu2609.pdf",
+     "name": "日本銀行の対政府取引（9月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/tseifu/release/2026/seifu2609.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/fm/ope/m_release/2026/ope2609.xlsx",
+     "name": "オペレーション（9月）",
+     "url": "https://www.boj.or.jp/statistics/boj/fm/ope/m_release/2026/ope2609.xlsx",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-06",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261006a.htm",
+     "name": "バーゼル銀行監督委員会による議事要旨の公表について",
+     "url": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261006a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/koen_2026/ko261006a.htm",
+     "name": "【挨拶】植田総裁（全国証券大会）",
+     "url": "https://www.boj.or.jp/about/press/koen_2026/ko261006a.htm",
+     "time": "15:35"
     }
    ]
   },
@@ -243,6 +344,20 @@
      "type": "1年高値更新",
      "dir": "上昇",
      "detail": "1.51%"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/gap/index.htm",
+     "name": "需給ギャップ・潜在成長率および労働需給関連指標",
+     "url": "https://www.boj.or.jp/research/research_data/gap/index.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/fm/juqp/juqp2610.xlsx",
+     "name": "日銀当座預金増減要因（10月見込み）",
+     "url": "https://www.boj.or.jp/statistics/boj/fm/juqp/juqp2610.xlsx",
+     "time": "08:50"
     }
    ]
   },
@@ -428,6 +543,41 @@
      "type": "1年高値更新",
      "dir": "上昇",
      "detail": "324円"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260930.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260930.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/col/col2609.xlsx",
+     "name": "日本銀行が受入れている担保の残高（9月末）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/col/col2609.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/dl/loan/yaku/yaku2608.pdf",
+     "name": "貸出約定平均金利（8月）",
+     "url": "https://www.boj.or.jp/statistics/dl/loan/yaku/yaku2608.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mb/mb.htm",
+     "name": "マネタリーベース（9月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mb/mb.htm",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/tk/tankan09b.htm",
+     "name": "短観（9月）＜調査全容＞",
+     "url": "https://www.boj.or.jp/statistics/tk/tankan09b.htm",
+     "time": "08:50"
     }
    ]
   },
@@ -496,6 +646,48 @@
      "type": "1年高値更新",
      "dir": "上昇",
      "detail": "2,079億円"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261001a.htm",
+     "name": "バーゼル銀行監督委員会による「バーゼルIIIモニタリングレポート」の公表について",
+     "url": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261001a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261001a.pdf",
+     "name": "気候変動対応を支援するための資金供給オペレーションの実施スケジュールについて",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261001a.pdf",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fso/fso261001a.pdf",
+     "name": "令和8年台風第25号に伴う災害等に対する金融上の措置について（神奈川県）",
+     "url": "https://www.boj.or.jp/about/bcp/fso/fso261001a.pdf",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/fm/juqf/juqf09.xlsx",
+     "name": "日銀当座預金増減要因と金融調節（9月実績）",
+     "url": "https://www.boj.or.jp/statistics/boj/fm/juqf/juqf09.xlsx",
+     "time": "13:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmsche_minu/opinion_2026/opi260918.pdf",
+     "name": "金融政策決定会合における主な意見（9月17、18日開催分）",
+     "url": "https://www.boj.or.jp/mopo/mpmsche_minu/opinion_2026/opi260918.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/tk/tankan09a.htm",
+     "name": "短観（9月）＜概要、要旨＞",
+     "url": "https://www.boj.or.jp/statistics/tk/tankan09a.htm",
+     "time": "08:50"
     }
    ]
   },
@@ -519,6 +711,41 @@
      "value": "1,044",
      "unit": "人",
      "change": "+1,845人"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260930a.pdf",
+     "name": "長期国債買入れ（利回り・価格入札方式）の四半期予定（2026年10～12月）",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260930a.pdf",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/paym/bond/ryudo.pdf",
+     "name": "国債市場の流動性指標（8月）",
+     "url": "https://www.boj.or.jp/paym/bond/ryudo.pdf",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fso/fso260930a.pdf",
+     "name": "令和8年台風第18号に伴う災害等に対する金融上の措置について（鹿児島県）",
+     "url": "https://www.boj.or.jp/about/bcp/fso/fso260930a.pdf",
+     "time": "15:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/emeap/eme260930a.htm",
+     "name": "「AIに関するEMEAPノート：経済、金融安定、中央銀行業務への含意」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/emeap/eme260930a.htm",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/set/kess/release/2026/kess2608.pdf",
+     "name": "決済動向（8月）",
+     "url": "https://www.boj.or.jp/statistics/set/kess/release/2026/kess2608.pdf",
+     "time": "11:00"
     }
    ]
   },
@@ -767,6 +994,381 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "838人"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/pi/cspi_release/sppi2608.pdf",
+     "name": "企業向けサービス価格指数（8月）",
+     "url": "https://www.boj.or.jp/statistics/pi/cspi_release/sppi2608.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmsche_minu/minu_2026/g260731.pdf",
+     "name": "金融政策決定会合議事要旨（7月30、31日開催分）",
+     "url": "https://www.boj.or.jp/mopo/mpmsche_minu/minu_2026/g260731.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-25",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260925a.pdf",
+     "name": "共通担保資金供給オペレーションの運用について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260925a.pdf",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260918.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260918.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j13.htm",
+     "name": "（日銀レビュー）証券会社による国債マーケットメイクビジネスの動向",
+     "url": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j13.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j12.htm",
+     "name": "（日銀レビュー）プライベートクレジットファンドの拡大と多様化について",
+     "url": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j12.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/wps_rev/wps_2026/wp26j11.htm",
+     "name": "（論文）重要物資の供給制約と輸入調達構造の変化",
+     "url": "https://www.boj.or.jp/research/wps_rev/wps_2026/wp26j11.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-4.htm",
+     "name": "【地域の底力】三重県伊勢市（広報誌「にちぎん」No.87　2026年秋号）",
+     "url": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-4.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-5.htm",
+     "name": "【対談】東京藝術大学学長・現代美術家　日比野克彦氏 vs 増一行審議委員（広報誌「にちぎん」No.87　2026年秋号）",
+     "url": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-5.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-3.htm",
+     "name": "【インタビュー】書家、芸術家、大阪芸術大学教授　紫舟氏（広報誌「にちぎん」No.87　2026年秋号）",
+     "url": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-3.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/cpi/index.htm",
+     "name": "消費者物価のコア指標",
+     "url": "https://www.boj.or.jp/research/research_data/cpi/index.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/koho_nichigin/index.htm",
+     "name": "広報誌「にちぎん」（2026年秋号掲載）",
+     "url": "https://www.boj.or.jp/about/koho_nichigin/index.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260920.htm",
+     "name": "営業毎旬報告（9月20日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260920.htm",
+     "time": "10:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/bis/ibs/index.htm",
+     "name": "BIS国際資金取引統計および国際与信統計の日本分集計結果",
+     "url": "https://www.boj.or.jp/statistics/bis/ibs/index.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-24",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fso/fso260924a.pdf",
+     "name": "令和8年台風第25号に伴う災害等に対する金融上の措置について（千葉県、東京都）",
+     "url": "https://www.boj.or.jp/about/bcp/fso/fso260924a.pdf",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/kaiken_2026/kk260924a.pdf",
+     "name": "【記者会見】植田総裁（9月18日分）",
+     "url": "https://www.boj.or.jp/about/press/kaiken_2026/kk260924a.pdf",
+     "time": "15:20"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/bis/repo/index.htm",
+     "name": "FSBレポ統計の日本分集計結果",
+     "url": "https://www.boj.or.jp/statistics/bis/repo/index.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-18",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/release/sousaidouga.htm",
+     "name": "総裁記者会見（9月18日）動画の配信開始",
+     "url": "https://www.boj.or.jp/about/release/sousaidouga.htm",
+     "time": "16:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260918b.pdf",
+     "name": "「補完当座預金制度基本要領」の一部改正について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260918b.pdf",
+     "time": "12:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260918a.pdf",
+     "name": "「気候変動対応を支援するための資金供給オペレーション基本要領」の一部改正等について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260918a.pdf",
+     "time": "12:15"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k260918b.pdf",
+     "name": "（参考）金融市場調節方針の変更（2026年9月金融政策決定会合）",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k260918b.pdf",
+     "time": "12:10"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-17",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/reri/index.htm",
+     "name": "実質輸出入の動向",
+     "url": "https://www.boj.or.jp/research/research_data/reri/index.htm",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/sj/sj.htm",
+     "name": "資金循環統計（速報）（2026年第2四半期）",
+     "url": "https://www.boj.or.jp/statistics/sj/sj.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-16",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/cabs/cabs.xlsx",
+     "name": "業態別の日銀当座預金残高（8月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/cabs/cabs.xlsx",
+     "time": "17:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-15",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/cooperate/coop260915a.pdf",
+     "name": "日・マレーシア間の第三次二国間通貨スワップ契約の署名",
+     "url": "https://www.boj.or.jp/intl_finance/cooperate/coop260915a.pdf",
+     "time": "15:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-14",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260910.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260910.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/imes/dps/dps260914b.htm",
+     "name": "（論文）金融研究所DPS：ユーザブルセキュリティ研究の現状と展望",
+     "url": "https://www.boj.or.jp/research/imes/dps/dps260914b.htm",
+     "time": "11:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/imes/dps/dps260914a.htm",
+     "name": "（論文）金融研究所DPS：2026年国際コンファランスの模様",
+     "url": "https://www.boj.or.jp/research/imes/dps/dps260914a.htm",
+     "time": "11:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/imes/dps/dps26_e.htm",
+     "name": "金融研究所ディスカッション・ペーパー・シリーズ（E-Series : 英語版）（2026年収録分）",
+     "url": "https://www.boj.or.jp/research/imes/dps/dps26_e.htm",
+     "time": "11:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260910.htm",
+     "name": "営業毎旬報告（9月10日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260910.htm",
+     "time": "10:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-11",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/organization/policyboard/pb_geppo/pbgp2607.htm",
+     "name": "日本銀行政策委員会月報（令和8年7月号）",
+     "url": "https://www.boj.or.jp/about/organization/policyboard/pb_geppo/pbgp2607.htm",
+     "time": "16:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/paym/intlact_pm/cpss/cpss260911a.htm",
+     "name": "BIS決済・市場インフラ委員会及び証券監督者国際機構による市中協議文書「サイバーレジリエンス実用ツール集: FMIのための実務的考慮事項」及び「『金融市場インフラ（FMI）のサードパーティ業者への依存: 課題およびリスク』に関するディスカッション・ペーパー」の公表について",
+     "url": "https://www.boj.or.jp/paym/intlact_pm/cpss/cpss260911a.htm",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/kaiken_2026/kk260911a.pdf",
+     "name": "【記者会見】増審議委員（福井、9月10日分）",
+     "url": "https://www.boj.or.jp/about/press/kaiken_2026/kk260911a.pdf",
+     "time": "13:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2608.pdf",
+     "name": "企業物価指数（8月）",
+     "url": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2608.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-10",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/set/bffail/sjgb2608.pdf",
+     "name": "フェイルの発生状況（8月）",
+     "url": "https://www.boj.or.jp/statistics/set/bffail/sjgb2608.pdf",
+     "time": "16:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/pr_events/hontenkoho/hon260910.htm",
+     "name": "「日銀夏休み親子見学会2026」を開催しました（8月20日＜木＞～25日＜火＞）",
+     "url": "https://www.boj.or.jp/about/pr_events/hontenkoho/hon260910.htm",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/bis/yoshi/index.htm",
+     "name": "デリバティブ取引に関する定例市場報告",
+     "url": "https://www.boj.or.jp/statistics/bis/yoshi/index.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-09",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fso/fso260909a.pdf",
+     "name": "令和8年台風第24号及び前線による大雨に伴う災害等に対する金融上の措置について（愛知県）",
+     "url": "https://www.boj.or.jp/about/bcp/fso/fso260909a.pdf",
+     "time": "12:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/organization/notice/index.htm",
+     "name": "日本銀行やその役職員の関与を装った不審な連絡・勧誘・ウェブサイト・SNSアカウントなどにご注意ください",
+     "url": "https://www.boj.or.jp/about/organization/notice/index.htm",
+     "time": "10:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/money/ms/ms2608.pdf",
+     "name": "マネーストック（8月）",
+     "url": "https://www.boj.or.jp/statistics/money/ms/ms2608.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-08",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/dl/depo/kashi/kasi2608.pdf",
+     "name": "貸出・預金動向（8月）",
+     "url": "https://www.boj.or.jp/statistics/dl/depo/kashi/kasi2608.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-07",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fso/fso260907a.pdf",
+     "name": "令和8年台風第24号及び前線による大雨に伴う災害等に対する金融上の措置について（鹿児島県）",
+     "url": "https://www.boj.or.jp/about/bcp/fso/fso260907a.pdf",
+     "time": "11:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mbt/mbt2608.pdf",
+     "name": "マネタリーベースと日本銀行の取引（8月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mbt/mbt2608.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/tseifu/release/2026/seifu2608.pdf",
+     "name": "日本銀行の対政府取引（8月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/tseifu/release/2026/seifu2608.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/fm/ope/m_release/2026/ope2608.xlsx",
+     "name": "オペレーション（8月）",
+     "url": "https://www.boj.or.jp/statistics/boj/fm/ope/m_release/2026/ope2608.xlsx",
+     "time": "08:50"
     }
    ]
   }
@@ -2519,10 +3121,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-08T12:42+09:00",
+  "checked_at": "2026-10-08T14:21+09:00",
   "counts": {
-   "new": 20,
-   "unchanged": 82,
+   "new": 0,
+   "unchanged": 102,
    "error": 0,
    "stale": 0
   },
