@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ミライト・ワン 投資分析</title>
+  <meta name="description" content="ミライト・ワン（1417）のキャッシュフロー計算書から、何に投資しているかを7年分たどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ミライト・ワン（1417）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>一番大きな投資は、会社の買収です</b>。通信工事の会社ですが、建設や測量の会社を買って、事業を広げています。西武建設（2022年3月）、国際航業（2023年12月）、光陽ホールディングス（2024年7月）などで、買収の支出は7年で約990億円です。</li>
+      <li><b>設備投資は小さく、中身は事務所とシステムです</b>。設備投資は年80〜110億円で、拠点の統合や新しいビル、基幹システムの開発が中心です。研究開発費は年1〜4億円です。</li>
+      <li><b>買収のお金の一部は、借入金でまかないました</b>。借入金・社債などは、2021年3月期のほぼゼロから2026年3月期は1,196億円に増えました。のれんも31億円から359億円に増えています。</li>
+      <li><b>自社株買いを毎年続けています</b>。7年間で毎年30〜108億円の自社株買いを行い、配当も40億円から72億円に増えました。</li>
+      <li><b>次の大きな設備投資は、TTKの本社ビルです</b>（62億円、2027年10月〜2029年9月）。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上高は、買収した会社が加わって7年で約1.4倍になりました。営業利益率は3〜7%で、2023〜24年3月期に下がったあと、2026年3月期は5.7%に戻りました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当・自社株買いなど）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。工事の代金の入り方で、営業CFは年によって大きく変わります。買収した年（2022年3月期、2024年3月期）は、投資CFが大きなマイナスになり、財務CF（借入）がプラスになっています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+
+  <section>
+    <h2>③ 投資の中身：買収と設備投資</h2>
+    <p class="sub">子会社にするための買収の支出と、設備投資を並べています。買収の年は、設備投資の4〜6倍のお金を使っています。</p>
+    <div class="chart" id="c-mna"></div>
+    <h3>主な買収</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>時期</th><th>会社</th><th style="text-align:left">ねらい</th></tr></thead>
+      <tbody>
+        <tr><td>2020年</td><td>YL Integrated ほか</td><td style="text-align:left">シンガポールの子会社Lantrovisionが、現地と中国の会社を子会社化（アジアのデータセンター向けの工事など）</td></tr>
+        <tr><td>2022年3月</td><td>西武建設</td><td style="text-align:left">建設・土木の力を加え、街づくりや建築に広げる</td></tr>
+        <tr><td>2023年12月</td><td>国際航業</td><td style="text-align:left">測量・地理空間情報・防災。インフラの調査や管理に広げる</td></tr>
+        <tr><td>2024年7月</td><td>光陽ホールディングス</td><td style="text-align:left">（子会社3社を含めて連結）</td></tr>
+        <tr><td>2025年10月</td><td>Y2S</td><td style="text-align:left">O&M（運用・管理）事業の拡大</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">会社は、成長分野を「みらいドメイン」と呼び、街づくり・里づくり、企業のDX・GX、グリーンエネルギー、ソフトウェア、海外事業に力を入れています。買収はこの方針に沿ったものです。</p>
+
+    <h3>設備投資と減価償却費</h3>
+    <p class="sub">減価償却費は、買収した会社の分が加わって59億円から119億円に増えました。設備投資は減価償却費と同じくらいです。</p>
+    <div class="chart" id="c-dep"></div>
+    <ul class="timeline" style="margin-top:.8rem">
+      <li><div class="y">2021年3月期（106億円）</div>横浜・横須賀エリアの拠点の統合</li>
+      <li><div class="y">2022年3月期（160億円）</div>西日本支店の建設（38億円の計画）、次期基幹システムの開発</li>
+      <li><div class="y">2023〜24年3月期（96億円・105億円）</div>次期基幹システムの開発、横浜・金沢ビルの建設（40億円の計画）</li>
+      <li><div class="y">2025年3月期（103億円）</div>柏技術センタの土地の取得、ソルコムの広島のビルの建設（22億円の計画）</li>
+      <li><div class="y">2026年3月期（136億円）</div>本社の移転、施工管理システムの開発、TTK宮城支店の建て替え</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は、有報「設備投資等の概要」の設備投資の総額です（キャッシュ・フロー計算書の金額とは少し違います）。</p>
+  </section>
+
+  <section>
+    <h2>④ 借入金とのれん</h2>
+    <p class="sub">借入金・社債などと、のれん（買収した会社の価値のうち、資産を上回る部分）の年度末の残高です。</p>
+    <div class="chart" id="c-debt"></div>
+    <p style="margin-top:.6rem">のれんは、買収した会社が期待どおりに稼げないと減損の対象になります。7年間、大きな減損はありません。</p>
+  </section>
+
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">フリーCFが少ない年も、還元を続けています。買収と還元の両方を、手元の現金と借入金でまかなってきました。</p>
+  </section>
+
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>買収した会社の稼ぎ</b>：西武建設や国際航業が、グループの利益を押し上げるかを確認します。のれん359億円の減損が出ないかも大事です。</li>
+      <li><b>借入金の水準</b>：1,196億円まで増えました。次の買収を借入でするのか、返済を優先するのかに注目します。</li>
+      <li><b>データセンター関連</b>：会社は、生成AIによるデータセンターの需要拡大を成長分野としています。国内と海外（Lantrovision）の受注の伸びを確認します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社ミライト・ワン 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+  window.CF.extra = {
+    debt: [168, 2, 501, 515, 1062, 1131, 1196],
+    goodwill: [29, 31, 277, 207, 386, 376, 359],
+  };
+  window.CF_CHARTS = {
+    'c-mna': [[{ name: '買収', key: 'acq', color: '--c-capex', type: 'bar' }, { name: '設備投資', key: 'capex', color: '--c-dep', type: 'bar' }], { h: 260 }],
+    'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }, { name: 'のれん', key: 'goodwill', color: '--c-rd', type: 'bar' }], { h: 240 }],
+  };
+  window.CF_ROWS = [
+    ['売上高', 'sales'], ['営業利益', 'opinc'], ['純利益', 'net'], null,
+    ['営業CF', 'op', 1], ['　減価償却費', 'dep'], ['投資CF', 'inv', 1], ['　うち設備投資', 'capex', 0, -1], ['　うち買収', 'acq', 0, -1],
+    ['財務CF', 'fin', 1], ['　うち配当', 'div', 0, -1], ['　うち自社株買い', 'buy', 0, -1], null,
+    ['本業のフリーCF', 'fcf', 1], ['借入金・社債など', 'debt'], ['のれん', 'goodwill'], ['現金残高', 'cash', 1],
+  ];
+</script>
+<script src="../assets/cf.js"></script>
+</body>
+</html>
