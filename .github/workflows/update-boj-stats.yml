@@ -28,7 +28,12 @@ jobs:
     env:
       TZ: Asia/Tokyo # 日付(検知日・公表を見つけた日)を日本時間にする
     steps:
+      # 再実行(Re-run)は最初の実行時点のコミットを取り出すため、他の実行がその後に
+      # データをコミットしていると push 前の rebase で生成ファイルが衝突して失敗する。
+      # PR 以外では常に main の最新を取り出す
       - uses: actions/checkout@v4
+        with:
+          ref: ${{ github.event_name != 'pull_request' && github.ref_name || '' }}
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
