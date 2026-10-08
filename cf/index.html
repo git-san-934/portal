@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>持ち株 投資分析</title>
+  <meta name="description" content="持ち株（日本株）が何に投資しているかを、有価証券報告書のキャッシュフロー計算書から読む" />
+  <link rel="stylesheet" href="assets/cf.css" />
+  <style>
+    .list { display: flex; flex-direction: column; gap: .6rem; }
+    .item { display: flex; align-items: center; gap: .8rem; background: var(--card-bg); border: 1px solid var(--border); border-radius: .9rem; padding: .85rem 1rem; text-decoration: none; color: inherit; }
+    .item .code { font-variant-numeric: tabular-nums; color: var(--text-sub); font-size: .8rem; width: 2.6rem; flex-shrink: 0; }
+    .item .nm { flex: 1; min-width: 0; }
+    .item .nm b { color: var(--text); display: block; font-size: 1rem; }
+    .item .nm span { color: var(--text-sub); font-size: .82rem; }
+    .item .st { font-size: .78rem; font-weight: 700; padding: .25rem .7rem; border-radius: 999px; background: var(--accent); color: #fff; flex-shrink: 0; }
+    .item.wait { opacity: .55; }
+    .item.wait .st { background: var(--border); color: var(--text-sub); }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← アプリ一覧へ</a>
+  <header>
+    <h1>持ち株 投資分析</h1>
+    <p>持ち株チェックの日本株について、有価証券報告書のキャッシュフロー計算書から「何に投資しているか」を、過去7年の推移と一緒にまとめています。上から順番に追加中です。</p>
+  </header>
+  <div class="list" id="list"></div>
+  <footer>
+    出典：EDINET（金融庁）の有価証券報告書。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script>
+  // href があるものは公開済み
+  const L = [
+    ['7974', '任天堂', '研究開発費が6年で2倍。技術開発棟に1,210億円', '7974/'],
+    ['4732', 'USS', ''],
+    ['8411', 'みずほFG', ''],
+    ['5232', '住友大阪セメント', ''],
+    ['6861', 'キーエンス', ''],
+    ['6961', 'エンプラス', ''],
+    ['6134', 'FUJI', '装着機のソフトウェアが投資の中心。半導体の買収は減損', '../fuji-cf/'],
+    ['285A', 'キオクシアHD', ''],
+    ['4092', '日本化学工業', ''],
+    ['4078', '堺化学工業', ''],
+    ['6752', 'パナソニックHD', ''],
+    ['5802', '住友電気工業', ''],
+    ['1417', 'ミライト・ワン', ''],
+  ];
+  document.getElementById('list').innerHTML = L.map(([c, n, d, h]) => h
+    ? `<a class="item" href="${h}"><span class="code">${c}</span><span class="nm"><b>${n}</b><span>${d}</span></span><span class="st">開く</span></a>`
+    : `<div class="item wait"><span class="code">${c}</span><span class="nm"><b>${n}</b><span>準備中</span></span><span class="st">準備中</span></div>`).join('');
+</script>
+</body>
+</html>
