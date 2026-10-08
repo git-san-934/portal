@@ -1,0 +1,371 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>FUJI 投資分析</title>
+  <meta name="description" content="株式会社FUJI（6134）のキャッシュフロー計算書から、何に投資しているかを7年分たどる" />
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --card-bg: #ffffff;
+      --text: #23201b;
+      --text-sub: #6b645a;
+      --border: #e5e0d6;
+      --grid: #ece8df;
+      --accent: #c8502d;
+      --c-op: #2f7d5b;
+      --c-inv: #c8502d;
+      --c-fin: #8a8378;
+      --c-capex: #c8502d;
+      --c-dep: #b9a98f;
+      --c-rd: #3b6ea8;
+      --c-div: #3b6ea8;
+      --c-buy: #8db4dd;
+      --c-line: #23201b;
+      --warn-bg: #fbeee8;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1a17;
+        --card-bg: #262320;
+        --text: #f0ece4;
+        --text-sub: #a89f92;
+        --border: #38342e;
+        --grid: #34302a;
+        --accent: #e0662f;
+        --c-op: #4fb388;
+        --c-inv: #e0662f;
+        --c-fin: #8f877b;
+        --c-capex: #e0662f;
+        --c-dep: #8c7f6a;
+        --c-rd: #6c9fd8;
+        --c-div: #6c9fd8;
+        --c-buy: #3d5f86;
+        --c-line: #f0ece4;
+        --warn-bg: #3a2a22;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      padding: 1.5rem 1rem 4rem;
+    }
+    .wrap { max-width: 44rem; margin: 0 auto; }
+    .back { font-size: 0.85rem; color: var(--text-sub); text-decoration: none; }
+    header { margin: 0.75rem 0 1.75rem; }
+    h1 { font-size: 1.45rem; line-height: 1.4; }
+    header p { color: var(--text-sub); font-size: 0.88rem; margin-top: 0.4rem; }
+    section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.2rem 1.1rem 1.3rem;
+      margin-bottom: 1.1rem;
+    }
+    h2 { font-size: 1.08rem; margin-bottom: 0.6rem; }
+    h3 { font-size: 0.95rem; margin: 1rem 0 0.3rem; }
+    p, li { font-size: 0.93rem; }
+    .sub { color: var(--text-sub); font-size: 0.82rem; }
+    ul { padding-left: 1.2rem; }
+    li + li { margin-top: 0.45rem; }
+    b { color: var(--accent); font-weight: 700; }
+
+    .kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; margin-top: 0.4rem; }
+    @media (min-width: 560px) { .kpis { grid-template-columns: repeat(4, 1fr); } }
+    .kpi { border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.6rem 0.7rem; }
+    .kpi .l { font-size: 0.75rem; color: var(--text-sub); }
+    .kpi .v { font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .kpi .d { font-size: 0.75rem; color: var(--text-sub); }
+
+    .chart { width: 100%; margin-top: 0.4rem; }
+    .chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .chart text { fill: var(--text-sub); font-size: 17px; font-family: inherit; }
+    .legend { display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; font-size: 0.8rem; color: var(--text-sub); margin-top: 0.3rem; }
+    .legend span::before { content: ""; display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 2px; margin-right: 0.3rem; vertical-align: -1px; background: var(--sw); }
+    .legend span.ln::before { height: 3px; vertical-align: 3px; }
+    .tip { position: fixed; pointer-events: none; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.4rem 0.6rem; font-size: 0.8rem; box-shadow: 0 4px 16px rgba(0,0,0,.12); display: none; z-index: 9; font-variant-numeric: tabular-nums; }
+
+    .tbl { overflow-x: auto; margin-top: 0.5rem; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+    th, td { padding: 0.35rem 0.45rem; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; position: sticky; left: 0; background: var(--card-bg); }
+    thead th { color: var(--text-sub); font-weight: 600; }
+    tr.sum td { font-weight: 700; }
+    td.neg { color: var(--accent); }
+
+    .timeline { list-style: none; padding: 0; }
+    .timeline li { border-left: 3px solid var(--border); padding: 0.1rem 0 0.5rem 0.8rem; margin: 0; }
+    .timeline li + li { margin-top: 0; }
+    .timeline .y { font-weight: 700; font-size: 0.85rem; }
+    .timeline .amt { font-variant-numeric: tabular-nums; color: var(--text-sub); font-size: 0.82rem; }
+    .warn { background: var(--warn-bg); border-radius: 0.6rem; padding: 0.7rem 0.8rem; margin-top: 0.6rem; }
+    footer { margin-top: 1.5rem; font-size: 0.78rem; color: var(--text-sub); line-height: 1.8; }
+  </style>
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← アプリ一覧へ</a>
+  <header>
+    <h1>FUJI（6134）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書「設備の状況」から、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>投資の中心は「装着機のソフトウェア」</b>。販売する装着機に組み込むソフトウェアの開発費は、6年のうち5年で設備投資の最大の項目でした（年35〜51億円）。2026年3月期は約51億円で、過去最大です。</li>
+      <li><b>2024〜25年3月期は、工場の建て替えで投資が多い時期</b>でした。岡崎工場の建て替え（計画は約85〜96億円）が中心で、設備投資は2年続けて約145億円と、減価償却費の1.6〜1.7倍でした。</li>
+      <li><b>「将来への投資」（設備投資＋研究開発費）は、年170〜230億円を保っています</b>。2024〜25年3月期は売上が落ちても投資を減らさず、売上に対する比率は約18%まで上がりました。</li>
+      <li><b>M&Aは減損で終わりつつあります</b>。2026年3月期に、半導体向けのファスフォードテクノロジ（2018年に子会社化）について、のれんなど<b>97億円を減損</b>しました。前の期にも、シンガポール子会社で9億円を減損しています。</li>
+      <li><b>2026年3月期は、売上が42%増えたのに、営業CFは92億円に減りました</b>。売掛金が291億円増えたことが原因で、代金を回収すれば戻る種類のお金です。ただし、設備投資を差し引いた本業のフリーCFは7年で初めてマイナスになりました。</li>
+    </ul>
+  </section>
+
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+
+  <section>
+    <h2>① お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（配当・自社株買いなど）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。</p>
+    <div class="chart" id="c1"></div>
+    <div class="legend" id="l1"></div>
+  </section>
+
+  <section>
+    <h2>② 将来への投資の大きさ</h2>
+    <p class="sub">設備投資（有形・無形固定資産の取得による支出）と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。</p>
+    <div class="chart" id="c2"></div>
+    <div class="legend" id="l2"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資が減価償却費を上回っていれば、設備は純粋に増えています。7年間ずっと上回っていますが、倍率は2026年3月期に1.2倍まで下がりました。</p>
+    <div class="chart" id="c3"></div>
+    <div class="legend" id="l3"></div>
+  </section>
+
+  <section>
+    <h2>③ 投資の中身：年度ごとの主な案件</h2>
+    <p class="sub">有報「設備投資等の概要」と「設備の新設、除却等の計画」から抜き出しました。金額は、その年度に投資した額です。</p>
+    <h3>毎年つづく大きな項目：装着機のソフトウェア</h3>
+    <div class="chart" id="c4"></div>
+    <div class="legend" id="l4"></div>
+    <p class="sub">2025年3月期だけは、岡崎工場の建て替え（53億円）がソフトウェアを上回りました。設備投資の3〜5割は、主力の電子部品装着機「NXTR」などに組み込んで販売するソフトウェアです。工場や機械よりも、ソフトウェアへの投資が中心の会社だといえます。</p>
+
+    <h3>大型の案件</h3>
+    <ul class="timeline">
+      <li><div class="y">2021年3月期</div>豊田事業所の機械加工設備の更新（マシンツール事業） <span class="amt">8億円</span></li>
+      <li><div class="y">2022年3月期</div>シンガポールのフジ マシン アジアを子会社化 <span class="amt">約13億円</span><br>岡崎工場の建て替えを開始 <span class="amt">9億円</span>（計画総額96億円）<br>マシンツール事業の設備投資 <span class="amt">21億円</span></li>
+      <li><div class="y">2023年3月期</div>岡崎工場の建て替え <span class="amt">6億円</span><br>ファスフォードの研究開発棟の新設を開始（計画24億円）<br>中国・昆山のマシンツール工場の増設を計画（10億円）</li>
+      <li><div class="y">2024年3月期</div>岡崎工場の建て替え <span class="amt">30億円</span><br>基幹システムの刷新（計画24億円）、設計システム（PLM・CAD）の刷新（計画15億円）を開始</li>
+      <li><div class="y">2025年3月期</div>岡崎工場の建て替え <span class="amt">53億円</span>（最大の年）<br>昆山工場の増設 <span class="amt">5億円</span></li>
+      <li><div class="y">2026年3月期</div>基幹システムの刷新 <span class="amt">11億円</span><br>ドイツ子会社の新しい建物 <span class="amt">8億円</span>（計画12億円）<br>本社の土地の取得 <span class="amt">6億円</span></li>
+    </ul>
+
+    <h3>これからの計画（2026年3月末時点）</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>案件</th><th>総額</th><th>投資済み</th><th>完了予定</th></tr></thead>
+      <tbody>
+        <tr><td>岡崎工場：フィーダー組立の自動化ライン</td><td>12.3</td><td>－</td><td>2028年3月</td></tr>
+        <tr><td>本社：基幹システムの刷新</td><td>20.6</td><td>16.3</td><td>2027年1月</td></tr>
+        <tr><td>ドイツ：新しい建物</td><td>11.7</td><td>7.9</td><td>2026年8月</td></tr>
+        <tr><td>ファスフォード：ダイボンダーの研究開発設備</td><td>6.0</td><td>1.8</td><td>2027年6月</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">岡崎工場の建て替えのような大型案件は終わり、今後は工場の自動化、IT、海外拠点が中心です。発表済みの計画は総額約50億円で、ここ数年より小さくなっています。</p>
+  </section>
+
+  <section>
+    <h2>④ M&A（企業買収）とその結果</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>会社</th><th>取得</th><th>減損</th><th>内容</th></tr></thead>
+      <tbody>
+        <tr><td>ファスフォードテクノロジ</td><td>2018年</td><td class="neg">96.9</td><td style="text-align:left">半導体向けダイボンダー。2026年3月期に減損</td></tr>
+        <tr><td>フジ マシン アジア</td><td>2021年7月</td><td class="neg">8.5</td><td style="text-align:left">シンガポール。2025年3月期に減損</td></tr>
+      </tbody>
+    </table></div>
+    <div class="warn">
+      <p>ファスフォードの減損について、会社は「半導体市場の変動が大きく、競争環境も変わり、買収したときに見込んだ収益力が不確かになった」と説明しています。この減損で、無形固定資産は227億円から138億円に減りました。</p>
+      <p style="margin-top:.4rem">減損はすでに使ったお金を損失として計上するもので、この期にお金が出ていったわけではありません。ただし、<b>半導体分野への進出は、今のところ買収時の期待を下回っている</b>と読めます。</p>
+    </div>
+  </section>
+
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c5"></div>
+    <div class="legend" id="l5"></div>
+    <p style="margin-top:.6rem">2024〜25年3月期は、投資を続けながら自社株買いを年90億円前後行い、株主還元がフリーCFを上回りました。不足分は手元の現金でまかなっています。貸借対照表に借入金はなく、現金が532億円あるため、すぐに資金が足りなくなる心配は小さいです。</p>
+  </section>
+
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>売掛金が回収されるか</b>：2026年3月期に増えた291億円が、翌期の営業CFに戻ってくるかを確認します。</li>
+      <li><b>ソフトウェア投資の効果</b>：年50億円規模の投資が、NXTRなどの売上や利益率の向上につながっているかを確認します。</li>
+      <li><b>半導体事業の立て直し</b>：減損のあとも、ダイボンダーの研究開発設備への投資は続いています。この分野から撤退するのか、続けるのかに注目します。</li>
+      <li><b>投資と株主還元のバランス</b>：工場の建て替えが終わり、設備投資は減っていく見込みです。浮いたお金を新しい成長投資に使うのか、還元に回すのかが分かれ目です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社FUJI 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    グラフ③の「その他の設備投資」は、キャッシュ・フロー計算書の設備投資額から有報本文のソフトウェア投資額を引いた概算です。「設備投資」は、キャッシュ・フロー計算書の「有形及び無形固定資産の取得による支出」の金額で、有報本文の設備投資額とは少し違います。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<div class="tip" id="tip"></div>
+
+<script>
+const Y = ["20/3","21/3","22/3","23/3","24/3","25/3","26/3"];
+const D = {
+  sales:  [1410,1362,1481,1533,1271,1274,1806],
+  opinc:  [196,219,285,271,134,138,293],
+  net:    [150,172,212,205,104,109,157],
+  op:     [226,309,157,130,302,234,92],
+  inv:    [-51,-105,-116,-58,-124,-114,-70],
+  fin:    [-40,-46,-65,-80,-171,-162,-90],
+  capex:  [119,79,102,108,146,145,116],
+  dep:    [68,73,80,86,84,91,95],
+  rd:     [88,90,81,86,82,77,85],
+  ar:     [-1,-10,4,-21,118,-25,-291],
+  invt:   [-5,21,-99,-90,67,39,-95],
+  div:    [41,46,63,72,76,74,71],
+  buy:    [0,0,0,0,94,87,24],
+  cash:   [439,604,595,600,625,580,532],
+  imp:    [0,8,15,2,0,9,97],
+  soft:   [null,40,38,35,42,45,51],
+};
+D.fcf = D.op.map((v,i)=>v-D.capex[i]);
+D.future = D.capex.map((v,i)=>v+D.rd[i]);
+D.futRatio = D.future.map((v,i)=>+(v/D.sales[i]*100).toFixed(1));
+D.ret = D.div.map((v,i)=>v+D.buy[i]);
+D.softOther = D.capex.map((v,i)=>D.soft[i]==null?null:v-D.soft[i]);
+
+const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+const tip = document.getElementById('tip');
+const fmt = v => v==null ? '－' : (v<0 ? '△'+Math.abs(v).toLocaleString() : v.toLocaleString());
+
+// series: {name,key,color,type:'bar'|'line',stack?,axis?:'r',unit?}
+function chart(id, legendId, series, opt={}) {
+  const W=640,H=opt.h||300,L=52,R=opt.right?54:8,T=14,B=34;
+  const bars = series.filter(s=>s.type==='bar'), lines = series.filter(s=>s.type==='line'&&s.axis!=='r'), rl = series.filter(s=>s.axis==='r');
+  const stacks = {};
+  bars.forEach(s=>{ const g=s.stack||s.key; (stacks[g]=stacks[g]||[]).push(s); });
+  const groups = Object.values(stacks);
+  let lo=0, hi=0;
+  Y.forEach((_,i)=>{
+    groups.forEach(g=>{ let p=0,n=0; g.forEach(s=>{const v=D[s.key][i]||0; v>=0?p+=v:n+=v;}); hi=Math.max(hi,p); lo=Math.min(lo,n); });
+    lines.forEach(s=>{const v=D[s.key][i]; if(v!=null){hi=Math.max(hi,v);lo=Math.min(lo,v);}});
+  });
+  const step = niceStep((hi-lo)/4);
+  hi = Math.ceil(hi/step)*step; lo = Math.floor(lo/step)*step;
+  const y = v => T + (hi-v)/(hi-lo)*(H-T-B);
+  const cw = (W-L-R)/Y.length, x0 = i => L + cw*i;
+  let s = `<svg viewBox="0 0 ${W} ${H}" role="img">`;
+  for(let v=lo; v<=hi+1e-9; v+=step){
+    s += `<line x1="${L}" x2="${W-R}" y1="${y(v)}" y2="${y(v)}" stroke="${v===0?css('--text-sub'):css('--grid')}" stroke-width="${v===0?1:1}"/>`;
+    s += `<text x="${L-6}" y="${y(v)+4}" text-anchor="end">${v}</text>`;
+  }
+  let rmax=0; rl.forEach(sr=>D[sr.key].forEach(v=>rmax=Math.max(rmax,v)));
+  const rstep = niceStep(rmax/4); rmax = Math.ceil(rmax/rstep)*rstep;
+  const yr = v => T + (1-v/rmax)*(H-T-B);
+  if(opt.right){ for(let v=0; v<=rmax+1e-9; v+=rstep) s += `<text x="${W-R+6}" y="${yr(v)+4}">${v}%</text>`; }
+  const gw = Math.min(cw*0.78/groups.length, 34);
+  Y.forEach((lab,i)=>{
+    s += `<text x="${x0(i)+cw/2}" y="${H-6}" text-anchor="middle">${lab}</text>`;
+    groups.forEach((g,gi)=>{
+      let p=0,n=0;
+      const gx = x0(i) + cw/2 - gw*groups.length/2 + gw*gi + 1.5;
+      g.forEach(sr=>{
+        const v=D[sr.key][i]; if(v==null||v===0) return;
+        let a,b; if(v>=0){a=y(p+v);b=y(p);p+=v;} else {a=y(n);b=y(n+v);n+=v;}
+        s += `<rect x="${gx}" y="${a}" width="${gw-3}" height="${Math.max(b-a,0.5)}" rx="2" fill="${css(sr.color)}" data-i="${i}"/>`;
+      });
+    });
+    s += `<rect x="${x0(i)}" y="${T}" width="${cw}" height="${H-T-B}" fill="transparent" data-i="${i}" class="hit"/>`;
+  });
+  const drawLine = (sr, yf) => {
+    const pts = D[sr.key].map((v,i)=>v==null?null:[x0(i)+cw/2, yf(v)]).filter(Boolean);
+    s += `<polyline points="${pts.map(p=>p.join(',')).join(' ')}" fill="none" stroke="${css(sr.color)}" stroke-width="2.2" ${sr.dash?'stroke-dasharray="5 4"':''}/>`;
+    pts.forEach(p=> s += `<circle cx="${p[0]}" cy="${p[1]}" r="3.4" fill="${css('--card-bg')}" stroke="${css(sr.color)}" stroke-width="2"/>`);
+  };
+  lines.forEach(sr=>drawLine(sr,y)); rl.forEach(sr=>drawLine(sr,yr));
+  s += `</svg>`;
+  const el = document.getElementById(id); el.innerHTML = s;
+  document.getElementById(legendId).innerHTML = series.map(sr=>`<span class="${sr.type==='line'?'ln':''}" style="--sw:${css(sr.color)}">${sr.name}</span>`).join('');
+  el.querySelectorAll('.hit').forEach(r=>{
+    const show = e => {
+      const i=+r.dataset.i, pt = e.touches?e.touches[0]:e;
+      tip.innerHTML = `<b style="color:inherit">${Y[i]}期</b><br>` + series.map(sr=>`${sr.name}：${fmt(D[sr.key][i])}${sr.axis==='r'?'%':''}`).join('<br>');
+      tip.style.display='block';
+      const tw = tip.offsetWidth; tip.style.left = Math.min(pt.clientX+12, innerWidth-tw-8)+'px'; tip.style.top = (pt.clientY+12)+'px';
+    };
+    r.addEventListener('mousemove',show); r.addEventListener('touchstart',show,{passive:true});
+    r.addEventListener('mouseleave',()=>tip.style.display='none');
+  });
+}
+function niceStep(raw){ const p=Math.pow(10,Math.floor(Math.log10(raw||1))); const n=raw/p; return (n<=1?1:n<=2?2:n<=2.5?2.5:n<=5?5:10)*p; }
+document.addEventListener('touchstart',e=>{ if(!e.target.classList.contains('hit')) tip.style.display='none'; },{passive:true});
+
+function render(){
+  chart('c1','l1',[
+    {name:'営業CF',key:'op',color:'--c-op',type:'bar'},
+    {name:'投資CF',key:'inv',color:'--c-inv',type:'bar'},
+    {name:'財務CF',key:'fin',color:'--c-fin',type:'bar'},
+    {name:'本業のフリーCF',key:'fcf',color:'--c-line',type:'line'},
+  ]);
+  chart('c2','l2',[
+    {name:'設備投資',key:'capex',color:'--c-capex',type:'bar',stack:'f'},
+    {name:'研究開発費',key:'rd',color:'--c-rd',type:'bar',stack:'f'},
+    {name:'売上高に対する比率',key:'futRatio',color:'--c-line',type:'line',axis:'r'},
+  ],{right:true});
+  chart('c3','l3',[
+    {name:'設備投資',key:'capex',color:'--c-capex',type:'bar'},
+    {name:'減価償却費',key:'dep',color:'--c-dep',type:'bar'},
+  ],{h:220});
+  chart('c4','l4',[
+    {name:'装着機のソフトウェア',key:'soft',color:'--c-rd',type:'bar',stack:'c'},
+    {name:'その他の設備投資',key:'softOther',color:'--c-dep',type:'bar',stack:'c'},
+  ],{h:220});
+  chart('c5','l5',[
+    {name:'配当',key:'div',color:'--c-div',type:'bar',stack:'r'},
+    {name:'自社株買い',key:'buy',color:'--c-buy',type:'bar',stack:'r'},
+    {name:'本業のフリーCF',key:'fcf',color:'--c-line',type:'line'},
+  ],{h:240});
+}
+
+const k = [
+  ['営業CF', D.op[6], `前期 ${D.op[5]}`],
+  ['投資CF', D.inv[6], `前期 ${fmt(D.inv[5])}`],
+  ['設備投資', D.capex[6], `減価償却費 ${D.dep[6]}`],
+  ['現金残高', D.cash[6], `前期 ${D.cash[5]}`],
+];
+document.getElementById('kpis').innerHTML = k.map(([l,v,d])=>`<div class="kpi"><div class="l">${l}</div><div class="v">${fmt(v)}</div><div class="d">${d}</div></div>`).join('');
+
+const rows = [
+  ['売上高','sales'],['営業利益','opinc'],['純利益','net'],null,
+  ['営業CF','op',1],['　うち売掛金の増減','ar'],['　うち在庫の増減','invt'],['　減価償却費','dep'],
+  ['投資CF','inv',1],['　うち設備投資','capex',0,-1],['　うちソフトウェア（有報本文）','soft'],
+  ['財務CF','fin',1],['　うち配当','div',0,-1],['　うち自社株買い','buy',0,-1],null,
+  ['本業のフリーCF','fcf',1],['研究開発費','rd'],['減損損失','imp'],['現金残高','cash',1],
+];
+document.getElementById('tbl').innerHTML = '<thead><tr><th></th>'+Y.map(y=>`<th>${y}</th>`).join('')+'</tr></thead><tbody>'+
+  rows.map(r=> r ? `<tr class="${r[2]?'sum':''}"><td>${r[0]}</td>`+D[r[1]].map(v=>{const x=v==null?null:v*(r[3]||1);return `<td class="${x<0?'neg':''}">${fmt(x)}</td>`}).join('')+'</tr>'
+    : `<tr><td colspan="8" style="border:0;padding:.25rem"></td></tr>`).join('')+'</tbody>';
+
+render();
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+</script>
+</body>
+</html>
