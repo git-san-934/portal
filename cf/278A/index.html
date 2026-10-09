@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Terra Drone 投資分析</title>
+  <meta name="description" content="Terra Drone（278A）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>Terra Drone（278A）は何に投資しているか</h1>
+    <p>2024年に上場したため、有価証券報告書は2025年1月期と2026年1月期の2回分です。前期の数字も使い、<strong>2024年1月期〜2026年1月期の3年間</strong>をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>まだ投資を回収する前の段階です</b>。産業用ドローンによる測量・点検・農業と、ドローンの運航管理システムを手がけています。3年とも営業損失で、2026年1月期は11億円の赤字、純損失は25億円でした。</li>
+      <li><b>設備投資は年5〜10億円です</b>。生産設備の増強と研究開発の強化が目的です。自社開発した屋内点検用ドローン「Terra Xross 1」の量産も始めましたが、安定して量産する体制づくりに想定以上の時間がかかっています。</li>
+      <li><b>出資や買収にもお金を使っています</b>。2025年1月期に持分法適用会社の株式を10億円取得し、2026年1月期は投資有価証券の取得（3億円）やエスクロー口座への預け入れ（3億円）がありました。</li>
+      <li><b>手元の現金が減っています</b>。現金は50億円から18億円に減りました。営業CFもマイナスが続いており、今後の資金の集め方が大事になります。</li>
+      <li><b>配当や自社株買いはありません</b>。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年1月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は30億円から48億円に増えましたが、赤字は広がっています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFと投資CFの両方がマイナスで、手元の現金と、株式の発行で集めたお金を使っています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 設備投資と減価償却費</h2>
+    <p class="sub">設備投資は減価償却費を上回り、設備を増やしている段階です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <h3>2つの事業</h3>
+    <ul>
+      <li><b>ドローンソリューション</b>：測量・災害復旧、点検、農業。2026年1月期は、自治体のドローン購入補助が縮小して測量が伸び悩みました。点検サービスは堅調でした。</li>
+      <li><b>運航管理（UTM）</b>：多くのドローンが安全に飛べるようにする「空のインフラ」のシステムです。</li>
+    </ul>
+    <h3>2026年1月期の投資CFの内訳（会社の説明より）</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>項目</th><th>金額</th></tr></thead>
+      <tbody>
+        <tr><td>有形固定資産の取得</td><td>△8.8</td></tr>
+        <tr><td>エスクロー口座への振替</td><td>△3.3</td></tr>
+        <tr><td>投資有価証券の取得</td><td>△3.0</td></tr>
+        <tr class="sum"><td>投資CF合計</td><td>△17.2</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">有報の「設備の新設、除却等の計画」には、2年とも「該当事項はありません」と書かれています。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当や自社株買いはありません。営業CFがマイナスのため、投資は手元の現金や株式の発行でまかなっています。</p>
+    <h3>手元の現金</h3>
+    <div class="chart" id="c-cash"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は1月期決算です（例：「26/1」は2025年2月〜2026年1月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>黒字化の見通し</b>：赤字が広がっています。売上の伸びで赤字が縮まるかを確認します。</li>
+      <li><b>資金</b>：現金が18億円まで減りました。増資や借入をするか、その規模に注目します。増資は1株あたりの価値を薄めます。</li>
+      <li><b>自社ドローンの量産</b>：「Terra Xross 1」が安定して量産でき、売上につながるかを確認します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET Terra Drone株式会社 有価証券報告書（2025年1月期〜2026年1月期）の連結財務諸表とXBRLデータ。2024年1月期は、2025年1月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_CHARTS = { 'c-cash': [[{ name: '現金残高', key: 'cash', color: '--c-op', type: 'bar' }], { h: 200 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+</body>
+</html>
