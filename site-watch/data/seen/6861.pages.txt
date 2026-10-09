@@ -160,6 +160,7 @@ https://www.keyence.co.jp/solutions/theme/?category=%E6%B1%8E%E7%94%A8%E3%82%BB%
 https://www.keyence.co.jp/solutions/theme/?category=%E6%B8%AC%E5%AE%9A%E9%96%A2%E9%80%A3
 https://www.keyence.co.jp/solutions/theme/?category=%E8%A8%88%E6%B8%AC%2F%E3%83%97%E3%83%AD%E3%82%BB%E3%82%B9%E7%AE%A1%E7%90%86
 https://www.keyence.co.jp/solutions/theme/?category=IoT%E9%96%A2%E9%80%A3
+https://www.keyence.co.jp/ss/general/embedded-software/
 https://www.keyence.co.jp/ss/general/siteguide/
 https://www.keyence.co.jp/ss/products/controls/wifi/
 https://www.keyence.co.jp/ss/products/microscope/bc-1000/002/2073_01.jsp

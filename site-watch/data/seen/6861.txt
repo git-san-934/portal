@@ -159,6 +159,7 @@ https://www.keyence.co.jp/download/download/confirmation/?ad_local=relatedproduc
 https://www.keyence.co.jp/download/download/confirmation/?ad_local=relatedproducts&dlAssetId=AS_120134&dlAssetId=AS_120389&wl=1
 https://www.keyence.co.jp/download/download/confirmation/?ad_local=relatedproducts&dlAssetId=AS_139320&wl=1
 https://www.keyence.co.jp/download/download/confirmation/?ad_local=ss_top_mv&dlAssetId=AS_136754&dlSeriesId=WS_157151&wl=1
+https://www.keyence.co.jp/download/download/confirmation/?ad_local=ss_top_mv&dlAssetId=AS_167032&wl=1
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_100007
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_100279
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_100301
@@ -5276,6 +5277,7 @@ https://www.keyence.co.jp/pdf/SmelterList2024.pdf
 https://www.keyence.co.jp/pdf/SummaryOfConsolidatedFinancialResultsForTheYearEndedMarch_20_2026(JP_GAAP).pdf
 https://www.keyence.co.jp/pdf/sustainability/Slavery&HumanTraffickingStatement_FY25_en.pdf
 https://www.keyence.co.jp/pdf/sustainability/Slavery&HumanTraffickingStatement_FY25_ja.pdf
+https://www.keyence.co.jp/pdf/sustainability/SmelterList2024.pdf
 https://www.keyence.co.jp/pdf/sustainability/sustainability_info_2021_en.pdf
 https://www.keyence.co.jp/pdf/sustainability/sustainability_info_2021_ja.pdf
 https://www.keyence.co.jp/pdf/sustainability/sustainability_info_2022_en.pdf
@@ -26012,6 +26014,7 @@ https://www.keyence.co.jp/ss/general/embedded-software/interrupt-concurrency/
 https://www.keyence.co.jp/ss/general/embedded-software/interrupt-concurrency/interrupt-latency-jitter-measurement.jsp
 https://www.keyence.co.jp/ss/general/embedded-software/interrupt-concurrency/interrupt-priority-nesting.jsp
 https://www.keyence.co.jp/ss/general/embedded-software/interrupt-concurrency/interrupt-vector-table-mechanism.jsp
+https://www.keyence.co.jp/ss/general/embedded-software/lp/contact.jsp
 https://www.keyence.co.jp/ss/general/embedded-software/peripheral-drivers/
 https://www.keyence.co.jp/ss/general/embedded-software/peripheral-drivers/device-driver-development-guide.jsp
 https://www.keyence.co.jp/ss/general/embedded-software/peripheral-drivers/embedded-software-noise-reduction.jsp
@@ -30340,6 +30343,8 @@ https://www.keyence.co.jp/support/user/static/sk/video/
 https://www.keyence.co.jp/support/user/vision/
 https://www.keyence.co.jp/support/user/vision/2d_support.jsp
 https://www.keyence.co.jp/support/user/vision/3d_support.jsp
+https://www.keyence.co.jp/support/user/vision/faq/
+https://www.keyence.co.jp/support/user/vision/faq/answer.jsp
 https://www.keyence.co.jp/support/user/vision/iv/
 https://www.keyence.co.jp/support/user/vision/iv/contact/
 https://www.keyence.co.jp/support/user/vision/iv/guide/
