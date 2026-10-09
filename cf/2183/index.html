@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>リニカル 投資分析</title>
+  <meta name="description" content="リニカル（2183）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>リニカル（2183）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>新薬の臨床試験を受託する会社（CRO）です</b>。製薬会社から臨床試験の運営を受託しています。日本・米国・欧州・韓国・台湾・中国で事業をしています。</li>
+      <li><b>2年続けて営業赤字</b>。売上は125億円（2023年3月期）から87億円に減りました。営業損益は2025年3月期に6億円、2026年3月期に21億円の赤字でした。</li>
+      <li><b>2026年3月期は純損益が33億円の赤字</b>。欧州事業ののれんと日本事業の固定資産を減損し、繰延税金資産も取り崩しました。純資産は73億円から40億円に減りました。</li>
+      <li><b>設備投資はとても小さい</b>。中身はオフィスのリース資産などです。配当は年3〜4億円です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年3月期は、米国・欧州で大型案件が終わり、新しく獲得した大型案件の開始も遅れて、大きく減収になりました。台湾・中国は営業黒字で、日本と韓国は営業赤字が縮みました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2026年3月期は営業CFもマイナス（16億円）になりました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（0.7億円）</div>スペインの車両とオフィス、米国のオフィスのリース資産</li>
+      <li><div class="y">2024年3月期（1.1億円）</div>ポーランド・米国のオフィスのリース資産、マドリードの事務所の改装</li>
+      <li><div class="y">2025年3月期（1.3億円）</div>フランスのオフィスのリース資産など</li>
+      <li><div class="y">2026年3月期（0.6億円）</div>東京オフィスの改装、ドイツのオフィスのリース資産</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。「設備の新設計画」は4年続けて「ありません」です。</p>
+  </section>
+  <section>
+    <h2>④ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年3〜4億円です。2026年3月期は営業CFがマイナスでも配当を続けました。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑤ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>大型案件の開始</b>：遅れている米国・欧州の大型案件が始まり、売上が戻るかに注目します。</li>
+      <li><b>日本のドラッグ・ロス</b>：海外の新薬が日本で開発されない問題に対し、日本での受託を増やせるかを確認します。</li>
+      <li><b>財務の体力</b>：純資産が減っており、黒字化が注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社リニカル 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+window.CF.extra = { debt: [42, 42, 37, 31, 26, 21, 20] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

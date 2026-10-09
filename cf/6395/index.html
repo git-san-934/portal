@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>タダノ 投資分析</title>
+  <meta name="description" content="タダノ（6395）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>タダノ（6395）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2025年12月期の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>クレーンの会社です</b>。香川県の会社で、建設用クレーン、トラックに積むクレーン（車両搭載型）、高所作業車をつくっています。ドイツなど海外にも工場があり、海外の売上が64%です。</li>
+      <li><b>2025年12月期は2つの買収で売上が20%増</b>。米国のManitexと、IHI運搬機械の運搬システム事業（現タダノインフラソリューションズ）を買い、売上は3,495億円になりました。米国の関税や買収の費用で、営業利益は238億円から186億円に減りました。</li>
+      <li><b>設備投資は年26〜119億円</b>。日本とドイツの工場の生産設備の維持更新が中心です。香川県丸亀市に新しい工場（付帯工事と設備で20億円）を建てています。</li>
+      <li><b>借入を増加</b>。借入金・社債などは596億円から1,404億円に増えました。配当は2020年3月期の34億円から5億円まで減らし、39億円に戻しました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年12月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2025年12月期は、固定資産の売却益などで純利益が183億円に増えました。ドイツのタダノ・デマーグの工場を再編し、ツヴァイブリュッケン工場の一部を売りました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年によって大きく動き、2020年3月期・2022年12月期・2025年12月期はマイナスでした。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年74〜108億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費の0.5〜2.6倍です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2022年12月期（74億円）</div>欧州（30億円）、日本（26億円）、米州（10億円）。東京事務所を売却</li>
+      <li><div class="y">2023年12月期（43億円）</div>日本（21億円）、欧州（16億円）</li>
+      <li><div class="y">2024年12月期（100億円）</div>日本（67億円）、欧州（24億円）</li>
+      <li><div class="y">2025年12月期（127億円）</div>日本（79億円）、欧州（37億円）、米州（7億円）</li>
+      <li><div class="y">2026年の計画</div>丸亀工場の新設に伴う付帯工事と設備（20億円）、志度工場などの生産設備の維持更新（13億円）など。資金は自己資金</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額（無形固定資産を含む）と、「設備の新設、除却等の計画」の投資予定金額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は2020年3月期の34億円から、2022年12月期に5億円まで減りました。その後は39億円に戻し、2025年12月期は自社株買い（16億円）もしました。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。2022年に決算期を3月から12月に変えました。「22/12」は、当社と3月決算の子会社は2022年4月〜12月の9か月間です。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>買収の効果</b>：ManitexとTISの買収が、利益の伸びにつながるかに注目します。</li>
+      <li><b>米国の関税</b>：利益を押し下げた関税の影響を確認します。</li>
+      <li><b>営業CFの安定</b>：マイナスの年が多い営業CFを、安定してプラスにできるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社タダノ 有価証券報告書（2021年3月期〜2025年12月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [596, 912, 944, 937, 871, 1182, 1404] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

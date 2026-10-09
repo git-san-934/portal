@@ -1,0 +1,90 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>カナミックネットワーク 投資分析</title>
+  <meta name="description" content="カナミックネットワーク（3939）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>カナミックネットワーク（3939）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年9月期〜2025年9月期の6年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>医療・介護の情報共有クラウドの会社です</b>。医療と介護の事業者が利用者の情報を共有する「カナミッククラウドサービス」を提供しています。自治体の子育て支援システムや、健康寿命を延ばすための店舗のサービスもしています。</li>
+      <li><b>売上は5年で2.9倍</b>。売上は19億円から55億円に、営業利益は7億円から16億円に増えました。営業利益率は約3割です。</li>
+      <li><b>設備投資は小さく、年1〜6億円</b>。中身はクラウドサービスのソフトウェアの機能強化と、健康寿命延伸サービスの新しい店舗です。</li>
+      <li><b>2025年9月期はシンガポールの会社を買収</b>。ITコンサルティングのTHE WORLD MANAGEMENTを子会社にしました（2024年11月）。配当は年3億円です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年9月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">介護保険制度の改正に合わせてシステムを改修し、利用者の負担を減らすことで利便性を高めています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年6〜15億円で、本業のフリーCFは毎年プラスです。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 設備投資と減価償却費</h2>
+    <p class="sub">設備投資は減価償却費の1〜2倍です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2022年9月期（3.4億円）</div>クラウドサービスのソフトウェアの機能強化（2.6億円）など</li>
+      <li><div class="y">2023年9月期（6.5億円）</div>健康寿命延伸サービスの新しい店舗（3.5億円）、ソフトウェアの機能強化（2.3億円）</li>
+      <li><div class="y">2024年9月期（3.5億円）</div>ソフトウェアの機能強化（1.8億円）、新しい店舗（1.1億円）</li>
+      <li><div class="y">2025年9月期（4.5億円）</div>ソフトウェアの機能強化（2.0億円）、新しい店舗（1.8億円）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。「設備の新設計画」は4年続けて「ありません」です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年1億円以下から3億円に増えました。2021年9月期は自社株買い（4億円）をしました。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は9月期決算です（例：「25/9」は2024年10月〜2025年9月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>介護の制度</b>：介護保険制度の改正と、介護DXの流れが追い風になるかに注目します。</li>
+      <li><b>海外展開</b>：シンガポールの会社の買収を足がかりにした海外の成長を確認します。</li>
+      <li><b>新しい事業</b>：健康寿命延伸サービスの店舗が利益を出せるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社カナミックネットワーク 有価証券報告書（2021年9月期〜2025年9月期）の連結財務諸表とXBRLデータ。2020年9月期は、2021年9月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>サイボウズ 投資分析</title>
+  <meta name="description" content="サイボウズ（4776）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>サイボウズ（4776）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年12月期〜2025年12月期の6年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>グループウェア「サイボウズOffice」「kintone」の会社です</b>。会社の情報共有や業務アプリをクラウドで提供しています。クラウドの契約社数は7万社を超えました。</li>
+      <li><b>売上は5年で2.4倍、2025年12月期は営業利益が2倍に</b>。売上は157億円から374億円に増えました。価格体系の改定もあり、営業利益は49億円から101億円に増えました。</li>
+      <li><b>設備投資はクラウドのサーバー</b>。設備投資は年6〜32億円で、そのほとんどがクラウドサービス用のサーバーの増設です。有報の「設備の新設計画」は4年続けて「ありません」です。</li>
+      <li><b>2023年12月期から借入金はゼロ</b>。配当は5億円から14億円に増えました。2024年12月期は自社株買い（29億円）もしました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年12月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">営業利益は2022年12月期に6億円まで減りましたが、その後クラウドの売上が積み上がり、大きく伸びました。2028年12月期に売上509億円を目標にしています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは2025年12月期に107億円になりました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年3〜15億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費の0.7〜2倍です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2022年12月期（27.3億円）</div>クラウドサービス用のサーバーの増設（25.7億円）、東京オフィスの改装（1.5億円）</li>
+      <li><div class="y">2023年12月期（24.0億円）</div>サーバーの増設（23.4億円）</li>
+      <li><div class="y">2024年12月期（26.2億円）</div>サーバーの増設（25.6億円）</li>
+      <li><div class="y">2025年12月期（28.4億円）</div>サーバーの増設（28.2億円）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は2025年12月期に14億円へ倍増しました。2024年12月期は自社株買い（29億円）もしました。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は12月期決算です（例：「25/12」は2025年1月〜12月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>クラウドの成長</b>：契約社数とユーザー数が伸び続けるかに注目します。</li>
+      <li><b>売上509億円の目標</b>：2028年12月期の目標に向けた成長のペースを確認します。</li>
+      <li><b>AIとの競争</b>：AIを使った業務ツールが増えるなかで、選ばれ続けるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET サイボウズ株式会社 有価証券報告書（2021年12月期〜2025年12月期）の連結財務諸表とXBRLデータ。2020年12月期は、2021年12月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>イーディーピー 投資分析</title>
+  <meta name="description" content="イーディーピー（7794）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>イーディーピー（7794）は何に投資しているか</h1>
+    <p>キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2021年3月期〜2026年3月期の6年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>人工ダイヤモンドの単結晶の会社です</b>。大阪府茨木市の工場で、ダイヤモンド単結晶を製造・販売・開発しています。</li>
+      <li><b>売上が急減し、赤字に</b>。売上は11億円から27億円（2023年3月期）に増えましたが、2026年3月期は5億円に減りました。営業損益は2024年3月期から赤字で、2026年3月期は14億円の赤字でした。</li>
+      <li><b>2023年3月期に大きく投資</b>。製造設備（成長装置など）と研究開発の装置に19億円を投資しました。2025年3月期以降は年1億円前後です。</li>
+      <li><b>2年続けて減損</b>。2025・2026年3月期に減損（13億円、11億円）を計上し、純資産は49億円から17億円に減りました。配当はしていません。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年3月期は、ウエハの平坦度の測定装置やダイヤモンドの研磨機、成長装置の関連設備に投資しました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは2024年3月期からマイナスです。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年1〜3億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（19.1億円）</div>ダイヤモンド単結晶の製造設備、研究開発の装置。研磨室を島工場に移転</li>
+      <li><div class="y">2024年3月期（7.8億円）</div>同上</li>
+      <li><div class="y">2025年3月期（0.6億円）</div>同上</li>
+      <li><div class="y">2026年3月期（1.4億円）</div>ウエハの平坦度の測定装置、研磨機、成長装置の関連設備</li>
+      <li><div class="y">次の計画</div>島工場のウォータージェットレーザー（1.2億円）、原石の成長装置（1.2億円）、大型の単結晶の成長装置（0.6億円）など。資金は自己資金</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額と、「設備の新設、除却等の計画」の投資予定金額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当はしていません。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>売上の回復</b>：急減した売上が戻るかに注目します。</li>
+      <li><b>大型ウエハの開発</b>：半導体などに使う大型のダイヤモンドウエハの開発の進み具合を確認します。</li>
+      <li><b>手元資金</b>：赤字が続くなかで、資金が足りるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社イーディーピー 有価証券報告書（2022年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2021年3月期は、2022年3月期の報告書に載っている前期の数字です。2024年3月期までは単体の決算、2025年3月期からは連結の決算です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+window.CF.div = [0, 0, 0, 0, 0, 0];
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

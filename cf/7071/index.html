@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>アンビスホールディングス 投資分析</title>
+  <meta name="description" content="アンビスホールディングス（7071）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>アンビスホールディングス（7071）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年9月期〜2025年9月期の6年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>ホスピス型の住宅「医心館」の会社です</b>。末期がんや難病の人が看護と介護を受けながら暮らせる住まいを、全国で開いています。</li>
+      <li><b>売上は5年で5.3倍</b>。売上は92億円から492億円に増えました。営業利益は106億円（2024年9月期）まで増えましたが、2025年9月期は62億円に減りました。</li>
+      <li><b>設備投資は医心館の建物と土地</b>。毎年16〜29か所の医心館を開き、設備投資は年49〜160億円です。2024年9月期は28か所の開設で160億円でした。</li>
+      <li><b>投資の資金は借入で</b>。借入金などは62億円から317億円に増えました。2020・2021年9月期には株式の発行（115億円）でも資金を集めています。</li>
+      <li><b>還元は小さめ</b>。配当は年1〜4億円です。2024・2025年9月期は自社株買い（5億円、4億円）もしました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年9月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2025年9月期は、新しく29か所の医心館を開き、1か所を閉鎖、1か所を譲渡しました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。毎年、設備投資が営業CFを上回り、その分を借入で補っています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 設備投資と減価償却費</h2>
+    <p class="sub">設備投資は減価償却費の3.7〜16倍で、施設を急速に増やしています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2022年9月期（61億円）</div>新しく16か所の医心館を開設（建物と土地）</li>
+      <li><div class="y">2023年9月期（81億円）</div>新しく19か所を開設</li>
+      <li><div class="y">2024年9月期（159億円）</div>新しく28か所を開設</li>
+      <li><div class="y">2025年9月期（120億円）</div>新しく29か所を開設</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額（リース資産を除く）です。一部の医心館はリースで建てています。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年1〜4億円と小さく、稼いだお金は医心館の開設に回しています。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は9月期決算です（例：「25/9」は2024年10月〜2025年9月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>利益の回復</b>：2025年9月期に減った営業利益が戻るかに注目します。</li>
+      <li><b>開設のペース</b>：借入を増やしながら年30か所近く開設するペースが続くかを確認します。</li>
+      <li><b>介護・医療の制度</b>：訪問看護などの報酬の改定が、利益を大きく左右します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社アンビスホールディングス 有価証券報告書（2021年9月期〜2025年9月期）の連結財務諸表とXBRLデータ。2020年9月期は、2021年9月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [62, 90, 127, 174, 244, 317] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

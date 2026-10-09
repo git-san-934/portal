@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>リオン 投資分析</title>
+  <meta name="description" content="リオン（6823）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>リオン（6823）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>補聴器と「音・振動・微粒子」を測る機器の会社です</b>。補聴器「リオネット」や聴力検査の機器（医療機器）、騒音計・振動計・地震計（環境機器）、半導体工場で使う液中微粒子計（微粒子計測器）をつくっています。</li>
+      <li><b>2026年3月期は過去最高益</b>。売上は215億円から285億円に、営業利益は25億円から44億円に増えました。2026年3月期は全ての事業で販売が好調でした。</li>
+      <li><b>設備投資は年6〜27億円</b>。2023・2024年3月期は本社（東京都国分寺市）の厚生棟（計画26億円）を建て、2025年3月期は微粒子計の生産用のクリーンルームを整えました。</li>
+      <li><b>借入金はゼロ</b>。配当は年5〜9億円で、自社株買いはしていません。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年3月期は、生成AI向けのデータセンターなどで半導体工場の新設・増強が続き、液中微粒子計の販売が好調でした。ただ、設備の増強や開発費の増加で、微粒子計測器事業は減益でした。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年18〜42億円です。厚生棟を建てた2023年3月期は、本業のフリーCFが少しマイナスでした。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は9億円から25億円に増えました。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費の0.5〜3.4倍です。厚生棟を建てた2023・2024年3月期が多めでした。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（21億円）</div>厚生棟の新設（8億円）、新製品のソフトウェア開発（6億円）。医療機器（10億円）、微粒子計測器（5億円）、環境機器（4億円）</li>
+      <li><div class="y">2024年3月期（28億円）</div>厚生棟の新設（15億円）、ソフトウェア開発（3億円）</li>
+      <li><div class="y">2025年3月期（16億円）</div>微粒子計の生産用クリーンルームなど（5億円）、ソフトウェア開発（2億円）</li>
+      <li><div class="y">2026年3月期（6億円）</div>通常の設備の更新</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額（無形固定資産を含む）です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年5〜9億円です。自社株買いはしていません。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>半導体向けの微粒子計</b>：半導体工場の投資が続くか、増強した設備で利益を伸ばせるかに注目します。</li>
+      <li><b>補聴器</b>：新製品のリオネットプラスで販売を伸ばせるかを確認します。</li>
+      <li><b>手元資金の使い道</b>：借入がなく現金が増えるなかで、還元を増やすかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET リオン株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

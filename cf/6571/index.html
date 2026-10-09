@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>キュービーネットホールディングス 投資分析</title>
+  <meta name="description" content="キュービーネットホールディングス（6571）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>キュービーネットホールディングス（6571）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年6月期〜2026年6月期の7年間の推移をまとめました。国際会計基準（IFRS）で、単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>ヘアカット専門店「QB HOUSE」の会社です</b>。短時間・低価格のカットの店を国内と、シンガポール・香港・台湾・米国・カナダ・ベトナム・マレーシアで運営しています。国内が売上の8割です。</li>
+      <li><b>売上は過去最高、利益は減少</b>。売上は191億円から272億円に増えました。営業利益は21億円（2023・2024年6月期）まで戻りましたが、2026年6月期は15億円でした。</li>
+      <li><b>設備投資は年4〜15億円</b>。中身は出店と改装の店舗設備です。店舗はリースも使い、リース料の支払いは年26〜34億円あります。</li>
+      <li><b>のれんが大きい</b>。過去の買収によるのれんが154億円あり、資本（154億円）と同じくらいです。借入金などは145億円から81億円に減りました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年6月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年6月期は、国内で割引制度「ツキイチキャンペーン」を全年齢に広げ、来店客数が増えました。人への投資やDX投資で、営業利益は11.4%減りました。海外は台湾の出店が好調でしたが、香港・米国は値上げ後の客数の回復に時間がかかっています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年27〜51億円で、本業のフリーCFは毎年プラスです。ただ、営業CFにはリース料の支払いが含まれていません（財務CFに入っています）。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 設備投資と減価償却費</h2>
+    <p class="sub">減価償却費（年32〜41億円）には店舗のリースの償却が含まれるため、設備投資よりずっと大きくなっています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年6月期（4.4億円）</div>国内14店、海外4店を出店。出店と改装の店舗設備</li>
+      <li><div class="y">2024年6月期（8.9億円）</div>国内9店、海外11店を出店</li>
+      <li><div class="y">2025年6月期（11.9億円）</div>国内（8.7億円）、海外（3.2億円）</li>
+      <li><div class="y">2026年6月期（15.4億円）</div>国内（12.1億円）、海外（3.3億円）</li>
+      <li><div class="y">次の計画</div>国内の直営店の新設33店・改装31店（10億円）、本部のIT設備（4億円）など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額（有形固定資産と無形資産）と、「設備の新設、除却等の計画」の投資予定金額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は2021・2022年6月期に止め、その後は年1〜5億円に戻しました。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は6月期決算です（例：「26/6」は2025年7月〜2026年6月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>人件費と値上げ</b>：理容師の確保と人件費の上昇を、料金でまかなえるかに注目します。</li>
+      <li><b>海外の出店</b>：台湾などの出店と、香港・米国の客数の回復を確認します。</li>
+      <li><b>中期経営計画「NEXUS」</b>：人財とDXへの投資が利益の伸びにつながるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET キュービーネットホールディングス株式会社 有価証券報告書（2021年6月期〜2026年6月期）の連結財務諸表とXBRLデータ。2020年6月期は、2021年6月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+window.CF.extra = { debt: [145, 128, 101, 94, 82, 88, 81] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

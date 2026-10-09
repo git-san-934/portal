@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SHOEI 投資分析</title>
+  <meta name="description" content="SHOEI（7839）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>SHOEI（7839）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年9月期〜2025年9月期の6年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>高級バイク用ヘルメットの会社です</b>。茨城と岩手の工場でつくり、欧州・北米・アジア・日本で売っています。</li>
+      <li><b>営業利益率は約3割</b>。売上は195億円から358億円（2024年9月期）に、営業利益は47億円から103億円に増えました。2025年9月期は販売数量が11.9%減り、売上324億円、営業利益89億円でした。</li>
+      <li><b>設備投資は茨城と岩手の工場</b>。設備投資は年12〜32億円で、金型・機械・工場の建物です。2024年9月期は茨城工場の新工場用地を取得しました。</li>
+      <li><b>借入金はゼロ、配当は多め</b>。配当は15億円から37億円に増えました。自社株買いもしています（2024年9月期は20億円）。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年9月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2025年9月期は、欧州で前の期に出した主力の新商品（NEOTEC3、GT-Air3）の反動で販売が12.4%減りました。日本は流通在庫の調整で25.4%減、北米は米国の関税の影響で3.1%減でした。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年45〜98億円で、本業のフリーCFは毎年プラスです。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年2億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費の0.9〜1.9倍です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2022年9月期（17.6億円）</div>茨城工場（建物1.4億円、機械2.9億円、金型4.4億円）、岩手工場（建物1.9億円、機械2.5億円）</li>
+      <li><div class="y">2023年9月期（22.3億円）</div>茨城工場（建物2.1億円、機械4.4億円、金型3.8億円）、岩手工場（建物2.0億円、機械4.0億円、金型2.0億円）</li>
+      <li><div class="y">2024年9月期（34.2億円）</div>茨城工場の新工場用地と新倉庫用の土地の取得、工場の増築、機器の購入</li>
+      <li><div class="y">2025年9月期（13.9億円）</div>茨城工場の新倉庫、岩手工場の新事務所、機器の購入</li>
+      <li><div class="y">進行中の計画</div>建物の新築・増改築（9.3億円、2026年4月完成予定）、金型など（8.3億円）。資金は自己資金</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額（完成前の投資を含む）と、「設備の新設、除却等の計画」の投資予定額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は15億円から37億円に増え、本業のフリーCFの4〜7割を配当に回しています。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は9月期決算です（例：「25/9」は2024年10月〜2025年9月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>欧州の販売</b>：新商品の反動と景気の低迷から、販売が戻るかに注目します。</li>
+      <li><b>米国の関税</b>：北米の販売への関税の影響を確認します。</li>
+      <li><b>生産能力の増強</b>：茨城の新工場用地の活用と、生産の増強の計画が注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社SHOEI 有価証券報告書（2021年9月期〜2025年9月期）の連結財務諸表とXBRLデータ。2020年9月期は、2021年9月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

@@ -1,0 +1,94 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ハンズマン 投資分析</title>
+  <meta name="description" content="ハンズマン（7636）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ハンズマン（7636）は何に投資しているか</h1>
+    <p>キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年6月期〜2026年6月期の7年間の推移をまとめました。子会社がないため単体の決算です。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>大型ホームセンターの会社です</b>。品揃えの多い大型店を運営し、DIYアドバイザーの資格を持つ店員による相談販売に力を入れています。</li>
+      <li><b>売上は横ばい、利益は減少</b>。売上は年309〜353億円です。営業利益は26億円（2021年6月期）から9億円（2024年6月期）に減り、2026年6月期は13億円でした。</li>
+      <li><b>大阪の松原店に64億円</b>。大阪府松原市に大型店（売場面積18,412㎡）を出し、2023年10月に開業しました。2023年6月期の設備投資は44億円で、借入（30億円）もしました。</li>
+      <li><b>配当は年4億円で安定</b>。自社株買いも年によってしています。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年6月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年6月期は、仕入れ値が上がる一方で値上げを抑えたため、売上総利益率が0.3ポイント下がりました。減価償却費や水道光熱費が減り、営業利益は3.1%増えました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年4〜25億円です。松原店を建てた2023・2024年6月期は、本業のフリーCFがマイナスでした。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 設備投資と減価償却費</h2>
+    <p class="sub">松原店を建てた2023年6月期は、設備投資が減価償却費の約9倍でした。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年6月期（58億円）</div>松原店の出店に向けた設備投資、既存店の改修、システム投資</li>
+      <li><div class="y">2024年6月期（8億円）</div>松原店（2023年10月開業）、既存店の改修など</li>
+      <li><div class="y">2025年6月期（4億円）</div>店舗の改修、太陽光発電設備、システム投資</li>
+      <li><div class="y">2026年6月期（7億円）</div>店舗の改修、太陽光発電設備</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。松原店の投資予定額は総額64億円でした。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は毎年4億円です。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は6月期決算です（例：「26/6」は2025年7月〜2026年6月）。子会社がないため単体の数字です。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>松原店の収益</b>：初めての大阪の大型店が利益に貢献するかに注目します。</li>
+      <li><b>仕入れ値と値上げ</b>：仕入れ値の上昇を価格に反映できるかを確認します。</li>
+      <li><b>次の出店</b>：新しい出店の計画は今はなく、次の成長の手が注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社ハンズマン 有価証券報告書（2021年6月期〜2026年6月期）の連結財務諸表とXBRLデータ。2020年6月期は、2021年6月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+window.CF.extra = { debt: [8, 4, 2, 30, 39, 30, 21] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

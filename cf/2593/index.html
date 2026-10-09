@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>伊藤園 投資分析</title>
+  <meta name="description" content="伊藤園（2593）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>伊藤園（2593）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年4月期〜2026年4月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>「お〜いお茶」の会社です</b>。お茶の葉（リーフ）と飲料が売上の9割で、ほかにタリーズコーヒーの店舗（飲食関連）があります。</li>
+      <li><b>海外で日本茶が伸びる</b>。売上は4,008億円（2022年4月期）から4,979億円に増えました。抹茶を含む日本茶の需要が、米国や東南アジアで広がっています。</li>
+      <li><b>設備投資の中心は自動販売機</b>。設備投資は年70〜123億円で、中身は自動販売機とタリーズの新しい店舗です。</li>
+      <li><b>2026年4月期は自動販売機で減損</b>。販売数量の減少で自動販売機事業の収益性が下がり、減損（149億円）を計上しました。純利益は35億円に減りました。</li>
+      <li><b>配当は安定、2025年4月期は自社株買い</b>。配当は年52〜57億円です。2025年4月期は自社株買い（149億円）もしました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年4月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年4月期は、売上は5.3%増えましたが、原材料費などのコストの上昇で営業利益は5.6%減りました。大谷翔平選手を起用したマーケティングで「お〜いお茶」の海外展開を進めています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは247億円から113億円に減りました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年17〜24億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費の0.6〜1.4倍です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年4月期（73億円）</div>リーフ・ドリンク（57億円、自動販売機）、飲食（14億円、タリーズの新店舗）</li>
+      <li><div class="y">2024年4月期（103億円）</div>リーフ・ドリンク（81億円）、飲食（20億円）</li>
+      <li><div class="y">2025年4月期（125億円）</div>リーフ・ドリンク（99億円）、飲食（25億円）</li>
+      <li><div class="y">2026年4月期（107億円）</div>リーフ・ドリンク（83億円）、飲食（22億円）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額（使用権資産とリース資産を除く）です。2025年4月期末には、自動販売機（34億円）の計画がありました。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年52〜57億円で安定しています。2025・2026年4月期は、還元の合計が本業のフリーCFを上回りました。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は4月期決算です（例：「26/4」は2025年5月〜2026年4月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>海外の日本茶需要</b>：米国やアジアでの「お〜いお茶」と抹茶の伸びに注目します。</li>
+      <li><b>コストと値上げ</b>：原材料費・物流費の上昇を、価格改定で吸収できるかを確認します。</li>
+      <li><b>自動販売機事業</b>：減損した自動販売機の収益性を立て直せるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社伊藤園 有価証券報告書（2021年4月期〜2026年4月期）の連結財務諸表とXBRLデータ。2020年4月期は、2021年4月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [557, 909, 718, 710, 717, 692, 620] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>
