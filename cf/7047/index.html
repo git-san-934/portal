@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ポート 投資分析</title>
+  <meta name="description" content="ポート（7047）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ポート（7047）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2021年3月期〜2026年3月期の6年間の推移をまとめました。途中で日本基準から国際会計基準（IFRS）に変わっています。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>投資の中心は、ソフトウェア（メディア）と会社の買収・出資です</b>。電気・ガスの切り替えや就職などで、利用者と企業をつなぐ「成約支援」の会社です。無形資産（ソフトウェアなど）の取得は年2〜24億円に増え、毎年のように会社を買ったり出資したりしています。</li>
+      <li><b>買収・出資を重ねて事業を広げてきました</b>。エネルギー比較のINE（2022年）、Five Line（2023年）、就職口コミの「みん就」（2024年）、HRteam（2025年11月）などを子会社にし、ほかにも多くの会社と資本業務提携をしています。</li>
+      <li><b>新しく「系統用蓄電所」の事業に投資します</b>。電力網に蓄電池をつなぐ事業で、2026年3月期に始めた検証が初年度から黒字になったため、本格参入を決めました。長野県佐久市など7か所に28億円を投資する計画で、お金は借入でまかないます（2026年6月〜2027年12月）。</li>
+      <li><b>売上は5年で約6倍になりました</b>。47億円から291億円に増え、営業利益は41億円です。</li>
+      <li><b>投資のお金は借入と増資でまかなっています</b>。借入金などは113億円に増え、2023年10月には公募増資もしました。配当はほとんどありません。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上と利益は毎年増えています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。投資CF（買収・ソフトウェア・出資）が営業CFを上回る年が多く、財務CF（借入・増資）で補っています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 設備投資と減価償却費</h2>
+    <p class="sub">2024年3月期から、設備投資（ソフトウェアを含む）が減価償却費を上回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <h3>2026年3月期の投資CFの主な内訳（会社の説明より）</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>項目</th><th>金額</th></tr></thead>
+      <tbody>
+        <tr><td>無形資産（ソフトウェアなど）の取得</td><td>△23.6</td></tr>
+        <tr><td>子会社の取得（HRteamなど）</td><td>△12.9</td></tr>
+        <tr><td>投資有価証券の取得</td><td>△11.8</td></tr>
+        <tr><td>投資有価証券の売却</td><td>15.0</td></tr>
+        <tr class="sum"><td>投資CF合計</td><td>△45.3</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">2026年3月期の設備投資（有形・無形）は19億円で、系統用蓄電設備やオフィスの拡張が中心でした。それまでの年は、有報に「重要な設備投資はありません」と書かれていました。</p>
+    <h3>買収・出資の流れ</h3>
+    <ul class="timeline">
+      <li><div class="y">2021年</div>チェンジと資本業務提携</li>
+      <li><div class="y">2022年1月</div>INE（エネルギー比較サイト「エネチョイス」など）を子会社に</li>
+      <li><div class="y">2023年</div>Five Lineを子会社に。公募増資</li>
+      <li><div class="y">2024年</div>Matcher、みん就を子会社に。ライフアップ、エンクスと資本業務提携</li>
+      <li><div class="y">2025年</div>Diary、yuthと資本業務提携。HRteamを子会社に。系統用蓄電所事業の検証を開始</li>
+      <li><div class="y">2026年4月</div>系統用蓄電所事業への本格参入を決定（7か所、28億円）</li>
+    </ul>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当はほとんどなく、2026年3月期に自社株買い（7億円）を行いました。稼いだお金は、買収とソフトウェア、新事業への投資に回しています。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>系統用蓄電所</b>：本業とは違う、設備にお金がかかる事業です。28億円の投資が計画どおり利益を生むかを確認します。</li>
+      <li><b>買収した会社の成果</b>：毎年の買収・出資が、売上と利益の伸びにつながっているかに注目します。</li>
+      <li><b>借入金</b>：蓄電所の投資は借入でまかなうため、借入金がさらに増えます。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ポート株式会社 有価証券報告書（2022年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2021年3月期は、2022年3月期の報告書に載っている前期の数字です。途中で会計基準が変わったため、その前後で数字の定義が少し変わります。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [50, 49, 47, 53, 71, 113] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+</body>
+</html>
