@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-09T12:40+09:00",
+ "generated_at": "2026-10-09T16:22+09:00",
  "report_date": "2026-10-09",
  "days": [
   {
@@ -85,6 +85,27 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "0.4%"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261009a.pdf",
+     "name": "「適格担保の担保価格」の一部改正等について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261009a.pdf",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/recruit/rec261009a.htm",
+     "name": "日本銀行に関する学生向けの説明会、職員との座談会、オープン・カンパニーへの参加募集について",
+     "url": "https://www.boj.or.jp/about/recruit/rec261009a.htm",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/paym/market/market2610.htm",
+     "name": "わが国短期金融市場の動向",
+     "url": "https://www.boj.or.jp/paym/market/market2610.htm",
+     "time": "13:00"
     },
     {
      "kind": "news",
@@ -3221,10 +3242,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-09T12:40+09:00",
+  "checked_at": "2026-10-09T16:22+09:00",
   "counts": {
-   "new": 15,
-   "unchanged": 87,
+   "new": 0,
+   "unchanged": 102,
    "error": 0,
    "stale": 0
   },
