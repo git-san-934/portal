@@ -82,13 +82,13 @@
     ['6723', 'ルネサスエレクトロニクス', '工場より買収。Dialog・Altiumなどで、のれんは2兆円超', '6723/'],
     ['6315', 'TOWA', '封止装置の会社。設備投資は小さく、工場と工作機械が中心', '6315/'],
     ['8697', '日本取引所グループ', '投資は取引・清算システムだけ。稼ぎの約8割を還元', '8697/'],
-    ['593A', 'ティアフォー', ''],
+    ['593A', 'ティアフォー', 'まだ有価証券報告書が提出されていないため、分析できません'],
     ['135A', 'VRAIN Solution', '製造業向けAI。設備はごくわずかで、人と開発に投資', '135A/'],
     ['6594', 'ニデック', '不適切会計と6,321億円の減損で大赤字。投資の立て直しへ', '6594/'],
   ];
   const row = ([c, n, d, h]) => h
     ? `<a class="item" href="${h}"><span class="code">${c}</span><span class="nm"><b>${n}</b><span>${d}</span></span><span class="st">開く</span></a>`
-    : `<div class="item wait"><span class="code">${c}</span><span class="nm"><b>${n}</b><span>準備中</span></span><span class="st">準備中</span></div>`;
+    : `<div class="item wait"><span class="code">${c}</span><span class="nm"><b>${n}</b><span>${d || '準備中'}</span></span><span class="st">${d ? '対象外' : '準備中'}</span></div>`;
   document.getElementById('list').innerHTML = L.map(row).join('');
   document.getElementById('list2').innerHTML = K.map(row).join('');
 </script>
