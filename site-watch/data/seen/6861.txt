@@ -24501,6 +24501,7 @@ https://www.keyence.co.jp/req/madoguchi/kakaku/?ad_local=HPn&motive=HPn
 https://www.keyence.co.jp/req/madoguchi/soudan/?ad_local=HPn&motive=HPn
 https://www.keyence.co.jp/req/madoguchi/testki/?ad_local=HPn&motive=HPn
 https://www.keyence.co.jp/resources/3-reasons-switched-arm-cmm-to-wm-6000_267197.jsp
+https://www.keyence.co.jp/resources/3-reasons-switched-arm-cmm-to-wm_267197.jsp
 https://www.keyence.co.jp/resources/3-reasons-switched-calipers-height-gauges-to-handheld-cmm_254300.jsp
 https://www.keyence.co.jp/resources/3m_comprehensive_improvement_136406.jsp
 https://www.keyence.co.jp/resources/a-caliper-like-tool-that-can-do-3d-measurement_254299.jsp
@@ -24579,6 +24580,7 @@ https://www.keyence.co.jp/resources/why-gt2-is-chosen_189060.jsp
 https://www.keyence.co.jp/resources/why-we-changed-press-part-measurement_286056.jsp
 https://www.keyence.co.jp/resources/why-wide-area-cmm-keeps-being-chosen_267288.jsp
 https://www.keyence.co.jp/resources/why-wm-6000-series-is-chosen_267196.jsp
+https://www.keyence.co.jp/resources/why-wm-series-is-chosen_267196.jsp
 https://www.keyence.co.jp/resources/wide-area-cmm-application-case-studies_267231.jsp
 https://www.keyence.co.jp/resources/wm-series-case-studies-forming_267287.jsp
 https://www.keyence.co.jp/resources/wm-series-case-studies-sheet-metal_267246.jsp
