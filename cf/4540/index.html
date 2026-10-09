@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ツムラ 投資分析</title>
+  <meta name="description" content="ツムラ（4540）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ツムラ（4540）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>漢方薬の会社です</b>。医療用の漢方製剤で国内の大半を占めています。原料の生薬の多くを中国で調達・加工しています。</li>
+      <li><b>設備投資は6年で3倍以上の344億円に</b>。漢方の需要の増加に合わせ、茨城工場の製造棟（第4SD棟、268億円）、中国・天津の製造棟（135億円）、北海道夕張の生薬倉庫などを建てています。</li>
+      <li><b>売上と利益は2025年3月期に急増</b>。売上は1,508億円から1,811億円に、営業利益は200億円から401億円に増えました。2026年3月期は原価の上昇で352億円に減りました。</li>
+      <li><b>借入を増やして投資と買収</b>。2026年3月期は子会社の取得（148億円）もあり、借入（534億円）で資金を集めました。借入金などは1,352億円になりました。</li>
+      <li><b>配当を増加</b>。配当は年49億円から103億円に増え、2026年3月期は自社株買い（61億円）もしました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年3月期は売上が6.4%増えた一方、売上原価率が2.5ポイント上がり、営業利益率は18.3%に下がりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2024年3月期は営業CFが56億円に減りました。2026年3月期は在庫（生薬など）の増加で営業CFが247億円にとどまりました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年63〜85億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2023年3月期から、設備投資が減価償却費の1.5〜3倍になっています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（112億円）</div>生産能力の増強と安定供給体制の維持。中国・上海と天津の生産設備</li>
+      <li><div class="y">2024年3月期（184億円）</div>天津の生産設備（2期・3期）</li>
+      <li><div class="y">2025年3月期（287億円）</div>天津の3期製造棟、夕張の生薬倉庫（23億円）、茨城工場の第4SD棟（290億円の計画）</li>
+      <li><div class="y">2026年3月期（353億円）</div>茨城工場の第4SD棟、第3生薬棟（69億円）、天津の3期製造棟</li>
+      <li><div class="y">進行中の計画</div>茨城工場の第4SD棟（268億円、2027年10月完成予定）、第3生薬棟（69億円）、天津の3期製造棟（135億円、2026年7月完成予定）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額と、「設備の新設、除却等の計画」の投資予定金額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は2025年3月期から増やし、2026年3月期は103億円でした。2026年3月期は、還元の合計が本業のフリーCFを上回り、借入で補いました。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>生薬の調達</b>：原料の多くは中国産です。値段の上昇や調達の安定性に注目します。</li>
+      <li><b>茨城と天津の工場</b>：大型の製造棟が完成し、供給量を増やせるかを確認します。</li>
+      <li><b>薬価改定</b>：漢方薬の薬価がどう改定されるかが、利益を大きく左右します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社ツムラ 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [653, 529, 497, 797, 797, 703, 1352] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

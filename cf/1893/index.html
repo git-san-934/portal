@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>五洋建設 投資分析</title>
+  <meta name="description" content="五洋建設（1893）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>五洋建設（1893）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>港や海の工事に強い建設会社です</b>。港湾・埋め立てなどの海洋土木で国内トップクラスで、建築や海外（シンガポール・香港など）の工事も手がけています。</li>
+      <li><b>洋上風力のための作業船に大型投資</b>。設備投資は年90〜110億円でしたが、2025年3月期に382億円、2026年3月期に959億円に急増しました。洋上風力発電の基礎をつくる大型基礎施工船（HLV、1,300億円）とケーブル敷設船（CLV、340億円）を2028年の完成に向けて建造しています。</li>
+      <li><b>作業船は共同保有</b>。HLVとCLVは芙蓉総合リースとの共同保有で、相手からの資金（長期預り金）も受け入れています。</li>
+      <li><b>借入金は2.5倍に</b>。借入金などは775億円から1,961億円に増えました。</li>
+      <li><b>2026年3月期は大幅増益</b>。大型港湾工事などが順調に進み、営業利益は553億円（2.5倍）になりました。2023年3月期は41億円まで落ち込んでいました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">国土強靱化や防衛の公共投資、工場・物流施設・データセンターなどの民間投資が堅調でした。2026年3月期は工事の採算も改善しました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。建設会社のため、営業CFは工事代金の入金の時期で大きく動きます。2025年3月期は233億円のマイナスでした。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年23〜33億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2025年3月期から、作業船の建造で設備投資が減価償却費の4〜10倍になっています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（101億円）</div>洋上風力関連の作業船、北海道の室蘭製作所の新工場など</li>
+      <li><div class="y">2024年3月期（109億円）</div>洋上風力関連の作業船、建設機械・作業船の新設と更新。1,600トン吊りのSEP型多目的起重機船が完成</li>
+      <li><div class="y">2025年3月期（496億円）</div>洋上風力関連の作業船（HLV・CLVの建造開始）など</li>
+      <li><div class="y">2026年3月期（847億円）</div>洋上風力関連の作業船など。改造中だったSEP型多目的起重機船が完成</li>
+      <li><div class="y">進行中の計画</div>大型基礎施工船HLV（1,300億円、既支払額738億円）、ケーブル敷設船CLV（340億円）、いずれも2028年完成予定</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額と、「設備の新設、除却等の計画」の投資予定額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年54〜102億円です。2024年3月期から自社株買いも始め、2026年3月期は100億円でした。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>洋上風力の事業化</b>：大型作業船への投資が回収できるかは、国内の洋上風力発電の案件の進み具合にかかっています。</li>
+      <li><b>借入の増加</b>：作業船の建造で借入が増えています。財務の健全性に注目します。</li>
+      <li><b>工事の採算</b>：建設資材の高騰のなかで、工事の採算を保てるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 五洋建設株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [775, 822, 926, 937, 1103, 1665, 1961] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

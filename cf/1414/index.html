@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ショーボンドホールディングス 投資分析</title>
+  <meta name="description" content="ショーボンドホールディングス（1414）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ショーボンドホールディングス（1414）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年6月期〜2026年6月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>橋やトンネルなど、古くなったインフラを補修する会社です</b>。国や高速道路会社の補修・補強工事と、その工事に使う材料（耐震補強材など）の製造・販売を手がけています。</li>
+      <li><b>営業利益率は23%</b>。2026年6月期は売上892億円、営業利益208億円でした。売上は676億円から900億円前後に増え、利益も毎年少しずつ増えています。</li>
+      <li><b>設備投資はとても小さく、年4〜18億円</b>。中身は北日本支社のビル（2023年完成）と、埼玉県の八潮工場（24.8億円、2026年6月期完成）です。工事は現場で行うため、大きな設備は要りません。</li>
+      <li><b>借入金はゼロ、稼ぎの大半を還元</b>。配当は42億円から98億円に増え、2022年6月期からは自社株買い（年30〜50億円）もしています。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年6月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年6月期は、耐震補強用の材料などの販売が増えた一方、国と高速道路会社の工事が少なく、売上は1.7%減りました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。工事代金の入金の時期で、営業CFは年によって大きく動きます（2021年6月期は27億円、2024年6月期は194億円）。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年6〜7億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資も減価償却費も、年10億円前後かそれ以下です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年6月期（11.8億円）</div>北日本支社ビルの建設（2023年6月完成）</li>
+      <li><div class="y">2024年6月期（10.8億円）</div>八潮工場の建設</li>
+      <li><div class="y">2025年6月期（9.5億円）</div>八潮工場の建設</li>
+      <li><div class="y">2026年6月期（11.7億円）</div>八潮工場（総額24.8億円）が完成</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。八潮工場は、材料を製造する子会社に貸しています。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当と自社株買いの合計は、2026年6月期に148億円でした。営業CFが小さい年は、還元が本業のフリーCFを上回ることもあります。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は6月期決算です（例：「26/6」は2025年7月〜2026年6月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>インフラの老朽化</b>：補修が必要な橋やトンネルは増え続けます。国と高速道路会社の発注の動きに注目します。</li>
+      <li><b>人手不足</b>：工事の担い手を確保できるかを確認します。</li>
+      <li><b>還元の水準</b>：借入がなく、現金が増えています。還元をさらに増やすかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ショーボンドホールディングス株式会社 有価証券報告書（2021年6月期〜2026年6月期）の連結財務諸表とXBRLデータ。2020年6月期は、2021年6月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

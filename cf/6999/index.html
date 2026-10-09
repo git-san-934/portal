@@ -1,0 +1,98 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>KOA 投資分析</title>
+  <meta name="description" content="KOA（6999）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>KOA（6999）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>電子回路に使う「抵抗器」の会社です</b>。長野県の会社で、自動車向けや産業機器向けの抵抗器をつくり、マレーシアなどアジアに生産拠点があります。</li>
+      <li><b>設備投資は3年で約5倍に</b>。設備投資は48億円（2022年3月期）から255億円（2025年3月期）に増えました。マレーシアの新工場（235億円、既存の能力を30%増）と、長野の本社の開発生産棟（65億円）を建てました。</li>
+      <li><b>投資の資金は借入で</b>。借入金などは39億円から454億円に増えました。2026年3月期は大型投資が一段落し、設備投資は76億円に減りました。</li>
+      <li><b>利益は大きく動く</b>。営業利益は102億円（2023年3月期）から12億円（2025年3月期）に減り、2026年3月期は自動車向けやAI関連の需要の回復で36億円に戻りました。</li>
+      <li><b>配当は年2〜19億円</b>。利益に合わせて配当も変わっています。自社株買いはしていません。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年3月期は、在庫調整が続いていた産業機器向けが回復し、中国を中心にした自動車向けや、アジアのデータセンターなどAI関連の機器向けも堅調で、売上は12.7%増えました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2023〜2025年3月期は、設備投資が営業CFを上回り、借入で補いました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年14〜36億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2023〜2025年3月期は、設備投資が減価償却費の3〜4倍でした。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（119億円）</div>日本（96億円、品質向上、新製品、量産設備）、アジア（21億円）。本社の開発生産棟（65億円）を建設</li>
+      <li><div class="y">2024年3月期（191億円）</div>アジア（96億円、マレーシアの新工場）、日本（88億円）</li>
+      <li><div class="y">2025年3月期（242億円）</div>アジア（179億円、マレーシアの新工場と生産設備、総額235億円）、日本（60億円）</li>
+      <li><div class="y">2026年3月期（60億円）</div>アジア（47億円）、日本（12億円）</li>
+      <li><div class="y">2027年3月期の計画（41億円）</div>本社などの製造設備（19億円）、マレーシアの製造設備（11億円、能力7%増）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額と、「設備の新設、除却等の計画」の計画金額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は利益に合わせて年2〜19億円です。設備投資が大きかった年は、本業のフリーCFがマイナスで、配当も借入で補いました。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>マレーシアの新工場</b>：増やした生産能力が、売上と利益の伸びにつながるかに注目します。</li>
+      <li><b>自動車の電動化</b>：電気自動車やハイブリッド車で抵抗器の需要が増えるかを確認します。</li>
+      <li><b>借入の返済</b>：大型投資が終わり、借入を減らせるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET KOA株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [39, 44, 66, 170, 312, 445, 454] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

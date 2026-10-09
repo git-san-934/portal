@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>スタンレー電気 投資分析</title>
+  <meta name="description" content="スタンレー電気（6923）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>スタンレー電気（6923）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>車のライトの会社です</b>。自動車のヘッドランプなどの照明（自動車機器）が売上の大半で、ほかにLEDなどの部品、電子応用製品をつくっています。</li>
+      <li><b>設備投資は年270〜580億円</b>。6割は自動車機器です。広島製作所の四輪用設備（81億円）や、横浜の技術研究所（66億円、2025年12月完成予定）を建てました。</li>
+      <li><b>自社株買いを大きく増加</b>。自社株買いは50億円から800億円（2026年3月期）に増えました。そのため短期借入（767億円）もし、純資産は5,989億円から5,719億円に減りました。</li>
+      <li><b>利益は伸び悩み</b>。営業利益は年250〜490億円で、2026年3月期は中国・アジアの厳しい環境、米国の関税、半導体不足、品質問題の費用で427億円（13%減）でした。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年3月期は、前の期に子会社にしたブラジルの会社が通年で加わり、売上は1.7%増えました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。投資CFには定期預金の出し入れ（年350〜1,300億円）が含まれます。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年160〜260億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費の0.7〜1.4倍です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（378億円）</div>自動車機器（254億円）、電子応用製品（43億円）、全社（54億円、研究と管理部門）</li>
+      <li><div class="y">2024年3月期（285億円）</div>自動車機器（170億円）、全社（56億円）、電子応用製品（33億円）</li>
+      <li><div class="y">2025年3月期（481億円）</div>自動車機器（296億円）、全社（80億円）、電子応用製品（73億円）</li>
+      <li><div class="y">2026年3月期（522億円）</div>自動車機器（315億円）、全社（99億円）、電子応用製品（74億円）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。2025年3月期末までに、広島製作所の四輪事業設備（81億円）と横浜の技術研究所（66億円）の計画がありました。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年65〜124億円です。自社株買いは2024年3月期から増やし、2026年3月期は800億円でした。2025・2026年3月期は、還元の合計が本業のフリーCFを大きく上回りました。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>資本効率の改善</b>：借入もして自社株買いを増やし、ROE8%を目指しています。続けるかに注目します。</li>
+      <li><b>中国・アジアの事業</b>：厳しい環境が続く中国・アジアの立て直しを確認します。</li>
+      <li><b>品質問題</b>：品質問題に関わる費用が、今後も出るかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET スタンレー電気株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [101, 101, 100, 100, 100, 400, 1167] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

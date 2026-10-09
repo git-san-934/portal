@@ -1,0 +1,95 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>三浦工業 投資分析</title>
+  <meta name="description" content="三浦工業（6005）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>三浦工業（6005）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。国際会計基準（IFRS）で、単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>工場などで使う小型ボイラの会社です</b>。ボイラや水処理機器を売り、定期的に点検する「メンテナンス」で安定して稼ぐのが特徴です。</li>
+      <li><b>2025年3月期に米国のボイラ会社を1,260億円で買収</b>。米国の大型ボイラのCleaver-Brooks社を買い、資金は借入（1,260億円）でまかないました。売上は1,597億円から2,513億円に増え、のれんが404億円になりました。</li>
+      <li><b>設備投資は小さく、年27〜68億円</b>。ボイラなどの生産設備、IoTの基盤、メンテナンスの工具、韓国子会社の本社事務所などです。リース資産を含めると年60〜100億円です。</li>
+      <li><b>買収のあとも利益は最高を更新</b>。2026年3月期は営業利益309億円（22%増）で、買収の費用が減って過去最高でした。借入は2025・2026年3月期に年115〜127億円ずつ返しています。</li>
+      <li><b>配当は増加</b>。配当は39億円から77億円に増えました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">国内はボイラ、水処理機器、舶用機器、メンテナンスが堅調でした。海外は、買収したCleaver-Brooks社とドイツのCERTUSS社が通年で加わり、売上が増えました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2025年3月期は、買収で投資CFが1,346億円のマイナスになり、借入で財務CFが大きなプラスになりました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年29〜51億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">減価償却費には、借りている建物などのリース資産の分が多く含まれ、設備投資を上回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（63億円）</div>ボイラなどの生産設備、基幹システム、建物の維持（うちリース資産34億円）</li>
+      <li><div class="y">2024年3月期（71億円）</div>ショールームの拡充、基幹システム、建物の維持、海外の生産設備（うちリース資産36億円）</li>
+      <li><div class="y">2025年3月期（104億円）</div>IoT基盤、海外のボイラ生産設備（19億円）、韓国子会社の本社事務所の購入（うちリース資産37億円）。ほかに米国Cleaver-Brooks社の買収（1,260億円）</li>
+      <li><div class="y">2026年3月期（89億円）</div>日本（57億円、建物・試験装置・IoT）、米州（18億円）、アジアなど（14億円）</li>
+      <li><div class="y">2027年3月期の計画（70億円）</div>日本（40億円）、米州（24億円）、アジアなど（6億円）。リース資産を除く</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」（リース資産を含む）と「設備の新設、除却等の計画」の金額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は39億円から77億円に増えました。自社株買いは2023・2024年3月期にしました。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>米国事業の統合</b>：買収したCleaver-Brooks社の利益を伸ばせるかに注目します。</li>
+      <li><b>借入の返済</b>：買収のための借入をどのくらいの早さで返すかを確認します。</li>
+      <li><b>メンテナンスの成長</b>：安定して稼ぐメンテナンス事業を海外でも広げられるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 三浦工業株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>
