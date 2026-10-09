@@ -1,0 +1,107 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ソフトバンクグループ 投資分析</title>
+  <meta name="description" content="ソフトバンクグループ（9984）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ソフトバンクグループ（9984）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。国際会計基準（IFRS）で、単位は<strong>億円</strong>です（OpenAIへの投資などはドル建て）。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>今の最大の投資先は、OpenAIです</b>。2026年3月末までに累計346億ドル（約5兆円）を出資し、その価値（公正価値）は796億ドルと評価されています。2026年2月には、さらに300億ドルの追加出資を約束しました。</li>
+      <li><b>AIの半導体とインフラにも投資を広げています</b>。米国の半導体設計会社Ampereを65億ドルで買収し、英国のAI半導体のGraphcoreも子会社にしました。OpenAIのためのAIインフラ「Stargate Project」も進めています。2026年3月期の「子会社の取得」の支出は9,731億円でした。</li>
+      <li><b>投資のお金は、借入と保有株の売却で集めています</b>。T-Mobile株（162.5億ドル）、NVIDIA株（58.3億ドル）、ドイツテレコム株などを売り、Arm株やソフトバンク株を担保にした借入も増やしました。有利子負債は13兆円から24.7兆円に増えています。</li>
+      <li><b>グループ会社の設備投資も大きい額です</b>。携帯電話のソフトバンク（基地局など）の設備投資が年6,000〜9,000億円あり、2026年3月期は「その他」（データセンターなど）とAIコンピューティング（ArmやAmpere）も加わって、グループ全体で1兆3,873億円でした。</li>
+      <li><b>2026年3月期の純利益は5兆23億円でした</b>。OpenAIへの出資の評価益（6兆4,655億円）が大部分です。現金が出入りする利益ではない点に注意が必要です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。ソフトバンクグループでは、ビジョン・ファンド（SVF）が投資先の株を買う支出が営業CFに入るため、ほかの会社とは見方が違います。2026年3月期の営業CFのマイナスは、主にSVFの投資によるものと考えられます。財務CFの大きなプラスは、借入です。</p>
+    <div class="chart" id="c-flow"></div>
+    <h3>有利子負債の残高</h3>
+    <p class="sub">連結財政状態計算書の「有利子負債」の合計です（ソフトバンクなどの子会社の分を含む）。</p>
+    <div class="chart" id="c-debt"></div>
+    <h3>親会社の所有者に帰属する純利益</h3>
+    <p class="sub">投資先の株価の上下で、毎年大きく変わります。</p>
+    <div class="chart" id="c-net"></div>
+  </section>
+  <section>
+    <h2>② 投資の中身</h2>
+    <h3>OpenAIへの投資</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>時期</th><th>投資額（億ドル）</th><th style="text-align:left">内容</th></tr></thead>
+      <tbody>
+        <tr><td>2025年3月期まで</td><td>22</td><td style="text-align:left">最初の出資</td></tr>
+        <tr><td>2025年4月</td><td>75</td><td style="text-align:left">追加出資の第1回（SVF2から）</td></tr>
+        <tr><td>2025年12月</td><td>225</td><td style="text-align:left">追加出資の第2回</td></tr>
+        <tr><td>2026年3月期のその他</td><td>24</td><td style="text-align:left"></td></tr>
+        <tr class="sum"><td>2026年3月末の累計</td><td>346</td><td style="text-align:left">公正価値796億ドル、累計の投資利益450億ドル</td></tr>
+        <tr><td>2026年2月に約束</td><td>300</td><td style="text-align:left">新たな追加出資</td></tr>
+      </tbody>
+    </table></div>
+    <h3>投資の買いと売り（投資CFの主な内訳）</h3>
+    <p class="sub">「投資の取得による支出」と「投資の売却及び償還による収入」です。2021年3月期と2026年3月期は、大きく買い、大きく売っています。</p>
+    <div class="chart" id="c-invest"></div>
+    <h3>グループの設備投資（有報「設備投資等の概要」）</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>事業</th><th>23/3</th><th>24/3</th><th>25/3</th><th>26/3</th></tr></thead>
+      <tbody>
+        <tr><td>ソフトバンク（携帯電話など）</td><td>7,618</td><td>6,225</td><td>8,982</td><td>7,412</td></tr>
+        <tr><td>アーム／AIコンピューティング</td><td>137</td><td>313</td><td>725</td><td>1,595</td></tr>
+        <tr><td>その他（データセンター・太陽光など）</td><td>66</td><td>251</td><td>952</td><td>4,821</td></tr>
+        <tr class="sum"><td>合計</td><td>7,991</td><td>6,811</td><td>10,671</td><td>13,873</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">使用権資産などを含みます。持株会社とSVFの分は小さいため「合計」にだけ含めています。2026年3月期にアーム事業は「AIコンピューティング事業」になり、Ampere・Graphcoreも含みます。</p>
+    <h3>研究開発費</h3>
+    <p>研究開発費は1,781億円（2021年3月期）から9,755億円（2026年3月期）に増えました。主にArmとAI半導体の会社の開発費です。</p>
+  </section>
+  <section>
+    <h2>③ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>OpenAIの価値</b>：会社の利益と資産の大きな部分が、OpenAIの評価で決まるようになりました。その評価の上下が最大のリスクです。</li>
+      <li><b>借入金の返済</b>：ブリッジローンなどの短い借入で大きな投資をしています。保有株の売却や、より長い借入への借り換えが順調に進むかを確認します。</li>
+      <li><b>Ampere・Stargateの成果</b>：半導体とAIインフラへの投資が、実際の事業の稼ぎにつながるかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ソフトバンクグループ株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。有利子負債は、連結財政状態計算書の「有利子負債」（流動・非流動）の合計です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産及び無形資産の取得による支出」です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [131319, 185130, 214574, 194782, 205675, 180063, 246851], invBuy: [-10986, -41867, -9935, -3134, -8009, -16252, -15254], invSell: [2839, 38458, 4302, 6198, 2197, 11807, 38073] };
+window.CF_CHARTS = {
+  'c-debt': [[{ name: '有利子負債', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }],
+  'c-net': [[{ name: '純利益', key: 'net', color: '--c-op', type: 'bar' }], { h: 220 }],
+  'c-invest': [[{ name: '投資の取得', key: 'invBuy', color: '--c-inv', type: 'bar' }, { name: '投資の売却・償還', key: 'invSell', color: '--c-op', type: 'bar' }], { h: 260 }],
+};
+window.CF_KPIS = [['純利益', 'net'], ['有利子負債', 'debt'], ['財務CF', 'fin'], ['現金残高', 'cash']];
+window.CF_ROWS = [['売上高', 'sales'], ['純利益', 'net', 1], null, ['営業CF', 'op', 1], ['投資CF', 'inv', 1], ['　うち投資の取得', 'invBuy'], ['　うち投資の売却・償還', 'invSell'], ['　うち設備投資', 'capex', 0, -1], ['財務CF', 'fin', 1], ['　うち配当', 'div', 0, -1], ['　うち自社株買い', 'buy', 0, -1], null, ['研究開発費', 'rd'], ['有利子負債', 'debt', 1], ['現金残高', 'cash', 1]];
+</script>
+<script src="../assets/cf.js"></script>
+
+</body>
+</html>
