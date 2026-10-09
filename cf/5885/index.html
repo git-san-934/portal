@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ジーデップ・アドバンス 投資分析</title>
+  <meta name="description" content="ジーデップ・アドバンス（5885）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ジーデップ・アドバンス（5885）は何に投資しているか</h1>
+    <p>2023年11月に上場したため、有価証券報告書は4回分です。前期の数字も使い、<strong>2022年5月期〜2026年5月期の5年間</strong>をまとめました。単体の決算で、単位は<strong>億円</strong>（小数点1桁まで）です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>NVIDIAのGPUを使ったAI向けのサーバーやワークステーションを売る会社です</b>。NVIDIAのパートナーで、大学や研究機関、企業にAIの計算環境を組み立てて提供しています。</li>
+      <li><b>売上は4年で2倍、営業利益は2.7倍</b>。売上は34.9億円（2022年5月期）から69.5億円（2026年5月期）に、営業利益は4.1億円から11.2億円に増えました。</li>
+      <li><b>設備投資はごくわずかで、年0.1〜1.2億円</b>。中身は、検証用のGPUサーバーと、東京オフィスの移転費用などです。工場は持っていません。</li>
+      <li><b>お金は「商品」と「前渡金」に使っています</b>。2026年5月期は、需要に備えたGPUサーバーの仕入れ（商品10.6億円増）と、仕入れ先への前払い（前渡金16.0億円増）で、営業CFが14.5億円のマイナスになりました。</li>
+      <li><b>借入金はなく、現金は上場時の資金を使って減少</b>。現金は33.3億円から17.7億円に減りました。配当は年0.5〜1.2億円です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年5月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">生成AIの業務への活用が進み、高性能GPUサーバーとAIの計算環境づくりの需要が続いています。ロボットなど「フィジカルAI」の研究開発向けの需要も出てきています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2024年5月期の財務CFのプラスは、上場時の増資です。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 設備投資と減価償却費</h2>
+    <p class="sub">設備投資も減価償却費も、年1億円前後です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年5月期（0.06億円）</div>新技術の検証とサブスクリプションサービス用の機器</li>
+      <li><div class="y">2024年5月期（0.75億円）</div>人員増加に備えた東京オフィスの移転、検証用サーバーの購入</li>
+      <li><div class="y">2025年5月期（1.01億円）</div>付加価値の高いソリューションを開発するための検証機の購入</li>
+      <li><div class="y">2026年5月期（0.21億円）</div>検証機の購入など。ほかに仙台本店の基幹システム（総額3.3億円）を開発中</li>
+      <li><div class="y">2027年5月期の計画</div>DXサービス用設備（1.7億円）、検証用サーバー（0.2億円）など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">有報「設備投資等の概要」と「設備の新設、除却等の計画」より。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年0.5〜1.2億円です。2026年5月期は営業CFがマイナスのため、配当は手元の現金から払っています。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は5月期決算です（例：「26/5」は2025年6月〜2026年5月）。子会社がないため単体の数字です。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>仕入れた在庫の売上化</b>：2026年5月期に積み上げた商品と前渡金が、次の期の売上と営業CFのプラスにつながるかを確認します。</li>
+      <li><b>NVIDIAとの関係</b>：売る商品の中心がNVIDIA製品です。新しいGPUの供給や販売条件の変化に影響を受けます。</li>
+      <li><b>現金の水準</b>：仕入れが増えると現金が減ります。借入をせずに成長を続けられるかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社ジーデップ・アドバンス 有価証券報告書（2023年5月期〜2026年5月期）の連結財務諸表とXBRLデータ。2022年5月期は、2023年5月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>
