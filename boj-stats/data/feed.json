@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-09T16:22+09:00",
- "report_date": "2026-10-09",
+ "generated_at": "2026-10-10T01:26+09:00",
+ "report_date": "2026-10-10",
  "days": [
   {
    "date": "2026-10-09",
@@ -85,6 +85,13 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "0.4%"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/macpru/mac261009a.pdf",
+     "name": "第25回「金融庁・日本銀行連絡会」の開催について",
+     "url": "https://www.boj.or.jp/finsys/macpru/mac261009a.pdf",
+     "time": "18:00"
     },
     {
      "kind": "news",
@@ -3242,7 +3249,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-09T16:22+09:00",
+  "checked_at": "2026-10-10T01:26+09:00",
   "counts": {
    "new": 0,
    "unchanged": 102,
