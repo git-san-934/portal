@@ -4,7 +4,8 @@
   const C = window.CF;
   const Y = C.years.map(y => `${y.slice(2, 4)}/${+y.slice(5, 7)}`);
   const neg = a => (a || []).map(v => v == null ? null : -v);
-  const r1 = v => v == null ? null : Math.round(v);
+  const DEC = window.CF_DEC || 0;  // 小さな会社は小数点以下も出す
+  const r1 = v => v == null ? null : +v.toFixed(DEC);
   const D = {};
   ['sales','opinc','net','op','inv','fin','dep','rd','cash','imp','recv','assets','equity'].forEach(k => D[k] = (C[k] || []).map(r1));
   D.capex = neg(C.ppe).map(r1);
@@ -12,11 +13,11 @@
   D.buy = neg(C.buy).map(v => v == null ? 0 : r1(v));
   D.acq = neg(C.acq).map(v => v == null ? 0 : r1(v));
   const ok = (...a) => a.every(v => v != null);
-  D.fcf = D.op.map((v, i) => ok(v, D.capex[i]) ? v - D.capex[i] : null);
+  D.fcf = D.op.map((v, i) => ok(v, D.capex[i]) ? +(v - D.capex[i]).toFixed(DEC) : null);
   const hasRd = D.rd.some(v => v != null);  // 研究開発費が一部の年だけ欠けている場合は、その年の合計を出さない
-  D.future = D.capex.map((v, i) => v == null || (hasRd && D.rd[i] == null) ? null : v + (D.rd[i] || 0));
+  D.future = D.capex.map((v, i) => v == null || (hasRd && D.rd[i] == null) ? null : +(v + (D.rd[i] || 0)).toFixed(DEC));
   D.futRatio = D.future.map((v, i) => ok(v, D.sales[i]) ? +(v / D.sales[i] * 100).toFixed(1) : null);
-  D.ret = D.div.map((v, i) => v == null ? null : v + (D.buy[i] || 0));
+  D.ret = D.div.map((v, i) => v == null ? null : +(v + (D.buy[i] || 0)).toFixed(DEC));
   D.dso = D.recv.map((v, i) => ok(v, D.sales[i]) ? Math.round(v / D.sales[i] * 365) : null);
   D.opm = D.opinc.map((v, i) => ok(v, D.sales[i]) ? +(v / D.sales[i] * 100).toFixed(1) : null);
   Object.assign(D, C.extra || {});
