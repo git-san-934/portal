@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-09T10:24+09:00",
+ "updated_at": "2026-10-09T11:32+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,27 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-09",
+     "title": "『Nintendo Switch Sports Resort』の紹介映像とTVCMを公開。",
+     "url": "https://www.nintendo.com/jp/topics/article/9c619551-4244-4871-bc20-8d44f66a7904",
+     "source": "official",
+     "first_seen": "2026-10-09T11:32+09:00"
+    },
+    {
+     "date": "2026-10-09",
+     "title": "誰も知らない英雄譚が、ここにある。王道ファンタジーの世界で自由な冒険を楽しむオープンワールドアクション『Dragon's Dogma 2: Dark Arisen』が、Nintendo Switch 2 で本日発売。",
+     "url": "https://www.nintendo.com/jp/topics/article/765035e5-1a1c-45c6-9e49-9980069c9150",
+     "source": "official",
+     "first_seen": "2026-10-09T11:32+09:00"
+    },
+    {
+     "date": "2026-10-09",
+     "title": "ニンテンドーeショップ新作ソフト情報 10/9(金)号。",
+     "url": "https://www.nintendo.com/jp/topics/article/12b661be-9be3-45c9-aca9-0c9bdf3cb746",
+     "source": "official",
+     "first_seen": "2026-10-09T11:32+09:00"
+    },
     {
      "date": "2026-10-08",
      "title": "2028年度 プレエントリー受付を開始しました。理工系の採用イベントへのお申し込みも受付中です。",
@@ -939,6 +960,13 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-10-09",
+     "title": "ハイパースケールデータセンター向けE1.L QLCベースSSDの開発について",
+     "url": "https://www.kioxia.com/ja-jp/business/news/2026/20261009-1.html",
+     "source": "official",
+     "first_seen": "2026-10-09T11:32+09:00"
+    },
     {
      "date": "2026-10-08",
      "time": "16:00",
@@ -2372,6 +2400,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-09",
+     "title": "製品・サービス パナソニックEWとライナフがマンションのオートロック入館管理システムの普及に向けた協業を開始",
+     "url": "https://news.panasonic.com/jp/press/jn261009-1",
+     "source": "official",
+     "first_seen": "2026-10-09T11:32+09:00"
+    },
+    {
      "date": "2026-10-08",
      "title": "サステナビリティ パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
      "url": "https://news.panasonic.com/jp/press/jn261008-1",
@@ -2387,7 +2422,7 @@
     },
     {
      "date": "2026-10-07",
-     "title": "製品・サービス 現場教育の効率化と標準化を支援する「AI動画ガイド作成サービス」を提供開始",
+     "title": "3 2026年10月7日 製品・サービス プレスリリース 現場教育の効率化と標準化を支援する「AI動画ガイド作成サービス」を提供開始",
      "url": "https://news.panasonic.com/jp/press/jn261007-1",
      "source": "official",
      "first_seen": "2026-10-07T18:23+09:00"
