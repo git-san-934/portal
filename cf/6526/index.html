@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ソシオネクスト 投資分析</title>
+  <meta name="description" content="ソシオネクスト（6526）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ソシオネクスト（6526）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2022年3月期〜2026年3月期の5年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>お客さん専用の半導体（カスタムSoC）を設計する会社です</b>。自社で工場を持たず、自動車、データセンター・ネットワーク、スマートデバイス向けのSoCを開発しています。</li>
+      <li><b>2024年3月期をピークに減益</b>。売上は1,170億円から2,212億円（2024年3月期）に増え、2026年3月期は2,008億円でした。営業利益は355億円から124億円に減りました。</li>
+      <li><b>研究開発費が売上の約3割</b>。研究開発費は年432〜598億円です。設備投資（年128〜231億円）も、SoCの製造に使うレチクル・テストボード、開発用のIP、サーバーなどが中心です。</li>
+      <li><b>借入金はゼロ</b>。配当は2024年3月期から始め（年89〜112億円）、2025・2026年3月期は自社株買い（50億円ずつ）もしました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">年間の商談の獲得額は、構造改革の前の約1,100億円から、2025年3月期は約3,600億円に増えました。2026年3月期は約3,100億円で、データセンター・ネットワーク分野の大型商談を獲得しました。獲得した商談の量産が段階的に始まっています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2026年3月期は営業CFが77億円に減り、本業のフリーCFがマイナスでした。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年432〜598億円で、売上の約3割です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費の1.0〜1.7倍です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（204億円）</div>SoCの製造に使うレチクル・テストボード、自動車・スマートデバイス向けのIP、研究開発用のサーバー・ストレージ</li>
+      <li><div class="y">2024年3月期（244億円）</div>同上</li>
+      <li><div class="y">2025年3月期（167億円）</div>自動車・データセンター・ネットワーク向けのIP、レチクル・テストボード、サーバーなど</li>
+      <li><div class="y">2026年3月期（222億円）</div>同上</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額（無形固定資産を含む）です。「設備の新設計画」は4年続けて「ありません」です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は2024年3月期の112億円から、年89〜90億円です。2025・2026年3月期は自社株買い（50億円ずつ）もしました。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>大型商談の量産</b>：獲得した商談が量産に入り、売上が伸びるかに注目します。</li>
+      <li><b>データセンター向け</b>：AI・データセンター向けのSoCの商談を確認します。</li>
+      <li><b>利益率の回復</b>：減った営業利益を戻せるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社ソシオネクスト 有価証券報告書（2023年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2022年3月期は、2023年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

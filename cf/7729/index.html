@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>東京精密 投資分析</title>
+  <meta name="description" content="東京精密（7729）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>東京精密（7729）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>半導体の検査・加工装置と計測機器の会社です</b>。ウエハを検査するプローバ、ウエハを削るグラインダなどの半導体製造装置と、ものづくりの計測機器をつくっています。</li>
+      <li><b>売上は過去最高</b>。売上は879億円から1,668億円に、営業利益は123億円から337億円に増えました。HBM向けのプローバとAIパッケージング向けのグラインダが好調です。</li>
+      <li><b>新工場を次々に建設</b>。設備投資は年49〜116億円で、埼玉の飯能工場（129億円）、愛知の名古屋工場（78億円）を建てました。韓国のデモセンター（45億円）、八王子と飯能の新しい工場も計画しています。</li>
+      <li><b>配当を増加</b>。配当は33億円から102億円に増えました。自社株買いも年9〜30億円しています。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">2026年3月期は、売上が10.8%、営業利益が13.6%増えました。計測機器も航空・宇宙・防衛の分野で増収でした。半導体製造装置の一部製品の不具合対策費用を特別損失に計上し、純利益は3.5%減りました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2023・2024年3月期は営業CFが10億円、49億円に減り、本業のフリーCFがマイナスでした。その間に借入（250億円）をしました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は72億円から120億円に増えました。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費の1.4〜2.7倍です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（97億円）</div>半導体製造装置（72億円、飯能工場の建設の中間金34億円など）</li>
+      <li><div class="y">2024年3月期（116億円）</div>半導体製造装置（87億円、飯能工場の引き渡し時金36億円など）</li>
+      <li><div class="y">2025年3月期（102億円）</div>半導体製造装置（66億円、名古屋工場の建設19億円、韓国デモセンターの用地17億円など）</li>
+      <li><div class="y">2026年3月期（111億円）</div>半導体製造装置（72億円、八王子新工場の用地の手付金10億円、韓国デモセンターの建設11億円など）</li>
+      <li><div class="y">進行中の計画</div>韓国デモセンター（45億円、2027年5月完成予定）、飯能新工場（2028年3月完成予定、金額は未定）、八王子新工場</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額と、「設備の新設、除却等の計画」の投資予定額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は33億円から102億円に増えました。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>HBMとAIパッケージ</b>：プローバとグラインダの需要が続くかに注目します。</li>
+      <li><b>新工場の稼働</b>：飯能・八王子の新工場で生産能力を増やせるかを確認します。</li>
+      <li><b>中国向け</b>：中国の高精度装置の需要と、輸出規制の影響が注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社東京精密 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [93, 73, 53, 133, 243, 193, 143] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>
