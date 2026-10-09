@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>パワーエックス 投資分析</title>
+  <meta name="description" content="パワーエックス（485A）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>パワーエックス（485A）は何に投資しているか</h1>
+    <p>上場して間もないため、有価証券報告書は2025年12月期の1回分です。前期の数字も使い、<strong>2024年12月期と2025年12月期の2年間</strong>をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>岡山県玉野市の蓄電池工場が、会社の中心です</b>。2021年に設立され、大型の蓄電システムや、蓄電池付きのEV急速充電器をつくっています。</li>
+      <li><b>次の大きな投資は、第2工場（86億円）です</b>。受注残が積み上がっているとして、2026年12月〜2028年7月に、年間6.8GWh分の蓄電池製品の製造ラインを増やす計画です。2025年12月期の設備投資（13億円）の6倍以上の規模です。</li>
+      <li><b>投資のお金は、株式の発行と借入金でまかなっています</b>。2年間で株式の発行で103億円を集めました。借入金も約68億円あります。第2工場も「増資資金、自己資金及び借入金」でまかなう計画です。</li>
+      <li><b>赤字は縮まっています</b>。売上は62億円から193億円に増え、営業損失は49億円から7億円に減りました。営業CFも14億円のプラスに転じました。</li>
+      <li><b>研究開発費は年18〜24億円で、設備投資より大きい額です</b>。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年12月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上が約3倍になり、赤字がほぼなくなりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFはまだ小さく、財務CF（株式の発行・借入）で投資をまかなっています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。まだ売上が小さいため、売上に対する比率はとても高くなっています。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">工場が新しいため、減価償却費はまだ小さい額です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <h3>これまでの投資</h3>
+    <ul class="timeline">
+      <li><div class="y">2023年</div>岡山県玉野市に製造子会社を設立し、蓄電池の工場を立ち上げ</li>
+      <li><div class="y">2025年12月期（14億円）</div>主に、自社の製品を使ったEV充電サービス用の充電設備</li>
+    </ul>
+    <h3>これからの計画（2025年12月末時点）</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>案件</th><th>総額</th><th>期間</th></tr></thead>
+      <tbody>
+        <tr><td>Power Base 第2工場（岡山県玉野市）：蓄電池製品の製造設備、年6.8GWh</td><td>86.2</td><td>2026年12月〜2028年7月</td></tr>
+        <tr><td>東京オフィスの移転（本社機能の集約）</td><td>9.9</td><td>2025年〜</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">会社は、国のエネルギー基本計画で再生可能エネルギーを増やす方針が示されたことなどから、蓄電池の需要が増えると見ています。</p>
+    <h3>減損（2024年12月期、22億円）</h3>
+    <p>2024年12月期に22億円の減損損失を計上し、純損失は80億円になりました。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当や自社株買いはありません。まだ成長のための投資にお金が必要な段階です。</p>
+    <h3>お金の集め方</h3>
+    <div class="chart" id="c-raise"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は12月期決算です（例：「25/12」は2025年1月〜12月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>第2工場の資金</b>：86億円の投資を、どの程度の増資と借入でまかなうかを確認します。増資が多いと、1株あたりの価値が薄まります。</li>
+      <li><b>黒字になるか</b>：営業損失は7億円まで縮まりました。2026年12月期に黒字になるかが最初の目安です。</li>
+      <li><b>受注残</b>：工場を増やす理由になっている受注残が、実際の売上になっていくかを確認します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社パワーエックス 有価証券報告書（2025年12月期〜2025年12月期）の連結財務諸表とXBRLデータ。2024年12月期は、2025年12月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { equityIn: [39, 64], debt: [62, 68] };
+window.CF_CHARTS = { 'c-raise': [[{ name: '株式の発行で得たお金', key: 'equityIn', color: '--c-op', type: 'bar' }, { name: '借入金の残高', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+</body>
+</html>
