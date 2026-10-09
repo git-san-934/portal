@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SUMCO 投資分析</title>
+  <meta name="description" content="SUMCO（3436）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>SUMCO（3436）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年12月期〜2025年12月期の6年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>2021年に決めた2,287億円の大型投資が、この5年の中心です</b>。最先端の半導体に使う300mmシリコンウェーハの増産のためで、建屋とユーティリティ（786億円）、製造設備（1,229億円）などに投じました。お金の一部は、2021年10月の公募増資でまかないました。</li>
+      <li><b>設備投資は2023〜24年に年約2,500億円でピークでした</b>。2025年は1,110億円に減り、「重要な設備の新設」の計画は2年続けて「該当事項はありません」です。</li>
+      <li><b>投資の後、ウェーハの需要が落ち込みました</b>。増やした設備の減価償却費が451億円（2020年）から1,157億円（2025年）に増え、2025年の営業利益は13億円、純損益は118億円の赤字になりました。</li>
+      <li><b>借入金が増え、配当を減らしました</b>。借入金などは1,496億円から3,535億円に増えました。配当は305億円（2023年）から56億円（2025年）に減っています。</li>
+      <li><b>投資は、ほぼ300mmウェーハの一本です</b>。SUMCOは「高純度シリコン」だけの単一事業の会社です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年12月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2022年の4,411億円がピークで、その後は4,000億円前後です。利益は減価償却費の増加で大きく減りました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2023〜24年は、設備投資が営業CFを大きく上回り、借入でまかないました。2021年の財務CFのプラスは、公募増資です。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年50〜110億円で、設備投資に比べると小さい額です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2023〜24年は、設備投資が減価償却費の3倍以上でした。2025年は、減価償却費が設備投資とほぼ同じになっています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <h3>2021年9月に決めた設備投資（総額2,287億円）</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>内容</th><th>投資予定額</th><th>期間</th></tr></thead>
+      <tbody>
+        <tr><td>300mm最先端ウェーハの建屋・ユーティリティ</td><td>786</td><td>2021年10月〜2023年12月</td></tr>
+        <tr><td>300mm最先端ウェーハの製造設備</td><td>1,229</td><td>2021年10月〜2024年12月</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">有報の「設備の新設、除却等の計画」より。資金は「増資資金及び自己資金」です。</p>
+    <ul class="timeline" style="margin-top:.6rem">
+      <li><div class="y">2022年（1,309億円）</div>300mm最先端半導体用ウェーハの増強</li>
+      <li><div class="y">2023年（3,154億円）</div>同上（ピーク）</li>
+      <li><div class="y">2024年（2,149億円）</div>同上</li>
+      <li><div class="y">2025年（800億円）</div>同上</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資の総額です（キャッシュ・フロー計算書の金額とは少し違います）。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は利益に合わせて大きく変わります。2023年は305億円でしたが、利益が減った2025年は56億円でした。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は12月期決算です（例：「25/12」は2025年1月〜12月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>ウェーハの需要の回復</b>：増やした生産能力が埋まるかどうかで、利益が大きく変わります。AI向けの先端半導体の需要に注目します。</li>
+      <li><b>減価償却費の重さ</b>：年約1,160億円の減価償却費が利益を圧迫しています。売上が戻れば、利益は急に回復しやすい形でもあります。</li>
+      <li><b>借入金と配当</b>：投資が終わり、フリーCFで借入金を返していけるかを確認します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社SUMCO 有価証券報告書（2021年12月期〜2025年12月期）の連結財務諸表とXBRLデータ。2020年12月期は、2021年12月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形及び無形固定資産の取得による支出」です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [1496, 1409, 1410, 2242, 3537, 3535] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+</body>
+</html>
