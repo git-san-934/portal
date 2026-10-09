@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>浜松ホトニクス 投資分析</title>
+  <meta name="description" content="浜松ホトニクス（6965）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>浜松ホトニクス（6965）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年9月期〜2025年9月期の6年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>光半導体の工場に大きく投資しています</b>。光半導体素子（光を電気に変えるセンサなど）の工場と製造設備に、2024〜25年9月期は年約190億円を投じました。設備投資全体は、204億円（2022年9月期）から348億円（2025年9月期）に増えました。</li>
+      <li><b>計画中の光半導体の投資は約480億円です</b>。2026年9月期までの「光半導体素子の製造用工場及び製造用設備」の予算で、2025年9月末までに270億円を支払いました。</li>
+      <li><b>2024年にデンマークのレーザー会社を買収しました</b>。NKT Photonicsの全株式を取得し、子会社の取得に435億円を使いました。のれんは約300億円です。</li>
+      <li><b>投資を増やすなかで、利益は大きく減りました</b>。営業利益は570億円（2022年9月期）から162億円（2025年9月期）に減りました。医療・バイオ向けやEV向けの検査装置の需要が落ち、増えた設備の減価償却費と研究開発費（184億円）も重くなっています。</li>
+      <li><b>借入金が増え、自社株買いも行いました</b>。借入金は79億円から661億円に増えました。2025年9月期は自社株買い200億円を行っています。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年9月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2,000億円台で横ばいですが、利益は2023年9月期をピークに大きく減っています。半導体製造・検査装置向けのイメージセンサは、生成AI向けの需要で伸びています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2024年9月期の投資CFの大きなマイナスは、NKT Photonicsの買収（435億円）です。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年110〜180億円で、2025年9月期に大きく増えました。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2023年9月期から、設備投資が減価償却費の約2倍になっています。</p>
+    <div class="chart" id="c-dep"></div>
+    <h3>事業ごとの設備投資</h3>
+    <p class="sub">有報「設備投資等の概要」の金額です（有形固定資産の受入ベース）。</p>
+    <div class="chart" id="c-seg"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <h3>2026年9月期までの設備計画（2025年9月末時点、合計628億円）</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>事業</th><th>予算</th><th>支払い済み</th><th style="text-align:left">内容</th></tr></thead>
+      <tbody>
+        <tr><td>光半導体</td><td>479</td><td>270</td><td style="text-align:left">光半導体素子の工場と製造設備</td></tr>
+        <tr><td>電子管</td><td>54</td><td>13</td><td style="text-align:left">光電子増倍管・イメージ機器・光源の工場と設備</td></tr>
+        <tr><td>レーザ</td><td>36</td><td>8</td><td style="text-align:left">半導体レーザーの工場と設備</td></tr>
+        <tr><td>全社</td><td>24</td><td>－</td><td style="text-align:left">基礎研究の設備、品質本部の計測棟と電波暗室</td></tr>
+        <tr><td>その他</td><td>22</td><td>13</td><td style="text-align:left">北京浜松光子技術の工場と設備</td></tr>
+        <tr><td>画像計測機器</td><td>12</td><td>－</td><td style="text-align:left">画像処理・計測装置の製造設備</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">今後の所要資金323億円は、主に自己資金でまかなう予定です。光半導体の計画は、260億円（2022年9月末）→450億円（2023年9月末）→531億円（2024年9月末）と、毎年大きくなってきました。</p>
+    <h3>2025年9月期の事業の状況</h3>
+    <ul>
+      <li><b>光半導体</b>（売上795億円、営業利益126億円）：中国の価格競争などでX線CT向けが減った一方、生成AI・データセンター向けの半導体の製造・検査装置用のイメージセンサが増加</li>
+      <li><b>電子管</b>（売上719億円、営業利益190億円）：米国立衛生研究所（NIH）の予算削減で検体検査装置向けが減少、EV市場の停滞で電池の検査装置向けのX線源も減少</li>
+    </ul>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年約120億円です。2025年9月期は自社株買い（200億円）も行い、還元が本業のフリーCFを上回りました。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は9月期決算です（例：「25/9」は2024年10月〜2025年9月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>光半導体の新工場</b>：約480億円の投資が、半導体検査装置向けなどの需要で埋まるかが、利益回復のかぎです。</li>
+      <li><b>NKT Photonicsの成果</b>：435億円で買ったレーザー事業が、利益に貢献するかを確認します。</li>
+      <li><b>利益の底打ち</b>：営業利益は3年続けて減りました。医療・バイオ向けの需要が戻るかにも注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 浜松ホトニクス株式会社 有価証券報告書（2021年9月期〜2025年9月期）の連結財務諸表とXBRLデータ。2020年9月期は、2021年9月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [79, 98, 115, 125, 369, 661], sTube: [null, null, 106, 95, 62, 18], sOpto: [null, null, 53, 146, 195, 189], sImg: [null, null, 18, 7, null, 31] };
+window.CF_CHARTS = {
+  'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }],
+  'c-seg': [[{ name: '光半導体', key: 'sOpto', color: '--c-rd', type: 'bar', stack: 's' }, { name: '電子管', key: 'sTube', color: '--c-dep', type: 'bar', stack: 's' }, { name: '画像計測機器', key: 'sImg', color: '--c-op', type: 'bar', stack: 's' }], { h: 260 }],
+};
+</script>
+<script src="../assets/cf.js"></script>
+
+</body>
+</html>
