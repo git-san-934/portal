@@ -1,0 +1,102 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>TOTO 投資分析</title>
+  <meta name="description" content="TOTO（5332）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>TOTO（5332）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>中国への大きな投資が、減損に終わりました</b>。2023年3月期に中国大陸事業へ304億円を投資しました（工場の建設など）。しかし中国の住宅市場の不振で、2025年3月期に341億円の減損損失を計上し、中国の2つの子会社の閉鎖・清算を決めました。</li>
+      <li><b>伸びている「新領域事業」に投資を移しています</b>。半導体製造装置向けのセラミック部品の事業で、設備投資は2023年3月期の21億円から、2027年3月期は76億円を計画しています。</li>
+      <li><b>日本の住宅設備には毎年180〜250億円を投資しています</b>。情報化投資、生産設備、新商品の金型、ショールームの展示品の入れ替えなどです。米州にも年90〜160億円を投資しています。</li>
+      <li><b>設備投資は減ってきています</b>。キャッシュ・フロー計算書の設備投資は、2024年3月期の581億円から2026年3月期は432億円になりました。2027年3月期の計画は527億円で、本社の再編（93億円）も含みます。</li>
+      <li><b>2026年3月期に自社株買いを始めました</b>（200億円）。配当は年約170億円です。借入金は約680億円で、現金は1,312億円あります。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は7,000億円台で、営業利益率は7%前後です。2025年3月期は中国事業の減損で、純利益が122億円に減りました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年300〜760億円で、ほとんどの年で設備投資と配当をまかなえています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年210〜260億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は、減価償却費（年250〜350億円）を毎年上回っています。</p>
+    <div class="chart" id="c-dep"></div>
+    <h3>地域・事業ごとの設備投資</h3>
+    <p class="sub">有報「設備投資等の概要」の金額です。中国大陸への投資は2023年3月期に大きく、その後は減っています。</p>
+    <div class="chart" id="c-seg"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <h3>2027年3月期の計画（合計527億円）</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>事業</th><th>計画額</th><th style="text-align:left">主な内容</th></tr></thead>
+      <tbody>
+        <tr><td>日本住設</td><td>230</td><td style="text-align:left">新商品の開発、生産設備</td></tr>
+        <tr><td>その他</td><td>93</td><td style="text-align:left">本社の再編など</td></tr>
+        <tr><td>新領域（セラミック）</td><td>76</td><td style="text-align:left">生産設備</td></tr>
+        <tr><td>米州</td><td>71</td><td style="text-align:left">生産設備</td></tr>
+        <tr><td>中国大陸</td><td>27</td><td style="text-align:left">生産設備</td></tr>
+        <tr><td>アジア・オセアニア、欧州</td><td>30</td><td style="text-align:left">生産設備、販売</td></tr>
+      </tbody>
+    </table></div>
+    <div class="warn"><p><b>中国大陸事業の減損（2025年3月期、341億円）</b>：2025年4月の取締役会で、中国の子会社2社（東陶機器（北京）と東陶華東）の閉鎖・清算を含む事業の見直しを決めました。2023年3月期に304億円を投じた中国への投資は、2027年3月期の計画では27億円まで減っています。</p></div>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年約170億円で安定しています。2026年3月期に初めて自社株買い（200億円）を行い、還元の合計は367億円になりました。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>新領域事業</b>：半導体製造装置向けのセラミック部品が、会社全体の利益をどこまで支えるかを確認します。</li>
+      <li><b>中国事業の縮小</b>：工場の閉鎖・清算が予定どおり進み、追加の損失が出ないかに注目します。</li>
+      <li><b>還元の拡大</b>：自社株買いを始めたことで、今後も続けるかを確認します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET TOTO株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { sJP: [null, null, null, 147, 249, 180, 185], sCN: [null, null, null, 304, 111, 140, 68], sUS: [null, null, null, 161, 90, 127, 102], sNew: [null, null, null, 21, 62, 39, 50], sOther: [null, null, null, 23, 69, 21, 26] };
+window.CF_CHARTS = { 'c-seg': [[{ name: '日本住設', key: 'sJP', color: '--c-dep', type: 'bar', stack: 's' }, { name: '中国大陸', key: 'sCN', color: '--c-inv', type: 'bar', stack: 's' }, { name: '米州', key: 'sUS', color: '--c-rd', type: 'bar', stack: 's' }, { name: '新領域（セラミック）', key: 'sNew', color: '--c-op', type: 'bar', stack: 's' }, { name: 'その他の地域など', key: 'sOther', color: '--c-fin', type: 'bar', stack: 's' }], { h: 280 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+</body>
+</html>
