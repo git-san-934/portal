@@ -1,0 +1,123 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>日本ガイシ（NGK） 投資分析</title>
+  <meta name="description" content="日本ガイシ（NGK）（5333）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>日本ガイシ（NGK）（5333）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>投資の重心が、車から半導体へ移っています</b>。半導体製造装置用の部品をつくる「デジタルソサエティ」事業の設備投資は、2026年3月期に229億円となり、自動車の排ガス浄化部品の「エンバイロメント」事業（149億円）を上回りました。2027年3月期の計画でも240億円と最大です。</li>
+      <li><b>研究開発と新しい事業の拠点にも投資しています</b>。本社部門（新事業・研究開発の施設、共創施設）の設備投資は、71億円（2023年3月期）から2025〜26年3月期は年150〜160億円に増えました。研究開発費も年220〜320億円あります。</li>
+      <li><b>NAS電池（大型の蓄電池）の事業はやめました</b>。2026年3月期に、製造と販売の終了に伴う事業構造改革費用200億円を計上しました。</li>
+      <li><b>設備投資は減価償却費より少ない年が続いています</b>。2020年3月期の954億円をピークに、年370〜560億円です。減価償却費（年450〜580億円）とほぼ同じか、少し下回っています。</li>
+      <li><b>還元は安定しています</b>。配当は年110〜210億円、自社株買いも年約100〜150億円行っています。借入金などは約2,500億円で横ばいです。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は7年で約1.5倍になりました。2026年3月期は、AI向けの半導体需要で半導体製造装置用製品が伸び、営業利益は950億円でした。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。投資CFには、資金運用のための有価証券の売買も含まれます（2026年3月期は取得1,901億円、売却・償還1,496億円）。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は、設備投資の半分以上の大きさです。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2020年3月期を除き、設備投資は減価償却費と同じくらいか少ない額です。</p>
+    <div class="chart" id="c-dep"></div>
+    <h3>事業ごとの設備投資</h3>
+    <p class="sub">有報「設備投資等の概要」の金額です（無形固定資産を含む）。2027年3月期は計画で、色を薄くしています。</p>
+    <div class="chart" id="c-seg"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>事業</th><th>主な製品</th><th>26/3実績</th><th>27/3計画</th></tr></thead>
+      <tbody>
+        <tr><td>デジタルソサエティ</td><td style="text-align:left">半導体製造装置用製品、電子工業用製品</td><td>229</td><td>240</td></tr>
+        <tr><td>本社部門</td><td style="text-align:left">新事業・研究開発の施設、共創施設</td><td>153</td><td>200</td></tr>
+        <tr><td>エンバイロメント</td><td style="text-align:left">自動車の排ガス浄化部品、センサー、カーボンニュートラル関連の研究</td><td>149</td><td>150</td></tr>
+        <tr><td>エネルギー＆インダストリー</td><td style="text-align:left">がいし</td><td>28</td><td>30</td></tr>
+        <tr class="sum"><td>合計</td><td></td><td>558</td><td>620</td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">エンバイロメント事業の計画は、215億円（2023年3月末）→200億円→170億円→150億円と、毎年減っています。一方、デジタルソサエティは230〜250億円の計画が続いています。所要資金は、自己資金と金融機関からの借入でまかなう予定です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当と自社株買いを合わせて年250〜350億円で、本業のフリーCFの範囲で還元しています。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>半導体製造装置用製品</b>：投資の中心になった事業です。AI向けの需要が続くか、一部の客先の在庫の積み増しが落ち着いたあとも売れるかを確認します。</li>
+      <li><b>自動車の排ガス部品</b>：EVが増えると需要が減る事業です。投資を減らしながら、どれだけ稼ぎ続けられるかに注目します。</li>
+      <li><b>新事業</b>：本社部門で研究している新しい事業が、売上につながるかを確認します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 日本碍子株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+
+</script>
+<script src="../assets/cf.js"></script>
+<script>
+(function () {
+  const el = document.getElementById('c-seg');
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const labels = ['23/3', '24/3', '25/3', '26/3', '27/3計画'];
+  const S = [['エンバイロメント（車）', '--c-dep', [184, 155, 167, 149, 150]], ['デジタルソサエティ（半導体）', '--c-rd', [162, 177, 144, 229, 240]], ['本社（研究・新事業）', '--c-op', [71, 109, 162, 153, 200]], ['エネルギー＆インダストリー', '--c-fin', [20, 33, 16, 28, 30]]];
+  function draw() {
+    const W = 640, H = 300, L = 62, T = 14, B = 34, max = 800;
+    const y = v => T + (1 - v / max) * (H - T - B), cw = (W - L - 8) / labels.length;
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img">`;
+    for (let v = 0; v <= max; v += 200) s += `<line x1="${L}" x2="${W - 8}" y1="${y(v)}" y2="${y(v)}" stroke="${css('--grid')}"/><text x="${L - 6}" y="${y(v) + 5}" text-anchor="end">${v}</text>`;
+    labels.forEach((lb, i) => {
+      const x = L + cw * i + cw / 2 - 20, op = i === 4 ? 'opacity=".55"' : '';
+      let acc = 0;
+      S.forEach(([, c, d]) => { s += `<rect x="${x}" y="${y(acc + d[i])}" width="40" height="${y(acc) - y(acc + d[i])}" fill="${css(c)}" ${op}/>`; acc += d[i]; });
+      s += `<text x="${x + 20}" y="${y(acc) - 5}" text-anchor="middle">${acc}</text><text x="${x + 20}" y="${H - 6}" text-anchor="middle">${lb}</text>`;
+    });
+    el.innerHTML = s + '</svg>';
+    let lg = el.nextElementSibling;
+    if (!lg || !lg.classList.contains('legend')) { lg = document.createElement('div'); lg.className = 'legend'; el.after(lg); }
+    lg.innerHTML = S.map(([n, c]) => `<span style="--sw:${css(c)}">${n}</span>`).join('');
+  }
+  draw(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+})();
+</script>
+</body>
+</html>
