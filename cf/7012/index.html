@@ -1,0 +1,135 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>川崎重工業 投資分析</title>
+  <meta name="description" content="川崎重工業（7012）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>川崎重工業（7012）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。2023年3月期から国際会計基準（IFRS）に変わっています。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>設備投資は5年でほぼ2倍になりました</b>。2023年3月期の963億円から2026年3月期は1,433億円になり、2027年3月期は約1,700億円を計画しています（無形資産・使用権資産を含む）。</li>
+      <li><b>この数年の最大の投資先は、バイクなどのパワースポーツ事業です</b>。2024〜25年3月期は年620〜680億円で、設備投資の4〜5割を占めました。主に増産のための設備です。</li>
+      <li><b>これからは、航空宇宙と水素に重心が移ります</b>。2027年3月期の計画では、航空宇宙システム（航空機と民間航空エンジン）が500億円で最大になり、水素事業を含む「その他」も465億円と、2023年3月期の約3倍に増えます。</li>
+      <li><b>投資のお金の一部は借入でまかなっています</b>。社債・借入金などは約8,600億円で、営業CFが少ない年は、借入を増やして投資を続けてきました。</li>
+      <li><b>利益と配当は増えています</b>。純利益は2021年3月期の赤字から2026年3月期は1,082億円に、配当は260億円に増えました。自社株買いはしていません。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は7年で約1.4倍になりました。航空機やパワースポーツの好調で、2025〜26年3月期の利益（事業利益）は1,400億円台です。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFが少ない年（2020年、2023〜24年3月期）は、財務CF（借入）のプラスで投資をまかないました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年450〜570億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2024年3月期から、設備投資が減価償却費を上回っています。</p>
+    <div class="chart" id="c-dep"></div>
+    <h3>事業ごとの設備投資</h3>
+    <p class="sub">有報「設備投資等の概要」と「設備の新設、除却等の計画」の金額です（無形資産・使用権資産を含む）。2027年3月期は計画で、色を薄くしています。</p>
+    <div class="chart" id="c-seg"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <div class="tbl"><table>
+      <thead><tr><th>事業</th><th>主な内容</th><th>26/3実績</th><th>27/3計画</th></tr></thead>
+      <tbody>
+        <tr><td>航空宇宙システム</td><td style="text-align:left">航空機と民間航空エンジンの生産の合理化</td><td>331</td><td>500</td></tr>
+        <tr><td>その他（水素など）</td><td style="text-align:left">水素事業、全社共通の設備</td><td>350</td><td>465</td></tr>
+        <tr><td>パワースポーツ＆エンジン</td><td style="text-align:left">バイクなどの新製品・増産</td><td>423</td><td>345</td></tr>
+        <tr><td>エネルギー＆マリン</td><td style="text-align:left">産業機械の合理化、水素事業</td><td>161</td><td>175</td></tr>
+        <tr><td>精密機械・ロボット</td><td style="text-align:left">油圧機器と産業用ロボット</td><td>108</td><td>150</td></tr>
+        <tr><td>車両</td><td style="text-align:left">鉄道車両の生産の合理化</td><td>58</td><td>65</td></tr>
+        <tr class="sum"><td>合計</td><td></td><td>1,433</td><td>1,700</td></tr>
+      </tbody>
+    </table></div>
+    <h3>流れの変化</h3>
+    <ul class="timeline">
+      <li><div class="y">2023〜25年3月期</div>パワースポーツの増産が中心（2024年3月期は620億円、2025年3月期は679億円）</li>
+      <li><div class="y">2026年3月期</div>パワースポーツは423億円に減り、航空宇宙（331億円）と水素（「その他」350億円）が増加</li>
+      <li><div class="y">2027年3月期（計画）</div>航空宇宙が500億円で最大に。水素を含む「その他」が465億円</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">2021年10月に、鉄道車両とバイクの事業をそれぞれ子会社（川崎車両、カワサキモータース）に分けています。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は、赤字だった2021年3月期のほぼゼロから、2026年3月期は260億円に増えました。投資と配当のお金の一部を借入でまかなう年もあります。</p>
+    <h3>社債・借入金などの残高</h3>
+    <p class="sub">2022年3月期までは日本基準の社債・借入金、それ以降はIFRSの「社債、借入金及びその他の金融負債」（リース負債などを含む）で、定義が少し違います。</p>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。2022年3月期までは日本基準、2023年3月期からは国際会計基準（IFRS）で、IFRSの年の「営業利益」は会社が使う「事業利益」です。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>航空宇宙への500億円</b>：民間航空エンジンや航空機の需要が続き、投資が利益につながるかを確認します。</li>
+      <li><b>水素事業</b>：「その他」の投資が大きく増えます。水素はまだ事業として育っていない分野で、成果が出るまで時間がかかります。</li>
+      <li><b>借入金</b>：約8,600億円の借入金を抱えながら投資を増やします。営業CFで投資をまかなえるかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 川崎重工業株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。2022年3月期までは日本基準、2023年3月期からはIFRSのため、その前後で数字の定義が少し変わります。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [5350, 5608, 4904, 7853, 8452, 8895, 8612] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '社債・借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+<script>
+(function () {
+  const el = document.getElementById('c-seg');
+  const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const labels = ['23/3', '24/3', '25/3', '26/3', '27/3計画'];
+  const S = [['パワースポーツ', '--c-dep', [272, 620, 679, 423, 345]], ['航空宇宙', '--c-rd', [170, 217, 248, 331, 500]], ['その他（水素など）', '--c-op', [164, 179, 177, 350, 465]], ['エネルギー＆マリン', '--c-buy', [75, 91, 112, 161, 175]], ['ロボット', '--c-capex', [258, 183, 142, 108, 150]], ['車両', '--c-fin', [22, 45, 50, 58, 65]]];
+  function draw() {
+    const W = 640, H = 300, L = 62, T = 14, B = 34, max = 2000;
+    const y = v => T + (1 - v / max) * (H - T - B), cw = (W - L - 8) / labels.length;
+    let s = `<svg viewBox="0 0 ${W} ${H}" role="img">`;
+    for (let v = 0; v <= max; v += 500) s += `<line x1="${L}" x2="${W - 8}" y1="${y(v)}" y2="${y(v)}" stroke="${css('--grid')}"/><text x="${L - 6}" y="${y(v) + 5}" text-anchor="end">${v.toLocaleString()}</text>`;
+    labels.forEach((lb, i) => {
+      const x = L + cw * i + cw / 2 - 20, op = i === 4 ? 'opacity=".55"' : '';
+      let acc = 0;
+      S.forEach(([, c, d]) => { s += `<rect x="${x}" y="${y(acc + d[i])}" width="40" height="${y(acc) - y(acc + d[i])}" fill="${css(c)}" ${op}/>`; acc += d[i]; });
+      s += `<text x="${x + 20}" y="${y(acc) - 5}" text-anchor="middle">${acc.toLocaleString()}</text><text x="${x + 20}" y="${H - 6}" text-anchor="middle">${lb}</text>`;
+    });
+    el.innerHTML = s + '</svg>';
+    let lg = el.nextElementSibling;
+    if (!lg || !lg.classList.contains('legend')) { lg = document.createElement('div'); lg.className = 'legend'; el.after(lg); }
+    lg.innerHTML = S.map(([n, c]) => `<span style="--sw:${css(c)}">${n}</span>`).join('');
+  }
+  draw(); matchMedia('(prefers-color-scheme: dark)').addEventListener('change', draw);
+})();
+</script>
+</body>
+</html>
