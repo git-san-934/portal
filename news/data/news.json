@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-09T11:57+09:00",
+ "updated_at": "2026-10-09T19:55+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-09",
+     "title": "『マリオカート ワールド』のゲーム内イベント「オンラインチャレンジ サバイバルの秋」を10月17日(土)13:00~17:00に開催。",
+     "url": "https://www.nintendo.com/jp/topics/article/322e44dd-a061-46b5-8526-c53c1b860169",
+     "source": "official",
+     "first_seen": "2026-10-09T19:55+09:00"
+    },
     {
      "date": "2026-10-09",
      "title": "『Nintendo Switch Sports Resort』の紹介映像とTVCMを公開。",
@@ -544,6 +551,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-09",
+     "title": "お知らせ 組み込み開発を基礎から解説するサイト『組み込みソフトの世界』に新しい記事を追加。 組み込みソフトウェア開発の基礎知識からテスト工程、マイコン制御、通信技術までをわかりやすく解説しています。",
+     "url": "https://www.keyence.co.jp/ss/general/embedded-software/",
+     "source": "official",
+     "first_seen": "2026-10-09T19:55+09:00"
+    },
+    {
      "date": "2026-09-24",
      "title": "新商品 測定工数が従来の半分以下に!ワイドエリア三次元測定機「WM-7000シリーズ」登場。 最大25mの大型ワークを1人で測定。スキャンするだけで穴径・穴位置まで自動測定!",
      "url": "https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/pr/211254001.jsp",
@@ -697,6 +711,13 @@
     "https://www.enplas.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-10-09",
+     "title": "STMicroelectronics Partner Programへの参画を通じてST60向けRFレンズソリューション提供を強化",
+     "url": "https://www.enplas.co.jp/news/business-news/9782/",
+     "source": "official",
+     "first_seen": "2026-10-09T19:55+09:00"
+    },
     {
      "date": "2026-10-07",
      "title": "electronica 2026 出展のご案内",
@@ -960,6 +981,13 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-10-09",
+     "title": "CEATEC 2026「JEITA 半導体フォーラム 2026」への出展について",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20261009-1.html",
+     "source": "official",
+     "first_seen": "2026-10-09T19:55+09:00"
+    },
     {
      "date": "2026-10-09",
      "title": "ハイパースケールデータセンター向けE1.L QLCベースSSDの開発について",
