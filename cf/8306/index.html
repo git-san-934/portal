@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>三菱UFJフィナンシャル・グループ 投資分析</title>
+  <meta name="description" content="三菱UFJフィナンシャル・グループ（8306）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>三菱UFJフィナンシャル・グループ（8306）は何に投資しているか</h1>
+    <p>有価証券報告書の連結財務諸表と「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です（貸出金などは<strong>兆円</strong>）。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>純利益は7年で4.6倍になりました</b>。5,282億円から2兆4,272億円に増えました。金利の上昇で貸出金の利息が増え（2兆3,636億円→4兆2,142億円）、手数料収入も1兆5,776億円から2兆6,664億円に伸びました。</li>
+      <li><b>貸出金を大きく増やしています</b>。貸出金は2023年3月期の109兆円から2026年3月期は134兆円になりました。預金も188兆円から239兆円に増えています。</li>
+      <li><b>海外の買収と出資を続けています</b>。タイのアユタヤ銀行（クルンシィ）とインドネシアのダナモン銀行を通じたアジアの消費者金融への出資、豪州の年金・証券代行会社（11.1億豪ドル、2024年）、インドの大手ノンバンクShriram Financeの20%（2025年12月に合意）などです。</li>
+      <li><b>システムと本社ビルにも投資しています</b>。グループの設備投資（ソフトウェアを含む）は2026年3月期に5,049億円でした。MUFG本館（東京・丸の内）の建て替えに2,055億円を計画しています。</li>
+      <li><b>還元を急に増やしました</b>。2026年3月期は配当8,484億円と自社株買い5,002億円で、合計1兆3,486億円（純利益の約56%）です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 投資の中身</h2>
+    <h3>銀行は見方が少し違います</h3>
+    <p>銀行では、預金を受け入れたり、お金を貸し出したりするたびに、キャッシュフロー計算書の数字が動きます。そのため営業CFは年によって数兆〜数十兆円の単位で振れ、ほかの会社のように「本業で稼いだお金」としては読めません。このページでは、「お金の運用（貸出金・有価証券）」「システムと拠点への投資」「買収と出資」に分けて見ます。</p>    <h3>利益の推移</h3>
+    <p class="sub">経常利益と、親会社株主に帰属する当期純利益です。</p>
+    <div class="chart" id="c-profit"></div>
+    <h3>収入の中身：貸出金の利息と手数料</h3>
+    <div class="chart" id="c-income"></div>
+    <h3>お金の運用：預金をどこに回しているか（兆円）</h3>
+    <div class="chart" id="c-bs"></div>
+    <h3>システムと拠点への投資（2026年3月期、有報「設備投資等の概要」）</h3>
+    <div class="tbl"><table>
+      <thead><tr><th>会社</th><th>設備投資</th><th style="text-align:left">主な内容</th></tr></thead>
+      <tbody>
+        <tr><td>三菱UFJ銀行</td><td>3,309</td><td style="text-align:left">システム投資、本部ビル・センターの改修、店舗の移転・建て替え</td></tr>
+        <tr><td>三菱UFJ信託銀行</td><td>756</td><td style="text-align:left">証券代行システムの更改、基幹システムの刷新</td></tr>
+        <tr><td>コンシューマーファイナンス子会社</td><td>566</td><td style="text-align:left">三菱UFJニコスのシステム統合など</td></tr>
+        <tr><td>三菱UFJ証券ホールディングス</td><td>242</td><td style="text-align:left">支店の改装・移転、システム</td></tr>
+        <tr class="sum"><td>合計</td><td>5,049</td><td></td></tr>
+      </tbody>
+    </table></div>
+    <p class="sub" style="margin-top:.5rem">計画中の大きな案件は、MUFG本館の建て替え（2,055億円）と、次世代のOA基盤の構築（150億円、2027年9月完了予定）です。キャッシュ・フロー計算書の設備投資は、2026年3月期に6,731億円でした。</p>
+    <h3>買収と出資</h3>
+    <ul class="timeline">
+      <li><div class="y">2022年</div>米国のMUFGユニオンバンクをU.S. Bancorpに売却し、代わりにU.S. Bancorpの株式を取得</li>
+      <li><div class="y">2023年度</div>アジアの消費者金融2社（インドのDMI Finance、インドネシアのMandala Multifinance）に出資。アユタヤ銀行が4社を子会社に</li>
+      <li><div class="y">2024年5月</div>豪州のMUFG Pension &amp; Market Services（年金運営・証券代行）を11.1億豪ドルで子会社に</li>
+      <li><div class="y">2025〜26年</div>タイのTIDLORを連結。ウェルスナビを子会社にし、2027年度中にネット証券との統合を計画。インドのShriram Financeの株式20%の取得に合意</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">子会社の取得の支出は、2024年3月期に2,058億円、2025年3月期に1,614億円でした。</p>
+  </section>
+  <section>
+    <h2>② 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、純利益（線）を比べています。</p>
+    <div class="chart" id="c-ret2"></div>
+    <p style="margin-top:.6rem">配当は3,045億円から8,484億円に、自社株買いは年4,000〜5,000億円に増えました。利益の伸びに合わせて還元も増やしています。</p>
+  </section>
+  <section>
+    <h2>③ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>日本の金利</b>：金利が上がると、預金と貸出金の利ざやが広がり利益が増えやすくなります。一方で、持っている債券の価格は下がります。</li>
+      <li><b>海外の出資先</b>：インドやアジアの消費者金融への出資が、利益の伸びにつながるかを確認します。</li>
+      <li><b>還元の続け方</b>：1兆円を超えた還元を続けられるかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社三菱UFJフィナンシャル・グループ 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { loans: [109.1, 107.2, 110.4, 109.1, 116.8, 121.4, 133.8], secs: [65.6, 77.1, 79.6, 86.7, 86.9, 86.1, 85.7], deposits: [187.6, 211.5, 215.4, 213.6, 224.0, 228.5, 239.4], loanInt: [23636, 17995, 16546, 28102, 39697, 41580, 42142], fees: [15776, 15655, 17291, 18834, 20472, 23601, 26664] };
+window.CF_CHARTS = {
+  'c-profit': [[{ name: '経常利益', key: 'opinc', color: '--c-dep', type: 'bar' }, { name: '純利益', key: 'net', color: '--c-op', type: 'bar' }], { h: 260 }],
+  'c-income': [[{ name: '貸出金の利息', key: 'loanInt', color: '--c-rd', type: 'bar' }, { name: '手数料収入', key: 'fees', color: '--c-op', type: 'bar' }], { h: 260 }],
+  'c-bs': [[{ name: '貸出金', key: 'loans', color: '--c-capex', type: 'bar', stack: 'a' }, { name: '有価証券', key: 'secs', color: '--c-rd', type: 'bar', stack: 'a' }, { name: '預金', key: 'deposits', color: '--c-line', type: 'line' }]],
+  'c-ret2': [[{ name: '配当', key: 'div', color: '--c-div', type: 'bar', stack: 'r' }, { name: '自社株買い', key: 'buy', color: '--c-buy', type: 'bar', stack: 'r' }, { name: '純利益', key: 'net', color: '--c-line', type: 'line' }], { h: 280 }],
+};
+window.CF_KPIS = [['純利益', 'net'], ['貸出金（兆円）', 'loans'], ['設備投資', 'capex', 'dep', '減価償却費'], ['配当＋自社株買い', 'ret']];
+window.CF_ROWS = [
+  ['経常収益', 'sales'], ['経常利益', 'opinc'], ['純利益', 'net', 1], ['　貸出金の利息', 'loanInt'], ['　手数料収入', 'fees'], null,
+  ['貸出金（兆円）', 'loans'], ['有価証券（兆円）', 'secs'], ['預金（兆円）', 'deposits'], null,
+  ['設備投資', 'capex', 1], ['減価償却費', 'dep'], ['子会社の取得', 'acq'], ['減損損失', 'imp'], null,
+  ['配当', 'div'], ['自社株買い', 'buy'], ['還元の合計', 'ret', 1],
+];
+</script>
+<script src="../assets/cf.js"></script>
+
+</body>
+</html>
