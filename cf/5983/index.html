@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>イワブチ 投資分析</title>
+  <meta name="description" content="イワブチ（5983）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>イワブチ（5983）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>（小数点1桁まで）です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>電柱に電線や機器を取り付ける金具の会社です</b>。電力会社や通信会社向けの金具（配電線路、情報通信）、交通信号・標識の取付金具、防災無線の関連製品などをつくっています。</li>
+      <li><b>売上は着実に増加</b>。売上は98.9億円から135.3億円に増え、2026年3月期の営業利益は14.6億円（66%増）でした。古くなった電力設備の更新工事と光ネットワーク工事が好調です。</li>
+      <li><b>設備投資は小さく、年1〜7億円</b>。中身は製品の開発・生産効率の向上のための設備と、古い設備の更新、基幹システムです。2025年3月期は千葉県の松戸工場の隣の土地を買い、有報の設備投資額は9.9億円でした。</li>
+      <li><b>借入金はほとんどなし</b>。現金は約50億円あり、自己資本比率は8割近くです。配当は年2〜3億円で、2026年3月期は自社株買い（2.8億円）もしました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">電力分野では古い設備の更新工事が進み、情報通信分野では携帯電話の基地局工事は減ったものの、光ネットワーク工事が好調でした。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。投資CFには、定期預金の預け入れと払い戻しも含まれます。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年2〜3億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2025年3月期を除き、設備投資は減価償却費より少なめです。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（3.7億円）</div>基幹システムの更新、製品の開発改良と生産効率の向上のための設備、古い設備の更新</li>
+      <li><div class="y">2024年3月期（2.0億円）</div>基幹システムの更改、生産設備の増強と更新</li>
+      <li><div class="y">2025年3月期（9.9億円）</div>松戸工場の隣の土地の購入、生産設備の増強と更新</li>
+      <li><div class="y">2026年3月期（2.3億円）</div>製品の開発改良と生産効率の向上のための設備、古い設備の更新</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年2.1〜3.1億円です。2026年3月期は自社株買い（2.8億円）もしたため、還元の合計が増えました。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>電力設備の更新</b>：古くなった電力設備の更新工事が続くかに注目します。</li>
+      <li><b>新しい分野</b>：再生可能エネルギーや防衛関連の無線システムなど、新しい分野の売上が育つかを確認します。</li>
+      <li><b>手元資金の使い道</b>：現金が多く、還元を増やすかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET イワブチ株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

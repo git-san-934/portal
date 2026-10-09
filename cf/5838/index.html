@@ -1,0 +1,92 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>楽天銀行 投資分析</title>
+  <meta name="description" content="楽天銀行（5838）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>楽天銀行（5838）は何に投資しているか</h1>
+    <p>2023年4月に上場したため、有価証券報告書は4回分です。前期の数字も使い、<strong>2022年3月期〜2026年3月期の5年間</strong>をまとめました。単位は<strong>億円</strong>です（貸出金などは<strong>兆円</strong>）。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>店舗を持たないネット銀行です</b>。楽天グループの銀行で、口座数を増やし、楽天のサービスと組み合わせた給与・決済の口座（生活口座）として使ってもらうことで伸びてきました。</li>
+      <li><b>預金は4年で1.7倍の13兆円に</b>。預金は7.6兆円から13.0兆円に、貸出金は2.9兆円から5.9兆円に増えました。有価証券も0.6兆円から2.3兆円に増やしています。</li>
+      <li><b>金利上昇で利益は3.7倍</b>。日銀の利上げで運用利回りが上がり、経常利益は279億円から1,031億円に、純利益は200億円から731億円に増えました。</li>
+      <li><b>設備投資はシステムだけ</b>。設備投資は年54〜189億円で、ほとんどが取引量の増加に備えたシステム基盤の強化と、新サービスのシステム開発（ソフトウェア）です。</li>
+      <li><b>配当はまだなし</b>。利益は自己資本として積み上げ、預金と貸出の拡大に回しています。純資産は2,065億円から3,895億円に増えました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 投資の中身</h2>
+    <h3>銀行は見方が少し違います</h3>
+    <p>銀行では、預金を受け入れたり、お金を貸し出したりするたびに、キャッシュフロー計算書の数字が動きます。そのため営業CFは年によって数兆〜数十兆円の単位で振れ、ほかの会社のように「本業で稼いだお金」としては読めません。このページでは、「お金の運用（貸出金・有価証券）」「システムと拠点への投資」「買収と出資」に分けて見ます。</p>    <h3>利益の推移</h3>
+    <p class="sub">経常利益と、親会社株主に帰属する当期純利益です。</p>
+    <div class="chart" id="c-profit"></div>
+    <h3>収入の中身：貸出金の利息と手数料</h3>
+    <div class="chart" id="c-income"></div>
+    <h3>お金の運用：預金をどこに回しているか（兆円）</h3>
+    <div class="chart" id="c-bs"></div>
+    <h3>システムへの投資</h3>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（78億円）</div>顧客基盤の拡大に伴う取引量の増加に備えたシステム基盤の強化、新サービスのシステム開発</li>
+      <li><div class="y">2024年3月期（94億円）</div>同上。システム機器の更改</li>
+      <li><div class="y">2025年3月期（140億円）</div>同上</li>
+      <li><div class="y">2026年3月期（189億円）</div>同上。システム機器の更改を3件（総額約49億円）進めています</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額（有形・無形固定資産）です。</p>
+  </section>
+  <section>
+    <h2>② 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>預金金利の上昇</b>：普通預金の金利を2回引き上げ、預金にかかる費用が増えています。運用の利回りとの差を保てるかに注目します。</li>
+      <li><b>貸出の伸び</b>：カードローンなどの貸出が増え続けるかを確認します。</li>
+      <li><b>配当の開始</b>：自己資本が積み上がっています。いつ配当を始めるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 楽天銀行株式会社 有価証券報告書（2023年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2022年3月期は、2023年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { loans: [2.94, 3.78, 4.07, 5.04, 5.94], secs: [0.58, 0.78, 1.09, 1.79, 2.32], deposits: [7.58, 8.99, 10.44, 11.45, 13.05], loanInt: [449, 481, 549, 671, 966], fees: [404, 412, 428, 463, 495] };
+window.CF_CHARTS = {
+  'c-profit': [[{ name: '経常利益', key: 'opinc', color: '--c-dep', type: 'bar' }, { name: '純利益', key: 'net', color: '--c-op', type: 'bar' }], { h: 260 }],
+  'c-income': [[{ name: '貸出金の利息', key: 'loanInt', color: '--c-rd', type: 'bar' }, { name: '手数料収入', key: 'fees', color: '--c-op', type: 'bar' }], { h: 260 }],
+  'c-bs': [[{ name: '貸出金', key: 'loans', color: '--c-capex', type: 'bar', stack: 'a' }, { name: '有価証券', key: 'secs', color: '--c-rd', type: 'bar', stack: 'a' }, { name: '預金', key: 'deposits', color: '--c-line', type: 'line' }]],
+  'c-ret2': [[{ name: '配当', key: 'div', color: '--c-div', type: 'bar', stack: 'r' }, { name: '自社株買い', key: 'buy', color: '--c-buy', type: 'bar', stack: 'r' }, { name: '純利益', key: 'net', color: '--c-line', type: 'line' }], { h: 280 }],
+};
+window.CF_KPIS = [['純利益', 'net'], ['貸出金（兆円）', 'loans'], ['設備投資', 'capex', 'dep', '減価償却費'], ['配当＋自社株買い', 'ret']];
+window.CF_ROWS = [
+  ['経常収益', 'sales'], ['経常利益', 'opinc'], ['純利益', 'net', 1], ['　貸出金の利息', 'loanInt'], ['　手数料収入', 'fees'], null,
+  ['貸出金（兆円）', 'loans'], ['有価証券（兆円）', 'secs'], ['預金（兆円）', 'deposits'], null,
+  ['設備投資', 'capex', 1], ['減価償却費', 'dep'], ['子会社の取得', 'acq'], ['減損損失', 'imp'], null,
+  ['配当', 'div'], ['自社株買い', 'buy'], ['還元の合計', 'ret', 1],
+];
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ホクト 投資分析</title>
+  <meta name="description" content="ホクト（1379）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ホクト（1379）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>ブナシメジ・エリンギ・マイタケなど、きのこの会社です</b>。きのこを工場で栽培していて、ブナシメジだけで年4万7,000トンをつくっています。米国や台湾でも生産しています。</li>
+      <li><b>設備投資は年16〜50億円</b>（2022年3月期の104億円を除く）。中身は国内のきのこ工場の効率化です。2026年3月期は長野県の上田きのこセンター（ブナシメジ年3,000トン、32億円）の改修で49億円に増えました。</li>
+      <li><b>設備投資は減価償却費より少ない年が多い</b>。減価償却費は71億円から52億円に減っています。工場を増やすより、今の工場を直しながら使う段階です。</li>
+      <li><b>利益は年によって大きく動きます</b>。2023年3月期は営業損失29億円でした。2026年3月期は営業利益70億円、純利益70億円まで回復しました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は712億円から859億円に増えました。2026年3月期は、ブナシメジとマイタケの生産量が前期並み、エリンギは4.5%減でした。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年47〜122億円で、赤字の年もプラスでした。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年2〜7億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2022・2026年3月期を除き、設備投資は減価償却費の3〜6割です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2022年3月期（104億円）</div>キャッシュ・フロー計算書の設備投資額（内訳はこのページのデータにはありません）</li>
+      <li><div class="y">2023年3月期（10.7億円）</div>国内きのこ事業の生産効率の向上</li>
+      <li><div class="y">2024年3月期（15.8億円）</div>国内きのこ（10.1億円）、海外きのこ（3.7億円）</li>
+      <li><div class="y">2025年3月期（16.4億円）</div>国内きのこ（10.4億円）、加工品（2.9億円）、海外きのこ（2.8億円）</li>
+      <li><div class="y">2026年3月期（48.6億円）</div>上田きのこセンターの改修（32.5億円、ブナシメジ年3,000トン）など国内きのこ（44.5億円）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">2023年3月期以降は有報「設備投資等の概要」の設備投資額、2022年3月期はキャッシュ・フロー計算書の金額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年13〜19億円です。自社株買いは少しだけです。借入金などは323億円（2024年3月期）から202億円に減りました。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>きのこの値段</b>：きのこの値段と、電気代など生産コストの動きで利益が大きく変わります。</li>
+      <li><b>海外事業</b>：米国などの海外のきのこ事業が伸びるかに注目します。</li>
+      <li><b>工場の更新</b>：古くなった工場の改修が、上田のあとも続くかを確認します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ホクト株式会社 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [254, 223, 272, 300, 323, 231, 202] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

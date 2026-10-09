@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ユニ・チャーム 投資分析</title>
+  <meta name="description" content="ユニ・チャーム（8113）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ユニ・チャーム（8113）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年12月期〜2025年12月期の6年間の推移をまとめました。国際会計基準（IFRS）で、単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>紙おむつと生理用品、ペット用品の会社です</b>。赤ちゃん用・大人用の紙おむつと生理用品（パーソナルケア）が売上の8割で、アジアを中心に海外でも大きく売っています。</li>
+      <li><b>設備投資は年290〜390億円で、減価償却費より少ない</b>。中身は紙おむつ・生理用品の生産の増強と合理化、ペット用品の工場です。</li>
+      <li><b>2025年12月期は減収減益</b>。売上は9,453億円（4%減）、コア営業利益は1,089億円（21%減）でした。インドの税制改正による評価損（69億円）もありました。</li>
+      <li><b>借入はほぼゼロ、還元は毎年増加</b>。配当は179億円から286億円に、自社株買いは72億円から220億円に増えました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年12月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">海外では大人用の排泄ケア用品の需要が高まっています。2025年12月期は、パーソナルケアの売上が6.3%減り、コア営業利益は25%減りました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。投資CFには、定期預金の預け入れと払い戻し（年400〜1,900億円）が含まれます。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年82〜136億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は毎年、減価償却費を下回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2022年12月期（426億円）</div>パーソナルケア（357億円、紙おむつ・生理用品の生産の増強と合理化）、ペットケア（65億円）</li>
+      <li><div class="y">2023年12月期（521億円）</div>パーソナルケア（416億円）、ペットケア（97億円）</li>
+      <li><div class="y">2024年12月期（445億円）</div>パーソナルケア（338億円）、ペットケア（100億円）</li>
+      <li><div class="y">2025年12月期（334億円）</div>パーソナルケア（279億円）、ペットケア（51億円）</li>
+      <li><div class="y">2026年12月期の計画（400億円）</div>パーソナルケア（380億円）、ペットケア（20億円）。資金は自己資金</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」（2023年12月期からはリースによる使用権資産を含む）と、「設備の新設、除却等の計画」の金額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当と自社株買いは毎年増え、2025年12月期は合わせて506億円でした。ほかに、子会社の少数株主への配当が年90〜140億円あります。還元の合計は本業のフリーCFの範囲内です。</p>
+    <h3>借入金などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は12月期決算です（例：「25/12」は2025年1月〜12月）。「営業利益」は、会社が使っている「コア営業利益」（売上総利益から販売費及び一般管理費を引いた利益）です。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>アジアでの競争</b>：中国やインドなどでの販売が回復するかに注目します。</li>
+      <li><b>大人用おむつの成長</b>：高齢化で伸びる大人用の排泄ケア用品が、売上の柱になるかを確認します。</li>
+      <li><b>利益率の回復</b>：2025年12月期に下がった利益率が戻るかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ユニ・チャーム株式会社 有価証券報告書（2021年12月期〜2025年12月期）の連結財務諸表とXBRLデータ。2020年12月期は、2021年12月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産及び無形資産の取得による支出」です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [332, 383, 270, 286, 269, 111] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

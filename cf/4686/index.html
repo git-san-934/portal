@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ジャストシステム 投資分析</title>
+  <meta name="description" content="ジャストシステム（4686）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ジャストシステム（4686）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>日本語入力「ATOK」や通信教育「スマイルゼミ」の会社です</b>。タブレットで学ぶ「スマイルゼミ」などの個人向けが売上の6割強、自治体・企業向けのソフトが4割弱です。</li>
+      <li><b>営業利益率は4割を超えます</b>。2026年3月期は売上515億円（16%増）、営業利益225億円で、営業利益率は44%でした。</li>
+      <li><b>設備投資はとても小さく、年20〜35億円</b>。中身は新しい商品・サービスのソフトウェア開発です。有報の「設備の新設、除却等の計画」は4年続けて「該当事項はありません」です。</li>
+      <li><b>お金は貯まる一方</b>。借入金はゼロで、現金は649億円、定期預金などを合わせるとさらに多くあります。自己資本比率は87%です。配当は年6〜15億円と、利益に比べてとても小さく、自社株買いはしていません。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">個人向け事業は7%増、法人向け事業は35%増でした。サブスクリプション（継続課金）の売上の割合が増えています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。投資CFの多くは、定期預金への預け入れです（2026年3月期は100億円）。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">設備投資と研究開発費の合計です。線は、その合計が売上高に占める割合（右の目盛り）です。研究開発費は年5〜13億円です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資と減価償却費はほぼ同じ水準です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（25億円）</div>ソフトウェアの開発が中心。有形の設備投資は0.04億円</li>
+      <li><div class="y">2024年3月期（25億円）</div>ソフトウェアの開発。Webサービス用機器（0.2億円）</li>
+      <li><div class="y">2025年3月期（30億円）</div>ソフトウェアの開発。Webサービス用機器（0.5億円）</li>
+      <li><div class="y">2026年3月期（35億円）</div>新しい商品・サービスのソフトウェア開発（29.5億円）、Webサービス用機器など（5.8億円）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額はキャッシュ・フロー計算書の設備投資（ソフトウェアを含む）です。有報「設備投資等の概要」は有形の設備だけの金額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は年6〜15億円で、本業のフリーCF（2026年3月期は161億円）の1割にも届きません。残りは現金と定期預金として貯まっています。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>手元資金の使い道</b>：利益のほとんどが現金として貯まっています。還元を増やすか、新しい事業に使うかに注目します。</li>
+      <li><b>法人向けの伸び</b>：35%伸びた法人向け事業が続くかを確認します。</li>
+      <li><b>スマイルゼミの成長</b>：米国向けや英会話など、通信教育の新しいサービスが伸びるかが注目点です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社ジャストシステム 有価証券報告書（2021年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2020年3月期は、2021年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>
