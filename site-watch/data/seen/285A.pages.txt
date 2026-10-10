@@ -173,11 +173,15 @@ https://www.kioxia-holdings.com/ja-jp/socialmedia.html
 https://www.kioxia-holdings.com/ja-jp/socialmedia/policy.html
 https://www.kioxia-holdings.com/ja-jp/sustainability.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/environment.html
+https://www.kioxia-holdings.com/ja-jp/sustainability/environment/biodiversity.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/environment/chemical.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/environment/climate.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/environment/ems.html
+https://www.kioxia-holdings.com/ja-jp/sustainability/environment/environmental-commendation.html
+https://www.kioxia-holdings.com/ja-jp/sustainability/environment/environmental-communication.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/environment/environmental-impact.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/environment/environmental-management.html
+https://www.kioxia-holdings.com/ja-jp/sustainability/environment/evaluation.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/environment/products-and-applications.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/environment/reduction.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/environment/water-risk.html
@@ -196,5 +200,9 @@ https://www.kioxia-holdings.com/ja-jp/sustainability/reference/gri.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/reference/sasb.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/report.html
 https://www.kioxia-holdings.com/ja-jp/sustainability/social.html
+https://www.kioxia-holdings.com/ja-jp/sustainability/social/diversity.html
+https://www.kioxia-holdings.com/ja-jp/sustainability/social/health-and-safety.html
+https://www.kioxia-holdings.com/ja-jp/sustainability/social/human-rights.html
+https://www.kioxia-holdings.com/ja-jp/sustainability/social/talent-development.html
 https://www.kioxia-holdings.com/ja-jp/terms.html
 https://www.kioxia-holdings.com/ja-jp/top.html
