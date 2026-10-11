@@ -33,7 +33,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 5  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 6  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -49,7 +49,7 @@ BPS_EXCLUDE_RE = re.compile(r"Dividend|NumberOf")
 SHARES_RE = re.compile(r"^TotalNumberOfIssuedShares\w*" + SUMMARY + "$")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)(Duration|Instant)(_NonConsolidatedMember)?$")
 # 分割・併合の比率(新しい報告書の数字 / 古い報告書の数字)
-SPLITS = [1 / n for n in (1.1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 10, 20, 50, 100)] + [2, 3, 4, 5, 10]
+SPLITS = [1 / n for n in (1.1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10, 20, 25, 50, 100)] + [2, 3, 4, 5, 10]
 
 START = time.monotonic()
 
@@ -290,21 +290,25 @@ def split_ratio(new, old):
 
 def adjust_splits(years, eps, bps, shares, notes):
     """報告書の中でも、古い年が分割前の株数のまま載っていることがある。
-    発行済株式総数が k 倍になった年に BPS がおよそ 1/k になっていれば、それより前の年を 1/k 倍する"""
-    for i in range(len(years) - 1, 0, -1):
-        y0, y1 = years[i - 1], years[i]
-        s0, s1, b0, b1 = shares.get(y0), shares.get(y1), bps.get(y0), bps.get(y1)
-        if not (s0 and s1 and b0 and b1) or b0 <= 0 or b1 <= 0:
+    発行済株式総数が k 倍になった年(期末より後の分割は前期の数字だけ直されるので、その1年前も見る)に
+    BPS がおよそ 1/k になっていれば、それより前の年を 1/k 倍する"""
+    for j in range(len(years) - 1, 0, -1):
+        s0, s1 = shares.get(years[j - 1]), shares.get(years[j])
+        if not (s0 and s1) or 0.75 < s1 / s0 < 1.3:
             continue
         k = s1 / s0
-        if 0.75 < k < 1.3 or not 0.6 < b1 / b0 * k < 1.6:
-            continue
         k = next((1 / s for s in SPLITS if abs(k * s - 1) < 0.05), k)
-        for d in (eps, bps):
-            for y in years[:i]:
-                if d.get(y) is not None:
-                    d[y] = round(d[y] / k, 2)
-        notes.append(f"{y1}より前を {1 / k:.4g} 倍")
+        for i in (j, j - 1):
+            if i < 1:
+                continue
+            b0, b1 = bps.get(years[i - 1]), bps.get(years[i])
+            if b0 and b1 and b0 > 0 and b1 > 0 and 0.6 < b1 / b0 * k < 1.6:
+                for d in (eps, bps):
+                    for y in years[:i]:
+                        if d.get(y) is not None:
+                            d[y] = round(d[y] / k, 2)
+                notes.append(f"{years[i]}より前を {1 / k:.4g} 倍")
+                break
 
 
 def combine(results):
@@ -329,9 +333,10 @@ def combine(results):
                 factor = fe
             if factor != 1:
                 notes.append(f"{y}より前を {factor:.4g} 倍")
+        first = min(set(eps) | set(bps), default="9999")  # 決算期の変更で年がずれても、新しい報告書の年と混ぜない
         for k, dst in (("eps", eps), ("bps", bps)):
             for ym, v in res[k].items():
-                if ym not in dst:
+                if ym < first:
                     dst[ym] = round(v * factor, 2)
                     bas.setdefault(ym, res["basis"].get(ym))
     years = sorted(set(eps) | set(bps))[-YEARS:]
