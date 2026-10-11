@@ -13,34 +13,53 @@
     const tip = document.querySelector('.tip');
     function niceStep(raw) { const p = Math.pow(10, Math.floor(Math.log10(raw || 1))); const n = raw / p; return (n <= 1 ? 1 : n <= 2 ? 2 : n <= 2.5 ? 2.5 : n <= 5 ? 5 : 10) * p; }
 
-    function line(el, name, vals, color) {
-      const W = 640, H = 240, L = 62, R = 8, T = 14, B = 34;
+    // 決算期末の株価(報告書の PER × 分割をそろえた EPS)。赤字で PER がない年は空ける
+    const price = E.years.map((_, i) => E.per && E.per[i] && E.eps[i] ? Math.round(E.per[i] * E.eps[i]) : null);
+    const hasPrice = price.filter(v => v != null).length >= 2;
+
+    function scale(vals, top, bottom) {
       const vs = vals.filter(v => v != null);
       let lo = Math.min(...vs), hi = Math.max(...vs);
       const pad = (hi - lo) * 0.1 || Math.abs(hi) * 0.1 || 1;
       lo = lo >= 0 && lo - pad < 0 ? 0 : lo - pad; hi += pad;
       const step = niceStep((hi - lo) / 4);
       hi = Math.ceil(hi / step) * step; lo = Math.floor(lo / step) * step;
-      const y = v => T + (hi - v) / (hi - lo) * (H - T - B);
+      return { lo, hi, step, y: v => top + (hi - v) / (hi - lo) * (bottom - top) };
+    }
+
+    // vals を左の目盛りで描き、株価があれば右の目盛りで重ねる(点線＋四角の点)
+    function line(el, name, vals, color) {
+      const P = hasPrice ? price : null;
+      const W = 640, H = 240, L = 62, R = P ? 62 : 8, T = 14, B = 34;
+      const a = scale(vals, T, H - B), b = P && scale(P, T, H - B);
       const cw = (W - L - R) / Y.length, xc = i => L + cw * i + cw / 2;
-      let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${name}の推移">`;
-      for (let v = lo; v <= hi + 1e-9; v += step) {
-        s += `<line x1="${L}" x2="${W - R}" y1="${y(v)}" y2="${y(v)}" stroke="${Math.abs(v) < 1e-9 ? css('--text-sub') : css('--grid')}"/>`;
-        s += `<text x="${L - 6}" y="${y(v) + 5}" text-anchor="end">${(+v.toFixed(2)).toLocaleString()}</text>`;
+      const num = v => (+v.toFixed(2)).toLocaleString();
+      let s = `<svg viewBox="0 0 ${W} ${H}" role="img" aria-label="${name}${P ? 'と株価' : ''}の推移">`;
+      for (let v = a.lo; v <= a.hi + 1e-9; v += a.step) {
+        s += `<line x1="${L}" x2="${W - R}" y1="${a.y(v)}" y2="${a.y(v)}" stroke="${Math.abs(v) < 1e-9 ? css('--text-sub') : css('--grid')}"/>`;
+        s += `<text x="${L - 6}" y="${a.y(v) + 5}" text-anchor="end">${num(v)}</text>`;
       }
+      if (P) for (let v = b.lo; v <= b.hi + 1e-9; v += b.step) s += `<text x="${W - R + 6}" y="${b.y(v) + 5}">${num(v)}</text>`;
       Y.forEach((lab, i) => { s += `<text x="${xc(i)}" y="${H - 6}" text-anchor="middle">${lab}</text>`; });
-      // 欠けている年は線を切る
-      let seg = [];
-      const flush = () => { if (seg.length > 1) s += `<polyline points="${seg.join(' ')}" fill="none" stroke="${css(color)}" stroke-width="2.2"/>`; seg = []; };
-      vals.forEach((v, i) => { if (v == null) flush(); else seg.push(`${xc(i)},${y(v)}`); }); flush();
-      vals.forEach((v, i) => { if (v != null) s += `<circle cx="${xc(i)}" cy="${y(v)}" r="3.4" fill="${css('--card-bg')}" stroke="${css(color)}" stroke-width="2"/>`; });
+      const path = (vs, y, stroke, extra) => {
+        let seg = '';
+        const flush = () => { if (seg.split(' ').length > 2) s += `<polyline points="${seg.trim()}" fill="none" stroke="${stroke}" ${extra}/>`; seg = ''; };
+        vs.forEach((v, i) => { if (v == null) flush(); else seg += ` ${xc(i)},${y(v)}`; }); flush();
+      };
+      // 株価を先に(下に)描き、本題の線を上に重ねる
+      if (P) {
+        path(P, b.y, css('--c-line'), 'stroke-width="1.6" stroke-dasharray="5 4" opacity="0.75"');
+        P.forEach((v, i) => { if (v != null) s += `<rect x="${xc(i) - 3.5}" y="${b.y(v) - 3.5}" width="7" height="7" fill="${css('--c-line')}" stroke="${css('--card-bg')}" stroke-width="1.5"/>`; });
+      }
+      path(vals, a.y, css(color), 'stroke-width="2.4"');
+      vals.forEach((v, i) => { if (v != null) s += `<circle cx="${xc(i)}" cy="${a.y(v)}" r="4.2" fill="${css('--card-bg')}" stroke="${css(color)}" stroke-width="2.2"/>`; });
       Y.forEach((_, i) => { s += `<rect x="${L + cw * i}" y="${T}" width="${cw}" height="${H - T - B}" fill="transparent" data-i="${i}" class="hit"/>`; });
-      el.innerHTML = s + '</svg>';
+      el.innerHTML = (P ? `<div class="legend"><span class="ln" style="--sw:${css(color)}">${name}（左・円）</span><span class="ln" style="--sw:${css('--c-line')}">株価（右・円）</span></div>` : '') + s + '</svg>';
       el.querySelectorAll('.hit').forEach(r => {
         const show = e => {
           if (!tip) return;
           const i = +r.dataset.i, pt = e.touches ? e.touches[0] : e;
-          tip.innerHTML = `<b style="color:inherit">${Y[i]}期</b><br>${name}：${fmt(vals[i])}円`;
+          tip.innerHTML = `<b style="color:inherit">${Y[i]}期</b><br>${name}：${fmt(vals[i])}円` + (P ? `<br>株価：${fmt(P[i])}円` : '');
           tip.style.display = 'block';
           tip.style.left = Math.min(pt.clientX + 12, innerWidth - tip.offsetWidth - 8) + 'px'; tip.style.top = (pt.clientY + 12) + 'px';
         };
@@ -66,6 +85,7 @@
       rows.map(([l, v]) => [l, v || none]).filter(([, v]) => has(v)).map(([l, v]) => `<tr><td>${l}</td>` + v.map(x => `<td class="${x < 0 ? 'neg' : ''}">${fmt(x)}</td>`).join('') + '</tr>').join('') + '</tbody></table></div>';
     const notes = ['有価証券報告書の「主要な経営指標等の推移」の数字です。'];
     if (has(dps)) notes.push('配当は中間と期末の合計で、記念配当なども含みます。');
+    if (hasPrice) notes.push('グラフの点線は決算期末の株価（右の目盛り）で、株式分割をそろえた後の値です。');
     if (has(E.per || none)) notes.push('PER・PBR・配当利回りは決算期末の株価（報告書のPER×EPS）で計算し、赤字の年は出していません。時価総額はPER×当期純利益（自己株式を除いた株数での額）です。ROAは当期純利益÷総資産（期首と期末の平均）です。');
     if (E.adj && E.adj.length) notes.push('途中で株式分割などがあったため、それより前の年は今の株数にそろえて計算し直しています。');
     const bs = [...new Set(E.basis.filter(Boolean))];
