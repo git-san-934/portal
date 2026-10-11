@@ -88,8 +88,8 @@ main { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 1rem; fo
 .table-scroll { overflow: auto; max-height: 75vh; }
 table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
 th, td { padding: 0.4rem 0.5rem; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--grid); }
+thead { position: sticky; top: 0; z-index: 1; }
 thead th {
-  position: sticky; top: 0; z-index: 1;
   background: var(--card-bg);
   font-size: 0.72rem; color: var(--text-sub); font-weight: 700;
   cursor: pointer; user-select: none;
@@ -111,3 +111,11 @@ td.hit { background: var(--hit); font-weight: 700; }
 footer { margin-top: 2rem; text-align: center; font-size: 0.78rem; color: var(--text-sub); line-height: 1.8; }
 footer a { color: var(--accent); }
 .warn { color: var(--accent); font-size: 0.72rem; margin-left: 0.15rem; }
+
+thead tr.rf-row th { cursor: default; padding: 0.2rem 0.3rem 0.4rem; font-weight: 400; }
+thead tr.rf-row th::after { content: none; }
+.rf { width: 4.2rem; font: inherit; font-size: 0.72rem; padding: 0.15rem 0.25rem; border: 1px solid var(--grid); border-radius: 4px; background: var(--card-bg); color: var(--text); }
+.rf-text { width: 7rem; }
+select.rf { width: auto; }
+.rf-sep { margin: 0 0.15rem; color: var(--text-sub); }
+.rf-clear { margin-right: 0.6rem; font: inherit; font-size: 0.75rem; padding: 0.2rem 0.6rem; border: 1px solid var(--accent); border-radius: 999px; background: none; color: var(--accent); cursor: pointer; }

@@ -1,6 +1,6 @@
 (() => {
   const QUOTE = "https://finance.yahoo.co.jp/quote/";
-  const state = { def: "f", max: Infinity, mkt: "all", bk: 0, q: "", sort: "eps", desc: true, data: null };
+  const state = { def: "f", max: Infinity, mkt: "all", bk: 0, q: "", rng: {}, sort: "eps", desc: true, data: null };
 
   const DEFS = [["f", "浮動株割合"], ["b", "不動株割合（東証式）"], ["a", "特定株比率（四季報式）"]];
   const MAXES = [[Infinity, "すべて"], [0.05, "5%未満"], [0.1, "10%未満"], [0.2, "20%未満"]];
@@ -77,6 +77,50 @@
     { key: "fy", label: "決算期", cls: "left", get: (r) => r.fy || "", fmt: (r) => (r.fy || "").slice(0, 7) },
   ];
 
+  // 項目ごとの範囲指定（Excelのフィルターのように 下限〜上限）。入力は表示と同じ単位
+  const PCT = ["fixed", "bb", "bf", "bx", "bo", "gm", "om", "roe", "er", "cm", "nc", "sg", "og", "cxs", "yield", "rt", "xm", "trs"];
+  const OKU = ["cash", "mc", "oc", "ic", "fc", "cx", "ma", "sp", "pa2", "buyamt"];
+  const TEXT = ["code", "name", "mkt", "ct", "pt", "dp", "cs", "top1", "fy"];
+  const MARK = ["pl", "buy", "cc", "xc", "pa", "nw"];
+  for (const c of COLS) {
+    c.ft = TEXT.includes(c.key) ? "text" : MARK.includes(c.key) ? "mark" : "num";
+    c.scale = PCT.includes(c.key) ? 0.01 : OKU.includes(c.key) ? 100 : 1;
+  }
+  const markOf = (c, r) => (c.key === "buy" ? !!r.bs : !!c.get(r));
+  const parseNum = (s) => {
+    const t = String(s).replace(/[,，%％\s]/g, "").replace(/[０-９．－]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0)).replace("ー", "-");
+    return t === "" || isNaN(+t) ? null : +t;
+  };
+
+  function passRange(r) {
+    for (const k in state.rng) {
+      const f = state.rng[k], c = COLS.find((x) => x.key === k);
+      if (c.ft === "text") {
+        if (f.t && !String(c.get(r) ?? "").includes(f.t) && !(k === "name" && r.n.includes(f.t))) return false;
+      } else if (c.ft === "mark") {
+        if (f.m === "1" && !markOf(c, r)) return false;
+        if (f.m === "0" && markOf(c, r)) return false;
+      } else {
+        if (f.lo == null && f.hi == null) continue;
+        const v = c.get(r);
+        if (v == null) return false;
+        if (f.lo != null && v < f.lo * c.scale - 1e-9) return false;
+        if (f.hi != null && v > f.hi * c.scale + 1e-9) return false;
+      }
+    }
+    return true;
+  }
+
+  function filterCell(c) {
+    const f = state.rng[c.key] || {};
+    if (c.ft === "text")
+      return `<input class="rf rf-text" data-key="${c.key}" data-f="t" placeholder="含む" value="${esc(f.t || "")}">`;
+    if (c.ft === "mark")
+      return `<select class="rf" data-key="${c.key}" data-f="m"><option value="">すべて</option><option value="1"${f.m === "1" ? " selected" : ""}>あり</option><option value="0"${f.m === "0" ? " selected" : ""}>なし</option></select>`;
+    const val = (x) => (x == null ? "" : x);
+    return `<input class="rf" data-key="${c.key}" data-f="lo" inputmode="decimal" placeholder="以上" value="${val(f.lo)}"><span class="rf-sep">〜</span><input class="rf" data-key="${c.key}" data-f="hi" inputmode="decimal" placeholder="以下" value="${val(f.hi)}">`;
+  }
+
   function esc(s) {
     return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   }
@@ -102,7 +146,7 @@
       if (state.bk && !(r.bk >= state.bk)) return false;
       if (state.mkt !== "all" && !(r.m || "").includes(state.mkt)) return false;
       if (state.q && !(r.c.includes(state.q) || r.n.includes(state.q))) return false;
-      return true;
+      return passRange(r);
     });
     const col = COLS.find((c) => c.key === state.sort);
     const dir = state.desc ? -1 : 1;
@@ -132,9 +176,27 @@
           return `<td class="${c.cls || ""}${hit}${extra}">${c.fmt(r)}</td>`;
         }).join("") + "</tr>").join("")
       : `<tr><td class="empty" colspan="${COLS.length}">条件にあう銘柄はありません</td></tr>`;
+    const nf = Object.values(state.rng).filter((f) => f.t || f.m || f.lo != null || f.hi != null).length;
+    if (nf) document.getElementById("list-title").textContent += `（項目の絞り込み ${nf}件）`;
+    document.getElementById("rf-clear").hidden = !nf;
     const table = document.getElementById("list");
-    table.innerHTML = `<thead><tr>${head}</tr></thead><tbody>${body}</tbody>`;
-    table.querySelectorAll("thead th").forEach((th) => {
+    if (state.headKey === state.sort + state.desc + state.def && table.tBodies[0]) {
+      table.tBodies[0].innerHTML = body;  // 絞り込みの入力中は見出しを作り直さない（入力欄のフォーカスを保つ）
+      return;
+    }
+    state.headKey = state.sort + state.desc + state.def;
+    const frow = COLS.map((c) => `<th class="rf-cell">${filterCell(c)}</th>`).join("");
+    table.innerHTML = `<thead><tr>${head}</tr><tr class="rf-row">${frow}</tr></thead><tbody>${body}</tbody>`;
+    table.querySelectorAll(".rf").forEach((el) => {
+      const ev = el.tagName === "SELECT" ? "change" : "input";
+      el.addEventListener(ev, () => {
+        const k = el.dataset.key, f = (state.rng[k] = state.rng[k] || {});
+        if (el.dataset.f === "t" || el.dataset.f === "m") f[el.dataset.f] = el.value.trim();
+        else f[el.dataset.f] = parseNum(el.value);
+        render();
+      });
+    });
+    table.querySelectorAll("thead tr:first-child th").forEach((th) => {
       th.onclick = () => {
         const k = th.dataset.key;
         if (state.sort === k) state.desc = !state.desc;
@@ -149,6 +211,7 @@
   toggle("max-toggle", MAXES, "max");
   toggle("bk-toggle", BKS, "bk");
   toggle("mkt-toggle", MKTS, "mkt");
+  document.getElementById("rf-clear").onclick = () => { state.rng = {}; state.headKey = null; render(); };
   document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
 
   fetch("data/screen.json?v=" + Date.now())
