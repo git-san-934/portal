@@ -27,7 +27,7 @@
       return { lo, hi, step, y: v => top + (hi - v) / (hi - lo) * (bottom - top) };
     }
 
-    // vals を左の目盛りで描き、株価があれば右の目盛りで重ねる(点線＋四角の点)
+    // vals を左の目盛りで実線で描き、株価があれば右の目盛りで重ねる(点線＋四角の点)
     function line(el, name, vals, color) {
       const P = hasPrice ? price : null;
       const W = 640, H = 240, L = 62, R = P ? 62 : 8, T = 14, B = 34;
@@ -52,7 +52,8 @@
         P.forEach((v, i) => { if (v != null) s += `<rect x="${xc(i) - 3.5}" y="${b.y(v) - 3.5}" width="7" height="7" fill="${css('--c-line')}" stroke="${css('--card-bg')}" stroke-width="1.5"/>`; });
       }
       path(vals, a.y, css(color), 'stroke-width="2.4"');
-      vals.forEach((v, i) => { if (v != null) s += `<circle cx="${xc(i)}" cy="${a.y(v)}" r="4.2" fill="${css('--card-bg')}" stroke="${css(color)}" stroke-width="2.2"/>`; });
+      // 点は株価だけ。前後の年が欠けて線にならない年だけ、見えるように小さな点を打つ
+      vals.forEach((v, i) => { if (v != null && vals[i - 1] == null && vals[i + 1] == null) s += `<circle cx="${xc(i)}" cy="${a.y(v)}" r="3" fill="${css(color)}"/>`; });
       Y.forEach((_, i) => { s += `<rect x="${L + cw * i}" y="${T}" width="${cw}" height="${H - T - B}" fill="transparent" data-i="${i}" class="hit"/>`; });
       el.innerHTML = (P ? `<div class="legend"><span class="ln" style="--sw:${css(color)}">${name}（左・円）</span><span class="ln" style="--sw:${css('--c-line')}">株価（右・円）</span></div>` : '') + s + '</svg>';
       el.querySelectorAll('.hit').forEach(r => {
