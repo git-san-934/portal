@@ -33,7 +33,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 4  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 5  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -341,6 +341,7 @@ def combine(results):
         "eps": [eps.get(y) for y in years],
         "bps": [bps.get(y) for y in years],
         "basis": [bas.get(y) for y in years],
+        "shares": [shares.get(y) for y in years],
         "adj": notes,
     }
 
