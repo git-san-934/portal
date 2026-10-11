@@ -368,6 +368,16 @@ def main():
         print("EDINET_API_KEY が未設定です", file=sys.stderr)
         sys.exit(1)
     DATA_DIR.mkdir(exist_ok=True)
+    if os.environ.get("DEBUG_DOCS"):  # 一時的な調査用
+        for doc_id in os.environ["DEBUG_DOCS"].split(","):
+            r = get(f"{EDINET_API}/documents/{doc_id}", {"type": 5, "Subscription-Key": key})
+            z = zipfile.ZipFile(io.BytesIO(r.content))
+            for name in z.namelist():
+                if name.endswith(".csv"):
+                    for line in z.read(name).decode("utf-16", "replace").splitlines():
+                        if "SummaryOfBusinessResults" in line:
+                            log(doc_id, name.split("/")[-1][:20], line[:300])
+        return
     codes = target_codes()
     cache = scan_documents(key, codes)
     out, done = collect(key, cache)
