@@ -33,7 +33,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 6  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 7  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -45,8 +45,6 @@ EPS_RE = re.compile(r"^BasicEarnings\w*PerShare\w*" + SUMMARY + "$")
 EPS_EXCLUDE_RE = re.compile(r"Diluted|ContinuingOperations|DiscontinuedOperations|Adjusted")
 BPS_RE = re.compile(SUMMARY + "$")
 BPS_EXCLUDE_RE = re.compile(r"Dividend|NumberOf")
-# 発行済株式総数(株式分割の検出に使う)
-SHARES_RE = re.compile(r"^TotalNumberOfIssuedShares\w*" + SUMMARY + "$")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)(Duration|Instant)(_NonConsolidatedMember)?$")
 # 分割・併合の比率(新しい報告書の数字 / 古い報告書の数字)
 SPLITS = [1 / n for n in (1.1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 6, 8, 10, 20, 25, 50, 100)] + [2, 3, 4, 5, 10]
@@ -163,7 +161,7 @@ def read_csv(key, doc_id):
             continue
         for line in z.read(name).decode("utf-16", "replace").splitlines():
             cells = [c.strip('"') for c in line.split("\t")]
-            if len(cells) >= 9 and SUMMARY in cells[0] and ("PerShare" in cells[6] or "TotalNumberOfIssuedShares" in cells[0]):
+            if len(cells) >= 9 and SUMMARY in cells[0] and "PerShare" in cells[6]:
                 rows.append((cells[0], cells[2], cells[-1].replace(",", "")))
     return rows
 
@@ -171,7 +169,6 @@ def read_csv(key, doc_id):
 XBRL_RE = re.compile(r"<([\w-]+:\w*SummaryOfBusinessResults)\b([^>]*)>([^<]*)<")
 CTXREF_RE = re.compile(r'contextRef="([^"]+)"')
 UNITREF_RE = re.compile(r'unitRef="([^"]*PerShare[^"]*)"')
-SHARES_ELEM_RE = re.compile(r":TotalNumberOfIssuedShares")
 
 
 def read_xbrl(key, doc_id):
@@ -183,7 +180,7 @@ def read_xbrl(key, doc_id):
             text = z.read(name).decode("utf-8", "replace")
             for elem, attrs, val in XBRL_RE.findall(text):
                 m = CTXREF_RE.search(attrs)
-                if m and (UNITREF_RE.search(attrs) or SHARES_ELEM_RE.search(elem)):
+                if m and UNITREF_RE.search(attrs):
                     rows.append((elem, m.group(1), val.strip()))
     return rows
 
@@ -238,9 +235,7 @@ def read_doc(key, entry):
     if names and (any(v[2] for v in eps.values()) or any(v[2] for v in bps.values())):
         # 連結の1株当たりの要素があるのに単体の数字を使ったときは、取りこぼしを確認できるように出しておく
         log(f"  {doc_id}: 連結の EPS・BPS が見つかりません。連結の1株当たりの要素: {names}")
-    res = {"eps": {}, "bps": {}, "basis": {}, "single": False, "shares": {}}
-    for back, (v, _, _) in pick(rows, SHARES_RE, None, "Instant").items():
-        res["shares"][shift_years(period_end, back)] = v
+    res = {"eps": {}, "bps": {}, "basis": {}, "single": False, "period": period_end[:7]}
     for k, vals in (("eps", eps), ("bps", bps)):
         for back, (v, b, single) in vals.items():
             ym = shift_years(period_end, back)
@@ -253,26 +248,15 @@ def read_doc(key, entry):
 # ---------- 3. 報告書をつなぐ ----------
 
 def chain(docs):
-    """最新の報告書から、5期分が1年ずつ重なるように古い報告書を選ぶ"""
+    """直近10年分の有価証券報告書を、新しい順に(同じ期は、あとに出したもの)"""
     by_period = {}
-    for d in sorted(docs):  # 同じ期の報告書は、あとに出したもの
+    for d in sorted(docs):
         by_period[d[1][:7]] = d
     periods = sorted(by_period, reverse=True)
     if not periods:
         return []
-    picked = [by_period[periods[0]]]
-    earliest = shift_years(periods[0] + "-01", 4)
-    while True:
-        cur = picked[-1][1][:7]
-        if shift_years(periods[0] + "-01", YEARS - 1) >= earliest:
-            break
-        older = [p for p in periods if earliest <= p < cur]
-        if not older:
-            break
-        p = min(older)  # 重なりを1年に抑えて、いちばん古くまで届くもの
-        picked.append(by_period[p])
-        earliest = shift_years(p + "-01", 4)
-    return picked
+    oldest = shift_years(periods[0] + "-01", YEARS - 1)
+    return [by_period[p] for p in periods if p >= oldest]
 
 
 def split_ratio(new, old):
@@ -288,65 +272,49 @@ def split_ratio(new, old):
     return None
 
 
-def adjust_splits(years, eps, bps, shares, notes):
-    """報告書の中でも、古い年が分割前の株数のまま載っていることがある。
-    発行済株式総数が k 倍になった年(期末より後の分割は前期の数字だけ直されるので、その1年前も見る)に
-    BPS がおよそ 1/k になっていれば、それより前の年を 1/k 倍する"""
-    for j in range(len(years) - 1, 0, -1):
-        s0, s1 = shares.get(years[j - 1]), shares.get(years[j])
-        if not (s0 and s1) or 0.75 < s1 / s0 < 1.3:
-            continue
-        k = s1 / s0
-        k = next((1 / s for s in SPLITS if abs(k * s - 1) < 0.05), k)
-        for i in (j, j - 1):
-            if i < 1:
-                continue
-            b0, b1 = bps.get(years[i - 1]), bps.get(years[i])
-            if b0 and b1 and b0 > 0 and b1 > 0 and 0.6 < b1 / b0 * k < 1.6:
-                for d in (eps, bps):
-                    for y in years[:i]:
-                        if d.get(y) is not None:
-                            d[y] = round(d[y] / k, 2)
-                notes.append(f"{years[i]}より前を {1 / k:.4g} 倍")
-                break
+def link_ratio(newer, older, years):
+    """新しい報告書と古い報告書で重なった年のうち最も新しい年の 新/古 の比(株式分割の比率)。
+    BPS で見て、なければ EPS で見る。分割の比率に近くなければ 1(会計基準の変更などは直さない)"""
+    for y in sorted(years, reverse=True):
+        for k in ("bps", "eps"):
+            r = split_ratio(newer[k].get(y), older[k].get(y))
+            if r is not None:
+                return r
+    return 1
 
 
 def combine(results):
-    """新しい順の読み取り結果をつないで、古い年の数字を分割にあわせてそろえる"""
-    eps, bps, bas, shares, notes = {}, {}, {}, {}, []
-    for res in results:
-        for ym, v in res.get("shares", {}).items():
-            shares.setdefault(ym, v)
+    """新しい順の読み取り結果をつなぐ。
+    分割があった年の報告書は、当期と前期の数字を分割後の株数で載せるが、それより前の年は直していないことが多い。
+    そこで各報告書からはまず当期と前期の数字を使い、1年前の報告書の当期と重なる年の比で分割をそろえる。
+    報告書が欠けている年だけ、2〜4期前の数字で埋める"""
+    eps, bps, bas, notes = {}, {}, {}, []
+    factors = []
     for i, res in enumerate(results):
-        if i == 0:
-            eps, bps, bas = dict(res["eps"]), dict(res["bps"]), dict(res["basis"])
-            continue
-        overlap = sorted((set(bps) & set(res["bps"])) | (set(eps) & set(res["eps"])), reverse=True)
-        factor = 1
-        if overlap:
-            y = overlap[0]
-            fb = split_ratio(bps.get(y), res["bps"].get(y))
-            fe = split_ratio(eps.get(y), res["eps"].get(y))
-            if fb is not None and (fe is None or fe == fb):
-                factor = fb
-            elif fb is None and fe is not None:
-                factor = fe
-            if factor != 1:
-                notes.append(f"{y}より前を {factor:.4g} 倍")
-        first = min(set(eps) | set(bps), default="9999")  # 決算期の変更で年がずれても、新しい報告書の年と混ぜない
-        for k, dst in (("eps", eps), ("bps", bps)):
-            for ym, v in res[k].items():
-                if ym < first:
-                    dst[ym] = round(v * factor, 2)
-                    bas.setdefault(ym, res["basis"].get(ym))
+        f = 1
+        if i:
+            prev = results[i - 1]
+            r = link_ratio(prev, res, set(prev["bps"]) | set(prev["eps"]))
+            f = factors[-1] * r
+            if r != 1:
+                notes.append(f"{res['period']}以前を {f:.4g} 倍")
+        factors.append(f)
+    for recent in (True, False):
+        # 埋めるときは、その年にいちばん近い(古い)報告書から
+        pairs = list(zip(results, factors))
+        for res, f in (pairs if recent else reversed(pairs)):
+            near = {res["period"], shift_years(res["period"] + "-01", 1)}
+            for k, dst in (("eps", eps), ("bps", bps)):
+                for ym, v in res[k].items():
+                    if (ym in near) == recent and ym not in dst:
+                        dst[ym] = round(v * f, 2)
+                        bas.setdefault(ym, res["basis"].get(ym))
     years = sorted(set(eps) | set(bps))[-YEARS:]
-    adjust_splits(years, eps, bps, shares, notes)
     return {
         "years": years,
         "eps": [eps.get(y) for y in years],
         "bps": [bps.get(y) for y in years],
         "basis": [bas.get(y) for y in years],
-        "shares": [shares.get(y) for y in years],
         "adj": notes,
     }
 
