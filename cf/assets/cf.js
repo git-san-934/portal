@@ -122,4 +122,6 @@
   }
   render();
   matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
+  // EPS・BPSの推移の節(cf/data/eps.json があれば描く)
+  const eps = document.createElement('script'); eps.src = '../assets/eps.js'; document.body.appendChild(eps);
 })();
