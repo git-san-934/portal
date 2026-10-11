@@ -51,14 +51,17 @@
 
     const sec = document.createElement('section');
     const kind = E.single ? '単体' : '連結';
-    let h = '<h2>EPS・BPSの推移</h2>';
-    h += `<p class="sub">1株あたりの利益（EPS）と、1株あたりの純資産（BPS）の${fyName(E.years[0])}〜${fyName(E.years[E.years.length - 1])}の推移です。${kind}の数字で、単位は<strong>円</strong>です。</p>`;
+    const dps = E.dps || [];
+    let h = '<h2>EPS・BPS・配当の推移</h2>';
+    h += `<p class="sub">1株あたりの利益（EPS）、1株あたりの純資産（BPS）、1株あたりの配当金の${fyName(E.years[0])}〜${fyName(E.years[E.years.length - 1])}の推移です。${kind}の数字で、単位は<strong>円</strong>です。</p>`;
     const has = a => a.some(v => v != null);
     if (has(E.eps)) h += '<h3>EPS（1株あたり利益）</h3><div class="chart" id="c-eps"></div>';
     if (has(E.bps)) h += '<h3>BPS（1株あたり純資産）</h3><div class="chart" id="c-bps"></div>';
+    if (has(dps)) h += '<h3>1株あたり配当金（年間）</h3><div class="chart" id="c-dps"></div>';
     h += '<div class="tbl"><table><thead><tr><th></th>' + Y.map(y => `<th>${y}</th>`).join('') + '</tr></thead><tbody>' +
-      [['EPS', E.eps], ['BPS', E.bps]].map(([l, v]) => `<tr><td>${l}</td>` + v.map(x => `<td class="${x < 0 ? 'neg' : ''}">${fmt(x)}</td>`).join('') + '</tr>').join('') + '</tbody></table></div>';
+      [['EPS', E.eps], ['BPS', E.bps], ['配当', dps]].filter(([, v]) => has(v)).map(([l, v]) => `<tr><td>${l}</td>` + v.map(x => `<td class="${x < 0 ? 'neg' : ''}">${fmt(x)}</td>`).join('') + '</tr>').join('') + '</tbody></table></div>';
     const notes = ['有価証券報告書の「主要な経営指標等の推移」の数字です。'];
+    if (has(dps)) notes.push('配当は中間と期末の合計で、記念配当なども含みます。');
     if (E.adj && E.adj.length) notes.push('途中で株式分割などがあったため、それより前の年は今の株数にそろえて計算し直しています。');
     const bs = [...new Set(E.basis.filter(Boolean))];
     if (bs.length > 1) notes.push('途中で会計基準が変わっているため、その前後の数字はそのまま比べられないことがあります。');
@@ -71,6 +74,7 @@
     const render = () => {
       if (has(E.eps)) line(document.getElementById('c-eps'), 'EPS', E.eps, '--c-op');
       if (has(E.bps)) line(document.getElementById('c-bps'), 'BPS', E.bps, '--c-rd');
+      if (has(dps)) line(document.getElementById('c-dps'), '配当', dps, '--c-capex');
     };
     render();
     matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
