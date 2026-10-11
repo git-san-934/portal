@@ -33,13 +33,16 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 1  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 2  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
-# 主要な経営指標等の推移の1株当たりの数字(会計基準ごとに要素名が違う)
-EPS_RE = re.compile(r"^BasicEarnings(Loss)?PerShare(IFRS|USGAAP|JMIS)?SummaryOfBusinessResults$")
-BPS_RE = re.compile(r"^(NetAssets|\w*Equity\w*)PerShare(IFRS|USGAAP|JMIS)?SummaryOfBusinessResults$")
+# 主要な経営指標等の推移の1株当たりの数字。会計基準ごとに要素名が違う
+# (IFRS は「親会社の所有者に帰属する」が入るなど)ので、名前の一部で探す
+SUMMARY = "SummaryOfBusinessResults"
+EPS_RE = re.compile(r"^BasicEarnings\w*PerShare\w*" + SUMMARY + "$")
+EPS_EXCLUDE_RE = re.compile(r"Diluted|ContinuingOperations|DiscontinuedOperations|Adjusted")
+BPS_RE = re.compile(r"^\w*(NetAssets|Equity)\w*PerShare\w*" + SUMMARY + "$")
 BPS_EXCLUDE_RE = re.compile(r"Dividend|Earnings|Diluted|Payout|Ratio")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)(Duration|Instant)(_NonConsolidatedMember)?$")
 # 分割・併合の比率(新しい報告書の数字 / 古い報告書の数字)
@@ -182,7 +185,7 @@ def read_xbrl(key, doc_id):
 
 def basis(name):
     for b in ("IFRS", "USGAAP", "JMIS"):
-        if name.endswith(b + "SummaryOfBusinessResults"):
+        if b in name:
             return b
     return "JGAAP"
 
@@ -221,9 +224,13 @@ def shift_years(period_end, n):
 def read_doc(key, entry):
     _, period_end, doc_id, csv = entry
     rows = read_csv(key, doc_id) if csv else []
-    if not pick(rows, EPS_RE) and not pick(rows, BPS_RE, BPS_EXCLUDE_RE):
+    if not pick(rows, EPS_RE, EPS_EXCLUDE_RE) and not pick(rows, BPS_RE, BPS_EXCLUDE_RE):
         rows = read_xbrl(key, doc_id)
-    eps, bps = pick(rows, EPS_RE), pick(rows, BPS_RE, BPS_EXCLUDE_RE)
+    eps, bps = pick(rows, EPS_RE, EPS_EXCLUDE_RE), pick(rows, BPS_RE, BPS_EXCLUDE_RE)
+    if any(v[2] for v in eps.values()) or any(v[2] for v in bps.values()):
+        # 単体の数字しか拾えなかったときは、連結の要素名を取りこぼしていないか確認できるように出しておく
+        names = sorted({e.split(":")[-1] for e, c, _ in rows if c.startswith("CurrentYear") and "NonConsolidated" not in c})
+        log(f"  {doc_id}: 連結の EPS・BPS が見つかりません。連結の1株当たりの要素: {names}")
     res = {"eps": {}, "bps": {}, "basis": {}, "single": False}
     for k, vals in (("eps", eps), ("bps", bps)):
         for back, (v, b, single) in vals.items():
