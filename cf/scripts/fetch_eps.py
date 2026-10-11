@@ -34,7 +34,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 11  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 12  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -303,7 +303,7 @@ def split_adjusted_dps(results, years):
         for k, dst in (("dps", dps), ("idps", idps), ("shares", shares)):
             for ym, v in res.get(k, {}).items():
                 dst.setdefault(ym, v)
-    out, f, nxt = {}, 1, None
+    out, f = {}, 1
     for i in range(len(years) - 1, -1, -1):
         y = years[i]
         r = 1
@@ -315,13 +315,12 @@ def split_adjusted_dps(results, years):
         if v is not None:
             v *= f
             iv = idps.get(y)
-            if r != 1 and iv and nxt:
-                # 分割した年: 中間配当が分割前なら直した方が翌年に近い
-                mixed = v - iv * f * (1 - r)
-                if abs(math.log(mixed / nxt)) < abs(math.log(v / nxt)):
-                    v = mixed
+            if r != 1 and iv and 0 < iv < dps[y]:
+                # 分割した年: 中間配当が期末配当のおよそ 1/r 倍なら、中間配当は分割前の株数で払っている
+                ye = dps[y] - iv
+                if abs(math.log(iv / ye * r)) < abs(math.log(iv / ye)):
+                    v = (iv * r + ye) * f
             out[y] = round(v, 2)
-            nxt = v if v > 0 else nxt
         f *= r
     return out
 
