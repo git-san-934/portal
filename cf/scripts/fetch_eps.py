@@ -375,7 +375,7 @@ def main():
             for name in z.namelist():
                 if name.endswith(".csv"):
                     for line in z.read(name).decode("utf-16", "replace").splitlines():
-                        if "SummaryOfBusinessResults" in line:
+                        if "SummaryOfBusinessResults" in line and "IFRS" in line and ("PerShare" in line or "Owners" in line):
                             log(doc_id, name.split("/")[-1][:20], line[:300])
         return
     codes = target_codes()
