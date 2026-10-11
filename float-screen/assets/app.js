@@ -30,6 +30,7 @@
     { key: "om", label: "営業利益率", get: (r) => r.om, fmt: (r) => pct(r.om) },
     { key: "cash", label: "保有現金(億円)", get: (r) => r.cash, fmt: (r) => oku(r.cash) },
     { key: "mc", label: "時価総額(億円)", get: (r) => r.mc, fmt: (r) => oku(r.mc) },
+    { key: "eps", label: "EPS(円)", get: (r) => r.eps, fmt: (r) => num(r.eps, 2) },
     { key: "pe", label: "PER(倍)", get: (r) => r.pe, fmt: (r) => num(r.pe) },
     { key: "pb", label: "PBR(倍)", get: (r) => r.pb, fmt: (r) => num(r.pb, 2) },
     { key: "roe", label: "ROE", get: (r) => r.roe, fmt: (r) => pct(r.roe) },
@@ -132,7 +133,7 @@
         const k = th.dataset.key;
         if (state.sort === k) state.desc = !state.desc;
         else { state.sort = k; state.desc = ["bb", "bf", "bx", "bo", "gm", "om", "cash", "yield", "dps", "buy", "buyamt", "trs",
-          "mc", "roe", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "tn", "sl", "oc", "ic", "fc", "cx", "cxs", "cxd", "ma", "sp", "pl", "pa2"].includes(k); }
+          "mc", "eps", "roe", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "tn", "sl", "oc", "ic", "fc", "cx", "cxs", "cxd", "ma", "sp", "pl", "pa2"].includes(k); }
         render();
       };
     });
