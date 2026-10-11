@@ -33,7 +33,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 8  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 9  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -45,6 +45,9 @@ EPS_RE = re.compile(r"^BasicEarnings\w*PerShare\w*" + SUMMARY + "$")
 EPS_EXCLUDE_RE = re.compile(r"Diluted|ContinuingOperations|DiscontinuedOperations|Adjusted")
 BPS_RE = re.compile(SUMMARY + "$")
 BPS_EXCLUDE_RE = re.compile(r"Dividend|NumberOf")
+# 1株当たり配当額(年間。中間配当だけの要素は除く)。単体の欄に載ることが多い
+DPS_RE = re.compile(r"^DividendPaidPerShare\w*" + SUMMARY + "$")
+DPS_EXCLUDE_RE = re.compile(r"Interim")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)(Duration|Instant)(_NonConsolidatedMember)?$")
 # 分割・併合の比率(新しい報告書の数字 / 古い報告書の数字)
 SPLITS = [1 / n for n in (1.5, 2, 2.5, 3, 4, 5, 6, 8, 10, 20, 25, 50, 100)] + [2, 3, 4, 5, 10]
@@ -235,7 +238,9 @@ def read_doc(key, entry):
     if names and (any(v[2] for v in eps.values()) or any(v[2] for v in bps.values())):
         # 連結の1株当たりの要素があるのに単体の数字を使ったときは、取りこぼしを確認できるように出しておく
         log(f"  {doc_id}: 連結の EPS・BPS が見つかりません。連結の1株当たりの要素: {names}")
-    res = {"eps": {}, "bps": {}, "basis": {}, "single": False, "period": period_end[:7]}
+    res = {"eps": {}, "bps": {}, "basis": {}, "single": False, "period": period_end[:7], "dps": {}}
+    for back, (v, _, _) in pick(rows, DPS_RE, DPS_EXCLUDE_RE, "Duration").items():
+        res["dps"][shift_years(period_end, back)] = v
     for k, vals in (("eps", eps), ("bps", bps)):
         for back, (v, b, single) in vals.items():
             ym = shift_years(period_end, back)
@@ -288,7 +293,7 @@ def combine(results):
     分割があった年の報告書は、当期と前期の数字を分割後の株数で載せるが、それより前の年は直していないことが多い。
     そこで各報告書からはまず当期と前期の数字を使い、1年前の報告書の当期と重なる年の比で分割をそろえる。
     報告書が欠けている年だけ、2〜4期前の数字で埋める"""
-    eps, bps, bas, notes = {}, {}, {}, []
+    eps, bps, dps, bas, notes = {}, {}, {}, {}, []
     factors = []
     for i, res in enumerate(results):
         f = 1
@@ -304,16 +309,18 @@ def combine(results):
         pairs = list(zip(results, factors))
         for res, f in (pairs if recent else reversed(pairs)):
             near = {res["period"], shift_years(res["period"] + "-01", 1)}
-            for k, dst in (("eps", eps), ("bps", bps)):
-                for ym, v in res[k].items():
+            for k, dst in (("eps", eps), ("bps", bps), ("dps", dps)):
+                for ym, v in res.get(k, {}).items():
                     if (ym in near) == recent and ym not in dst:
                         dst[ym] = round(v * f, 2)
-                        bas.setdefault(ym, res["basis"].get(ym))
+                        if k != "dps":
+                            bas.setdefault(ym, res["basis"].get(ym))
     years = sorted(set(eps) | set(bps))[-YEARS:]
     return {
         "years": years,
         "eps": [eps.get(y) for y in years],
         "bps": [bps.get(y) for y in years],
+        "dps": [dps.get(y) for y in years],
         "basis": [bas.get(y) for y in years],
         "adj": notes,
     }
