@@ -6,7 +6,7 @@
   <title>銘柄スクリーニング</title>
   <meta name="description" content="有価証券報告書の株主構成から浮動株割合を計算し、東証銘柄を一覧で並べ替えて探せるページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261011" />
+  <link rel="stylesheet" href="assets/style.css?v=20261011b" />
 </head>
 <body>
   <div class="wrap">
@@ -39,13 +39,24 @@
     </div>
 
     <main>
+      <section class="panel cond-panel" aria-labelledby="cond-title">
+        <h2 id="cond-title">抽出条件</h2>
+        <p class="note">項目・数値・条件（以上／以下／等しい）を入れて「抽出」を押すと、すべての条件を満たす銘柄だけを下の表に出します。数値は表に出ている単位のまま入力します（ROE 10%なら 10、時価総額100億円なら 100）。「等しい」は入力した桁で一致を見ます（12.3 なら 12.25以上12.35未満）。条件はページのURLに残るので、ブックマークすると同じ条件で開けます。</p>
+        <div id="conds"></div>
+        <div class="cond-actions">
+          <button type="button" id="cond-add" class="cond-btn">＋条件を追加</button>
+          <button type="button" id="cond-run" class="cond-btn primary">抽出</button>
+          <button type="button" id="cond-clear" class="cond-btn">クリア</button>
+          <span id="cond-msg" class="cond-msg" role="status"></span>
+        </div>
+        <p id="cond-now" class="cond-now"></p>
+      </section>
       <section class="panel">
         <div class="panel-head">
           <h2 id="list-title">一覧</h2>
-          <span><button type="button" id="rf-clear" class="rf-clear" hidden>項目の絞り込みを解除</button>
-          <span class="count" id="count"></span></span>
+          <span class="count" id="count"></span>
         </div>
-        <p class="note">銘柄名を押すと、Yahoo!ファイナンスの株価ページが開きます。見出しの下の欄に「以上」「以下」の数値を入れると、その項目で絞り込めます（%や億円は表に出ている単位のまま入力。文字の項目は含む語、あり/なしの項目は選択。複数の項目を組み合わせられます）。<a class="dl" href="data/stock_screen.xlsx" download>Excelでダウンロード</a></p>
+        <p class="note">銘柄名を押すと、Yahoo!ファイナンスの株価ページが開きます。<a class="dl" href="data/stock_screen.xlsx" download>Excelでダウンロード</a></p>
         <div class="table-scroll"><table id="list"></table></div>
       </section>
 
@@ -91,6 +102,6 @@
       <a href="../">← アプリ一覧に戻る</a>
     </footer>
   </div>
-  <script src="assets/app.js?v=20261011g"></script>
+  <script src="assets/app.js?v=20261011h"></script>
 </body>
 </html>

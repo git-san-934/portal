@@ -1,6 +1,6 @@
 (() => {
   const QUOTE = "https://finance.yahoo.co.jp/quote/";
-  const state = { def: "f", max: Infinity, mkt: "all", bk: 0, q: "", rng: {}, sort: "eps", desc: true, data: null };
+  const state = { def: "f", max: Infinity, mkt: "all", bk: 0, q: "", draft: [], conds: [], sort: "eps", desc: true, data: null };
 
   const DEFS = [["f", "浮動株割合"], ["b", "不動株割合（東証式）"], ["a", "特定株比率（四季報式）"]];
   const MAXES = [[Infinity, "すべて"], [0.05, "5%未満"], [0.1, "10%未満"], [0.2, "20%未満"]];
@@ -77,7 +77,7 @@
     { key: "fy", label: "決算期", cls: "left", get: (r) => r.fy || "", fmt: (r) => (r.fy || "").slice(0, 7) },
   ];
 
-  // 項目ごとの範囲指定（Excelのフィルターのように 下限〜上限）。入力は表示と同じ単位
+  // 抽出条件（項目・以上/以下/等しい・数値）。数値は表に出ている単位で入力し、すべて満たす銘柄を出す
   const PCT = ["fixed", "bb", "bf", "bx", "bo", "gm", "om", "roe", "er", "cm", "nc", "sg", "og", "cxs", "yield", "rt", "xm", "trs"];
   const OKU = ["cash", "mc", "oc", "ic", "fc", "cx", "ma", "sp", "pa2", "buyamt"];
   const TEXT = ["code", "name", "mkt", "ct", "pt", "dp", "cs", "top1", "fy"];
@@ -85,40 +85,102 @@
   for (const c of COLS) {
     c.ft = TEXT.includes(c.key) ? "text" : MARK.includes(c.key) ? "mark" : "num";
     c.scale = PCT.includes(c.key) ? 0.01 : OKU.includes(c.key) ? 100 : 1;
+    const m = c.label.match(/\((.+)\)$/);
+    c.unit = PCT.includes(c.key) ? "%" : m ? m[1] : c.key === "cxd" ? "倍" : "";
+    c.name = c.label.replace(/\(.+\)$/, "");
   }
+  const CCOLS = COLS.filter((c) => c.ft !== "text");
+  const OPS = { num: [["ge", "以上"], ["le", "以下"], ["eq", "等しい"]], mark: [["yes", "あり"], ["no", "なし"]] };
   const markOf = (c, r) => (c.key === "buy" ? !!r.bs : !!c.get(r));
   const parseNum = (s) => {
-    const t = String(s).replace(/[,，%％\s]/g, "").replace(/[０-９．－]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0)).replace("ー", "-");
+    const t = String(s).replace(/[０-９．－，]/g, (ch) => String.fromCharCode(ch.charCodeAt(0) - 0xfee0))
+      .replace(/[,%％\s]/g, "").replace(/^[ー−]/, "-");
     return t === "" || isNaN(+t) ? null : +t;
   };
+  const colOf = (k) => COLS.find((c) => c.key === k);
 
-  function passRange(r) {
-    for (const k in state.rng) {
-      const f = state.rng[k], c = COLS.find((x) => x.key === k);
-      if (c.ft === "text") {
-        if (f.t && !String(c.get(r) ?? "").includes(f.t) && !(k === "name" && r.n.includes(f.t))) return false;
-      } else if (c.ft === "mark") {
-        if (f.m === "1" && !markOf(c, r)) return false;
-        if (f.m === "0" && markOf(c, r)) return false;
-      } else {
-        if (f.lo == null && f.hi == null) continue;
-        const v = c.get(r);
-        if (v == null) return false;
-        if (f.lo != null && v < f.lo * c.scale - 1e-9) return false;
-        if (f.hi != null && v > f.hi * c.scale + 1e-9) return false;
+  function passConds(r) {
+    for (const k of state.conds) {
+      const c = colOf(k.key);
+      if (c.ft === "mark") {
+        if (markOf(c, r) !== (k.op === "yes")) return false;
+        continue;
+      }
+      const v = c.get(r);
+      if (v == null) return false;
+      const x = v / c.scale;
+      if (k.op === "ge" && x < k.num - 1e-9) return false;
+      if (k.op === "le" && x > k.num + 1e-9) return false;
+      if (k.op === "eq") {  // 入力した桁で一致（12.3 なら 12.25以上12.35未満）
+        const dec = (String(k.val).split(".")[1] || "").length;
+        const tol = 0.5 * Math.pow(10, -dec);
+        if (!(x >= k.num - tol - 1e-9 && x < k.num + tol - 1e-9)) return false;
       }
     }
     return true;
   }
 
-  function filterCell(c) {
-    const f = state.rng[c.key] || {};
-    if (c.ft === "text")
-      return `<input class="rf rf-text" data-key="${c.key}" data-f="t" placeholder="含む" value="${esc(f.t || "")}">`;
-    if (c.ft === "mark")
-      return `<select class="rf" data-key="${c.key}" data-f="m"><option value="">すべて</option><option value="1"${f.m === "1" ? " selected" : ""}>あり</option><option value="0"${f.m === "0" ? " selected" : ""}>なし</option></select>`;
-    const val = (x) => (x == null ? "" : x);
-    return `<input class="rf" data-key="${c.key}" data-f="lo" inputmode="decimal" placeholder="以上" value="${val(f.lo)}"><span class="rf-sep">〜</span><input class="rf" data-key="${c.key}" data-f="hi" inputmode="decimal" placeholder="以下" value="${val(f.hi)}">`;
+  function drawConds() {
+    const box = document.getElementById("conds");
+    box.innerHTML = state.draft.map((d, i) => {
+      const c = colOf(d.key);
+      const opts = CCOLS.map((x) => `<option value="${x.key}"${x.key === d.key ? " selected" : ""}>${esc(x.key === "fixed" ? "浮動株などの割合" : x.name)}</option>`).join("");
+      const ops = OPS[c.ft].map(([v, l]) => `<option value="${v}"${v === d.op ? " selected" : ""}>${l}</option>`).join("");
+      const val = c.ft === "num"
+        ? `<input class="cond-val${d.bad ? " bad" : ""}" data-i="${i}" inputmode="decimal" placeholder="数値" value="${esc(d.val || "")}"><span class="cond-unit">${esc(c.unit)}</span>`
+        : "";
+      return `<div class="cond-row"><select class="cond-key" data-i="${i}" aria-label="項目">${opts}</select>${val}<select class="cond-op" data-i="${i}" aria-label="条件">${ops}</select><button type="button" class="cond-del" data-i="${i}" aria-label="この条件を消す">×</button></div>`;
+    }).join("") || `<p class="cond-empty">「＋条件を追加」で条件を入れてください。</p>`;
+    box.querySelectorAll(".cond-key").forEach((el) => (el.onchange = () => {
+      const d = state.draft[el.dataset.i];
+      d.key = el.value;
+      d.op = OPS[colOf(d.key).ft][0][0];
+      drawConds();
+    }));
+    box.querySelectorAll(".cond-op").forEach((el) => (el.onchange = () => { state.draft[el.dataset.i].op = el.value; }));
+    box.querySelectorAll(".cond-val").forEach((el) => {
+      el.oninput = () => { state.draft[el.dataset.i].val = el.value; };
+      el.onkeydown = (e) => { if (e.key === "Enter") runConds(); };
+    });
+    box.querySelectorAll(".cond-del").forEach((el) => (el.onclick = () => { state.draft.splice(el.dataset.i, 1); drawConds(); }));
+  }
+
+  function runConds() {
+    const ok = [];
+    let bad = 0;
+    for (const d of state.draft) {
+      d.bad = false;
+      if (colOf(d.key).ft === "mark") { ok.push({ key: d.key, op: d.op }); continue; }
+      if (!String(d.val || "").trim()) continue;  // 数値が空の行は使わない
+      const num = parseNum(d.val);
+      if (num == null) { d.bad = true; bad++; continue; }
+      ok.push({ key: d.key, op: d.op, val: String(d.val).trim(), num });
+    }
+    const msg = document.getElementById("cond-msg");
+    drawConds();
+    if (bad) { msg.textContent = "数値になっていない条件があります（赤枠）。"; return; }
+    msg.textContent = "";
+    state.conds = ok;
+    saveHash();
+    render();
+    document.getElementById("list-title").scrollIntoView({ behavior: "smooth", block: "start" });
+  }
+
+  function saveHash() {
+    const h = state.conds.map((k) => [k.key, k.op, k.val || ""].join("~")).join("|");
+    history.replaceState(null, "", h ? "#c=" + encodeURIComponent(h) : location.pathname + location.search);
+  }
+
+  function loadHash() {
+    const m = location.hash.match(/^#c=(.*)$/);
+    if (!m) return;
+    for (const part of decodeURIComponent(m[1]).split("|")) {
+      const [key, op, val] = part.split("~");
+      const c = colOf(key);
+      if (!c || c.ft === "text" || !OPS[c.ft].some((o) => o[0] === op)) continue;
+      state.draft.push({ key, op, val });
+    }
+    runConds();
   }
 
   function esc(s) {
@@ -146,7 +208,7 @@
       if (state.bk && !(r.bk >= state.bk)) return false;
       if (state.mkt !== "all" && !(r.m || "").includes(state.mkt)) return false;
       if (state.q && !(r.c.includes(state.q) || r.n.includes(state.q))) return false;
-      return passRange(r);
+      return passConds(r);
     });
     const col = COLS.find((c) => c.key === state.sort);
     const dir = state.desc ? -1 : 1;
@@ -176,27 +238,19 @@
           return `<td class="${c.cls || ""}${hit}${extra}">${c.fmt(r)}</td>`;
         }).join("") + "</tr>").join("")
       : `<tr><td class="empty" colspan="${COLS.length}">条件にあう銘柄はありません</td></tr>`;
-    const nf = Object.values(state.rng).filter((f) => f.t || f.m || f.lo != null || f.hi != null).length;
-    if (nf) document.getElementById("list-title").textContent += `（項目の絞り込み ${nf}件）`;
-    document.getElementById("rf-clear").hidden = !nf;
-    const table = document.getElementById("list");
-    if (state.headKey === state.sort + state.desc + state.def && table.tBodies[0]) {
-      table.tBodies[0].innerHTML = body;  // 絞り込みの入力中は見出しを作り直さない（入力欄のフォーカスを保つ）
-      return;
+    if (state.conds.length) {
+      const t = document.getElementById("list-title");
+      t.textContent = (t.textContent === "全銘柄" ? "" : t.textContent + "・") + `抽出条件 ${state.conds.length}件にあう銘柄`;
     }
-    state.headKey = state.sort + state.desc + state.def;
-    const frow = COLS.map((c) => `<th class="rf-cell">${filterCell(c)}</th>`).join("");
-    table.innerHTML = `<thead><tr>${head}</tr><tr class="rf-row">${frow}</tr></thead><tbody>${body}</tbody>`;
-    table.querySelectorAll(".rf").forEach((el) => {
-      const ev = el.tagName === "SELECT" ? "change" : "input";
-      el.addEventListener(ev, () => {
-        const k = el.dataset.key, f = (state.rng[k] = state.rng[k] || {});
-        if (el.dataset.f === "t" || el.dataset.f === "m") f[el.dataset.f] = el.value.trim();
-        else f[el.dataset.f] = parseNum(el.value);
-        render();
-      });
-    });
-    table.querySelectorAll("thead tr:first-child th").forEach((th) => {
+    document.getElementById("cond-now").textContent = state.conds.length
+      ? "適用中: " + state.conds.map((k) => {
+          const c = colOf(k.key), name = k.key === "fixed" ? defName() : c.name;
+          return c.ft === "mark" ? `${name} ${k.op === "yes" ? "あり" : "なし"}` : `${name} ${k.val}${c.unit} ${OPS.num.find((o) => o[0] === k.op)[1]}`;
+        }).join("、")
+      : "";
+    const table = document.getElementById("list");
+    table.innerHTML = `<thead><tr>${head}</tr></thead><tbody>${body}</tbody>`;
+    table.querySelectorAll("thead th").forEach((th) => {
       th.onclick = () => {
         const k = th.dataset.key;
         if (state.sort === k) state.desc = !state.desc;
@@ -211,7 +265,19 @@
   toggle("max-toggle", MAXES, "max");
   toggle("bk-toggle", BKS, "bk");
   toggle("mkt-toggle", MKTS, "mkt");
-  document.getElementById("rf-clear").onclick = () => { state.rng = {}; state.headKey = null; render(); };
+  document.getElementById("cond-add").onclick = () => {
+    state.draft.push({ key: "pe", op: "ge", val: "" });
+    drawConds();
+    const ins = document.querySelectorAll(".cond-val");
+    if (ins.length) ins[ins.length - 1].focus();
+  };
+  document.getElementById("cond-run").onclick = runConds;
+  document.getElementById("cond-clear").onclick = () => {
+    state.draft = []; state.conds = [];
+    document.getElementById("cond-msg").textContent = "";
+    saveHash(); drawConds(); render();
+  };
+  drawConds();
   document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
 
   fetch("data/screen.json?v=" + Date.now())
@@ -220,7 +286,8 @@
       state.data = d;
       document.getElementById("status").textContent =
         `データ: 有価証券報告書 ${d.fy_range}／株価 ${d.price_date} 時点（${d.rows.length.toLocaleString("ja-JP")}社、${d.updated} 更新）`;
-      render();
+      if (location.hash.startsWith("#c=")) loadHash();
+      else render();
     })
     .catch(() => {
       const s = document.getElementById("status");
