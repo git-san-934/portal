@@ -1,9 +1,10 @@
 (() => {
   const QUOTE = "https://finance.yahoo.co.jp/quote/";
-  const state = { def: "f", max: Infinity, mkt: "all", q: "", sort: "eps", desc: true, data: null };
+  const state = { def: "f", max: Infinity, mkt: "all", bk: 0, q: "", sort: "eps", desc: true, data: null };
 
   const DEFS = [["f", "浮動株割合"], ["b", "不動株割合（東証式）"], ["a", "特定株比率（四季報式）"]];
   const MAXES = [[Infinity, "すべて"], [0.05, "5%未満"], [0.1, "10%未満"], [0.2, "20%未満"]];
+  const BKS = [[0, "すべて"], [5, "5期以上"], [10, "10期以上"]];
   const MKTS = [["all", "すべて"], ["プライム", "プライム"], ["スタンダード", "スタンダード"], ["グロース", "グロース"]];
 
   const pct = (v, d = 1) => (v == null ? "-" : (v * 100).toFixed(d) + "%");
@@ -32,6 +33,8 @@
     { key: "mc", label: "時価総額(億円)", get: (r) => r.mc, fmt: (r) => oku(r.mc) },
     { key: "eps", label: "EPS(円)", get: (r) => r.eps, fmt: (r) => num(r.eps, 2) },
     { key: "bps", label: "BPS(円)", get: (r) => r.bps, fmt: (r) => num(r.bps, 2) },
+    { key: "bk", label: "BPS連続増加(期)", get: (r) => r.bk,
+      fmt: (r) => (r.bk == null ? "-" : r.bh ? `<span title="${esc(r.bh)}">${r.bk}</span>` : String(r.bk)), rowCls: (r) => (r.bk >= 10 ? "yes" : "") },
     { key: "pe", label: "PER(倍)", get: (r) => r.pe, fmt: (r) => num(r.pe) },
     { key: "pb", label: "PBR(倍)", get: (r) => r.pb, fmt: (r) => num(r.pb, 2) },
     { key: "roe", label: "ROE", get: (r) => r.roe, fmt: (r) => pct(r.roe) },
@@ -96,6 +99,7 @@
     const rows = state.data.rows.filter((r) => {
       const f = fixedOf(r);
       if (state.max !== Infinity && !(f != null && f < state.max)) return false;
+      if (state.bk && !(r.bk >= state.bk)) return false;
       if (state.mkt !== "all" && !(r.m || "").includes(state.mkt)) return false;
       if (state.q && !(r.c.includes(state.q) || r.n.includes(state.q))) return false;
       return true;
@@ -111,7 +115,8 @@
 
     const maxName = MAXES.find((m) => m[0] === state.max)[1];
     document.getElementById("list-title").textContent =
-      state.max === Infinity ? "全銘柄" : `${defName()}${maxName}の銘柄`;
+      (state.max === Infinity ? (state.bk ? "" : "全銘柄") : `${defName()}${maxName}の銘柄`) +
+      (state.bk ? `${state.max === Infinity ? "" : "・"}BPS${state.bk}期以上連続増加` : "");
     document.getElementById("count").textContent = `${rows.length.toLocaleString("ja-JP")}社`;
 
     const head = COLS.map((c) => {
@@ -134,7 +139,7 @@
         const k = th.dataset.key;
         if (state.sort === k) state.desc = !state.desc;
         else { state.sort = k; state.desc = ["bb", "bf", "bx", "bo", "gm", "om", "cash", "yield", "dps", "buy", "buyamt", "trs",
-          "mc", "eps", "bps", "roe", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "tn", "sl", "oc", "ic", "fc", "cx", "cxs", "cxd", "ma", "sp", "pl", "pa2"].includes(k); }
+          "mc", "eps", "bps", "bk", "roe", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "tn", "sl", "oc", "ic", "fc", "cx", "cxs", "cxd", "ma", "sp", "pl", "pa2"].includes(k); }
         render();
       };
     });
@@ -142,6 +147,7 @@
 
   toggle("def-toggle", DEFS, "def");
   toggle("max-toggle", MAXES, "max");
+  toggle("bk-toggle", BKS, "bk");
   toggle("mkt-toggle", MKTS, "mkt");
   document.getElementById("q").addEventListener("input", (e) => { state.q = e.target.value.trim(); render(); });
 
