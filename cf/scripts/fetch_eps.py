@@ -34,7 +34,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 13  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 15  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -297,6 +297,7 @@ def link_ratio(newer, older, years):
 def split_adjusted_dps(results, years):
     """配当は実際に払った額がそのまま載り、分割後も前の年を直さない。
     期末の発行済株式総数が分割の比率で増えた年を見つけ、それより前の年の配当を今の株数にそろえる。
+    (EPS・BPS の倍率は使わない。4月1日の分割では、3月期の報告書の EPS はもう分割後に直っているのに、配当は分割前の実額のため)
     期の途中で分割した年は「分割前の中間配当＋分割後の期末配当」になっているので、中間配当だけ直す"""
     dps, idps, shares = {}, {}, {}
     # その年の報告書(当期)の実額を優先する。翌年の報告書は前期の配当を分割後の株数で直していることがあるので、
