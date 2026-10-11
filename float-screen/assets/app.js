@@ -1,6 +1,6 @@
 (() => {
   const QUOTE = "https://finance.yahoo.co.jp/quote/";
-  const state = { def: "f", max: Infinity, mkt: "all", q: "", sort: "fixed", desc: false, data: null };
+  const state = { def: "f", max: Infinity, mkt: "all", q: "", sort: "eps", desc: true, data: null };
 
   const DEFS = [["f", "浮動株割合"], ["b", "不動株割合（東証式）"], ["a", "特定株比率（四季報式）"]];
   const MAXES = [[Infinity, "すべて"], [0.05, "5%未満"], [0.1, "10%未満"], [0.2, "20%未満"]];
