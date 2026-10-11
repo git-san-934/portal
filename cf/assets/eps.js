@@ -1,9 +1,12 @@
 // 「EPS・BPSの推移」の節: cf/data/eps.json (cf/scripts/fetch_eps.py の出力、単位は円) から折れ線グラフを描く。
 // cf.js が読み込む。「要点」の節の次に差し込む(なければ「数字の一覧」の節の前)。データがない銘柄では何もしない。
+// window.CF を使わない独自のページ(cf/6134/ など)からは <script src="../assets/eps.js" data-code="6134"> で読み込む。
 (function () {
-  const code = window.CF && window.CF.code;
+  const me = document.currentScript;
+  const code = (window.CF && window.CF.code) || (me && me.dataset.code);
   if (!code) return;
-  fetch('../data/eps.json').then(r => r.ok ? r.json() : null).then(data => {
+  // データはこのスクリプトの場所(cf/assets/)から見て探す。ページの場所に左右されないように
+  fetch(me && me.src ? new URL('../data/eps.json', me.src) : '../data/eps.json').then(r => r.ok ? r.json() : null).then(data => {
     const E = data && data.companies && data.companies[code];
     if (!E || E.years.length < 2) return;
     const Y = E.years.map(y => `${y.slice(2, 4)}/${+y.slice(5, 7)}`);
