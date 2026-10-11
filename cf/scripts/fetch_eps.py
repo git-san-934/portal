@@ -34,7 +34,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 16  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 17  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -310,10 +310,12 @@ def link_ratio(newer, older, years):
     return 1
 
 
-def split_adjusted_dps(results, years):
+def split_adjusted_dps(results, years, chain_splits=()):
     """配当は実際に払った額がそのまま載り、分割後も前の年を直さない。
     期末の発行済株式総数が分割の比率で増えた年を見つけ、それより前の年の配当を今の株数にそろえる。
     (EPS・BPS の倍率は使わない。4月1日の分割では、3月期の報告書の EPS はもう分割後に直っているのに、配当は分割前の実額のため)
+    株数が読めない会社もあるので、EPS・BPS で見つけた分割(chain_splits: [(その期以前を直す期, 比率)])のうち
+    株数で見つからなかったものは配当にも当てる。4月1日の分割では配当の境目が1年ずれるので、配当がなめらかにつながる方を選ぶ。
     期の途中で分割した年は「分割前の中間配当＋分割後の期末配当」になっているので、中間配当だけ直す"""
     dps, idps, shares = {}, {}, {}
     # その年の報告書(当期)の実額を優先する。翌年の報告書は前期の配当を分割後の株数で直していることがあるので、
@@ -324,14 +326,27 @@ def split_adjusted_dps(results, years):
                 for ym, v in res.get(k, {}).items():
                     if not own or ym == res.get("period"):
                         dst.setdefault(ym, v)
+    # ratio[i]: years[i-1] と years[i] の間の分割の比率
+    ratio = [1] * len(years)
+    for i in range(1, len(years)):
+        s0, s1 = shares.get(years[i - 1]), shares.get(years[i])
+        if s0 and s1:
+            ratio[i] = next((sp for sp in SPLITS if abs(s0 / s1 / sp - 1) < 0.05), 1)
+    for p, r in chain_splits:
+        if p not in years:
+            continue
+        cand = [k for k in (years.index(p) + 1, years.index(p) + 2) if k < len(years)]
+        if not cand or any(abs(ratio[k] / r - 1) < 0.05 for k in cand):
+            continue
+
+        def jump(k):
+            a, b = dps.get(years[k - 1]), dps.get(years[k])
+            return abs(math.log(b / (a * r))) if a and b and a > 0 and b > 0 else 0
+        ratio[min(cand, key=jump)] = r
     out, f = {}, 1
     for i in range(len(years) - 1, -1, -1):
         y = years[i]
-        r = 1
-        if i:
-            s0, s1 = shares.get(years[i - 1]), shares.get(y)
-            if s0 and s1:
-                r = next((sp for sp in SPLITS if abs(s0 / s1 / sp - 1) < 0.05), 1)
+        r = ratio[i]
         v = dps.get(y)
         if v is not None:
             v *= f
@@ -384,7 +399,7 @@ def combine(results):
     分割があった年の報告書は、当期と前期の数字を分割後の株数で載せるが、それより前の年は直していないことが多い。
     そこで各報告書からはまず当期と前期の数字を使い、1年前の報告書の当期と重なる年の比で分割をそろえる。
     報告書が欠けている年だけ、2〜4期前の数字で埋める"""
-    eps, bps, bas, notes = {}, {}, {}, []
+    eps, bps, bas, notes, splits = {}, {}, {}, [], []
     factors = []
     for i, res in enumerate(results):
         f = 1
@@ -393,6 +408,7 @@ def combine(results):
             r = link_ratio(prev, res, set(prev["bps"]) | set(prev["eps"]))
             f = factors[-1] * r
             if r != 1:
+                splits.append((res["period"], r))
                 notes.append(f"{res['period']}以前を {f:.4g} 倍")
         factors.append(f)
     for recent in (True, False):
@@ -406,7 +422,7 @@ def combine(results):
                         dst[ym] = round(v * f, 2)
                         bas.setdefault(ym, res["basis"].get(ym))
     years = sorted(set(eps) | set(bps))[-YEARS:]
-    dps = split_adjusted_dps(results, years)
+    dps = split_adjusted_dps(results, years, splits)
     return {**ratios(results, years, eps, bps, dps),
         "years": years,
         "eps": [eps.get(y) for y in years],
