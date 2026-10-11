@@ -1,5 +1,5 @@
 // 「EPS・BPSの推移」の節: cf/data/eps.json (cf/scripts/fetch_eps.py の出力、単位は円) から折れ線グラフを描く。
-// cf.js が読み込む。「数字の一覧」の節(#tbl を含む節)の前に差し込む。データがない銘柄では何もしない。
+// cf.js が読み込む。「要点」の節の次に差し込む(なければ「数字の一覧」の節の前)。データがない銘柄では何もしない。
 (function () {
   const code = window.CF && window.CF.code;
   if (!code) return;
@@ -58,17 +58,23 @@
     if (has(E.eps)) h += '<h3>EPS（1株あたり利益）</h3><div class="chart" id="c-eps"></div>';
     if (has(E.bps)) h += '<h3>BPS（1株あたり純資産）</h3><div class="chart" id="c-bps"></div>';
     if (has(dps)) h += '<h3>1株あたり配当金（年間）</h3><div class="chart" id="c-dps"></div>';
+    const none = Y.map(() => null);
+    const rows = [['EPS（円）', E.eps], ['BPS（円）', E.bps], ['配当（円）', dps],
+      ['PER（倍）', E.per], ['PBR（倍）', E.pbr], ['ROE（％）', E.roe], ['ROA（％）', E.roa],
+      ['配当利回り（％）', E.yield], ['自己資本比率（％）', E.eqr], ['時価総額（億円）', E.mcap]];
     h += '<div class="tbl"><table><thead><tr><th></th>' + Y.map(y => `<th>${y}</th>`).join('') + '</tr></thead><tbody>' +
-      [['EPS', E.eps], ['BPS', E.bps], ['配当', dps]].filter(([, v]) => has(v)).map(([l, v]) => `<tr><td>${l}</td>` + v.map(x => `<td class="${x < 0 ? 'neg' : ''}">${fmt(x)}</td>`).join('') + '</tr>').join('') + '</tbody></table></div>';
+      rows.map(([l, v]) => [l, v || none]).filter(([, v]) => has(v)).map(([l, v]) => `<tr><td>${l}</td>` + v.map(x => `<td class="${x < 0 ? 'neg' : ''}">${fmt(x)}</td>`).join('') + '</tr>').join('') + '</tbody></table></div>';
     const notes = ['有価証券報告書の「主要な経営指標等の推移」の数字です。'];
     if (has(dps)) notes.push('配当は中間と期末の合計で、記念配当なども含みます。');
+    if (has(E.per || none)) notes.push('PER・PBR・配当利回りは決算期末の株価（報告書のPER×EPS）で計算し、赤字の年は出していません。時価総額はPER×当期純利益（自己株式を除いた株数での額）です。ROAは当期純利益÷総資産（期首と期末の平均）です。');
     if (E.adj && E.adj.length) notes.push('途中で株式分割などがあったため、それより前の年は今の株数にそろえて計算し直しています。');
     const bs = [...new Set(E.basis.filter(Boolean))];
     if (bs.length > 1) notes.push('途中で会計基準が変わっているため、その前後の数字はそのまま比べられないことがあります。');
     h += `<p class="sub" style="margin-top:.5rem">${notes.join('')}</p>`;
     sec.innerHTML = h;
+    const point = [...document.querySelectorAll('section > h2')].find(e => e.textContent.trim() === '要点');
     const tbl = document.getElementById('tbl');
-    const before = tbl ? tbl.closest('section') : document.querySelector('footer');
+    const before = point ? point.parentNode.nextElementSibling : tbl ? tbl.closest('section') : document.querySelector('footer');
     if (before) before.parentNode.insertBefore(sec, before); else document.querySelector('.wrap').appendChild(sec);
 
     const render = () => {

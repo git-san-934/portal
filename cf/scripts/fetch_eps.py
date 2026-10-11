@@ -34,7 +34,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 15  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 18  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -52,6 +52,15 @@ DPS_EXCLUDE_RE = re.compile(r"Interim")
 # 発行済株式総数(配当の株式分割をそろえるのに使う)
 IDPS_RE = re.compile(r"^InterimDividendPaidPerShare\w*" + SUMMARY + "$")
 SHARES_RE = re.compile(r"^TotalNumberOfIssuedShares\w*" + SUMMARY + "$")
+# 表に出す指標の元になる数字(比率は小数、金額は円)
+BASES = r"(IFRS|USGAAP|JMIS)?"
+PER_RE = re.compile(r"^PriceEarningsRatio" + BASES + SUMMARY + "$")
+ROE_RE = re.compile(r"^RateOfReturnOnEquity" + BASES + SUMMARY + "$")
+EQR_RE = re.compile(r"^(EquityToAssetRatio|RatioOfOwnersEquityToGrossAssets|EquityToTotalAssetsRatio)" + BASES + SUMMARY + "$")
+NI_RE = re.compile(r"^ProfitLossAttributableToOwnersOfParent" + BASES + SUMMARY + "$")
+NI_SINGLE_RE = re.compile(r"^(NetIncomeLoss|ProfitLoss)" + BASES + SUMMARY + "$")
+TA_RE = re.compile(r"^TotalAssets" + BASES + SUMMARY + "$")
+PER_SHARE, PURE, YEN = re.compile(r"PerShare"), re.compile(r"(?i)^pure$"), re.compile(r"^JPY$")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)(Duration|Instant)(_NonConsolidatedMember)?$")
 # 分割・併合の比率(新しい報告書の数字 / 古い報告書の数字)
 SPLITS = [1 / n for n in (1.5, 2, 2.5, 3, 4, 5, 6, 8, 10, 20, 25, 50, 100)] + [2, 3, 4, 5, 10]
@@ -168,14 +177,14 @@ def read_csv(key, doc_id):
             continue
         for line in z.read(name).decode("utf-16", "replace").splitlines():
             cells = [c.strip('"') for c in line.split("\t")]
-            if len(cells) >= 9 and SUMMARY in cells[0] and ("PerShare" in cells[6] or "TotalNumberOfIssuedShares" in cells[0]):
-                rows.append((cells[0], cells[2], cells[-1].replace(",", "")))
+            if len(cells) >= 9 and SUMMARY in cells[0]:
+                rows.append((cells[0], cells[2], cells[-1].replace(",", ""), cells[6]))
     return rows
 
 
 XBRL_RE = re.compile(r"<([\w-]+:\w*SummaryOfBusinessResults)\b([^>]*)>([^<]*)<")
 CTXREF_RE = re.compile(r'contextRef="([^"]+)"')
-UNITREF_RE = re.compile(r'unitRef="([^"]*PerShare[^"]*)"|:TotalNumberOfIssuedShares')
+UNITREF_RE = re.compile(r'unitRef="([^"]*)"')
 
 
 def read_xbrl(key, doc_id):
@@ -186,9 +195,9 @@ def read_xbrl(key, doc_id):
         if "PublicDoc" in name and name.endswith(".xbrl"):
             text = z.read(name).decode("utf-8", "replace")
             for elem, attrs, val in XBRL_RE.findall(text):
-                m = CTXREF_RE.search(attrs)
-                if m and UNITREF_RE.search(elem + " " + attrs):
-                    rows.append((elem, m.group(1), val.strip()))
+                m, u = CTXREF_RE.search(attrs), UNITREF_RE.search(attrs)
+                if m and u:
+                    rows.append((elem, m.group(1), val.strip(), u.group(1)))
     return rows
 
 
@@ -202,16 +211,16 @@ def basis(name):
 BASIS_ORDER = {"IFRS": 0, "USGAAP": 1, "JMIS": 2, "JGAAP": 3}
 
 
-def pick(rows, name_re, exclude_re, kind):
-    """kind(Duration か Instant)の値から {何期前: (値, 会計基準, 単体か)} を返す。
+def pick(rows, name_re, exclude_re, kind, unit=PER_SHARE):
+    """kind(Duration か Instant。None ならどちらでも)・単位が unit の値から {何期前: (値, 会計基準, 単体か)} を返す。
     連結を優先し、同じ期に複数の基準があれば IFRS などを優先する"""
     found = {}
-    for elem, ctx, val in rows:
+    for elem, ctx, val, u in rows:
         name = elem.split(":")[-1]
-        if not name_re.search(name) or (exclude_re and exclude_re.search(name)):
+        if not name_re.search(name) or (exclude_re and exclude_re.search(name)) or (unit and not unit.search(u)):
             continue
         m = CTX_RE.match(ctx)
-        if not m or m.group(3) != kind:
+        if not m or (kind and m.group(3) != kind):
             continue
         try:
             v = float(val)
@@ -238,14 +247,21 @@ def read_doc(key, entry):
     if not eps and not bps:
         rows = read_xbrl(key, doc_id)
         eps, bps = pick(rows, EPS_RE, EPS_EXCLUDE_RE, "Duration"), pick(rows, BPS_RE, BPS_EXCLUDE_RE, "Instant")
-    names = sorted({e.split(":")[-1] for e, c, _ in rows if c.startswith("CurrentYear") and "NonConsolidated" not in c})
+    names = sorted({e.split(":")[-1] for e, c, _, u in rows
+                    if c.startswith("CurrentYear") and "NonConsolidated" not in c and "PerShare" in u})
     if names and (any(v[2] for v in eps.values()) or any(v[2] for v in bps.values())):
         # 連結の1株当たりの要素があるのに単体の数字を使ったときは、取りこぼしを確認できるように出しておく
         log(f"  {doc_id}: 連結の EPS・BPS が見つかりません。連結の1株当たりの要素: {names}")
     res = {"eps": {}, "bps": {}, "basis": {}, "single": False, "period": period_end[:7], "dps": {}, "idps": {}, "shares": {}}
-    for k, name_re, ex, kind in (("dps", DPS_RE, DPS_EXCLUDE_RE, "Duration"), ("idps", IDPS_RE, None, "Duration"),
-                                 ("shares", SHARES_RE, None, "Instant")):
-        for back, (v, _, _) in pick(rows, name_re, ex, kind).items():
+    ni = pick(rows, NI_RE, None, "Duration", YEN) or pick(rows, NI_SINGLE_RE, None, "Duration", YEN)
+    for k, name_re, ex, kind, unit in (("dps", DPS_RE, DPS_EXCLUDE_RE, "Duration", PER_SHARE),
+                                       ("idps", IDPS_RE, None, "Duration", PER_SHARE),
+                                       ("shares", SHARES_RE, None, "Instant", None),
+                                       ("per", PER_RE, None, None, PURE), ("roe", ROE_RE, None, None, PURE),
+                                       ("eqr", EQR_RE, None, "Instant", PURE), ("ni", None, None, None, None),
+                                       ("ta", TA_RE, None, "Instant", YEN)):
+        res[k] = {}
+        for back, (v, _, _) in (ni if k == "ni" else pick(rows, name_re, ex, kind, unit)).items():
             res[k][shift_years(period_end, back)] = v
     for k, vals in (("eps", eps), ("bps", bps)):
         for back, (v, b, single) in vals.items():
@@ -294,10 +310,12 @@ def link_ratio(newer, older, years):
     return 1
 
 
-def split_adjusted_dps(results, years):
+def split_adjusted_dps(results, years, chain_splits=()):
     """配当は実際に払った額がそのまま載り、分割後も前の年を直さない。
     期末の発行済株式総数が分割の比率で増えた年を見つけ、それより前の年の配当を今の株数にそろえる。
     (EPS・BPS の倍率は使わない。4月1日の分割では、3月期の報告書の EPS はもう分割後に直っているのに、配当は分割前の実額のため)
+    株数が読めない会社もあるので、EPS・BPS で見つけた分割(chain_splits: [(その期以前を直す期, 比率)])のうち
+    株数で見つからなかったものは配当にも当てる。4月1日の分割では配当の境目が1年ずれるので、配当がなめらかにつながる方を選ぶ。
     期の途中で分割した年は「分割前の中間配当＋分割後の期末配当」になっているので、中間配当だけ直す"""
     dps, idps, shares = {}, {}, {}
     # その年の報告書(当期)の実額を優先する。翌年の報告書は前期の配当を分割後の株数で直していることがあるので、
@@ -308,14 +326,33 @@ def split_adjusted_dps(results, years):
                 for ym, v in res.get(k, {}).items():
                     if not own or ym == res.get("period"):
                         dst.setdefault(ym, v)
-    out, f = {}, 1
+    # ratio[i]: years[i-1] と years[i] の間の分割の比率
+    ratio = [1] * len(years)
+    for i in range(1, len(years)):
+        s0, s1 = shares.get(years[i - 1]), shares.get(years[i])
+        if s0 and s1:
+            ratio[i] = next((sp for sp in SPLITS if abs(s0 / s1 / sp - 1) < 0.05), 1)
+    latest = 1  # 最新の期のあと(4月1日など)に分割したときは、最新の期の配当も直す
+    for p, r in chain_splits:
+        if p not in years:
+            continue
+        j = years.index(p) + 1
+        if any(abs(x / r - 1) < 0.05 for x in ratio[j:j + 2]):
+            continue
+        # p と次の年の配当が r 倍ずれていれば境目はそこ、ずれていなければ1年あと
+        a, b = dps.get(p), dps.get(years[j]) if j < len(years) else None
+        here = j < len(years) and (not (a and b and a > 0 and b > 0)
+                                   or abs(math.log(b / (a * r))) < abs(math.log(b / a)))
+        if here:
+            ratio[j] = r
+        elif j + 1 < len(years):
+            ratio[j + 1] = r
+        else:
+            latest = r
+    out, f = {}, latest
     for i in range(len(years) - 1, -1, -1):
         y = years[i]
-        r = 1
-        if i:
-            s0, s1 = shares.get(years[i - 1]), shares.get(y)
-            if s0 and s1:
-                r = next((sp for sp in SPLITS if abs(s0 / s1 / sp - 1) < 0.05), 1)
+        r = ratio[i]
         v = dps.get(y)
         if v is not None:
             v *= f
@@ -330,12 +367,45 @@ def split_adjusted_dps(results, years):
     return out
 
 
+def own_first(results, k):
+    """各年の値を、その年の報告書(当期)を優先して、なければ新しい報告書から"""
+    out = {}
+    for own in (True, False):
+        for res in results:
+            for ym, v in res.get(k, {}).items():
+                if own == (ym == res["period"]):
+                    out.setdefault(ym, v)
+    return out
+
+
+def ratios(results, years, eps, bps, dps):
+    """表に出す指標。株価は報告書の PER × EPS で求める(赤字で PER がない年は、株価を使う指標は出さない)。
+    EPS・BPS・配当は分割をそろえた後の数字を使うので、分割の前後でも比が変わらない。
+    時価総額は PER × 親会社株主に帰属する当期純利益(= 株価 × 期中平均の株数、自己株式を除く)"""
+    per, roe, eqr, ni, ta = (own_first(results, k) for k in ("per", "roe", "eqr", "ni", "ta"))
+    r = {k: [] for k in ("per", "pbr", "roe", "roa", "yield", "eqr", "mcap")}
+    for i, y in enumerate(years):
+        p = per.get(y)
+        p = p if p and p > 0 else None
+        price = p * eps[y] if p and eps.get(y) else None
+        t0, t1 = ta.get(years[i - 1]) if i else None, ta.get(y)
+        avg = (t0 + t1) / 2 if t0 and t1 else t1
+        r["per"].append(round(p, 1) if p else None)
+        r["pbr"].append(round(price / bps[y], 2) if price and bps.get(y) else None)
+        r["roe"].append(round(roe[y] * 100, 1) if y in roe else None)
+        r["roa"].append(round(ni[y] / avg * 100, 1) if y in ni and avg else None)
+        r["yield"].append(round(dps[y] / price * 100, 2) if price and dps.get(y) is not None else None)
+        r["eqr"].append(round(eqr[y] * 100, 1) if y in eqr else None)
+        r["mcap"].append(round(p * ni[y] / 1e8) if p and ni.get(y) else None)
+    return r
+
+
 def combine(results):
     """新しい順の読み取り結果をつなぐ。
     分割があった年の報告書は、当期と前期の数字を分割後の株数で載せるが、それより前の年は直していないことが多い。
     そこで各報告書からはまず当期と前期の数字を使い、1年前の報告書の当期と重なる年の比で分割をそろえる。
     報告書が欠けている年だけ、2〜4期前の数字で埋める"""
-    eps, bps, bas, notes = {}, {}, {}, []
+    eps, bps, bas, notes, splits = {}, {}, {}, [], []
     factors = []
     for i, res in enumerate(results):
         f = 1
@@ -344,6 +414,7 @@ def combine(results):
             r = link_ratio(prev, res, set(prev["bps"]) | set(prev["eps"]))
             f = factors[-1] * r
             if r != 1:
+                splits.append((res["period"], r))
                 notes.append(f"{res['period']}以前を {f:.4g} 倍")
         factors.append(f)
     for recent in (True, False):
@@ -357,8 +428,8 @@ def combine(results):
                         dst[ym] = round(v * f, 2)
                         bas.setdefault(ym, res["basis"].get(ym))
     years = sorted(set(eps) | set(bps))[-YEARS:]
-    dps = split_adjusted_dps(results, years)
-    return {
+    dps = split_adjusted_dps(results, years, splits)
+    return {**ratios(results, years, eps, bps, dps),
         "years": years,
         "eps": [eps.get(y) for y in years],
         "bps": [bps.get(y) for y in years],
