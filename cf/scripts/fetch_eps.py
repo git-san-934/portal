@@ -104,9 +104,7 @@ def save(path, obj):
 
 
 def target_codes():
-    # cf/<コード>/index.html のページに加え、ページが別の場所にある銘柄(FUJI は fuji-cf/)も
-    # cf/<コード>/ に half.js などを置いているので対象にする
-    return sorted(p.name for p in CF_DIR.iterdir() if p.is_dir() and re.fullmatch(r"\d{3}[0-9A-Z]", p.name) and ((p / "index.html").exists() or (p / "half.js").exists()))
+    return sorted(p.name for p in CF_DIR.iterdir() if p.is_dir() and re.fullmatch(r"\d{3}[0-9A-Z]", p.name) and (p / "index.html").exists())
 
 
 # ---------- 1. 書類一覧から対象銘柄の有価証券報告書を探す ----------

@@ -1,6 +1,6 @@
 // 「EPS・BPSの推移」の節: cf/data/eps.json (cf/scripts/fetch_eps.py の出力、単位は円) から折れ線グラフを描く。
 // cf.js が読み込む。「要点」の節の次に差し込む(なければ「数字の一覧」の節の前)。データがない銘柄では何もしない。
-// cf/ の外のページ(fuji-cf/ など)からは <script src="../cf/assets/eps.js" data-code="6134"> で読み込む。
+// window.CF を使わない独自のページ(cf/6134/ など)からは <script src="../assets/eps.js" data-code="6134"> で読み込む。
 (function () {
   const me = document.currentScript;
   const code = (window.CF && window.CF.code) || (me && me.dataset.code);
