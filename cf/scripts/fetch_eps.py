@@ -34,7 +34,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 12  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 13  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -299,10 +299,14 @@ def split_adjusted_dps(results, years):
     期末の発行済株式総数が分割の比率で増えた年を見つけ、それより前の年の配当を今の株数にそろえる。
     期の途中で分割した年は「分割前の中間配当＋分割後の期末配当」になっているので、中間配当だけ直す"""
     dps, idps, shares = {}, {}, {}
-    for res in results:  # 新しい報告書の値を優先(実額なので、どの報告書でも同じはず)
-        for k, dst in (("dps", dps), ("idps", idps), ("shares", shares)):
-            for ym, v in res.get(k, {}).items():
-                dst.setdefault(ym, v)
+    # その年の報告書(当期)の実額を優先する。翌年の報告書は前期の配当を分割後の株数で直していることがあるので、
+    # 当期の報告書がない年だけ、ほかの報告書(新しい順)の値で埋める
+    for own in (True, False):
+        for res in results:
+            for k, dst in (("dps", dps), ("idps", idps), ("shares", shares)):
+                for ym, v in res.get(k, {}).items():
+                    if not own or ym == res.get("period"):
+                        dst.setdefault(ym, v)
     out, f = {}, 1
     for i in range(len(years) - 1, -1, -1):
         y = years[i]
