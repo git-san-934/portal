@@ -13,6 +13,7 @@ EDINET_API_KEY(環境変数)が必要。
 
 import io
 import json
+import math
 import os
 import re
 import sys
@@ -33,7 +34,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 10  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 11  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -49,6 +50,7 @@ BPS_EXCLUDE_RE = re.compile(r"Dividend|NumberOf")
 DPS_RE = re.compile(r"^DividendPaidPerShare\w*" + SUMMARY + "$")
 DPS_EXCLUDE_RE = re.compile(r"Interim")
 # 発行済株式総数(配当の株式分割をそろえるのに使う)
+IDPS_RE = re.compile(r"^InterimDividendPaidPerShare\w*" + SUMMARY + "$")
 SHARES_RE = re.compile(r"^TotalNumberOfIssuedShares\w*" + SUMMARY + "$")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)(Duration|Instant)(_NonConsolidatedMember)?$")
 # 分割・併合の比率(新しい報告書の数字 / 古い報告書の数字)
@@ -240,8 +242,9 @@ def read_doc(key, entry):
     if names and (any(v[2] for v in eps.values()) or any(v[2] for v in bps.values())):
         # 連結の1株当たりの要素があるのに単体の数字を使ったときは、取りこぼしを確認できるように出しておく
         log(f"  {doc_id}: 連結の EPS・BPS が見つかりません。連結の1株当たりの要素: {names}")
-    res = {"eps": {}, "bps": {}, "basis": {}, "single": False, "period": period_end[:7], "dps": {}, "shares": {}}
-    for k, name_re, ex, kind in (("dps", DPS_RE, DPS_EXCLUDE_RE, "Duration"), ("shares", SHARES_RE, None, "Instant")):
+    res = {"eps": {}, "bps": {}, "basis": {}, "single": False, "period": period_end[:7], "dps": {}, "idps": {}, "shares": {}}
+    for k, name_re, ex, kind in (("dps", DPS_RE, DPS_EXCLUDE_RE, "Duration"), ("idps", IDPS_RE, None, "Duration"),
+                                 ("shares", SHARES_RE, None, "Instant")):
         for back, (v, _, _) in pick(rows, name_re, ex, kind).items():
             res[k][shift_years(period_end, back)] = v
     for k, vals in (("eps", eps), ("bps", bps)):
@@ -293,23 +296,33 @@ def link_ratio(newer, older, years):
 
 def split_adjusted_dps(results, years):
     """配当は実際に払った額がそのまま載り、分割後も前の年を直さない。
-    期末の発行済株式総数が分割の比率で増えた年を見つけ、それより前の年の配当を今の株数にそろえる"""
-    dps, shares = {}, {}
+    期末の発行済株式総数が分割の比率で増えた年を見つけ、それより前の年の配当を今の株数にそろえる。
+    期の途中で分割した年は「分割前の中間配当＋分割後の期末配当」になっているので、中間配当だけ直す"""
+    dps, idps, shares = {}, {}, {}
     for res in results:  # 新しい報告書の値を優先(実額なので、どの報告書でも同じはず)
-        for ym, v in res.get("dps", {}).items():
-            dps.setdefault(ym, v)
-        for ym, v in res.get("shares", {}).items():
-            shares.setdefault(ym, v)
-    out, f = {}, 1
+        for k, dst in (("dps", dps), ("idps", idps), ("shares", shares)):
+            for ym, v in res.get(k, {}).items():
+                dst.setdefault(ym, v)
+    out, f, nxt = {}, 1, None
     for i in range(len(years) - 1, -1, -1):
         y = years[i]
-        if dps.get(y) is not None:
-            out[y] = round(dps[y] * f, 2)
+        r = 1
         if i:
             s0, s1 = shares.get(years[i - 1]), shares.get(y)
             if s0 and s1:
-                r = s0 / s1
-                f *= next((sp for sp in SPLITS if abs(r / sp - 1) < 0.05), 1)
+                r = next((sp for sp in SPLITS if abs(s0 / s1 / sp - 1) < 0.05), 1)
+        v = dps.get(y)
+        if v is not None:
+            v *= f
+            iv = idps.get(y)
+            if r != 1 and iv and nxt:
+                # 分割した年: 中間配当が分割前なら直した方が翌年に近い
+                mixed = v - iv * f * (1 - r)
+                if abs(math.log(mixed / nxt)) < abs(math.log(v / nxt)):
+                    v = mixed
+            out[y] = round(v, 2)
+            nxt = v if v > 0 else nxt
+        f *= r
     return out
 
 
