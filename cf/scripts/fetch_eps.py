@@ -33,7 +33,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 3  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 4  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -44,7 +44,9 @@ SUMMARY = "SummaryOfBusinessResults"
 EPS_RE = re.compile(r"^BasicEarnings\w*PerShare\w*" + SUMMARY + "$")
 EPS_EXCLUDE_RE = re.compile(r"Diluted|ContinuingOperations|DiscontinuedOperations|Adjusted")
 BPS_RE = re.compile(SUMMARY + "$")
-BPS_EXCLUDE_RE = re.compile(r"Dividend")
+BPS_EXCLUDE_RE = re.compile(r"Dividend|NumberOf")
+# 発行済株式総数(株式分割の検出に使う)
+SHARES_RE = re.compile(r"^TotalNumberOfIssuedShares\w*" + SUMMARY + "$")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)(Duration|Instant)(_NonConsolidatedMember)?$")
 # 分割・併合の比率(新しい報告書の数字 / 古い報告書の数字)
 SPLITS = [1 / n for n in (1.1, 1.2, 1.5, 2, 2.5, 3, 4, 5, 10, 20, 50, 100)] + [2, 3, 4, 5, 10]
@@ -161,7 +163,7 @@ def read_csv(key, doc_id):
             continue
         for line in z.read(name).decode("utf-16", "replace").splitlines():
             cells = [c.strip('"') for c in line.split("\t")]
-            if len(cells) >= 9 and SUMMARY in cells[0] and "PerShare" in cells[6]:
+            if len(cells) >= 9 and SUMMARY in cells[0] and ("PerShare" in cells[6] or "TotalNumberOfIssuedShares" in cells[0]):
                 rows.append((cells[0], cells[2], cells[-1].replace(",", "")))
     return rows
 
@@ -169,6 +171,7 @@ def read_csv(key, doc_id):
 XBRL_RE = re.compile(r"<([\w-]+:\w*SummaryOfBusinessResults)\b([^>]*)>([^<]*)<")
 CTXREF_RE = re.compile(r'contextRef="([^"]+)"')
 UNITREF_RE = re.compile(r'unitRef="([^"]*PerShare[^"]*)"')
+SHARES_ELEM_RE = re.compile(r":TotalNumberOfIssuedShares")
 
 
 def read_xbrl(key, doc_id):
@@ -180,7 +183,7 @@ def read_xbrl(key, doc_id):
             text = z.read(name).decode("utf-8", "replace")
             for elem, attrs, val in XBRL_RE.findall(text):
                 m = CTXREF_RE.search(attrs)
-                if m and UNITREF_RE.search(attrs):
+                if m and (UNITREF_RE.search(attrs) or SHARES_ELEM_RE.search(elem)):
                     rows.append((elem, m.group(1), val.strip()))
     return rows
 
@@ -235,7 +238,9 @@ def read_doc(key, entry):
     if names and (any(v[2] for v in eps.values()) or any(v[2] for v in bps.values())):
         # 連結の1株当たりの要素があるのに単体の数字を使ったときは、取りこぼしを確認できるように出しておく
         log(f"  {doc_id}: 連結の EPS・BPS が見つかりません。連結の1株当たりの要素: {names}")
-    res = {"eps": {}, "bps": {}, "basis": {}, "single": False}
+    res = {"eps": {}, "bps": {}, "basis": {}, "single": False, "shares": {}}
+    for back, (v, _, _) in pick(rows, SHARES_RE, None, "Instant").items():
+        res["shares"][shift_years(period_end, back)] = v
     for k, vals in (("eps", eps), ("bps", bps)):
         for back, (v, b, single) in vals.items():
             ym = shift_years(period_end, back)
@@ -283,9 +288,31 @@ def split_ratio(new, old):
     return None
 
 
+def adjust_splits(years, eps, bps, shares, notes):
+    """報告書の中でも、古い年が分割前の株数のまま載っていることがある。
+    発行済株式総数が k 倍になった年に BPS がおよそ 1/k になっていれば、それより前の年を 1/k 倍する"""
+    for i in range(len(years) - 1, 0, -1):
+        y0, y1 = years[i - 1], years[i]
+        s0, s1, b0, b1 = shares.get(y0), shares.get(y1), bps.get(y0), bps.get(y1)
+        if not (s0 and s1 and b0 and b1) or b0 <= 0 or b1 <= 0:
+            continue
+        k = s1 / s0
+        if 0.75 < k < 1.3 or not 0.6 < b1 / b0 * k < 1.6:
+            continue
+        k = next((1 / s for s in SPLITS if abs(k * s - 1) < 0.05), k)
+        for d in (eps, bps):
+            for y in years[:i]:
+                if d.get(y) is not None:
+                    d[y] = round(d[y] / k, 2)
+        notes.append(f"{y1}より前を {1 / k:.4g} 倍")
+
+
 def combine(results):
     """新しい順の読み取り結果をつないで、古い年の数字を分割にあわせてそろえる"""
-    eps, bps, bas, notes = {}, {}, {}, []
+    eps, bps, bas, shares, notes = {}, {}, {}, {}, []
+    for res in results:
+        for ym, v in res.get("shares", {}).items():
+            shares.setdefault(ym, v)
     for i, res in enumerate(results):
         if i == 0:
             eps, bps, bas = dict(res["eps"]), dict(res["bps"]), dict(res["basis"])
@@ -308,6 +335,7 @@ def combine(results):
                     dst[ym] = round(v * factor, 2)
                     bas.setdefault(ym, res["basis"].get(ym))
     years = sorted(set(eps) | set(bps))[-YEARS:]
+    adjust_splits(years, eps, bps, shares, notes)
     return {
         "years": years,
         "eps": [eps.get(y) for y in years],
