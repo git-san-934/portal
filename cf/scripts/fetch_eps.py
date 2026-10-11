@@ -34,7 +34,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 17  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 18  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -332,18 +332,24 @@ def split_adjusted_dps(results, years, chain_splits=()):
         s0, s1 = shares.get(years[i - 1]), shares.get(years[i])
         if s0 and s1:
             ratio[i] = next((sp for sp in SPLITS if abs(s0 / s1 / sp - 1) < 0.05), 1)
+    latest = 1  # 最新の期のあと(4月1日など)に分割したときは、最新の期の配当も直す
     for p, r in chain_splits:
         if p not in years:
             continue
-        cand = [k for k in (years.index(p) + 1, years.index(p) + 2) if k < len(years)]
-        if not cand or any(abs(ratio[k] / r - 1) < 0.05 for k in cand):
+        j = years.index(p) + 1
+        if any(abs(x / r - 1) < 0.05 for x in ratio[j:j + 2]):
             continue
-
-        def jump(k):
-            a, b = dps.get(years[k - 1]), dps.get(years[k])
-            return abs(math.log(b / (a * r))) if a and b and a > 0 and b > 0 else 0
-        ratio[min(cand, key=jump)] = r
-    out, f = {}, 1
+        # p と次の年の配当が r 倍ずれていれば境目はそこ、ずれていなければ1年あと
+        a, b = dps.get(p), dps.get(years[j]) if j < len(years) else None
+        here = j < len(years) and (not (a and b and a > 0 and b > 0)
+                                   or abs(math.log(b / (a * r))) < abs(math.log(b / a)))
+        if here:
+            ratio[j] = r
+        elif j + 1 < len(years):
+            ratio[j + 1] = r
+        else:
+            latest = r
+    out, f = {}, latest
     for i in range(len(years) - 1, -1, -1):
         y = years[i]
         r = ratio[i]
