@@ -230,7 +230,25 @@
     return { text: base, tone: h.stock.tone || "hold", why: "" };
   }
 
+  // 個別銘柄のカードを日本株→米国株の順に、それぞれ取得金額(取得単価×保有株数)の大きい順に並べる。
+  // 保有を登録していない銘柄は各グループの後ろに、銘柄リストの順で置く
+  function sortCards() {
+    const cards = $("cards");
+    if (!cards) return;
+    const positions = getPositions();
+    const order = book.stocks.map((stock, i) => {
+      const pos = positions[stock.code];
+      return { stock, i, us: curOf(stock) !== "JPY", cost: pos ? pos.price * pos.quantity : 0 };
+    });
+    order.sort((a, b) => a.us - b.us || b.cost - a.cost || a.i - b.i);
+    for (const { stock } of order) {
+      const card = $(`s-${stock.code}`);
+      if (card) cards.appendChild(card);
+    }
+  }
+
   function renderPortfolio() {
+    sortCards();
     const panel = $("portfolio-panel");
     if (!panel) return;
     const pf = portfolioStats();
