@@ -5453,11 +5453,18 @@ https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-6010/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-6025/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-6210/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-6225/
+https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-7010/
+https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-7025/
+https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-7210/
+https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-7225/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-at/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-b1/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-bc1/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-cb10/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-clb/
+https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-db1/
+https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-dbc1/
+https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-du1/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-ex3/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-h1c/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-h1p/
@@ -5469,6 +5476,7 @@ https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-h3t/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-p3000/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-p6000/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-p6200/
+https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-p7200/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-rb/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-ru/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-s1/
