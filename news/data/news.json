@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-13T01:07+09:00",
+ "updated_at": "2026-10-13T07:48+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1665,6 +1665,13 @@
     "q4:https://investors.palantir.com"
    ],
    "items": [
+    {
+     "date": "2026-10-12",
+     "title": "Palantir Announces Date of Third Quarter 2026 Earnings Release and Webcast",
+     "url": "https://investors.palantir.com/news-details/2026/Palantir-Announces-Date-of-Third-Quarter-2026-Earnings-Release-and-Webcast/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-13T07:48+09:00"
+    },
     {
      "date": "2026-10-11",
      "title": "Palantir Technologies Announces October Seoul Pop-Up with Korea-First Exclusive Merchandise Release",
