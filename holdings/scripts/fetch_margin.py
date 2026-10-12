@@ -136,6 +136,11 @@ def parse(pdf_bytes, codes):
             found.setdefault(want[r[1]], {})["shares" if r[3] == "株数" else "value"] = v
     log(f"  基準日 {asof} / {total} 行中 {bad} 行は合計が合わず読み飛ばし / 持ち株 {len(found)} 銘柄")
     if total == 0 or bad > total * 0.2:
+        log("---- 1ページ目の文字(形式確認用) ----")
+        log(text[:3000])
+        if rows:
+            log("---- 読めなかった行の例 ----")
+            log(text[rows[0].start() : rows[0].start() + 600])
         raise RuntimeError(f"PDF の形式が想定と違います(行 {total}、読めない行 {bad})")
     return asof, found
 
