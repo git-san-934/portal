@@ -35,9 +35,15 @@
     { key: "bps", label: "BPS(円)", get: (r) => r.bps, fmt: (r) => num(r.bps, 2) },
     { key: "bk", label: "BPS連続増加(期)", get: (r) => r.bk,
       fmt: (r) => (r.bk == null ? "-" : r.bh ? `<span title="${esc(r.bh)}">${r.bk}</span>` : String(r.bk)), rowCls: (r) => (r.bk >= 10 ? "yes" : "") },
+    { key: "ex", label: "EPS 9期前比(倍)", get: (r) => r.ex,
+      fmt: (r) => (r.ex == null ? "-" : `<span title="${esc(r.eh || "")}">${num(r.ex, 2)}</span>`) },
+    { key: "dc", label: "減配回数(10期)", get: (r) => r.dc,
+      fmt: (r) => (r.dc == null ? "-" : `<span title="${esc(r.dh || "")}">${r.dc}${r.dz ? `（無配${r.dz}期）` : ""}</span>`) },
+    { key: "r2", label: "Ricky第2段階", cls: "left", get: (r) => r.r2, fmt: (r) => mark(r.r2, "○", "×"), rowCls: (r) => (r.r2 ? "yes" : "") },
     { key: "pe", label: "PER(倍)", get: (r) => r.pe, fmt: (r) => num(r.pe) },
     { key: "pb", label: "PBR(倍)", get: (r) => r.pb, fmt: (r) => num(r.pb, 2) },
     { key: "roe", label: "ROE", get: (r) => r.roe, fmt: (r) => pct(r.roe) },
+    { key: "ra", label: "ROA", get: (r) => r.ra, fmt: (r) => pct(r.ra) },
     { key: "er", label: "自己資本比率", get: (r) => r.er, fmt: (r) => pct(r.er) },
     { key: "cm", label: "現金÷時価総額", get: (r) => r.cm, fmt: (r) => pct(r.cm, 0) },
     { key: "nc", label: "ネットキャッシュ÷時価総額", get: (r) => r.nc, fmt: (r) => pct(r.nc, 0) },
@@ -78,16 +84,16 @@
   ];
 
   // 抽出条件（項目・以上/以下/等しい・数値）。数値は表に出ている単位で入力し、すべて満たす銘柄を出す
-  const PCT = ["fixed", "bb", "bf", "bx", "bo", "gm", "om", "roe", "er", "cm", "nc", "sg", "og", "cxs", "yield", "rt", "xm", "trs"];
+  const PCT = ["fixed", "bb", "bf", "bx", "bo", "gm", "om", "roe", "ra", "er", "cm", "nc", "sg", "og", "cxs", "yield", "rt", "xm", "trs"];
   const OKU = ["cash", "mc", "oc", "ic", "fc", "cx", "ma", "sp", "pa2", "buyamt"];
   const TEXT = ["code", "name", "mkt", "ct", "pt", "dp", "cs", "top1", "fy"];
-  const MARK = ["pl", "buy", "cc", "xc", "pa", "nw"];
+  const MARK = ["pl", "buy", "cc", "xc", "pa", "nw", "r2"];
   for (const c of COLS) {
     c.ft = TEXT.includes(c.key) ? "text" : MARK.includes(c.key) ? "mark" : "num";
     c.scale = PCT.includes(c.key) ? 0.01 : OKU.includes(c.key) ? 100 : 1;
     const m = c.label.match(/\((.+)\)$/);
-    c.unit = PCT.includes(c.key) ? "%" : m ? m[1] : c.key === "cxd" ? "倍" : "";
-    c.name = c.label.replace(/\(.+\)$/, "");
+    c.unit = PCT.includes(c.key) ? "%" : c.key === "dc" ? "回" : c.key === "ex" ? "倍" : m ? m[1] : c.key === "cxd" ? "倍" : "";
+    c.name = c.key === "ex" ? "EPS 9期前比" : c.key === "dc" ? "減配回数(10期)" : c.label.replace(/\(.+\)$/, "");
   }
   const CCOLS = COLS.filter((c) => c.ft !== "text");
   const OPS = { num: [["ge", "以上"], ["le", "以下"], ["eq", "等しい"]], mark: [["yes", "あり"], ["no", "なし"]] };
@@ -255,7 +261,7 @@
         const k = th.dataset.key;
         if (state.sort === k) state.desc = !state.desc;
         else { state.sort = k; state.desc = ["bb", "bf", "bx", "bo", "gm", "om", "cash", "yield", "dps", "buy", "buyamt", "trs",
-          "mc", "eps", "bps", "bk", "roe", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "tn", "sl", "oc", "ic", "fc", "cx", "cxs", "cxd", "ma", "sp", "pl", "pa2"].includes(k); }
+          "mc", "eps", "bps", "bk", "ex", "r2", "roe", "ra", "er", "cm", "nc", "sg", "og", "cc", "rt", "dp", "xc", "xm", "pa", "cs", "nw", "em", "ag", "tn", "sl", "oc", "ic", "fc", "cx", "cxs", "cxd", "ma", "sp", "pl", "pa2"].includes(k); }
         render();
       };
     });
@@ -272,6 +278,13 @@
     if (ins.length) ins[ins.length - 1].focus();
   };
   document.getElementById("cond-run").onclick = runConds;
+  // Rickyさんの条件（第1段階＋第2段階）
+  const RICKY = [["pe", "le", "12"], ["pb", "le", "1.3"], ["roe", "ge", "7"], ["ra", "ge", "3"], ["yield", "ge", "3"],
+    ["er", "ge", "35"], ["mc", "ge", "100"], ["r2", "yes", ""]];
+  document.getElementById("cond-ricky").onclick = () => {
+    state.draft = RICKY.map(([key, op, val]) => ({ key, op, val }));
+    runConds();
+  };
   document.getElementById("cond-clear").onclick = () => {
     state.draft = []; state.conds = [];
     document.getElementById("cond-msg").textContent = "";
