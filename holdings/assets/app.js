@@ -86,12 +86,34 @@
     return fx && fx.rate ? fx.rate : null;
   }
 
+  // 信用買いの平均買値(保有比率の右隣に置く)。現在値がそれより上なら信用買いは平均で含み益
+  function marginItem(code, currentPrice, cur) {
+    const m = book.margin.get(code);
+    if (!m) return null;
+    const gap = (currentPrice / m.avg - 1) * 100;
+    const item = el("div", "margin-item");
+    item.title = `東証の銘柄別信用取引残高(${dateFmt(m.date)}時点)の買残の金額 ÷ 株数。信用買い残 ${numFmt.format(m.shares)}株`;
+    const dd = el("dd", "pct", priceFmt(Math.round(m.avg), cur));
+    dd.appendChild(el("span", `margin-gap ${pctClass(gap)}`, `現在値 ${pctText(gap)}`));
+    item.append(el("dt", null, `信用買い平均(${shortDate(m.date)})`), dd);
+    return item;
+  }
+
   function renderPnl(code, slot = $(`pnl-${code}`)) {
     if (!slot) return;
     slot.replaceChildren();
     const position = getPositions()[code];
     const currentPrice = Number(slot.dataset.price);
-    if (!position || !currentPrice) return;
+    if (!position || !currentPrice) {
+      // 保有を入力していない銘柄でも、信用買いの平均買値は出す
+      const item = currentPrice ? marginItem(code, currentPrice, slot.dataset.currency || "JPY") : null;
+      if (item) {
+        const dl = el("dl", "stats pnl");
+        dl.appendChild(item);
+        slot.appendChild(dl);
+      }
+      return;
+    }
     const pnl = calcPnl(currentPrice, position.price, position.quantity);
     if (!pnl) return;
     const cur = slot.dataset.currency || "JPY";
@@ -115,6 +137,8 @@
       item.append(el("dt", null, dt), el("dd", cls, dd));
       pnlStats.appendChild(item);
     }
+    const mItem = marginItem(code, currentPrice, cur);
+    if (mItem) pnlStats.appendChild(mItem);
     slot.appendChild(pnlStats);
     if (cur !== "JPY") {
       const fx = book.fx[`${cur}JPY`];
@@ -136,7 +160,7 @@
   const WEIGHT_CAP = 25;
   const WEIGHT_TRIM = 35;
 
-  const book = { stocks: [], series: new Map(), fx: {}, weights: new Map() };
+  const book = { stocks: [], series: new Map(), fx: {}, weights: new Map(), margin: new Map() };
 
   // 2銘柄がどちらも取引した日だけで、直近20日分の日次対数リターンの組を作る
   // (東証と米国市場は休場日が違うため。米国の終値は日本時間では翌朝に付く点は近似)
@@ -524,23 +548,6 @@
       const dist = (l.price / last - 1) * 100;
       wrap.appendChild(el("p", "chart-note", `${l.label} ${priceFmt(l.price, cur)}まで ${pctText(dist)}`));
     }
-    // 信用買いの平均買値と、現在値がそれより上か下か(上なら信用買いの投資家は平均で含み益)
-    const mAll = marginPoints(dates, margin);
-    const mNow = mAll.length ? mAll[mAll.length - 1] : null;
-    if (mNow) {
-      const prev = mAll.length > 1 ? mAll[mAll.length - 2] : null;
-      const gap = (last / mNow.avg - 1) * 100;
-      const parts = [`信用買い残 ${numFmt.format(mNow.shares)}株`];
-      if (prev) parts.push(`前回比 ${mNow.shares - prev.shares >= 0 ? "+" : "−"}${numFmt.format(Math.abs(mNow.shares - prev.shares))}株`);
-      if (mNow.sell > 0) parts.push(`信用倍率 ${(mNow.shares / mNow.sell).toFixed(2)}倍`);
-      const note = el(
-        "p",
-        "chart-note margin-note",
-        `信用買いの平均買値 ${priceFmt(Math.round(mNow.avg), cur)}(${shortDate(mNow.date)}時点)。現在値はこれより ${pctText(gap)}` +
-          `(信用買いは平均で${gap >= 0 ? "含み益" : "含み損"})。${parts.join("、")}`,
-      );
-      wrap.appendChild(note);
-    }
     return wrap;
   }
 
@@ -622,6 +629,8 @@
     plan.append(el("strong", null, "判定"), document.createTextNode(stock.plan));
 
     card.append(head, stats, pnlSlot, rr);
+    const mpts = prices && curOf(stock) === "JPY" ? marginPoints(prices.dates, prices.margin) : [];
+    if (mpts.length) book.margin.set(stock.code, mpts[mpts.length - 1]);
     renderPnl(stock.code, pnlSlot);
     if (stock.risk_note) card.appendChild(el("p", "risk-note", `* ${stock.risk_note}`));
     if (prices)
