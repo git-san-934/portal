@@ -6,7 +6,7 @@
   <title>持ち株チェック</title>
   <meta name="description" content="持ち株を「保有継続/売却/買い増し」のどれにするか、リスクとリターンで毎日チェックした結果と1年チャート" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261004a" />
+  <link rel="stylesheet" href="assets/style.css?v=20261012a" />
 </head>
 <body>
   <div class="wrap">
@@ -19,6 +19,8 @@
         <span class="refresh-note">GitHub の画面が開くので「Create」を押してください。2〜5分で株価とチャートが新しくなり、このページを再読み込みすると反映されます(GitHub へのログインが必要です)。判定は毎日のチェックで更新されます。</span>
       </p>
     </header>
+
+    <main class="cards" id="cards" hidden></main>
 
     <section class="panel" id="summary" hidden>
       <p class="summary-lead" id="summary-lead"></p>
@@ -64,8 +66,6 @@
       <ul class="bullets" id="pf-notes" hidden></ul>
       <p class="caveat" id="pf-caveat"></p>
     </section>
-
-    <main class="cards" id="cards" hidden></main>
 
     <section class="panel" id="next-panel" hidden>
       <h2 class="panel-title">次に注目すること</h2>
@@ -149,6 +149,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20261004a"></script>
+  <script src="assets/app.js?v=20261012a"></script>
 </body>
 </html>
