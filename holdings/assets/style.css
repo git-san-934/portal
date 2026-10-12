@@ -10,6 +10,7 @@
   --down: #1a5fb4;
   --tone-add: #2f7d4f;
   --tone-trim: #a8661a;
+  --margin: #7a4fb5;
   --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.05);
 }
 
@@ -26,6 +27,7 @@
     --down: #6fa8ff;
     --tone-add: #6cc58f;
     --tone-trim: #e0a25a;
+    --margin: #b494e8;
     --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
   }
 }
@@ -168,6 +170,8 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .chart-line { fill: none; stroke: var(--accent); stroke-width: 1.8; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
 .grid-line { stroke: var(--grid); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .review-line { stroke: var(--up); stroke-width: 1.2; stroke-dasharray: 5 4; vector-effect: non-scaling-stroke; opacity: 0.8; }
+.margin-level { stroke: var(--margin); stroke-width: 1; stroke-dasharray: 2 3; vector-effect: non-scaling-stroke; opacity: 0.8; }
+.margin-line { fill: none; stroke: var(--margin); stroke-width: 1.6; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
 .tick-label, .line-label {
   position: absolute;
   transform: translateY(-100%);
@@ -215,6 +219,8 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .tooltip.edge-left { transform: translate(0, -100%); }
 .tooltip.edge-right { transform: translate(-100%, -100%); }
 .chart-note { font-size: 0.75rem; color: var(--text-sub); }
+.line-label.margin-label, .margin-note { color: var(--margin); }
+.line-label.margin-label { transform: none; } /* 下値目途のラベルと重ならないよう線の下に置く */
 
 /* ---------- 保有状況 ---------- */
 .stats.pnl {
