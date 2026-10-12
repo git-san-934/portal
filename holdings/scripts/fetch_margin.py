@@ -41,7 +41,7 @@ HEADERS = {"User-Agent": "Mozilla/5.0 (compatible; portal-holdings/1.0; +https:/
 JST = timezone(timedelta(hours=9))
 
 # 「13010 JP3257200000 株数 Shs.」のように、5桁の新証券コード・ISIN・行の種類が並ぶ
-ROW_RE = re.compile(r"([0-9][0-9A-Z]{3}0)\s+(JP[0-9A-Z]{10})\s+(株数|金額)\s*(?:Shs\.|Val\.)")
+ROW_RE = re.compile(r"([0-9][0-9A-Z]{3}0)\s+(JP[0-9A-Z]{10})\s*(株数|金額)\s*(?:Shs\.|Val\.)")
 NUM_RE = re.compile(r"[▲△-]?[0-9][0-9,]*")
 ASOF_RE = re.compile(r"(\d{4})/(\d{1,2})/(\d{1,2})\s*申込み現在")
 
