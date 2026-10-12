@@ -219,7 +219,8 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .tooltip.edge-left { transform: translate(0, -100%); }
 .tooltip.edge-right { transform: translate(-100%, -100%); }
 .chart-note { font-size: 0.75rem; color: var(--text-sub); }
-.line-label.margin-label, .margin-note { color: var(--margin); }
+.line-label.margin-label, .margin-item dd { color: var(--margin); }
+.margin-gap { display: block; font-size: 0.68rem; font-weight: 400; line-height: 1.2; }
 .line-label.margin-label { transform: none; } /* 下値目途のラベルと重ならないよう線の下に置く */
 
 /* ---------- 保有状況 ---------- */
