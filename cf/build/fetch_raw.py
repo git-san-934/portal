@@ -23,7 +23,7 @@ HERE = Path(__file__).resolve().parent
 RAW = HERE / "raw"
 JST = timezone(timedelta(hours=9))
 START_DAY = date(2019, 6, 1)  # 2019年3月期の報告書から
-WORKERS = 6
+WORKERS = 3
 HEADERS = {"User-Agent": "portal-cf-build"}
 TEXTS = (
     "DescriptionOfBusinessTextBlock",
@@ -43,28 +43,48 @@ def log(*a):
     print(*a, flush=True)
 
 
-def get(url, params, retries=4):
+def get(url, params, retries=6, want_zip=False):
+    """EDINET はエラーでも HTTP 200 で JSON を返すことがあるので、中身も確かめてやり直す"""
     last = None
     for attempt in range(1, retries + 1):
         try:
             r = requests.get(url, params=params, headers=HEADERS, timeout=120)
             if r.status_code == 200:
-                return r
-            last = f"HTTP {r.status_code}"
-            if r.status_code in (400, 401, 403, 404):
-                break
-        except requests.RequestException as e:
+                if want_zip:
+                    if r.content[:2] == b"PK":
+                        return r
+                    last = f"zip ではない応答: {r.content[:200]!r}"
+                else:
+                    status = str((r.json().get("metadata") or {}).get("status", ""))
+                    if status == "200":
+                        return r
+                    last = f"metadata.status {status}: {r.text[:200]}"
+                    if status == "404":
+                        return r
+            else:
+                last = f"HTTP {r.status_code}"
+                if r.status_code in (400, 401, 403, 404):
+                    break
+        except (requests.RequestException, ValueError) as e:
             last = e
-        time.sleep(3 * attempt)
+        time.sleep(5 * attempt)
     raise RuntimeError(f"{url}: {last}")
 
 
 def scan(key, codes):
+    cache_path = RAW / "_docs.json"
+    cache = json.loads(cache_path.read_text()) if cache_path.exists() else {"scanned": [], "docs": {}}
+    if sorted(cache.get("codes", [])) != sorted(codes):
+        cache = {"scanned": [], "docs": {}, "codes": sorted(codes)}
     today = datetime.now(JST).date()
     days = [START_DAY + timedelta(days=i) for i in range((today - START_DAY).days + 1)]
-    days = [d for d in days if d.weekday() < 5]
+    scanned = set(cache["scanned"])
+    days = [d for d in days if d.weekday() < 5 and d.isoformat() not in scanned]
     want = set(codes)
-    docs = {c: [] for c in codes}
+    docs = cache["docs"]
+    for c in codes:
+        docs.setdefault(c, [])
+    failed = 0
 
     def work(d):
         try:
@@ -74,22 +94,31 @@ def scan(key, codes):
             return None
 
     with ThreadPoolExecutor(WORKERS) as ex:
-        for n, res in enumerate(ex.map(work, days)):
-            for doc in (res or {}).get("results") or []:
+        for n, (d, res) in enumerate(zip(days, ex.map(work, days))):
+            if res is None:
+                failed += 1
+                continue
+            if d < today:
+                scanned.add(d.isoformat())
+            for doc in res.get("results") or []:
                 sec = (doc.get("secCode") or "").strip()
                 code = sec[:4].upper()
                 if len(sec) != 5 or code not in want or doc.get("docTypeCode") not in ("120", "160", "140"):
                     continue
                 if doc.get("withdrawalStatus") not in (None, "0"):
                     continue
-                docs[code].append({k: doc.get(k) for k in ("docID", "docTypeCode", "submitDateTime", "periodStart", "periodEnd", "docDescription", "filerName", "csvFlag")})
+                if doc["docID"] not in {x["docID"] for x in docs[code]}:
+                    docs[code].append({k: doc.get(k) for k in ("docID", "docTypeCode", "submitDateTime", "periodStart", "periodEnd", "docDescription", "filerName", "csvFlag")})
             if n % 200 == 199:
                 log(f"  書類一覧 {n + 1}/{len(days)} 日")
+    cache["scanned"] = sorted(scanned)
+    cache_path.write_text(json.dumps(cache, ensure_ascii=False))
+    log(f"書類一覧: 失敗 {failed} 日(次の実行でやり直し)")
     return docs
 
 
 def read_doc(key, doc_id, keep_text):
-    r = get(f"{EDINET_API}/documents/{doc_id}", {"type": 5, "Subscription-Key": key})
+    r = get(f"{EDINET_API}/documents/{doc_id}", {"type": 5, "Subscription-Key": key}, want_zip=True)
     z = zipfile.ZipFile(io.BytesIO(r.content))
     facts, texts = [], {}
     for name in z.namelist():
@@ -129,6 +158,8 @@ def main():
     codes = [c.strip() for c in (HERE / "codes.txt").read_text().split() if c.strip()]
     RAW.mkdir(exist_ok=True)
     todo = [c for c in codes if not (RAW / f"{c}.json.gz").exists()]
+    # 書類の取得は1件ずつ間を空ける
+
     log(f"{len(todo)} 銘柄を取得します")
     if not todo:
         return
@@ -143,22 +174,29 @@ def main():
         half = [d for d in lst if d["docTypeCode"] in ("160", "140")]
         half = half[-1:] if half else []
         out = {"code": code, "docs": []}
+        errors = 0
         for i, p in enumerate(periods):
             d = annual[p]
             try:
                 facts, texts = read_doc(key, d["docID"], keep_text=True)
             except Exception as e:  # noqa: BLE001
                 log(f"  {code} {d['docID']}: {e}")
+                errors += 1
                 continue
             if i > 0:  # 古い報告書は設備投資の概要だけ残す
                 texts = {k: v for k, v in texts.items() if k == "OverviewOfCapitalExpendituresEtcTextBlock"}
             out["docs"].append({**d, "facts": facts, "texts": texts})
+            time.sleep(1)
         for d in half:
             try:
                 facts, texts = read_doc(key, d["docID"], keep_text=False)
                 out["docs"].append({**d, "facts": facts, "texts": texts})
             except Exception as e:  # noqa: BLE001
                 log(f"  {code} {d['docID']}: {e}")
+                errors += 1
+        if errors or not periods:
+            log(f"{code}: 取得できなかった書類があるため保存しません(有報 {len(periods)} 期分, エラー {errors})")
+            continue
         with gzip.open(RAW / f"{code}.json.gz", "wt", encoding="utf-8") as f:
             json.dump(out, f, ensure_ascii=False, separators=(",", ":"))
         log(f"{code}: 有報 {len(periods)} 期分, 半期 {len(half)}")
