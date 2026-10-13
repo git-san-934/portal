@@ -1,0 +1,89 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>レイヤード 投資分析</title>
+  <meta name="description" content="レイヤード（634A）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>レイヤード（634A）は何に投資しているか</h1>
+    <p>上場したばかりのため、有価証券報告書は2026年6月期の1回分です。前期の数字も使い、<strong>2025年6月期〜2026年6月期の2年間</strong>をまとめました。連結決算はなく、<strong>会社単体</strong>の数字です。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>診療所などに医療DXのソフトを提供する会社です</b>。WEB問診「Symview」、予約システム「Wakumy」、患者管理「Kakarite」などを月額制で売っており、利用する医療機関は約6,000施設です。</li>
+      <li><b>売上は1年で35.6%増えました</b>。2026年6月期の売上は19.8億円で、毎月の利用料（ストック）が10.9億円、導入時の初期費用が6.3億円、広告が2.6億円です。</li>
+      <li><b>営業利益は2.7倍になりました</b>。月額利用料が積み上がり、営業利益は1.3億円から3.4億円に増えました。</li>
+      <li><b>設備投資はとても小さいです</b>。2026年6月期は0.3億円で、主なものは自社ソフトウエアの開発（0.2億円）です。</li>
+      <li><b>研究開発は音声AIです</b>。医療機関の電話応対や予約受付を自動にするAIモジュールを外部の会社と共同で開発しており、研究開発費は0.1億円でした。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年6月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は14.6億円から19.8億円に増え、営業利益率は9%から17%に上がりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2026年6月期の営業CFは2.8億円で、設備投資と借入金の返済をしてもお金が残り、現金が増えました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">2026年6月期の合計は0.4億円ほどで、売上の約2%です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資と減価償却費はどちらも年0.2〜0.3億円で、ほぼ同じ大きさです。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2025年6月期（0.2億円）</div>キャッシュ・フロー計算書の設備投資額（内訳はこのページのデータにはありません）</li>
+      <li><div class="y">2026年6月期（0.3億円）</div>ソフトウエア・ソフトウエア仮勘定0.2億円など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">2026年6月期の金額は有報「設備投資等の概要」の設備投資額（29百万円）です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">会社は成長途中のため、設立以来配当をしていません。借入金は1.1億円で少しずつ返しており、現金は6.4億円あります。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は6月期決算です（例：「26/6」は2025年7月〜2026年6月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>1施設あたりの単価</b>：1つの医療機関に複数のソフトを使ってもらい、平均単価を上げられるかを見ます。</li>
+      <li><b>無人受付と音声AI</b>：2025年7月に始めた無人受付や、開発中の電話自動応答AIが新しい売上になるかに注目します。</li>
+      <li><b>初期費用の売上の続き方</b>：初期費用は2026年6月期に75.7%増えましたが、新規導入の数で毎年変わります。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社レイヤード 有価証券報告書（2026年6月期）の財務諸表とXBRLデータ。2025年6月期は、2026年6月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産（無形資産）の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+</script>
+<script src="../assets/cf.js"></script>
+</body>
+</html>

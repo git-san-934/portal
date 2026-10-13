@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>トヨコー 投資分析</title>
+  <meta name="description" content="トヨコー（341A）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>トヨコー（341A）は何に投資しているか</h1>
+    <p>上場して間もないため、有価証券報告書は2025年3月期と2026年3月期の2回分です。数字は<strong>単体決算</strong>のものです。前期の数字も使い、<strong>2024年3月期〜2026年3月期の3年間</strong>をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>工場の屋根や橋などを直す技術の会社です</b>。古いスレート屋根に樹脂を吹き付けて補強する「SOSEI」と、高出力レーザーでサビを取る装置「CoolLaser」の2つの事業があります。</li>
+      <li><b>売上は2年で約3倍になりました</b>。2024年3月期の11.0億円から2026年3月期は31.3億円に増え、営業利益も赤字から6.3億円の黒字になりました。</li>
+      <li><b>伸びを引っぱるのはCoolLaserです</b>。2026年3月期は装置を12台納め、CoolLaserの売上は13.5億円（前期比219%増）、SOSEIは17.8億円（11%増）でした。</li>
+      <li><b>設備投資は年0.5〜4.0億円と小さめです</b>。2025年3月期に浜松の製造・開発拠点の土地と建物を買い、2026年3月期はその改修などに使いました。</li>
+      <li><b>研究開発費は年1.6〜1.8億円です</b>。2026年3月期はCoolLaserに1.3億円、SOSEIに0.5億円を使い、屋根上の自動吹付ロボなどを開発しています。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">「CoolLaser G19-6000」の納品が始まった2025年3月期から黒字になり、2026年3月期の営業利益率は20%でした。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは2026年3月期に1.4億円と、利益より小さくなりました。在庫が3.7億円、売掛金が3.3億円増えたためです。足りない分は借入と増資（財務CF）でまかなっています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">2026年3月期は合計3.9億円で、売上の1割強です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費（0.2〜0.8億円）を大きく上回り、拠点を広げている段階です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2024年3月期（0.5億円）</div>キャッシュ・フロー計算書の設備投資額（内訳はこのページのデータにはありません）</li>
+      <li><div class="y">2025年3月期（4.0億円）</div>CoolLaserの製造・開発拠点にする土地と建物（浜松研究所の拡大移転先）。SOSEIの吹付用機械の追加と原材料倉庫</li>
+      <li><div class="y">2026年3月期（2.1億円）</div>CoolLaser 1.6億円（新工場HAMAMATSU BASEの改修0.5億円、装置1台を自社用に振り替えなど）、SOSEI 0.4億円（吹付用機械の追加など）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。2024年3月期は有報がないため、キャッシュ・フロー計算書の数字です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当はしておらず、当面は成長のためにお金を残す方針です。2026年3月期は長期借入7.0億円と株式の発行3.7億円でお金を集め、借入金は17.3億円、現金は21.0億円です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>CoolLaserの台数</b>：2026年3月期は12台を納めました。リピートや複数台の注文が続くかを確認します。</li>
+      <li><b>営業CFの黒字</b>：売上が伸びるほど在庫と売掛金が増え、お金が出ていきます。利益がお金として残るかを見ます。</li>
+      <li><b>借入金と増資</b>：借入金は17.3億円まで増えました。工場の拡大を借入と増資のどちらでまかなうかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社トヨコー 有価証券報告書（2025年3月期〜2026年3月期）の財務諸表とXBRLデータ。2024年3月期は、2025年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産（無形資産）の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+window.CF.extra = { debt: [12.8, 14.6, 17.3] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

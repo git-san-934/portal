@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ZOZO 投資分析</title>
+  <meta name="description" content="ZOZO（3092）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ZOZO（3092）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>ファッション通販サイト「ZOZOTOWN」を運営する会社です</b>。多くの商品はブランドから預かって売る形で、売上には手数料だけが入ります。2026年3月期の売上は2,284億円ですが、サイトで売れた商品の合計（商品取扱高）は6,660億円です。</li>
+      <li><b>売上は6年で1.8倍、営業利益は2.5倍になりました</b>。2026年3月期の営業利益は694億円で、営業利益率は約30%です。</li>
+      <li><b>設備投資は主に物流の機材です</b>。商品取扱高が増えるのに合わせて物流関連機材を追加しています。年13〜94億円で、多い年でも売上の5%ほどです。</li>
+      <li><b>2026年3月期は海外の会社を買いました</b>。ファッションのショッピングサイト「Lyst」を運営する英国のLYSTを子会社にし、218億円を払いました。</li>
+      <li><b>稼いだお金の大半を株主に返しています</b>。配当は年67億円から328億円に増え、2026年3月期は自社株買い100億円もありました。配当性向は72.1%です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上と利益は6年続けて増えています。売上には預かった商品の販売手数料だけが入るため、サイトの商品取扱高（2026年3月期 6,660億円）よりずっと小さくなります。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年250〜600億円で、その多くを配当と自社株買い（財務CF）に回しています。2026年3月期の投資CFが289億円と大きいのは、LYSTの買収（218億円）のためです。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費は年2〜19億円で、設備投資と合わせても売上の6%以下です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は多くの年で減価償却費を上回り、物流の機材を増やしています。減価償却費も20億円前後から53億円に増えました。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期（51.7億円）</div>サーバーの増強、新しい事業所の建設など</li>
+      <li><div class="y">2021年3月期（33.5億円）</div>サーバーの増強、新しい事業所の建設など</li>
+      <li><div class="y">2022年3月期（13.4億円）</div>物流関連機材の追加、サーバーの増強など</li>
+      <li><div class="y">2023年3月期（92.7億円）</div>物流関連機材の追加、サーバーの増強など</li>
+      <li><div class="y">2024年3月期（93.6億円）</div>物流関連機材の追加など</li>
+      <li><div class="y">2025年3月期（62.9億円）</div>物流関連機材の追加など</li>
+      <li><div class="y">2026年3月期（70.5億円）</div>物流関連機材の追加など。ほかにLYSTの子会社化で218億円</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。有報には「ふだんの設備の更新や増強を除き、重要な設備の新設の計画はない」と書かれています。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当は連結配当性向70%を目安にしています。自社株買いを含めた総還元性向は、2024年3月期以降のおよそ5年平均で80%超を目指しています。借入金は200億円で毎年ほぼ同じで、現金は694億円あります。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>LYSTの立て直し</b>：欧米のラグジュアリー業界の不調などで、2026年3月期は計画を下回りました。海外での成長につながるかを確認します。</li>
+      <li><b>粗利率</b>：LYSTの連結で事業の組み合わせが変わり、粗利率は1.5ポイント下がって33.0%になりました。</li>
+      <li><b>ROEと株主還元</b>：ROEは46.6%で、目安の30%を上回っています。総還元性向80%超の目標を続けるかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社ＺＯＺＯ 有価証券報告書（2020年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産（無形資産）の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [220.0, 200.0, 202.0, 204.0, 200.0, 200.0, 200.0] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>
