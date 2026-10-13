@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-13T12:36+09:00",
+ "updated_at": "2026-10-13T16:30+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -331,6 +331,14 @@
     "https://www.mizuho-fg.co.jp/release/index.html"
    ],
    "items": [
+    {
+     "date": "2026-10-13",
+     "time": "13:07",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z7JA",
+     "source": "edinet",
+     "first_seen": "2026-10-13T16:30+09:00"
+    },
     {
      "date": "2026-09-24",
      "time": "16:00",
@@ -981,6 +989,21 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-10-13",
+     "time": "15:08",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z7KS",
+     "source": "edinet",
+     "first_seen": "2026-10-13T16:30+09:00"
+    },
+    {
+     "date": "2026-10-13",
+     "title": "エンタープライズSSD「KIOXIA CM9シリーズ」に直接液冷対応モデルを追加",
+     "url": "https://www.kioxia.com/ja-jp/business/news/2026/20261013-1.html",
+     "source": "official",
+     "first_seen": "2026-10-13T16:30+09:00"
+    },
     {
      "date": "2026-10-09",
      "title": "CEATEC 2026「JEITA 半導体フォーラム 2026」への出展について",
@@ -2442,6 +2465,20 @@
    ],
    "items": [
     {
+     "date": "2026-10-13",
+     "title": "製品・サービス エネルギーシステム関連、ダクト配管 各製品群の価格改定について",
+     "url": "https://news.panasonic.com/jp/press/jn261013-3",
+     "source": "official",
+     "first_seen": "2026-10-13T16:30+09:00"
+    },
+    {
+     "date": "2026-10-13",
+     "title": "製品・サービス パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
+     "url": "https://news.panasonic.com/jp/press/jn261013-1",
+     "source": "official",
+     "first_seen": "2026-10-13T16:30+09:00"
+    },
+    {
      "date": "2026-10-09",
      "title": "製品・サービス パナソニックEWとライナフがマンションのオートロック入館管理システムの普及に向けた協業を開始",
      "url": "https://news.panasonic.com/jp/press/jn261009-1",
@@ -2450,7 +2487,7 @@
     },
     {
      "date": "2026-10-08",
-     "title": "サステナビリティ パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
+     "title": "6 2026年10月8日 サステナビリティ プレスリリース パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
      "url": "https://news.panasonic.com/jp/press/jn261008-1",
      "source": "official",
      "first_seen": "2026-10-08T19:56+09:00"
