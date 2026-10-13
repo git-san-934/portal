@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ベーシック 投資分析</title>
+  <meta name="description" content="ベーシック（519A）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ベーシック（519A）は何に投資しているか</h1>
+    <p>上場して間もないため、有価証券報告書は2025年12月期の1回分です。数字は<strong>単体決算</strong>のものです。前期の数字も使い、<strong>2024年12月期〜2025年12月期の2年間</strong>をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>企業のマーケティングや問い合わせ対応を助けるソフトの会社です</b>。Webサイトづくりとマーケティングの「ferret One」と、フォームから問い合わせを管理する「formrun」をサブスクで提供しています。</li>
+      <li><b>2025年12月期に黒字になりました</b>。売上は18.2億円から22.8億円（25%増）に増え、営業利益は1.8億円の赤字から2.7億円の黒字になりました。</li>
+      <li><b>設備投資はとても小さいです</b>。2025年12月期はソフトウエア（無形固定資産）に0.4億円を使っただけで、有報でも「重要な設備投資はない」としています。2024年12月期は0でした。</li>
+      <li><b>稼いだお金は借入金の返済に回しました</b>。2025年12月期の営業CFは2.3億円で、長期借入金を2.6億円返し、借入金は4.3億円から1.8億円に減りました。</li>
+      <li><b>純利益が営業利益より大きいのは税金の会計処理のためです</b>。将来の利益を見込んで繰延税金資産を0.8億円増やしたため、純利益は3.4億円になりました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年12月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">formrunの有料顧客数の伸びとferret Oneの顧客単価の改善で売上が25%増え、2025年12月期は営業利益率12%の黒字になりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。2024年12月期は営業CFが2.6億円のマイナスでしたが、2025年12月期は2.3億円のプラスになりました。そのお金で借入金を返し、現金は6.5億円から5.9億円へ少し減りました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 設備投資と減価償却費</h2>
+    <p class="sub">減価償却費は0.1億円未満で、設備投資もごく小さく、設備をほとんど持たない会社です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2024年12月期（0億円）</div>設備投資はありませんでした（投資CFは0）</li>
+      <li><div class="y">2025年12月期（0.4億円）</div>無形固定資産（ソフトウエア）の取得0.4億円。有報では「重要な設備投資はありません」</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額はキャッシュ・フロー計算書の「無形固定資産の取得による支出」です。ほかに研究開発費が2025年12月期に0.2億円あります。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当はしておらず、当面はお金を事業の成長と財務の強化に使う方針です。2025年12月期は長期借入金2.6億円を返し、借入金は1.8億円、現金は5.9億円です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は12月期決算です（例：「25/12」は2025年1月〜12月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>黒字が続くか</b>：2025年12月期にやっと黒字になりました。売上の伸びと利益が続くかを確認します。</li>
+      <li><b>formrunの有料顧客</b>：会社が主要な指標としている有料顧客数がどこまで増えるかに注目します。</li>
+      <li><b>AIへの取り組み</b>：会社は業務をAIで自動化する方向へ事業を広げる方針です。開発のためのお金の使い方が変わるかを見ます。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社ベーシック 有価証券報告書（2025年12月期）の財務諸表とXBRLデータ。2024年12月期は、2025年12月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「無形固定資産の取得による支出」です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+window.CF.extra = { debt: [4.3, 1.8] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

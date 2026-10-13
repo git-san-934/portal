@@ -1,0 +1,88 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ライフネット生命保険 投資分析</title>
+  <meta name="description" content="ライフネット生命保険（7157）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ライフネット生命保険（7157）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、IFRS（国際会計基準）の数字がある<strong>2023年3月期〜2026年3月期の4年間</strong>をまとめました。2023年3月期は、2024年3月期の報告書に載っている前期の数字です。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>インターネットを主軸に生命保険を売る会社です</b>。個人向けの保険と、提携する金融機関を通じた団体信用生命保険（団信）を扱っています。</li>
+      <li><b>設備投資はシステムだけで、年7〜12億円です</b>。保険の申し込みの仕組み、お客さま向けWebシステム、団信の引き受けのシステムなどに使っています。2025年3月期は本社移転もあり12億円でした。</li>
+      <li><b>保有契約は増え続けています</b>。2026年3月期末の年換算保険料は373億円（前期比8%増）で、個人保険が287億円、団信が86億円です。新契約件数は8.7万件（19%増）でした。</li>
+      <li><b>利益は4年で2倍以上になりました</b>。保険収益は207億円から344億円に増え、2026年3月期の当期利益は80億円でした。</li>
+      <li><b>配当はまだしていません</b>。自社株買いもなく、借入金もありません。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">「売上」の欄は保険収益、「営業利益」の欄は税引前利益です。保険収益は4年続けて増え、2026年3月期は344億円（前期比14%増）でした。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは毎年プラスで、2026年3月期は88億円でした。投資CFは設備投資よりずっと大きく、その多くは設備以外への支出です。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 設備投資と減価償却費</h2>
+    <p class="sub">設備投資は減価償却費とほぼ同じか少し多い水準で、2026年3月期は減価償却費を下回りました。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2023年3月期（6.2億円）</div>団体信用生命保険の引き受けのためのシステム構築</li>
+      <li><div class="y">2024年3月期（7.7億円）</div>保険事業と保険関連事業のシステム</li>
+      <li><div class="y">2025年3月期（13.5億円）</div>保険事業と保険関連事業のシステム、本社移転の費用（新オフィスの使用権資産は含まない）</li>
+      <li><div class="y">2026年3月期（8.0億円）</div>保険事業と保険関連事業のシステム</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当も自社株買いもしていません。借入金はなく、現金は136億円です。</p>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>保有契約の伸び</b>：個人保険の新契約と団信の提携先がどこまで増えるかを見ます。</li>
+      <li><b>株主還元の始まり</b>：黒字が続く中で、配当などの還元を始めるかに注目します。</li>
+      <li><b>AIの活用</b>：会社はAIで新しい保険体験をつくり、業務の生産性を上げる方針です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ライフネット生命保険株式会社 有価証券報告書（2024年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。2023年3月期は、2024年3月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産及び無形資産の取得による支出」です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

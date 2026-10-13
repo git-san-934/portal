@@ -1,0 +1,93 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>BRANU 投資分析</title>
+  <meta name="description" content="BRANU（460A）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>BRANU（460A）は何に投資しているか</h1>
+    <p>上場したばかりのため、有価証券報告書は2025年10月期の1回分です。前期の数字も使い、<strong>2024年10月期〜2025年10月期の2年間</strong>をまとめました。連結決算はなく、<strong>会社単体</strong>の数字です。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>中小の建設会社向けにネットのサービスを売る会社です</b>。マッチングメディア「CAREECON」と、集客・採用・施工管理などをまとめた業務ツール「CAREECON Plus」を提供しています。工場や店舗はありません。</li>
+      <li><b>売上は1年で1.5倍になりました</b>。2025年10月期の売上は21.2億円（前期比50.3%増）、営業利益は3.3億円（前期は1.0億円）でした。</li>
+      <li><b>設備投資はとても小さいです</b>。2025年10月期は0.6億円で、新しいオフィスの内装工事とパソコン・備品だけです。</li>
+      <li><b>お金は支店づくりと人に使っています</b>。対面での営業を重視するため東京・大阪・福岡に拠点を広げており、2025年10月期は支店の敷金の差し入れにも0.7億円を払いました。</li>
+      <li><b>借入金を少しずつ返しています</b>。借入金は4.5億円で、現金7.9億円より少ない水準です。配当はまだ出していません。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年10月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は14.1億円から21.2億円に増え、営業利益率は7%から16%に上がりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは2025年10月期に2.5億円で、投資CF（1.4億円の支出）と借入金の返済（0.4億円）をまかなえています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 設備投資と減価償却費</h2>
+    <p class="sub">減価償却費は年0.1億円ほどで、2025年10月期は支店開設のため設備投資がそれを上回りました。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2024年10月期（0.1億円）</div>キャッシュ・フロー計算書の設備投資額（内訳はこのページのデータにはありません）</li>
+      <li><div class="y">2025年10月期（0.6億円）</div>新しく借りたオフィスの内装工事、パソコンと備品の購入</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">2025年10月期の金額は有報「設備投資等の概要」の設備投資額です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">会社は成長途中のため、利益は事業に回し、配当はしていません。借入金は毎年0.4億円ほど返しており、2025年10月期末は4.5億円です。現金は7.9億円あります。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は10月期決算です（例：「25/10」は2024年11月〜2025年10月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>支店の展開</b>：全国に支店を広げ、これまで届かなかった中小建設会社に売れるかを見ます。</li>
+      <li><b>CAREECON Plusの機能追加</b>：AI機能や開発中の経営管理機能を加え、「All in One」のツールにできるかに注目します。</li>
+      <li><b>利益率の維持</b>：採用を増やしながら、2025年10月期の営業利益率16%を保てるかを確認します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ＢＲＡＮＵ株式会社 有価証券報告書（2025年10月期）の財務諸表とXBRLデータ。2024年10月期は、2025年10月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産（無形資産）の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+window.CF.extra = { debt: [4.9, 4.5] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>

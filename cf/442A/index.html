@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>クラシコ 投資分析</title>
+  <meta name="description" content="クラシコ（442A）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>クラシコ（442A）は何に投資しているか</h1>
+    <p>上場したばかりのため、有価証券報告書は2025年10月期の1回分です。前期の数字も使い、2024年10月期〜2025年10月期の2年間をまとめました。連結決算ではなく、<strong>会社単体の数字</strong>です。単位は億円です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>医師や看護師が着る白衣・スクラブを企画して売る会社です</b>。ブランドは「Classico」で、患者が着る「lifte」もあります。売り方はネット通販、直営店、法人向け、海外の4つです。</li>
+      <li><b>売上は1年で18%増えました</b>。2025年10月期は36.3億円で、患者衣「lifte」の導入が増え、国内のネット通販も伸びました。営業利益は1.6億円です。</li>
+      <li><b>設備投資はとても小さいです</b>。2025年10月期は0.1億円で、本社オフィスの改修、備品、システム開発でした。工場は持っていません。</li>
+      <li><b>お金は在庫に回っています</b>。在庫（商品）は9.5億円から13.0億円に増え、営業CFは2年続けてマイナスでした。</li>
+      <li><b>増資で財務を立て直しました</b>。第三者割当増資で5.1億円を集め、転換社債も株に替わりました。自己資本比率は29.7%から58.8%に上がりました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年10月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は30.9億円から36.3億円に増えました。広告費を増やしましたが、営業利益は0.7億円から1.6億円に増えました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。利益は出ていますが、在庫が増えたため営業CFはマイナスです。その分を増資など（財務CF）でまかなっています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費は新しい生地や新商品の開発に使う年0.1〜0.2億円で、売上に比べて小さいです。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資も減価償却費も年0.1〜0.3億円と小さく、設備をほとんど持たない会社です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2024年10月期（0.2億円）</div>キャッシュ・フロー計算書の設備投資額（内訳はこのページのデータにはありません）</li>
+      <li><div class="y">2025年10月期（0.1億円）</div>本社オフィスの改修、備品の購入、システム開発</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">2025年10月期は有報「設備投資等の概要」の設備投資額（1,437万円）です。有報の「設備の新設、除却等の計画」には「該当事項はありません」と書かれています。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">配当や自社株買いはありません。会社は成長のための投資を優先していて、配当をいつ始めるかは決めていません。借入金は6.4億円から4.7億円に減り、現金は4.0億円です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は10月期決算です（例：「25/10」は2024年11月〜2025年10月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>在庫と営業CF</b>：在庫が増えて営業CFがマイナスです。売上の伸びで在庫が現金に戻るかを確認します。</li>
+      <li><b>海外の売上</b>：2024年11月にアジア5つの国と地域向けのネット通販を始めました。海外がどこまで伸びるかに注目します。</li>
+      <li><b>広告費と利益</b>：ネット通販の広告費を増やしています。売上の伸びが広告費を上回るかを確認します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET クラシコ株式会社 有価証券報告書（2025年10月期）の財務諸表とXBRLデータ。2024年10月期は、2025年10月期の報告書に載っている前期の数字です。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産（無形資産）の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF_DEC = 1;
+window.CF.extra = { debt: [6.4, 4.7] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+</body>
+</html>
