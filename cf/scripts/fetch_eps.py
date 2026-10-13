@@ -76,19 +76,24 @@ def out_of_time():
     return time.monotonic() - START > TIME_LIMIT
 
 
-def get(url, params, retries=3):
+def get(url, params, retries=3, want_zip=False):
+    """EDINET は混み合うと HTTP 200 のまま zip ではなくエラーの JSON を返すことがある。
+    want_zip のときは中身が zip かどうかも確かめ、違えば間を空けてやり直す"""
     last = None
-    for attempt in range(1, retries + 1):
+    for attempt in range(1, (6 if want_zip else retries) + 1):
         try:
             r = requests.get(url, params=params, headers=HEADERS, timeout=90)
             if r.status_code == 200:
-                return r
-            last = f"HTTP {r.status_code}"
-            if r.status_code in (400, 401, 403, 404):
-                break
+                if not want_zip or r.content[:2] == b"PK":
+                    return r
+                last = f"zip ではない応答: {r.content[:150]!r}"
+            else:
+                last = f"HTTP {r.status_code}"
+                if r.status_code in (400, 401, 403, 404):
+                    break
         except requests.RequestException as e:
             last = e
-        time.sleep(3 * attempt)
+        time.sleep((10 if want_zip else 3) * attempt)
     raise RuntimeError(f"{url}: {last}")
 
 
@@ -169,7 +174,7 @@ def scan_documents(key, codes):
 # ---------- 2. 有価証券報告書から EPS・BPS を読む ----------
 
 def read_csv(key, doc_id):
-    r = get(f"{EDINET_API}/documents/{doc_id}", {"type": 5, "Subscription-Key": key})
+    r = get(f"{EDINET_API}/documents/{doc_id}", {"type": 5, "Subscription-Key": key}, want_zip=True)
     z = zipfile.ZipFile(io.BytesIO(r.content))
     rows = []
     for name in z.namelist():
@@ -188,7 +193,7 @@ UNITREF_RE = re.compile(r'unitRef="([^"]*)"')
 
 
 def read_xbrl(key, doc_id):
-    r = get(f"{EDINET_API}/documents/{doc_id}", {"type": 1, "Subscription-Key": key})
+    r = get(f"{EDINET_API}/documents/{doc_id}", {"type": 1, "Subscription-Key": key}, want_zip=True)
     z = zipfile.ZipFile(io.BytesIO(r.content))
     rows = []
     for name in z.namelist():
