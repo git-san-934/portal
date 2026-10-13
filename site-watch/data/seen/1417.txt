@@ -606,6 +606,7 @@ https://www.mirait-one.com/info/attachment/72292d2ca582a6aff0857184e66a28b948860
 https://www.mirait-one.com/info/attachment/7ad135601d849054860559a3f676e596101bbb3b.pdf
 https://www.mirait-one.com/info/attachment/90daf0c862a6dfb3c230baad5bbb070db390f600.pdf
 https://www.mirait-one.com/info/attachment/90dceda6c78a616e9a165137f6e62eeb534bacd9.pdf
+https://www.mirait-one.com/info/attachment/afa491ad5b92e2642bd0919c1d18e03f1ecafe18.pdf
 https://www.mirait-one.com/info/attachment/b572aa36ad449a962c7072f23c1cd6e2ee9d25b9.pdf
 https://www.mirait-one.com/info/attachment/cad78606ad5cac88d46a55e7305f8b2c9fe3f27f.pdf
 https://www.mirait-one.com/info/attachment/e165723a3697ef507c900534310f9fc76f436b17.pdf
@@ -685,6 +686,7 @@ https://www.mirait-one.com/miraiz/5g/
 https://www.mirait-one.com/miraiz/5g/column111.html
 https://www.mirait-one.com/miraiz/5g/column132.html
 https://www.mirait-one.com/miraiz/5g/column133.html
+https://www.mirait-one.com/miraiz/5g/column134.html
 https://www.mirait-one.com/miraiz/about/
 https://www.mirait-one.com/miraiz/future/
 https://www.mirait-one.com/miraiz/future/interview067.html
@@ -693,9 +695,11 @@ https://www.mirait-one.com/miraiz/mailmagazine/
 https://www.mirait-one.com/miraiz/monthly/
 https://www.mirait-one.com/miraiz/monthly/monthly_2026_08.html
 https://www.mirait-one.com/miraiz/monthly/monthly_2026_09.html
+https://www.mirait-one.com/miraiz/monthly/monthly_2026_10.html
 https://www.mirait-one.com/miraiz/newsflash/
 https://www.mirait-one.com/miraiz/newsflash/article153.html
 https://www.mirait-one.com/miraiz/newsflash/article154.html
+https://www.mirait-one.com/miraiz/newsflash/article155.html
 https://www.mirait-one.com/miraiz/search/
 https://www.mirait-one.com/miraiz/sitemap/
 https://www.mirait-one.com/miraiz/whatsnew/
@@ -707,6 +711,10 @@ https://www.mirait-one.com/miraiz/whatsnew/trend-data_0070.html
 https://www.mirait-one.com/miraiz/whatsnew/trend-data_0074.html
 https://www.mirait-one.com/miraiz/whatsnew/trend-data_0075.html
 https://www.mirait-one.com/miraiz/whatsnew/trend-data_0076.html
+https://www.mirait-one.com/miraiz/whatsnew/trend-data_0077.html
+https://www.mirait-one.com/miraiz/whatsnew/trend-data_0078.html
+https://www.mirait-one.com/miraiz/whatsnew/trend-data_0079.html
+https://www.mirait-one.com/miraiz/whatsnew/trend-data_0080.html
 https://www.mirait-one.com/privacypolicy/
 https://www.mirait-one.com/privacypolicy/index.html
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=%E3%80%8C%E3%82%A2%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%82%B9%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E6%8E%A8%E9%80%B2%E9%83%A8%E3%80%8D%E3%81%AE%E8%A8%AD%E7%BD%AE&sort=0
@@ -1258,6 +1266,8 @@ https://www.mirait-one.com/special/group-business/green-energy/
 https://www.mirait-one.com/special/group-business/index.html
 https://www.mirait-one.com/special/group-business/smarttown-technology/
 https://www2.mirait-one.com/l/932263/2021-09-30/71wz
+https://www2.mirait-one.com/l/932263/2026-06-04/x3tnb
 https://www2.mirait-one.com/l/932263/2026-08-31/xbs3x
 https://www2.mirait-one.com/l/932263/2026-09-07/xc53b
+https://www2.mirait-one.com/l/932263/2026-09-27/xdr6c
 https://www2.mirait-one.com/l/932263/2026-09-30/xf24m
