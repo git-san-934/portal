@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-13T16:42+09:00",
- "report_date": "2026-10-13",
+ "generated_at": "2026-10-14T02:04+09:00",
+ "report_date": "2026-10-14",
  "days": [
   {
    "date": "2026-10-13",
@@ -40,6 +40,20 @@
      "value": "5.7",
      "unit": "%",
      "change": "-0.100%pt"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261013c.htm",
+     "name": "金融安定理事会による「グローバル・ステーブルコイン（GSC）：クロスボーダーの脆弱性と金融安定のモニタリング」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261013c.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261013a.htm",
+     "name": "金融安定理事会によるG20財務大臣・中央銀行総裁へのレターの公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261013a.htm",
+     "time": "17:00"
     },
     {
      "kind": "news",
@@ -3318,7 +3332,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-13T16:42+09:00",
+  "checked_at": "2026-10-14T02:04+09:00",
   "counts": {
    "new": 0,
    "unchanged": 102,
