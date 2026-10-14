@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-14T10:56+09:00",
+ "updated_at": "2026-10-14T18:02+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -996,6 +996,13 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-10-14",
+     "title": "女子プロゴルファー松原柊亜選手との所属スポンサー契約を締結",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20261014-1.html",
+     "source": "official",
+     "first_seen": "2026-10-14T18:02+09:00"
+    },
     {
      "date": "2026-10-13",
      "time": "15:08",
@@ -2480,6 +2487,20 @@
    "items": [
     {
      "date": "2026-10-14",
+     "title": "企業・経営 / Stories デバイスからシステムまで統合提案――パナソニック エナジーが描く成長戦略とAIインフラへの貢献",
+     "url": "https://news.panasonic.com/jp/stories/19081",
+     "source": "official",
+     "first_seen": "2026-10-14T18:02+09:00"
+    },
+    {
+     "date": "2026-10-14",
+     "title": "技術・研究開発 自動搬送ロボット「ハコボ」を活用したロボットサービス実証を淡路島「ニジゲンノモリ」で開始",
+     "url": "https://news.panasonic.com/jp/press/jn261014-1",
+     "source": "official",
+     "first_seen": "2026-10-14T18:02+09:00"
+    },
+    {
+     "date": "2026-10-14",
      "title": "技術・研究開発 ナノイー(帯電微粒子水)技術が欧州の主要花粉アレルゲンに対する抑制効果を実証",
      "url": "https://news.panasonic.com/jp/press/jn261014-2",
      "source": "official",
@@ -2487,15 +2508,15 @@
     },
     {
      "date": "2026-10-13",
-     "title": "製品・サービス エネルギーシステム関連、ダクト配管 各製品群の価格改定について",
-     "url": "https://news.panasonic.com/jp/press/jn261013-3",
+     "title": "1 2026年10月13日 製品・サービス プレスリリース パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
+     "url": "https://news.panasonic.com/jp/press/jn261013-1",
      "source": "official",
      "first_seen": "2026-10-13T16:30+09:00"
     },
     {
      "date": "2026-10-13",
-     "title": "1 2026年10月13日 製品・サービス プレスリリース パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
-     "url": "https://news.panasonic.com/jp/press/jn261013-1",
+     "title": "3 2026年10月13日 製品・サービス プレスリリース エネルギーシステム関連、ダクト配管 各製品群の価格改定について",
+     "url": "https://news.panasonic.com/jp/press/jn261013-3",
      "source": "official",
      "first_seen": "2026-10-13T16:30+09:00"
     },
@@ -2648,7 +2669,7 @@
     },
     {
      "date": "2026-09-11",
-     "title": "企業・経営 / Stories 社外取締役対談:グループ成長戦略を策定した取締役会の姿 松井しのぶ氏 × 瀬戸潤子氏",
+     "title": "4 2026年9月11日 企業・経営 Stories 社外取締役対談:グループ成長戦略を策定した取締役会の姿 松井しのぶ氏 × 瀬戸潤子氏",
      "url": "https://news.panasonic.com/jp/stories/19001",
      "source": "official",
      "first_seen": "2026-09-11T00:00+09:00"
