@@ -19687,6 +19687,7 @@ https://www.keyence.co.jp/products/sensor/network-communication/nu/models/nu-ec1
 https://www.keyence.co.jp/products/sensor/network-communication/nu/models/nu-ec1a/
 https://www.keyence.co.jp/products/sensor/network-communication/nu/models/nu-en8n/
 https://www.keyence.co.jp/products/sensor/network-communication/nu/models/nu-ep1/
+https://www.keyence.co.jp/products/sensor/network-communication/nu/models/nu-ep1a/
 https://www.keyence.co.jp/products/sensor/network-communication/nu/models/op-5148/
 https://www.keyence.co.jp/products/sensor/network-communication/nu/models/op-84338/
 https://www.keyence.co.jp/products/sensor/network-communication/nu/models/op-87166/
