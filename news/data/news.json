@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-14T21:24+09:00",
+ "updated_at": "2026-10-15T05:03+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-14",
+     "title": "Nintendo Switch 2 ソフト『ゼルダの伝説 時のオカリナ』の紹介映像を公開しました。",
+     "url": "https://www.nintendo.com/jp/games/switch2/aa9ja/index.html",
+     "source": "official",
+     "first_seen": "2026-10-15T05:03+09:00"
+    },
     {
      "date": "2026-10-14",
      "title": "【10月14日追加】「ゲームボーイアドバンス Nintendo Classics」に3タイトルを追加。",
@@ -1876,6 +1883,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-14",
+     "title": "Schrödinger Research Published in Nature Reveals New Insights into Lithium-Ion Battery Chemistry",
+     "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Research-Published-in-Nature-Reveals-New-Insights-into-Lithium-Ion-Battery-Chemistry/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-15T05:03+09:00"
+    },
+    {
      "date": "2026-09-17",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-5075cce97/default.aspx",
@@ -1972,13 +1986,6 @@
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Announce-First-Quarter-2026-Financial-Results-on-May-5/default.aspx",
      "source": "official",
      "first_seen": "2026-04-21T00:00+09:00"
-    },
-    {
-     "date": "2026-04-17",
-     "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
-     "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-870a86116/default.aspx",
-     "source": "official",
-     "first_seen": "2026-04-17T00:00+09:00"
     }
    ]
   },
@@ -2508,14 +2515,14 @@
     },
     {
      "date": "2026-10-13",
-     "title": "1 2026年10月13日 製品・サービス プレスリリース パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
+     "title": "2 2026年10月13日 製品・サービス プレスリリース パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
      "url": "https://news.panasonic.com/jp/press/jn261013-1",
      "source": "official",
      "first_seen": "2026-10-13T16:30+09:00"
     },
     {
      "date": "2026-10-13",
-     "title": "3 2026年10月13日 製品・サービス プレスリリース エネルギーシステム関連、ダクト配管 各製品群の価格改定について",
+     "title": "4 2026年10月13日 製品・サービス プレスリリース エネルギーシステム関連、ダクト配管 各製品群の価格改定について",
      "url": "https://news.panasonic.com/jp/press/jn261013-3",
      "source": "official",
      "first_seen": "2026-10-13T16:30+09:00"
@@ -2529,14 +2536,14 @@
     },
     {
      "date": "2026-10-08",
-     "title": "2 2026年10月8日 サステナビリティ プレスリリース パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
+     "title": "5 2026年10月8日 サステナビリティ プレスリリース パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
      "url": "https://news.panasonic.com/jp/press/jn261008-1",
      "source": "official",
      "first_seen": "2026-10-08T19:56+09:00"
     },
     {
      "date": "2026-10-07",
-     "title": "4 2026年10月7日 企業・経営 トピックス パナソニックグループ、第20回キッズデザイン賞の特別表彰「KIDS DESIGN 100 LEGACY AWARD」を受賞",
+     "title": "1 2026年10月7日 企業・経営 トピックス パナソニックグループ、第20回キッズデザイン賞の特別表彰「KIDS DESIGN 100 LEGACY AWARD」を受賞",
      "url": "https://news.panasonic.com/jp/topics/206906",
      "source": "official",
      "first_seen": "2026-10-08T06:06+09:00"
