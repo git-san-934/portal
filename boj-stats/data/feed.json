@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-14T15:08+09:00",
+ "generated_at": "2026-10-14T23:38+09:00",
  "report_date": "2026-10-14",
  "days": [
   {
@@ -31,6 +31,20 @@
      "type": "トレンド転換",
      "dir": "低下",
      "detail": "3期移動平均が12期移動平均を下抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/cooperate/coop261014a.pdf",
+     "name": "第15回日中韓・中央銀行総裁会合の開催について",
+     "url": "https://www.boj.or.jp/intl_finance/cooperate/coop261014a.pdf",
+     "time": "20:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261009.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261009.xlsx",
+     "time": "17:00"
     },
     {
      "kind": "news",
@@ -3378,7 +3392,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-14T15:08+09:00",
+  "checked_at": "2026-10-14T23:38+09:00",
   "counts": {
    "new": 0,
    "unchanged": 102,
