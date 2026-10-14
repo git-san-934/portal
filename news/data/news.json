@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-14T09:35+09:00",
+ "updated_at": "2026-10-14T10:22+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2472,6 +2472,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-14",
+     "title": "技術・研究開発 ナノイー(帯電微粒子水)技術が欧州の主要花粉アレルゲンに対する抑制効果を実証",
+     "url": "https://news.panasonic.com/jp/press/jn261014-2",
+     "source": "official",
+     "first_seen": "2026-10-14T10:22+09:00"
+    },
+    {
      "date": "2026-10-13",
      "title": "製品・サービス エネルギーシステム関連、ダクト配管 各製品群の価格改定について",
      "url": "https://news.panasonic.com/jp/press/jn261013-3",
@@ -2480,7 +2487,7 @@
     },
     {
      "date": "2026-10-13",
-     "title": "製品・サービス パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
+     "title": "1 2026年10月13日 製品・サービス プレスリリース パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
      "url": "https://news.panasonic.com/jp/press/jn261013-1",
      "source": "official",
      "first_seen": "2026-10-13T16:30+09:00"
