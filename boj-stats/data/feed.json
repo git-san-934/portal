@@ -1,10 +1,24 @@
 {
- "generated_at": "2026-10-15T14:54+09:00",
+ "generated_at": "2026-10-15T23:18+09:00",
  "report_date": "2026-10-15",
  "days": [
   {
    "date": "2026-10-15",
    "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261015b.htm",
+     "name": "金融安定理事会による市中協議文書「規制・監督の現代化に係る原則」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261015b.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261015a.htm",
+     "name": "金融安定理事会による「G20金融規制改革の実施モニタリングレビュー：2026年報告書」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261015a.htm",
+     "time": "17:00"
+    },
     {
      "kind": "news",
      "id": "https://www.boj.or.jp/about/press/koen_2026/ko261015a.htm",
@@ -3411,10 +3425,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-15T14:54+09:00",
+  "checked_at": "2026-10-15T23:18+09:00",
   "counts": {
-   "new": 8,
-   "unchanged": 94,
+   "new": 0,
+   "unchanged": 102,
    "error": 0,
    "stale": 0
   },
