@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-15T10:31+09:00",
+ "updated_at": "2026-10-15T17:36+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -468,6 +468,13 @@
     "https://www.soc.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-10-15",
+     "title": "フィリピン・マニラで開催された第4回AZEC MOUセレモニー において住友大阪セメントと大成建設は、EGAT、タマサート大学、 大成タイランドと共にタイにおけるCCU実証事業の協働推進を発表",
+     "url": "https://www.soc.co.jp/?post_type=post&p=88702",
+     "source": "official",
+     "first_seen": "2026-10-15T17:36+09:00"
+    },
     {
      "date": "2026-10-08",
      "title": "秋芳鉱山 船積バース延伸工事が完了 〜2バース化による安定供給体制を強化、「第7回土木賞」を受賞〜",
@@ -2135,6 +2142,14 @@
    "items": [
     {
      "date": "2026-10-15",
+     "time": "10:33",
+     "title": "訂正自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z8A5",
+     "source": "edinet",
+     "first_seen": "2026-10-15T17:36+09:00"
+    },
+    {
+     "date": "2026-10-15",
      "time": "10:30",
      "title": "訂正自己株券買付状況報告書(法24条の6第1項に基づくもの)",
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100Z8AL",
@@ -2530,6 +2545,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-15",
+     "title": "製品・サービス ドラム式電気洗濯乾燥機 事故防止のためのリコール社告実施について",
+     "url": "https://news.panasonic.com/jp/press/jn261015-2",
+     "source": "official",
+     "first_seen": "2026-10-15T17:36+09:00"
+    },
+    {
      "date": "2026-10-14",
      "title": "企業・経営 / Stories デバイスからシステムまで統合提案――パナソニック エナジーが描く成長戦略とAIインフラへの貢献",
      "url": "https://news.panasonic.com/jp/stories/19081",
@@ -2545,7 +2567,7 @@
     },
     {
      "date": "2026-10-14",
-     "title": "技術・研究開発 ナノイー(帯電微粒子水)技術が欧州の主要花粉アレルゲンに対する抑制効果を実証",
+     "title": "3 2026年10月14日 技術・研究開発 プレスリリース ナノイー(帯電微粒子水)技術が欧州の主要花粉アレルゲンに対する抑制効果を実証",
      "url": "https://news.panasonic.com/jp/press/jn261014-2",
      "source": "official",
      "first_seen": "2026-10-14T10:22+09:00"
