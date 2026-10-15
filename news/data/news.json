@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-15T21:07+09:00",
+ "updated_at": "2026-10-16T04:46+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1745,6 +1745,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-15",
+     "title": "Customers Bank and Palantir Collaborate to Build an AI-Native Future for Banking",
+     "url": "https://investors.palantir.com/news-details/2026/Customers-Bank-and-Palantir-Collaborate-to-Build-an-AI-Native-Future-for-Banking/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-16T04:46+09:00"
+    },
+    {
      "date": "2026-10-12",
      "title": "Palantir Announces Date of Third Quarter 2026 Earnings Release and Webcast",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Announces-Date-of-Third-Quarter-2026-Earnings-Release-and-Webcast/default.aspx",
@@ -2574,7 +2581,7 @@
     },
     {
      "date": "2026-10-13",
-     "title": "2 2026年10月13日 製品・サービス プレスリリース パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
+     "title": "4 2026年10月13日 製品・サービス プレスリリース パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
      "url": "https://news.panasonic.com/jp/press/jn261013-1",
      "source": "official",
      "first_seen": "2026-10-13T16:30+09:00"
@@ -2595,7 +2602,7 @@
     },
     {
      "date": "2026-10-08",
-     "title": "5 2026年10月8日 サステナビリティ プレスリリース パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
+     "title": "6 2026年10月8日 サステナビリティ プレスリリース パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
      "url": "https://news.panasonic.com/jp/press/jn261008-1",
      "source": "official",
      "first_seen": "2026-10-08T19:56+09:00"
