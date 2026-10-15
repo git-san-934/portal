@@ -234,6 +234,7 @@ https://sumitomoelectric.com/company/exhibitions/itswc2023
 https://sumitomoelectric.com/company/exhibitions/itswc2024
 https://sumitomoelectric.com/company/exhibitions/itswc2025
 https://sumitomoelectric.com/company/exhibitions/itswc2025/details
+https://sumitomoelectric.com/company/exhibitions/itswc2026
 https://sumitomoelectric.com/company/exhibitions/japan-mobility-show-2023
 https://sumitomoelectric.com/company/exhibitions/japan-mobility-show-2025
 https://sumitomoelectric.com/company/exhibitions/jimtof2022-31st-japan-international-machine-tool-fair
@@ -785,6 +786,7 @@ https://sumitomoelectric.com/jp/company/exhibitions
 https://sumitomoelectric.com/jp/company/exhibitions/all-energy-australia-2025
 https://sumitomoelectric.com/jp/company/exhibitions/battery-show-north-america-2025
 https://sumitomoelectric.com/jp/company/exhibitions/di31huiitsshijiehuiyi2025atoranta
+https://sumitomoelectric.com/jp/company/exhibitions/di32huiitsshijiehuiyi2026jiangling
 https://sumitomoelectric.com/jp/company/exhibitions/filmtech2025-special-contents
 https://sumitomoelectric.com/jp/company/exhibitions/gaojinengsucaiweeknei-gaojinengfuirumuzhan
 https://sumitomoelectric.com/jp/company/exhibitions/ldes-summit
@@ -4140,6 +4142,7 @@ https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs
 https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs111_1.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs112.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs113.pdf
+https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs114.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/support2026j.pdf
 https://sumitomoelectric.com/jp/smp
 https://sumitomoelectric.com/jp/sustainability
