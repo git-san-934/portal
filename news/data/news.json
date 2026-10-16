@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-16T10:25+09:00",
+ "updated_at": "2026-10-16T12:48+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,20 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-16",
+     "title": "ニンテンドーeショップ新作ソフト情報 10/16(金)号。",
+     "url": "https://www.nintendo.com/jp/topics/article/d99e9c21-98d1-48cd-b732-7daaf6084fda",
+     "source": "official",
+     "first_seen": "2026-10-16T12:48+09:00"
+    },
+    {
+     "date": "2026-10-16",
+     "title": "Nintendo Switch 2 ソフト『ゼルダの伝説 時のオカリナ』のCMを公開しました。",
+     "url": "https://www.nintendo.com/jp/games/switch2/aa9ja/index.html",
+     "source": "official",
+     "first_seen": "2026-10-15T05:03+09:00"
+    },
     {
      "date": "2026-10-15",
      "title": "Nintendo Switch 2『ゼルダの伝説 時のオカリナ』の紹介映像を公開。新要素「万魔殿」などもご紹介。",
@@ -35,13 +49,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/7c22bd96-d725-402e-84c2-fc27c6c13693",
      "source": "official",
      "first_seen": "2026-10-15T10:31+09:00"
-    },
-    {
-     "date": "2026-10-14",
-     "title": "Nintendo Switch 2 ソフト『ゼルダの伝説 時のオカリナ』の紹介映像を公開しました。",
-     "url": "https://www.nintendo.com/jp/games/switch2/aa9ja/index.html",
-     "source": "official",
-     "first_seen": "2026-10-15T05:03+09:00"
     },
     {
      "date": "2026-10-14",
