@@ -34,7 +34,7 @@ CF_DIR = Path(__file__).resolve().parent.parent
 DATA_DIR = CF_DIR / "data"
 DOCS_PATH = DATA_DIR / "eps_docs.json"
 OUT_PATH = DATA_DIR / "eps.json"
-VERSION = 18  # eps.json の読み方の版。上げると全部読み直す
+VERSION = 19  # eps.json の読み方の版。上げると全部読み直す
 JST = timezone(timedelta(hours=9))
 HEADERS = {"User-Agent": "portal-cf-eps"}
 
@@ -60,6 +60,9 @@ EQR_RE = re.compile(r"^(EquityToAssetRatio|RatioOfOwnersEquityToGrossAssets|Equi
 NI_RE = re.compile(r"^ProfitLossAttributableToOwnersOfParent" + BASES + SUMMARY + "$")
 NI_SINGLE_RE = re.compile(r"^(NetIncomeLoss|ProfitLoss)" + BASES + SUMMARY + "$")
 TA_RE = re.compile(r"^TotalAssets" + BASES + SUMMARY + "$")
+# 自己株式の取得による支出(連結キャッシュフロー計算書の財務活動。当期と前期が載る)
+BUY_RE = re.compile(r"Treasury\w*FinCF")
+BUY_EXCLUDE_RE = re.compile(r"Proceeds|Sale|Disposal|Dispose|Subsidiar")
 PER_SHARE, PURE, YEN = re.compile(r"PerShare"), re.compile(r"(?i)^pure$"), re.compile(r"^JPY$")
 CTX_RE = re.compile(r"^(CurrentYear|Prior([1-4])Year)(Duration|Instant)(_NonConsolidatedMember)?$")
 # 分割・併合の比率(新しい報告書の数字 / 古い報告書の数字)
@@ -182,12 +185,12 @@ def read_csv(key, doc_id):
             continue
         for line in z.read(name).decode("utf-16", "replace").splitlines():
             cells = [c.strip('"') for c in line.split("\t")]
-            if len(cells) >= 9 and SUMMARY in cells[0]:
+            if len(cells) >= 9 and (SUMMARY in cells[0] or BUY_RE.search(cells[0])):
                 rows.append((cells[0], cells[2], cells[-1].replace(",", ""), cells[6]))
     return rows
 
 
-XBRL_RE = re.compile(r"<([\w-]+:\w*SummaryOfBusinessResults)\b([^>]*)>([^<]*)<")
+XBRL_RE = re.compile(r"<([\w-]+:(?:\w*SummaryOfBusinessResults|\w*Treasury\w*FinCF\w*))\b([^>]*)>([^<]*)<")
 CTXREF_RE = re.compile(r'contextRef="([^"]+)"')
 UNITREF_RE = re.compile(r'unitRef="([^"]*)"')
 
@@ -264,7 +267,8 @@ def read_doc(key, entry):
                                        ("shares", SHARES_RE, None, "Instant", None),
                                        ("per", PER_RE, None, None, PURE), ("roe", ROE_RE, None, None, PURE),
                                        ("eqr", EQR_RE, None, "Instant", PURE), ("ni", None, None, None, None),
-                                       ("ta", TA_RE, None, "Instant", YEN)):
+                                       ("ta", TA_RE, None, "Instant", YEN),
+                                       ("buy", BUY_RE, BUY_EXCLUDE_RE, "Duration", YEN)):
         res[k] = {}
         for back, (v, _, _) in (ni if k == "ni" else pick(rows, name_re, ex, kind, unit)).items():
             res[k][shift_years(period_end, back)] = v
@@ -402,6 +406,9 @@ def ratios(results, years, eps, bps, dps):
         r["yield"].append(round(dps[y] / price * 100, 2) if price and dps.get(y) is not None else None)
         r["eqr"].append(round(eqr[y] * 100, 1) if y in eqr else None)
         r["mcap"].append(round(p * ni[y] / 1e8) if p and ni.get(y) else None)
+    # 自社株買い(億円)。キャッシュフロー計算書に行がない年は、買っていないとみなして 0
+    buy = own_first(results, "buy")
+    r["buy"] = [round(abs(buy.get(y, 0)) / 1e8, 1) for y in years] if buy else [None] * len(years)
     return r
 
 
