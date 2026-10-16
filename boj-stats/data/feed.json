@@ -1,10 +1,31 @@
 {
- "generated_at": "2026-10-16T14:50+09:00",
+ "generated_at": "2026-10-16T23:07+09:00",
  "report_date": "2026-10-16",
  "days": [
   {
    "date": "2026-10-16",
    "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261016a.htm",
+     "name": "金融安定理事会による最終報告書「AIの責任ある導入に関する健全な実務慣行」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261016a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/cabs/cabs.xlsx",
+     "name": "業態別の日銀当座預金残高（9月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/cabs/cabs.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/koen_2026/ko261016a.htm",
+     "name": "【挨拶】植田総裁（内田副総裁代読）（全国信用組合大会）",
+     "url": "https://www.boj.or.jp/about/press/koen_2026/ko261016a.htm",
+     "time": "15:30"
+    },
     {
      "kind": "news",
      "id": "https://www.boj.or.jp/about/press/kaiken_2026/kk261016a.pdf",
@@ -3437,7 +3458,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-16T14:50+09:00",
+  "checked_at": "2026-10-16T23:07+09:00",
   "counts": {
    "new": 0,
    "unchanged": 102,
