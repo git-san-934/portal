@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-16T12:48+09:00",
+ "updated_at": "2026-10-16T17:30+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-16",
+     "title": "理工系・デザイン系・サウンド系の各採用イベントへのお申し込み受付を開始しました。",
+     "url": "https://www.nintendo.co.jp/jobs/recruit/event/index.html",
+     "source": "official",
+     "first_seen": "2026-10-16T17:30+09:00"
+    },
     {
      "date": "2026-10-16",
      "title": "ニンテンドーeショップ新作ソフト情報 10/16(金)号。",
