@@ -112,7 +112,10 @@
     if (has(E.bps)) h += '<h3>BPS（1株あたり純資産）</h3><div class="chart" id="c-bps"></div>';
     if (has(dps)) h += '<h3>1株あたり配当金（年間）</h3><div class="chart" id="c-dps"></div>';
     const none = Y.map(() => null);
-    const buy = E.buy || none;
+    // 自社株買い(億円)。報告書から読めない年(米国基準の会社など)は、ページのキャッシュフローの数字で埋める
+    const cfBuy = {};
+    if (window.CF && window.CF.buy) window.CF.years.forEach((y, i) => { if (window.CF.buy[i] != null) cfBuy[y.slice(0, 7)] = Math.abs(window.CF.buy[i]); });
+    const buy = E.years.map((y, i) => E.buy && E.buy[i] != null ? E.buy[i] : y in cfBuy ? cfBuy[y] : null);
     if (has(buy)) h += '<h3>自社株買い（年間）</h3><div class="chart" id="c-buy"></div>';
     const rows = [['EPS（円）', E.eps], ['BPS（円）', E.bps], ['配当（円）', dps],
       ['PER（倍）', E.per], ['PBR（倍）', E.pbr], ['ROE（％）', E.roe], ['ROA（％）', E.roa],
