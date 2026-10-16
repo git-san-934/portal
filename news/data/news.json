@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-16T20:55+09:00",
+ "updated_at": "2026-10-17T04:26+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2059,6 +2059,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-16",
+     "title": "SpaceX to Post Third Quarter 2026 Results and Host Webcast on October 20, 2026",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-to-Post-Third-Quarter-2026-Results-and-Host-Webcast-on-October-20-2026-2026-QssQGye3im/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-17T04:26+09:00"
+    },
+    {
      "date": "2026-10-08",
      "title": "BUILDING THE WORLD’S MOST ADVANCED MOBILE NETWORK",
      "url": "https://www.spacex.com/updates/#starlink-mobile-spectrum",
@@ -2566,6 +2573,20 @@
    ],
    "items": [
     {
+     "date": "2026-10-16",
+     "title": "3 2026年10月16日 企業・経営 トピックス 新たな公式エバンジェリスト2名の就任を発表 ~サプライチェーンマネジメント改革とAI・データ活用のエキスパートが就任~",
+     "url": "https://news.panasonic.com/jp/topics/206921",
+     "source": "official",
+     "first_seen": "2026-10-17T04:26+09:00"
+    },
+    {
+     "date": "2026-10-16",
+     "title": "4 2026年10月16日 製品・サービス トピックス 日本最大級の鉄道ミュージアム「鉄道博物館」にパナソニック コネクトの顔認証改札機を展示 ~JR東日本 上越新幹線 長岡駅における実証実験で使用された未来型改札機を体験可能~",
+     "url": "https://news.panasonic.com/jp/topics/206918",
+     "source": "official",
+     "first_seen": "2026-10-17T04:26+09:00"
+    },
+    {
      "date": "2026-10-15",
      "title": "製品・サービス ドラム式電気洗濯乾燥機 事故防止のためのリコール社告実施について",
      "url": "https://news.panasonic.com/jp/press/jn261015-2",
@@ -2595,7 +2616,7 @@
     },
     {
      "date": "2026-10-13",
-     "title": "4 2026年10月13日 製品・サービス プレスリリース パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
+     "title": "5 2026年10月13日 製品・サービス プレスリリース パナソニック、Fire TV搭載SQD Mini LED 4K液晶ビエラ「X97Cシリーズ」を発売",
      "url": "https://news.panasonic.com/jp/press/jn261013-1",
      "source": "official",
      "first_seen": "2026-10-13T16:30+09:00"
@@ -2616,7 +2637,7 @@
     },
     {
      "date": "2026-10-08",
-     "title": "6 2026年10月8日 サステナビリティ プレスリリース パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
+     "title": "3 2026年10月8日 サステナビリティ プレスリリース パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
      "url": "https://news.panasonic.com/jp/press/jn261008-1",
      "source": "official",
      "first_seen": "2026-10-08T19:56+09:00"
@@ -2749,7 +2770,7 @@
     },
     {
      "date": "2026-09-14",
-     "title": "2 2026年9月14日 製品・サービス プレスリリース ブルーレイディスクレコーダー 全自動ディーガ 5機種を発売",
+     "title": "6 2026年9月14日 製品・サービス プレスリリース ブルーレイディスクレコーダー 全自動ディーガ 5機種を発売",
      "url": "https://news.panasonic.com/jp/press/jn260914-2",
      "source": "official",
      "first_seen": "2026-09-14T00:00+09:00"
