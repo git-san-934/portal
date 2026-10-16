@@ -1,7 +1,19 @@
 {
- "generated_at": "2026-10-16T12:51+09:00",
+ "generated_at": "2026-10-16T14:50+09:00",
  "report_date": "2026-10-16",
  "days": [
+  {
+   "date": "2026-10-16",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/kaiken_2026/kk261016a.pdf",
+     "name": "【記者会見】小枝審議委員（熊本、10月15日分）",
+     "url": "https://www.boj.or.jp/about/press/kaiken_2026/kk261016a.pdf",
+     "time": "13:30"
+    }
+   ]
+  },
   {
    "date": "2026-10-15",
    "items": [
@@ -3425,10 +3437,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-16T12:51+09:00",
+  "checked_at": "2026-10-16T14:50+09:00",
   "counts": {
-   "new": 8,
-   "unchanged": 94,
+   "new": 0,
+   "unchanged": 102,
    "error": 0,
    "stale": 0
   },
