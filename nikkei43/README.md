@@ -44,7 +44,8 @@ https://git-san-934.github.io/portal/nikkei43/
     新しい日の基準価額を追記してコミットし、GitHub Pages を再デプロイします
   - 取得元は投資信託協会「投信総合検索ライブラリー」の基準価額CSV。取れないときは Yahoo!ファイナンスの時系列ページ
   - 取得した値が既存データと食い違う、1日で60%を超えて動くなど、おかしな値のときは上書きしません
-  - 手で更新したいときは、GitHub の Actions タブ →「日経4.3ブル基準価額更新」→「Run workflow」
+  - 手で更新したいときは、ページの「今すぐ更新」から Issue を作る(所有者が作ると `.github/workflows/request-nikkei43-update.yml` が更新を起動)か、GitHub の Actions タブ →「日経4.3ブル基準価額更新」→「Run workflow」
+  - ページの「最新データを読み込む」は、ページを開いたまま `nav.json` をキャッシュなしで取り直して描き直します
 
 ## ファイル構成
 

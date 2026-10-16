@@ -546,22 +546,54 @@
     };
   }
 
-  async function main() {
+  // データの更新日時 "2026-10-16T09:36+09:00" → "10/16 9:36"
+  const updatedJa = (s) => {
+    const m = /^\d{4}-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(s || "");
+    return m ? `${Number(m[1])}/${Number(m[2])} ${Number(m[3])}:${m[4]}` : "";
+  };
+
+  let controlsReady = false;
+
+  // nav.json をキャッシュなしで取り直して描き直す(最初の表示と「最新データを読み込む」ボタンの両方で使う)
+  async function load() {
+    const reloadBtn = $("reload");
+    reloadBtn.disabled = true;
+    const prevLast = state.dates[state.dates.length - 1];
     try {
       const res = await fetch(`${DATA_URL}?t=${Date.now()}`, { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       prepare(data);
       const last = data.dates[data.dates.length - 1];
-      statusEl.textContent = `最新の基準価額: ${dateJa(last)}(${data.nav.length.toLocaleString("ja-JP")}日分)`;
-      setupControls();
+      const upd = updatedJa(data.updated);
+      let text = `最新の基準価額: ${dateJa(last)}(${data.nav.length.toLocaleString("ja-JP")}日分)`;
+      if (upd) text += ` ・ データ更新 ${upd}`;
+      if (prevLast) text += prevLast === last ? " ・ 新しいデータはまだありません" : " ・ 新しいデータを読み込みました";
+      statusEl.textContent = text;
+      statusEl.classList.remove("error");
+      if (!controlsReady) {
+        setupControls();
+        controlsReady = true;
+      }
       $("main").hidden = false;
       renderAll();
     } catch (err) {
-      statusEl.textContent = `データを読み込めませんでした(${err.message})。時間をおいて開き直してください。`;
+      statusEl.textContent = `データを読み込めませんでした(${err.message})。時間をおいてもう一度お試しください。`;
       statusEl.classList.add("error");
+    } finally {
+      reloadBtn.disabled = false;
     }
   }
 
-  main();
+  $("reload").onclick = load;
+
+  // 「今すぐ更新」: 更新依頼の Issue を作る画面を開く。所有者が作ると Actions が基準価額を取りに行く
+  // (.github/workflows/request-nikkei43-update.yml)
+  const q = new URLSearchParams({
+    title: "日経4.3ブルの基準価額を更新",
+    body: "暴落買いナビの「今すぐ更新」から作成。\n\nこのまま「Create」(または「Submit new issue」)を押すと、2〜5分で基準価額の取得とページの更新が行われます。反映後にページの「最新データを読み込む」を押してください。",
+  });
+  $("refresh").href = `https://github.com/git-san-934/portal/issues/new?${q}`;
+
+  load();
 })();
