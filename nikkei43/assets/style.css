@@ -57,6 +57,15 @@ h2 { font-size: 1.05rem; }
 .intro { color: var(--text-sub); font-size: 0.9rem; margin: 0.4rem auto 0; max-width: 40rem; }
 .updated { font-size: 0.8rem; margin-top: 0.3rem; color: var(--text-sub); }
 .updated.error { color: var(--up); }
+.refresh { display: flex; gap: 0.5rem; justify-content: center; flex-wrap: wrap; margin-top: 0.6rem; }
+.reload-btn, .refresh-btn {
+  font: inherit; font-size: 0.85rem; font-weight: 700; padding: 0.35rem 0.95rem; border-radius: 999px;
+  text-decoration: none; cursor: pointer; border: 1px solid var(--accent);
+}
+.reload-btn { background: var(--accent); color: #fff; }
+.reload-btn:disabled { opacity: 0.6; cursor: wait; }
+.refresh-btn { background: var(--card-bg); color: var(--accent); }
+.refresh-note { font-size: 0.75rem; color: var(--text-sub); margin: 0.4rem auto 0; max-width: 36rem; }
 .sub { color: var(--text-sub); font-size: 0.8rem; margin: 0.2rem 0 0.6rem; }
 
 main { display: flex; flex-direction: column; gap: 1rem; }
