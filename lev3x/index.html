@@ -49,14 +49,17 @@
     h1 { font-size: 1.4rem; margin: 0.4rem 0 0.2rem; }
     .lead { color: var(--text-sub); font-size: 0.9rem; }
     .meta { color: var(--text-sub); font-size: 0.8rem; margin: 0.8rem 0 0.6rem; }
-    .sort { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.8rem; }
-    .sort button {
-      font: inherit; font-size: 0.82rem; cursor: pointer;
-      border: 1px solid var(--border); background: var(--card-bg); color: var(--text);
-      border-radius: 999px; padding: 0.3rem 0.8rem;
+    th button {
+      font: inherit; color: inherit; background: none; border: none; cursor: pointer;
+      padding: 0.2rem 0; display: inline-flex; align-items: center; gap: 0.2rem; white-space: nowrap;
     }
-    .sort button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
-    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; box-shadow: var(--shadow); overflow: hidden; }
+    th button:hover { color: var(--text); }
+    th[aria-sort="ascending"] button, th[aria-sort="descending"] button { color: var(--accent); }
+    th .arr { font-size: 0.7rem; width: 0.7rem; display: inline-block; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; box-shadow: var(--shadow); overflow-x: auto; }
+    /* 横にスクロールしても銘柄名は左に残す */
+    th:first-child, td:first-child { position: sticky; left: 0; z-index: 1; }
+    td:first-child { background: var(--card-bg); }
     table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
     th, td { padding: 0.55rem 0.6rem; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
     th { font-size: 0.75rem; color: var(--text-sub); font-weight: 600; background: var(--bg); }
@@ -67,7 +70,6 @@
     .tag { font-size: 0.65rem; border: 1px solid var(--border); border-radius: 4px; padding: 0 0.25rem; margin-left: 0.3rem; color: var(--text-sub); }
     .stale { color: var(--down); }
     .num { font-variant-numeric: tabular-nums; }
-    .chg { display: block; font-size: 0.75rem; }
     .dn { color: var(--down); }
     .upc { color: var(--up); }
     .bar b { font-weight: 700; }
@@ -77,7 +79,9 @@
     .err { color: var(--down); padding: 1rem; }
     @media (max-width: 560px) {
       .col-sp, .col-hi { display: none; }
-      th, td { padding: 0.5rem 0.4rem; }
+      th, td { padding: 0.5rem 0.35rem; }
+      table { font-size: 0.8rem; }
+      th { font-size: 0.7rem; }
     }
   </style>
 </head>
@@ -85,23 +89,18 @@
   <div class="wrap">
     <a class="back" href="../">← わたしのアプリ</a>
     <h1>米国3倍ブル 下落率ランキング</h1>
-    <p class="lead">米国上場の3倍ブルETF/ETNを、過去1年の最高値（終値）からどれだけ下がっているかの順に並べています。</p>
+    <p class="lead">米国上場の3倍ブルETF/ETNを、過去1年の最高値（終値）からどれだけ下がっているかの順に並べています。表の見出しを押すと、その項目で並び替えます（もう一度押すと逆順）。</p>
     <p class="meta" id="meta">読み込み中…</p>
-    <div class="sort" role="group" aria-label="並べ替え">
-      <button data-k="dd1y" aria-pressed="true">1年高値から</button>
-      <button data-k="dd20" aria-pressed="false">20日高値から</button>
-      <button data-k="chg" aria-pressed="false">前日比</button>
-      <button data-k="ticker" aria-pressed="false">ティッカー</button>
-    </div>
     <div class="card">
       <table>
         <thead>
           <tr>
-            <th>銘柄</th>
-            <th>終値</th>
-            <th class="col-hi">1年の最高値</th>
-            <th>1年高値から</th>
-            <th>20日高値から</th>
+            <th data-k="ticker"><button type="button">銘柄<span class="arr"></span></button></th>
+            <th data-k="close"><button type="button">終値<span class="arr"></span></button></th>
+            <th data-k="chg"><button type="button">前日比<span class="arr"></span></button></th>
+            <th data-k="high1y" class="col-hi"><button type="button">1年の最高値<span class="arr"></span></button></th>
+            <th data-k="dd1y"><button type="button">1年高値から<span class="arr"></span></button></th>
+            <th data-k="dd20"><button type="button">20日高値から<span class="arr"></span></button></th>
             <th class="col-sp">1年の動き</th>
           </tr>
         </thead>
@@ -117,7 +116,9 @@
   <script>
     const fmt = (v) => v == null ? "—" : "$" + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: v < 1 ? 4 : 2 });
     const pct = (v) => v == null ? "—" : (v > 0 ? "+" : "") + (v * 100).toFixed(1) + "%";
-    let funds = [], key = "dd1y";
+    let funds = [], key = "dd1y", dir = 1;
+    // 初めて押したときの向き(1=小さい順, -1=大きい順)。もう一度押すと逆になる
+    const FIRST_DIR = { ticker: 1, close: -1, chg: 1, high1y: -1, dd1y: 1, dd20: 1 };
 
     function spark(a) {
       const v = (a || []).filter((x) => x != null);
@@ -132,28 +133,40 @@
     }
     function render() {
       const s = [...funds].sort((a, b) => {
-        if (key === "ticker") return a.ticker.localeCompare(b.ticker);
+        if (key === "ticker") return dir * a.ticker.localeCompare(b.ticker);
         const x = a[key], y = b[key];
-        if (x == null) return 1;
+        if (x == null) return y == null ? 0 : 1; // 値のない銘柄はいつも最後
         if (y == null) return -1;
-        return x - y;
+        return dir * (x - y);
       });
       document.getElementById("rows").innerHTML = s.map((f) => `
         <tr>
           <td><a class="t" href="https://finance.yahoo.com/quote/${f.ticker}/" target="_blank" rel="noopener">${f.ticker}</a>${f.kind === "ETN" ? '<span class="tag">ETN</span>' : ""}
             <span class="s">${f.target}${f.stale ? ` <span class="stale">古いデータ（${f.date}）</span>` : ""}</span></td>
-          <td class="num">${fmt(f.close)}<span class="chg ${f.chg < 0 ? "dn" : f.chg > 0 ? "upc" : ""}">${f.chg == null ? "" : pct(f.chg)}</span></td>
+          <td class="num">${fmt(f.close)}</td>
+          <td class="num ${f.chg < 0 ? "dn" : f.chg > 0 ? "upc" : ""}">${pct(f.chg)}</td>
           <td class="num col-hi">${fmt(f.high1y)}<span class="s">${f.high1y_date || ""}</span></td>
           <td>${bar(f.dd1y)}</td>
           <td class="num ${f.dd20 < 0 ? "dn" : ""}">${pct(f.dd20)}</td>
           <td class="col-sp">${spark(f.spark)}</td>
         </tr>`).join("");
     }
-    document.querySelectorAll(".sort button").forEach((b) => b.addEventListener("click", () => {
-      key = b.dataset.k;
-      document.querySelectorAll(".sort button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+    function markHeaders() {
+      document.querySelectorAll("th[data-k]").forEach((th) => {
+        const on = th.dataset.k === key;
+        if (on) th.setAttribute("aria-sort", dir === 1 ? "ascending" : "descending");
+        else th.removeAttribute("aria-sort");
+        th.querySelector(".arr").textContent = on ? (dir === 1 ? "▲" : "▼") : "";
+      });
+    }
+    document.querySelectorAll("th[data-k] button").forEach((b) => b.addEventListener("click", () => {
+      const k = b.parentElement.dataset.k;
+      if (k === key) dir = -dir;
+      else { key = k; dir = FIRST_DIR[k]; }
+      markHeaders();
       render();
     }));
+    markHeaders();
     fetch("data/lev3x.json", { cache: "no-store" })
       .then((r) => r.json())
       .then((d) => {
