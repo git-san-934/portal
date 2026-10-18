@@ -1,0 +1,59 @@
+name: 米国3倍ブル下落率データ更新
+
+on:
+  schedule:
+    # 米国市場の終了後: 火〜土 7:15 / 9:15 JST(GitHub側の混雑で数十分遅れることがあります)
+    - cron: "15 22 * * 1-5" # 7:15 JST
+    - cron: "15 0 * * 2-6" # 9:15 JST(7:15 が失敗・遅延したときの予備)
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - lev3x/scripts/**
+      - .github/workflows/update-lev3x.yml
+  pull_request:
+    paths:
+      - lev3x/scripts/**
+      - .github/workflows/update-lev3x.yml
+
+permissions:
+  contents: write # lev3x.json をコミットする
+  actions: write # 更新後に Pages のデプロイを起動する
+
+concurrency:
+  group: lev3x-data
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r lev3x/scripts/requirements.txt
+      - name: 株価を取得
+        run: python lev3x/scripts/fetch_lev3x.py
+      # PR では取得できるかの確認だけ行い、コミット・デプロイはしない
+      - name: lev3x.json をコミット
+        id: commit
+        if: github.event_name != 'pull_request'
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add lev3x/data/lev3x.json
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "米国3倍ブル下落率データ更新 ($(TZ=Asia/Tokyo date +%F))"
+          git pull --rebase origin main
+          git push origin HEAD:main
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
+      - name: GitHub Pages を再デプロイ
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

@@ -1,0 +1,170 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>米国3倍ブル下落率</title>
+  <meta name="description" content="米国上場の3倍ブルETF/ETNを、過去1年の最高値からの下落率で毎日一覧に" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <style>
+    :root {
+      --bg: #f7f5f0;
+      --card-bg: #ffffff;
+      --text: #23201b;
+      --text-sub: #6b645a;
+      --border: #e5e0d6;
+      --accent: #c8502d;
+      --accent-text: #ffffff;
+      --down: #c8502d;
+      --down-soft: rgba(200, 80, 45, 0.16);
+      --up: #2f7d4f;
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1a17;
+        --card-bg: #262320;
+        --text: #f0ece4;
+        --text-sub: #a89f92;
+        --border: #38342e;
+        --accent: #e0662f;
+        --accent-text: #1c1a17;
+        --down: #f08a5d;
+        --down-soft: rgba(240, 138, 93, 0.2);
+        --up: #6cc08b;
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.6;
+      -webkit-font-smoothing: antialiased;
+      padding: 1.5rem 1rem 4rem;
+    }
+    .wrap { max-width: 52rem; margin: 0 auto; }
+    a.back { color: var(--text-sub); font-size: 0.85rem; text-decoration: none; }
+    h1 { font-size: 1.4rem; margin: 0.4rem 0 0.2rem; }
+    .lead { color: var(--text-sub); font-size: 0.9rem; }
+    .meta { color: var(--text-sub); font-size: 0.8rem; margin: 0.8rem 0 0.6rem; }
+    .sort { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0.8rem; }
+    .sort button {
+      font: inherit; font-size: 0.82rem; cursor: pointer;
+      border: 1px solid var(--border); background: var(--card-bg); color: var(--text);
+      border-radius: 999px; padding: 0.3rem 0.8rem;
+    }
+    .sort button[aria-pressed="true"] { background: var(--accent); color: var(--accent-text); border-color: var(--accent); }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; box-shadow: var(--shadow); overflow: hidden; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.88rem; }
+    th, td { padding: 0.55rem 0.6rem; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    th { font-size: 0.75rem; color: var(--text-sub); font-weight: 600; background: var(--bg); }
+    th:first-child, td:first-child { text-align: left; }
+    tr:last-child td { border-bottom: none; }
+    td .t { font-weight: 700; color: inherit; text-decoration: none; }
+    td .s { display: block; font-size: 0.75rem; color: var(--text-sub); white-space: normal; }
+    .tag { font-size: 0.65rem; border: 1px solid var(--border); border-radius: 4px; padding: 0 0.25rem; margin-left: 0.3rem; color: var(--text-sub); }
+    .stale { color: var(--down); }
+    .num { font-variant-numeric: tabular-nums; }
+    .chg { display: block; font-size: 0.75rem; }
+    .dn { color: var(--down); }
+    .upc { color: var(--up); }
+    .bar b { font-weight: 700; }
+    svg.sp { display: block; width: 90px; height: 26px; margin-left: auto; }
+    svg.sp polyline { fill: none; stroke: var(--text-sub); stroke-width: 1.3; }
+    .notes { color: var(--text-sub); font-size: 0.8rem; margin-top: 1rem; line-height: 1.8; }
+    .err { color: var(--down); padding: 1rem; }
+    @media (max-width: 560px) {
+      .col-sp, .col-hi { display: none; }
+      th, td { padding: 0.5rem 0.4rem; }
+    }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../">← わたしのアプリ</a>
+    <h1>米国3倍ブル 下落率ランキング</h1>
+    <p class="lead">米国上場の3倍ブルETF/ETNを、過去1年の最高値（終値）からどれだけ下がっているかの順に並べています。</p>
+    <p class="meta" id="meta">読み込み中…</p>
+    <div class="sort" role="group" aria-label="並べ替え">
+      <button data-k="dd1y" aria-pressed="true">1年高値から</button>
+      <button data-k="dd20" aria-pressed="false">20日高値から</button>
+      <button data-k="chg" aria-pressed="false">前日比</button>
+      <button data-k="ticker" aria-pressed="false">ティッカー</button>
+    </div>
+    <div class="card">
+      <table>
+        <thead>
+          <tr>
+            <th>銘柄</th>
+            <th>終値</th>
+            <th class="col-hi">1年の最高値</th>
+            <th>1年高値から</th>
+            <th>20日高値から</th>
+            <th class="col-sp">1年の動き</th>
+          </tr>
+        </thead>
+        <tbody id="rows"></tbody>
+      </table>
+    </div>
+    <p class="notes">
+      データは Yahoo Finance から、平日の朝（米国市場の終了後）に自動で更新します。価格は株式分割・併合を調整した終値です（ドル）。<br />
+      ETN は債券型の商品で、発行体の信用リスクがあります。<br />
+      「古いデータ」と出ている銘柄は、最新の価格を取得できなかったため前回の値を表示しています。
+    </p>
+  </div>
+  <script>
+    const fmt = (v) => v == null ? "—" : "$" + v.toLocaleString("en-US", { minimumFractionDigits: 2, maximumFractionDigits: v < 1 ? 4 : 2 });
+    const pct = (v) => v == null ? "—" : (v > 0 ? "+" : "") + (v * 100).toFixed(1) + "%";
+    let funds = [], key = "dd1y";
+
+    function spark(a) {
+      const v = (a || []).filter((x) => x != null);
+      if (v.length < 2) return "";
+      const lo = Math.min(...v), hi = Math.max(...v), w = 90, h = 26;
+      const pts = v.map((x, i) => `${(i / (v.length - 1) * w).toFixed(1)},${(h - 2 - (hi === lo ? 0.5 : (x - lo) / (hi - lo)) * (h - 4)).toFixed(1)}`).join(" ");
+      return `<svg class="sp" viewBox="0 0 ${w} ${h}" aria-hidden="true"><polyline points="${pts}"/></svg>`;
+    }
+    function bar(v) {
+      if (v == null) return "—";
+      return `<span class="bar num"><b class="${v < 0 ? "dn" : ""}">${pct(v)}</b></span>`;
+    }
+    function render() {
+      const s = [...funds].sort((a, b) => {
+        if (key === "ticker") return a.ticker.localeCompare(b.ticker);
+        const x = a[key], y = b[key];
+        if (x == null) return 1;
+        if (y == null) return -1;
+        return x - y;
+      });
+      document.getElementById("rows").innerHTML = s.map((f) => `
+        <tr>
+          <td><a class="t" href="https://finance.yahoo.com/quote/${f.ticker}/" target="_blank" rel="noopener">${f.ticker}</a>${f.kind === "ETN" ? '<span class="tag">ETN</span>' : ""}
+            <span class="s">${f.target}${f.stale ? ` <span class="stale">古いデータ（${f.date}）</span>` : ""}</span></td>
+          <td class="num">${fmt(f.close)}<span class="chg ${f.chg < 0 ? "dn" : f.chg > 0 ? "upc" : ""}">${f.chg == null ? "" : pct(f.chg)}</span></td>
+          <td class="num col-hi">${fmt(f.high1y)}<span class="s">${f.high1y_date || ""}</span></td>
+          <td>${bar(f.dd1y)}</td>
+          <td class="num ${f.dd20 < 0 ? "dn" : ""}">${pct(f.dd20)}</td>
+          <td class="col-sp">${spark(f.spark)}</td>
+        </tr>`).join("");
+    }
+    document.querySelectorAll(".sort button").forEach((b) => b.addEventListener("click", () => {
+      key = b.dataset.k;
+      document.querySelectorAll(".sort button").forEach((x) => x.setAttribute("aria-pressed", x === b));
+      render();
+    }));
+    fetch("data/lev3x.json", { cache: "no-store" })
+      .then((r) => r.json())
+      .then((d) => {
+        funds = d.funds;
+        const latest = funds.filter((f) => !f.stale).map((f) => f.date).sort().pop();
+        document.getElementById("meta").textContent = `${latest} の終値 ・ ${funds.length}銘柄 ・ 更新 ${d.generated_at.replace("T", " ").slice(0, 16)}（日本時間）`;
+        render();
+      })
+      .catch(() => {
+        document.getElementById("meta").innerHTML = '<span class="err">データを読み込めませんでした。</span>';
+      });
+  </script>
+</body>
+</html>
