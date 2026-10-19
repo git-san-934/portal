@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-19T18:19+09:00",
+ "updated_at": "2026-10-19T22:57+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1765,6 +1765,13 @@
     "q4:https://investors.palantir.com"
    ],
    "items": [
+    {
+     "date": "2026-10-19",
+     "title": "Knox and Palantir Partner to Further Accelerate Delivery of Software through Largest Federal Cloud",
+     "url": "https://investors.palantir.com/news-details/2026/Knox-and-Palantir-Partner-to-Further-Accelerate-Delivery-of-Software-through-Largest-Federal-Cloud/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-19T22:57+09:00"
+    },
     {
      "date": "2026-10-15",
      "title": "Customers Bank and Palantir Collaborate to Build an AI-Native Future for Banking",
