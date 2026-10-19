@@ -9,6 +9,7 @@ on:
   pull_request:
     paths:
       - cf/scripts/fetch_tanshin.py
+      - cf/scripts/tanshin.py
       - .github/workflows/update-cf-tanshin.yml
 
 permissions:
@@ -40,7 +41,7 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cf/build
+          git add cf/data/tanshin.json
           if git diff --cached --quiet; then
             echo "変更なし"
             exit 0
@@ -50,3 +51,9 @@ jobs:
           git pull --rebase origin "$BRANCH"
           git push origin HEAD:"$BRANCH"
           echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
+      - name: GitHub Pages を再デプロイ
+        if: always() && steps.commit.outputs.changed == 'true' && github.event_name != 'pull_request'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

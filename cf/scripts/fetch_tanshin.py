@@ -1,6 +1,8 @@
-"""投資分析ページ(cf/<コード>/)の銘柄について、TDnet に出た決算短信のサマリーの XBRL を読む。
+"""投資分析ページ(cf/<コード>/)の銘柄について、TDnet に出た決算短信のサマリーの XBRL を読み、
+「最新の決算短信」の節の数字(cf/data/tanshin.json)を作る(数字の取り出し方は tanshin.py)。
 
 TDnet の公開ページ(www.release.tdnet.info)は直近1か月分の開示しか載せないので、毎日動かして取りこぼさないようにする。
+一度読んだ短信は tanshin.json の seen に残し、次からは読まない。
 GitHub Actions(.github/workflows/update-cf-tanshin.yml)から実行される。
 """
 
@@ -16,11 +18,13 @@ from pathlib import Path
 
 import requests
 
+import tanshin
+
 TDNET = "https://www.release.tdnet.info/inbs/"
 JST = timezone(timedelta(hours=9))
 DAYS = int(os.environ.get("TANSHIN_DAYS", 31))
 CF_DIR = Path(__file__).resolve().parent.parent
-RAW_DIR = CF_DIR / "build" / "tanshin_raw"  # 一時: 要素の確認用
+OUT_PATH = CF_DIR / "data" / "tanshin.json"
 HEADERS = {"User-Agent": "Mozilla/5.0 (portal-cf-tanshin)"}
 
 ROW_RE = re.compile(r"<tr>(.*?)</tr>", re.S)
@@ -54,6 +58,13 @@ def get(url, retries=4):
     raise RuntimeError(f"{url}: {last}")
 
 
+def load(path, default):
+    try:
+        return json.loads(path.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        return default
+
+
 def target_codes():
     return sorted(p.name for p in CF_DIR.iterdir() if p.is_dir() and re.fullmatch(r"\d{3}[0-9A-Z]", p.name) and (p / "index.html").exists())
 
@@ -68,7 +79,7 @@ def list_day(d):
         r.encoding = "utf-8"
         rows = 0
         for tr in ROW_RE.findall(r.text):
-            cells = {k: v for k, v in CELL_RE.findall(tr)}
+            cells = dict(CELL_RE.findall(tr))
             if "Code" not in cells:
                 continue
             rows += 1
@@ -100,8 +111,7 @@ def read_summary(url):
     z = zipfile.ZipFile(io.BytesIO(r.content))
     facts = []
     for name in z.namelist():
-        base = name.split("/")[-1]
-        if "/Summary/" not in name or not base.endswith("ixbrl.htm"):
+        if "/Summary/" not in name or not name.endswith("ixbrl.htm"):
             continue
         text = z.read(name).decode("utf-8", "replace")
         for attrs, body in NUM_RE.findall(text):
@@ -111,13 +121,18 @@ def read_summary(url):
             a = dict(ATTR_RE.findall(attrs))
             if a.get("name", "").split(":")[-1] in TEXTS:
                 facts.append((a.get("name", ""), a.get("contextRef", ""), html.unescape(TAG_RE.sub("", body)).strip()))
-    return facts, sorted(z.namelist())
+    return facts
 
 
 def main():
     codes = set(target_codes())
+    out = load(OUT_PATH, {})
+    if out.get("v") != tanshin.VERSION:
+        out = {"v": tanshin.VERSION, "companies": {}, "seen": []}
+    comp = out["companies"]
+    seen = set(out["seen"])
     today = datetime.now(JST).date()
-    found, samples = {}, {}
+    todo = []
     for i in range(DAYS):
         d = today - timedelta(days=i)
         if d.weekday() >= 5:
@@ -127,28 +142,40 @@ def main():
         except Exception as e:  # noqa: BLE001
             log(f"{d}: {e}")
             continue
-        n = 0
-        for t, code, name, title, xbrl in rows:
-            if code in codes and "決算短信" in title and xbrl:
-                found.setdefault(code, []).append({"date": d.isoformat(), "time": t, "title": title, "xbrl": xbrl})
-                n += 1
-            elif "決算短信" in title and xbrl:  # 一時: 形式の違いを見るための見本
-                kind = re.sub(r"\d+", "#", title)
-                if samples.get(kind, 0) < 2 and len(found.get("_sample", [])) < 60:
-                    samples[kind] = samples.get(kind, 0) + 1
-                    found.setdefault("_sample", []).append({"date": d.isoformat(), "time": t, "code": code, "title": title, "xbrl": xbrl})
-        log(f"{d}: 開示 {len(rows)} 件, 対象の決算短信 {n} 件")
-    log(f"決算短信が見つかった銘柄: {len(found) - ('_sample' in found)} / {len(codes)}")
-    RAW_DIR.mkdir(parents=True, exist_ok=True)
-    for code, docs in sorted(found.items()):
-        for doc in docs:
-            try:
-                doc["facts"], doc["files"] = read_summary(doc["xbrl"])
-            except Exception as e:  # noqa: BLE001
-                log(f"  {code} {doc['xbrl']}: {e}")
-            time.sleep(1)
-        (RAW_DIR / f"{code}.json").write_text(json.dumps(docs, ensure_ascii=False, indent=0), encoding="utf-8")
-        log(f"  {code}: {[d['title'] for d in docs]}")
+        for t, code, _, title, xbrl in rows:
+            if code in codes and "決算短信" in title and xbrl and xbrl.rsplit("/", 1)[-1] not in seen:
+                todo.append({"code": code, "date": d.isoformat(), "time": t, "title": title, "xbrl": xbrl})
+    log(f"新しく読む決算短信: {len(todo)} 件")
+    changed = 0
+    for doc in sorted(todo, key=lambda x: (x["date"], x["time"])):
+        name = doc["xbrl"].rsplit("/", 1)[-1]
+        try:
+            facts = read_summary(doc["xbrl"])
+        except Exception as e:  # noqa: BLE001
+            log(f"  {doc['code']} {name}: {e}")
+            continue
+        seen.add(name)
+        if not facts:
+            continue
+        rec = tanshin.extract(facts, doc["title"])
+        rec.update({"date": doc["date"], "time": doc["time"], "title": doc["title"], "doc": name})
+        old = comp.get(doc["code"])
+        # 訂正で古い期の短信が出直すこともあるので、決算期・四半期が同じか新しいものだけ使う
+        if tanshin.usable(rec) and (old is None or tanshin.order(rec) >= tanshin.order(old)):
+            comp[doc["code"]] = rec
+            changed += 1
+            log(f"  {doc['code']}: {doc['date']} {doc['title']}")
+        time.sleep(1)
+    for code in list(comp):
+        if code not in codes:
+            del comp[code]
+    # TDnet から消えた短信は二度と一覧に出ないので、覚えておくのは直近の分だけでよい
+    limit = (today - timedelta(days=DAYS + 10)).strftime("%Y%m%d")
+    out["seen"] = sorted(s for s in seen if s[4:12] >= limit)
+    if changed or "updated" not in out:
+        out["updated"] = today.isoformat()
+    OUT_PATH.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n", encoding="utf-8")
+    log(f"{changed} 社の短信を新しくしました。{len(comp)} 社の短信があります")
 
 
 if __name__ == "__main__":
