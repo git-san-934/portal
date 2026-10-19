@@ -1,4 +1,4 @@
-// 「最新の半期」の節: window.CF_HALF (edinet/analysis/half.py の出力、単位は億円) から描く。
+// 「最新の半期」の節: window.CF_HALF (cf/scripts/half.py が毎朝の更新で半期報告書から作る。単位は億円、1株あたりは円) から描く。
 // 「数字の一覧」の節(#tbl を含む節)の前に差し込む。半期報告書が年次の有報より古いときは、次の提出時期の目安だけを出す。
 (function () {
   const H = window.CF_HALF;
@@ -34,6 +34,16 @@
       h += `<tr><td>${l}</td><td class="${a < 0 ? 'neg' : ''}">${fmt(a)}</td><td class="${b < 0 ? 'neg' : ''}">${fmt(b)}</td><td>${pct(a, b)}</td></tr>`;
     });
     h += '</tbody></table></div>';
+    // 1株あたりの数字(円)。BPS は上期末の親会社の株主の持分を、発行済株式数から自己株式を除いた株数で割ったもの
+    const yen = v => v == null ? '－' : fmt(+(+v).toFixed(2));
+    const eps = H.eps || [], bps = H.bps || [];
+    if (eps[0] != null || bps[0] != null) {
+      h += '<h3>1株あたりの数字（円）</h3><div class="tbl"><table><thead><tr><th></th><th>今期上期</th><th>前年上期</th><th>増減率</th></tr></thead><tbody>';
+      if (eps[0] != null) h += `<tr><td>EPS</td><td class="${eps[0] < 0 ? 'neg' : ''}">${yen(eps[0])}</td><td class="${eps[1] < 0 ? 'neg' : ''}">${yen(eps[1])}</td><td>${pct(eps[0], eps[1])}</td></tr>`;
+      if (bps[0] != null) h += `<tr><td>BPS（上期末）</td><td>${yen(bps[0])}</td><td>－</td><td>－</td></tr>`;
+      h += '</tbody></table></div>';
+      h += '<p class="sub" style="margin-top:.4rem">EPSは上期6か月分の利益なので、年間のEPSのおよそ半分になります。BPSは上期末の純資産（親会社の株主の分）を、自己株式を除いた株数で割って計算しました。</p>';
+    }
     h += '<h3>上期末の残高（前期末との比較）</h3><div class="tbl"><table><thead><tr><th></th><th>上期末</th><th>前期末</th><th>増減</th></tr></thead><tbody>';
     stocks.forEach(([l, v]) => {
       if (!v || v[0] == null) return;

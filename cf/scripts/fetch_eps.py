@@ -8,6 +8,7 @@
 
 GitHub Actions(.github/workflows/update-cf-eps.yml)から実行される。
 書類一覧の確認に時間がかかるので TIME_LIMIT(秒)で打ち切り、途中までの結果を保存して次回に続きを取る。
+あわせて、最新の半期報告書から「最新の半期」の節の数字(cf/<コード>/half.js)を作り直す(half.py)。
 EDINET_API_KEY(環境変数)が必要。
 """
 
@@ -25,8 +26,11 @@ from pathlib import Path
 
 import requests
 
+import half
+
 EDINET_API = "https://api.edinet-fsa.go.jp/api/v2"
 SCAN_DAYS = 3700  # 10年前の有価証券報告書まで届くように
+HALF_DAYS = 400  # 半期報告書は直近のものだけ使う
 YEARS = 10
 TIME_LIMIT = int(os.environ.get("TIME_LIMIT", 100 * 60))
 WORKERS = 3
@@ -119,17 +123,23 @@ def target_codes():
 
 def scan_documents(key, codes):
     cache = load(DOCS_PATH, {"codes": [], "scanned": [], "docs": {}})
+    cache.setdefault("half", {})
+    cache.setdefault("half_scanned", [])
     if set(codes) - set(cache["codes"]):
         # 新しい銘柄のページが増えたら、10年分を確認し直す
         log("新しい銘柄があるため、書類一覧を最初から確認します")
         cache["scanned"] = []
+        cache["half_scanned"] = []
     cache["codes"] = codes
     want = set(codes)
     scanned = set(cache["scanned"])
+    half_scanned = set(cache["half_scanned"])
     today = datetime.now(JST).date()
     first = today - timedelta(days=SCAN_DAYS)
     days = [first + timedelta(days=i) for i in range((today - first).days)]  # 今日の分は次回
-    todo = sorted((d for d in days if d.weekday() < 5 and d.isoformat() not in scanned), reverse=True)
+    half_first = today - timedelta(days=HALF_DAYS)
+    # 半期報告書を探す前に確認した日は、半期報告書のためだけにもう一度見る
+    todo = sorted((d for d in days if d.weekday() < 5 and (d.isoformat() not in scanned or (d >= half_first and d.isoformat() not in half_scanned))), reverse=True)
     log(f"書類一覧: {len(todo)} 日分を確認します")
 
     def work(d):
@@ -148,7 +158,15 @@ def scan_documents(key, codes):
             for doc in res.get("results") or []:
                 sec = (doc.get("secCode") or "").strip()
                 code = sec[:4].upper()
-                if len(sec) != 5 or code not in want or doc.get("docTypeCode") != "120":
+                if len(sec) != 5 or code not in want:
+                    continue
+                if doc.get("docTypeCode") == "160" and doc.get("periodStart") and doc.get("withdrawalStatus") in (None, "0"):
+                    entry = [doc["submitDateTime"][:10], doc["periodStart"], doc["docID"], doc.get("csvFlag") == "1"]
+                    lst = cache["half"].setdefault(code, [])
+                    if entry[2] not in {x[2] for x in lst}:
+                        lst.append(entry)
+                    continue
+                if doc.get("docTypeCode") != "120":
                     continue
                 if doc.get("ordinanceCode") != "010" or doc.get("formCode") != "030000" or not doc.get("periodEnd"):
                     continue
@@ -157,14 +175,22 @@ def scan_documents(key, codes):
                 if entry[2] not in {x[2] for x in lst}:
                     lst.append(entry)
             scanned.add(d.isoformat())
+            half_scanned.add(d.isoformat())
             if n % 200 == 199:
                 cache["scanned"] = sorted(scanned)
+                cache["half_scanned"] = sorted(half_scanned)
                 save(DOCS_PATH, cache)
                 log(f"  {n + 1} 日分まで確認")
     if out_of_time():
         log("時間切れのため、書類一覧の確認を途中で止めます")
     first_s = first.isoformat()
     cache["scanned"] = sorted(s for s in scanned if s >= first_s)
+    half_s = half_first.isoformat()
+    cache["half_scanned"] = sorted(s for s in half_scanned if s >= half_s)
+    for code in list(cache["half"]):
+        cache["half"][code] = sorted(x for x in cache["half"][code] if x[0] >= half_s and code in want)
+        if not cache["half"][code]:
+            del cache["half"][code]
     for code in list(cache["docs"]):
         cache["docs"][code] = sorted(x for x in cache["docs"][code] if x[0] >= first_s and code in want)
         if not cache["docs"][code]:
@@ -500,6 +526,72 @@ def collect(key, cache):
     return out, done
 
 
+# ---------- 4. 最新の半期報告書から half.js を作り直す ----------
+
+HALF_JS = re.compile(r"=\s*(\{.*\})\s*;?\s*$", re.S)
+
+
+def read_half_rows(key, doc_id):
+    """半期報告書の XBRL CSV の数字をすべて (要素名, コンテキスト, 値, 単位) で返す"""
+    r = get(f"{EDINET_API}/documents/{doc_id}", {"type": 5, "Subscription-Key": key}, want_zip=True)
+    z = zipfile.ZipFile(io.BytesIO(r.content))
+    rows = []
+    for name in z.namelist():
+        if not name.endswith(".csv"):
+            continue
+        for line in z.read(name).decode("utf-16", "replace").splitlines()[1:]:
+            cells = [c.strip('"') for c in line.split("\t")]
+            if len(cells) >= 9 and cells[6] in ("JPY", "JPYPerShares", "shares"):
+                rows.append((cells[0], cells[2], cells[-1].replace(",", ""), cells[6]))
+    return rows
+
+
+def update_half(key, cache):
+    """half.js があるページについて、それより新しい半期報告書が出ていれば作り直す"""
+    todo = []
+    for code, docs in cache.get("half", {}).items():
+        path = CF_DIR / code / "half.js"
+        if not path.exists():
+            continue
+        try:
+            old = json.loads(HALF_JS.search(path.read_text(encoding="utf-8")).group(1))
+        except (AttributeError, json.JSONDecodeError):
+            continue
+        # 同じ半期の訂正などは、あとに出たものを使う
+        latest = max((d for d in docs if d[3]), key=lambda d: (d[1], d[0]), default=None)
+        if latest and (latest[1][:7] > old.get("halfStart", "") or (latest[1][:7] == old.get("halfStart") and old.get("v") != half.VERSION)):
+            todo.append((code, path, old, latest))
+    log(f"作り直す半期の数字: {len(todo)} 社")
+
+    def work(item):
+        code, path, old, latest = item
+        if out_of_time():
+            return item, None
+        try:
+            return item, read_half_rows(key, latest[2])
+        except Exception as e:  # noqa: BLE001
+            log(f"  {code} {latest[2]}: {e}")
+            return item, None
+
+    done = 0
+    with ThreadPoolExecutor(WORKERS) as ex:
+        for (code, path, old, latest), rows in ex.map(work, todo):
+            if not rows:
+                continue
+            res = half.extract(rows, latest[1], old.get("bank", False) or half.is_bank(rows))
+            if res["sales"][0] is None and res["assets"][0] is None:
+                log(f"  {code} {latest[2]}: 半期の数字が読めないため、前のままにします")
+                continue
+            annual = old.get("annualEnd") or res["fyEnd"]
+            new = {"v": half.VERSION, "code": code, "annualEnd": annual, **res, "doc": latest[2], "newer": res["fyEnd"] > annual,
+                   "next": half.periods(latest[1])["next"]}
+            path.write_text("window.CF_HALF = " + json.dumps(new, ensure_ascii=False) + ";\n", encoding="utf-8")
+            done += 1
+    if out_of_time():
+        log("時間切れ: 残りの半期の数字は次回に作ります")
+    log(f"半期の数字を {done} 社作り直しました")
+
+
 def main():
     key = os.environ.get("EDINET_API_KEY", "").strip()
     if not key:
@@ -510,6 +602,7 @@ def main():
     cache = scan_documents(key, codes)
     out, done = collect(key, cache)
     save(OUT_PATH, out)
+    update_half(key, cache)
     comp = out["companies"]
     full = sum(1 for r in comp.values() if len(r["years"]) >= YEARS)
     log(f"今回 {done} 社読みました。{len(comp)} 社のうち {full} 社が{YEARS}年分そろっています")
