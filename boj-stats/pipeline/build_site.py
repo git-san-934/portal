@@ -179,6 +179,13 @@ def main():
     except (OSError, ValueError):
         pass
 
+    tankan_latest = None  # 短観の推移（tankan.html）の最新の調査回
+    try:
+        with open(os.path.join(ROOT, "data", "tankan.json"), encoding="utf-8") as f:
+            tankan_latest = json.load(f).get("latest")
+    except (OSError, ValueError):
+        pass
+
     out = {
         "generated_at": dt.datetime.now().astimezone().isoformat(timespec="minutes"),
         "report_date": today,
@@ -187,6 +194,7 @@ def main():
         "series": info,
         "fetch_status": fetch_status,
         "trade_updated": trade_updated,
+        "tankan_latest": tankan_latest,
         "disclaimer": analyze.DISCLAIMER,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)
