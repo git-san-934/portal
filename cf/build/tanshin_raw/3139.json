@@ -6,16 +6,6 @@
 "xbrl": "https://www.release.tdnet.info/inbs/081220261013549875.zip",
 "facts": [
 [
-"tse-ed-t:DocumentName",
-"CurrentAccumulatedQ3Instant",
-"第３四半期決算短信〔日本基準〕(連結)"
-],
-[
-"tse-ed-t:FilingDate",
-"CurrentAccumulatedQ3Instant",
-"2026年10月14日"
-],
-[
 "tse-ed-t:NetSales",
 "CurrentAccumulatedQ3Duration_ConsolidatedMember_ResultMember",
 144886000000.0
@@ -391,14 +381,24 @@ null
 9964748.0
 ],
 [
-"tse-ed-t:FiscalYearEnd",
-"CurrentYearInstant",
-"2026-11-30"
-],
-[
 "tse-ed-t:QuarterlyPeriod",
 "CurrentAccumulatedQ3Instant",
 3.0
+],
+[
+"tse-ed-t:DocumentName",
+"CurrentAccumulatedQ3Instant",
+"第３四半期決算短信〔日本基準〕(連結)"
+],
+[
+"tse-ed-t:FilingDate",
+"CurrentAccumulatedQ3Instant",
+"2026年10月14日"
+],
+[
+"tse-ed-t:FiscalYearEnd",
+"CurrentYearInstant",
+"2026-11-30"
 ]
 ],
 "files": [

@@ -6,16 +6,6 @@
 "xbrl": "https://www.release.tdnet.info/inbs/081220260930543480.zip",
 "facts": [
 [
-"tse-ed-t:DocumentName",
-"CurrentAccumulatedQ2Instant",
-"第２四半期（中間期）決算短信〔ＩＦＲＳ〕（連結）"
-],
-[
-"tse-ed-t:FilingDate",
-"CurrentAccumulatedQ2Instant",
-"2026年７月31日"
-],
-[
 "tse-ed-t:NetSalesIFRS",
 "CurrentAccumulatedQ2Duration_ConsolidatedMember_ResultMember",
 167401000000.0
@@ -451,14 +441,24 @@ null
 120158646.0
 ],
 [
-"tse-ed-t:FiscalYearEnd",
-"CurrentYearInstant",
-"2026-12-31"
-],
-[
 "tse-ed-t:QuarterlyPeriod",
 "CurrentAccumulatedQ2Instant",
 2.0
+],
+[
+"tse-ed-t:DocumentName",
+"CurrentAccumulatedQ2Instant",
+"第２四半期（中間期）決算短信〔ＩＦＲＳ〕（連結）"
+],
+[
+"tse-ed-t:FilingDate",
+"CurrentAccumulatedQ2Instant",
+"2026年７月31日"
+],
+[
+"tse-ed-t:FiscalYearEnd",
+"CurrentYearInstant",
+"2026-12-31"
 ]
 ],
 "files": [
@@ -488,16 +488,6 @@ null
 "title": "（訂正・数値データ訂正）2026年12月期 第１四半期決算短信〔ＩＦＲＳ〕（連結）",
 "xbrl": "https://www.release.tdnet.info/inbs/081220260930543508.zip",
 "facts": [
-[
-"tse-ed-t:DocumentName",
-"CurrentAccumulatedQ1Instant",
-"第１四半期決算短信〔ＩＦＲＳ〕（連結）"
-],
-[
-"tse-ed-t:FilingDate",
-"CurrentAccumulatedQ1Instant",
-"2026年４月30日"
-],
 [
 "tse-ed-t:NetSalesIFRS",
 "CurrentAccumulatedQ1Duration_ConsolidatedMember_ResultMember",
@@ -1079,14 +1069,24 @@ null
 120139498.0
 ],
 [
-"tse-ed-t:FiscalYearEnd",
-"CurrentYearInstant",
-"2026-12-31"
-],
-[
 "tse-ed-t:QuarterlyPeriod",
 "CurrentAccumulatedQ1Instant",
 1.0
+],
+[
+"tse-ed-t:DocumentName",
+"CurrentAccumulatedQ1Instant",
+"第１四半期決算短信〔ＩＦＲＳ〕（連結）"
+],
+[
+"tse-ed-t:FilingDate",
+"CurrentAccumulatedQ1Instant",
+"2026年４月30日"
+],
+[
+"tse-ed-t:FiscalYearEnd",
+"CurrentYearInstant",
+"2026-12-31"
 ]
 ],
 "files": [
@@ -1116,16 +1116,6 @@ null
 "title": "（訂正・数値データ訂正）2025年12月期 決算短信〔ＩＦＲＳ〕(連結)",
 "xbrl": "https://www.release.tdnet.info/inbs/081220260930543424.zip",
 "facts": [
-[
-"tse-ed-t:DocumentName",
-"CurrentYearInstant",
-"決算短信〔ＩＦＲＳ〕(連結)"
-],
-[
-"tse-ed-t:FilingDate",
-"CurrentYearInstant",
-"2026年２月12日"
-],
 [
 "tse-ed-t:NetSalesIFRS",
 "CurrentYearDuration_ConsolidatedMember_ResultMember",
@@ -2225,6 +2215,16 @@ null
 "tse-ed-t:NetIncomePerShare",
 "NextYearDuration_NonConsolidatedMember_UpperMember",
 null
+],
+[
+"tse-ed-t:DocumentName",
+"CurrentYearInstant",
+"決算短信〔ＩＦＲＳ〕(連結)"
+],
+[
+"tse-ed-t:FilingDate",
+"CurrentYearInstant",
+"2026年２月12日"
 ],
 [
 "tse-ed-t:FiscalYearEnd",

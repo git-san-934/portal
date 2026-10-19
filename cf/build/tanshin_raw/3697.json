@@ -6,16 +6,6 @@
 "xbrl": "https://www.release.tdnet.info/inbs/081220261015551188.zip",
 "facts": [
 [
-"tse-ed-t:DocumentName",
-"CurrentYearInstant",
-"決算短信〔日本基準〕(連結)"
-],
-[
-"tse-ed-t:FilingDate",
-"CurrentYearInstant",
-"2026年10月15日"
-],
-[
 "tse-ed-t:NetSales",
 "CurrentYearDuration_ConsolidatedMember_ResultMember",
 161600000000.0
@@ -659,6 +649,16 @@ null
 "tse-ed-t:OwnersEquity",
 "PriorYearInstant_NonConsolidatedMember_ResultMember",
 33937000000.0
+],
+[
+"tse-ed-t:DocumentName",
+"CurrentYearInstant",
+"決算短信〔日本基準〕(連結)"
+],
+[
+"tse-ed-t:FilingDate",
+"CurrentYearInstant",
+"2026年10月15日"
 ],
 [
 "tse-ed-t:FiscalYearEnd",

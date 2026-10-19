@@ -6,16 +6,6 @@
 "xbrl": "https://www.release.tdnet.info/inbs/081220260929542486.zip",
 "facts": [
 [
-"tse-ed-t:DocumentName",
-"CurrentAccumulatedQ3Instant",
-"第３四半期決算短信〔ＩＦＲＳ〕（連結）"
-],
-[
-"tse-ed-t:FilingDate",
-"CurrentAccumulatedQ3Instant",
-"2026年９月30日"
-],
-[
 "tse-ed-t:NetSalesIFRS",
 "CurrentAccumulatedQ3Duration_ConsolidatedMember_ResultMember",
 1986357000000.0
@@ -421,14 +411,24 @@ null
 1149215140.0
 ],
 [
-"tse-ed-t:FiscalYearEnd",
-"CurrentYearInstant",
-"2026-03-31"
-],
-[
 "tse-ed-t:QuarterlyPeriod",
 "CurrentAccumulatedQ3Instant",
 3.0
+],
+[
+"tse-ed-t:DocumentName",
+"CurrentAccumulatedQ3Instant",
+"第３四半期決算短信〔ＩＦＲＳ〕（連結）"
+],
+[
+"tse-ed-t:FilingDate",
+"CurrentAccumulatedQ3Instant",
+"2026年９月30日"
+],
+[
+"tse-ed-t:FiscalYearEnd",
+"CurrentYearInstant",
+"2026-03-31"
 ]
 ],
 "files": [
@@ -460,16 +460,6 @@ null
 "title": "2026年３月期決算短信〔IFRS〕(連結)",
 "xbrl": "https://www.release.tdnet.info/inbs/081220260930543478.zip",
 "facts": [
-[
-"tse-ed-t:DocumentName",
-"CurrentYearInstant",
-"決算短信〔IFRS〕(連結)"
-],
-[
-"tse-ed-t:FilingDate",
-"CurrentYearInstant",
-"2026年９月30日"
-],
 [
 "tse-ed-t:NetSalesIFRS",
 "CurrentYearDuration_ConsolidatedMember_ResultMember",
@@ -1339,6 +1329,16 @@ null
 "tse-ed-t:OwnersEquity",
 "PriorYearInstant_NonConsolidatedMember_ResultMember",
 202984000000.0
+],
+[
+"tse-ed-t:DocumentName",
+"CurrentYearInstant",
+"決算短信〔IFRS〕(連結)"
+],
+[
+"tse-ed-t:FilingDate",
+"CurrentYearInstant",
+"2026年９月30日"
 ],
 [
 "tse-ed-t:FiscalYearEnd",
