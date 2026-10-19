@@ -160,3 +160,11 @@ code { font-size: 0.75rem; }
 #measures, #ranges, #avgs { margin-bottom: 0.5rem; }
 #goods-table { font-size: 0.8rem; }
 #goods-table td.cname { white-space: normal; }
+
+/* ---- 短観 (tankan.html) ---- */
+.ind-select {
+  font: inherit; font-size: 0.85rem; padding: 0.25rem 0.5rem; margin: -0.4rem 0 0.6rem;
+  border: 1px solid var(--border); border-radius: 0.5rem; background: var(--card-bg); color: var(--text);
+}
+.tchart + .note.sub, .tchart + .vals { margin-top: 0.4rem; }
+.tchart circle { stroke: var(--card-bg); stroke-width: 1; }

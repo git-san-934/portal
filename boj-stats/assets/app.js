@@ -204,6 +204,7 @@
       $("status").textContent = `最終更新: ${fmtDate(d.report_date)} ${t.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo" })}`;
       renderFetchStatus(d.fetch_status);
       if (d.trade_updated) $("trade-updated").textContent = ` (${fmtDay(d.trade_updated)} 更新)`;
+      if (d.tankan_latest) $("tankan-latest").textContent = ` (${+d.tankan_latest.slice(0, 4)}年${+d.tankan_latest.slice(5)}月調査まで)`;
       $("disclaimer").textContent = d.disclaimer;
       renderFeed();
       renderTables();

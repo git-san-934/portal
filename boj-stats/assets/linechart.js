@@ -11,14 +11,18 @@ window.MultiLine = (() => {
     v == null || !isFinite(v) ? "-" : yoy ? `${v >= 0 ? "+" : ""}${v.toFixed(1)}%` : `${v.toLocaleString("ja-JP", { maximumFractionDigits: Math.abs(v) < 10 ? 1 : 0 })}億円`;
 
   // opts: { months: [YYYY-MM], lines: [{name, color, val(d)}], extra: [{name, val(d)}](吹き出しのみ), yoy: bool, label,
-  //         fmt(v): 吹き出しの値(省略で億円/%), tick(v): 軸の目盛り(省略で整数) }
+  //         fmt(v): 吹き出しの値(省略で億円/%), tick(v): 軸の目盛り(省略で整数),
+  //         fmtX(d): 横軸と吹き出しの日付(省略で「YYYY年M月」), signed: 0をまたぐ値(yoy と同じ縦軸の取り方), dots: 点を打つ }
+  // lines の各要素は dash(破線)、noLegend(凡例に出さない)、tip(d)(吹き出しの値。値が無ければ吹き出しに出さない)も持てる
   function draw(box, legend, opts) {
     const { months: ms, lines, extra = [], yoy } = opts;
+    const signed = yoy || opts.signed;
+    const fmtX = opts.fmtX || fmtMonth;
     const fmt = opts.fmt || ((v) => fmtVal(v, yoy));
     const tick = opts.tick || ((v) => (yoy ? `${Math.round(v)}%` : Math.round(v).toLocaleString("ja-JP")));
     if (legend) {
       legend.replaceChildren(
-        ...lines.map((s) => {
+        ...lines.filter((s) => !s.noLegend).map((s) => {
           const sp = el("span");
           const i = el("i");
           i.style.background = s.color;
@@ -38,14 +42,14 @@ window.MultiLine = (() => {
       return;
     }
     let lo = 0, hi = Math.max(...vals, 1);
-    if (yoy) {
+    if (signed) {
       // 前年が小さい月の極端な伸び率で軸がつぶれないよう、上下1%を切る
       const sorted = [...vals].sort((a, b) => a - b);
       lo = Math.min(0, sorted[Math.floor(sorted.length * 0.01)]);
       hi = Math.max(0, sorted[Math.ceil(sorted.length * 0.99) - 1]);
     }
     const pad = (hi - lo) * 0.06 || 1;
-    if (yoy) lo -= pad;
+    if (signed) lo -= pad;
     hi += pad;
     const sx = (i) => L + (i / (ms.length - 1)) * (W - L - R);
     const sy = (v) => T + (1 - (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo)) * (H - T - B);
@@ -67,8 +71,8 @@ window.MultiLine = (() => {
       add("text", { x: L - 6, y: sy(v) + 4, "text-anchor": "end" }, tick(v));
     }
     if (lo < 0 && hi > 0) add("line", { class: "grid", x1: L, x2: W - R, y1: sy(0), y2: sy(0), "stroke-dasharray": "4 3" });
-    add("text", { x: L, y: H - 6 }, fmtMonth(ms[0]));
-    add("text", { x: W - R, y: H - 6, "text-anchor": "end" }, fmtMonth(ms[ms.length - 1]));
+    add("text", { x: L, y: H - 6 }, fmtX(ms[0]));
+    add("text", { x: W - R, y: H - 6, "text-anchor": "end" }, fmtX(ms[ms.length - 1]));
     for (const s of [...lines].reverse()) {
       let d = "", pen = false;
       ms.forEach((mo, i) => {
@@ -77,7 +81,14 @@ window.MultiLine = (() => {
         d += `${pen ? "L" : "M"}${sx(i).toFixed(1)},${sy(v).toFixed(1)}`;
         pen = true;
       });
-      add("path", { class: "line", d }).style.stroke = s.color;
+      const path = add("path", { class: "line", d });
+      path.style.stroke = s.color;
+      if (s.dash) path.setAttribute("stroke-dasharray", "5 4");
+      if (opts.dots)
+        ms.forEach((mo, i) => {
+          const v = s.val(mo);
+          if (isFinite(v)) add("circle", { cx: sx(i), cy: sy(v), r: 2.4 }).style.fill = s.color;
+        });
     }
     const cross = add("line", { class: "cross", y1: T, y2: H - B, visibility: "hidden" });
     const hit = add("rect", { x: L, y: T, width: W - L - R, height: H - T - B, fill: "transparent" });
@@ -91,15 +102,17 @@ window.MultiLine = (() => {
       cross.setAttribute("x1", sx(i));
       cross.setAttribute("x2", sx(i));
       cross.setAttribute("visibility", "visible");
-      tip.replaceChildren(el("b", null, fmtMonth(d)));
+      tip.replaceChildren(el("b", null, fmtX(d)));
       for (const s of [...lines, ...extra]) {
+        const v = s.tip ? s.tip(d) : s.val(d);
+        if (s.tip && !isFinite(v)) continue;
         const row = el("div");
         if (s.color) {
           const sw = el("i");
           sw.style.background = s.color;
           row.append(sw);
         }
-        row.append(`${s.name} ${fmt(s.val(d))}`);
+        row.append(`${s.name} ${fmt(v)}`);
         tip.append(row);
       }
       tip.hidden = false;

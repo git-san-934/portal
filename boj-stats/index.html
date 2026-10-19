@@ -6,7 +6,7 @@
   <title>日銀統計の新着</title>
   <meta name="description" content="日本銀行などの経済統計の新しい公表と大きな変化、日銀の新着情報を毎日集めて箇条書きで表示" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261008a" />
+  <link rel="stylesheet" href="assets/style.css?v=20261019a" />
 </head>
 <body>
   <div class="wrap">
@@ -19,6 +19,7 @@
         <a class="refresh" href="https://github.com/git-san-934/portal/actions/workflows/update-boj-stats.yml" target="_blank" rel="noopener" title="GitHub で「Run workflow」を押すと取り込みが始まり、数分でこのページに反映されます">今すぐ更新</a>
       </div>
       <div class="fetch-status" id="fetch-status"></div>
+      <p class="links"><a href="tankan.html">短観(業況判断DI・価格・雇用・資金繰りなど)の推移<span class="title-date" id="tankan-latest"></span> →</a></p>
       <p class="links"><a href="trade.html">半導体関連の輸出(NAND・DRAM・MLCC・製造装置など)の国別の推移<span class="title-date" id="trade-updated"></span> →</a></p>
       <p class="links"><span>出典:</span><a href="https://www.boj.or.jp/" target="_blank" rel="noopener">日本銀行</a><a href="https://www.stat-search.boj.or.jp/" target="_blank" rel="noopener">日銀 時系列統計データ検索</a><a href="https://www.mof.go.jp/" target="_blank" rel="noopener">財務省</a><a href="https://www.mof.go.jp/jgbs/reference/interest_rate/index.htm" target="_blank" rel="noopener">財務省 国債金利情報</a><a href="https://www.customs.go.jp/toukei/info/index.htm" target="_blank" rel="noopener">財務省 貿易統計</a></p>
     </header>
@@ -49,6 +50,6 @@
       <p>集める統計は <code>boj-stats/pipeline/series.json</code> で変えられます。</p>
     </footer>
   </div>
-  <script src="assets/app.js?v=20261008a"></script>
+  <script src="assets/app.js?v=20261019a"></script>
 </body>
 </html>

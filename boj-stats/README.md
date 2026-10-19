@@ -19,6 +19,7 @@ https://git-san-934.github.io/portal/boj-stats/
 | `pipeline/data/*.csv` | 系列ごとの蓄積データ(系列ページのチャートもここを読む) |
 | `pipeline/reports/signals_log.csv` | 検知の履歴 |
 | `pipeline/reports/releases_log.csv` | 公表を見つけた日の記録 |
+| `tankan.html`, `assets/tankan.js` | 短観(概要)の業況判断DIなどの推移。`pipeline/data/tankan.json`(`pipeline/fetch_tankan.py` が作る)を読む |
 
 ## 更新
 
