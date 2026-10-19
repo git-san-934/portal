@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-20T05:55+09:00",
+ "updated_at": "2026-10-20T08:55+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1785,6 +1785,13 @@
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Announces-Date-of-Third-Quarter-2026-Earnings-Release-and-Webcast/default.aspx",
      "source": "official",
      "first_seen": "2026-10-13T07:48+09:00"
+    },
+    {
+     "date": "2026-10-12",
+     "title": "Ondas Announces Regna AI, Powered by Palantir, to Advance Sovereign AI",
+     "url": "https://investors.palantir.com/news-details/2026/Ondas-Announces-Regna-AI-Powered-by-Palantir-to-Advance-Sovereign-AI/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-12T00:00+09:00"
     },
     {
      "date": "2026-10-11",
