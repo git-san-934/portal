@@ -22536,10 +22536,13 @@ https://www.keyence.co.jp/products/vision/blog/defect-type-imaging-lighting-desi
 https://www.keyence.co.jp/products/vision/blog/glossy-transparent-workpiece-inspection-method.jsp
 https://www.keyence.co.jp/products/vision/blog/human-error-prevention-vision-sensor.jsp
 https://www.keyence.co.jp/products/vision/blog/metal-parts-presence-count-inspection.jsp
+https://www.keyence.co.jp/products/vision/blog/no-programming-vision-inspection-setup.jsp
 https://www.keyence.co.jp/products/vision/blog/ocr-ocv-difference-print-inspection.jsp
 https://www.keyence.co.jp/products/vision/blog/product-type-discrimination-image-processing-guide.jsp
 https://www.keyence.co.jp/products/vision/blog/robot-vision-2d-3d-selection-guide.jsp
+https://www.keyence.co.jp/products/vision/blog/vision-inspection-support-and-startup-assistance.jsp
 https://www.keyence.co.jp/products/vision/blog/vision-sensor-applications-selection-guide.jsp
+https://www.keyence.co.jp/products/vision/blog/vision-sensor-minor-stoppage-countermeasure.jsp
 https://www.keyence.co.jp/products/vision/blog/visual-inspection-automation-roi-evaluation.jsp
 https://www.keyence.co.jp/products/vision/blog/visual-inspection-system-selection-guide.jsp
 https://www.keyence.co.jp/products/vision/vision-sensor/
