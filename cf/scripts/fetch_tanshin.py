@@ -27,7 +27,10 @@ ROW_RE = re.compile(r"<tr>(.*?)</tr>", re.S)
 CELL_RE = re.compile(r'<td[^>]*class="[^"]*kj(\w+)"[^>]*>(.*?)</td>', re.S)
 HREF_RE = re.compile(r'href="([^"]+)"')
 TAG_RE = re.compile(r"<[^>]+>")
-FACT_RE = re.compile(r"<ix:(nonFraction|nonNumeric)\b([^>]*)>(.*?)</ix:\1>", re.S)
+# nonNumeric は中に nonFraction を含むことがあるので、別々に探す
+NUM_RE = re.compile(r"<ix:nonFraction\b([^>]*?)(?:/>|>(.*?)</ix:nonFraction>)", re.S)
+TEXT_RE = re.compile(r"<ix:nonNumeric\b([^>]*)>(.*?)</ix:nonNumeric>", re.S)
+TEXTS = ("DocumentName", "FiscalYearEnd", "QuarterlyPeriod", "AccountingStandards", "FilingDate")
 ATTR_RE = re.compile(r'([\w:]+)="([^"]*)"')
 
 
@@ -101,11 +104,12 @@ def read_summary(url):
         if "/Summary/" not in name or not base.endswith("ixbrl.htm"):
             continue
         text = z.read(name).decode("utf-8", "replace")
-        for kind, attrs, body in FACT_RE.findall(text):
+        for attrs, body in NUM_RE.findall(text):
             a = dict(ATTR_RE.findall(attrs))
-            if kind == "nonFraction":
-                facts.append((a.get("name", ""), a.get("contextRef", ""), number(a, body)))
-            elif a.get("name", "").split(":")[-1] in ("DocumentName", "FiscalYearEnd", "QuarterlyPeriod", "AccountingStandards", "FilingDate"):
+            facts.append((a.get("name", ""), a.get("contextRef", ""), number(a, body)))
+        for attrs, body in TEXT_RE.findall(text):
+            a = dict(ATTR_RE.findall(attrs))
+            if a.get("name", "").split(":")[-1] in TEXTS:
                 facts.append((a.get("name", ""), a.get("contextRef", ""), html.unescape(TAG_RE.sub("", body)).strip()))
     return facts, sorted(z.namelist())
 
