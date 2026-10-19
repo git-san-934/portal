@@ -1,6 +1,6 @@
 name: 投資分析 EPS・BPS 更新(EDINET)
 
-# 投資分析ページ(cf/)の銘柄の EPS・BPS 10年分を有価証券報告書から集める。時間がかかるので、
+# 投資分析ページ(cf/)の銘柄の EPS・BPS 10年分を有価証券報告書から集め、「最新の半期」の節を半期報告書から作り直す。時間がかかるので、
 # 途中で打ち切ってもそれまでの結果をコミットし、次の実行で続きを取る。
 on:
   schedule:
@@ -43,12 +43,12 @@ jobs:
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add cf/data
+          git add cf/data cf/*/half.js
           if git diff --cached --quiet; then
             echo "変更なし"
             exit 0
           fi
-          git commit -m "投資分析 EPS・BPS 更新 ($(TZ=Asia/Tokyo date +%F))"
+          git commit -m "投資分析 EPS・BPS・半期 更新 ($(TZ=Asia/Tokyo date +%F))"
           BRANCH="${{ github.head_ref || github.ref_name }}"
           git pull --rebase origin "$BRANCH"
           git push origin HEAD:"$BRANCH"
