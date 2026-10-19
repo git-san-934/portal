@@ -7,6 +7,7 @@ rows は (要素名, コンテキスト, 値, 単位) の並び。今期上期�
 
 import re
 
+VERSION = 1  # half.js の作り方の版。上げると全社を作り直す
 FLOW = ("InterimDuration", "Prior1InterimDuration")
 STOCK = ("InterimInstant", "Prior1YearInstant")
 # 四半期報告書の形で出している会社(累計期間の名前が違う)
@@ -20,7 +21,7 @@ FIELDS = {
                        "RevenueIFRSSummaryOfBusinessResults", "OperatingRevenue1SummaryOfBusinessResults"]),
     "opinc": ("flow", ["OperatingIncome", "OperatingProfitLossIFRS", "OperatingIncomeLossUSGAAPSummaryOfBusinessResults",
                        "OperatingProfitLossIFRSSummaryOfBusinessResults", "OperatingProfitIFRSSummaryOfBusinessResults",
-                       "ProfitLossBeforeTaxIFRS"]),
+                       "BusinessProfitLossIFRS", "ProfitLossBeforeTaxIFRS"]),
     "net": ("flow", ["ProfitLossAttributableToOwnersOfParent", "ProfitLossAttributableToOwnersOfParentIFRS",
                      "ProfitLossAttributableToOwnersOfParentIFRSSummaryOfBusinessResults",
                      "NetIncomeLossAttributableToOwnersOfParentUSGAAPSummaryOfBusinessResults",
@@ -41,28 +42,35 @@ FIELDS = {
                      ("PurchaseOfPropertyPlantAndEquipmentInvCFIFRS", "PurchaseOfIntangibleAssetsInvCFIFRS"),
                      "PurchaseOfPropertyPlantAndEquipmentAndIntangibleAssetsInvCF",
                      "PurchaseOfPropertyPlantAndEquipmentAndIntangibleAssetsInvCFIFRS",
-                     "PurchaseOfNoncurrentAssetsInvCF", "CapitalExpendituresInvCFIFRS",
+                     "PurchaseOfNoncurrentAssetsInvCF", "PurchaseOfNonCurrentAssetsInvCFIFRS",
+                     "PurchaseOfTangibleAndIntangibleAssetsInvCFIFRS", "CapitalExpendituresInvCFIFRS",
                      ("AdditionsToFixedAssetsExcludingEquipmentLeasedToOthersInvCFIFRS", "AdditionsToIntangibleAssetsInvCFIFRS")]),
     "dep": ("flow", ["DepreciationAndAmortizationOpeCF", "DepreciationAndAmortizationOpeCFIFRS", "DepreciationAndOtherAmortizationOpeCF", "DepreciationOpeCF"]),
-    "div": ("flow", ["CashDividendsPaidFinCF", "DividendsPaidFinCFIFRS", "DividendsPaidToOwnersOfParentFinCFIFRS"]),
+    "div": ("flow", ["CashDividendsPaidFinCF", "DividendsPaidByParentCompanyFinCF", "DividendsPaidFinCFIFRS", "DividendsPaidToOwnersOfParentFinCFIFRS"]),
     "buy": ("flow", ["PurchaseOfTreasuryStockFinCF", "PaymentsForPurchaseOfTreasurySharesFinCFIFRS",
                     "ReissuanceRepurchaseOfTreasuryStockFinCFIFRS"]),
     "acq": ("flow", ["PurchaseOfInvestmentsInSubsidiariesResultingInChangeInScopeOfConsolidationInvCF",
+                     "PurchaseOfInvestmentsInSubsidiariesResultingInChangeInScopeOfConsolidationInvCFIFRS",
+                     "PurchaseOfInvestmentsInCapitalOfSubsidiariesResultingInChangeInScopeOfConsolidationInvCF",
                      "PaymentsForAcquisitionOfSubsidiariesInvCFIFRS"]),
     "cash": ("stock", ["CashAndCashEquivalents", "CashAndCashEquivalentsIFRS",
                        "CashAndCashEquivalentsIFRSSummaryOfBusinessResults", "CashAndCashEquivalentsSummaryOfBusinessResults"]),
     "recv": ("stock", ["NotesAndAccountsReceivableTradeAndContractAssets", "NotesAndAccountsReceivableTrade",
-                       "AccountsReceivableTradeAndContractAssets", "AccountsReceivableTrade", "TradeAndOtherReceivablesCAIFRS"]),
+                       "AccountsReceivableTradeAndContractAssets", "AccountsReceivableTrade", "TradeAndOtherReceivablesCAIFRS", "TradeReceivablesCAIFRS"]),
     "inventory": ("stock", ["Inventories", "InventoriesCAIFRS",
                             ("MerchandiseAndFinishedGoods", "Merchandise", "FinishedGoods", "WorkInProcess",
-                             "RawMaterialsAndSupplies", "RawMaterials", "Supplies")]),
+                             "RawMaterialsAndSupplies", "RawMaterials", "Supplies", "RealEstateForSale",
+                             "RealEstateForSaleInProcess", "CostsOnUncompletedConstructionContractsCNS")]),
     "assets": ("stock", ["Assets", "AssetsIFRS", "TotalAssetsIFRSSummaryOfBusinessResults", "TotalAssetsSummaryOfBusinessResults"]),
     "equity": ("stock", ["NetAssets", "EquityIFRS", "EquityAttributableToOwnersOfParentIFRS",
                          "NetAssetsSummaryOfBusinessResults"]),
     "debt": ("stock", [("ShortTermLoansPayable", "CurrentPortionOfLongTermLoansPayable", "LongTermLoansPayable",
                         "CommercialPapersLiabilities", "CurrentPortionOfBonds", "BondsPayable"),
                        ("BondsAndBorrowingsCLIFRS", "BondsAndBorrowingsNCLIFRS", "BorrowingsCLIFRS", "BorrowingsNCLIFRS",
-                        "BondsPayableNCLIFRS", "BondsPayableCLIFRS")]),
+                        "BondsPayableNCLIFRS", "BondsPayableCLIFRS"),
+                       ("BondsBorrowingsAndLeaseObligationsCLIFRS", "BondsBorrowingsAndLeaseObligationsNCLIFRS"),
+                       ("InterestBearingLiabilitiesCLIFRS", "InterestBearingLiabilitiesNCLIFRS", "LongTermInterestBearingDebtDueWithinOneYearCLIFRS"),
+                       ("BorrowedMoneyLiabilitiesBNK", "ShortTermBondsPayable", "BondsPayable")]),
 }
 # 銀行は売上高・営業利益の代わりに経常収益・経常利益を出す
 BANK = {
@@ -132,9 +140,6 @@ def extract(rows, period_start, bank=False):
         cur, prev = (value(t, cands, c) for c in ctxs)
         # 前の期の候補が今期と違う要素から取られることがないように、今期に値がある候補で前期も取る
         out[k] = [oku(cur), oku(prev)]
-    if bank:
-        for k in ("op", "inv", "fin", "ppe", "dep", "recv", "inventory", "debt"):
-            out[k] = [None, None]
     # 1株あたり: EPS は報告書の数字。BPS は親会社の株主の持分 ÷ (発行済株式数 − 自己株式数)
     out["eps"] = [value(t, EPS, c) for c in FLOW]
     owners = []

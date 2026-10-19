@@ -528,7 +528,6 @@ def collect(key, cache):
 
 # ---------- 4. 最新の半期報告書から half.js を作り直す ----------
 
-DUMP = os.environ.get("HALF_DUMP") == "1"  # 一時
 HALF_JS = re.compile(r"=\s*(\{.*\})\s*;?\s*$", re.S)
 
 
@@ -560,7 +559,7 @@ def update_half(key, cache):
             continue
         # 同じ半期の訂正などは、あとに出たものを使う
         latest = max((d for d in docs if d[3]), key=lambda d: (d[1], d[0]), default=None)
-        if latest and (DUMP or latest[1][:7] > old.get("halfStart", "") or (latest[1][:7] == old.get("halfStart") and "eps" not in old)):
+        if latest and (latest[1][:7] > old.get("halfStart", "") or (latest[1][:7] == old.get("halfStart") and old.get("v") != half.VERSION)):
             todo.append((code, path, old, latest))
     log(f"作り直す半期の数字: {len(todo)} 社")
 
@@ -579,17 +578,12 @@ def update_half(key, cache):
         for (code, path, old, latest), rows in ex.map(work, todo):
             if not rows:
                 continue
-            if DUMP:  # 一時: 要素の確認用
-                import gzip
-                (DATA_DIR / "halfdump").mkdir(exist_ok=True)
-                with gzip.open(DATA_DIR / "halfdump" / f"{code}.json.gz", "wt") as f:
-                    json.dump(rows, f)
             res = half.extract(rows, latest[1], old.get("bank", False) or half.is_bank(rows))
             if res["sales"][0] is None and res["assets"][0] is None:
                 log(f"  {code} {latest[2]}: 半期の数字が読めないため、前のままにします")
                 continue
             annual = old.get("annualEnd") or res["fyEnd"]
-            new = {"code": code, "annualEnd": annual, **res, "doc": latest[2], "newer": res["fyEnd"] > annual,
+            new = {"v": half.VERSION, "code": code, "annualEnd": annual, **res, "doc": latest[2], "newer": res["fyEnd"] > annual,
                    "next": half.periods(latest[1])["next"]}
             path.write_text("window.CF_HALF = " + json.dumps(new, ensure_ascii=False) + ";\n", encoding="utf-8")
             done += 1

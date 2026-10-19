@@ -36,7 +36,6 @@ jobs:
         env:
           EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
           TIME_LIMIT: "6000"
-          HALF_DUMP: "1" # 一時
         run: python cf/scripts/fetch_eps.py
       - name: 結果をコミット
         id: commit
