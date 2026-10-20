@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-20T15:01+09:00",
+ "generated_at": "2026-10-20T23:26+09:00",
  "report_date": "2026-10-20",
  "days": [
   {
@@ -31,6 +31,13 @@
      "type": "トレンド転換",
      "dir": "低下",
      "detail": "3期移動平均が12期移動平均を下抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261020a.htm",
+     "name": "バーゼル銀行監督委員会による「整合性評価プログラム（RCAP）におけるレバレッジ比率規制の評価」の公表について",
+     "url": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261020a.htm",
+     "time": "17:00"
     },
     {
      "kind": "news",
@@ -3516,10 +3523,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-20T15:01+09:00",
+  "checked_at": "2026-10-20T23:26+09:00",
   "counts": {
-   "new": 10,
-   "unchanged": 92,
+   "new": 0,
+   "unchanged": 102,
    "error": 0,
    "stale": 0
   },
