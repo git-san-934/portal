@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-21T04:54+09:00",
+ "updated_at": "2026-10-21T07:18+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2086,6 +2086,13 @@
     "spacex:"
    ],
    "items": [
+    {
+     "date": "2026-10-20",
+     "title": "SpaceX Reports Third Quarter 2026 Results",
+     "url": "https://ir.spacex.com/files/content_files/SpaceX-Reports-Third-Quarter-2026-Results.pdf",
+     "source": "official",
+     "first_seen": "2026-10-21T07:18+09:00"
+    },
     {
      "date": "2026-10-16",
      "title": "SpaceX to Post Third Quarter 2026 Results and Host Webcast on October 20, 2026",
