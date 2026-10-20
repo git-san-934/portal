@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-20T10:52+09:00",
+ "updated_at": "2026-10-20T17:53+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-20",
+     "title": "『モンスターハンターワイルズ』の序盤が遊べる体験版がNintendo Switch 2 で本日より配信開始。製品版へのセーブデータ引き継ぎも可能。 ※本作の対象年齢は「15歳以上」です。",
+     "url": "https://www.nintendo.com/jp/topics/article/b197b37a-9255-41f2-932f-6583f010254f",
+     "source": "official",
+     "first_seen": "2026-10-20T17:53+09:00"
+    },
     {
      "date": "2026-10-16",
      "title": "理工系・デザイン系・サウンド系の各採用イベントへのお申し込み受付を開始しました。",
@@ -896,6 +903,13 @@
     "https://www.fuji.co.jp/"
    ],
    "items": [
+    {
+     "date": "2026-10-20",
+     "title": "リリース 製品・事業 ニトリ環八用賀店で『Quist』を活用した実証実験を開始 ~スマートロッカーシステムを活用し、店舗受取りサービスの利便性向上と業務効率化を検証~ [PDF:658.5KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/20261020_Quist_nitori_store_pickup.pdf",
+     "source": "official",
+     "first_seen": "2026-10-20T17:53+09:00"
+    },
     {
      "date": "2026-10-08",
      "title": "メディア掲載 企業情報 IR 「日経ヴェリタス」記事掲載のお知らせ",
@@ -2586,6 +2600,13 @@
     "https://news.panasonic.com/jp/"
    ],
    "items": [
+    {
+     "date": "2026-10-20",
+     "title": "技術・研究開発 パナソニックHD、ガラス型ペロブスカイト太陽電池の本格量産計画を一年前倒し、2029年4月より長浜拠点で生産開始",
+     "url": "https://news.panasonic.com/jp/press/jn261020-1",
+     "source": "official",
+     "first_seen": "2026-10-20T17:53+09:00"
+    },
     {
      "date": "2026-10-19",
      "time": "16:03",
