@@ -77,6 +77,15 @@
     svg.sp polyline { fill: none; stroke: var(--text-sub); stroke-width: 1.3; }
     .notes { color: var(--text-sub); font-size: 0.8rem; margin-top: 1rem; line-height: 1.8; }
     .err { color: var(--down); padding: 1rem; }
+    .refresh { display: flex; gap: 0.5rem; flex-wrap: wrap; margin: 0.2rem 0 0.4rem; }
+    .reload-btn, .refresh-btn {
+      font: inherit; font-size: 0.85rem; font-weight: 700; padding: 0.35rem 0.95rem; border-radius: 999px;
+      text-decoration: none; cursor: pointer; border: 1px solid var(--accent);
+    }
+    .reload-btn { background: var(--accent); color: var(--accent-text); }
+    .reload-btn:disabled { opacity: 0.6; cursor: wait; }
+    .refresh-btn { background: var(--card-bg); color: var(--accent); }
+    .refresh-note { font-size: 0.75rem; color: var(--text-sub); margin-bottom: 0.8rem; }
     @media (max-width: 560px) {
       .col-sp, .col-hi { display: none; }
       th, td { padding: 0.5rem 0.35rem; }
@@ -91,6 +100,11 @@
     <h1>米国3倍ブル 下落率ランキング</h1>
     <p class="lead">米国上場の3倍ブルETF/ETNを、過去1年の最高値（終値）からどれだけ下がっているかの順に並べています。表の見出しを押すと、その項目で並び替えます（もう一度押すと逆順）。</p>
     <p class="meta" id="meta">読み込み中…</p>
+    <p class="refresh">
+      <button type="button" class="reload-btn" id="reload">最新データを読み込む</button>
+      <a class="refresh-btn" id="refresh" target="_blank" rel="noopener">今すぐ更新</a>
+    </p>
+    <p class="refresh-note">「最新データを読み込む」はページを開いたまま最新のデータを取り直します。「今すぐ更新」は GitHub の画面が開くので「Create」を押すと、3〜5分で株価を取りに行きます(GitHub へのログインが必要です。ふだんは火〜土の朝 7:15・9:15 に自動更新)。</p>
     <div class="card">
       <table>
         <thead>
@@ -167,17 +181,39 @@
       render();
     }));
     markHeaders();
-    fetch("data/lev3x.json", { cache: "no-store" })
-      .then((r) => r.json())
-      .then((d) => {
+    async function load() {
+      const btn = document.getElementById("reload");
+      const meta = document.getElementById("meta");
+      const prev = funds.length ? meta.dataset.gen : null;
+      btn.disabled = true;
+      try {
+        const r = await fetch(`data/lev3x.json?t=${Date.now()}`, { cache: "no-store" });
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const d = await r.json();
         funds = d.funds;
         const latest = funds.filter((f) => !f.stale).map((f) => f.date).sort().pop();
-        document.getElementById("meta").textContent = `${latest} の終値 ・ ${funds.length}銘柄 ・ 更新 ${d.generated_at.replace("T", " ").slice(0, 16)}（日本時間）`;
+        let text = `${latest} の終値 ・ ${funds.length}銘柄 ・ 更新 ${d.generated_at.replace("T", " ").slice(0, 16)}（日本時間）`;
+        if (prev) text += prev === d.generated_at ? " ・ 新しいデータはまだありません" : " ・ 新しいデータを読み込みました";
+        meta.textContent = text;
+        meta.dataset.gen = d.generated_at;
         render();
-      })
-      .catch(() => {
-        document.getElementById("meta").innerHTML = '<span class="err">データを読み込めませんでした。</span>';
-      });
+      } catch (e) {
+        meta.innerHTML = '<span class="err">データを読み込めませんでした。</span>';
+      } finally {
+        btn.disabled = false;
+      }
+    }
+    document.getElementById("reload").onclick = load;
+
+    // 「今すぐ更新」: 更新依頼の Issue を作る画面を開く。所有者が作ると Actions が株価を取りに行く
+    // (.github/workflows/request-lev3x-update.yml)
+    const q = new URLSearchParams({
+      title: "米国3倍ブルの下落率を更新",
+      body: "米国3倍ブル下落率ランキングの「今すぐ更新」から作成。\n\nこのまま「Create」(または「Submit new issue」)を押すと、3〜5分で株価の取得とページの更新が行われます。反映後にページの「最新データを読み込む」を押してください。",
+    });
+    document.getElementById("refresh").href = `https://github.com/git-san-934/portal/issues/new?${q}`;
+
+    load();
   </script>
 </body>
 </html>
