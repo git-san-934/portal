@@ -1,0 +1,38 @@
+name: 米国3倍ブル下落率 手動更新
+
+# 下落率ランキングの「今すぐ更新」を押すと、更新依頼の Issue を作る画面が開く。
+# リポジトリ所有者がその Issue を作ったときだけ、データ更新(update-lev3x.yml)を起動して Issue を閉じる。
+# (ページから直接 Actions を動かすにはトークンが要るため、暴落買いナビの「今すぐ更新」と同じ仕組みにしている)
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write # 結果をコメントして Issue を閉じる
+  actions: write # データ更新を起動する
+
+jobs:
+  request:
+    if: >-
+      github.event.issue.user.login == github.repository_owner &&
+      startsWith(github.event.issue.title, '米国3倍ブルの下落率を更新')
+    runs-on: ubuntu-latest
+    steps:
+      - name: データ更新を起動
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update-lev3x.yml --repo "$GITHUB_REPOSITORY" --ref main
+      - name: 結果をコメントして閉じる
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.issue.number }}
+          OK: ${{ job.status == 'success' }}
+        run: |
+          if [ "$OK" = "true" ]; then
+            gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "下落率データの更新を始めました。3〜5分ほどでページに反映されます(米国市場の新しい終値がまだなければ、データは変わりません)。"
+            gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --reason completed
+          else
+            gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "更新を始められませんでした。Actions のログを確認してください。"
+            gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --reason "not planned"
+          fi
