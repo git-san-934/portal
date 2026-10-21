@@ -10,7 +10,7 @@ jobs:
     timeout-minutes: 15
     steps:
       - uses: actions/checkout@v4
-      - run: python3 boj-stats/pipeline/probe_customs.py out
+      - run: python3 boj-stats/pipeline/probe_customs.py out | tee out/_log.txt
       - run: |
           cd out && git init -q && git checkout -q -b probe-out && git add -A
           git -c user.name=bot -c user.email=bot@example.com commit -qm probe
