@@ -19,7 +19,7 @@
 ファイルの統計表IDは一覧ページから毎回探す（更新時に変わっても追随するため）。
 Excel は標準ライブラリだけで読む（xlsx.py）。
 """
-import csv, datetime as dt, html, io, json, os, re, time, urllib.error, urllib.request
+import csv, datetime as dt, html, io, json, os, re, time, unicodedata, urllib.error, urllib.request
 from fetch import ROOT, RAW, load_series, csv_path, read_csv, write_csv, load_summary, save_summary, guarded
 import xlsx
 
@@ -463,6 +463,44 @@ def trade_goods(countries):
         json.dump(res, f, ensure_ascii=False, separators=(",", ":"))
 
 
+# 財務省（税関）の報道発表。e-Stat には前月分が月末ごろ載るが、速報は公表日（毎月20日前後）の 8:50 にここに出る。
+# 月ごとの XML（総額・地域(国)別、単位百万円）から、e-Stat にまだ無い月だけ埋める。e-Stat に載ればそちらで上書きされる
+CUSTOMS_RELEASES = "https://www.customs.go.jp/toukei/shinbun/happyou.htm"
+# 報道発表の地域(国)名 → e-Stat の地域(国)別表の見出し
+CUSTOMS_AREAS = {"総額": ("area", "Total"), "アメリカ合衆国": ("country", "USA"), "中華人民共和国": ("country", "CHINA"),
+                 "EU": ("country", "EU"), "ASEAN": ("country", "ASEAN"), "台湾": ("country", "TAIWAN")}
+
+
+def _customs_latest(raw):
+    """raw（{(表, 見出し, EX/IM): {YYYY-MM: 千円}}）に、報道発表の速報で e-Stat に無い月を足す。足した月を返す。"""
+    have = max((d for k, v in raw.items() if k[:2] == ("area", "Total") for d in v), default="")
+    page = get(CUSTOMS_RELEASES).decode("shift_jis", "replace")
+    # 月次の行は title="2026.09" href="./trade-st/2026/2026094.xml"（上中旬などの旬報も同じ形なので中身で見分ける）
+    links = dict.fromkeys(re.findall(r'title="(\d{4})\.(\d{2})" href="\./(trade-st/\d{4}/\d{7}\.xml)"', page))
+    added = []
+    for y, m, path in sorted(links, reverse=True):
+        month = f"{y}-{m}"
+        if month <= have or month in added:
+            continue
+        body = get(CUSTOMS_RELEASES.rsplit("/", 1)[0] + "/" + path).decode("utf-8", "replace")
+        if not re.search(r"<title>[^<]*月分貿易統計", body):
+            continue  # 旬報
+        found = 0
+        for blk in re.findall(r"<chiikikunisogakuinfo>(.*?)</chiikikunisogakuinfo>", body, re.S):
+            name = unicodedata.normalize("NFKC", re.search(r"<chiikikuni>([^<]*)", blk).group(1)).strip("() ")
+            if name not in CUSTOMS_AREAS:
+                continue
+            for side, tag in (("EX", "exportkagakue"), ("IM", "importkagakue")):
+                v = re.search(f"<{tag}>([^<]*)</{tag}>", blk).group(1).replace(",", "").strip()
+                if re.fullmatch(r"\d+", v):
+                    raw.setdefault(CUSTOMS_AREAS[name] + (side,), {})[month] = int(v) * 1000  # 百万円 → 千円
+                    found += 1
+        if found < 2 * len(CUSTOMS_AREAS):
+            raise RuntimeError(f"報道発表 {path} の地域(国)別の表に対象の地域が揃っていない（{found}件）")
+        added.append(month)
+    return added
+
+
 SIDE_ERRORS = []  # 系列の他に作るファイル（国別推移など）の失敗。main() が errors に移す
 
 
@@ -509,6 +547,11 @@ def trade(rawdir):
                     f.write(body)
             for k, v in _trade_parse(body, table).items():
                 raw.setdefault((table,) + k, {}).update(v)  # 新しいファイルの値で上書き（改定の反映）
+    if any(t in ("area", "country") for t in tables):
+        try:  # 税関に届かなくても、e-Stat の分は取り込む
+            _customs_latest(raw)
+        except Exception as e:
+            SIDE_ERRORS.append(f"ESTAT 貿易統計（税関の速報）: {type(e).__name__}: {e}")
     out = {}
     for s in wanted:
         t = s["trade"]
