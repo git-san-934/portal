@@ -25,7 +25,7 @@ SOURCES = {
     "STAT": ("総務省統計局", "https://www.stat.go.jp/"),
     "ESTAT": ("政府統計の総合窓口 e-Stat", "https://www.e-stat.go.jp/"),
 }
-TRADE = ("財務省 貿易統計（e-Stat 貿易概況）", "https://www.customs.go.jp/toukei/info/index.htm")
+TRADE = ("財務省 貿易統計（税関の速報・e-Stat 貿易概況）", "https://www.customs.go.jp/toukei/info/index.htm")
 
 # (見出し, 判定) の順に最初に当てはまったカテゴリに入れる
 CATEGORIES = [
