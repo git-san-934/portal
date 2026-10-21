@@ -1,7 +1,13 @@
 """一時的な調査用: 税関サイトのページを集める"""
 import os, re, sys, urllib.request, urllib.parse
 out = sys.argv[1]; os.makedirs(out, exist_ok=True)
-START = ["https://www.customs.go.jp/toukei/info/index.htm",
+START = ["https://www.customs.go.jp/toukei/srch/top.htm",
+         "https://www.customs.go.jp/toukei/srch/display/jccjs00mj.js",
+         "https://www.customs.go.jp/toukei/srch/index.htm?M=01&P=0",
+         "https://www.customs.go.jp/toukei/srch/jccht00d.htm",
+         "https://www.customs.go.jp/toukei/sankou/howto/kensaku.html",
+         "https://www.customs.go.jp/toukei/info/tsdl.htm"]
+OLD = ["https://www.customs.go.jp/toukei/info/index.htm",
          "https://www.customs.go.jp/toukei/latest/index.htm",
          "https://www.customs.go.jp/toukei/srch/index.htm",
          "https://www.customs.go.jp/toukei/search/index1.htm",
@@ -21,9 +27,9 @@ while queue and len(seen) < 150:
     name = re.sub(r"[^A-Za-z0-9._-]", "_", u.split("//", 1)[1])[:150]
     open(os.path.join(out, name), "wb").write(body[:3_000_000])
     log.write(f"OK {u} {ct} {len(body)}\n")
-    if d < 1 and ("html" in ct or u.endswith((".htm", ".html"))):
+    if d < 3 and ("html" in ct or "javascript" in ct or u.endswith((".htm", ".html", ".js"))):
         text = body.decode("shift_jis", "replace") if b"charset=Shift_JIS" in body[:2000] or b"shift_jis" in body[:2000].lower() else body.decode("utf-8", "replace")
-        for h in re.findall(r'href="([^"#]+)"', text):
+        for h in re.findall(r'(?:href|src|SRC|HREF)\s*=\s*["']([^"'#]+)["']', text) + re.findall(r'["\']([A-Za-z0-9_/.?=&-]+\.(?:htm|html|js|csv)(?:\?[^"\']*)?)["\']', text):
             v = urllib.parse.urljoin(u, h)
-            if v.startswith("https://www.customs.go.jp/toukei/") and v not in seen:
+            if v.startswith("https://www.customs.go.jp/toukei/srch") and v not in seen:
                 queue.append((v, d + 1))
