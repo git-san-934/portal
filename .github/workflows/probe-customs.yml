@@ -1,0 +1,13 @@
+name: probe customs (temporary)
+on:
+  pull_request:
+    paths: [.github/workflows/probe-customs.yml, boj-stats/pipeline/probe_customs.py]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v4
+      - run: python3 boj-stats/pipeline/probe_customs.py out
+      - uses: actions/upload-artifact@v4
+        with: {name: probe, path: out}
