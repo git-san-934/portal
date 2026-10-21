@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-21T17:53+09:00",
+ "updated_at": "2026-10-21T21:26+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -482,11 +482,9 @@
    "name": "住友大阪セメント",
    "market": "JP",
    "home": "https://www.soc.co.jp/",
-   "official_status": "ok",
+   "official_status": "取得できませんでした",
    "official_pages": [
-    "https://www.soc.co.jp/news/",
-    "https://www.soc.co.jp/news/feed/",
-    "https://www.soc.co.jp/ir/news/"
+    "https://www.soc.co.jp/news/"
    ],
    "items": [
     {
@@ -2214,9 +2212,9 @@
    "name": "日本化学",
    "market": "JP",
    "home": "https://www.nippon-chem.co.jp/",
-   "official_status": "ok",
+   "official_status": "取得できませんでした",
    "official_pages": [
-    "https://www.nippon-chem.co.jp/news/feed/"
+    "https://www.nippon-chem.co.jp/news/"
    ],
    "items": [
     {
