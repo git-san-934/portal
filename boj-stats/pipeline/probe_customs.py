@@ -29,7 +29,7 @@ while queue and len(seen) < 150:
     log.write(f"OK {u} {ct} {len(body)}\n")
     if d < 3 and ("html" in ct or "javascript" in ct or u.endswith((".htm", ".html", ".js"))):
         text = body.decode("shift_jis", "replace") if b"charset=Shift_JIS" in body[:2000] or b"shift_jis" in body[:2000].lower() else body.decode("utf-8", "replace")
-        for h in re.findall(r'(?:href|src|SRC|HREF)\s*=\s*["']([^"'#]+)["']', text) + re.findall(r'["\']([A-Za-z0-9_/.?=&-]+\.(?:htm|html|js|csv)(?:\?[^"\']*)?)["\']', text):
+        for h in re.findall(r"""(?:href|src|SRC|HREF)\s*=\s*["']([^"'#]+)["']""", text) + re.findall(r"""["']([A-Za-z0-9_/.?=&-]+\.(?:htm|html|js|csv)(?:\?[^"']*)?)["']""", text):
             v = urllib.parse.urljoin(u, h)
             if v.startswith("https://www.customs.go.jp/toukei/srch") and v not in seen:
                 queue.append((v, d + 1))
