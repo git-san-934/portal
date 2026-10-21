@@ -16,6 +16,16 @@
     .item .st { font-size: .78rem; font-weight: 700; padding: .25rem .7rem; border-radius: 999px; background: var(--accent); color: #fff; flex-shrink: 0; }
     .item.wait { opacity: .55; }
     .item.wait .st { background: var(--border); color: var(--text-sub); }
+    .recent { margin: 0 0 1.6rem; }
+    .recent summary { cursor: pointer; font-weight: 700; font-size: 1.05rem; margin-bottom: .4rem; }
+    .recent table td { text-align: left; white-space: normal; }
+    .recent table td:first-child { white-space: nowrap; position: static; background: none; vertical-align: top; color: var(--text-sub); }
+    .recent a { color: inherit; }
+    .recent .tag { display: inline-block; font-size: .72rem; padding: .05rem .5rem; margin: .1rem .25rem .1rem 0; border-radius: 999px; border: 1px solid var(--border); color: var(--text-sub); white-space: nowrap; }
+    .item .nm b .upd { display: inline-block; font-size: .72rem; font-weight: 400; color: var(--text-sub); white-space: nowrap; }
+    .sortbar { display: flex; justify-content: flex-end; margin: 0 0 .6rem; }
+    .sortbar button { font: inherit; font-size: .82rem; padding: .35rem .9rem; border-radius: 999px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text); cursor: pointer; }
+    .sortbar button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
   </style>
 </head>
 <body>
@@ -26,6 +36,12 @@
     <p>持ち株チェックの日本株と、気になっている銘柄について、有価証券報告書のキャッシュフロー計算書から「何に投資しているか」を、過去7年の推移と一緒にまとめています。持ち株は持ち株チェックと、気になる銘柄はきになる.csvと同じ並びです。</p>
     <p class="sub" id="updated">データ更新日：読み込み中…</p>
   </header>
+  <details class="recent" id="recent" hidden>
+    <summary id="recent-sum"></summary>
+    <p class="sub" style="margin:0 0 .4rem">決算短信（TDnet）と有価証券報告書・半期報告書（EDINET）が直近7日間に出た銘柄です。日付は開示日・提出日で、ページには決算短信は当日夕方、有報・半期報告書は翌朝に反映されます。</p>
+    <table><tbody id="recent-body"></tbody></table>
+  </details>
+  <div class="sortbar" id="sortbar" hidden><button type="button" id="sort" aria-pressed="false">更新順に並べる</button></div>
   <h2 style="margin:0 0 .6rem">持ち株</h2>
   <div class="list" id="list"></div>
   <h2 style="margin:1.6rem 0 .3rem">気になる銘柄</h2>
@@ -306,25 +322,79 @@
     ['6144', '西部電機', '物流の自動化と精密機械。新工場を建てて生産能力1.5倍', '6144/'],
     ['6741', '日本信号', '鉄道信号と改札機の会社。設備投資を増やし、宇都宮に130億円', '6741/'],
   ];
+  // 銘柄ごとの最新の決算短信・有報・半期報告書（[日付, 書類, 時刻]）。データを読んだあとに入る
+  const last = {};
+  let byUpdate = false;
+  const mdy = (d) => d.slice(0, 4) === new Date().getFullYear() + '' ? `${+d.slice(5, 7)}/${+d.slice(8, 10)}` : `${+d.slice(0, 4)}/${+d.slice(5, 7)}/${+d.slice(8, 10)}`;
+  const upd = (c) => last[c] ? `<span class="upd">${last[c][1]} ${mdy(last[c][0])}${last[c][2] ? ' ' + last[c][2] : ''}</span>` : '';
   const row = ([c, n, d, h]) => h
-    ? `<a class="item" href="${h}"><span class="code">${c}</span><span class="nm"><b>${n}</b><span>${d}</span></span><span class="st">開く</span></a>`
+    ? `<a class="item" href="${h}"><span class="code">${c}</span><span class="nm"><b>${n} ${upd(c)}</b><span>${d}</span></span><span class="st">開く</span></a>`
     : `<div class="item wait"><span class="code">${c}</span><span class="nm"><b>${n}</b><span>${d || '準備中'}</span></span><span class="st">${d ? '対象外' : '準備中'}</span></div>`;
-  document.getElementById('list').innerHTML = L.map(row).join('');
-  document.getElementById('list2').innerHTML = K.map(row).join('');
-  document.getElementById('list3').innerHTML = N.map(row).join('');
-  document.getElementById('list4').innerHTML = S.map(row).join('');
-  document.getElementById('list5').innerHTML = W.map(row).join('');
-  document.getElementById('list6').innerHTML = F.map(row).join('');
-  document.getElementById('list7').innerHTML = R.map(row).join('');
+  const key = (c) => last[c] ? last[c][0] + (last[c][2] || '') : '';
+  const render = () => [['list', L], ['list2', K], ['list3', N], ['list4', S], ['list5', W], ['list6', F], ['list7', R]].forEach(([id, a]) => {
+    const rows = byUpdate ? a.slice().sort((x, y) => key(y[0]).localeCompare(key(x[0]))) : a;
+    document.getElementById(id).innerHTML = rows.map(row).join('');
+  });
+  render();
+  document.getElementById('sort').addEventListener('click', (e) => {
+    byUpdate = !byUpdate;
+    e.target.setAttribute('aria-pressed', byUpdate);
+    e.target.textContent = byUpdate ? '元の並びに戻す' : '更新順に並べる';
+    render();
+  });
 
   // データ更新日（各ワークフローが JSON に書く updated を表示する）
   const ymd = (u) => { const m = /^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}:\d{2}))?/.exec(u || ''); return m ? `${+m[1]}年${+m[2]}月${+m[3]}日${m[4] ? ' ' + m[4] : ''}` : null; };
   const U = [['株価', 'price.json'], ['決算短信', 'tanshin.json'], ['有価証券報告書・半期報告書', 'eps.json']];
-  Promise.all(U.map(([, f]) => fetch('data/' + f, { cache: 'no-cache' }).then((r) => r.ok ? r.json() : null).catch(() => null)))
+  const load = (f) => fetch('data/' + f, { cache: 'no-cache' }).then((r) => r.ok ? r.json() : null).catch(() => null);
+  const loads = U.map(([, f]) => load(f));
+  Promise.all(loads)
     .then((ds) => {
       const parts = U.map(([label], i) => [label, ymd(ds[i] && ds[i].updated)]).filter(([, d]) => d).map(([label, d]) => `${label} ${d}`);
       document.getElementById('updated').textContent = parts.length ? 'データ更新日：' + parts.join('、') : '';
     });
+
+  // 直近1週間に決算短信・有報・半期報告書が出た銘柄（各ワークフローが更新する JSON から毎回作る）
+  const DAYS = 7;
+  const names = {};
+  [L, K, N, S, W, F, R].forEach((a) => a.forEach(([c, n, , h]) => { if (!names[c] || !names[c][1]) names[c] = [n, h]; }));
+  const jst = (d) => new Date(d.getTime() + 9 * 3600e3).toISOString().slice(0, 10);
+  const since = jst(new Date(Date.now() - DAYS * 86400e3));
+  const kind = (t) => {
+    const m = /第\s*([1-4１-４])\s*四半期/.exec(t.title || '');
+    if (m) return `決算短信（第${'１２３４'.indexOf(m[1]) + 1 || m[1]}四半期）`;
+    return t.quarter === 4 ? '決算短信（通期）' : '決算短信';
+  };
+  Promise.all([loads[1], load('eps_docs.json')]).then(([tan, docs]) => {
+    const hits = {};
+    const add = (c, d, label, time) => {
+      if (d >= since) (hits[c] = hits[c] || []).push([d, label]);
+      if (d && (!last[c] || d + (time || '') > last[c][0] + (last[c][2] || ''))) last[c] = [d, label.replace(/（.*/, ''), time];
+    };
+    Object.entries((tan && tan.companies) || {}).forEach(([c, t]) => add(c, t.date || '', kind(t), t.time));
+    [['docs', '有価証券報告書'], ['half', '半期報告書']].forEach(([k, label]) =>
+      Object.entries((docs && docs[k]) || {}).forEach(([c, l]) => l.forEach(([d]) => add(c, d, label))));
+    const rows = Object.entries(hits).map(([c, l]) => [c, l.sort((a, b) => b[0].localeCompare(a[0]))])
+      .sort((a, b) => b[1][0][0].localeCompare(a[1][0][0]) || a[0].localeCompare(b[0]));
+    if (!rows.length && !tan && !docs) return;
+    render();
+    document.getElementById('sortbar').hidden = false;
+    const md = (d) => `${+d.slice(5, 7)}/${+d.slice(8, 10)}`;
+    document.getElementById('recent-sum').textContent = `直近1週間に更新された銘柄（${rows.length}社）`;
+    document.getElementById('recent-body').innerHTML = rows.length ? rows.map(([c, l]) => {
+      const [n, h] = names[c] || [c, c + '/'];
+      return `<tr><td>${md(l[0][0])}</td><td><a href="${h || c + '/'}" data-code="${c}">${c} ${n}</a><br>${l.map(([d, k]) => `<span class="tag">${k} ${md(d)}</span>`).join('')}</td></tr>`;
+    }).join('') : '<tr><td>この1週間に出た決算短信・報告書はありません。</td></tr>';
+    const box = document.getElementById('recent');
+    box.open = rows.length <= 15;
+    box.hidden = false;
+    // 一覧に載っていない銘柄は、ページの title から社名を取る
+    rows.filter(([c]) => !names[c]).forEach(([c]) => fetch(c + '/').then((r) => r.ok ? r.text() : '').then((t) => {
+      const m = /<title>([^<]*?)\s*投資分析\s*<\/title>/.exec(t);
+      const a = box.querySelector(`a[data-code="${c}"]`);
+      if (m && a) a.textContent = `${c} ${m[1]}`;
+    }).catch(() => {}));
+  });
 </script>
 </body>
 </html>
