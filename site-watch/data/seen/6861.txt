@@ -9782,14 +9782,21 @@ https://www.keyence.co.jp/products/measure-sys/image-measure/vm/models/vm-8040/
 https://www.keyence.co.jp/products/measure/
 https://www.keyence.co.jp/products/measure/blog/
 https://www.keyence.co.jp/products/measure/blog/3d-laser-profile-measurement-guide.jsp
+https://www.keyence.co.jp/products/measure/blog/accuracy-repeatability-resolution-difference.jsp
 https://www.keyence.co.jp/products/measure/blog/adhesive-sealant-bead-inspection.jsp
+https://www.keyence.co.jp/products/measure/blog/backgrinding-thickness-dicing-kerf-measurement.jsp
+https://www.keyence.co.jp/products/measure/blog/battery-manufacturing-measurement-guide.jsp
 https://www.keyence.co.jp/products/measure/blog/battery-tab-welding-inspection.jsp
+https://www.keyence.co.jp/products/measure/blog/brake-disc-dtv-runout-measurement.jsp
+https://www.keyence.co.jp/products/measure/blog/busbar-flatness-weld-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/crystal-resonator-resonant-frequency-non-contact-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/deflection-deformation-non-contact-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/dispensing-application-height-feedback-control.jsp
+https://www.keyence.co.jp/products/measure/blog/electrode-stacking-winding-alignment-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/groove-depth-width-non-contact-3d-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/hairpin-welding-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/harsh-environment-thickness-displacement-measurement.jsp
+https://www.keyence.co.jp/products/measure/blog/height-step-inline-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/high-speed-moving-object-displacement-tracking-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/laser-marking-engraving-depth-non-contact-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/medical-tube-catheter-outer-diameter-measurement.jsp
@@ -9826,6 +9833,7 @@ https://www.keyence.co.jp/products/measure/blog/non-contact-vibration-measuremen
 https://www.keyence.co.jp/products/measure/blog/non-contact-wafer-edge-profile-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/non-contact-wafer-thickness-warpage-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/non-contact-wire-outer-diameter-measurement.jsp
+https://www.keyence.co.jp/products/measure/blog/outer-diameter-sorting-changeover.jsp
 https://www.keyence.co.jp/products/measure/blog/press-fit-caulking-height-step-inline-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/protrusion-foreign-matter-height-3d-detection.jsp
 https://www.keyence.co.jp/products/measure/blog/robot-repeatability-accuracy-non-contact-measurement.jsp
@@ -9835,6 +9843,7 @@ https://www.keyence.co.jp/products/measure/blog/sealant-gasket-bead-height-width
 https://www.keyence.co.jp/products/measure/blog/semiconductor-manufacturing-process-measurement-guide.jsp
 https://www.keyence.co.jp/products/measure/blog/shallow-dent-depression-depth-3d-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/solder-bump-height-volume-3d-measurement.jsp
+https://www.keyence.co.jp/products/measure/blog/surface-defect-depth-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/thickness-measurement-guide.jsp
 https://www.keyence.co.jp/products/measure/blog/tire-tread-groove-depth-non-contact-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/web-edge-position-meandering-control.jsp

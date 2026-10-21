@@ -1,9 +1,9 @@
 {
- "checked_at": "2026-10-21T11:16+09:00",
- "date": "2026-10-21",
+ "checked_at": "2026-10-22T08:29+09:00",
+ "date": "2026-10-22",
  "counts": {
-  "new": 23,
-  "unchanged": 79,
+  "new": 0,
+  "unchanged": 102,
   "error": 0,
   "stale": 0
  },
@@ -17,7 +17,7 @@
    "state": "unchanged",
    "latest": "2026-10-19",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -29,7 +29,7 @@
    "state": "unchanged",
    "latest": "2026-10-19",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -41,7 +41,7 @@
    "state": "unchanged",
    "latest": "2026-10-19",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -53,7 +53,7 @@
    "state": "unchanged",
    "latest": "2026-10-19",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -65,7 +65,7 @@
    "state": "unchanged",
    "latest": "2026-10-19",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -77,7 +77,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -89,7 +89,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -101,7 +101,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -113,7 +113,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-09",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -125,7 +125,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-05",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -137,7 +137,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-05",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -149,7 +149,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -161,7 +161,7 @@
    "state": "unchanged",
    "latest": "2026-10-20",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -173,7 +173,7 @@
    "state": "unchanged",
    "latest": "2026-10-20",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -185,7 +185,7 @@
    "state": "unchanged",
    "latest": "2026-10-20",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -197,7 +197,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-13",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -209,7 +209,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-13",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -221,7 +221,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-13",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -233,7 +233,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -245,7 +245,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-14",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -257,7 +257,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-14",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -269,7 +269,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-13",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -281,7 +281,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-05",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -293,7 +293,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-05",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -305,7 +305,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -317,7 +317,7 @@
    "state": "unchanged",
    "latest": "2026Q3",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -329,7 +329,7 @@
    "state": "unchanged",
    "latest": "2026Q3",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -341,7 +341,7 @@
    "state": "unchanged",
    "latest": "2026Q3",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -353,7 +353,7 @@
    "state": "unchanged",
    "latest": "2026Q3",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -365,7 +365,7 @@
    "state": "unchanged",
    "latest": "2026Q3",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -377,7 +377,7 @@
    "state": "unchanged",
    "latest": "2026Q2",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -389,7 +389,7 @@
    "state": "unchanged",
    "latest": "2026Q2",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -401,7 +401,7 @@
    "state": "unchanged",
    "latest": "2026Q2",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -413,7 +413,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -425,7 +425,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -437,7 +437,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -449,7 +449,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -461,7 +461,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -473,7 +473,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -485,7 +485,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -497,7 +497,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -509,7 +509,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -521,7 +521,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-08",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -533,7 +533,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -545,7 +545,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -557,7 +557,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -569,7 +569,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -581,7 +581,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -593,7 +593,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -605,7 +605,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-09",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -617,7 +617,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-09",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -629,7 +629,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -641,7 +641,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -653,7 +653,7 @@
    "state": "unchanged",
    "latest": "2026-07",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -665,7 +665,7 @@
    "state": "unchanged",
    "latest": "2026-07",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -677,7 +677,7 @@
    "state": "unchanged",
    "latest": "2026-07",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -689,7 +689,7 @@
    "state": "unchanged",
    "latest": "2026-05",
    "last_new": "2026-10-20",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -701,7 +701,7 @@
    "state": "unchanged",
    "latest": "2026-04",
    "last_new": "2026-10-20",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -713,7 +713,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-09",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -725,7 +725,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-09",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -737,7 +737,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-09",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -749,7 +749,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-09",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -761,7 +761,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -773,7 +773,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -785,7 +785,7 @@
    "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -797,7 +797,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -809,7 +809,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -818,10 +818,10 @@
    "db": "ESTAT",
    "code": "TRADE_EXPORTS",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -830,10 +830,10 @@
    "db": "ESTAT",
    "code": "TRADE_IMPORTS",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -842,10 +842,10 @@
    "db": "ESTAT",
    "code": "TRADE_BALANCE",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -854,10 +854,10 @@
    "db": "ESTAT",
    "code": "TRADE_EXPORTS_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -866,10 +866,10 @@
    "db": "ESTAT",
    "code": "TRADE_IMPORTS_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -878,10 +878,10 @@
    "db": "ESTAT",
    "code": "TRADE_EX_USA",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -890,10 +890,10 @@
    "db": "ESTAT",
    "code": "TRADE_EX_USA_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -902,10 +902,10 @@
    "db": "ESTAT",
    "code": "TRADE_IM_USA",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -914,10 +914,10 @@
    "db": "ESTAT",
    "code": "TRADE_IM_USA_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -926,10 +926,10 @@
    "db": "ESTAT",
    "code": "TRADE_EX_CHINA",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -938,10 +938,10 @@
    "db": "ESTAT",
    "code": "TRADE_EX_CHINA_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -950,10 +950,10 @@
    "db": "ESTAT",
    "code": "TRADE_IM_CHINA",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -962,10 +962,10 @@
    "db": "ESTAT",
    "code": "TRADE_IM_CHINA_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -974,10 +974,10 @@
    "db": "ESTAT",
    "code": "TRADE_EX_EU",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -986,10 +986,10 @@
    "db": "ESTAT",
    "code": "TRADE_EX_EU_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -998,10 +998,10 @@
    "db": "ESTAT",
    "code": "TRADE_IM_EU",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1010,10 +1010,10 @@
    "db": "ESTAT",
    "code": "TRADE_IM_EU_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1022,10 +1022,10 @@
    "db": "ESTAT",
    "code": "TRADE_EX_ASEAN",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1034,10 +1034,10 @@
    "db": "ESTAT",
    "code": "TRADE_EX_ASEAN_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1046,10 +1046,10 @@
    "db": "ESTAT",
    "code": "TRADE_IM_ASEAN",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1058,10 +1058,10 @@
    "db": "ESTAT",
    "code": "TRADE_IM_ASEAN_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1070,10 +1070,10 @@
    "db": "ESTAT",
    "code": "TRADE_EX_TAIWAN",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1082,10 +1082,10 @@
    "db": "ESTAT",
    "code": "TRADE_EX_TAIWAN_YOY",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-09",
    "last_new": "2026-10-21",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1097,7 +1097,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1109,7 +1109,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1121,7 +1121,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1133,7 +1133,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1145,7 +1145,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1157,7 +1157,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1169,7 +1169,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1181,7 +1181,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1193,7 +1193,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1205,7 +1205,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1217,7 +1217,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   },
@@ -1229,7 +1229,7 @@
    "state": "unchanged",
    "latest": "2026-08",
    "last_new": "2026-10-03",
-   "last_ok": "2026-10-21",
+   "last_ok": "2026-10-22",
    "fail_streak": 0,
    "error": null
   }

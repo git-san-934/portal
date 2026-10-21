@@ -2573,6 +2573,7 @@ https://sumitomoelectric.com/jp/rd/analysis-technology
 https://sumitomoelectric.com/jp/rd/automotive
 https://sumitomoelectric.com/jp/rd/awards
 https://sumitomoelectric.com/jp/rd/electronics
+https://sumitomoelectric.com/jp/rd/electronics/slidea
 https://sumitomoelectric.com/jp/rd/environment-energy
 https://sumitomoelectric.com/jp/rd/environment-energy/aem
 https://sumitomoelectric.com/jp/rd/industrial-materials
