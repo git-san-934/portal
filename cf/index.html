@@ -24,6 +24,7 @@
   <header>
     <h1>銘柄分析</h1>
     <p>持ち株チェックの日本株と、気になっている銘柄について、有価証券報告書のキャッシュフロー計算書から「何に投資しているか」を、過去7年の推移と一緒にまとめています。持ち株は持ち株チェックと、気になる銘柄はきになる.csvと同じ並びです。</p>
+    <p class="sub" id="updated">データ更新日：読み込み中…</p>
   </header>
   <h2 style="margin:0 0 .6rem">持ち株</h2>
   <div class="list" id="list"></div>
@@ -315,6 +316,15 @@
   document.getElementById('list5').innerHTML = W.map(row).join('');
   document.getElementById('list6').innerHTML = F.map(row).join('');
   document.getElementById('list7').innerHTML = R.map(row).join('');
+
+  // データ更新日（各ワークフローが JSON に書く updated を表示する）
+  const ymd = (u) => { const m = /^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}:\d{2}))?/.exec(u || ''); return m ? `${+m[1]}年${+m[2]}月${+m[3]}日${m[4] ? ' ' + m[4] : ''}` : null; };
+  const U = [['株価', 'price.json'], ['決算短信', 'tanshin.json'], ['有価証券報告書・半期報告書', 'eps.json']];
+  Promise.all(U.map(([, f]) => fetch('data/' + f, { cache: 'no-cache' }).then((r) => r.ok ? r.json() : null).catch(() => null)))
+    .then((ds) => {
+      const parts = U.map(([label], i) => [label, ymd(ds[i] && ds[i].updated)]).filter(([, d]) => d).map(([label, d]) => `${label} ${d}`);
+      document.getElementById('updated').textContent = parts.length ? 'データ更新日：' + parts.join('、') : '';
+    });
 </script>
 </body>
 </html>
