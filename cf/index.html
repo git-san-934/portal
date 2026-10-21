@@ -22,6 +22,10 @@
     .recent table td:first-child { white-space: nowrap; position: static; background: none; vertical-align: top; color: var(--text-sub); }
     .recent a { color: inherit; }
     .recent .tag { display: inline-block; font-size: .72rem; padding: .05rem .5rem; margin: .1rem .25rem .1rem 0; border-radius: 999px; border: 1px solid var(--border); color: var(--text-sub); white-space: nowrap; }
+    .item .nm b .upd { display: inline-block; font-size: .72rem; font-weight: 400; color: var(--text-sub); white-space: nowrap; }
+    .sortbar { display: flex; justify-content: flex-end; margin: 0 0 .6rem; }
+    .sortbar button { font: inherit; font-size: .82rem; padding: .35rem .9rem; border-radius: 999px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text); cursor: pointer; }
+    .sortbar button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
   </style>
 </head>
 <body>
@@ -37,6 +41,7 @@
     <p class="sub" style="margin:0 0 .4rem">決算短信（TDnet）と有価証券報告書・半期報告書（EDINET）が直近7日間に出た銘柄です。日付は開示日・提出日で、ページには決算短信は当日夕方、有報・半期報告書は翌朝に反映されます。</p>
     <table><tbody id="recent-body"></tbody></table>
   </details>
+  <div class="sortbar" id="sortbar" hidden><button type="button" id="sort" aria-pressed="false">更新順に並べる</button></div>
   <h2 style="margin:0 0 .6rem">持ち株</h2>
   <div class="list" id="list"></div>
   <h2 style="margin:1.6rem 0 .3rem">気になる銘柄</h2>
@@ -317,16 +322,26 @@
     ['6144', '西部電機', '物流の自動化と精密機械。新工場を建てて生産能力1.5倍', '6144/'],
     ['6741', '日本信号', '鉄道信号と改札機の会社。設備投資を増やし、宇都宮に130億円', '6741/'],
   ];
+  // 銘柄ごとの最新の決算短信・有報・半期報告書（[日付, 書類, 時刻]）。データを読んだあとに入る
+  const last = {};
+  let byUpdate = false;
+  const mdy = (d) => d.slice(0, 4) === new Date().getFullYear() + '' ? `${+d.slice(5, 7)}/${+d.slice(8, 10)}` : `${+d.slice(0, 4)}/${+d.slice(5, 7)}/${+d.slice(8, 10)}`;
+  const upd = (c) => last[c] ? `<span class="upd">${last[c][1]} ${mdy(last[c][0])}${last[c][2] ? ' ' + last[c][2] : ''}</span>` : '';
   const row = ([c, n, d, h]) => h
-    ? `<a class="item" href="${h}"><span class="code">${c}</span><span class="nm"><b>${n}</b><span>${d}</span></span><span class="st">開く</span></a>`
+    ? `<a class="item" href="${h}"><span class="code">${c}</span><span class="nm"><b>${n} ${upd(c)}</b><span>${d}</span></span><span class="st">開く</span></a>`
     : `<div class="item wait"><span class="code">${c}</span><span class="nm"><b>${n}</b><span>${d || '準備中'}</span></span><span class="st">${d ? '対象外' : '準備中'}</span></div>`;
-  document.getElementById('list').innerHTML = L.map(row).join('');
-  document.getElementById('list2').innerHTML = K.map(row).join('');
-  document.getElementById('list3').innerHTML = N.map(row).join('');
-  document.getElementById('list4').innerHTML = S.map(row).join('');
-  document.getElementById('list5').innerHTML = W.map(row).join('');
-  document.getElementById('list6').innerHTML = F.map(row).join('');
-  document.getElementById('list7').innerHTML = R.map(row).join('');
+  const key = (c) => last[c] ? last[c][0] + (last[c][2] || '') : '';
+  const render = () => [['list', L], ['list2', K], ['list3', N], ['list4', S], ['list5', W], ['list6', F], ['list7', R]].forEach(([id, a]) => {
+    const rows = byUpdate ? a.slice().sort((x, y) => key(y[0]).localeCompare(key(x[0]))) : a;
+    document.getElementById(id).innerHTML = rows.map(row).join('');
+  });
+  render();
+  document.getElementById('sort').addEventListener('click', (e) => {
+    byUpdate = !byUpdate;
+    e.target.setAttribute('aria-pressed', byUpdate);
+    e.target.textContent = byUpdate ? '元の並びに戻す' : '更新順に並べる';
+    render();
+  });
 
   // データ更新日（各ワークフローが JSON に書く updated を表示する）
   const ymd = (u) => { const m = /^(\d{4})-(\d{2})-(\d{2})(?:T(\d{2}:\d{2}))?/.exec(u || ''); return m ? `${+m[1]}年${+m[2]}月${+m[3]}日${m[4] ? ' ' + m[4] : ''}` : null; };
@@ -352,13 +367,18 @@
   };
   Promise.all([loads[1], load('eps_docs.json')]).then(([tan, docs]) => {
     const hits = {};
-    const add = (c, d, label) => { if (d >= since) (hits[c] = hits[c] || []).push([d, label]); };
-    Object.entries((tan && tan.companies) || {}).forEach(([c, t]) => add(c, t.date || '', kind(t)));
+    const add = (c, d, label, time) => {
+      if (d >= since) (hits[c] = hits[c] || []).push([d, label]);
+      if (d && (!last[c] || d + (time || '') > last[c][0] + (last[c][2] || ''))) last[c] = [d, label.replace(/（.*/, ''), time];
+    };
+    Object.entries((tan && tan.companies) || {}).forEach(([c, t]) => add(c, t.date || '', kind(t), t.time));
     [['docs', '有価証券報告書'], ['half', '半期報告書']].forEach(([k, label]) =>
       Object.entries((docs && docs[k]) || {}).forEach(([c, l]) => l.forEach(([d]) => add(c, d, label))));
     const rows = Object.entries(hits).map(([c, l]) => [c, l.sort((a, b) => b[0].localeCompare(a[0]))])
       .sort((a, b) => b[1][0][0].localeCompare(a[1][0][0]) || a[0].localeCompare(b[0]));
     if (!rows.length && !tan && !docs) return;
+    render();
+    document.getElementById('sortbar').hidden = false;
     const md = (d) => `${+d.slice(5, 7)}/${+d.slice(8, 10)}`;
     document.getElementById('recent-sum').textContent = `直近1週間に更新された銘柄（${rows.length}社）`;
     document.getElementById('recent-body').innerHTML = rows.length ? rows.map(([c, l]) => {
