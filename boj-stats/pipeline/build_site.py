@@ -145,12 +145,19 @@ def main():
             "kind": "news", "id": r["url"], "name": r["title"], "url": r["url"], "time": r["published"][11:16],
         })
 
+    # 系列ごとに最後に新しい値が入った日（status.py の last_new）。ページの見出しの「更新」に使う
+    try:
+        with open(os.path.join(REPORTS, "status.json"), encoding="utf-8") as f:
+            last_new = {k: v.get("last_new") for k, v in json.load(f)["series"].items()}
+    except (OSError, ValueError, KeyError):
+        last_new = {}
+
     info = {}
     for s in series:
         l = latest.get(s["code"])
         info[sid(s)] = {
             "name": s["name"], "db": s["db"], "code": s["code"], "freq": s["freq"], "unit": s["unit"],
-            "kind": s["kind"], "category": category(s),
+            "kind": s["kind"], "category": category(s), "updated": last_new.get(sid(s)),
             "date": l and l["date"], "value": l and analyze.num(l["value"]), "change": l and change(s, l["value"], l["prev"]),
             "implication": analyze.IMPLICATIONS.get(s["code"], ""),
             "source": TRADE if s["code"].startswith("TRADE_") else SOURCES.get(s["db"], BOJ),
