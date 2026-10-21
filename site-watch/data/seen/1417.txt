@@ -577,6 +577,7 @@ https://www.mirait-one.com/info/001999.html
 https://www.mirait-one.com/info/002000.html
 https://www.mirait-one.com/info/002001.html
 https://www.mirait-one.com/info/002002.html
+https://www.mirait-one.com/info/002005.html
 https://www.mirait-one.com/info/2022/
 https://www.mirait-one.com/info/2022/index_2.html
 https://www.mirait-one.com/info/2022/index_3.html
@@ -948,6 +949,7 @@ https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=%E7%94%9F%E6%88%90AI+&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=%E7%94%B0%E7%84%A1%E9%A7%85&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=%E7%A4%BE%E9%95%B7%E4%BA%A4%E4%BB%A3&sort=0
+https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=%E7%A9%BA%E9%96%93%E6%83%85%E5%A0%B1&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=%E7%AC%AC%EF%BC%91%EF%BC%93%E5%9B%9E&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=%E7%AC%AC%EF%BC%91%EF%BC%94%E5%9B%9E&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=%E7%AC%AC%EF%BC%91%EF%BC%95%E5%9B%9E&sort=0
@@ -1046,6 +1048,7 @@ https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=5G&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=AALC&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=AI%E3%82%AB%E3%83%A1%E3%83%A9&sort=0
+https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=AI%E6%8A%80%E8%A1%93&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=AI%E7%94%A3%E6%A5%AD&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=AI%E7%94%BB%E5%83%8F%E8%A7%A3%E6%9E%90&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=AI&sort=0
