@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-21T08:23+09:00",
+ "updated_at": "2026-10-21T09:06+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -782,11 +782,9 @@
    "name": "エンプラス",
    "market": "JP",
    "home": "https://www.enplas.co.jp/",
-   "official_status": "ok",
+   "official_status": "取得できませんでした",
    "official_pages": [
-    "https://www.enplas.co.jp/news/",
-    "https://www.enplas.co.jp/category/news/feed/",
-    "https://www.enplas.co.jp/ir/news/"
+    "https://www.enplas.co.jp/news/"
    ],
    "items": [
     {
@@ -802,6 +800,14 @@
      "url": "https://www.enplas.co.jp/news/business-news/9778/",
      "source": "official",
      "first_seen": "2026-10-07T18:23+09:00"
+    },
+    {
+     "date": "2026-09-28",
+     "time": "15:30",
+     "title": "執行役員人事に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120260928541025.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-09-28T00:00+09:00"
     },
     {
      "date": "2026-09-28",
