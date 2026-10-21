@@ -1,7 +1,8 @@
 """一時的な調査用: 税関サイトのページを集める"""
 import os, re, sys, urllib.request, urllib.parse
 out = sys.argv[1]; os.makedirs(out, exist_ok=True)
-START = ["https://www.customs.go.jp/toukei/srch/top.htm",
+START = ["https://www.customs.go.jp/toukei/srch/jccht01j.htm", "https://www.customs.go.jp/toukei/srch/jccht15j.htm",
+         "https://www.customs.go.jp/toukei/srch/jccht23j.htm",
          "https://www.customs.go.jp/toukei/srch/display/jccjs00mj.js",
          "https://www.customs.go.jp/toukei/srch/index.htm?M=01&P=0",
          "https://www.customs.go.jp/toukei/srch/jccht00d.htm",
@@ -15,7 +16,7 @@ OLD = ["https://www.customs.go.jp/toukei/info/index.htm",
          "https://www.customs.go.jp/toukei/sankou/howto/kensaku.html"]
 seen, queue = set(), [(u, 0) for u in START]
 log = open(os.path.join(out, "_index.txt"), "w")
-while queue and len(seen) < 150:
+while queue and len(seen) < 60:
     u, d = queue.pop(0)
     if u in seen: continue
     seen.add(u)
@@ -27,7 +28,7 @@ while queue and len(seen) < 150:
     name = re.sub(r"[^A-Za-z0-9._-]", "_", u.split("//", 1)[1])[:150]
     open(os.path.join(out, name), "wb").write(body[:3_000_000])
     log.write(f"OK {u} {ct} {len(body)}\n")
-    if d < 3 and ("html" in ct or "javascript" in ct or u.endswith((".htm", ".html", ".js"))):
+    if d < 2 and ("html" in ct or "javascript" in ct or u.endswith((".htm", ".html", ".js"))):
         text = body.decode("shift_jis", "replace") if b"charset=Shift_JIS" in body[:2000] or b"shift_jis" in body[:2000].lower() else body.decode("utf-8", "replace")
         for h in re.findall(r"""(?:href|src|SRC|HREF)\s*=\s*["']([^"'#]+)["']""", text) + re.findall(r"""["']([A-Za-z0-9_/.?=&-]+\.(?:htm|html|js|csv)(?:\?[^"']*)?)["']""", text):
             v = urllib.parse.urljoin(u, h)
