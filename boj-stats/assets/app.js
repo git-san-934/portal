@@ -112,6 +112,12 @@
     return tr;
   }
 
+  // 見出しの横の「(YYYY/M/D 更新)」: その中の系列で最後に新しい値が入った日
+  const titleDate = (list) => {
+    const d = list.map(([, s]) => s.updated).filter(Boolean).sort().pop();
+    return d ? el("span", "title-date", ` (${fmtDay(d)} 更新)`) : "";
+  };
+
   function renderTables() {
     const entries = Object.entries(data.series);
     const head = () => {
@@ -121,7 +127,9 @@
     };
     const daily = $("daily");
     daily.replaceChildren(head());
-    entries.filter(([, s]) => s.freq === "D").forEach(([id, s]) => daily.append(row(id, s)));
+    const dailyList = entries.filter(([, s]) => s.freq === "D");
+    dailyList.forEach(([id, s]) => daily.append(row(id, s)));
+    $("daily-updated").replaceChildren(titleDate(dailyList));
 
     const jump = [];
     const cats = data.categories.map((c, i) => {
@@ -129,7 +137,9 @@
       if (!list.length) return null;
       const sec = el("section", "panel");
       sec.id = `c${i}`;
-      sec.append(el("h2", "panel-title", c));
+      const h = el("h2", "panel-title", c);
+      h.append(titleDate(list));
+      sec.append(h);
       const t = el("table", "vals");
       t.append(head());
       list.forEach(([id, s]) => t.append(row(id, s)));
