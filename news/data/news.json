@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-22T10:33+09:00",
+ "updated_at": "2026-10-22T17:56+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -482,9 +482,11 @@
    "name": "住友大阪セメント",
    "market": "JP",
    "home": "https://www.soc.co.jp/",
-   "official_status": "取得できませんでした",
+   "official_status": "ok",
    "official_pages": [
-    "https://www.soc.co.jp/news/"
+    "https://www.soc.co.jp/news/",
+    "https://www.soc.co.jp/news/feed/",
+    "https://www.soc.co.jp/ir/news/"
    ],
    "items": [
     {
@@ -882,6 +884,13 @@
     "https://www.fuji.co.jp/"
    ],
    "items": [
+    {
+     "date": "2026-10-22",
+     "title": "お知らせ 企業情報 製品・事業 電子部品実装ロボット専用サイト「FUJI SMT Site」緊急メンテナンスのお知らせ",
+     "url": "https://www.fuji.co.jp/news/fuji_smt_site.html",
+     "source": "official",
+     "first_seen": "2026-10-22T17:56+09:00"
+    },
     {
      "date": "2026-10-20",
      "title": "リリース 製品・事業 ニトリ環八用賀店で『Quist』を活用した実証実験を開始 ~スマートロッカーシステムを活用し、店舗受取りサービスの利便性向上と業務効率化を検証~ [PDF:658.5KB] PDFファイルが新規ウィンドウで開きます",
