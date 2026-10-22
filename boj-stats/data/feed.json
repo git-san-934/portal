@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-22T15:08+09:00",
+ "generated_at": "2026-10-22T23:38+09:00",
  "report_date": "2026-10-22",
  "days": [
   {
@@ -22,6 +22,27 @@
      "value": "5",
      "unit": "%pt",
      "change": "+2.000%pt"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261020.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261020.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j14.htm",
+     "name": "（日銀レビュー）企業の決算説明会テキストを用いた経済政策不確実性の考察",
+     "url": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j14.htm",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/reri/index.htm",
+     "name": "実質輸出入の動向",
+     "url": "https://www.boj.or.jp/research/research_data/reri/index.htm",
+     "time": "16:00"
     },
     {
      "kind": "news",
@@ -3890,10 +3911,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-22T15:08+09:00",
+  "checked_at": "2026-10-22T23:38+09:00",
   "counts": {
-   "new": 10,
-   "unchanged": 92,
+   "new": 0,
+   "unchanged": 102,
    "error": 0,
    "stale": 0
   },
