@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-22T21:27+09:00",
+ "updated_at": "2026-10-23T04:50+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1349,6 +1349,20 @@
     "q4:https://investor.oracle.com"
    ],
    "items": [
+    {
+     "date": "2026-10-21",
+     "title": "Oracle AI Agent Studio for Industry Applications Helps Accelerate Business Outcomes",
+     "url": "https://www.oracle.com/news/announcement/oracle-ai-agent-studio-for-industry-applications-helps-accelerate-business-outcomes-2026-10-21/",
+     "source": "official",
+     "first_seen": "2026-10-23T04:50+09:00"
+    },
+    {
+     "date": "2026-10-20",
+     "title": "Oracle and AstraZeneca Partner to Advance AI-enabled Healthcare Innovation",
+     "url": "https://www.oracle.com/news/announcement/oracle-and-astrazeneca-partner-to-advance-ai-enabled-healthcare-2026-10-20/",
+     "source": "official",
+     "first_seen": "2026-10-23T04:50+09:00"
+    },
     {
      "date": "2026-10-04",
      "title": "Oracle Announces $10 Million Partnership with the Nashville Symphony",
