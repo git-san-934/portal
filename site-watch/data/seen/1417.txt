@@ -13,8 +13,24 @@ https://ir.mirait-one.com/dialogue/
 https://ir.mirait-one.com/dialogue/index.html
 https://ir.mirait-one.com/disclosure/index.html
 https://ir.mirait-one.com/en/
+https://ir.mirait-one.com/en/data/order.html
+https://ir.mirait-one.com/en/data/order01.html
+https://ir.mirait-one.com/en/data/order02.html
+https://ir.mirait-one.com/en/data/order03.html
+https://ir.mirait-one.com/en/data/order05.html
 https://ir.mirait-one.com/en/dialogue/
+https://ir.mirait-one.com/en/dialogue/index.html
+https://ir.mirait-one.com/en/disclosure/index.html
+https://ir.mirait-one.com/en/financial/bs.html
 https://ir.mirait-one.com/en/financial/general.html
+https://ir.mirait-one.com/en/individual/index.html
+https://ir.mirait-one.com/en/news/index.html
+https://ir.mirait-one.com/en/realizing/index.html
+https://ir.mirait-one.com/en/risk/index.html
+https://ir.mirait-one.com/en/stock/dividend.html
+https://ir.mirait-one.com/en/stock/meeting.html
+https://ir.mirait-one.com/en/stock/status.html
+https://ir.mirait-one.com/en/stock/stock.html
 https://ir.mirait-one.com/faq/index.html
 https://ir.mirait-one.com/financial/bs.html
 https://ir.mirait-one.com/financial/general.html
@@ -23,6 +39,8 @@ https://ir.mirait-one.com/individual/index.html
 https://ir.mirait-one.com/news/index.html
 https://ir.mirait-one.com/notification/
 https://ir.mirait-one.com/notification/index.html
+https://ir.mirait-one.com/pdf/dialogue.pdf
+https://ir.mirait-one.com/pdf/realizing.pdf
 https://ir.mirait-one.com/realizing/index.html
 https://ir.mirait-one.com/risk/index.html
 https://ir.mirait-one.com/stock/dividend.html
@@ -79,6 +97,7 @@ https://rect.mirait-one.com/work-people/interview16.html
 https://rect.mirait-one.com/work-style/balance.html
 https://rect.mirait-one.com/work-style/welfare.html
 https://www.mirait-one.com/
+https://www.mirait-one.com//302.html
 https://www.mirait-one.com/assets/pdf/esg_en/action-guidelines-on-biodiversity-and-natural-capital-20250317.pdf
 https://www.mirait-one.com/assets/pdf/esg_en/basic-policy-on-human-rights-20260201.pdf
 https://www.mirait-one.com/assets/pdf/esg_en/basic-procurement-policy-20241101.pdf
@@ -323,6 +342,7 @@ https://www.mirait-one.com/english/corporate/company/
 https://www.mirait-one.com/english/corporate/company/index.html
 https://www.mirait-one.com/english/corporate/executives/
 https://www.mirait-one.com/english/corporate/executives/index.html
+https://www.mirait-one.com/english/corporate/governance/
 https://www.mirait-one.com/english/corporate/group-companies/
 https://www.mirait-one.com/english/corporate/group-companies/0669239601
 https://www.mirait-one.com/english/corporate/group-companies/index.html
@@ -1210,6 +1230,7 @@ https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=WEB%E3%82%BB%E3%83%9F%E3%83%8A%E3%83%BC&sort=0
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=YouTube&sort=0
 https://www.mirait-one.com/sitemap/
+https://www.mirait-one.com/sitemap/index.html
 https://www.mirait-one.com/sitepolicy/
 https://www.mirait-one.com/sns-terms-of-use/
 https://www.mirait-one.com/solution/

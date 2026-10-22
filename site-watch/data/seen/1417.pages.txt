@@ -7,12 +7,18 @@ https://ir.mirait-one.com/data/order03.html
 https://ir.mirait-one.com/data/order04.html
 https://ir.mirait-one.com/data/order05.html
 https://ir.mirait-one.com/data/order06.html
+https://ir.mirait-one.com/dialogue/index.html
+https://ir.mirait-one.com/disclosure/index.html
+https://ir.mirait-one.com/en/
+https://ir.mirait-one.com/faq/index.html
 https://ir.mirait-one.com/financial/bs.html
 https://ir.mirait-one.com/financial/general.html
 https://ir.mirait-one.com/individual/index.html
 https://ir.mirait-one.com/news/index.html
 https://ir.mirait-one.com/notification/
 https://ir.mirait-one.com/notification/index.html
+https://ir.mirait-one.com/realizing/index.html
+https://ir.mirait-one.com/risk/index.html
 https://ir.mirait-one.com/stock/dividend.html
 https://ir.mirait-one.com/stock/meeting.html
 https://ir.mirait-one.com/stock/status.html
@@ -47,6 +53,7 @@ https://rect.mirait-one.com/work-people/interview03.html
 https://rect.mirait-one.com/work-style/balance.html
 https://rect.mirait-one.com/work-style/welfare.html
 https://www.mirait-one.com/
+https://www.mirait-one.com//302.html
 https://www.mirait-one.com/casestudy/
 https://www.mirait-one.com/casestudy/20260402-00.html
 https://www.mirait-one.com/casestudy/20260427-00.html
