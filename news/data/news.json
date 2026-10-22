@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-22T17:56+09:00",
+ "updated_at": "2026-10-22T21:27+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,34 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-22",
+     "title": "キャリア採用「製品法規制対応エンジニア」(京都勤務)の募集要項を掲載しました。 「仕事を読み解くキーワード」のページも更新しています。",
+     "url": "https://www.nintendo.co.jp/jobs/career/index.html",
+     "source": "official",
+     "first_seen": "2026-10-22T21:27+09:00"
+    },
+    {
+     "date": "2026-10-22",
+     "title": "子供から大人まで、世代を超えて、体感スポーツ。Nintendo Switch 2 ソフト『Nintendo Switch Sports Resort』は本日発売。",
+     "url": "https://www.nintendo.com/jp/topics/article/84999aa9-7844-4d76-970f-d7f8093edc03",
+     "source": "official",
+     "first_seen": "2026-10-22T21:27+09:00"
+    },
+    {
+     "date": "2026-10-22",
+     "title": "麦わらの一味と、この海で一番の“おいしい”をお届け。『ONE PIECE 海のごちそうレストラン』がNintendo Switch 2 / Nintendo Switchで本日発売。",
+     "url": "https://www.nintendo.com/jp/topics/article/a5ec42eb-efb3-4c90-95b0-618e143da7e2",
+     "source": "official",
+     "first_seen": "2026-10-22T21:27+09:00"
+    },
+    {
+     "date": "2026-10-22",
+     "title": "もし、「ファイナルファンタジー」がドットのまま進化を遂げていたら――。HD-2Dで描かれるシリーズ最新作『ファイナルファンタジー レゾナンス』がNintendo Switch 2 / Nintendo Switchで本日発売。 ※本作の対象年齢は「15歳以上」です。",
+     "url": "https://www.nintendo.com/jp/topics/article/9f8d849f-9379-4fc7-9c1b-a6ad18c82f35",
+     "source": "official",
+     "first_seen": "2026-10-22T21:27+09:00"
+    },
     {
      "date": "2026-10-20",
      "title": "『モンスターハンターワイルズ』の序盤が遊べる体験版がNintendo Switch 2 で本日より配信開始。製品版へのセーブデータ引き継ぎも可能。 ※本作の対象年齢は「15歳以上」です。",
@@ -1767,6 +1795,13 @@
     "q4:https://investors.palantir.com"
    ],
    "items": [
+    {
+     "date": "2026-10-22",
+     "title": "Palantir Elevates Aplos Data to Vanguard: Elite",
+     "url": "https://investors.palantir.com/news-details/2026/Palantir-Elevates-Aplos-Data-to-Vanguard-Elite/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-22T21:27+09:00"
+    },
     {
      "date": "2026-10-21",
      "title": "Palantir Accelerates Delivery of Sovereign AI to New Wave of Customers",
