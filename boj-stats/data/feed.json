@@ -1,7 +1,51 @@
 {
- "generated_at": "2026-10-22T08:29+09:00",
+ "generated_at": "2026-10-22T15:08+09:00",
  "report_date": "2026-10-22",
  "days": [
+  {
+   "date": "2026-10-22",
+   "items": [
+    {
+     "kind": "release",
+     "id": "LA05_DLLSDLPB",
+     "name": "資金需要判断DI 企業向け（主要銀行アンケート）",
+     "obs": "2026Q4",
+     "value": "3",
+     "unit": "%pt",
+     "change": "+4.000%pt"
+    },
+    {
+     "kind": "release",
+     "id": "LA05_DLLSDLPH",
+     "name": "資金需要判断DI 個人向け（主要銀行アンケート）",
+     "obs": "2026Q4",
+     "value": "5",
+     "unit": "%pt",
+     "change": "+2.000%pt"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261020.htm",
+     "name": "営業毎旬報告（10月20日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261020.htm",
+     "time": "10:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/dl/loan/loos/release/loos2610.pdf",
+     "name": "主要銀行貸出動向アンケート調査（10月）",
+     "url": "https://www.boj.or.jp/statistics/dl/loan/loos/release/loos2610.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/bis/repo/index.htm",
+     "name": "FSBレポ統計の日本分集計結果",
+     "url": "https://www.boj.or.jp/statistics/bis/repo/index.htm",
+     "time": "08:50"
+    }
+   ]
+  },
   {
    "date": "2026-10-21",
    "items": [
@@ -2016,10 +2060,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "短期金利・為替",
-   "updated": "2026-10-21",
-   "date": "2026-10-19",
-   "value": "1.227",
-   "change": "+0.000%pt",
+   "updated": "2026-10-22",
+   "date": "2026-10-20",
+   "value": "1.228",
+   "change": "+0.001%pt",
    "implication": "短期金利の上昇は利上げ・引締め方向のシグナル。一般に債券（特に短中期）価格には下押し、円には上昇（円高）圧力、銀行株には利ざや改善期待でプラス、REIT・不動産や高PERのグロース株には逆風とされる。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -2034,10 +2078,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-10-21",
-   "date": "2026-10-19",
-   "value": "35,307",
-   "change": "-11.71%",
+   "updated": "2026-10-22",
+   "date": "2026-10-20",
+   "value": "36,777",
+   "change": "+4.16%",
    "implication": "出来高の増加は短期金融市場の取引活発化（金利がつく環境への移行、市場機能の回復）を示すことが多い。直接の価格シグナルではなく、金利変化の裏付けとして見る。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -2052,10 +2096,10 @@
    "unit": "円/ドル",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-10-21",
-   "date": "2026-10-19",
-   "value": "158.17",
-   "change": "+0.10%",
+   "updated": "2026-10-22",
+   "date": "2026-10-20",
+   "value": "158.08",
+   "change": "-0.06%",
    "implication": "ドル円の上昇（円安）は一般に輸出関連株や外貨建て資産の円換算額にプラス、輸入物価経由で物価上昇圧力となり、日銀の引締め観測を強めることがある。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -2070,10 +2114,10 @@
    "unit": "ドル/ユーロ",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-10-21",
-   "date": "2026-10-19",
-   "value": "1.1227",
-   "change": "+0.12%",
+   "updated": "2026-10-22",
+   "date": "2026-10-20",
+   "value": "1.1214",
+   "change": "-0.12%",
    "implication": "ユーロドルの上昇はドル全面安を示す。ドル円と合わせて見ると、円安/円高がドル要因か円要因かの切り分けに使える。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -2088,8 +2132,8 @@
    "unit": "%",
    "kind": "rate",
    "category": "短期金利・為替",
-   "updated": "2026-10-21",
-   "date": "2026-10-19",
+   "updated": "2026-10-22",
+   "date": "2026-10-20",
    "value": "1.5",
    "change": "+0.000%pt",
    "implication": "基準貸付利率は政策金利の変更に連動しやすい。上昇なら利上げ局面入り/継続を示し、影響はコールレート上昇時と同方向でより強い。",
@@ -2232,9 +2276,9 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-10-21",
-   "date": "2026-10-20",
-   "value": "1.909",
+   "updated": "2026-10-22",
+   "date": "2026-10-21",
+   "value": "1.914",
    "change": "+0.005%pt",
    "implication": "2年債利回りは今後1〜2年の政策金利予想をよく映す。上昇は追加利上げ観測の強まりを示す。",
    "source": [
@@ -2250,10 +2294,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-10-21",
-   "date": "2026-10-20",
-   "value": "2.927",
-   "change": "-0.008%pt",
+   "updated": "2026-10-22",
+   "date": "2026-10-21",
+   "value": "2.923",
+   "change": "-0.004%pt",
    "implication": "10年債利回りの上昇は債券価格の下落を意味し、住宅ローン固定金利や企業の借入コストの上昇、REIT・高PER株には逆風、利ざや面で銀行・保険株には追い風とされる。日米金利差が縮めば円高要因にもなりうる。",
    "source": [
     "財務省 国債金利情報",
@@ -2268,10 +2312,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-10-21",
-   "date": "2026-10-20",
-   "value": "3.992",
-   "change": "-0.036%pt",
+   "updated": "2026-10-22",
+   "date": "2026-10-21",
+   "value": "3.98",
+   "change": "-0.012%pt",
    "implication": "超長期金利の上昇は財政や物価への懸念（タームプレミアム）の高まりを映すことが多く、生保・年金の需要動向にも左右される。",
    "source": [
     "財務省 国債金利情報",
@@ -2466,10 +2510,10 @@
    "unit": "%pt",
    "kind": "rate",
    "category": "お金の量・貸出",
-   "updated": "2026-10-03",
-   "date": "2026Q3",
-   "value": "-1",
-   "change": "-5.000%pt",
+   "updated": "2026-10-22",
+   "date": "2026Q4",
+   "value": "3",
+   "change": "+4.000%pt",
    "implication": "企業の資金需要DIの上昇は設備投資・運転資金の需要増を示し、景気の強さの目安。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -2484,10 +2528,10 @@
    "unit": "%pt",
    "kind": "rate",
    "category": "お金の量・貸出",
-   "updated": "2026-10-03",
-   "date": "2026Q3",
-   "value": "3",
-   "change": "-2.000%pt",
+   "updated": "2026-10-22",
+   "date": "2026Q4",
+   "value": "5",
+   "change": "+2.000%pt",
    "implication": "個人の資金需要DI（住宅ローン等）。金利上昇で低下しやすく、住宅関連の需要の目安。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -3846,10 +3890,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-22T08:29+09:00",
+  "checked_at": "2026-10-22T15:08+09:00",
   "counts": {
-   "new": 0,
-   "unchanged": 102,
+   "new": 10,
+   "unchanged": 92,
    "error": 0,
    "stale": 0
   },
