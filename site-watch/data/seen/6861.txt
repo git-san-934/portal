@@ -9786,12 +9786,14 @@ https://www.keyence.co.jp/products/measure/blog/accuracy-repeatability-resolutio
 https://www.keyence.co.jp/products/measure/blog/adhesive-sealant-bead-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/backgrinding-thickness-dicing-kerf-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/battery-manufacturing-measurement-guide.jsp
+https://www.keyence.co.jp/products/measure/blog/battery-module-pack-assembly-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/battery-tab-welding-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/brake-disc-dtv-runout-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/busbar-flatness-weld-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/crystal-resonator-resonant-frequency-non-contact-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/deflection-deformation-non-contact-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/dispensing-application-height-feedback-control.jsp
+https://www.keyence.co.jp/products/measure/blog/displacement-sensor-thermal-drift.jsp
 https://www.keyence.co.jp/products/measure/blog/electrode-stacking-winding-alignment-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/groove-depth-width-non-contact-3d-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/hairpin-welding-inspection.jsp
@@ -14272,6 +14274,7 @@ https://www.keyence.co.jp/products/recorder/blog/battery-charge-discharge-cell-v
 https://www.keyence.co.jp/products/recorder/blog/drying-oven-temperature-humidity-multipoint-recording.jsp
 https://www.keyence.co.jp/products/recorder/blog/engine-bench-test-can-temperature-strain-synchronized-measurement.jsp
 https://www.keyence.co.jp/products/recorder/blog/heater-temperature-rise-control-response-evaluation.jsp
+https://www.keyence.co.jp/products/recorder/blog/injection-molding-temperature-pressure-shot-waveform-comparison.jsp
 https://www.keyence.co.jp/products/recorder/blog/leak-test-pressure-waveform-recording.jsp
 https://www.keyence.co.jp/products/recorder/blog/load-cell-force-multipoint-recording.jsp
 https://www.keyence.co.jp/products/recorder/blog/motor-temperature-vibration-simultaneous-measurement.jsp
@@ -21929,6 +21932,7 @@ https://www.keyence.co.jp/products/software/rpa/rk/pr/196611001.jsp
 https://www.keyence.co.jp/products/software/rpa/rk/pr/208054001.jsp
 https://www.keyence.co.jp/products/software/rpa/rk/pr/208054002.jsp
 https://www.keyence.co.jp/products/static/
+https://www.keyence.co.jp/products/static/blog/
 https://www.keyence.co.jp/products/static/blog/cardboard-paper-dust-adhesion-prevention.jsp
 https://www.keyence.co.jp/products/static/blog/chip-mounting-esd-static-elimination.jsp
 https://www.keyence.co.jp/products/static/blog/conveyor-transport-static-elimination.jsp
@@ -22564,6 +22568,7 @@ https://www.keyence.co.jp/products/vision/blog/ai-visual-inspection-detectable-d
 https://www.keyence.co.jp/products/vision/blog/bin-picking-failure-causes-and-solutions.jsp
 https://www.keyence.co.jp/products/vision/blog/defect-type-imaging-lighting-design.jsp
 https://www.keyence.co.jp/products/vision/blog/glossy-transparent-workpiece-inspection-method.jsp
+https://www.keyence.co.jp/products/vision/blog/high-speed-line-vision-inspection-selection.jsp
 https://www.keyence.co.jp/products/vision/blog/human-error-prevention-vision-sensor.jsp
 https://www.keyence.co.jp/products/vision/blog/metal-parts-presence-count-inspection.jsp
 https://www.keyence.co.jp/products/vision/blog/no-programming-vision-inspection-setup.jsp
@@ -22573,8 +22578,10 @@ https://www.keyence.co.jp/products/vision/blog/robot-vision-2d-3d-selection-guid
 https://www.keyence.co.jp/products/vision/blog/vision-inspection-support-and-startup-assistance.jsp
 https://www.keyence.co.jp/products/vision/blog/vision-sensor-applications-selection-guide.jsp
 https://www.keyence.co.jp/products/vision/blog/vision-sensor-minor-stoppage-countermeasure.jsp
+https://www.keyence.co.jp/products/vision/blog/vision-system-configuration-and-components.jsp
 https://www.keyence.co.jp/products/vision/blog/visual-inspection-automation-roi-evaluation.jsp
 https://www.keyence.co.jp/products/vision/blog/visual-inspection-system-selection-guide.jsp
+https://www.keyence.co.jp/products/vision/blog/visual-inspection-traceability-image-storage.jsp
 https://www.keyence.co.jp/products/vision/vision-sensor/
 https://www.keyence.co.jp/products/vision/vision-sensor/iv/
 https://www.keyence.co.jp/products/vision/vision-sensor/iv/get-pricing/
