@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-23T09:54+09:00",
+ "updated_at": "2026-10-23T10:34+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,34 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-23",
+     "title": "【10月27日追加】「ファミリーコンピュータ&スーパーファミコン&ゲームボーイ Nintendo Classics」に追加タイトルを配信開始。",
+     "url": "https://www.nintendo.com/jp/topics/article/fb255ded-796c-40fa-b234-f062b3b06894",
+     "source": "official",
+     "first_seen": "2026-10-23T10:34+09:00"
+    },
+    {
+     "date": "2026-10-23",
+     "title": "『オバケイドロ2』が10月26日から期間限定で遊び放題。Nintendo Switch Online加入者限定イベント「いっせいトライアル」開催。",
+     "url": "https://www.nintendo.com/jp/topics/article/cf86eecc-833d-4291-a473-a1b60ff9f9e5",
+     "source": "official",
+     "first_seen": "2026-10-23T10:34+09:00"
+    },
+    {
+     "date": "2026-10-23",
+     "title": "限界なき戦場。『Call of Duty®: Modern Warfare® 4』がNintendo Switch 2 で本日発売。 ※本作の対象年齢は「18歳以上」です。",
+     "url": "https://www.nintendo.com/jp/topics/article/66e77dbe-a23e-4e33-8ddb-fe0bf34098d5",
+     "source": "official",
+     "first_seen": "2026-10-23T10:34+09:00"
+    },
+    {
+     "date": "2026-10-23",
+     "title": "ニンテンドーeショップ新作ソフト情報 10/23(金)号。",
+     "url": "https://www.nintendo.com/jp/topics/article/461cdc7d-b50c-4e76-88fd-2eccc3d50336",
+     "source": "official",
+     "first_seen": "2026-10-23T10:34+09:00"
+    },
     {
      "date": "2026-10-22",
      "title": "キャリア採用「製品法規制対応エンジニア」(京都勤務)の募集要項を掲載しました。 「仕事を読み解くキーワード」のページも更新しています。",
