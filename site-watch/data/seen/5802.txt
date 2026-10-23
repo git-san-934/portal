@@ -182,6 +182,7 @@ https://sumitomoelectric.com/company/exhibitions/electrical-wire-processing-tech
 https://sumitomoelectric.com/company/exhibitions/electrical-wire-processing-technology-expo-1
 https://sumitomoelectric.com/company/exhibitions/electrical-wire-processing-technology-expo-2
 https://sumitomoelectric.com/company/exhibitions/electrical_wire_processing_technology_expo
+https://sumitomoelectric.com/company/exhibitions/electronica-2026
 https://sumitomoelectric.com/company/exhibitions/european-conference-optical-communications-ecoc
 https://sumitomoelectric.com/company/exhibitions/european-microwave-week-2023
 https://sumitomoelectric.com/company/exhibitions/european-microwave-week-2024
@@ -217,6 +218,7 @@ https://sumitomoelectric.com/company/exhibitions/integrated-systems-europe-2026
 https://sumitomoelectric.com/company/exhibitions/international-microwave-symposium-ims-2022
 https://sumitomoelectric.com/company/exhibitions/international-microwave-symposium-ims-2023
 https://sumitomoelectric.com/company/exhibitions/international-microwave-symposium-ims-2024
+https://sumitomoelectric.com/company/exhibitions/international-suppliers-fair
 https://sumitomoelectric.com/company/exhibitions/interop-tokyo-2024-shownet
 https://sumitomoelectric.com/company/exhibitions/interop-tokyo-2025
 https://sumitomoelectric.com/company/exhibitions/interopto
@@ -238,6 +240,7 @@ https://sumitomoelectric.com/company/exhibitions/itswc2026
 https://sumitomoelectric.com/company/exhibitions/japan-mobility-show-2023
 https://sumitomoelectric.com/company/exhibitions/japan-mobility-show-2025
 https://sumitomoelectric.com/company/exhibitions/jimtof2022-31st-japan-international-machine-tool-fair
+https://sumitomoelectric.com/company/exhibitions/jimtof2026-33rd-japan-international-machine-tool-fair
 https://sumitomoelectric.com/company/exhibitions/laser-expo
 https://sumitomoelectric.com/company/exhibitions/laser-expo-2024
 https://sumitomoelectric.com/company/exhibitions/laser-expo-2025
@@ -287,6 +290,7 @@ https://sumitomoelectric.com/company/exhibitions/scte-cable-tec-expo-0
 https://sumitomoelectric.com/company/exhibitions/scte-tech-expo
 https://sumitomoelectric.com/company/exhibitions/scte-techexpo-24
 https://sumitomoelectric.com/company/exhibitions/scte_techexpo_2025
+https://sumitomoelectric.com/company/exhibitions/semicon-japan-2026
 https://sumitomoelectric.com/company/exhibitions/smart-energy-week-2024-march-battery-japan
 https://sumitomoelectric.com/company/exhibitions/smart-energy-week-2025
 https://sumitomoelectric.com/company/exhibitions/smart-energy-week-september-2026-intl-smart-grid-expo
@@ -491,6 +495,7 @@ https://sumitomoelectric.com/company/office_group_companies/sumitomo-electric-si
 https://sumitomoelectric.com/company/office_group_companies/sumitomo-electric-sintered-components-mexico-sa-de-cv
 https://sumitomoelectric.com/company/office_group_companies/sumitomo-electric-sintered-components-thailand-co-ltd
 https://sumitomoelectric.com/company/office_group_companies/sumitomo-electric-system-solutions-co-ltd
+https://sumitomoelectric.com/company/office_group_companies/sumitomo-electric-taiwan-limited
 https://sumitomoelectric.com/company/office_group_companies/sumitomo-electric-taiwan-ltd
 https://sumitomoelectric.com/company/office_group_companies/sumitomo-electric-technical-solutions-inc
 https://sumitomoelectric.com/company/office_group_companies/sumitomo-electric-thailand-ltd
@@ -547,6 +552,7 @@ https://sumitomoelectric.com/contact-us
 https://sumitomoelectric.com/cookies
 https://sumitomoelectric.com/csr-reports
 https://sumitomoelectric.com/csr-reports/277
+https://sumitomoelectric.com/csr-reports/287
 https://sumitomoelectric.com/cutting-tools
 https://sumitomoelectric.com/diamond-cbn-tools
 https://sumitomoelectric.com/diamonds
@@ -572,13 +578,18 @@ https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/H
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Kaho_Yoshiyama
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Kazuya_Usui
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Masatoshi_Imo
+https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Ryo_Takehana
+https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Saki_Hoshino
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Takashi_Sasaki
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Tatsuo_Saitoh
+https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Tomomi_Sano
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Tomomichi_Tsugami
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Tomoyuki_Hattori
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Toshiki_Taru
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Yasuhiro_Maeda
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Yasuomi_Onishi
+https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Yo_Katsukawa
+https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Yuichiro_Kozawa
 https://sumitomoelectric.com/fiber_optic_interconnect/about-us/members-profile/Yuta_Matsushima
 https://sumitomoelectric.com/fiber_optic_interconnect/about_us/global_supply
 https://sumitomoelectric.com/fiber_optic_interconnect/news/20200423
@@ -2397,6 +2408,8 @@ https://sumitomoelectric.com/jp/press/2026/10/prs113
 https://sumitomoelectric.com/jp/press/2026/10/prs115
 https://sumitomoelectric.com/jp/press/2026/10/prs116
 https://sumitomoelectric.com/jp/press/2026/10/prs117
+https://sumitomoelectric.com/jp/press/2026/10/prs118
+https://sumitomoelectric.com/jp/press/2026/10/prs119
 https://sumitomoelectric.com/jp/privacy/index2
 https://sumitomoelectric.com/jp/privacy/mynumber
 https://sumitomoelectric.com/jp/products/air-springs
@@ -4156,6 +4169,8 @@ https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs
 https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs116.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs116_0.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs117_0.pdf
+https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs118.pdf
+https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs119.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/support2026j.pdf
 https://sumitomoelectric.com/jp/smp
 https://sumitomoelectric.com/jp/sustainability
@@ -4423,6 +4438,9 @@ https://sumitomoelectric.com/president/2026/08/202613
 https://sumitomoelectric.com/president/2026/09/202614
 https://sumitomoelectric.com/president/2026/09/202615
 https://sumitomoelectric.com/president/2026/09/202616
+https://sumitomoelectric.com/president/2026/10/202617
+https://sumitomoelectric.com/president/2026/10/202618
+https://sumitomoelectric.com/president/2026/10/202619
 https://sumitomoelectric.com/president/about-blog
 https://sumitomoelectric.com/press/2021/12/prs111
 https://sumitomoelectric.com/press/2021/12/prs112
@@ -4698,6 +4716,12 @@ https://sumitomoelectric.com/press/2026/08/prs034
 https://sumitomoelectric.com/press/2026/08/prs035
 https://sumitomoelectric.com/press/2026/09/prs036
 https://sumitomoelectric.com/press/2026/09/prs037
+https://sumitomoelectric.com/press/2026/09/prs038
+https://sumitomoelectric.com/press/2026/09/prs040
+https://sumitomoelectric.com/press/2026/09/prs041
+https://sumitomoelectric.com/press/2026/10/prs042
+https://sumitomoelectric.com/press/2026/10/prs043
+https://sumitomoelectric.com/press/2026/10/prs044
 https://sumitomoelectric.com/product/optical-fibers/special-contents-reduced-diameter-fibers
 https://sumitomoelectric.com/products/10g-epon
 https://sumitomoelectric.com/products/FlexBeamGuidE
@@ -4750,6 +4774,8 @@ https://sumitomoelectric.com/products/ceramic-coated-molybdenum-sheets-plates
 https://sumitomoelectric.com/products/chademo
 https://sumitomoelectric.com/products/chademo/SEVD-02
 https://sumitomoelectric.com/products/chademo/SEVD-11
+https://sumitomoelectric.com/products/chademo/SEVD-12
+https://sumitomoelectric.com/products/chademo/SEVD-22
 https://sumitomoelectric.com/products/chademo/SEVD-V3
 https://sumitomoelectric.com/products/components-wiring-harnesses
 https://sumitomoelectric.com/products/compound-semiconductor
@@ -5080,6 +5106,7 @@ https://sumitomoelectric.com/publications/pr-news-articles/2024/04/sumitomo-elec
 https://sumitomoelectric.com/publications/pr-news-articles/2024/10/sumitomo-electric-technical-review-no99
 https://sumitomoelectric.com/publications/pr-news-articles/2025/04/sumitomo-electric-technical-review-no100
 https://sumitomoelectric.com/publications/pr-news-articles/2025/05/convocation-notice-155th-ordinary-general-meeting
+https://sumitomoelectric.com/publications/pr-news-articles/2026/09/sumitomo-wiring-systems-advances-its-smart-factory-concept
 https://sumitomoelectric.com/publications/pr-news-articles/press/2021/09/prs072
 https://sumitomoelectric.com/publications/pr-news-articles/press/2021/10/prs074
 https://sumitomoelectric.com/publications/pr-news-articles/press/2021/10/prs075
@@ -5193,6 +5220,7 @@ https://sumitomoelectric.com/sustainability/environment/biodiversity
 https://sumitomoelectric.com/sustainability/environment/biodiversity/tnfd
 https://sumitomoelectric.com/sustainability/environment/ce
 https://sumitomoelectric.com/sustainability/environment/management
+https://sumitomoelectric.com/sustainability/environment/naturalcapital
 https://sumitomoelectric.com/sustainability/environment/naturalcapital/tcfdtnfd
 https://sumitomoelectric.com/sustainability/environment/products
 https://sumitomoelectric.com/sustainability/environment/recycling

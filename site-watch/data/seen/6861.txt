@@ -5236,6 +5236,7 @@ https://www.keyence.co.jp/pdf/PressRelease_20260424_01.pdf
 https://www.keyence.co.jp/pdf/PressRelease_20260424_02.pdf
 https://www.keyence.co.jp/pdf/PressRelease_20260424_03.pdf
 https://www.keyence.co.jp/pdf/PressRelease_20260618.pdf
+https://www.keyence.co.jp/pdf/PressRelease_20261023.pdf
 https://www.keyence.co.jp/pdf/QuarterlyReport_201108_ja.pdf
 https://www.keyence.co.jp/pdf/QuarterlyReport_201111_ja.pdf
 https://www.keyence.co.jp/pdf/QuarterlyReport_201202_ja.pdf
@@ -9837,6 +9838,7 @@ https://www.keyence.co.jp/products/measure/blog/non-contact-wafer-thickness-warp
 https://www.keyence.co.jp/products/measure/blog/non-contact-wire-outer-diameter-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/outer-diameter-sorting-changeover.jsp
 https://www.keyence.co.jp/products/measure/blog/press-fit-caulking-height-step-inline-measurement.jsp
+https://www.keyence.co.jp/products/measure/blog/press-stamping-quality-control-guide.jsp
 https://www.keyence.co.jp/products/measure/blog/protrusion-foreign-matter-height-3d-detection.jsp
 https://www.keyence.co.jp/products/measure/blog/robot-repeatability-accuracy-non-contact-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/rotor-assembly-height-inspection.jsp
@@ -9847,6 +9849,7 @@ https://www.keyence.co.jp/products/measure/blog/shallow-dent-depression-depth-3d
 https://www.keyence.co.jp/products/measure/blog/solder-bump-height-volume-3d-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/surface-defect-depth-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/thickness-measurement-guide.jsp
+https://www.keyence.co.jp/products/measure/blog/tire-manufacturing-inspection-guide.jsp
 https://www.keyence.co.jp/products/measure/blog/tire-tread-groove-depth-non-contact-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/web-edge-position-meandering-control.jsp
 https://www.keyence.co.jp/products/measure/blog/welding-inspection-guide.jsp
@@ -28079,6 +28082,8 @@ https://www.keyence.co.jp/ss/products/microscope/ea-300/003/2102_01.jsp
 https://www.keyence.co.jp/ss/products/microscope/ea-300/004/2013_01.jsp
 https://www.keyence.co.jp/ss/products/microscope/ea-casestudy/
 https://www.keyence.co.jp/ss/products/microscope/ea-casestudy/?cid=WEB063
+https://www.keyence.co.jp/ss/products/microscope/knowledge/vhx_deep-contrast.jsp
+https://www.keyence.co.jp/ss/products/microscope/knowledge/vl_precision-sheet-metal.jsp
 https://www.keyence.co.jp/ss/products/microscope/measurement-solutions/
 https://www.keyence.co.jp/ss/products/microscope/measurement-solutions/additive-manufacturing.jsp
 https://www.keyence.co.jp/ss/products/microscope/measurement-solutions/automotive-parts.jsp

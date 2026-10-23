@@ -109,6 +109,7 @@ https://www.keyence.co.jp/products/process/level/
 https://www.keyence.co.jp/products/process/pressure/
 https://www.keyence.co.jp/products/process/temperature/
 https://www.keyence.co.jp/products/recorder/
+https://www.keyence.co.jp/products/recorder/blog/
 https://www.keyence.co.jp/products/safety/
 https://www.keyence.co.jp/products/safety/safety/
 https://www.keyence.co.jp/products/sensor/
