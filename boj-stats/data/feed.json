@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-23T15:03+09:00",
+ "generated_at": "2026-10-23T23:21+09:00",
  "report_date": "2026-10-23",
  "days": [
   {
@@ -85,6 +85,20 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "3.3%"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261023a.htm",
+     "name": "バーゼル銀行監督委員会による「グローバルなシステム上重要な銀行（G-SIB）-ウィンドウ・ドレッシング行動に対処するための評価枠組みの改訂」及び市中協議文書「G-SIB評価手法のレビュー」の公表について",
+     "url": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261023a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/organization/policyboard/pb_geppo/pbgp2609.htm",
+     "name": "日本銀行政策委員会月報（令和8年8・9月号）",
+     "url": "https://www.boj.or.jp/about/organization/policyboard/pb_geppo/pbgp2609.htm",
+     "time": "16:30"
     },
     {
      "kind": "news",
@@ -4004,10 +4018,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-23T15:03+09:00",
+  "checked_at": "2026-10-23T23:21+09:00",
   "counts": {
-   "new": 14,
-   "unchanged": 88,
+   "new": 0,
+   "unchanged": 102,
    "error": 0,
    "stale": 0
   },
