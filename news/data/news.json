@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-24T20:38+09:00",
+ "updated_at": "2026-10-25T03:39+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -817,20 +817,6 @@
      "url": "https://www.keyence.co.jp/pdf/AnnualReport_2026_en.pdf",
      "source": "official",
      "first_seen": "2026-06-15T00:00+09:00"
-    },
-    {
-     "date": "2026-04-27",
-     "title": "2025年度決算説明会資料",
-     "url": "https://www.keyence.co.jp/pdf/FinancialResults_202604_ja.pdf",
-     "source": "official",
-     "first_seen": "2026-04-27T00:00+09:00"
-    },
-    {
-     "date": "2026-04-27",
-     "title": "FY2025 Financial Results Materials",
-     "url": "https://www.keyence.co.jp/pdf/FinancialResults_202604_en.pdf",
-     "source": "official",
-     "first_seen": "2026-04-27T00:00+09:00"
     }
    ]
   },
@@ -2744,14 +2730,14 @@
    "items": [
     {
      "date": "2026-10-23",
-     "title": "1 2026年10月23日 企業・経営 トピックス パナソニック アビオニクス大阪・門真工場の拡張完了 ~次世代機内エンゲージメントソリューション「Astrova」の需要拡大に対応~",
+     "title": "2 2026年10月23日 企業・経営 トピックス パナソニック アビオニクス大阪・門真工場の拡張完了 ~次世代機内エンゲージメントソリューション「Astrova」の需要拡大に対応~",
      "url": "https://news.panasonic.com/jp/topics/206931",
      "source": "official",
      "first_seen": "2026-10-24T04:52+09:00"
     },
     {
      "date": "2026-10-23",
-     "title": "2 2026年10月23日 イベント・スポンサー活動 トピックス パナソニック野球部 柿本晟弥選手、プロ野球ドラフト会議で埼玉西武ライオンズから2位指名",
+     "title": "4 2026年10月23日 イベント・スポンサー活動 トピックス パナソニック野球部 柿本晟弥選手、プロ野球ドラフト会議で埼玉西武ライオンズから2位指名",
      "url": "https://news.panasonic.com/jp/topics/206932",
      "source": "official",
      "first_seen": "2026-10-24T04:52+09:00"
@@ -2765,7 +2751,7 @@
     },
     {
      "date": "2026-10-20",
-     "title": "4 2026年10月20日 技術・研究開発 プレスリリース パナソニックHD、ガラス型ペロブスカイト太陽電池の本格量産計画を一年前倒し、2029年4月より長浜拠点で生産開始",
+     "title": "5 2026年10月20日 技術・研究開発 プレスリリース パナソニックHD、ガラス型ペロブスカイト太陽電池の本格量産計画を一年前倒し、2029年4月より長浜拠点で生産開始",
      "url": "https://news.panasonic.com/jp/press/jn261020-1",
      "source": "official",
      "first_seen": "2026-10-20T17:53+09:00"
@@ -2941,7 +2927,7 @@
     },
     {
      "date": "2026-09-29",
-     "title": "4 2026年9月29日 製品・サービス プレスリリース パナソニックがヘアードライヤー ナノケア EH-NB70を発売",
+     "title": "6 2026年9月29日 製品・サービス プレスリリース パナソニックがヘアードライヤー ナノケア EH-NB70を発売",
      "url": "https://news.panasonic.com/jp/press/jn260929-2",
      "source": "official",
      "first_seen": "2026-09-29T00:00+09:00"
