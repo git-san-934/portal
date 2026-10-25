@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>香陵住販 投資分析</title>
+  <meta name="description" content="香陵住販（3495）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>香陵住販（3495）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2019年9月期〜2025年9月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>茨城県を地盤とする不動産会社です</b>。水戸市などで賃貸・売買の仲介、賃貸マンションの管理（約2万4,500戸）、コインパーキング、不動産の販売を行っています。千葉県・東京都にも拠点があります。</li>
+      <li><b>売上は7年で1.8倍になりました</b>。売上は62.5億円から115.3億円に、営業利益は5.8億円から10.7億円に増えました。</li>
+      <li><b>設備投資は賃貸物件や駐車場の取得が中心です</b>。自社で持つ賃貸マンションや駐車場用地を少しずつ増やしています。2020・2022年9月期は年10億円を超えました。</li>
+      <li><b>不動産の仕入れで借入金が増えています</b>。販売用の不動産を増やしたため、2022年9月期から営業CFはマイナスが続いています。借入金などは39億円から74億円に増えました。</li>
+      <li><b>配当は年0.7億円から1.4億円に増えました</b>。2025年9月期は1株55円（中間27円、期末28円）の予定です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年9月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は毎年増えています。営業利益率は7〜10%で安定しています。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。仲介と管理の利益は安定していますが、販売用の不動産を仕入れると営業CFがマイナスになり、借入金で補います。2025年9月期は太陽光発電施設の売却で投資CFがプラスでした。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費はありません。保有していた太陽光発電施設は順に売却しています。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は賃貸物件を取得した年に減価償却費（年2〜3億円）を大きく上回ります。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2019年9月期（3.4億円）</div>賃貸物件「ペアガーデンアネックス」などの取得（建物1.9億円、土地1.3億円）</li>
+      <li><div class="y">2020年9月期（12.5億円）</div>賃貸物件「ヴィラ梅香」などの取得（土地7.6億円、建物4.0億円）</li>
+      <li><div class="y">2021年9月期（1.8億円）</div>コインパーキング用の水戸市の土地1.0億円など</li>
+      <li><div class="y">2022年9月期（10.5億円）</div>守谷市の賃貸用の土地・建物の取得（土地4.8億円、機械装置など3.9億円）</li>
+      <li><div class="y">2023年9月期（3.4億円）</div>守谷支店の開設工事1.1億円、水戸市の収益物件0.9億円など</li>
+      <li><div class="y">2024年9月期（4.1億円）</div>守谷支店の開設工事2.1億円、守谷市などの駐車場用地0.7億円など</li>
+      <li><div class="y">2025年9月期（1.2億円）</div>店舗用の車両0.4億円、ひたちなか市などの駐車場設備0.2億円など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資の総額です。計画：太陽光発電施設「KORYOエコパワー森戸町」（水戸市）の売却を2025年10月に決めました。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">収益力と財務基盤を強めながら、持続的かつ安定的な配当を行う方針です。年2回の配当で、2025年9月期は年55円の予定です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は9月期決算です（例：「25/9」は2024年10月〜2025年9月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>不動産販売と借入金</b>：販売用不動産の仕入れで借入金が増えています。売却が順調に進むかを見ます。</li>
+      <li><b>仲介と管理の伸び</b>：賃貸・売買の仲介と管理戸数が増えています。地元での強みを保てるかを確認します。</li>
+      <li><b>配当の伸び</b>：利益の伸びに合わせて増配が続くかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 香陵住販株式会社 有価証券報告書（2019年9月期〜2025年9月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [38.9, 32.6, 32.4, 43.5, 59.7, 71.7, 74.1] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>
