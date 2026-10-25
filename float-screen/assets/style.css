@@ -129,3 +129,15 @@ footer a { color: var(--accent); }
 .cond-msg { font-size: 0.8rem; color: #c0392b; }
 .cond-now { font-size: 0.8rem; color: var(--accent); margin: 0.5rem 0 0; }
 .cond-now:empty { display: none; }
+
+td.dt { padding: 0 0.2rem; }
+.dt-btn { font: inherit; font-size: 0.9rem; min-width: 2rem; min-height: 2rem; border: 1px solid var(--border); border-radius: 6px; background: var(--card-bg); color: var(--accent); cursor: pointer; }
+.dt-btn[aria-expanded="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+tr.detail-row > td { padding: 0.4rem 0 0.8rem; background: var(--bg, transparent); text-align: left; white-space: normal; }
+.detail-box { position: sticky; left: 0; width: min(44rem, 85vw); overflow-x: auto; box-sizing: border-box; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 0.6rem; background: var(--card-bg); }
+.detail-title { margin: 0 0 0.4rem; font-weight: 700; font-size: 0.85rem; }
+.detail-table { width: 100%; font-size: 0.8rem; }
+.detail-table th { position: static; cursor: default; }
+.detail-table td, .detail-table th { padding: 0.25rem 0.5rem; }
+.detail-note { margin: 0.4rem 0 0; font-size: 0.72rem; color: var(--text-sub); }
+.detail-table thead { position: static; }
