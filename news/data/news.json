@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-25T10:14+09:00",
+ "updated_at": "2026-10-25T14:00+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -781,7 +781,8 @@
      "title": "First Quarter of FY2026 Financial Results Materials",
      "url": "https://www.keyence.co.jp/pdf/FinancialResults_202607_en.pdf",
      "source": "official",
-     "first_seen": "2026-07-29T00:00+09:00"
+     "first_seen": "2026-07-29T00:00+09:00",
+     "title_ja": "2026年度第1四半期決算資料"
     },
     {
      "date": "2026-07-28",
@@ -795,7 +796,8 @@
      "title": "Summary of Consolidated Financial Results for the 1st Quarter of FY2026 Ended",
      "url": "https://www.keyence.co.jp/pdf/ConsolidatedFinancialResultsForThe1stQuarterEndedJune_20_2026(JP_GAAP).pdf",
      "source": "official",
-     "first_seen": "2026-07-28T00:00+09:00"
+     "first_seen": "2026-07-28T00:00+09:00",
+     "title_ja": "2026年3月期 第1四半期 連結決算概要を発表しました"
     },
     {
      "date": "2026-06-18",
@@ -1396,217 +1398,248 @@
      "title": "Oracle Announces $1 Billion Investment to Accelerate Partner Growth and AI-Driven Modernization for Customers",
      "url": "https://www.oracle.com/news/announcement/ai-world-oracle-announces-1-billion-commitment-to-partner-ecosystem-2026-10-23/",
      "source": "official",
-     "first_seen": "2026-10-24T04:52+09:00"
+     "first_seen": "2026-10-24T04:52+09:00",
+     "title_ja": "オラクル、パートナーの成長と顧客向けの AI 主導のモダナイゼーションを加速するための 10 億ドルの投資を発表"
     },
     {
      "date": "2026-10-23",
      "title": "Oracle Expands Marketplace to Unlock New Partner Growth Opportunities",
      "url": "https://www.oracle.com/news/announcement/ai-world-oracle-expands-marketplace-to-unlock-new-partner-growth-opportunities-2026-10-23/",
      "source": "official",
-     "first_seen": "2026-10-24T04:52+09:00"
+     "first_seen": "2026-10-24T04:52+09:00",
+     "title_ja": "オラクル、マーケットプレイスを拡大してパートナーの新たな成長機会を開拓"
     },
     {
      "date": "2026-10-23",
      "title": "Oracle Investor Day Meeting to be held October 28, 2026",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/ORACLE-INVESTOR-DAY-MEETING-TO-BE-HELD-OCTOBER-28-2026/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-24T04:52+09:00"
+     "first_seen": "2026-10-24T04:52+09:00",
+     "title_ja": "Oracle Investor Day Meeting が 2026 年 10 月 28 日に開催される"
     },
     {
      "date": "2026-10-21",
      "title": "Oracle AI Agent Studio for Industry Applications Helps Accelerate Business Outcomes",
      "url": "https://www.oracle.com/news/announcement/oracle-ai-agent-studio-for-industry-applications-helps-accelerate-business-outcomes-2026-10-21/",
      "source": "official",
-     "first_seen": "2026-10-23T04:50+09:00"
+     "first_seen": "2026-10-23T04:50+09:00",
+     "title_ja": "Oracle AI Agent Studio for Industry Applications はビジネス成果の加速を支援します"
     },
     {
      "date": "2026-10-20",
      "title": "Oracle and AstraZeneca Partner to Advance AI-enabled Healthcare Innovation",
      "url": "https://www.oracle.com/news/announcement/oracle-and-astrazeneca-partner-to-advance-ai-enabled-healthcare-2026-10-20/",
      "source": "official",
-     "first_seen": "2026-10-23T04:50+09:00"
+     "first_seen": "2026-10-23T04:50+09:00",
+     "title_ja": "オラクルとアストラゼネカが提携してAIを活用したヘルスケアイノベーションを推進"
     },
     {
      "date": "2026-10-04",
      "title": "Oracle Announces $10 Million Partnership with the Nashville Symphony",
      "url": "https://www.oracle.com/news/announcement/oracle-announces-partnership-with-nashville-symphony-2026-10-04/",
      "source": "official",
-     "first_seen": "2026-10-05T09:19+09:00"
+     "first_seen": "2026-10-05T09:19+09:00",
+     "title_ja": "オラクル、ナッシュビル交響楽団との1,000万ドルの提携を発表"
     },
     {
      "date": "2026-10-02",
      "title": "Oracle Announces Commitment to Absorb $300 Million in Rising Point Beach Energy Costs for Wisconsin Residents",
      "url": "https://www.oracle.com/news/announcement/oracle-announces-commitment-to-absorb-rising-point-beach-energy-costs-2026-10-02/",
      "source": "official",
-     "first_seen": "2026-10-03T05:30+09:00"
+     "first_seen": "2026-10-03T05:30+09:00",
+     "title_ja": "オラクル、ウィスコンシン州住民のライジング・ポイント・ビーチのエネルギーコスト3億ドルを吸収するというコミットメントを発表"
     },
     {
      "date": "2026-10-01",
      "title": "Oracle and King Faisal Specialist Hospital & Research Centre to Advance Healthcare Innovation in Saudi Arabia",
      "url": "https://www.oracle.com/news/announcement/oracle-and-king-faisal-specialist-hospital-research-centre-to-advance-healthcare-innovation-2026-10-01/",
      "source": "official",
-     "first_seen": "2026-10-03T05:30+09:00"
+     "first_seen": "2026-10-03T05:30+09:00",
+     "title_ja": "オラクルとキング・ファイサル・スペシャリスト病院・研究センターがサウジアラビアの医療イノベーションを推進"
     },
     {
      "date": "2026-09-30",
      "title": "Project Jupiter Statement on Southern New Mexico Floods",
      "url": "https://www.oracle.com/news/announcement/project-jupiter-statement-on-southern-new-mexico-floods-2026-09-30/",
      "source": "official",
-     "first_seen": "2026-10-03T05:30+09:00"
+     "first_seen": "2026-10-03T05:30+09:00",
+     "title_ja": "ニューメキシコ州南部の洪水に関するプロジェクト・ジュピターの声明"
     },
     {
      "date": "2026-09-30",
      "title": "Oracle Financial Services Wins 11 Categories in Chartis RiskTech100 2027 Report",
      "url": "https://www.oracle.com/news/announcement/oracle-financial-services-wins-11-categories-in-chartis-riskrech100-2027-report-2026-09-30/",
      "source": "official",
-     "first_seen": "2026-10-03T05:30+09:00"
+     "first_seen": "2026-10-03T05:30+09:00",
+     "title_ja": "Oracle Financial ServicesがChartis RiskTech100 2027レポートで11部門を受賞"
     },
     {
      "date": "2026-09-30",
      "title": "NTT DOCOMO BUSINESS Migrates Critical Database Platform to Oracle Autonomous AI Database",
      "url": "https://www.oracle.com/news/announcement/ntt-docomo-business-migrates-critical-database-platform-to-oracle-autonomous-ai-database-2026-09-30/",
      "source": "official",
-     "first_seen": "2026-10-03T05:30+09:00"
+     "first_seen": "2026-10-03T05:30+09:00",
+     "title_ja": "NTTドコモビジネス、重要なデータベースプラットフォームをOracle Autonomous AI Databaseに移行"
     },
     {
      "date": "2026-09-29",
      "title": "NetApp and Oracle to Launch Fully Managed Cloud Storage Service for Demanding AI and Enterprise Workloads",
      "url": "https://www.oracle.com/news/announcement/netapp-and-oracle-to-launch-fully-managed-cloud-storage-service-for-demanding-ai-and-enterprise-workloads-2026-09-29/",
      "source": "official",
-     "first_seen": "2026-10-03T05:30+09:00"
+     "first_seen": "2026-10-03T05:30+09:00",
+     "title_ja": "NetApp と Oracle が、要求の厳しい AI およびエンタープライズ ワークロード向けのフルマネージド クラウド ストレージ サービスを開始"
     },
     {
      "date": "2026-09-29",
      "title": "Union Workers Power Project Jupiter—and New Mexico’s Future",
      "url": "https://www.oracle.com/news/announcement/blog/union-workers-power-project-jupiter-and-new-mexicos-future-2026-09-29/",
      "source": "official",
-     "first_seen": "2026-10-03T05:30+09:00"
+     "first_seen": "2026-10-03T05:30+09:00",
+     "title_ja": "組合労働者発電プロジェクト ジュピターとニューメキシコ州の未来"
     },
     {
      "date": "2026-09-29",
      "title": "Oracle Brings New Agentic Capabilities to the Fight Against Financial Crime",
      "url": "https://www.oracle.com/news/announcement/oracle-brings-new-agentic-capabilities-to-the-fight-against-financial-crime-2026-09-29/",
      "source": "official",
-     "first_seen": "2026-10-03T05:30+09:00"
+     "first_seen": "2026-10-03T05:30+09:00",
+     "title_ja": "オラクル、金融犯罪との戦いに新たなエージェント機能を導入"
     },
     {
      "date": "2026-09-29",
      "title": "Oracle Extends Fusion Agentic Applications with Introduction of Fusion Claw",
      "url": "https://www.oracle.com/news/announcement/oracle-extends-fusion-agentic-applications-with-introduction-of-fusion-claw-2026-09-29/",
      "source": "official",
-     "first_seen": "2026-09-29T22:20+09:00"
+     "first_seen": "2026-09-29T22:20+09:00",
+     "title_ja": "Oracle、Fusion Claw の導入で Fusion Agentic アプリケーションを拡張"
     },
     {
      "date": "2026-09-28",
      "title": "One Million Union Craft Hours Building Michigans Future",
      "url": "https://www.oracle.com/news/announcement/blog/one-million-union-craft-hours-building-michigans-future-2026-09-28/",
      "source": "official",
-     "first_seen": "2026-10-03T05:30+09:00"
+     "first_seen": "2026-10-03T05:30+09:00",
+     "title_ja": "ミシガン州の未来を構築する 100 万ユニオン クラフト時間"
     },
     {
      "date": "2026-09-28",
      "title": "Oracle Integration with Swift’s Ledger Helps Banks Connect Tokenized Deposit Infrastructures Across Institutions",
      "url": "https://www.oracle.com/news/announcement/oracle-integration-with-swifts-ledger-helps-banks-connect-tokenized-deposit-infrastructures-across-institutions-2026-09-28/",
      "source": "official",
-     "first_seen": "2026-10-03T05:30+09:00"
+     "first_seen": "2026-10-03T05:30+09:00",
+     "title_ja": "Oracle と Swift の Ledger の統合により、銀行は機関全体でトークン化された預金インフラストラクチャを接続できるようになります"
     },
     {
      "date": "2026-09-24",
      "title": "Oracle Health and ID.me Team to Simplify Secure Access to Health Data",
      "url": "https://www.oracle.com/news/announcement/oracle-health-and-id-me-team-to-simplify-secure-access-to-health-data-2026-09-24/",
      "source": "official",
-     "first_seen": "2026-09-24T00:00+09:00"
+     "first_seen": "2026-09-24T00:00+09:00",
+     "title_ja": "Oracle HealthとID.meチームが医療データへの安全なアクセスを簡素化"
     },
     {
      "date": "2026-09-24",
      "title": "Oracle Named a Leader in the IDC MarketScape for Worldwide Trade Finance Systems 2026 Vendor Assessment",
      "url": "https://www.oracle.com/news/announcement/oracle-named-a-leader-in-the-idc-marketscape-for-worldwide-trade-finance-systems-2026-vendor-assessment-2026-09-24/",
      "source": "official",
-     "first_seen": "2026-09-24T00:00+09:00"
+     "first_seen": "2026-09-24T00:00+09:00",
+     "title_ja": "OracleがIDC MarketScapeの世界貿易金融システム2026ベンダー評価でリーダーに選出"
     },
     {
      "date": "2026-09-24",
      "title": "Oracle and Wild Bio Join Forces to Advance AI-Driven Agriculture",
      "url": "https://www.oracle.com/news/announcement/oracle-and-wild-bio-join-forces-to-advance-ai-driven-agriculture-2026-09-24/",
      "source": "official",
-     "first_seen": "2026-09-24T00:00+09:00"
+     "first_seen": "2026-09-24T00:00+09:00",
+     "title_ja": "オラクルとワイルド・バイオが提携してAI主導の農業を推進"
     },
     {
      "date": "2026-09-23",
      "title": "Oracle Health Advances Revenue Cycle Management with AI",
      "url": "https://www.oracle.com/news/announcement/oracle-health-advances-revenue-cycle-management-with-ai-2026-09-23/",
      "source": "official",
-     "first_seen": "2026-09-23T00:00+09:00"
+     "first_seen": "2026-09-23T00:00+09:00",
+     "title_ja": "Oracle Health が AI で収益サイクル管理を推進"
     },
     {
      "date": "2026-09-23",
      "title": "Oracle to Advance Cancer Care with New Oncology EHR",
      "url": "https://www.oracle.com/news/announcement/oracle-to-advance-cancer-care-with-new-oncology-ehr-2026-09-23/",
      "source": "official",
-     "first_seen": "2026-09-23T00:00+09:00"
+     "first_seen": "2026-09-23T00:00+09:00",
+     "title_ja": "オラクル、新しいオンコロジー EHR でがん治療を進歩させる"
     },
     {
      "date": "2026-09-23",
      "title": "Real-World Data and AI Capabilities in Oracle Life Sciences Data Intelligence Help Accelerate Clinical Research and Commercialization",
      "url": "https://www.oracle.com/news/announcement/oracle-life-sciences-data-intelligence-help-accelerate-clinical-research-and-commercialization-2026-09-23/",
      "source": "official",
-     "first_seen": "2026-09-23T00:00+09:00"
+     "first_seen": "2026-09-23T00:00+09:00",
+     "title_ja": "Oracle Life Sciences Data Intelligenceの実世界データとAI機能が臨床研究と商品化の加速に貢献"
     },
     {
      "date": "2026-09-23",
      "title": "Oracle and Buck Institute for Research on Aging Advance Landmark Federal Aging Research Initiative",
      "url": "https://www.oracle.com/news/announcement/oracle-and-buck-institute-for-research-on-aging-advance-landmark-federal-aging-research-initiative-2026-09-23/",
      "source": "official",
-     "first_seen": "2026-09-23T00:00+09:00"
+     "first_seen": "2026-09-23T00:00+09:00",
+     "title_ja": "オラクルとバック老化研究所が画期的な連邦老化研究イニシアチブを前進"
     },
     {
      "date": "2026-09-23",
      "title": "Oracle Expands Digital Assets Data Nexus to Help Banks Operationalize Digital Money",
      "url": "https://www.oracle.com/news/announcement/oracle-expands-digital-assets-data-nexus-to-help-banks-operationalize-digital-money-2026-09-23/",
      "source": "official",
-     "first_seen": "2026-09-23T00:00+09:00"
+     "first_seen": "2026-09-23T00:00+09:00",
+     "title_ja": "オラクル、デジタル資産データ・ネクサスを拡張して銀行のデジタルマネー運用を支援"
     },
     {
      "date": "2026-09-23",
      "title": "Co-op Live Sets the Stage for Connected Operations with Oracle Cloud Applications",
      "url": "https://www.oracle.com/news/announcement/co-op-live-sets-the-stage-for-connected-operations-with-oracle-cloud-applications-2026-09-23/",
      "source": "official",
-     "first_seen": "2026-09-23T00:00+09:00"
+     "first_seen": "2026-09-23T00:00+09:00",
+     "title_ja": "Co-op LiveはOracle Cloudアプリケーションとの接続されたオペレーションの舞台を設定します"
     },
     {
      "date": "2026-09-12",
      "title": "Larry Ellison Cancels His Plan to Sell Oracle Stock",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/Larry-Ellison-Cancels-His-Plan-to-Sell-Oracle-Stock/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-12T00:00+09:00"
+     "first_seen": "2026-09-12T00:00+09:00",
+     "title_ja": "ラリー・エリソン氏、オラクル株売却計画をキャンセル"
     },
     {
      "date": "2026-09-10",
      "title": "Oracle Announces Q1 Results Driven by Triple Digit Growth in Cloud Infrastructure Revenues",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Q1-Results-Driven-by-Triple-Digit-Growth-in-Cloud-Infrastructure-Revenues/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-10T00:00+09:00"
+     "first_seen": "2026-09-10T00:00+09:00",
+     "title_ja": "オラクル、クラウド・インフラストラクチャ収益の 3 桁成長が牽引する第 1 四半期業績を発表"
     },
     {
      "date": "2026-09-02",
      "title": "Oracle Sets the Date for its First Quarter Fiscal Year 2027 Earnings Announcement",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Sets-the-Date-for-its-First-Quarter-Fiscal-Year-2027-Earnings-Announcement/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-02T00:00+09:00"
+     "first_seen": "2026-09-02T00:00+09:00",
+     "title_ja": "オラクル、2027年度第1四半期決算発表日を決定"
     },
     {
      "date": "2026-06-10",
      "title": "Oracle Announces Record Q4 and FY 2026 Results Driven by Cloud Infrastructure & Cloud Applications",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Record-Q4-and-FY-2026-Results-Driven-by-Cloud-Infrastructure--Cloud-Applications/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-10T00:00+09:00"
+     "first_seen": "2026-06-10T00:00+09:00",
+     "title_ja": "オラクル、クラウド・インフラストラクチャとクラウド・アプリケーションが牽引し、2026年度第4四半期と会計年度の記録的な業績を発表"
     },
     {
      "date": "2026-06-01",
      "title": "Oracle Sets the Date for its Fourth Quarter Fiscal Year 2026 Earnings Announcement",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Sets-the-Date-for-its-Fourth-Quarter-Fiscal-Year-2026-Earnings-Announcement/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-01T00:00+09:00"
+     "first_seen": "2026-06-01T00:00+09:00",
+     "title_ja": "オラクル、2026年度第4四半期決算発表日を決定"
     }
    ]
   },
@@ -1625,7 +1658,8 @@
      "title": "Adobe Announces Anil Chakravarthy to Become President and CEO and Shantanu Narayen to Become Executive Chair on December 1, 2026 September 03, 2026",
      "url": "https://news.adobe.com/news/2026/09/adobe-announces-anil-chakravarthy-to-become-president-and-ceo",
      "source": "official",
-     "first_seen": "2026-09-03T00:00+09:00"
+     "first_seen": "2026-09-03T00:00+09:00",
+     "title_ja": "アドビ、2026年12月1日付でアニル・チャクラバルシー氏が社長兼CEOに、シャンタヌ・ナラヤン氏が執行会長に就任すると発表 2026年9月03日"
     }
    ]
   },
@@ -1645,84 +1679,96 @@
      "title": "Cerebras to supply AI systems to cloud computing startup Gimlet Labs News",
      "url": "https://www.reuters.com/technology/cerebras-supply-ai-systems-cloud-computing-startup-gimlet-labs-2026-09-28/",
      "source": "official",
-     "first_seen": "2026-09-29T18:19+09:00"
+     "first_seen": "2026-09-29T18:19+09:00",
+     "title_ja": "Cerebras、クラウドコンピューティングスタートアップのGimlet LabsにAIシステムを供給へ ニュース"
     },
     {
      "date": "2026-09-28",
      "title": "Cerebras to supply AI systems to cloud computing startup Gimlet Labs September 28, 2026 News",
      "url": "https://www.cerebras.ai/news/cerebras-to-supply-ai-systems-to-cloud-computing-startup-gimlet-labs",
      "source": "official",
-     "first_seen": "2026-09-29T06:41+09:00"
+     "first_seen": "2026-09-29T06:41+09:00",
+     "title_ja": "Cerebras、クラウド コンピューティングのスタートアップ Gimlet Labs に AI システムを供給へ 2026 年 9 月 28 日 ニュース"
     },
     {
      "date": "2026-09-08",
      "title": "OpenAI’s Ultrafast makes GPT-5.6 Sol up to 14× faster with Cerebras September 08, 2026 News",
      "url": "https://www.neoteo.com/en/openais-ultrafast-tier-advertises-14-faster-gpt-56-sol-inference-with-cerebras",
      "source": "official",
-     "first_seen": "2026-09-08T00:00+09:00"
+     "first_seen": "2026-09-08T00:00+09:00",
+     "title_ja": "OpenAI の Ultrafast により、Cerebras で GPT-5.6 Sol が最大 14 倍高速化 2026 年 9 月 8 日 ニュース"
     },
     {
      "date": "2026-08-27",
      "title": "Andrew Feldman: The 100 Most Influential People in AI 2026 August 27, 2026 News",
      "url": "https://time.com/collection/time100-ai/2026/andrew-feldman/",
      "source": "official",
-     "first_seen": "2026-08-27T00:00+09:00"
+     "first_seen": "2026-08-27T00:00+09:00",
+     "title_ja": "アンドリュー フェルドマン: AI 2026 で最も影響力のある 100 人 2026 年 8 月 27 日 ニュース"
     },
     {
      "date": "2026-08-13",
      "title": "OpenAI introduces ‘Ultrafast,’ a new mode that makes GPT-5.6 Sol work at 14x the speed August 13, 2026 News",
      "url": "https://techcrunch.com/2026/08/13/openai-introduces-ultrafast-a-new-mode-that-makes-gpt-5-6-sol-work-at-14x-the-speed/",
      "source": "official",
-     "first_seen": "2026-08-13T00:00+09:00"
+     "first_seen": "2026-08-13T00:00+09:00",
+     "title_ja": "OpenAI、GPT-5.6 Sol を 14 倍の速度で動作させる新しいモード「Ultrafast」を導入 2026 年 8 月 13 日"
     },
     {
      "date": "2026-08-13",
      "title": "Renting Compute Capacity Is a Huge Business, Cerebras CEO Says August 13, 2026 News",
      "url": "https://www.bloomberg.com/news/videos/2026-08-13/renting-compute-capacity-is-huge-business-cerebras-ceo-video",
      "source": "official",
-     "first_seen": "2026-08-13T00:00+09:00"
+     "first_seen": "2026-08-13T00:00+09:00",
+     "title_ja": "コンピューティング能力のレンタルは巨大なビジネスである、Cerebras CEO が語る 2026 年 8 月 13 日 ニュース"
     },
     {
      "date": "2026-08-12",
      "title": "Cerebras Systems CEO Andrew Feldman at All-In We Make AI ‘Blisteringly Fast’ August 12, 2026 News",
      "url": "https://finance.yahoo.com/video/cerebras-systems-ceo-andrew-feldman-142508236.html",
      "source": "official",
-     "first_seen": "2026-08-12T00:00+09:00"
+     "first_seen": "2026-08-12T00:00+09:00",
+     "title_ja": "Cerebras Systems CEO アンドリュー フェルドマン氏、All-In We Make AI を「驚くほど高速」に 2026 年 8 月 12 日 ニュース"
     },
     {
      "date": "2026-06-01",
      "title": "India’s AI deal with the UAE challenges U.S. cloud dominance June 01, 2026 News",
      "url": "https://restofworld.org/2026/india-uae-g42-cerebras-ai-sovereignty/",
      "source": "official",
-     "first_seen": "2026-06-01T00:00+09:00"
+     "first_seen": "2026-06-01T00:00+09:00",
+     "title_ja": "インドの UAE との AI 協定が米国のクラウド支配に挑戦 2026 年 6 月 1 日 ニュース"
     },
     {
      "date": "2026-05-20",
      "title": "This CEO Turned a Complex AI Story Into a $95-Billion IPO May 20, 2026 News",
      "url": "https://www.inc.com/carmine-gallo/this-ceo-turned-a-complex-ai-story-into-a-95-billion-ipo/91346617",
      "source": "official",
-     "first_seen": "2026-05-20T00:00+09:00"
+     "first_seen": "2026-05-20T00:00+09:00",
+     "title_ja": "この CEO が複雑な AI ストーリーを 950 億ドルの IPO に変えた 2026 年 5 月 20 日 ニュース"
     },
     {
      "date": "2026-05-14",
      "title": "Cerebras CEO says AI chip demand is ‘not speculative’ as shares double in blockbuster IPO debut May 14, 2026 News",
      "url": "https://fortune.com/2026/05/14/cerebras-one-of-the-biggest-ipos-of-the-year/",
      "source": "official",
-     "first_seen": "2026-05-14T00:00+09:00"
+     "first_seen": "2026-05-14T00:00+09:00",
+     "title_ja": "セレブラスCEO、大ヒットIPOデビューで株価2倍にAIチップ需要は「投機的ではない」と発言 2026年5月14日 ニュース"
     },
     {
      "date": "2026-05-14",
      "title": "A.I. Chip Maker Soars 68% in Market Debut, as Tech I.P.O.s Ramp Up May 14, 2026 News",
      "url": "https://www.nytimes.com/2026/05/14/technology/cerebras-ipo-ai.html",
      "source": "official",
-     "first_seen": "2026-05-14T00:00+09:00"
+     "first_seen": "2026-05-14T00:00+09:00",
+     "title_ja": "A.I.テクノロジー関連I.P.O.の増加に伴い、チップメーカーが市場デビューで68%急上昇 2026年5月14日 ニュース"
     },
     {
      "date": "2026-05-14",
      "title": "Cerebras Shares Soar in Hotly Anticipated Year for AI Debuts May 14, 2026 News",
      "url": "https://www.wsj.com/finance/stocks/cerebras-to-kick-off-hotly-anticipated-year-for-artificial-intelligence-ipos-8b08ead7",
      "source": "official",
-     "first_seen": "2026-05-14T00:00+09:00"
+     "first_seen": "2026-05-14T00:00+09:00",
+     "title_ja": "AIデビューが大いに期待される年にセレブラス株が急上昇 2026年5月14日 ニュース"
     }
    ]
   },
@@ -1741,63 +1787,72 @@
      "title": "Circle to Announce Q3 2026 Financial Results on November 4, 2026 Circle to Announce Q3 2026 Financial Results on November 4, 2026",
      "url": "https://www.circle.com/pressroom/circle-to-announce-q3-2026-financial-results-on-november-4-2026",
      "source": "official",
-     "first_seen": "2026-10-08T06:06+09:00"
+     "first_seen": "2026-10-08T06:06+09:00",
+     "title_ja": "サークルは 2026 年第 3 四半期の財務結果を 2026 年 11 月 4 日に発表します サークルは 2026 年第 3 四半期の財務結果を 2026 年 11 月 4 日に発表します"
     },
     {
      "date": "2026-10-07",
      "title": "Tereina, an SAP-backed company, and Circle Bring USDC and EURC into Enterprise Workflows, Starting with the SAP Ecosystem Behind 84% of Global Commerce Partnership will integrate USDC and EURC into Te",
      "url": "https://www.circle.com/pressroom/tereina-an-sap-backed-company-and-circle-bring-usdc-and-eurc-into-enterprise-workflows-starting-with-the-sap-ecosystem-behind-84-of-global-commerce",
      "source": "official",
-     "first_seen": "2026-10-07T22:56+09:00"
+     "first_seen": "2026-10-07T22:56+09:00",
+     "title_ja": "SAP 支援企業の Tereina と Circle が、SAP エコシステムを皮切りにエンタープライズ ワークフローに USDC と EURC を導入 Global Commerce Partnership の 84% を皮切りに、USDC と EURC を Tee に統合"
     },
     {
      "date": "2026-09-28",
      "title": "Volante Technologies and Circle to advance stablecoin payment and settlement capabilities for financial institutions Collaboration will explore banks’ integration of USDC workflows within existing mul",
      "url": "https://www.circle.com/pressroom/volante-technologies-and-circle-to-advance-stablecoin-payment-and-settlement-capabilities-for-financial-institutions",
      "source": "official",
-     "first_seen": "2026-09-28T22:05+09:00"
+     "first_seen": "2026-09-28T22:05+09:00",
+     "title_ja": "Volante Technologies と Circle は、金融機関向けのステーブルコインの支払いおよび決済機能を推進します 提携により、既存の MUL 内での銀行の USDC ワークフローの統合が検討されます"
     },
     {
      "date": "2026-09-25",
      "title": "Circle Announces CFO Transition Plan Jeremy Fox-Geen to step down as Chief Financial Officer and will support a smooth transition",
      "url": "https://www.circle.com/pressroom/circle-announces-cfo-transition-plan",
      "source": "official",
-     "first_seen": "2026-09-25T00:00+09:00"
+     "first_seen": "2026-09-25T00:00+09:00",
+     "title_ja": "サークル、CFO移行計画を発表 ジェレミー・フォックス・ジーン氏が最高財務責任者を辞任し、スムーズな移行をサポートする"
     },
     {
      "date": "2026-09-25",
      "title": "Circle Foundation Announces Support for United Nations Development Programme and World Food Programme to Advance Digital Payments for Development and Humanitarian Action Circle Foundation Announces Su",
      "url": "https://www.circle.com/pressroom/circle-foundation-announces-support-for-united-nations-development-programme-and-world-food-programme-to-advance-digital-payments-for-development-and-humanitarian-action",
      "source": "official",
-     "first_seen": "2026-09-25T00:00+09:00"
+     "first_seen": "2026-09-25T00:00+09:00",
+     "title_ja": "サークル財団が開発と人道支援活動のためのデジタル決済を推進する国連開発計画と世界食糧計画への支援を発表 サークル財団がスーを発表"
     },
     {
      "date": "2026-09-22",
      "title": "Circle Foundation Announces Inaugural CDFI Grants to Accion Opportunity Fund and Pacific Community Ventures New funding backs AI-powered tools that expand access to capital for small businesses left b",
      "url": "https://www.circle.com/pressroom/circle-foundation-announces-inaugural-cdfi-grants-to-accion-opportunity-fund-and-pacific-community-ventures",
      "source": "official",
-     "first_seen": "2026-09-22T00:00+09:00"
+     "first_seen": "2026-09-22T00:00+09:00",
+     "title_ja": "Circle Foundation、Accion Opportunity Fund と Pacific Community Ventures への初の CDFI 助成金を発表 中小企業の資金アクセスを拡大する AI 搭載ツールを新たな資金で支援 左 b"
     },
     {
      "date": "2026-09-22",
      "title": "Binance Invests $100 Million in Circle, Expands Strategic Partnership and Renews Commercial Agreement for Five Years Binance Invests $100 Million in Circle, Expands Strategic Partnership and Renews Co",
      "url": "https://www.circle.com/pressroom/binance-invests-100-million-in-circle-expands-strategic-partnership-and-renews-commercial-agreement-for-five-years",
      "source": "official",
-     "first_seen": "2026-09-22T00:00+09:00"
+     "first_seen": "2026-09-22T00:00+09:00",
+     "title_ja": "Binance が Circle に 1 億ドル投資、戦略的パートナーシップを拡大し、5 年間の商業契約を更新 Binance が Circle に 1 億ドルを投資、戦略的パートナーシップを拡大し、Co を更新"
     },
     {
      "date": "2026-09-16",
      "title": "Circle Launches Arc Mainnet, an Economic Operating System for the Internet Arc goes live with more than 100 institutional and ecosystem builders on day one",
      "url": "https://www.circle.com/pressroom/circle-launches-arc-mainnet-an-economic-operating-system-for-the-internet",
      "source": "official",
-     "first_seen": "2026-09-16T00:00+09:00"
+     "first_seen": "2026-09-16T00:00+09:00",
+     "title_ja": "Circle がインターネット用の経済オペレーティング システムである Arc Mainnet を発表 Arc は 100 を超える機関およびエコシステム ビルダーと初日から稼働を開始"
     },
     {
      "date": "2026-09-08",
      "title": "Circle Expands Global Payments Infrastructure with Agreement to Acquire Singapore-based Cross-Border Payments Platform, Tazapay Proposed acquisition will bring 60+ banking and fintech partners, 100+ p",
      "url": "https://www.circle.com/pressroom/circle-expands-global-payments-infrastructure-with-agreement-to-acquire-singapore-based-cross-border-payments-platform-tazapay",
      "source": "official",
-     "first_seen": "2026-09-08T00:00+09:00"
+     "first_seen": "2026-09-08T00:00+09:00",
+     "title_ja": "Circle、シンガポールを拠点とする国境を越えた決済プラットフォーム、Tazapay を買収することで合意し、世界的な決済インフラを拡大 提案された買収により、60 社以上の銀行およびフィンテック パートナー、100 名以上のパートナーが加わる予定"
     }
    ]
   },
@@ -1816,49 +1871,56 @@
      "title": "Corning Announces Quarterly Dividend",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Announces-Quarterly-Dividend-301b59234/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-07T22:56+09:00"
+     "first_seen": "2026-10-07T22:56+09:00",
+     "title_ja": "コーニング、四半期配当を発表"
     },
     {
      "date": "2026-07-28",
      "title": "Corning’s Strong Second-Quarter 2026 Financial Results(1) Demonstrate Progress on Recently Upgraded Springboard Plan",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Cornings-Strong-Second-Quarter-2026-Financial-Results1-Demonstrate-Progress-on-Recently-Upgraded-Springboard-Plan/default.aspx",
      "source": "official",
-     "first_seen": "2026-07-28T00:00+09:00"
+     "first_seen": "2026-07-28T00:00+09:00",
+     "title_ja": "コーニングの 2026 年第 2 四半期好調な財務結果(1) 最近アップグレードされた踏み台計画の進捗を示す"
     },
     {
      "date": "2026-06-24",
      "title": "Corning Announces Quarterly Dividend",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Announces-Quarterly-Dividend-75086b013/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-24T00:00+09:00"
+     "first_seen": "2026-06-24T00:00+09:00",
+     "title_ja": "コーニング、四半期配当を発表"
     },
     {
      "date": "2026-05-06",
      "title": "Corning Upgrades and Extends Springboard Plan, Outlines New Phase of Accelerating Growth",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Upgrades-and-Extends-Springboard-Plan-Outlines-New-Phase-of-Accelerating-Growth/default.aspx",
      "source": "official",
-     "first_seen": "2026-05-06T00:00+09:00"
+     "first_seen": "2026-05-06T00:00+09:00",
+     "title_ja": "コーニング、出発点計画をアップグレードおよび延長し、成長加速の新たな段階を概説"
     },
     {
      "date": "2026-05-06",
      "title": "NVIDIA and Corning Announce Long-Term Partnership To Strengthen U.S. Manufacturing for AI Infrastructure",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/NVIDIA-and-Corning-Announce-Long-Term-Partnership-To-Strengthen-U-S--Manufacturing-for-AI-Infrastructure/default.aspx",
      "source": "official",
-     "first_seen": "2026-05-06T00:00+09:00"
+     "first_seen": "2026-05-06T00:00+09:00",
+     "title_ja": "NVIDIA とコーニング、AI インフラストラクチャの米国製造を強化するための長期パートナーシップを発表"
     },
     {
      "date": "2026-04-30",
      "title": "Corning Announces Quarterly Dividend",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Announces-Quarterly-Dividend-d3b4631b4/default.aspx",
      "source": "official",
-     "first_seen": "2026-04-30T00:00+09:00"
+     "first_seen": "2026-04-30T00:00+09:00",
+     "title_ja": "コーニング、四半期配当を発表"
     },
     {
      "date": "2026-04-28",
      "title": "Corning Announces Strong First-Quarter 2026 Financial Results (1)",
      "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Announces-Strong-First-Quarter-2026-Financial-Results-1/default.aspx",
      "source": "official",
-     "first_seen": "2026-04-28T00:00+09:00"
+     "first_seen": "2026-04-28T00:00+09:00",
+     "title_ja": "コーニング、2026 年第 1 四半期の好調な財務結果を発表 (1)"
     }
    ]
   },
@@ -1877,196 +1939,224 @@
      "title": "Stagwell (STGW) and Palantir (PLTR) Expand AI Partnership to Transform Enterprise Marketing",
      "url": "https://investors.palantir.com/news-details/2026/Stagwell-STGW-and-Palantir-PLTR-Expand-AI-Partnership-to-Transform-Enterprise-Marketing/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-24T04:52+09:00"
+     "first_seen": "2026-10-24T04:52+09:00",
+     "title_ja": "Stagwell (STGW) と Palantir (PLTR) が AI パートナーシップを拡大してエンタープライズ マーケティングを変革"
     },
     {
      "date": "2026-10-22",
      "title": "Palantir Elevates Aplos Data to Vanguard: Elite",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Elevates-Aplos-Data-to-Vanguard-Elite/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-22T21:27+09:00"
+     "first_seen": "2026-10-22T21:27+09:00",
+     "title_ja": "Palantir が Aplos データを Vanguard: Elite に昇格"
     },
     {
      "date": "2026-10-21",
      "title": "Palantir Accelerates Delivery of Sovereign AI to New Wave of Customers",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Accelerates-Delivery-of-Sovereign-AI-to-New-Wave-of-Customers/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-22T08:24+09:00"
+     "first_seen": "2026-10-22T08:24+09:00",
+     "title_ja": "Palantir、新しい顧客層へのソブリン AI の提供を加速"
     },
     {
      "date": "2026-10-19",
      "title": "Knox and Palantir Partner to Further Accelerate Delivery of Software through Largest Federal Cloud",
      "url": "https://investors.palantir.com/news-details/2026/Knox-and-Palantir-Partner-to-Further-Accelerate-Delivery-of-Software-through-Largest-Federal-Cloud/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-19T22:57+09:00"
+     "first_seen": "2026-10-19T22:57+09:00",
+     "title_ja": "Knox と Palantir が提携し、最大規模の連邦クラウドを通じてソフトウェアの配信をさらに加速"
     },
     {
      "date": "2026-10-15",
      "title": "Customers Bank and Palantir Collaborate to Build an AI-Native Future for Banking",
      "url": "https://investors.palantir.com/news-details/2026/Customers-Bank-and-Palantir-Collaborate-to-Build-an-AI-Native-Future-for-Banking/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-16T04:46+09:00"
+     "first_seen": "2026-10-16T04:46+09:00",
+     "title_ja": "Customers Bank と Palantir が連携して銀行業務の AI ネイティブの未来を構築"
     },
     {
      "date": "2026-10-12",
      "title": "Palantir Announces Date of Third Quarter 2026 Earnings Release and Webcast",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Announces-Date-of-Third-Quarter-2026-Earnings-Release-and-Webcast/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-13T07:48+09:00"
+     "first_seen": "2026-10-13T07:48+09:00",
+     "title_ja": "Palantir、2026 年第 3 四半期決算発表とウェブキャストの日付を発表"
     },
     {
      "date": "2026-10-12",
      "title": "Ondas Announces Regna AI, Powered by Palantir, to Advance Sovereign AI",
      "url": "https://investors.palantir.com/news-details/2026/Ondas-Announces-Regna-AI-Powered-by-Palantir-to-Advance-Sovereign-AI/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-12T00:00+09:00"
+     "first_seen": "2026-10-12T00:00+09:00",
+     "title_ja": "Ondas がソブリン AI を進化させるために Palantir を搭載した Regna AI を発表"
     },
     {
      "date": "2026-10-11",
      "title": "Palantir Technologies Announces October Seoul Pop-Up with Korea-First Exclusive Merchandise Release",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Technologies-Announces-October-Seoul-Pop-Up-with-Korea-First-Exclusive-Merchandise-Release/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-12T10:44+09:00"
+     "first_seen": "2026-10-12T10:44+09:00",
+     "title_ja": "Palantir Technologies、韓国初の限定商品発売を伴う10月のソウルポップアップを発表"
     },
     {
      "date": "2026-10-01",
      "title": "Palantir and Armada Partner to Accelerate Sovereign AI Infrastructure",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-and-Armada-Partner-to-Accelerate-Sovereign-AI-Infrastructure/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-02T08:10+09:00"
+     "first_seen": "2026-10-02T08:10+09:00",
+     "title_ja": "Palantir と Armada がソブリン AI インフラストラクチャを加速するために提携"
     },
     {
      "date": "2026-09-10",
      "title": "Palantir Customers Set New Standard for AI at AIPCon 11",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Customers-Set-New-Standard-for-AI-at-AIPCon-11v2/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-10T00:00+09:00"
+     "first_seen": "2026-09-10T00:00+09:00",
+     "title_ja": "Palantir の顧客が AIPCon 11 で AI の新しい標準を設定"
     },
     {
      "date": "2026-09-10",
      "title": "NVIDIA and Palantir Bring Sovereign Intelligence to Critical Supply Chains",
      "url": "https://investors.palantir.com/news-details/2026/NVIDIA-and-Palantir-Bring-Sovereign-Intelligence-to-Critical-Supply-Chains/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-10T00:00+09:00"
+     "first_seen": "2026-09-10T00:00+09:00",
+     "title_ja": "NVIDIA と Palantir が重要なサプライ チェーンにソブリン インテリジェンスを導入"
     },
     {
      "date": "2026-09-10",
      "title": "Palantir and Fujitsu Deepen Partnership to Advance Enterprise AI Transformation, with Fujitsu Strengthening as a Global FDE Partner",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-and-Fujitsu-Deepen-Partnership-to-Advance-Enterprise-AI-Transformation-with-Fujitsu-Strengthening-as-a-Global-FDE-Partner/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-10T00:00+09:00"
+     "first_seen": "2026-09-10T00:00+09:00",
+     "title_ja": "Palantir と富士通、エンタープライズ AI 変革を推進するパートナーシップを強化、富士通はグローバル FDE パートナーとして強化"
     },
     {
      "date": "2026-09-10",
      "title": "Method Security and Palantir Announce The Cardinal Program, Delivering Method’s Autonomous Cyber Systems via Palantir’s Ontology for Cybersecurity",
      "url": "https://investors.palantir.com/news-details/2026/Method-Security-and-Palantir-Announce-The-Cardinal-Program-Delivering-Methods-Autonomous-Cyber-Systems-via-Palantirs-Ontology-for-Cybersecurity/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-10T00:00+09:00"
+     "first_seen": "2026-09-10T00:00+09:00",
+     "title_ja": "Method Security と Palantir が、Palantir のサイバーセキュリティ向けオントロジーを介して Method の自律型サイバー システムを提供する Cardinal プログラムを発表"
     },
     {
      "date": "2026-09-08",
      "title": "Palantir and Nebius Partner to Deliver a Complete Sovereign AI Stack to Palantir Customers",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-and-Nebius-Partner-to-Deliver-a-Complete-Sovereign-AI-Stack-to-Palantir-Customers/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-08T00:00+09:00"
+     "first_seen": "2026-09-08T00:00+09:00",
+     "title_ja": "Palantir と Nebius が提携し、完全なソブリン AI スタックを Palantir の顧客に提供"
     },
     {
      "date": "2026-09-03",
      "title": "PwC and Palantir Expand Strategic Alliance to Help Organizations Scale Enterprise AI",
      "url": "https://investors.palantir.com/news-details/2026/PwC-and-Palantir-Expand-Strategic-Alliance-to-Help-Organizations-Scale-Enterprise-AI/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-03T00:00+09:00"
+     "first_seen": "2026-09-03T00:00+09:00",
+     "title_ja": "PwC と Palantir、組織のエンタープライズ AI の拡張を支援するため戦略的提携を拡大"
     },
     {
      "date": "2026-09-02",
      "title": "Peter Zaffino to Join Palantir Technologies as Global Head of Financial Services",
      "url": "https://investors.palantir.com/news-details/2026/Peter-Zaffino-to-Join-Palantir-Technologies-as-Global-Head-of-Financial-Services/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-02T00:00+09:00"
+     "first_seen": "2026-09-02T00:00+09:00",
+     "title_ja": "ピーター・ザフィーノ、金融サービスのグローバル責任者としてパランティア・テクノロジーズに入社"
     },
     {
      "date": "2026-09-01",
      "title": "Palantir to Deliver Eight TITAN Systems to the U.S. Army",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-to-Deliver-Eight-TITAN-Systems-to-the-U-S--Army/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-01T00:00+09:00"
+     "first_seen": "2026-09-01T00:00+09:00",
+     "title_ja": "パランティア、8台のTITANシステムを米陸軍に納入へ"
     },
     {
      "date": "2026-08-19",
      "title": "Palantir's Sovereignty Bootcamps Draw Nearly 200 Organizations in <30 Days",
      "url": "https://investors.palantir.com/news-details/2026/Palantirs-Sovereignty-Bootcamps-Draw-Nearly-200-Organizations-in-30-Days/default.aspx",
      "source": "official",
-     "first_seen": "2026-08-19T00:00+09:00"
+     "first_seen": "2026-08-19T00:00+09:00",
+     "title_ja": "Palantir の主権ブートキャンプには 30 日未満で 200 近くの組織が参加"
     },
     {
      "date": "2026-08-03",
      "title": "Palantir Reports Q2 2026 U.S. Comm Revenue Growth of 149% Y/Y and Revenue Growth of 93% Y/Y; Raises FY 2026 Revenue Guidance to 82% Y/Y Growth and U.S. Comm Revenue Guidance to 134% Y/Y, Crushing Cons",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Reports-Q2-2026-U-S--Comm-Revenue-Growth-of-149-YY-and-Revenue-Growth-of-93-YY-Raises-FY-2026-Revenue-Guidance-to-82-YY-Growth-and-U-S--Comm-Revenue-Guidance-to-134-YY-Crushing-Consensus-Expectations/default.aspx",
      "source": "official",
-     "first_seen": "2026-08-03T00:00+09:00"
+     "first_seen": "2026-08-03T00:00+09:00",
+     "title_ja": "パランティアは、2026 年第 2 四半期の米国通信の収益が前年比 149% 増加し、収益が前年比 93% 増加したと報告しています。 2026年度の収益見通しを前年比82%成長、米国通信収益見通しを前年比134%に引き上げ、デメリットを打ち砕く"
     },
     {
      "date": "2026-07-13",
      "title": "Palantir Announces Date of Second Quarter 2026 Earnings Release and Webcast",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Announces-Date-of-Second-Quarter-2026-Earnings-Release-and-Webcast/default.aspx",
      "source": "official",
-     "first_seen": "2026-07-13T00:00+09:00"
+     "first_seen": "2026-07-13T00:00+09:00",
+     "title_ja": "Palantir、2026 年第 2 四半期決算発表とウェブキャストの日付を発表"
     },
     {
      "date": "2026-07-08",
      "title": "SNP and Palantir Form Strategic Partnership to Accelerate Secure SAP Transformations",
      "url": "https://investors.palantir.com/news-details/2026/SNP-and-Palantir-Form-Strategic-Partnership-to-Accelerate-Secure-SAP-Transformations/default.aspx",
      "source": "official",
-     "first_seen": "2026-07-08T00:00+09:00"
+     "first_seen": "2026-07-08T00:00+09:00",
+     "title_ja": "SNP と Palantir が安全な SAP 変革を加速するために戦略的パートナーシップを締結"
     },
     {
      "date": "2026-07-07",
      "title": "Palantir Expands Its Presence in Mexico and Strengthens Its AI Offering in the Insurance Sector with GNP Seguros",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Expands-Its-Presence-in-Mexico-and-Strengthens-Its-AI-Offering-in-the-Insurance-Sector-with-GNP-Seguros/default.aspx",
      "source": "official",
-     "first_seen": "2026-07-07T00:00+09:00"
+     "first_seen": "2026-07-07T00:00+09:00",
+     "title_ja": "Palantir、メキシコでの存在感を拡大し、GNP Segros とともに保険分野での AI サービスを強化"
     },
     {
      "date": "2026-06-29",
      "title": "Palantir and Surf Air Mobility Expand Partnership to Accelerate Commercialization of OperatorOS, OwnerOS, and Enterprise Products",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-and-Surf-Air-Mobility-Expand-Partnership-to-Accelerate-Commercialization-of-OperatorOS-OwnerOS-and-Enterprise-Products/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-29T00:00+09:00"
+     "first_seen": "2026-06-29T00:00+09:00",
+     "title_ja": "Palantir と Surf Air Mobility がパートナーシップを拡大し、OperatorOS、OwnerOS、エンタープライズ製品の商用化を加速"
     },
     {
      "date": "2026-06-29",
      "title": "Palantir Launches Engine for Deploying NVIDIA Nemotron Open Models in Sovereign Environments",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Launches-Engine-for-Deploying-NVIDIA-Nemotron-Open-Models-in-Sovereign-Environments/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-29T00:00+09:00"
+     "first_seen": "2026-06-29T00:00+09:00",
+     "title_ja": "Palantir、NVIDIA Nemotron オープン モデルをソブリン環境に導入するためのエンジンを発表"
     },
     {
      "date": "2026-06-23",
      "title": "Palantir and Zeta Global Announce Strategic Partnership to Build a Unified Data and AI Infrastructure for the Future of Marketing, with Athena by ZetaTM at the Center",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-and-Zeta-Global-Announce-Strategic-Partnership-to-Build-a-Unified-Data-and-AI-Infrastructure-for-the-Future-of-Marketing-with-Athena-by-Zeta-at-the-Center/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-23T00:00+09:00"
+     "first_seen": "2026-06-23T00:00+09:00",
+     "title_ja": "Palantir と Zeta Global、Athena by ZetaTM を中心に、将来のマーケティングに向けた統合データおよび AI インフラストラクチャを構築するための戦略的パートナーシップを発表"
     },
     {
      "date": "2026-06-22",
      "title": "Palantir Secures Foundational Role in NGC2 Data Layer",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Secures-Foundational-Role-in-NGC2-Data-Layer/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-22T00:00+09:00"
+     "first_seen": "2026-06-22T00:00+09:00",
+     "title_ja": "Palantir、NGC2 データ層の基礎的な役割を確保"
     },
     {
      "date": "2026-06-04",
      "title": "McCarthy and Palantir Announce Strategic Partnership to Bring AI to the Construction Field and Beyond",
      "url": "https://investors.palantir.com/news-details/2026/McCarthy-and-Palantir-Announce-Strategic-Partnership-to-Bring-AI-to-the-Construction-Field-and-Beyond/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-04T00:00+09:00"
+     "first_seen": "2026-06-04T00:00+09:00",
+     "title_ja": "マッカーシーとパランティア、AIを建設分野やその他の分野に導入するための戦略的パートナーシップを発表"
     },
     {
      "date": "2026-06-04",
      "title": "Palantir Announces Availability on Google Cloud Marketplace, Including Two-Way Integrations between BigQuery and Foundry and Deep Connectivity between Gemini and AIP",
      "url": "https://investors.palantir.com/news-details/2026/Palantir-Announces-Availability-on-Google-Cloud-Marketplace-Including-Two-Way-Integrations-between-BigQuery-and-Foundry-and-Deep-Connectivity-between-Gemini-and-AIP/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-04T00:00+09:00"
+     "first_seen": "2026-06-04T00:00+09:00",
+     "title_ja": "Palantir、BigQuery と Foundry 間の双方向統合および Gemini と AIP 間の緊密な接続を含む、Google Cloud Marketplace での利用可能性を発表"
     }
    ]
   },
@@ -2085,105 +2175,120 @@
      "title": "Schrödinger to Announce Third Quarter 2026 Financial Results on November 4",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Announce-Third-Quarter-2026-Financial-Results-on-November-4/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-22T04:58+09:00"
+     "first_seen": "2026-10-22T04:58+09:00",
+     "title_ja": "シュレディンガー、2026年第3四半期決算を11月4日に発表"
     },
     {
      "date": "2026-10-14",
      "title": "Schrödinger Research Published in Nature Reveals New Insights into Lithium-Ion Battery Chemistry",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Research-Published-in-Nature-Reveals-New-Insights-into-Lithium-Ion-Battery-Chemistry/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-15T05:03+09:00"
+     "first_seen": "2026-10-15T05:03+09:00",
+     "title_ja": "Nature に掲載されたシュレーディンガーの研究により、リチウムイオン電池の化学に関する新たな洞察が明らかに"
     },
     {
      "date": "2026-09-17",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-5075cce97/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-17T00:00+09:00"
+     "first_seen": "2026-09-17T00:00+09:00",
+     "title_ja": "シュレディンガー、ナスダック上場規則5635(c)(4)に基づく誘致助成金を報告"
     },
     {
      "date": "2026-09-09",
      "title": "Schrödinger Announces Licensing and Collaboration Agreement with Tectora Therapeutics, a New Biotechnology Company It Co-founded to Advance Immunology and Inflammation Programs",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Announces-Licensing-and-Collaboration-Agreement-with-Tectora-Therapeutics-a-New-Biotechnology-Company-It-Co-founded-to-Advance-Immunology-and-Inflammation-Programs/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-09T00:00+09:00"
+     "first_seen": "2026-09-09T00:00+09:00",
+     "title_ja": "シュレディンガー、免疫学および炎症プログラムを推進するために共同設立した新しいバイオテクノロジー企業、Tectora Therapeutics とのライセンスおよび提携契約を発表"
     },
     {
      "date": "2026-09-01",
      "title": "Schrödinger to Present at Morgan Stanley Global Healthcare Conference",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Present-at-Morgan-Stanley-Global-Healthcare-Conference/default.aspx",
      "source": "official",
-     "first_seen": "2026-09-01T00:00+09:00"
+     "first_seen": "2026-09-01T00:00+09:00",
+     "title_ja": "シュレーディンガー氏、モルガン・スタンレーのグローバル・ヘルスケア・カンファレンスで講演"
     },
     {
      "date": "2026-08-14",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-2c6e68bf1/default.aspx",
      "source": "official",
-     "first_seen": "2026-08-14T00:00+09:00"
+     "first_seen": "2026-08-14T00:00+09:00",
+     "title_ja": "シュレディンガー、ナスダック上場規則5635(c)(4)に基づく誘致助成金を報告"
     },
     {
      "date": "2026-08-05",
      "title": "Schrödinger Reports Second Quarter 2026 Financial Results",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Second-Quarter-2026-Financial-Results/default.aspx",
      "source": "official",
-     "first_seen": "2026-08-05T00:00+09:00"
+     "first_seen": "2026-08-05T00:00+09:00",
+     "title_ja": "シュレディンガー、2026年第2四半期の財務結果を報告"
     },
     {
      "date": "2026-08-05",
      "title": "Schrödinger Announces Strategic Collaboration and Software Agreement with Bristol Myers Squibb to Deploy AI Co-Scientist Bunsen for Agentic Drug Discovery",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Announces-Strategic-Collaboration-and-Software-Agreement-with-Bristol-Myers-Squibb-to-Deploy-AI-Co-Scientist-Bunsen-for-Agentic-Drug-Discovery/default.aspx",
      "source": "official",
-     "first_seen": "2026-08-05T00:00+09:00"
+     "first_seen": "2026-08-05T00:00+09:00",
+     "title_ja": "シュレディンガー、ブリストル・マイヤーズ スクイブ社との戦略的提携とソフトウェア契約を発表、AI共同研究者ブンゼンを薬剤開発に配置"
     },
     {
      "date": "2026-07-27",
      "title": "Schrödinger Introduces Bunsen, an AI Co-Scientist for Molecular Discovery",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Introduces-Bunsen-an-AI-Co-Scientist-for-Molecular-Discovery/default.aspx",
      "source": "official",
-     "first_seen": "2026-07-27T00:00+09:00"
+     "first_seen": "2026-07-27T00:00+09:00",
+     "title_ja": "シュレディンガー氏が分子発見のAI共同科学者ブンゼン氏を紹介"
     },
     {
      "date": "2026-07-22",
      "title": "Schrödinger to Announce Second Quarter 2026 Financial Results on August 5",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Announce-Second-Quarter-2026-Financial-Results-on-August-5/default.aspx",
      "source": "official",
-     "first_seen": "2026-07-22T00:00+09:00"
+     "first_seen": "2026-07-22T00:00+09:00",
+     "title_ja": "シュレディンガー、2026年第2四半期決算を8月5日に発表"
     },
     {
      "date": "2026-07-20",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-159c7142c/default.aspx",
      "source": "official",
-     "first_seen": "2026-07-20T00:00+09:00"
+     "first_seen": "2026-07-20T00:00+09:00",
+     "title_ja": "シュレディンガー、ナスダック上場規則5635(c)(4)に基づく誘致助成金を報告"
     },
     {
      "date": "2026-06-18",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-b4119c564/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-18T00:00+09:00"
+     "first_seen": "2026-06-18T00:00+09:00",
+     "title_ja": "シュレディンガー、ナスダック上場規則5635(c)(4)に基づく誘致助成金を報告"
     },
     {
      "date": "2026-05-22",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-85660ca08/default.aspx",
      "source": "official",
-     "first_seen": "2026-05-22T00:00+09:00"
+     "first_seen": "2026-05-22T00:00+09:00",
+     "title_ja": "シュレディンガー、ナスダック上場規則5635(c)(4)に基づく誘致助成金を報告"
     },
     {
      "date": "2026-05-05",
      "title": "Schrödinger Reports First Quarter 2026 Financial Results",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-First-Quarter-2026-Financial-Results/default.aspx",
      "source": "official",
-     "first_seen": "2026-05-05T00:00+09:00"
+     "first_seen": "2026-05-05T00:00+09:00",
+     "title_ja": "シュレディンガー、2026年第1四半期の財務結果を報告"
     },
     {
      "date": "2026-05-04",
      "title": "Schrödinger to Participate in Upcoming Investor Conferences",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Participate-in-Upcoming-Investor-Conferences-c9e0713c7/default.aspx",
      "source": "official",
-     "first_seen": "2026-05-04T00:00+09:00"
+     "first_seen": "2026-05-04T00:00+09:00",
+     "title_ja": "シュレーディンガー氏、今後の投資家向けカンファレンスに参加"
     }
    ]
   },
@@ -2212,105 +2317,120 @@
      "title": "SpaceX Reports Third Quarter 2026 Results",
      "url": "https://ir.spacex.com/files/content_files/SpaceX-Reports-Third-Quarter-2026-Results.pdf",
      "source": "official",
-     "first_seen": "2026-10-21T07:18+09:00"
+     "first_seen": "2026-10-21T07:18+09:00",
+     "title_ja": "SpaceX、2026年第3四半期の業績を報告"
     },
     {
      "date": "2026-10-16",
      "title": "SpaceX to Post Third Quarter 2026 Results and Host Webcast on October 20, 2026",
      "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-to-Post-Third-Quarter-2026-Results-and-Host-Webcast-on-October-20-2026-2026-QssQGye3im/default.aspx",
      "source": "official",
-     "first_seen": "2026-10-17T04:26+09:00"
+     "first_seen": "2026-10-17T04:26+09:00",
+     "title_ja": "SpaceX、2026年第3四半期の結果を発表し、2026年10月20日にウェブキャストを主催"
     },
     {
      "date": "2026-10-08",
      "title": "BUILDING THE WORLD’S MOST ADVANCED MOBILE NETWORK",
      "url": "https://www.spacex.com/updates/#starlink-mobile-spectrum",
      "source": "official",
-     "first_seen": "2026-10-09T06:10+09:00"
+     "first_seen": "2026-10-09T06:10+09:00",
+     "title_ja": "世界で最も先進的なモバイルネットワークを構築する"
     },
     {
      "date": "2026-09-15",
      "title": "Starship to Orbit",
      "url": "https://www.spacex.com/updates/#orbital-starship",
      "source": "official",
-     "first_seen": "2026-09-15T00:00+09:00"
+     "first_seen": "2026-09-15T00:00+09:00",
+     "title_ja": "宇宙船が軌道へ"
     },
     {
      "date": "2026-08-27",
      "title": "SpaceX to Participate in the Goldman Sachs Communacopia and Technology Conference",
      "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-to-Participate-in-the-Goldman-Sachs-Communacopia-and-Technology-Conference-2026-hMRDqGksMV/default.aspx",
      "source": "official",
-     "first_seen": "2026-08-27T00:00+09:00"
+     "first_seen": "2026-08-27T00:00+09:00",
+     "title_ja": "SpaceX、ゴールドマン・サックスのコミュニティ・アンド・テクノロジー・カンファレンスに参加"
     },
     {
      "date": "2026-08-06",
      "title": "Breaking Ground on Terafab in Texas",
      "url": "https://www.spacex.com/updates/#terafab",
      "source": "official",
-     "first_seen": "2026-08-06T00:00+09:00"
+     "first_seen": "2026-08-06T00:00+09:00",
+     "title_ja": "テキサス州テラファブの着工"
     },
     {
      "date": "2026-08-04",
      "title": "SpaceX Reports Second Quarter 2026 Results",
      "url": "https://ir.spacex.com/files/doc_financials/2026/q2/SpaceX-Reports-Second-Quarter-2026-Results.pdf",
      "source": "official",
-     "first_seen": "2026-08-04T00:00+09:00"
+     "first_seen": "2026-08-04T00:00+09:00",
+     "title_ja": "SpaceX、2026年第2四半期の業績を報告"
     },
     {
      "date": "2026-07-20",
      "title": "SpaceX to Post Second Quarter 2026 Results and Host Webcast on August 4, 2026",
      "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-to-Post-Second-Quarter-2026-Results-and-Host-Webcast-on-August-4-2026-2026-g8layJlbFm/default.aspx",
      "source": "official",
-     "first_seen": "2026-07-20T00:00+09:00"
+     "first_seen": "2026-07-20T00:00+09:00",
+     "title_ja": "SpaceX、2026年第2四半期の結果を発表し、2026年8月4日にウェブキャストを主催"
     },
     {
      "date": "2026-06-23",
      "title": "SpaceX Announces Pricing of $25 Billion Inaugural Bond Issuance",
      "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-Announces-Pricing-of-25-Billion-Inaugural-Bond-Issuance-2026-33VwNgsx3O/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-23T00:00+09:00"
+     "first_seen": "2026-06-23T00:00+09:00",
+     "title_ja": "SpaceX、250億ドルの初回社債発行の価格を発表"
     },
     {
      "date": "2026-06-22",
      "title": "Space Exploration Technologies Corp. Announces Inaugural Bond Issuance",
      "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Inaugural-Bond-Issuance-2026-VOzvzAjhMA/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-22T00:00+09:00"
+     "first_seen": "2026-06-22T00:00+09:00",
+     "title_ja": "Space Exploration Technologies Corp.、初の社債発行を発表"
     },
     {
      "date": "2026-06-15",
      "title": "Space Exploration Technologies Corp. Announces Closing of Initial Public Offering, Including Full Exercise of Underwriters’ Option to Purchase Additional Shares",
      "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Closing-of-Initial-Public-Offering-Including-Full-Exercise-of-Underwriters-Option-to-Purchase-Additional-Shares-2026-RgoR-Y1Vwh/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-15T00:00+09:00"
+     "first_seen": "2026-06-15T00:00+09:00",
+     "title_ja": "Space Exploration Technologies Corp.、引受会社の追加株式購入オプションの完全行使を含む新規株式公開の終了を発表"
     },
     {
      "date": "2026-06-11",
      "title": "Space Exploration Technologies Corp. Announces Pricing of Initial Public Offering",
      "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Pricing-of-Initial-Public-Offering/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-11T00:00+09:00"
+     "first_seen": "2026-06-11T00:00+09:00",
+     "title_ja": "Space Exploration Technologies Corp.、新規株式公開の価格を発表"
     },
     {
      "date": "2026-06-04",
      "title": "Space Exploration Technologies Corp. Announces Launch of Initial Public Offering",
      "url": "https://ir.spacex.com/updates/releases-details/2026/Space-Exploration-Technologies-Corp--Announces-Launch-of-Initial-Public-Offering/default.aspx",
      "source": "official",
-     "first_seen": "2026-06-04T00:00+09:00"
+     "first_seen": "2026-06-04T00:00+09:00",
+     "title_ja": "Space Exploration Technologies Corp.が新規株式公開の開始を発表"
     },
     {
      "date": "2026-05-21",
      "title": "FIRST STARSHIP INTERPLANETARY HUMAN SPACEFLIGHT MISSION",
      "url": "https://www.spacex.com/updates/#first-starship-interplanetary-mission",
      "source": "official",
-     "first_seen": "2026-05-21T00:00+09:00"
+     "first_seen": "2026-05-21T00:00+09:00",
+     "title_ja": "初の宇宙船による惑星間有人宇宙飛行ミッション"
     },
     {
      "date": "2026-05-12",
      "title": "Introducing Starship V3",
      "url": "https://www.spacex.com/updates/#starship-v3",
      "source": "official",
-     "first_seen": "2026-05-12T00:00+09:00"
+     "first_seen": "2026-05-12T00:00+09:00",
+     "title_ja": "スターシップ V3 の紹介"
     }
    ]
   },
