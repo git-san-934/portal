@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>トーエル 投資分析</title>
+  <meta name="description" content="トーエル（3361）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>トーエル（3361）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年4月期〜2026年4月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>LPガスと宅配水の会社です</b>。LPガスと関連機器の卸・小売、保安管理、住宅設備機器の販売を行うエネルギー事業と、国産のピュアウォーター「アルピナ」、ハワイ産の「PureHawaiian」を製造・販売するウォーター事業が柱です。</li>
+      <li><b>売上は年225〜279億円、営業利益は年14〜23億円です</b>。2026年4月期は売上270.4億円（前期比1.3%減）、営業利益19.8億円（2.4%増）でした。</li>
+      <li><b>設備投資はガス供給設備とウォーターサーバーで、年10〜22億円です</b>。2020年4月期はハワイ第2工場と大町第4工場で21.7億円でした。その後は年10〜13億円です。</li>
+      <li><b>借入金はゼロになりました</b>。借入金などは16.4億円からゼロに減り、現金は64.9億円です。</li>
+      <li><b>配当と自社株買いを行っています</b>。配当の支払いは年3.0億円から4.3億円に増えました。2026年4月期は1株23円（期末1回）です。2025年4月期には自社株買いを12.6億円行いました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年4月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2023年4月期から270億円前後です。営業利益率は6〜8%です。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年23〜34億円で毎年プラスです。設備投資を引いた本業のフリーCFもプラスが続き、借入金を返し終えました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費はありません。内部留保はLPガスの営業権の獲得や供給設備、ピュアウォーターの製造設備に備えるとしています。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は2020年4月期を除いて減価償却費（年14〜18億円）を下回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年4月期（21.7億円）</div>ハワイ第2工場（Nimitz Factory）と大町第4工場など11.6億円、ガス供給設備・ガスメーター・容器など10.0億円</li>
+      <li><div class="y">2021年4月期（13.4億円）</div>ガス供給設備・ガスメーター・容器など8.7億円、ウォーターサーバーなど3.8億円</li>
+      <li><div class="y">2022年4月期（13.4億円）</div>ガス供給設備・ガスメーター・容器など8.6億円、ウォーターサーバーなど4.8億円</li>
+      <li><div class="y">2023年4月期（11.5億円）</div>LPガス供給設備と営業本部ビルの建設7.1億円、ウォーターサーバーなど3.9億円</li>
+      <li><div class="y">2024年4月期（10.5億円）</div>LPガス供給設備と厚木工場の貯槽入れ替え6.4億円、ウォーターサーバーなど3.8億円</li>
+      <li><div class="y">2025年4月期（10.3億円）</div>アルピナ北アルプス第2工場の製造設備の更新など6.1億円、LPガス供給設備3.7億円</li>
+      <li><div class="y">2026年4月期（10.1億円）</div>LPガス供給設備5.9億円、ウォーターサーバーなど2.7億円</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資の総額です。重要な設備の新設計画はありません。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">株主への適正な利益還元を経営の重要課題としています。利益が下期に偏るため年1回の期末配当を基本とし、将来は年2回の配当を目指すとしています。2026年4月期は1株23円です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は4月期決算です（例：「26/4」は2025年5月〜2026年4月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>LPガスの顧客数</b>：セット割などで顧客数を伸ばしています。冬の気温でガスの使用量も変わります。</li>
+      <li><b>宅配水の競争</b>：ウォーター事業は差別化戦略で拡販に力を入れています。</li>
+      <li><b>現金の使い道</b>：借入金がなくなり、現金が増えています。還元を増やすかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社トーエル 有価証券報告書（2020年4月期〜2026年4月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [16.4, 15.6, 10.5, 5.4, 1.8, 0.2, 0.0] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

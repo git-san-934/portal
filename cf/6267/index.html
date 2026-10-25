@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ゼネラルパッカー 投資分析</title>
+  <meta name="description" content="ゼネラルパッカー（6267）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ゼネラルパッカー（6267）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年7月期〜2026年7月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>食品などを袋に詰める自動包装機のメーカーです</b>。主力は給袋自動包装機で、包装システムの設計・製造・販売・保守を行っています。中国に製造子会社、米国に販売子会社があり、子会社のオサ機械は製菓機械をつくっています。</li>
+      <li><b>売上は過去最高です</b>。2026年7月期は売上112.0億円（前期比10.8%増）、営業利益13.0億円（21.0%増）でした。給袋自動包装機と海外向けが伸びました。</li>
+      <li><b>設備投資はごく小さく、年0.3〜5億円です</b>。2022年7月期に新工場を建て、5.0億円を投じました。それ以外の年は年0.3〜1.7億円です。</li>
+      <li><b>借入金はほぼゼロになりました</b>。借入金などは6.2億円から0.1億円に減り、現金は27.9億円です。</li>
+      <li><b>配当と自社株買いを増やしています</b>。配当性向30%またはDOE3%を目安にしています。配当の支払いは年1.0億円から2.0億円に増え、2026年7月期は1株130円（中間45円、期末85円）の予定です。自社株買いも2.4億円行いました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年7月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は85億円から112億円に増えました。営業利益率は10〜13%です。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。機械の受注生産のため、納入の時期で営業CFは年−3〜15億円と振れます。投資CFは小さく、財務CFは配当と自社株買いと借入金の返済です。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費は年2.6〜3.2億円で、売上の約3%です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は新工場を建てた2022年7月期などを除いて、減価償却費（年1億円前後）を下回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年7月期（1.66億円）</div>本社工場の隣接地の購入など</li>
+      <li><div class="y">2021年7月期（0.77億円）</div>新工場の建設に関する支出など</li>
+      <li><div class="y">2022年7月期（5.00億円）</div>新工場の建設など</li>
+      <li><div class="y">2023年7月期（0.76億円）</div>新工場用の機器の購入、生産機械事業の工場設備の改良など</li>
+      <li><div class="y">2024年7月期（0.43億円）</div>老朽化設備の更新、業務効率化のソフトウエアなど</li>
+      <li><div class="y">2025年7月期（0.32億円）</div>3DCADライセンスの取得など</li>
+      <li><div class="y">2026年7月期（0.60億円）</div>一宮工場の新設にかかる生産設備、工場の空調設備など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資の総額です。重要な設備の新設計画はありません。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">再投資のための内部留保と積極的な還元を両立する方針です。連結配当性向30%またはDOE（連結純資産配当率）3%を目安に、安定配当を堅持しつつ増配を目指すとしています。年2回の配当で、2026年7月期は年130円の予定です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は7月期決算です（例：「26/7」は2025年8月〜2026年7月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>受注と納入</b>：受注生産のため、納入の時期で売上や営業CFが振れます。</li>
+      <li><b>海外の伸び</b>：海外向けの案件が増えています。中国・米国の子会社を通じた販売が伸びるかを見ます。</li>
+      <li><b>配当の伸び</b>：配当性向30%とDOE3%の目安があり、増配が続くかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ゼネラルパッカー株式会社 有価証券報告書（2020年7月期〜2026年7月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [6.2, 5.2, 3.3, 3.9, 2.5, 1.0, 0.1] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

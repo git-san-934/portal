@@ -18,7 +18,7 @@ YEARS = 7
 # 候補は "A+B" で合計を表す。上から順に試す
 CANDS = {
     "sales": ["NetSales", "RevenueIFRS", "NetSalesIFRS", "OperatingRevenue1", "OperatingRevenue2", "OrdinaryIncomeBNK", "NetSalesOfCompletedConstructionContracts",
-              "NetSalesOfCompletedConstructionContractsCNS", "NetSalesAndOperatingRevenue", "OperatingRevenue", "OperatingRevenueSPF", "Revenue"],
+              "NetSalesOfCompletedConstructionContractsCNS", "NetSalesAndOperatingRevenue", "OperatingRevenue", "OperatingRevenueSPF", "Revenue", "ContractsCompletedRevOA"],
     "opinc": ["OperatingIncome", "OperatingProfitLossIFRS", "OrdinaryIncome"],
     "net": ["ProfitLossAttributableToOwnersOfParent", "ProfitLossAttributableToOwnersOfParentIFRS", "ProfitLoss", "NetIncome"],
     "op": ["NetCashProvidedByUsedInOperatingActivities", "NetCashProvidedByUsedInOperatingActivitiesIFRS"],
