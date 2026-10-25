@@ -1,6 +1,6 @@
 (() => {
   const QUOTE = "https://finance.yahoo.co.jp/quote/";
-  const state = { def: "f", max: Infinity, mkt: "all", bk: 0, q: "", draft: [], conds: [], sort: "eps", desc: true, data: null };
+  const state = { def: "f", max: Infinity, mkt: "all", bk: 0, q: "", draft: [], conds: [], open: new Set(), sort: "eps", desc: true, data: null };
 
   const DEFS = [["f", "浮動株割合"], ["b", "不動株割合（東証式）"], ["a", "特定株比率（四季報式）"]];
   const MAXES = [[Infinity, "すべて"], [0.05, "5%未満"], [0.1, "10%未満"], [0.2, "20%未満"]];
@@ -18,6 +18,8 @@
   const defName = () => DEFS.find((x) => x[0] === state.def)[1];
 
   const COLS = [
+    { key: "dt", label: "詳細", cls: "left dt", get: (r) => r.c,
+      fmt: (r) => (r.dt ? `<button type="button" class="dt-btn" data-c="${esc(r.c)}" aria-expanded="${state.open.has(r.c)}" aria-label="${esc(r.n)}の10年分の推移">${state.open.has(r.c) ? "▾" : "▸"}</button>` : "") },
     { key: "code", label: "コード", cls: "left", get: (r) => r.c, fmt: (r) => r.c },
     { key: "name", label: "銘柄名", cls: "left name", get: (r) => r.n,
       fmt: (r) => `<a href="${QUOTE}${encodeURIComponent(r.c)}.T" target="_blank" rel="noopener">${esc(r.n)}</a>` },
@@ -36,9 +38,9 @@
     { key: "bk", label: "BPS連続増加(期)", get: (r) => r.bk,
       fmt: (r) => (r.bk == null ? "-" : r.bh ? `<span title="${esc(r.bh)}">${r.bk}</span>` : String(r.bk)), rowCls: (r) => (r.bk >= 10 ? "yes" : "") },
     { key: "ex", label: "EPS 9期前比(倍)", get: (r) => r.ex,
-      fmt: (r) => (r.ex == null ? "-" : `<span title="${esc(r.eh || "")}">${num(r.ex, 2)}</span>`) },
+      fmt: (r) => num(r.ex, 2) },
     { key: "dc", label: "減配回数(10期)", get: (r) => r.dc,
-      fmt: (r) => (r.dc == null ? "-" : `<span title="${esc(r.dh || "")}">${r.dc}${r.dz ? `（無配${r.dz}期）` : ""}</span>`) },
+      fmt: (r) => (r.dc == null ? "-" : `${r.dc}${r.dz ? `（無配${r.dz}期）` : ""}`) },
     { key: "r2", label: "Ricky第2段階", cls: "left", get: (r) => r.r2, fmt: (r) => mark(r.r2, "○", "×"), rowCls: (r) => (r.r2 ? "yes" : "") },
     { key: "pe", label: "PER(倍)", get: (r) => r.pe, fmt: (r) => num(r.pe) },
     { key: "pb", label: "PBR(倍)", get: (r) => r.pb, fmt: (r) => num(r.pb, 2) },
@@ -86,7 +88,7 @@
   // 抽出条件（項目・以上/以下/等しい・数値）。数値は表に出ている単位で入力し、すべて満たす銘柄を出す
   const PCT = ["fixed", "bb", "bf", "bx", "bo", "gm", "om", "roe", "ra", "er", "cm", "nc", "sg", "og", "cxs", "yield", "rt", "xm", "trs"];
   const OKU = ["cash", "mc", "oc", "ic", "fc", "cx", "ma", "sp", "pa2", "buyamt"];
-  const TEXT = ["code", "name", "mkt", "ct", "pt", "dp", "cs", "top1", "fy"];
+  const TEXT = ["dt", "code", "name", "mkt", "ct", "pt", "dp", "cs", "top1", "fy"];
   const MARK = ["pl", "buy", "cc", "xc", "pa", "nw", "r2"];
   for (const c of COLS) {
     c.ft = TEXT.includes(c.key) ? "text" : MARK.includes(c.key) ? "mark" : "num";
@@ -189,6 +191,24 @@
     runConds();
   }
 
+  // 銘柄ごとの詳細：直近10期の EPS・1株配当・配当性向（連結）・自社株買い・BPS
+  function detailRow(r) {
+    const t = r.dt, n = t.y.length;
+    const cell = (a, i, f) => `<td>${a && a[i] != null ? f(a[i]) : "-"}</td>`;
+    const yen2 = (v) => v.toLocaleString("ja-JP", { maximumFractionDigits: 2 });
+    const mil = (v) => v.toLocaleString("ja-JP", { maximumFractionDigits: v >= 100 ? 0 : 1 });
+    let rows = "";
+    for (let i = n - 1; i >= 0; i--) {
+      rows += `<tr><td class="left">${esc(t.y[i])}期</td>${cell(t.e, i, yen2)}${cell(t.d, i, yen2)}${cell(t.p, i, (v) => pct(v))}${cell(t.k, i, mil)}${cell(t.b, i, yen2)}</tr>`;
+    }
+    return `<tr class="detail-row"><td colspan="${COLS.length}"><div class="detail-box">
+      <p class="detail-title">${esc(r.n)}（${esc(r.c)}）直近${n}期の推移</p>
+      <table class="detail-table"><thead><tr><th class="left">決算期</th><th>EPS(円)</th><th>1株配当(円)</th><th>配当性向(連結)</th><th>自社株買い(百万円)</th><th>BPS(円)</th></tr></thead>
+      <tbody>${rows}</tbody></table>
+      <p class="detail-note">1株配当・EPS・BPSは今の株数ベースに分割調整。配当性向＝1株配当÷EPS（EPSが赤字の期は-）。自社株買い＝キャッシュ・フロー計算書の自己株式の取得による支出。</p>
+    </div></td></tr>`;
+  }
+
   function esc(s) {
     return String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
   }
@@ -242,7 +262,7 @@
           const hit = c.hit && f != null && f < 0.05 ? " hit" : "";
           const extra = c.rowCls ? " " + c.rowCls(r) : "";
           return `<td class="${c.cls || ""}${hit}${extra}">${c.fmt(r)}</td>`;
-        }).join("") + "</tr>").join("")
+        }).join("") + "</tr>" + (state.open.has(r.c) && r.dt ? detailRow(r) : "")).join("")
       : `<tr><td class="empty" colspan="${COLS.length}">条件にあう銘柄はありません</td></tr>`;
     if (state.conds.length) {
       const t = document.getElementById("list-title");
@@ -256,7 +276,13 @@
       : "";
     const table = document.getElementById("list");
     table.innerHTML = `<thead><tr>${head}</tr></thead><tbody>${body}</tbody>`;
+    table.querySelectorAll(".dt-btn").forEach((b) => (b.onclick = () => {
+      const c = b.dataset.c;
+      if (state.open.has(c)) state.open.delete(c); else state.open.add(c);
+      render();
+    }));
     table.querySelectorAll("thead th").forEach((th) => {
+      if (th.dataset.key === "dt") { th.style.cursor = "default"; return; }
       th.onclick = () => {
         const k = th.dataset.key;
         if (state.sort === k) state.desc = !state.desc;
