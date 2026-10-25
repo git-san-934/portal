@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ポバール興業 投資分析</title>
+  <meta name="description" content="ポバール興業（4247）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ポバール興業（4247）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>工業用のベルトや研磨パッドをつくる名古屋の会社です</b>。接着と樹脂加工の技術で、工場の搬送用ベルトやディスプレイ・半導体の研磨部材などをつくっています。タイと中国にも子会社があります。</li>
+      <li><b>売上は年33〜36億円、営業利益は年2〜5億円です</b>。2025年3月期は2.4億円に減りましたが、2026年3月期は次世代半導体用の研磨パッドなどが伸び、4.2億円（前期比76.6%増）に戻りました。</li>
+      <li><b>本社に新しいベルト工場を建てました</b>。2024・2025年3月期に計8.7億円を投じ、この2年の設備投資は年5〜8億円と、売上の1〜2割に達しました。</li>
+      <li><b>借入金は少ないです</b>。2025年3月期に借入金を2億円増やしましたが、借入金などは2.2億円、現金は11.6億円です。</li>
+      <li><b>配当は年1億円前後です</b>。2026年3月期は1株41円（中間19.5円、期末21.5円）の予定です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は30億円台で横ばいです。営業利益率は7〜13%で、2026年3月期は11.7%でした。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年2〜5億円です。新工場を建てた2024年3月期は、投資CFのマイナスが営業CFを上回りました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費は年0.2億円程度です。設備投資は新工場の建設中を除けば売上の1〜5%です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は2021・2024・2025年3月期に減価償却費（年1.1〜1.4億円）を大きく上回りました。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期（0.5億円）</div>フルスペックオートリバース継ぎ手削り機、工場・事務所の空調設備</li>
+      <li><div class="y">2021年3月期（3.7億円）</div>営業所用のオフィス（東京都千代田区）の取得</li>
+      <li><div class="y">2022年3月期（1.5億円）</div>中国子会社の工場の移転、本社工場のロールストッカー</li>
+      <li><div class="y">2023年3月期（1.7億円）</div>本社の新ベルト工場の建設着手金0.4億円など</li>
+      <li><div class="y">2024年3月期（7.5億円）</div>本社の新ベルト工場の建設4.4億円など</li>
+      <li><div class="y">2025年3月期（4.6億円）</div>本社の新ベルト工場の建設4.2億円など</li>
+      <li><div class="y">2026年3月期（1.7億円）</div>ロールストッカー0.5億円など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資の総額です。計画中：本社のベルト製造機器0.1億円（2026年6月完了予定）。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">将来の成長に必要な内部留保を確保しつつ、安定的な配当を続けることを目標としています。年2回の配当で、2026年3月期は年41円（総額1.1億円）の予定です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>新工場の効果</b>：新しいベルト工場で、生産の効率化と受注の拡大が進むかを見ます。</li>
+      <li><b>半導体・ディスプレイ向け</b>：研磨パッドなどの需要は、半導体やディスプレイの生産動向に左右されます。</li>
+      <li><b>海外の再編</b>：韓国子会社を閉鎖し、中国へ販路を移しました。アジアの売上の動きを確認します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ポバール興業株式会社 有価証券報告書（2020年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [0.2, 0.2, 0.2, 0.2, 0.2, 2.2, 2.2] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ダイニチ工業 投資分析</title>
+  <meta name="description" content="ダイニチ工業（5951）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ダイニチ工業（5951）は何に投資しているか</h1>
+    <p>財務諸表（単体）と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>石油ファンヒーターと加湿器のメーカーです</b>。家庭用の石油ファンヒーターが主力で、国内の自社工場で生産しています。加湿器、空気清浄機、燃料電池ユニットなども手がけています。</li>
+      <li><b>売上は年190〜230億円、営業利益は年11〜20億円です</b>。暖冬だった2020年3月期は営業利益1.8億円でしたが、2026年3月期は18.1億円（前期比31.3%増）でした。</li>
+      <li><b>設備投資は新商品の金型が中心で、年3〜17億円です</b>。2020年3月期は和泉物流センターの改築、2026年3月期は北部工場の改修を行いました。</li>
+      <li><b>借入金はありません</b>。借入金などはゼロです。2025・2026年3月期は有価証券を買い、現金は132億円（2021年3月期）から73億円に減りました。子会社はなく、数字は単体です。</li>
+      <li><b>配当は年3.6億円で据え置きでしたが、増やす予定です</b>。2026年3月期の期末配当は1株28円（総額4.5億円）の予定です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は暖房機器の需要で振れ、2021年3月期の229億円がピークでした。営業利益率は2021年3月期から6〜9%です。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは冬の気温や在庫の動きで年−1〜55億円と大きく振れます。2025・2026年3月期の投資CFのマイナスは主に有価証券の取得です。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費は年6〜9億円で、売上の3〜4%です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は2020年3月期に減価償却費（年7〜10億円）を大きく上回りましたが、それ以外の年はおおむね同じか下回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期（16.9億円）</div>和泉物流センターの改築、新商品の生産設備（金型・機械装置）</li>
+      <li><div class="y">2021年3月期（3.6億円）</div>新商品の生産設備（機械装置・金型）</li>
+      <li><div class="y">2022年3月期（10.0億円）</div>部品の内製化のための建物の改修、新商品の生産設備</li>
+      <li><div class="y">2023年3月期（4.6億円）</div>新商品の金型、金型倉庫の新設</li>
+      <li><div class="y">2024年3月期（3.9億円）</div>新商品の金型、職場環境の改善</li>
+      <li><div class="y">2025年3月期（4.4億円）</div>新商品の金型、職場環境の改善</li>
+      <li><div class="y">2026年3月期（7.2億円）</div>北部工場の改修、新商品の金型</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資の総額です。重要な設備の新設・改修計画は「特記すべきものはありません」です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">継続的な安定配当を基本に、利益水準や配当性向も考える方針です。配当の支払いは7年間年3.6億円で一定でした。2026年3月期は年28円（期末1回）の予定です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>冬の気温</b>：石油ファンヒーターの売れ行きは冬の寒さに左右されます。暖冬の年は利益が大きく減ります。</li>
+      <li><b>灯油離れ</b>：暖房のエアコン化が進んでいます。加湿器など暖房以外の商品を伸ばせるかを見ます。</li>
+      <li><b>現金と有価証券</b>：借入金がなく、現金・有価証券を多く持っています。還元の拡大に使うかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ダイニチ工業株式会社 有価証券報告書（2020年3月期〜2026年3月期）の財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

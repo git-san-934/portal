@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>佐藤商事 投資分析</title>
+  <meta name="description" content="佐藤商事（8065）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>佐藤商事（8065）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>鉄鋼を中心とする専門商社です</b>。自動車・建設機械向けの鋼板や特殊鋼が売上の約6割で、非鉄金属、電子材料、機械・工具、生活関連の商品も扱います。</li>
+      <li><b>売上・利益とも過去最高です</b>。売上は2,062億円から2,922億円に、営業利益は32.8億円から76.7億円に増えました。</li>
+      <li><b>2023年3月期から鉄鋼事業の土地への投資が増えました</b>。設備投資は年4〜16億円でしたが、2023〜2026年3月期は年23〜50億円になりました。</li>
+      <li><b>借入金も増えています</b>。2022年3月期は営業CFが126億円のマイナスになり、借入金で補いました。借入金などは208億円から365億円に増えました。</li>
+      <li><b>配当と自社株買いを増やしています</b>。配当の支払いは年9.6億円から16.8億円に増えました。2026年3月期は1株82円（中間38円、期末44円）で、自社株買いも7.3億円行いました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2021年3月期の1,755億円を底に増えました。営業利益率は1.6%から2.6%に上がりましたが、商社のため利益率は低めです。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは鉄鋼の価格や取引量で大きく振れます。2022年3月期は営業CFのマイナスを借入金で補いました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費はありません。設備投資は売上の0.2〜1.8%です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は2023年3月期から減価償却費（年10〜14億円）を大きく上回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期（13.8億円）</div>鉄鋼・電子材料事業の事業用建物・機械装置の取得など</li>
+      <li><div class="y">2021年3月期（16.1億円）</div>鉄鋼・非鉄金属事業の事業用建物・機械装置の取得など</li>
+      <li><div class="y">2022年3月期（4.2億円）</div>鉄鋼事業の事業用建物・機械装置の取得など</li>
+      <li><div class="y">2023年3月期（24.7億円）</div>鉄鋼事業の事業用土地の取得など</li>
+      <li><div class="y">2024年3月期（49.7億円）</div>鉄鋼事業の事業用土地の取得など</li>
+      <li><div class="y">2025年3月期（43.4億円）</div>鉄鋼事業の事業用土地の取得など</li>
+      <li><div class="y">2026年3月期（23.2億円）</div>鉄鋼事業の事業用土地の取得など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額です。中期的な取り組みとして、国内販売網の強化、海外拠点の拡大、IT投資による合理化を掲げています。重要な設備の新設計画はありません。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">「連結みなし当期利益（経常利益×（1−実効税率））の30%以上、かつ年76円以上」を配当方針としています。2026年3月期は年82円の予定です。次期からは下限をDOE（株主資本配当率）2.7%に変えます。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>鉄鋼の価格</b>：鉄鋼の値上がり・値下がりで在庫の評価や運転資金が大きく動きます。</li>
+      <li><b>土地への投資</b>：2023年3月期から土地の取得が続いています。拠点の拡充が売上の伸びにつながるかを見ます。</li>
+      <li><b>新しい配当方針</b>：DOE2.7%が下限になり、利益が減っても配当が保たれやすくなります。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 佐藤商事株式会社 有価証券報告書（2020年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [208.4, 155.5, 319.8, 328.0, 288.2, 322.0, 365.0] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>
