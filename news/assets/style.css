@@ -83,6 +83,7 @@ h1 { font-size: 1.5rem; }
 .item::marker { color: var(--text-sub); }
 .meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; font-size: 0.75rem; color: var(--text-sub); }
 .title { display: block; font-size: 0.93rem; overflow-wrap: anywhere; }
+.orig { display: block; font-size: 0.72rem; color: var(--text-sub); overflow-wrap: anywhere; }
 .stock { font-weight: 700; color: var(--text); }
 .badge { font-size: 0.68rem; font-weight: 700; padding: 0 0.45rem; border-radius: 999px; border: 1px solid currentColor; line-height: 1.5; }
 .src-official { color: var(--official); }

@@ -29,11 +29,16 @@
     meta.append(el("span", `badge src-${it.source}`, LABEL[it.source] || it.source));
     if (stock) meta.append(el("span", "stock", stock.name));
     if (isFresh(it)) meta.append(el("span", "badge new", "NEW"));
-    const a = el("a", "title", it.title);
+    // 英語のタイトルは日本語訳を見せ、原文は下に小さく(マウスを載せても出る)
+    const a = el("a", "title", it.title_ja || it.title);
     a.href = it.url;
     a.target = "_blank";
     a.rel = "noopener";
     li.append(meta, a);
+    if (it.title_ja) {
+      a.title = it.title;
+      li.append(el("span", "orig", it.title));
+    }
     return li;
   }
 
