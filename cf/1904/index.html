@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>大成温調 投資分析</title>
+  <meta name="description" content="大成温調（1904）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>大成温調（1904）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>ビルの空調・給排水などの設備工事会社です</b>。冷暖房、給排水衛生、電気、恒温恒湿などの設備の設計・施工が主力です。米国や中国にも子会社があり、不動産の賃貸も行っています。</li>
+      <li><b>利益は3年で2.3倍になりました</b>。営業利益は2023年3月期の17.3億円から2026年3月期は39.8億円（前期比27.8%増）に増えました。2026年3月期の受注高は725億円（14.0%増）でした。</li>
+      <li><b>設備投資はほとんどありません</b>。有報では2025年3月期まで毎年「特記事項はありません」です。2026年3月期は新基幹システムに2.2億円を投じました。</li>
+      <li><b>本社を移転し、本社ビルを売ります</b>。2026年9月頃に本社を移転し（設備に5億円を見込む）、品川区の本社ビルの土地・建物を2026年10月に譲渡する予定です。</li>
+      <li><b>配当と自社株買いを大きく増やしました</b>。DOE3.8%を目処に配当しています。配当の支払いは年4.6億円から9〜12億円に増え、2022〜2025年3月期には自社株買いを計60億円行いました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2023年3月期の465億円から610億円台に増えました。営業利益率は2.6%から6.4%に上がりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。工事代金の入金時期で営業CFは年−6〜97億円と大きく振れます。2026年3月期は営業CFが97億円に増え、現金は185億円になりました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費はごくわずかです。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">キャッシュ・フロー計算書の設備投資は、2021・2025年3月期を除いて減価償却費（年3〜6億円）と同じくらいかそれ以下です。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期</div>特記事項なし（キャッシュ・フロー計算書の設備投資は0.4億円）</li>
+      <li><div class="y">2021年3月期</div>特記事項なし（同23.5億円）</li>
+      <li><div class="y">2022年3月期</div>特記事項なし（同0.7億円）</li>
+      <li><div class="y">2023年3月期</div>特記事項なし（同2.3億円）</li>
+      <li><div class="y">2024年3月期</div>特記事項なし（同2.7億円）</li>
+      <li><div class="y">2025年3月期</div>特記事項なし（同8.7億円）</li>
+      <li><div class="y">2026年3月期（2.2億円）</div>新基幹システム（2025年10月導入、投資総額6.4億円）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">2025年3月期までは有報「設備投資等の概要」が「特記事項はありません」のため、キャッシュ・フロー計算書の数字を示しています。2021年3月期の23.5億円の内容は有報に記載がありません。計画：2026年9月頃の本社移転にともなう設備5億円。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">中長期的な成長と経営基盤の強化を図りながら、長期的かつ安定的な還元を行う方針で、DOE（連結純資産配当率）3.8%を目処にしています。年2回の配当です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>受注の増加</b>：受注高が14.0%増えました。翌期以降の売上につながるかを見ます。</li>
+      <li><b>本社ビルの売却</b>：本社ビルの譲渡で売却益が出る可能性があります。</li>
+      <li><b>DOE3.8%</b>：純資産が増えれば配当も増える方針です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 大成温調株式会社 有価証券報告書（2020年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [0.0, 0.0, 0.0, 0.0, 0.0, 27.0, 0.0] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>
