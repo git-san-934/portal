@@ -106,7 +106,7 @@
     const kind = E.single ? '単体' : '連結';
     const dps = E.dps || [];
     let h = '<h2>EPS・BPS・配当の推移</h2>';
-    h += `<p class="sub">1株あたりの利益（EPS）、1株あたりの純資産（BPS）、1株あたりの配当金、自社株買いの${fyName(E.years[0])}〜${fyName(E.years[E.years.length - 1])}の推移です。${kind}の数字で、単位は<strong>円</strong>（自社株買いは億円）です。</p>`;
+    h += `<p class="sub">1株あたりの利益（EPS）、1株あたりの純資産（BPS）、1株あたりの配当金、自社株買い、配当性向の${fyName(E.years[0])}〜${fyName(E.years[E.years.length - 1])}の推移です。${kind}の数字で、単位は<strong>円</strong>（自社株買いは億円、配当性向は％）です。</p>`;
     const has = a => a.some(v => v != null);
     if (has(E.eps)) h += '<h3>EPS（1株あたり利益）</h3><div class="chart" id="c-eps"></div>';
     if (has(E.bps)) h += '<h3>BPS（1株あたり純資産）</h3><div class="chart" id="c-bps"></div>';
@@ -117,7 +117,10 @@
     if (window.CF && window.CF.buy) window.CF.years.forEach((y, i) => { if (window.CF.buy[i] != null) cfBuy[y.slice(0, 7)] = Math.abs(window.CF.buy[i]); });
     const buy = E.years.map((y, i) => E.buy && E.buy[i] != null ? E.buy[i] : y in cfBuy ? cfBuy[y] : null);
     if (has(buy)) h += '<h3>自社株買い（年間）</h3><div class="chart" id="c-buy"></div>';
-    const rows = [['EPS（円）', E.eps], ['BPS（円）', E.bps], ['配当（円）', dps],
+    // 配当性向(％) = 1株あたり配当 ÷ EPS。どちらも分割をそろえた後の値。赤字の年は出さない
+    const payout = E.years.map((_, i) => dps[i] != null && E.eps[i] > 0 ? Math.round(dps[i] / E.eps[i] * 1000) / 10 : null);
+    if (has(payout)) h += '<h3>配当性向</h3><div class="chart" id="c-payout"></div>';
+    const rows = [['EPS（円）', E.eps], ['BPS（円）', E.bps], ['配当（円）', dps], ['配当性向（％）', payout],
       ['PER（倍）', E.per], ['PBR（倍）', E.pbr], ['ROE（％）', E.roe], ['ROA（％）', E.roa],
       ['配当利回り（％）', E.yield], ['自己資本比率（％）', E.eqr], ['時価総額（億円）', E.mcap], ['自社株買い（億円）', buy]];
     h += '<div class="tbl"><table><thead><tr><th></th>' + Y.map(y => `<th>${y}</th>`).join('') + '</tr></thead><tbody>' +
@@ -125,6 +128,7 @@
     const notes = ['有価証券報告書の「主要な経営指標等の推移」の数字です。'];
     if (has(dps)) notes.push('配当は中間と期末の合計で、記念配当なども含みます。');
     if (has(buy)) notes.push('自社株買いは連結キャッシュフロー計算書の「自己株式の取得による支出」で、単元未満株の買取りなども含みます。');
+    if (has(payout)) notes.push('配当性向は1株あたり配当÷EPSで計算し、赤字の年は出していません。');
     if (hasPrice) notes.push('グラフの点線は決算期末の株価（右の目盛り）で、株式分割をそろえた後の値です。');
     if (now) notes.push(`点線の右端の丸い点は${nowLabel}の終値です` + (now.split ? '（決算期末の後の株式分割・併合をそろえた値）' : '') + '。');
     if (has(E.per || none)) notes.push('PER・PBR・配当利回りは決算期末の株価（報告書のPER×EPS）で計算し、赤字の年は出していません。時価総額はPER×当期純利益（自己株式を除いた株数での額）です。ROAは当期純利益÷総資産（期首と期末の平均）です。');
@@ -143,6 +147,7 @@
       if (has(E.bps)) line(document.getElementById('c-bps'), 'BPS', E.bps, '--c-rd');
       if (has(dps)) line(document.getElementById('c-dps'), '配当', dps, '--c-capex');
       if (has(buy)) line(document.getElementById('c-buy'), '自社株買い', buy, '--c-buy', { bar: true, unit: '億円' });
+      if (has(payout)) line(document.getElementById('c-payout'), '配当性向', payout, '--c-div', { unit: '％' });
     };
     render();
     matchMedia('(prefers-color-scheme: dark)').addEventListener('change', render);
