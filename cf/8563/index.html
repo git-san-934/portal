@@ -1,0 +1,108 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>大東銀行 投資分析</title>
+  <meta name="description" content="大東銀行（8563）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>大東銀行（8563）は何に投資しているか</h1>
+    <p>有価証券報告書の連結財務諸表と「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>福島県を地盤とする地方銀行です</b>。本店と支店の計56店で営業し、リース、クレジットカード、住宅ローンの保証などの子会社もあります。</li>
+      <li><b>純利益は7年で1.6倍になりました</b>。10.6億円から16.8億円に増えました。2026年3月期は貸出金の利息などが増え、経常収益は155億円（前期132億円）でした。</li>
+      <li><b>貸出金を増やし、有価証券を減らしています</b>。貸出金は5,380億円から6,990億円に増えた一方、有価証券は1,869億円から1,202億円に減りました。</li>
+      <li><b>金利の上昇で、預金の利息の支払いが増えています</b>。貸出金の利息は60億円から94億円に増えましたが、預金の利息の支払いも0.3億円（2024年3月期）から16億円に増えました。</li>
+      <li><b>配当性向30%を目安にしています</b>。2022年5月に株主還元方針をつくりました。2026年3月期の期末配当は1株40円（総額5.1億円）の予定で、配当の支払いは年3.8〜4.0億円からさらに増えます。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期の数字</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 投資の中身</h2>
+    <h3>銀行は見方が少し違います</h3>
+    <p>銀行では、預金を受け入れたり、お金を貸し出したりするたびに、キャッシュフロー計算書の数字が動きます。大東銀行でも営業CFは年−928億〜＋1,134億円と年によって大きく振れ、ほかの会社のように「本業で稼いだお金」としては読めません。このページでは、「利益」「お金の運用（貸出金・有価証券）」「店舗とシステムへの投資」に分けて見ます。</p>
+    <h3>利益の推移</h3>
+    <p class="sub">経常利益と、親会社株主に帰属する当期純利益です。経常利益は年15〜25億円で、2026年3月期は24.9億円でした。</p>
+    <div class="chart" id="c-profit"></div>
+    <h3>収入の中身：貸出金の利息と手数料、預金の利息</h3>
+    <p class="sub">貸出金の利息は毎年増えています。一方、手数料収入は2022年3月期の34億円から24〜26億円に減りました。預金の利息（線）は2025年3月期から急に増えました。</p>
+    <div class="chart" id="c-income"></div>
+    <h3>お金の運用：預金をどこに回しているか</h3>
+    <p class="sub">貸出金は毎年のように増え、有価証券は減っています。預金は6,812億円から7,712億円に増えました。</p>
+    <div class="chart" id="c-bs"></div>
+    <h3>店舗とシステムへの投資</h3>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期（1.3億円）</div>銀行業務の施設の改修など1.3億円</li>
+      <li><div class="y">2021年3月期（1.8億円）</div>銀行業務の施設の改修など1.8億円</li>
+      <li><div class="y">2022年3月期（1.8億円）</div>銀行業務の施設の改修など1.8億円</li>
+      <li><div class="y">2023年3月期（4.1億円）</div>銀行業務の施設の改修、システム機器の更改など4.1億円</li>
+      <li><div class="y">2024年3月期（7.1億円）</div>銀行業務の施設の改修、システム機器の更改など7.1億円</li>
+      <li><div class="y">2025年3月期（2.2億円）</div>銀行業務の施設の改修、システム機器の更改など2.1億円</li>
+      <li><div class="y">2026年3月期（4.1億円）</div>銀行業務の施設の改修、システム機器の更改など4.1億円</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の有形固定資産への投資額です（ソフトウェアは含みません）。重要な設備の新設計画はありません。</p>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">キャッシュ・フロー計算書の設備投資（ソフトウェアを含む）は年2〜11億円で、減価償却費（年4〜10億円）と同じくらいです。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>② 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、純利益（線）を比べています。</p>
+    <div class="chart" id="c-ret2"></div>
+    <p style="margin-top:.6rem">内部留保の充実に努めつつ安定的な配当を続け、純利益に対する配当性向30%を目安としています。2026年3月期は期末配当1株40円の予定です。内部留保は業務改革（BPR）やIT強化などの投資にあてるとしています。</p>
+  </section>
+  <section>
+    <h2>③ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>利ざや</b>：貸出金の利息の増加が、預金の利息の支払いの増加を上回り続けるかを見ます。</li>
+      <li><b>有価証券の売却損</b>：2026年3月期は国債などの債券の売却損が増えました。保有債券の含み損の状況を確認します。</li>
+      <li><b>配当の伸び</b>：配当性向30%の目安で、純利益が増えれば配当も増えます。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社大東銀行 有価証券報告書（2020年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = {"loans": [5380, 5895, 6363, 6600, 6526, 6662, 6990], "secs": [1869, 1854, 1776, 1420, 1316, 1299, 1202], "deposits": [6812, 7468, 7413, 7250, 7219, 7318, 7712], "loanInt": [59.9, 63.7, 67.8, 73.2, 75.0, 79.0, 93.5], "fees": [29.1, 31.9, 33.7, 29.7, 29.1, 23.9, 25.6], "depInt": [1.3, 0.9, 0.6, 0.4, 0.3, 5.2, 16.0]};
+window.CF_CHARTS = {
+  'c-profit': [[{ name: '経常利益', key: 'opinc', color: '--c-dep', type: 'bar' }, { name: '純利益', key: 'net', color: '--c-op', type: 'bar' }], { h: 260 }],
+  'c-income': [[{ name: '貸出金の利息', key: 'loanInt', color: '--c-rd', type: 'bar' }, { name: '手数料収入', key: 'fees', color: '--c-op', type: 'bar' }, { name: '預金の利息（支払い）', key: 'depInt', color: '--c-line', type: 'line' }], { h: 260 }],
+  'c-bs': [[{ name: '貸出金', key: 'loans', color: '--c-capex', type: 'bar', stack: 'a' }, { name: '有価証券', key: 'secs', color: '--c-rd', type: 'bar', stack: 'a' }, { name: '預金', key: 'deposits', color: '--c-line', type: 'line' }]],
+  'c-ret2': [[{ name: '配当', key: 'div', color: '--c-div', type: 'bar', stack: 'r' }, { name: '自社株買い', key: 'buy', color: '--c-buy', type: 'bar', stack: 'r' }, { name: '純利益', key: 'net', color: '--c-line', type: 'line' }], { h: 280 }],
+};
+window.CF_KPIS = [['純利益', 'net'], ['貸出金', 'loans'], ['設備投資', 'capex', 'dep', '減価償却費'], ['配当＋自社株買い', 'ret']];
+window.CF_ROWS = [
+  ['経常収益', 'sales'], ['経常利益', 'opinc'], ['純利益', 'net', 1], ['　貸出金の利息', 'loanInt'], ['　手数料収入', 'fees'], ['　預金の利息（支払い）', 'depInt'], null,
+  ['貸出金', 'loans'], ['有価証券', 'secs'], ['預金', 'deposits'], null,
+  ['設備投資', 'capex', 1], ['減価償却費', 'dep'], ['減損損失', 'imp'], null,
+  ['配当', 'div'], ['自社株買い', 'buy'], ['還元の合計', 'ret', 1],
+];
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>
