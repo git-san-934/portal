@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>トレーディア 投資分析</title>
+  <meta name="description" content="トレーディア（9365）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>トレーディア（9365）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>神戸を本拠とする港湾物流の会社です</b>。輸出入の通関・梱包・船積み、倉庫での保管、国際輸送の手配を、神戸・大阪・名古屋・東京・横浜の五大港で一貫して行います。</li>
+      <li><b>利益はコロナ禍後の物流混乱で大きく増え、その後は落ち着きました</b>。営業利益は2020年3月期の0.1億円から2023年3月期は4.4億円に増え、2026年3月期は2.4億円でした。売上は145億〜199億円で、2026年3月期は164億円です。</li>
+      <li><b>2025・2026年3月期に倉庫などの建物へ投資を増やしました</b>。設備投資は年1億円前後でしたが、2025年3月期は3.5億円、2026年3月期は14.3億円になりました。</li>
+      <li><b>その投資は借入金でまかないました</b>。借入金などは2025年3月期の37億円から46億円に増えました。現金は10.5億円です。</li>
+      <li><b>配当は増やしたあと横ばいです</b>。年間の配当の支払いは0.4億円から2023年3月期に0.7億円に増えました。2026年3月期の配当は1株50円（年1回）の予定です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2023年3月期の199億円をピークに減り、160億円台です。営業利益率は2023年3月期の2.2%が最高で、2026年3月期は1.4%です。利益率の低い事業です。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年によって振れ、マイナスの年もあります。2026年3月期は建物への投資で投資CFが14億円のマイナスになり、借入金を増やして財務CFがプラスになりました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費はありません。設備投資は売上の1%未満でしたが、2026年3月期は9%に増えました。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">2024年3月期までは設備投資が減価償却費（年1.5〜2億円）を下回っていましたが、2025年3月期から上回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期（1.1億円）</div>社屋・倉庫の照明のLED化、サーバーのリース</li>
+      <li><div class="y">2021年3月期（0.5億円）</div>倉庫の防水工事、照明のLED化</li>
+      <li><div class="y">2022年3月期（1.2億円）</div>倉庫の空調設備の更新</li>
+      <li><div class="y">2023年3月期（1.0億円）</div>主にソフトウェア</li>
+      <li><div class="y">2024年3月期（0.7億円）</div>主に建物</li>
+      <li><div class="y">2025年3月期（4.8億円）</div>主に建物</li>
+      <li><div class="y">2026年3月期（14.8億円）</div>主に建物</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資総額で、設備はすべてのセグメントに共通の資産です。建物の具体的な内容の記載はありません。重要な設備の新設計画は「該当事項なし」です。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">業績や経営環境を勘案した安定配当を基本方針としています。配当は年1回の期末配当で、2026年3月期は1株50円の予定です。借入金などは46億円です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>新しい建物の効果</b>：2年で18億円を投じた建物（倉庫とみられます）が、保管や賃料の収入増につながるかを見ます。</li>
+      <li><b>海上物流の環境</b>：ホルムズ海峡の封鎖や米国の通商政策で、物流の形が変わる可能性があります。荷動きへの影響を確認します。</li>
+      <li><b>借入金</b>：投資で借入金が増えました。利益の規模に比べた負担を見ます。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET トレーディア株式会社 有価証券報告書（2020年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [39.6, 43.3, 45.8, 41.5, 38.3, 36.6, 46.0] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>
