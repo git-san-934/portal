@@ -49,6 +49,8 @@ jobs:
       - name: 新着情報を集める
         env:
           EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
+          # 英語タイトルの翻訳。あれば DeepL、無ければ Google 翻訳の無料の窓口を使う
+          DEEPL_API_KEY: ${{ secrets.DEEPL_API_KEY }}
         run: python news/scripts/fetch_news.py
       - name: 結果をコミット
         id: commit

@@ -9,6 +9,9 @@
   EDINET_API_KEY(環境変数)があるときだけ。
 - SEC EDGAR(米国株): 8-K・10-Q・10-K などの提出書類。EDINET の米国版。
 
+英語のタイトル(米国株のニュースなど)は日本語に訳して title_ja に入れる(原文は title に残す)。
+DEEPL_API_KEY(環境変数)があれば DeepL、無ければ Google 翻訳の無料の窓口を使う。訳は data/translate_cache.json に貯めて、同じタイトルは訳し直さない。
+
 銘柄は持ち株チェックと共通(holdings/data/holdings.json)。
 結果は data/news.json。前回の news.json を読んで、はじめて見つけた時刻(first_seen)を引き継ぐ。
 GitHub Actions(.github/workflows/update-news.yml)から 1日4回(1:00 / 8:30 / 12:45 / 15:45 JST)実行する。
@@ -42,6 +45,9 @@ EDINET_CODELIST = "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/codelis
 EDINET_VIEW = "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?"
 TDNET_LIST = "https://www.release.tdnet.info/inbs/I_list_{page:03d}_{ymd}.html"
 TDNET_CACHE_PATH = DATA_DIR / "tdnet_cache.json"
+TRANSLATE_CACHE_PATH = DATA_DIR / "translate_cache.json"
+TRANSLATE_MAX = 300  # 1回の実行で新しく訳す最大件数(残りは次回)
+GTX_URL = "https://translate.googleapis.com/translate_a/single"
 TDNET_DAYS = 31  # TDnet の一覧は1か月分だけ公開されている
 SEC_TICKERS = "https://www.sec.gov/files/company_tickers.json"
 SEC_SUBMISSIONS = "https://data.sec.gov/submissions/CIK{cik:010d}.json"
@@ -679,6 +685,80 @@ def fetch_sec(stocks, sources):
 
 
 # ---------------------------------------------------------------------------
+# 英語タイトルの翻訳
+# ---------------------------------------------------------------------------
+
+HAS_JA = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
+
+
+def needs_translation(title):
+    return not HAS_JA.search(title) and len(re.findall(r"[A-Za-z]{2,}", title)) >= 2
+
+
+def translate_deepl(texts, key):
+    host = "api-free.deepl.com" if key.endswith(":fx") else "api.deepl.com"
+    r = requests.post(f"https://{host}/v2/translate", headers={"Authorization": f"DeepL-Auth-Key {key}"},
+                      data={"text": texts, "source_lang": "EN", "target_lang": "JA"}, timeout=60)
+    r.raise_for_status()
+    return [t["text"] for t in r.json()["translations"]]
+
+
+def translate_gtx(text):
+    r = requests.get(GTX_URL, params={"client": "gtx", "sl": "en", "tl": "ja", "dt": "t", "q": text},
+                     headers={"User-Agent": HEADERS["User-Agent"]}, timeout=30)
+    r.raise_for_status()
+    return "".join(part[0] for part in r.json()[0] if part and part[0])
+
+
+def translate_titles(out_stocks):
+    try:
+        cache = json.loads(TRANSLATE_CACHE_PATH.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+    used = [it for s in out_stocks for it in s["items"] if needs_translation(it["title"])]
+    todo = list(dict.fromkeys(it["title"] for it in used if it["title"] not in cache))[:TRANSLATE_MAX]
+    key = os.environ.get("DEEPL_API_KEY", "").strip()
+    done = 0
+    try:
+        if key:
+            for i in range(0, len(todo), 50):
+                for src, ja in zip(todo[i:i + 50], translate_deepl(todo[i:i + 50], key)):
+                    cache[src] = ja
+                    done += 1
+        else:
+            fails = 0
+            for src in todo:
+                for attempt in range(2):
+                    try:
+                        ja = translate_gtx(src)
+                        break
+                    except Exception as e:  # noqa: BLE001
+                        ja, err = None, e
+                        time.sleep(2)
+                if ja:
+                    cache[src] = ja
+                    done += 1
+                    fails = 0
+                else:
+                    fails += 1
+                    log(f"翻訳: 失敗(英語のまま): {src[:60]} … {err if ja is None else '空の訳'}")
+                    if fails >= 5:
+                        log("翻訳: 失敗が続くので、残りは次回にします")
+                        break
+                time.sleep(0.3)
+    except Exception as e:  # noqa: BLE001
+        log(f"翻訳: 途中で失敗しました({done}/{len(todo)} 件まで): {e}")
+    for it in used:
+        if cache.get(it["title"]):
+            it["title_ja"] = cache[it["title"]]
+    # 今の一覧で使っているタイトルの訳だけ残す
+    keep = {it["title"] for it in used}
+    cache = {k: v for k, v in cache.items() if k in keep}
+    TRANSLATE_CACHE_PATH.write_text(json.dumps(cache, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    log(f"翻訳: 新しく {done} 件({'DeepL' if key else 'Google 翻訳'})、訳あり {sum(1 for it in used if 'title_ja' in it)}/{len(used)} 件")
+
+
+# ---------------------------------------------------------------------------
 
 
 def main():
@@ -765,6 +845,8 @@ def main():
             "items": items,
         })
 
+    translate_titles(out_stocks)
+
     out = {
         "version": VERSION,
         "updated_at": now_iso,
@@ -783,7 +865,7 @@ def main():
             counts[it["source"]] = counts.get(it["source"], 0) + 1
         log(f"  {s['code']:5} {s['name']}: 公式 {counts.get('official', 0)} / 適時開示 {counts.get('tdnet', 0)} / EDINET {counts.get('edinet', 0)} / SEC {counts.get('sec', 0)}  ({s['official_status']})")
         for it in s["items"][:3]:
-            log(f"      {it['date']} [{it['source']}] {it['title'][:60]}")
+            log(f"      {it['date']} [{it['source']}] {it.get('title_ja', it['title'])[:60]}")
     ok_official = sum(1 for s in out_stocks if s["official_status"] == "ok")
     if ok_official == 0 and tdnet is None and edinet is None and sec is None:
         log("どこからも取得できませんでした")
