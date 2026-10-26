@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-26T18:22+09:00",
+ "updated_at": "2026-10-26T22:34+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1401,6 +1401,38 @@
    ],
    "items": [
     {
+     "date": "2026-10-26",
+     "title": "Oracle Advances Outcome-Driven AI Across Fusion Applications",
+     "url": "https://www.oracle.com/news/announcement/ai-world-oracle-advances-outcome-driven-ai-across-fusion-applications-2026-10-26/",
+     "source": "official",
+     "first_seen": "2026-10-26T22:34+09:00",
+     "title_ja": "オラクル、Fusion アプリケーション全体で結果主導型 AI を推進"
+    },
+    {
+     "date": "2026-10-26",
+     "title": "Oracle Introduces AI Agent-Ready Fusion Applications Setup and Configuration to Speed Implementations",
+     "url": "https://www.oracle.com/news/announcement/ai-world-oracle-introduces-ai-agent-ready-fusion-applications-setup-and-configuration-to-speed-implementations-2026-10-26/",
+     "source": "official",
+     "first_seen": "2026-10-26T22:34+09:00",
+     "title_ja": "オラクル、実装を迅速化するために AI Agent-Ready Fusion アプリケーションのセットアップと構成を導入"
+    },
+    {
+     "date": "2026-10-26",
+     "title": "Oracle Introduces Claw-Powered Fusion Agentic Applications for Supply Chain",
+     "url": "https://www.oracle.com/news/announcement/ai-world-oracle-introduces-claw-powered-fusion-agentic-applications-for-supply-chain-2026-10-26/",
+     "source": "official",
+     "first_seen": "2026-10-26T22:34+09:00",
+     "title_ja": "オラクル、サプライチェーン向けにクローを活用した Fusion Agentic アプリケーションを導入"
+    },
+    {
+     "date": "2026-10-23",
+     "title": "Oracle Investor Day Meeting to be held October 28, 2026",
+     "url": "https://investor.oracle.com/investor-news/news-details/2026/ORACLE-INVESTOR-DAY-MEETING-TO-BE-HELD-OCTOBER-28-2026/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-24T04:52+09:00",
+     "title_ja": "Oracle Investor Day Meeting が 2026 年 10 月 28 日に開催される"
+    },
+    {
      "date": "2026-10-23",
      "title": "Oracle Announces $1 Billion Investment to Accelerate Partner Growth and AI-Driven Modernization for Customers",
      "url": "https://www.oracle.com/news/announcement/ai-world-oracle-announces-1-billion-commitment-to-partner-ecosystem-2026-10-23/",
@@ -1415,14 +1447,6 @@
      "source": "official",
      "first_seen": "2026-10-24T04:52+09:00",
      "title_ja": "オラクル、マーケットプレイスを拡大してパートナーの新たな成長機会を開拓"
-    },
-    {
-     "date": "2026-10-23",
-     "title": "Oracle Investor Day Meeting to be held October 28, 2026",
-     "url": "https://investor.oracle.com/investor-news/news-details/2026/ORACLE-INVESTOR-DAY-MEETING-TO-BE-HELD-OCTOBER-28-2026/default.aspx",
-     "source": "official",
-     "first_seen": "2026-10-24T04:52+09:00",
-     "title_ja": "Oracle Investor Day Meeting が 2026 年 10 月 28 日に開催される"
     },
     {
      "date": "2026-10-21",
@@ -2170,6 +2194,14 @@
    ],
    "items": [
     {
+     "date": "2026-10-26",
+     "title": "Schrödinger Reports Inducement Grants Under Nasdaq Listing Rule 5635(c)(4)",
+     "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-Under-Nasdaq-Listing-Rule-5635c4-8a97af754/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-26T22:34+09:00",
+     "title_ja": "シュレディンガー、ナスダック上場規則5635(c)(4)に基づく誘致助成金を報告"
+    },
+    {
      "date": "2026-10-21",
      "title": "Schrödinger to Announce Third Quarter 2026 Financial Results on November 4",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Announce-Third-Quarter-2026-Financial-Results-on-November-4/default.aspx",
@@ -2311,6 +2343,14 @@
     "spacex:"
    ],
    "items": [
+    {
+     "date": "2026-10-26",
+     "title": "SPACEX SECURES $40 BILLION IN THE LARGEST GPU FINANCING EVER",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/SPACEX-SECURES-40-BILLION-IN-THE-LARGEST-GPU-FINANCING-EVER-2026-EnDqGhTAB3/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-26T22:34+09:00",
+     "title_ja": "SPACEX が史上最大の GPU 資金調達で 400 億ドルを確保"
+    },
     {
      "date": "2026-10-20",
      "title": "SpaceX Reports Third Quarter 2026 Results",
