@@ -7,6 +7,7 @@ https://recruit.enplas.co.jp/future/
 https://recruit.enplas.co.jp/gallery/
 https://recruit.enplas.co.jp/h%E3%83%BBk/
 https://recruit.enplas.co.jp/h%E3%83%BBr/
+https://recruit.enplas.co.jp/harassment/
 https://recruit.enplas.co.jp/interview/
 https://recruit.enplas.co.jp/introduce/
 https://recruit.enplas.co.jp/k%E3%83%BBr/
@@ -162,6 +163,7 @@ https://www.enplas.co.jp/english/news/business-news/7708/
 https://www.enplas.co.jp/english/news/business-news/7712/
 https://www.enplas.co.jp/english/news/business-news/7755/
 https://www.enplas.co.jp/english/news/business-news/7758/
+https://www.enplas.co.jp/english/news/business-news/7769/
 https://www.enplas.co.jp/english/privacy/
 https://www.enplas.co.jp/english/sitemap/
 https://www.enplas.co.jp/enplas_tech/
@@ -200,6 +202,7 @@ https://www.enplas.co.jp/news/business-news/9721/
 https://www.enplas.co.jp/news/business-news/9728/
 https://www.enplas.co.jp/news/business-news/9778/
 https://www.enplas.co.jp/news/business-news/9782/
+https://www.enplas.co.jp/news/business-news/9806/
 https://www.enplas.co.jp/news/ir-news/8833/
 https://www.enplas.co.jp/news/ir-news/9339/
 https://www.enplas.co.jp/news/recruit-news/2954/
