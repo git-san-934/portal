@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-26T10:15+09:00",
+ "updated_at": "2026-10-26T18:22+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -834,6 +834,13 @@
     "https://www.enplas.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-10-26",
+     "title": "MIKA2026での当社レンズアンテナを用いたデモ展示のお知らせ",
+     "url": "https://www.enplas.co.jp/news/business-news/9806/",
+     "source": "official",
+     "first_seen": "2026-10-26T18:22+09:00"
+    },
     {
      "date": "2026-10-09",
      "title": "STMicroelectronics Partner Programへの参画を通じてST60向けRFレンズソリューション提供を強化",
@@ -2708,6 +2715,14 @@
    "official_pages": [],
    "items": [
     {
+     "date": "2026-10-26",
+     "time": "15:30",
+     "title": "第4回新株予約権の行使完了および新株発行に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261026556108.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-26T18:22+09:00"
+    },
+    {
      "date": "2026-10-01",
      "time": "13:52",
      "title": "訂正自己株券買付状況報告書(法24条の6第1項に基づくもの)",
@@ -2847,6 +2862,20 @@
     "https://news.panasonic.com/jp/"
    ],
    "items": [
+    {
+     "date": "2026-10-26",
+     "title": "企業・経営 / Stories 物流を競争力へ――経営基盤を強化するパナソニックグループの物流改革",
+     "url": "https://news.panasonic.com/jp/stories/19087",
+     "source": "official",
+     "first_seen": "2026-10-26T18:22+09:00"
+    },
+    {
+     "date": "2026-10-26",
+     "title": "技術・研究開発 エネルギーマネジメント分野で普及が進む通信技術「Nessum」が国際標準規格(IEEE 1901-2026)として承認",
+     "url": "https://news.panasonic.com/jp/press/jn261026-1",
+     "source": "official",
+     "first_seen": "2026-10-26T18:22+09:00"
+    },
     {
      "date": "2026-10-23",
      "title": "4 2026年10月23日 イベント・スポンサー活動 トピックス パナソニック野球部 柿本晟弥選手、プロ野球ドラフト会議で埼玉西武ライオンズから2位指名",
@@ -3081,7 +3110,7 @@
     },
     {
      "date": "2026-09-24",
-     "title": "経営基本方針(創業者・理念) / Stories 松下幸之助「最高の経営とは」――パナソニックの歴史ものがたり Episode 10",
+     "title": "5 2026年9月24日 企業・経営 Stories 松下幸之助「最高の経営とは」――パナソニックの歴史ものがたり Episode 10",
      "url": "https://news.panasonic.com/jp/stories/18954",
      "source": "official",
      "first_seen": "2026-09-24T00:00+09:00"
