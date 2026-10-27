@@ -20,6 +20,7 @@ https://git-san-934.github.io/portal/
 - `scandal-watch/` — 掲載アプリの1つ「不祥事株のその後」の本体(このリポジトリ内に同梱)。不祥事の一覧は `scandal-watch/data/cases.json`、その後の株価は GitHub Actions が平日に自動で計算します。詳細は `scandal-watch/README.md` を参照。
 - `nikkei43/` — 掲載アプリの1つ「日経4.3ブル 暴落買いナビ」の本体(このリポジトリ内に同梱)。SBI日本株4.3ブルの基準価額を GitHub Actions が平日の夜と翌朝に自動取得します。詳細は `nikkei43/README.md` を参照。
 - `lev3x/` — 掲載アプリの1つ「米国3倍ブル 下落率ランキング」の本体(このリポジトリ内に同梱)。米国上場の3倍ブルETF/ETN 36銘柄の終値を GitHub Actions が火〜土の 7:15・9:15 に Yahoo Finance から取得し、過去1年の最高値からの下落率を計算します。
+- `lev3watch/` — 掲載アプリの1つ「3倍ブル見張り台」の本体。案1(SPY が200日平均の+3%超で UPRO、−3%未満で現金)の合図と、米国株指数の3倍ブル5本(TQQQ・UPRO・UDOW・TNA・MIDU)の1年高値からの下落率を、GitHub Actions が火〜土の 7:20・9:20 に Yahoo Finance から取得して更新します。`data/history.json` は2026-10-23までの検証結果(3倍は再現値)で固定です。
 - `float-screen/` — 掲載アプリの1つ「銘柄スクリーニング」の本体(このリポジトリ内に同梱)。データ(`float-screen/data/screen.json`)は stock-yukasyouken-jigyou リポジトリの有価証券報告書データから作っています。
 - `ad-watch/` — 掲載アプリの1つ「広告費ウォッチ」の本体(このリポジトリ内に同梱)。広告宣伝費・売上高・営業利益は GitHub Actions が毎日 EDINET の有価証券報告書から自動で集めます。詳細は `ad-watch/README.md` を参照。
 
@@ -33,6 +34,7 @@ https://git-san-934.github.io/portal/
 | 持ち株の新着情報 | https://git-san-934.github.io/portal/news/ |
 | 持ち株サイトの新着ページ | https://git-san-934.github.io/portal/site-watch/ |
 | 米国3倍ブル 下落率ランキング | https://git-san-934.github.io/portal/lev3x/ |
+| 3倍ブル見張り台 | https://git-san-934.github.io/portal/lev3watch/ |
 | 日銀統計の新着 | https://git-san-934.github.io/portal/boj-stats/ |
 | 日経ヒートマップ | https://git-san-934.github.io/nikkei-heatmap/ |
 | 銘柄スクリーニング | https://git-san-934.github.io/portal/float-screen/ |
