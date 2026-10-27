@@ -1,9 +1,22 @@
 // 「最新の決算短信」の節: cf/data/tanshin.json (cf/scripts/fetch_tanshin.py が TDnet の決算短信から作る。単位は億円、1株あたりは円) から描く。
 // 「最新の半期」の節の前(なければ「数字の一覧」の節の前)に差し込む。短信がない銘柄では何もしない。
+// あわせて、ページ上部に Yahoo!ファイナンスへのリンクを出す(短信がない銘柄でも出す)。
 (function () {
   const me = document.currentScript;
   const code = (window.CF && window.CF.code) || (window.CF_HALF && window.CF_HALF.code) || (me && me.dataset.code);
   if (!code) return;
+  // 「← 投資分析の一覧へ」の横に Yahoo!ファイナンスの銘柄ページへのリンクを出す(全銘柄ページがこのファイルを読むため、ここで足す)
+  const back = document.querySelector('a.back');
+  if (back) {
+    const y = document.createElement('a');
+    y.className = 'yahoo';
+    y.href = `https://finance.yahoo.co.jp/quote/${code}.T`;
+    y.target = '_blank';
+    y.rel = 'noopener';
+    y.textContent = 'Yahoo!ファイナンスで見る ↗';
+    y.style.cssText = 'float:right;font-size:0.85rem;color:var(--text-sub)';
+    back.after(y);
+  }
   const url = me && me.src ? new URL('../data/tanshin.json', me.src) : '../data/tanshin.json';
   fetch(url).then(r => r.ok ? r.json() : null).then(data => {
     const T = data && data.companies && data.companies[code];
