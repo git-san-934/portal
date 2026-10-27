@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-27T18:21+09:00",
+ "updated_at": "2026-10-27T21:40+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1835,6 +1835,14 @@
    ],
    "items": [
     {
+     "date": "2026-10-27",
+     "title": "ACI Worldwide and Circle Collaborate to Bring USDC Settlement to Existing Payments Infrastructure in Latin America Colombian pilot demonstrates how financial institutions can integrate USDC settlement",
+     "url": "https://www.circle.com/pressroom/aci-worldwide-and-circle-collaborate-to-bring-usdc-settlement-to-existing-payments-infrastructure-in-latin-america",
+     "source": "official",
+     "first_seen": "2026-10-27T21:40+09:00",
+     "title_ja": "ACIワールドワイドとサークルが協力して、ラテンアメリカの既存の決済インフラにUSDC決済を導入 コロンビアのパイロットが金融機関がUSDC決済を統合する方法を実証"
+    },
+    {
      "date": "2026-10-07",
      "title": "Circle to Announce Q3 2026 Financial Results on November 4, 2026 Circle to Announce Q3 2026 Financial Results on November 4, 2026",
      "url": "https://www.circle.com/pressroom/circle-to-announce-q3-2026-financial-results-on-november-4-2026",
@@ -1918,6 +1926,14 @@
     "q4:https://investor.corning.com"
    ],
    "items": [
+    {
+     "date": "2026-10-27",
+     "title": "Corning Delivers Outstanding Third-Quarter Results(1)",
+     "url": "https://investor.corning.com/news-and-events/news/news-details/2026/Corning-Delivers-Outstanding-Third-Quarter-Results1/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-27T21:40+09:00",
+     "title_ja": "コーニング、第 3 四半期に優れた業績を達成(1)"
+    },
     {
      "date": "2026-10-07",
      "title": "Corning Announces Quarterly Dividend",
