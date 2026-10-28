@@ -12,9 +12,11 @@
     if (text != null) e.textContent = text;
     return e;
   };
+  // 外から集めた URL は http/https のときだけリンクにする(javascript: などを踏ませない)
+  const isWebUrl = (u) => /^https?:\/\//i.test(u || "");
   const link = (href, text, cls) => {
     const a = el("a", cls, text);
-    a.href = href;
+    if (isWebUrl(href)) a.href = href;
     a.target = "_blank";
     a.rel = "noopener";
     return a;
