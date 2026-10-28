@@ -10,6 +10,8 @@
     if (text != null) e.textContent = text;
     return e;
   };
+  // 外から集めた URL は http/https のときだけリンクにする(javascript: などを踏ませない)
+  const isWebUrl = (u) => /^https?:\/\//i.test(u || "");
   const fmtDay = (d) => d.split("-").map(Number).join("/");
   const fmtDate = (d) => {
     const [y, m, day] = d.split("-").map(Number);
@@ -60,7 +62,7 @@
           const meta = el("span", "meta");
           meta.append(el("span", "badge news", "日銀"), el("span", null, it.time));
           const a = el("a", "title", it.name);
-          a.href = it.url;
+          if (isWebUrl(it.url)) a.href = it.url;
           a.target = "_blank";
           a.rel = "noopener";
           li.append(meta, a);

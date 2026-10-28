@@ -13,6 +13,9 @@
     return e;
   };
 
+  // 外から集めた URL は http/https のときだけリンクにする(javascript: などを踏ませない)
+  const isWebUrl = (u) => /^https?:\/\//i.test(u || "");
+
   const fmtDate = (d) => {
     const [y, m, day] = d.split("-").map(Number);
     const wd = "日月火水木金土"[new Date(y, m - 1, day).getDay()];
@@ -31,7 +34,7 @@
     if (isFresh(it)) meta.append(el("span", "badge new", "NEW"));
     // 英語のタイトルは日本語訳を見せ、原文は下に小さく(マウスを載せても出る)
     const a = el("a", "title", it.title_ja || it.title);
-    a.href = it.url;
+    if (isWebUrl(it.url)) a.href = it.url;
     a.target = "_blank";
     a.rel = "noopener";
     li.append(meta, a);
@@ -62,7 +65,7 @@
       sec.append(h);
 
       const links = el("p", "links");
-      if (s.home) {
+      if (isWebUrl(s.home)) {
         const a = el("a", null, "公式サイト");
         a.href = s.home;
         a.target = "_blank";

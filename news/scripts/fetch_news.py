@@ -137,6 +137,12 @@ def clean(text):
     return re.sub(r"\s+", " ", text).strip()
 
 
+def is_web_url(url):
+    """http/https の URL だけ True(javascript: などのリンクをページに載せない)"""
+    p = urlparse((url or "").strip())
+    return p.scheme.lower() in ("http", "https") and bool(p.netloc)
+
+
 def make_date(y, m, d):
     try:
         return date(int(y), int(m), int(d))
@@ -849,7 +855,7 @@ def main():
             for it in items:
                 # 同じ記事が HTML と RSS の両方から、別の URL で取れることがある
                 key = (it["date"], re.sub(r"\W", "", it["title"]).lower()[:40])
-                if it["url"] in merged or key in seen_titles:
+                if not is_web_url(it["url"]) or it["url"] in merged or key in seen_titles:
                     continue
                 seen_titles.add(key)
                 old = prev_items.get((code, it["url"]))
@@ -865,7 +871,7 @@ def main():
                 merged[it["url"]] = {**it, "source": source, "first_seen": first_seen}
         # 一覧から消えた記事や、取得に失敗した情報源の記事も、KEEP_DAYS 日までは残す
         for (c, url), old in prev_items.items():
-            if prev.get("version") == VERSION and c == code and url not in merged and old["date"] >= (TODAY - timedelta(days=KEEP_DAYS)).isoformat():
+            if prev.get("version") == VERSION and c == code and url not in merged and is_web_url(url) and old["date"] >= (TODAY - timedelta(days=KEEP_DAYS)).isoformat():
                 merged[url] = old
         items = sorted(merged.values(), key=lambda x: (x["date"], x.get("time", ""), x["first_seen"]), reverse=True)[:MAX_PER_STOCK]
         st = status.get(code, {})
