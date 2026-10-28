@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-28T09:42+09:00",
+ "updated_at": "2026-10-28T10:40+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-28",
+     "title": "『Minecraft』が、より鮮やかなグラフィックにアップデートしてNintendo Switch 2 に登場。本日より発売開始。",
+     "url": "https://www.nintendo.com/jp/topics/article/c8c6ed2b-cff7-4ff5-8953-32bd770e2537",
+     "source": "official",
+     "first_seen": "2026-10-28T10:40+09:00"
+    },
     {
      "date": "2026-10-23",
      "title": "スプラトゥーンシリーズのポータルサイト「スプラトゥーンベース」の「ギャラリー」ページを更新しました。 『スプラトゥーン3』から『スプラトゥーン レイダース』まで、さまざまなテーマを元に描かれた約3年分のアートワークを新たに追加しています。",
