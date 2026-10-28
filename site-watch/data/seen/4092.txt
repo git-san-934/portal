@@ -543,6 +543,7 @@ https://www.nippon-chem.co.jp/news/1388
 https://www.nippon-chem.co.jp/news/1391
 https://www.nippon-chem.co.jp/news/1393
 https://www.nippon-chem.co.jp/news/1395
+https://www.nippon-chem.co.jp/news/14081
 https://www.nippon-chem.co.jp/news/1409
 https://www.nippon-chem.co.jp/news/1411
 https://www.nippon-chem.co.jp/news/1413
@@ -1546,6 +1547,7 @@ https://www.nippon-chem.co.jp/wp-content/uploads/tcep-hcl_tds.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/tcep_tds.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/tmsp_tds.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/令和8年熊本地震による被害に対する支援について.pdf
+https://www.nippon-chem.co.jp/wp-content/uploads/周南市水泳場ネーミングライツ契約締結のお知らせ.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/持続的な企業価値向上に向けた取り組み2025アップデート.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/第168期定時株主総会決議ご通知.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/自己株式の取得状況に関するお知らせ（20260904）.pdf
