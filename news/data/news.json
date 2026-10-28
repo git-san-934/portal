@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-28T20:26+09:00",
+ "updated_at": "2026-10-28T22:32+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2261,6 +2261,14 @@
     "q4:https://ir.schrodinger.com"
    ],
    "items": [
+    {
+     "date": "2026-10-28",
+     "title": "Schrödinger to Present at UBS Global Healthcare Conference",
+     "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Present-at-UBS-Global-Healthcare-Conference/default.aspx",
+     "source": "official",
+     "first_seen": "2026-10-28T22:32+09:00",
+     "title_ja": "シュレーディンガー氏がUBSグローバル・ヘルスケア・カンファレンスで講演"
+    },
     {
      "date": "2026-10-26",
      "title": "Schrödinger Reports Inducement Grants Under Nasdaq Listing Rule 5635(c)(4)",
