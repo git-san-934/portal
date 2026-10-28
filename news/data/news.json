@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-28T12:56+09:00",
+ "updated_at": "2026-10-28T15:07+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2978,6 +2978,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-28",
+     "title": "企業・経営 / Stories 欧州で挑む、次世代データセンター冷却――液冷システム事業化の舞台裏",
+     "url": "https://news.panasonic.com/jp/stories/19111",
+     "source": "official",
+     "first_seen": "2026-10-28T15:07+09:00"
+    },
+    {
      "date": "2026-10-26",
      "title": "企業・経営 / Stories 物流を競争力へ――経営基盤を強化するパナソニックグループの物流改革",
      "url": "https://news.panasonic.com/jp/stories/19087",
@@ -3071,7 +3078,7 @@
     },
     {
      "date": "2026-10-14",
-     "title": "企業・経営 / Stories デバイスからシステムまで統合提案――パナソニック エナジーが描く成長戦略とAIインフラへの貢献",
+     "title": "4 2026年10月14日 企業・経営 Stories デバイスからシステムまで統合提案――パナソニック エナジーが描く成長戦略とAIインフラへの貢献",
      "url": "https://news.panasonic.com/jp/stories/19081",
      "source": "official",
      "first_seen": "2026-10-14T18:02+09:00"
