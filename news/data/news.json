@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-28T11:21+09:00",
+ "updated_at": "2026-10-28T12:56+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1433,28 +1433,32 @@
      "title": "Oracle Reinvents Enterprise Computing for the AI Era with OpenAI",
      "url": "https://www.oracle.com/news/announcement/ai-world-oracle-reinvents-enterprise-computing-for-the-ai-era-with-openai-2026-10-27/",
      "source": "official",
-     "first_seen": "2026-10-28T05:30+09:00"
+     "first_seen": "2026-10-28T05:30+09:00",
+     "title_ja": "オラクル、OpenAI で AI 時代のエンタープライズ コンピューティングを再発明"
     },
     {
      "date": "2026-10-27",
      "title": "Oracle Expands Native AI and Data Services on OCI with Snowflake",
      "url": "https://www.oracle.com/news/announcement/ai-world-oracle-expands-native-ai-and-data-services-on-oci-with-snowflake-2026-10-27/",
      "source": "official",
-     "first_seen": "2026-10-28T05:30+09:00"
+     "first_seen": "2026-10-28T05:30+09:00",
+     "title_ja": "オラクル、Snowflake を使用して OCI 上のネイティブ AI およびデータ サービスを拡張"
     },
     {
      "date": "2026-10-27",
      "title": "Oracle Brings Google TPUs to Oracle Cloud Infrastructure",
      "url": "https://www.oracle.com/news/announcement/ai-world-oracle-brings-google-tpus-to-oracle-cloud-infrastructure-2026-10-27/",
      "source": "official",
-     "first_seen": "2026-10-28T05:30+09:00"
+     "first_seen": "2026-10-28T05:30+09:00",
+     "title_ja": "オラクルがGoogle TPUをOracle Cloud Infrastructureに導入"
     },
     {
      "date": "2026-10-27",
      "title": "NVIDIA and Oracle Expand NVIDIA Vera Rubin to Multi-Gigawatt Scale and Bring NVIDIA Vera CPU to Oracle Cloud Infrastructure",
      "url": "https://www.oracle.com/news/announcement/ai-world-nvidia-and-oracle-expand-nvidia-vera-rubin-to-multi-gigawatt-scale-2026-10-27/",
      "source": "official",
-     "first_seen": "2026-10-28T05:30+09:00"
+     "first_seen": "2026-10-28T05:30+09:00",
+     "title_ja": "NVIDIA と Oracle、NVIDIA Vera Rubin をマルチギガワット規模に拡張し、NVIDIA Vera CPU を Oracle Cloud Infrastructure に導入"
     },
     {
      "date": "2026-10-26",
@@ -2553,6 +2557,13 @@
      "url": "https://www.nippon-chem.co.jp/news/13815",
      "source": "official",
      "first_seen": "2026-10-26T09:42+09:00"
+    },
+    {
+     "date": "2026-10-23",
+     "title": "周南市水泳場ネーミングライツ契約締結のお知らせ",
+     "url": "https://www.nippon-chem.co.jp/news/14081",
+     "source": "official",
+     "first_seen": "2026-10-28T12:56+09:00"
     },
     {
      "date": "2026-10-15",

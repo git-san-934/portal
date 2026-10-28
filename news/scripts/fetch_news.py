@@ -10,7 +10,7 @@
 - SEC EDGAR(米国株): 8-K・10-Q・10-K などの提出書類。EDINET の米国版。
 
 英語のタイトル(米国株のニュースなど)は日本語に訳して title_ja に入れる(原文は title に残す)。
-DEEPL_API_KEY(環境変数)があれば DeepL、無ければ Google 翻訳の無料の窓口を使う。訳は data/translate_cache.json に貯めて、同じタイトルは訳し直さない。
+DEEPL_API_KEY(環境変数)があれば DeepL、無ければ(または失敗したら)無料の窓口(Google 翻訳 → MyMemory)を順に試す。訳は data/translate_cache.json に貯めて、同じタイトルは訳し直さない。
 
 銘柄は持ち株チェックと共通(holdings/data/holdings.json)。
 結果は data/news.json。前回の news.json を読んで、はじめて見つけた時刻(first_seen)を引き継ぐ。
@@ -48,6 +48,8 @@ TDNET_CACHE_PATH = DATA_DIR / "tdnet_cache.json"
 TRANSLATE_CACHE_PATH = DATA_DIR / "translate_cache.json"
 TRANSLATE_MAX = 300  # 1回の実行で新しく訳す最大件数(残りは次回)
 GTX_URL = "https://translate.googleapis.com/translate_a/single"
+GDICT_URL = "https://clients5.google.com/translate_a/t"
+MYMEMORY_URL = "https://api.mymemory.translated.net/get"
 TDNET_DAYS = 31  # TDnet の一覧は1か月分だけ公開されている
 SEC_TICKERS = "https://www.sec.gov/files/company_tickers.json"
 SEC_SUBMISSIONS = "https://data.sec.gov/submissions/CIK{cik:010d}.json"
@@ -710,6 +712,41 @@ def translate_gtx(text):
     return "".join(part[0] for part in r.json()[0] if part and part[0])
 
 
+def translate_gdict(text):
+    # Google 翻訳の別の窓口(gtx が断られたとき用)。応答は ["訳"] か [["訳", "en"]]
+    r = requests.get(GDICT_URL, params={"client": "dict-chrome-ex", "sl": "en", "tl": "ja", "q": text},
+                     headers={"User-Agent": HEADERS["User-Agent"]}, timeout=30)
+    r.raise_for_status()
+    first = r.json()[0]
+    return first[0] if isinstance(first, list) else first
+
+
+def translate_mymemory(text):
+    r = requests.get(MYMEMORY_URL, params={"q": text, "langpair": "en|ja"}, timeout=30)
+    r.raise_for_status()
+    body = r.json()
+    if body.get("responseStatus") not in (200, "200"):
+        raise RuntimeError(body.get("responseDetails"))
+    return body["responseData"]["translatedText"]
+
+
+FREE_ENGINES = [("Google 翻訳", translate_gtx), ("Google 翻訳(dict)", translate_gdict), ("MyMemory", translate_mymemory)]
+
+
+def translate_free(text, errors):
+    """無料の窓口を順に試す。訳と使った窓口を返す(全部だめなら None)"""
+    for name, fn in FREE_ENGINES:
+        try:
+            ja = fn(text)
+        except Exception as e:  # noqa: BLE001
+            errors.setdefault(name, str(e)[:120])
+            continue
+        if ja and HAS_JA.search(ja):
+            return ja, name
+        errors.setdefault(name, "訳が空か英語のまま")
+    return None, None
+
+
 def translate_titles(out_stocks):
     try:
         cache = json.loads(TRANSLATE_CACHE_PATH.read_text(encoding="utf-8"))
@@ -718,36 +755,32 @@ def translate_titles(out_stocks):
     used = [it for s in out_stocks for it in s["items"] if needs_translation(it["title"])]
     todo = list(dict.fromkeys(it["title"] for it in used if it["title"] not in cache))[:TRANSLATE_MAX]
     key = os.environ.get("DEEPL_API_KEY", "").strip()
-    done = 0
-    try:
-        if key:
+    engines = {}  # 窓口 → 訳した件数
+    errors = {}  # 窓口 → 最初のエラー
+    if key and todo:
+        try:
             for i in range(0, len(todo), 50):
                 for src, ja in zip(todo[i:i + 50], translate_deepl(todo[i:i + 50], key)):
                     cache[src] = ja
-                    done += 1
-        else:
+                    engines["DeepL"] = engines.get("DeepL", 0) + 1
+        except Exception as e:  # noqa: BLE001
+            errors["DeepL"] = str(e)[:120]  # 残りは無料の窓口で訳す
+    fails = 0
+    for src in [t for t in todo if t not in cache]:
+        ja, name = translate_free(src, errors)
+        if ja:
+            cache[src] = ja
+            engines[name] = engines.get(name, 0) + 1
             fails = 0
-            for src in todo:
-                for attempt in range(2):
-                    try:
-                        ja = translate_gtx(src)
-                        break
-                    except Exception as e:  # noqa: BLE001
-                        ja, err = None, e
-                        time.sleep(2)
-                if ja:
-                    cache[src] = ja
-                    done += 1
-                    fails = 0
-                else:
-                    fails += 1
-                    log(f"翻訳: 失敗(英語のまま): {src[:60]} … {err if ja is None else '空の訳'}")
-                    if fails >= 5:
-                        log("翻訳: 失敗が続くので、残りは次回にします")
-                        break
-                time.sleep(0.3)
-    except Exception as e:  # noqa: BLE001
-        log(f"翻訳: 途中で失敗しました({done}/{len(todo)} 件まで): {e}")
+        else:
+            fails += 1
+            log(f"翻訳: 失敗(英語のまま): {src[:60]}")
+            if fails >= 5:
+                log("翻訳: 失敗が続くので、残りは次回にします")
+                break
+        time.sleep(0.3)
+    for name, err in errors.items():
+        log(f"翻訳: {name} のエラー: {err}")
     for it in used:
         if cache.get(it["title"]):
             it["title_ja"] = cache[it["title"]]
@@ -755,7 +788,8 @@ def translate_titles(out_stocks):
     keep = {it["title"] for it in used}
     cache = {k: v for k, v in cache.items() if k in keep}
     TRANSLATE_CACHE_PATH.write_text(json.dumps(cache, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8")
-    log(f"翻訳: 新しく {done} 件({'DeepL' if key else 'Google 翻訳'})、訳あり {sum(1 for it in used if 'title_ja' in it)}/{len(used)} 件")
+    done = "、".join(f"{k} {v} 件" for k, v in engines.items()) or "0 件"
+    log(f"翻訳: 新しく {done}、訳あり {sum(1 for it in used if 'title_ja' in it)}/{len(used)} 件")
 
 
 # ---------------------------------------------------------------------------
