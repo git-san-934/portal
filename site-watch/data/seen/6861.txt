@@ -28118,6 +28118,7 @@ https://www.keyence.co.jp/ss/products/microscope/ea-300/004/2013_01.jsp
 https://www.keyence.co.jp/ss/products/microscope/ea-casestudy/
 https://www.keyence.co.jp/ss/products/microscope/ea-casestudy/?cid=WEB063
 https://www.keyence.co.jp/ss/products/microscope/knowledge/vhx_deep-contrast.jsp
+https://www.keyence.co.jp/ss/products/microscope/knowledge/vhx_wafer-edges-observation.jsp
 https://www.keyence.co.jp/ss/products/microscope/knowledge/vl_precision-sheet-metal.jsp
 https://www.keyence.co.jp/ss/products/microscope/measurement-solutions/
 https://www.keyence.co.jp/ss/products/microscope/measurement-solutions/additive-manufacturing.jsp
