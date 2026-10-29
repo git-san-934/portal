@@ -9786,6 +9786,7 @@ https://www.keyence.co.jp/products/measure/blog/3d-laser-profile-measurement-gui
 https://www.keyence.co.jp/products/measure/blog/accuracy-repeatability-resolution-difference.jsp
 https://www.keyence.co.jp/products/measure/blog/adhesive-sealant-bead-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/backgrinding-thickness-dicing-kerf-measurement.jsp
+https://www.keyence.co.jp/products/measure/blog/battery-can-forming-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/battery-case-surface-defect-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/battery-laser-weld-seam-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/battery-manufacturing-measurement-guide.jsp
@@ -9853,6 +9854,7 @@ https://www.keyence.co.jp/products/measure/blog/press-stamping-quality-control-g
 https://www.keyence.co.jp/products/measure/blog/probe-card-socket-inspection.jsp
 https://www.keyence.co.jp/products/measure/blog/protrusion-foreign-matter-height-3d-detection.jsp
 https://www.keyence.co.jp/products/measure/blog/rivet-fastener-height-inspection.jsp
+https://www.keyence.co.jp/products/measure/blog/robot-path-correction-3d-profiler.jsp
 https://www.keyence.co.jp/products/measure/blog/robot-repeatability-accuracy-non-contact-measurement.jsp
 https://www.keyence.co.jp/products/measure/blog/roll-to-roll-web-measurement-guide.jsp
 https://www.keyence.co.jp/products/measure/blog/rotor-assembly-height-inspection.jsp

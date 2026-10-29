@@ -1195,6 +1195,7 @@ https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/ebook/creative_012/
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/ebook/creative_012/pageindices/index.html
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/ebook/integrated-report2025/
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/ebook/integrated-report2025/pageindices/index.html
+https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/ebook/integrated-report2026/
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/pdf_introduction_of_the_corporate_slogan.pdf
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/pdf_phosphine_derivatives_technology_map.pdf
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/pdf_phosphine_derivatives_technology_map_en.pdf
@@ -1353,6 +1354,8 @@ https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/i
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/integrated-report2025_a3_en.pdf
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/integrated-report2025_a4.pdf
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/integrated-report2025_a4_en.pdf
+https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/integrated-report2026_a3.pdf
+https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/integrated-report2026_a4.pdf
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/integrated_report2024.pdf
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/rc2019.pdf
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/sustainability_promotion_materiality01.pdf
