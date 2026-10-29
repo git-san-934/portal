@@ -1,7 +1,93 @@
 {
- "generated_at": "2026-10-30T01:20+09:00",
+ "generated_at": "2026-10-30T08:36+09:00",
  "report_date": "2026-10-30",
  "days": [
+  {
+   "date": "2026-10-30",
+   "items": [
+    {
+     "kind": "release",
+     "id": "STAT_CPI_TKY_ALL_YOY",
+     "name": "消費者物価（東京都区部・総合）前年比",
+     "obs": "2026-10",
+     "value": "2.8",
+     "unit": "%",
+     "change": "+0.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "STAT_CPI_TKY_CORE_YOY",
+     "name": "消費者物価（東京都区部・生鮮食品を除く総合）前年比",
+     "obs": "2026-10",
+     "value": "2.6",
+     "unit": "%",
+     "change": "-0.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "STAT_CPI_TKY_CORECORE_YOY",
+     "name": "消費者物価（東京都区部・生鮮食品及びエネルギーを除く総合）前年比",
+     "obs": "2026-10",
+     "value": "2.6",
+     "unit": "%",
+     "change": "-0.300%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_LFS_UNEMP_RATE",
+     "name": "完全失業率（季節調整値）",
+     "obs": "2026-09",
+     "value": "2.4",
+     "unit": "%",
+     "change": "-0.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_LFS_EMPLOYED",
+     "name": "就業者数（季節調整値）",
+     "obs": "2026-09",
+     "value": "6,868",
+     "unit": "万人",
+     "change": "+0.50%"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KOURI_TKY_RICE",
+     "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
+     "obs": "2026-10",
+     "value": "3,698",
+     "unit": "円",
+     "change": "-8.71%"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KOURI_TKY_EGG",
+     "name": "東京都区部 小売価格 鶏卵 1パック",
+     "obs": "2026-10",
+     "value": "324",
+     "unit": "円",
+     "change": "+0.00%"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KOURI_TKY_GASOLINE",
+     "name": "東京都区部 小売価格 ガソリン 1L",
+     "obs": "2026-10",
+     "value": "172",
+     "unit": "円",
+     "change": "+0.00%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_KOURI_TKY_RICE",
+     "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
+     "obs": "2026-10",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "3,698円"
+    }
+   ]
+  },
   {
    "date": "2026-10-29",
    "items": [
@@ -3309,10 +3395,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "updated": "2026-10-03",
-   "date": "2026-09",
-   "value": "2.7",
-   "change": "+0.800%pt",
+   "updated": "2026-10-30",
+   "date": "2026-10",
+   "value": "2.8",
+   "change": "+0.100%pt",
    "implication": "東京都区部の総合。全国の先行指標。",
    "source": [
     "総務省統計局",
@@ -3327,10 +3413,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "updated": "2026-10-03",
-   "date": "2026-09",
-   "value": "2.7",
-   "change": "+0.900%pt",
+   "updated": "2026-10-30",
+   "date": "2026-10",
+   "value": "2.6",
+   "change": "-0.100%pt",
    "implication": "東京都区部のコアCPIは全国より約1か月早く公表され、全国の先行指標として市場が注目する。",
    "source": [
     "総務省統計局",
@@ -3345,10 +3431,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "updated": "2026-10-03",
-   "date": "2026-09",
-   "value": "2.9",
-   "change": "+0.900%pt",
+   "updated": "2026-10-30",
+   "date": "2026-10",
+   "value": "2.6",
+   "change": "-0.300%pt",
    "implication": "東京都区部のコアコア。物価の基調を早めに確認できる。",
    "source": [
     "総務省統計局",
@@ -3399,10 +3485,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "updated": "2026-10-03",
-   "date": "2026-08",
-   "value": "2.5",
-   "change": "+0.100%pt",
+   "updated": "2026-10-30",
+   "date": "2026-09",
+   "value": "2.4",
+   "change": "-0.100%pt",
    "implication": "完全失業率の上昇は労働需給の緩みを示し、賃金上昇の勢いが弱まる要因。利上げ観測の後退につながりやすく、債券にはプラス、円安方向とされる。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -3417,10 +3503,10 @@
    "unit": "万人",
    "kind": "level",
    "category": "消費・雇用・人口",
-   "updated": "2026-10-03",
-   "date": "2026-08",
-   "value": "6,834",
-   "change": "+0.04%",
+   "updated": "2026-10-30",
+   "date": "2026-09",
+   "value": "6,868",
+   "change": "+0.50%",
    "implication": "就業者数の増加は雇用の底堅さを示し、個人消費や賃金の下支えになる。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -3597,10 +3683,10 @@
    "unit": "円",
    "kind": "level",
    "category": "物価",
-   "updated": "2026-10-03",
-   "date": "2026-09",
-   "value": "4,051",
-   "change": "-6.36%",
+   "updated": "2026-10-30",
+   "date": "2026-10",
+   "value": "3,698",
+   "change": "-8.71%",
    "implication": "コメ5kgの店頭価格。消費者物価の食料を左右し、家計の体感物価に影響する。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -3615,10 +3701,10 @@
    "unit": "円",
    "kind": "level",
    "category": "物価",
-   "updated": "2026-10-03",
-   "date": "2026-09",
+   "updated": "2026-10-30",
+   "date": "2026-10",
    "value": "324",
-   "change": "+0.93%",
+   "change": "+0.00%",
    "implication": "鶏卵の店頭価格。鳥インフルエンザなど供給要因で動きやすい。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -3633,8 +3719,8 @@
    "unit": "円",
    "kind": "level",
    "category": "物価",
-   "updated": "2026-10-03",
-   "date": "2026-09",
+   "updated": "2026-10-30",
+   "date": "2026-10",
    "value": "172",
    "change": "+0.00%",
    "implication": "ガソリンの店頭価格。原油価格・為替・補助金の影響を受け、消費者物価のエネルギーを左右する。",
@@ -4311,10 +4397,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-30T01:20+09:00",
+  "checked_at": "2026-10-30T08:36+09:00",
   "counts": {
-   "new": 0,
-   "unchanged": 102,
+   "new": 8,
+   "unchanged": 94,
    "error": 0,
    "stale": 0
   },
