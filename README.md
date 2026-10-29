@@ -22,6 +22,7 @@ https://git-san-934.github.io/portal/
 - `lev3x/` — 掲載アプリの1つ「米国3倍ブル 下落率ランキング」の本体(このリポジトリ内に同梱)。米国上場の3倍ブルETF/ETN 36銘柄の終値を GitHub Actions が火〜土の 7:15・9:15 に Yahoo Finance から取得し、過去1年の最高値からの下落率を計算します。
 - `lev3watch/` — 掲載アプリの1つ「3倍ブル見張り台」の本体。案1(SPY が200日平均の+3%超で UPRO、−3%未満で現金)の合図と、米国株指数の3倍ブル5本(TQQQ・UPRO・UDOW・TNA・MIDU)の1年高値からの下落率を、GitHub Actions が火〜土の 7:20・9:20 に Yahoo Finance から取得して更新します。`data/history.json` は2026-10-23までの検証結果(3倍は再現値)で固定です。
 - `float-screen/` — 掲載アプリの1つ「銘柄スクリーニング」の本体(このリポジトリ内に同梱)。データ(`float-screen/data/screen.json`)は stock-yukasyouken-jigyou リポジトリの有価証券報告書データから作っています。
+- `daily-picks/` — 掲載アプリの1つ「今日の3銘柄」の本体(このリポジトリ内に同梱)。本の12条件で選んだ日本株3銘柄を、Claude の定期タスクが平日の引け後に `daily-picks/data/picks.json` へ足していきます。詳細は `daily-picks/README.md` を参照。
 - `ad-watch/` — 掲載アプリの1つ「広告費ウォッチ」の本体(このリポジトリ内に同梱)。広告宣伝費・売上高・営業利益は GitHub Actions が毎日 EDINET の有価証券報告書から自動で集めます。詳細は `ad-watch/README.md` を参照。
 
 ## 掲載しているアプリ
@@ -30,6 +31,7 @@ https://git-san-934.github.io/portal/
 |---|---|
 | ユーチューブ要約 | https://git-san-934.github.io/youtube-yoyaku/ |
 | 日経4.3ブル 暴落買いナビ | https://git-san-934.github.io/portal/nikkei43/ |
+| 今日の3銘柄 | https://git-san-934.github.io/portal/daily-picks/ |
 | 持ち株チェック | https://git-san-934.github.io/portal/holdings/ |
 | 持ち株の新着情報 | https://git-san-934.github.io/portal/news/ |
 | 持ち株サイトの新着ページ | https://git-san-934.github.io/portal/site-watch/ |
