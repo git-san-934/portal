@@ -5150,6 +5150,7 @@ https://www.keyence.co.jp/pdf/EarningsRelease_202510_ja.pdf
 https://www.keyence.co.jp/pdf/EarningsRelease_202601_ja.pdf
 https://www.keyence.co.jp/pdf/EarningsRelease_202604_ja.pdf
 https://www.keyence.co.jp/pdf/EarningsRelease_202607_ja.pdf
+https://www.keyence.co.jp/pdf/EarningsRelease_202610_ja.pdf
 https://www.keyence.co.jp/pdf/FinancialResultsForThe2ndQuarterEndedSeptember_20_2025(JP_GAAP).pdf
 https://www.keyence.co.jp/pdf/FinancialResults_202407_en.pdf
 https://www.keyence.co.jp/pdf/FinancialResults_202407_ja.pdf
@@ -5237,6 +5238,8 @@ https://www.keyence.co.jp/pdf/PressRelease_20260424_02.pdf
 https://www.keyence.co.jp/pdf/PressRelease_20260424_03.pdf
 https://www.keyence.co.jp/pdf/PressRelease_20260618.pdf
 https://www.keyence.co.jp/pdf/PressRelease_20261023.pdf
+https://www.keyence.co.jp/pdf/PressRelease_20261029_01.pdf
+https://www.keyence.co.jp/pdf/PressRelease_20261029_02.pdf
 https://www.keyence.co.jp/pdf/QuarterlyReport_201108_ja.pdf
 https://www.keyence.co.jp/pdf/QuarterlyReport_201111_ja.pdf
 https://www.keyence.co.jp/pdf/QuarterlyReport_201202_ja.pdf
@@ -22586,12 +22589,15 @@ https://www.keyence.co.jp/products/support/
 https://www.keyence.co.jp/products/support/etc/seisansyuryo.jsp
 https://www.keyence.co.jp/products/vision/
 https://www.keyence.co.jp/products/vision/blog/
+https://www.keyence.co.jp/products/vision/blog/ai-camera-vs-rule-based-image-processing.jsp
 https://www.keyence.co.jp/products/vision/blog/ai-visual-inspection-detectable-defects-methods-cases.jsp
 https://www.keyence.co.jp/products/vision/blog/bin-picking-failure-causes-and-solutions.jsp
 https://www.keyence.co.jp/products/vision/blog/defect-type-imaging-lighting-design.jsp
+https://www.keyence.co.jp/products/vision/blog/fa-camera-vs-consumer-camera-requirements.jsp
 https://www.keyence.co.jp/products/vision/blog/glossy-transparent-workpiece-inspection-method.jsp
 https://www.keyence.co.jp/products/vision/blog/high-speed-line-vision-inspection-selection.jsp
 https://www.keyence.co.jp/products/vision/blog/human-error-prevention-vision-sensor.jsp
+https://www.keyence.co.jp/products/vision/blog/machine-vision-series-lineup-comparison.jsp
 https://www.keyence.co.jp/products/vision/blog/metal-parts-presence-count-inspection.jsp
 https://www.keyence.co.jp/products/vision/blog/no-programming-vision-inspection-setup.jsp
 https://www.keyence.co.jp/products/vision/blog/ocr-ocv-difference-print-inspection.jsp
@@ -22600,6 +22606,7 @@ https://www.keyence.co.jp/products/vision/blog/robot-vision-2d-3d-selection-guid
 https://www.keyence.co.jp/products/vision/blog/vision-inspection-support-and-startup-assistance.jsp
 https://www.keyence.co.jp/products/vision/blog/vision-sensor-applications-selection-guide.jsp
 https://www.keyence.co.jp/products/vision/blog/vision-sensor-minor-stoppage-countermeasure.jsp
+https://www.keyence.co.jp/products/vision/blog/vision-sensor-vs-vision-system-usage.jsp
 https://www.keyence.co.jp/products/vision/blog/vision-system-configuration-and-components.jsp
 https://www.keyence.co.jp/products/vision/blog/visual-inspection-automation-roi-evaluation.jsp
 https://www.keyence.co.jp/products/vision/blog/visual-inspection-system-selection-guide.jsp

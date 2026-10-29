@@ -543,6 +543,7 @@ https://www.nippon-chem.co.jp/news/1388
 https://www.nippon-chem.co.jp/news/1391
 https://www.nippon-chem.co.jp/news/1393
 https://www.nippon-chem.co.jp/news/1395
+https://www.nippon-chem.co.jp/news/13981
 https://www.nippon-chem.co.jp/news/14081
 https://www.nippon-chem.co.jp/news/1409
 https://www.nippon-chem.co.jp/news/1411
@@ -1196,6 +1197,7 @@ https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/ebook/creative_012/p
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/ebook/integrated-report2025/
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/ebook/integrated-report2025/pageindices/index.html
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/ebook/integrated-report2026/
+https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/ebook/integrated-report2026/pageindices/index.html
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/pdf_introduction_of_the_corporate_slogan.pdf
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/pdf_phosphine_derivatives_technology_map.pdf
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/pdf_phosphine_derivatives_technology_map_en.pdf
