@@ -546,21 +546,38 @@ def read_half_rows(key, doc_id):
     return rows
 
 
+def annual_end(cache, code, default):
+    """控えてある有価証券報告書のうち、いちばん新しい決算期(年月)"""
+    return max((d[1][:7] for d in cache.get("docs", {}).get(code, [])), default=default)
+
+
+def write_half(path, obj):
+    path.write_text("window.CF_HALF = " + json.dumps(obj, ensure_ascii=False) + ";\n", encoding="utf-8")
+
+
 def update_half(key, cache):
-    """half.js があるページについて、それより新しい半期報告書が出ていれば作り直す"""
-    todo = []
-    for code, docs in cache.get("half", {}).items():
-        path = CF_DIR / code / "half.js"
-        if not path.exists():
-            continue
+    """half.js があるページについて、それより新しい半期報告書が出ていれば作り直す。
+    半期報告書より新しい(または同じ決算期の)有価証券報告書が出ていれば、newer を外して上期の分析を出さないようにする"""
+    todo, swapped = [], 0
+    for path in sorted(CF_DIR.glob("*/half.js")):
+        code = path.parent.name
         try:
             old = json.loads(HALF_JS.search(path.read_text(encoding="utf-8")).group(1))
         except (AttributeError, json.JSONDecodeError):
+            continue
+        annual = annual_end(cache, code, old.get("annualEnd"))
+        if annual and old.get("fyEnd") and (annual != old.get("annualEnd") or old.get("newer") != (old["fyEnd"] > annual)):
+            old = {**old, "annualEnd": annual, "newer": old["fyEnd"] > annual}
+            write_half(path, old)
+            swapped += 1
+        docs = cache.get("half", {}).get(code)
+        if not docs:
             continue
         # 同じ半期の訂正などは、あとに出たものを使う
         latest = max((d for d in docs if d[3]), key=lambda d: (d[1], d[0]), default=None)
         if latest and (latest[1][:7] > old.get("halfStart", "") or (latest[1][:7] == old.get("halfStart") and old.get("v") != half.VERSION)):
             todo.append((code, path, old, latest))
+    log(f"有報に合わせて年次の決算期を直した半期の数字: {swapped} 社")
     log(f"作り直す半期の数字: {len(todo)} 社")
 
     def work(item):
@@ -582,10 +599,10 @@ def update_half(key, cache):
             if res["sales"][0] is None and res["assets"][0] is None:
                 log(f"  {code} {latest[2]}: 半期の数字が読めないため、前のままにします")
                 continue
-            annual = old.get("annualEnd") or res["fyEnd"]
+            annual = annual_end(cache, code, old.get("annualEnd") or res["fyEnd"])
             new = {"v": half.VERSION, "code": code, "annualEnd": annual, **res, "doc": latest[2], "newer": res["fyEnd"] > annual,
                    "next": half.periods(latest[1])["next"]}
-            path.write_text("window.CF_HALF = " + json.dumps(new, ensure_ascii=False) + ";\n", encoding="utf-8")
+            write_half(path, new)
             done += 1
     if out_of_time():
         log("時間切れ: 残りの半期の数字は次回に作ります")
