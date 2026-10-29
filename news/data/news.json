@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-29T11:28+09:00",
+ "updated_at": "2026-10-29T19:25+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,20 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-29",
+     "title": "『Pokémon LEGENDS Z-A Nintendo Switch 2 Edition + M次元ラッシュ』と『ぽこ あ ポケモン + エキスパンションパス』のパッケージ版がNintendo Switch 2 で本日発売。『Pokémon LEGENDS Z-A』でビビヨン(ボールのもよう)を仲間にできるキャンペーンも。",
+     "url": "https://www.nintendo.com/jp/topics/article/e5c65331-dd99-431f-8d4d-d2dabee40279",
+     "source": "official",
+     "first_seen": "2026-10-29T19:25+09:00"
+    },
+    {
+     "date": "2026-10-29",
+     "title": "『あつまれ どうぶつの森』で「ゼルダの伝説」のマイデザインを配布中。",
+     "url": "https://www.nintendo.com/jp/topics/article/72628ca2-91a6-42e6-8041-82df388b3f0c",
+     "source": "official",
+     "first_seen": "2026-10-29T19:25+09:00"
+    },
     {
      "date": "2026-10-29",
      "title": "「ゼルダの伝説 40周年 アニバーサリーエディション」のNintendo Switch 2 や周辺機器は本日発売。「ゼルダの伝説」に関するさまざまな取り組みもご紹介。",
@@ -420,20 +434,6 @@
      "url": "https://www.nintendo.co.jp/ir/schedule/index.html",
      "source": "official",
      "first_seen": "2026-09-16T00:00+09:00"
-    },
-    {
-     "date": "2026-09-15",
-     "title": "「開発者に訊きました:ファイアーエムブレム 万紫千紅」を公開しました。 4つの物語が1つに集結するストーリー、体験したことが蓄積され残っていく遊びづくり、ダグザの地を表す音楽やデザインのこだわりなど、開発者みずからの言葉でお届けします。 ※本作の対象年齢は「15歳以上」です。",
-     "url": "https://www.nintendo.com/jp/interview/aacsa/index.html",
-     "source": "official",
-     "first_seen": "2026-09-15T00:00+09:00"
-    },
-    {
-     "date": "2026-09-15",
-     "title": "Nintendo Switch 2 / Nintendo Switchの本体機能をバージョンアップ。新しい機能をご紹介します。",
-     "url": "https://www.nintendo.com/jp/topics/article/fae652aa-9d8a-43d6-86cc-68f217277520",
-     "source": "official",
-     "first_seen": "2026-09-15T00:00+09:00"
     }
    ]
   },
@@ -724,6 +724,27 @@
     "https://www.keyence.co.jp/investor/"
    ],
    "items": [
+    {
+     "date": "2026-10-29",
+     "title": "株式分割及び定款の一部変更に関するお知らせ",
+     "url": "https://www.keyence.co.jp/pdf/PressRelease_20261029_02.pdf",
+     "source": "official",
+     "first_seen": "2026-10-29T19:25+09:00"
+    },
+    {
+     "date": "2026-10-29",
+     "title": "剰余金の配当(中間配当)及び期末配当予想の修正に関するお知らせ",
+     "url": "https://www.keyence.co.jp/pdf/PressRelease_20261029_01.pdf",
+     "source": "official",
+     "first_seen": "2026-10-29T19:25+09:00"
+    },
+    {
+     "date": "2026-10-29",
+     "title": "2027年3月期第2四半期(中間期)決算短信〔日本基準〕(連結)",
+     "url": "https://www.keyence.co.jp/pdf/EarningsRelease_202610_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-10-29T19:25+09:00"
+    },
     {
      "date": "2026-10-23",
      "title": "お知らせ データロガーの活用方法を紹介する「活用ガイド・お役立ちコラム」に新しい記事を追加。 溶接・プレス・射出成形・真空炉など、現場ごとの温度・圧力・電流の記録方法を紹介しています。",
@@ -2587,6 +2608,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-29",
+     "title": "「統合報告書2026」を掲載しました。",
+     "url": "https://www.nippon-chem.co.jp/news/13981",
+     "source": "official",
+     "first_seen": "2026-10-29T19:25+09:00"
+    },
+    {
      "date": "2026-10-26",
      "title": "ケミカルマテリアル Japan2026- 出展",
      "url": "https://www.nippon-chem.co.jp/news/13815",
@@ -3013,6 +3041,13 @@
    ],
    "items": [
     {
+     "date": "2026-10-29",
+     "title": "製品・サービス 入退室管理システム「eX-SG」シリーズがAppleウォレットの社員証に対応",
+     "url": "https://news.panasonic.com/jp/press/jn261029-1",
+     "source": "official",
+     "first_seen": "2026-10-29T19:25+09:00"
+    },
+    {
      "date": "2026-10-28",
      "title": "企業・経営 / Stories 欧州で挑む、次世代データセンター冷却――液冷システム事業化の舞台裏",
      "url": "https://news.panasonic.com/jp/stories/19111",
@@ -3056,6 +3091,13 @@
     },
     {
      "date": "2026-10-21",
+     "title": "3 2026年10月21日 製品・サービス プレスリリース 2026年10月15日公表 プレスリリースの訂正とお詫び",
+     "url": "https://news.panasonic.com/jp/press/jn261021-3",
+     "source": "official",
+     "first_seen": "2026-10-21T17:53+09:00"
+    },
+    {
+     "date": "2026-10-21",
      "title": "技術・研究開発 パナソニックHD、モバイル業務支援向け世界モデルを開発",
      "url": "https://news.panasonic.com/jp/press/jn261021-1",
      "source": "official",
@@ -3096,13 +3138,6 @@
      "url": "https://news.panasonic.com/jp/topics/206921",
      "source": "official",
      "first_seen": "2026-10-17T04:26+09:00"
-    },
-    {
-     "date": "2026-10-15",
-     "title": "製品・サービス 2026年10月15日公表 プレスリリースの訂正とお詫び 2026年10月21日",
-     "url": "https://news.panasonic.com/jp/press/jn261021-3",
-     "source": "official",
-     "first_seen": "2026-10-21T17:53+09:00"
     },
     {
      "date": "2026-10-15",
