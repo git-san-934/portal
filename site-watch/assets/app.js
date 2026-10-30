@@ -1,6 +1,6 @@
 (() => {
   const FRESH_HOURS = 72;
-  const SHOW = 15; // 1日ぶん・1銘柄ごとに最初に見せる件数
+  const SHOW = 1; // 1日ぶん・1銘柄ごとに最初に見せる件数(残りはボタンで開く)
   const KIND = { pdf: "PDF", xls: "Excel", xlsx: "Excel", doc: "Word", docx: "Word", ppt: "PowerPoint", pptx: "PowerPoint", csv: "CSV" };
   let data = null;
   let filter = "all";
@@ -62,7 +62,10 @@
     wrap.append(ul);
     if (items.length > SHOW) {
       const more = el("details", "more");
-      more.append(el("summary", null, `さらに ${items.length - SHOW} 件`));
+      const label = `${names[items[0].code] || items[0].code} の他 ${items.length - SHOW} 件を表示`;
+      const sum = el("summary", null, label);
+      more.addEventListener("toggle", () => (sum.textContent = more.open ? "閉じる" : label));
+      more.append(sum);
       const ul2 = el("ul", "news");
       items.slice(SHOW).forEach((it) => ul2.append(item(it, names)));
       more.append(ul2);
