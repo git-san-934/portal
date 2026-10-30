@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-30T08:10+09:00",
+ "updated_at": "2026-10-30T09:19+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -3381,7 +3381,7 @@
    "home": "https://sumitomoelectric.com/jp/",
    "official_status": "ok",
    "official_pages": [
-    "https://sumitomoelectric.com/jp/pr-news-articles"
+    "https://sumitomoelectric.com/jp/pr-news-articles?type=2"
    ],
    "items": [
     {
