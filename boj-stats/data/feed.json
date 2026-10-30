@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-10-30T16:05+09:00",
- "report_date": "2026-10-30",
+ "generated_at": "2026-10-31T01:09+09:00",
+ "report_date": "2026-10-31",
  "days": [
   {
    "date": "2026-10-30",
@@ -85,6 +85,27 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "3,698円"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030c.pdf",
+     "name": "長期国債買入れ（利回り・価格入札方式）の四半期予定（2026年10～12月）［日程更新］",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030c.pdf",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030b.pdf",
+     "name": "米ドル資金供給オペレーションのオファー日程（2026年11月～2027年3月）",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030b.pdf",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/release/sousaidouga.htm",
+     "name": "総裁記者会見（10月30日）動画の配信開始",
+     "url": "https://www.boj.or.jp/about/release/sousaidouga.htm",
+     "time": "16:50"
     },
     {
      "kind": "news",
@@ -4453,10 +4474,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-30T16:05+09:00",
+  "checked_at": "2026-10-31T01:09+09:00",
   "counts": {
-   "new": 8,
-   "unchanged": 94,
+   "new": 0,
+   "unchanged": 102,
    "error": 0,
    "stale": 0
   },
