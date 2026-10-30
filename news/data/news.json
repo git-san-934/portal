@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-30T11:39+09:00",
+ "updated_at": "2026-10-30T19:28+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-30",
+     "title": "「制作企画系 オンラインセミナー」のお申し込み受付を開始しました。",
+     "url": "https://www.nintendo.co.jp/jobs/recruit/event/planning_online.html",
+     "source": "official",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
     {
      "date": "2026-10-30",
      "title": "ニンテンドーeショップ新作ソフト情報 10/30(金)号。",
@@ -425,13 +432,6 @@
      "date": "2026-09-17",
      "title": "「Hello! インディー」見習い魔女のスローライフ『Little Witch in the Woods』",
      "url": "https://www.nintendo.com/jp/topics/article/ea57d4c2-38f4-4472-997b-9259bd00f0d1",
-     "source": "official",
-     "first_seen": "2026-09-17T00:00+09:00"
-    },
-    {
-     "date": "2026-09-17",
-     "title": "ふたりはいつかまた逢える――。遊撃士エステルとヨシュアの旅の結末を描く『空の軌跡 the 2nd』がNintendo Switch 2 / Nintendo Switchで本日発売。 ※本作の対象年齢は「15歳以上」です。",
-     "url": "https://www.nintendo.com/jp/topics/article/aa22308f-f14d-4167-984e-779b147ac631",
      "source": "official",
      "first_seen": "2026-09-17T00:00+09:00"
     }
@@ -905,6 +905,35 @@
    ],
    "items": [
     {
+     "date": "2026-10-30",
+     "time": "15:30",
+     "title": "2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261030560759.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "title": "機構改革及び人事異動に関するお知らせ",
+     "url": "https://www.enplas.co.jp/jp/wp-content/uploads/2026/10/20261030_D_j.pdf",
+     "source": "official",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "title": "剰余金の配当(中間配当)に関するお知らせ",
+     "url": "https://www.enplas.co.jp/jp/wp-content/uploads/2026/10/20261030_Dividend_j.pdf",
+     "source": "official",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "title": "2027年3月期 第2四半期(中間期)連結業績予想と実績の差異および 通期連結業績予想の修正ならびに配当予想の修正に関するお知らせ",
+     "url": "https://www.enplas.co.jp/jp/wp-content/uploads/2026/10/20261030_Revison_j.pdf",
+     "source": "official",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
+    {
      "date": "2026-10-27",
      "title": "MWE 2026での当社レンズアンテナを用いたデモ展示のお知らせ",
      "url": "https://www.enplas.co.jp/news/business-news/9822/",
@@ -1224,6 +1253,34 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-10-30",
+     "title": "株主還元方針及び剰余金の配当(中間配当・初配)に関するお知らせ",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2902681/00.pdf",
+     "source": "official",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "title": "連結子会社間の合併に関するお知らせ",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2902679/00.pdf",
+     "source": "official",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "title": "2027年3月期 第2四半期(中間期)決算短信〔IFRS〕(連結)",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2902676/00.pdf",
+     "source": "official",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "title": "子会社の吸収合併について",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20261030-1.html",
+     "source": "official",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
     {
      "date": "2026-10-14",
      "title": "女子プロゴルファー松原柊亜選手との所属スポンサー契約を締結",
@@ -3064,6 +3121,36 @@
    ],
    "items": [
     {
+     "date": "2026-10-30",
+     "time": "15:30",
+     "title": "2027年3月期 第2四半期(中間期)決算短信〔IFRS〕(連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261030560586.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T00:00+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "time": "15:30",
+     "title": "配当予想の修正(増配)に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261030560650.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T00:00+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "title": "企業・経営 配当予想の修正(増配)に関するお知らせ",
+     "url": "https://news.panasonic.com/jp/press/jn261030-5",
+     "source": "official",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "title": "企業・経営 AI関連事業へ約920億円を投資、成長を加速",
+     "url": "https://news.panasonic.com/jp/press/jn261030-3",
+     "source": "official",
+     "first_seen": "2026-10-30T19:28+09:00"
+    },
+    {
      "date": "2026-10-29",
      "title": "製品・サービス 入退室管理システム「eX-SG」シリーズがAppleウォレットの社員証に対応",
      "url": "https://news.panasonic.com/jp/press/jn261029-1",
@@ -3100,7 +3187,7 @@
     },
     {
      "date": "2026-10-23",
-     "title": "5 2026年10月23日 サステナビリティ トピックス Panasonic×KOSEN包括連携協定事業活動報告(2026年度第2四半期)",
+     "title": "6 2026年10月23日 サステナビリティ トピックス Panasonic×KOSEN包括連携協定事業活動報告(2026年度第2四半期)",
      "url": "https://news.panasonic.com/jp/topics/206926",
      "source": "official",
      "first_seen": "2026-10-27T05:56+09:00"
@@ -3135,7 +3222,7 @@
     },
     {
      "date": "2026-10-20",
-     "title": "6 2026年10月20日 技術・研究開発 プレスリリース パナソニックHD、ガラス型ペロブスカイト太陽電池の本格量産計画を一年前倒し、2029年4月より長浜拠点で生産開始",
+     "title": "5 2026年10月20日 技術・研究開発 プレスリリース パナソニックHD、ガラス型ペロブスカイト太陽電池の本格量産計画を一年前倒し、2029年4月より長浜拠点で生産開始",
      "url": "https://news.panasonic.com/jp/press/jn261020-1",
      "source": "official",
      "first_seen": "2026-10-20T17:53+09:00"
@@ -3408,6 +3495,36 @@
    ],
    "items": [
     {
+     "date": "2026-10-30",
+     "time": "15:00",
+     "title": "2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261029559548.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T00:00+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "time": "15:00",
+     "title": "配当予想の修正に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261029559558.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T00:00+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "title": "IR Fact Book2026年度(2027年3月期)第2版を掲載",
+     "url": "https://sumitomoelectric.com/jp/pr-news-articles?top=177",
+     "source": "official",
+     "first_seen": "2026-07-31T00:00+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "title": "Fact Book2026年度(2027年3月期)第2版を掲載",
+     "url": "https://sumitomoelectric.com/jp/ir/library",
+     "source": "official",
+     "first_seen": "2026-07-31T00:00+09:00"
+    },
+    {
      "date": "2026-10-21",
      "title": "その他 社長ブログを更新しました",
      "url": "https://sumitomoelectric.com/jp/pr-news-articles?top=178",
@@ -3441,20 +3558,6 @@
      "url": "https://sumitomoelectric.com/jp/news/new_photo_diary",
      "source": "official",
      "first_seen": "2026-08-19T00:00+09:00"
-    },
-    {
-     "date": "2026-07-31",
-     "title": "IR Fact Book 2026年度(2027年3月期)第1版を掲載",
-     "url": "https://sumitomoelectric.com/jp/pr-news-articles?top=177",
-     "source": "official",
-     "first_seen": "2026-07-31T00:00+09:00"
-    },
-    {
-     "date": "2026-07-31",
-     "title": "Fact Book 2026年度(2027年3月期)第1版を掲載",
-     "url": "https://sumitomoelectric.com/jp/ir/library",
-     "source": "official",
-     "first_seen": "2026-07-31T00:00+09:00"
     },
     {
      "date": "2026-06-30",
