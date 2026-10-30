@@ -722,7 +722,9 @@ https://www.mirait-one.com/info/002007.html
 https://www.mirait-one.com/info/002008.html
 https://www.mirait-one.com/info/002009.html
 https://www.mirait-one.com/info/002010.html
+https://www.mirait-one.com/info/002011.html
 https://www.mirait-one.com/info/002015.html
+https://www.mirait-one.com/info/002018.html
 https://www.mirait-one.com/info/2022/
 https://www.mirait-one.com/info/2022/index_2.html
 https://www.mirait-one.com/info/2022/index_3.html
@@ -753,6 +755,7 @@ https://www.mirait-one.com/info/attachment/0a7dcb11692e357dd37a4e0221c890f07d220
 https://www.mirait-one.com/info/attachment/1027636759008731e44f3d76cff54afae8dd5f5e.pdf
 https://www.mirait-one.com/info/attachment/2ec08a1944368df89231cb74f6eb73254c206fb0.pdf
 https://www.mirait-one.com/info/attachment/47458e9fbfe73a817e6f6fda279491a611ed9522.pdf
+https://www.mirait-one.com/info/attachment/6a0dec791d0690969224161392fd053fa12772d1.pdf
 https://www.mirait-one.com/info/attachment/72292d2ca582a6aff0857184e66a28b94886052d.pdf
 https://www.mirait-one.com/info/attachment/7ad135601d849054860559a3f676e596101bbb3b.pdf
 https://www.mirait-one.com/info/attachment/82caf4e9cedc171c19f2dec749f4b0238ecbb10c.pdf
@@ -767,6 +770,7 @@ https://www.mirait-one.com/info/attachment/e165723a3697ef507c900534310f9fc76f436
 https://www.mirait-one.com/info/attachment/e3a7674c6a5b87d938ff486445f7feaf040632c7.pdf
 https://www.mirait-one.com/info/attachment/ebdcf0f6d98d76d44d50d79b833d63a47b82b88a.pdf
 https://www.mirait-one.com/info/attachment/f37a8a33b5aa277b8784c8216cc57ccf3f4ae74b.pdf
+https://www.mirait-one.com/info/attachment/f63aae2f81afa22a0ae5520e605d1b9586c29ebf.pdf
 https://www.mirait-one.com/info/attachment/fc275d11a571f6a0aff56d54f21605b39b43ad7d.pdf
 https://www.mirait-one.com/info/disclosure/
 https://www.mirait-one.com/info/disclosure/index_2.html
@@ -1310,6 +1314,7 @@ https://www.mirait-one.com/solution/issue/index_4.html
 https://www.mirait-one.com/solution/issue/index_5.html
 https://www.mirait-one.com/solution/issue/water-dx/
 https://www.mirait-one.com/solution/issue/wireless-communications/
+https://www.mirait-one.com/solution/lp/contact-center-solutions/
 https://www.mirait-one.com/solution/sl001-local-5g-wireless-area-construction.html
 https://www.mirait-one.com/solution/sl003-local5G-allinone.html
 https://www.mirait-one.com/solution/sl004-removal-of-roadside-utility-poles.html
