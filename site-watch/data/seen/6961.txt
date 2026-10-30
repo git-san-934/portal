@@ -113,6 +113,7 @@ https://www.enplas.co.jp/category/news/ir-news/date/2024/
 https://www.enplas.co.jp/category/news/ir-news/date/2024/page/2/
 https://www.enplas.co.jp/category/news/ir-news/date/2025/
 https://www.enplas.co.jp/category/news/ir-news/date/2026/
+https://www.enplas.co.jp/category/news/ir-news/date/2026/page/2/
 https://www.enplas.co.jp/category/news/ir-news/jinji/
 https://www.enplas.co.jp/category/news/ir-news/jinji/page/2/
 https://www.enplas.co.jp/category/news/ir-news/jinji/page/3/
@@ -239,6 +240,11 @@ https://www.enplas.co.jp/en/english/wp-content/uploads/2026/07/20260722e.pdf
 https://www.enplas.co.jp/en/english/wp-content/uploads/2026/07/20260729_1Q_e.pdf
 https://www.enplas.co.jp/en/english/wp-content/uploads/2026/07/20260729_FS_e.pdf
 https://www.enplas.co.jp/en/english/wp-content/uploads/2026/09/20260928_e.pdf
+https://www.enplas.co.jp/en/english/wp-content/uploads/2026/10/20261030_2Q_e.pdf
+https://www.enplas.co.jp/en/english/wp-content/uploads/2026/10/20261030_D_e.pdf
+https://www.enplas.co.jp/en/english/wp-content/uploads/2026/10/20261030_Dividend_e.pdf
+https://www.enplas.co.jp/en/english/wp-content/uploads/2026/10/20261030_FS_e.pdf
+https://www.enplas.co.jp/en/english/wp-content/uploads/2026/10/20261030_Revison_e.pdf
 https://www.enplas.co.jp/english/
 https://www.enplas.co.jp/english/business/
 https://www.enplas.co.jp/english/business/bio/
@@ -841,6 +847,11 @@ https://www.enplas.co.jp/jp/wp-content/uploads/2026/07/20260717_j.pdf
 https://www.enplas.co.jp/jp/wp-content/uploads/2026/07/20260729_1Q_j.pdf
 https://www.enplas.co.jp/jp/wp-content/uploads/2026/07/20260729_FS_j.pdf
 https://www.enplas.co.jp/jp/wp-content/uploads/2026/09/20260928_j.pdf
+https://www.enplas.co.jp/jp/wp-content/uploads/2026/10/20261030_2Q_j.pdf
+https://www.enplas.co.jp/jp/wp-content/uploads/2026/10/20261030_D_j.pdf
+https://www.enplas.co.jp/jp/wp-content/uploads/2026/10/20261030_Dividend_j.pdf
+https://www.enplas.co.jp/jp/wp-content/uploads/2026/10/20261030_FS_j.pdf
+https://www.enplas.co.jp/jp/wp-content/uploads/2026/10/20261030_Revison_j.pdf
 https://www.enplas.co.jp/led-catalog-form2/
 https://www.enplas.co.jp/news/
 https://www.enplas.co.jp/news/1001/
