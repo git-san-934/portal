@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-30T11:07+09:00",
+ "updated_at": "2026-10-30T11:39+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-10-30",
+     "title": "ニンテンドーeショップ新作ソフト情報 10/30(金)号。",
+     "url": "https://www.nintendo.com/jp/topics/article/83238995-2a42-4cfb-8bc2-446730ee5d18",
+     "source": "official",
+     "first_seen": "2026-10-30T11:39+09:00"
+    },
     {
      "date": "2026-10-29",
      "title": "『Pokémon LEGENDS Z-A Nintendo Switch 2 Edition + M次元ラッシュ』と『ぽこ あ ポケモン + エキスパンションパス』のパッケージ版がNintendo Switch 2 で本日発売。『Pokémon LEGENDS Z-A』でビビヨン(ボールのもよう)を仲間にできるキャンペーンも。",
@@ -427,13 +434,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/aa22308f-f14d-4167-984e-779b147ac631",
      "source": "official",
      "first_seen": "2026-09-17T00:00+09:00"
-    },
-    {
-     "date": "2026-09-16",
-     "title": "「2027年3月期 第2四半期 決算発表予定日」を掲載しました。",
-     "url": "https://www.nintendo.co.jp/ir/schedule/index.html",
-     "source": "official",
-     "first_seen": "2026-09-16T00:00+09:00"
     }
    ]
   },
