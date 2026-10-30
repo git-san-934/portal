@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-10-30T08:36+09:00",
+ "generated_at": "2026-10-30T16:05+09:00",
  "report_date": "2026-10-30",
  "days": [
   {
@@ -85,6 +85,62 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "3,698円"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030a.pdf",
+     "name": "「指数連動型上場投資信託受益権等の処分の指針」の一部改正について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030a.pdf",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/release/sousailive.htm",
+     "name": "総裁記者会見ライブ配信（10月30日15時30分予定）",
+     "url": "https://www.boj.or.jp/about/release/sousailive.htm",
+     "time": "13:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030a.pdf",
+     "name": "当面の金融政策運営について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030a.pdf",
+     "time": "13:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/outlook/gor2610a.pdf",
+     "name": "経済・物価情勢の展望（10月、基本的見解）",
+     "url": "https://www.boj.or.jp/mopo/outlook/gor2610a.pdf",
+     "time": "13:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030b.pdf",
+     "name": "（参考）経済・物価情勢の展望と基調的な物価上昇率に関連する各種指標",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030b.pdf",
+     "time": "12:02"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030c.pdf",
+     "name": "（参考）ETFの売却ペースの見直しに関する決定（2026年10月）",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030c.pdf",
+     "time": "12:02"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/set/kess/release/2026/kess2609.pdf",
+     "name": "決済動向（9月）",
+     "url": "https://www.boj.or.jp/statistics/set/kess/release/2026/kess2609.pdf",
+     "time": "11:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/release_2026/rel261030a.htm",
+     "name": "日本銀行の役員に就いている退職公務員等の状況等の公表について",
+     "url": "https://www.boj.or.jp/about/release_2026/rel261030a.htm",
+     "time": "08:50"
     }
    ]
   },
@@ -2567,8 +2623,8 @@
    "unit": "%",
    "kind": "rate",
    "category": "短期金利・為替",
-   "updated": "2026-10-29",
-   "date": "2026-10-27",
+   "updated": "2026-10-30",
+   "date": "2026-10-28",
    "value": "1.227",
    "change": "+0.000%pt",
    "implication": "短期金利の上昇は利上げ・引締め方向のシグナル。一般に債券（特に短中期）価格には下押し、円には上昇（円高）圧力、銀行株には利ざや改善期待でプラス、REIT・不動産や高PERのグロース株には逆風とされる。",
@@ -2585,10 +2641,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-10-29",
-   "date": "2026-10-27",
-   "value": "33,489",
-   "change": "-0.74%",
+   "updated": "2026-10-30",
+   "date": "2026-10-28",
+   "value": "33,424",
+   "change": "-0.19%",
    "implication": "出来高の増加は短期金融市場の取引活発化（金利がつく環境への移行、市場機能の回復）を示すことが多い。直接の価格シグナルではなく、金利変化の裏付けとして見る。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -2603,10 +2659,10 @@
    "unit": "円/ドル",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-10-29",
-   "date": "2026-10-27",
-   "value": "157.87",
-   "change": "+0.47%",
+   "updated": "2026-10-30",
+   "date": "2026-10-28",
+   "value": "157.79",
+   "change": "-0.05%",
    "implication": "ドル円の上昇（円安）は一般に輸出関連株や外貨建て資産の円換算額にプラス、輸入物価経由で物価上昇圧力となり、日銀の引締め観測を強めることがある。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -2621,10 +2677,10 @@
    "unit": "ドル/ユーロ",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-10-29",
-   "date": "2026-10-27",
-   "value": "1.1174",
-   "change": "-0.38%",
+   "updated": "2026-10-30",
+   "date": "2026-10-28",
+   "value": "1.1127",
+   "change": "-0.42%",
    "implication": "ユーロドルの上昇はドル全面安を示す。ドル円と合わせて見ると、円安/円高がドル要因か円要因かの切り分けに使える。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -2639,8 +2695,8 @@
    "unit": "%",
    "kind": "rate",
    "category": "短期金利・為替",
-   "updated": "2026-10-29",
-   "date": "2026-10-27",
+   "updated": "2026-10-30",
+   "date": "2026-10-28",
    "value": "1.5",
    "change": "+0.000%pt",
    "implication": "基準貸付利率は政策金利の変更に連動しやすい。上昇なら利上げ局面入り/継続を示し、影響はコールレート上昇時と同方向でより強い。",
@@ -2783,10 +2839,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-10-29",
-   "date": "2026-10-28",
-   "value": "1.915",
-   "change": "+0.027%pt",
+   "updated": "2026-10-30",
+   "date": "2026-10-29",
+   "value": "1.901",
+   "change": "-0.014%pt",
    "implication": "2年債利回りは今後1〜2年の政策金利予想をよく映す。上昇は追加利上げ観測の強まりを示す。",
    "source": [
     "財務省 国債金利情報",
@@ -2801,10 +2857,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-10-29",
-   "date": "2026-10-28",
-   "value": "2.867",
-   "change": "+0.038%pt",
+   "updated": "2026-10-30",
+   "date": "2026-10-29",
+   "value": "2.876",
+   "change": "+0.009%pt",
    "implication": "10年債利回りの上昇は債券価格の下落を意味し、住宅ローン固定金利や企業の借入コストの上昇、REIT・高PER株には逆風、利ざや面で銀行・保険株には追い風とされる。日米金利差が縮めば円高要因にもなりうる。",
    "source": [
     "財務省 国債金利情報",
@@ -2819,10 +2875,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-10-29",
-   "date": "2026-10-28",
-   "value": "3.941",
-   "change": "+0.046%pt",
+   "updated": "2026-10-30",
+   "date": "2026-10-29",
+   "value": "3.956",
+   "change": "+0.015%pt",
    "implication": "超長期金利の上昇は財政や物価への懸念（タームプレミアム）の高まりを映すことが多く、生保・年金の需要動向にも左右される。",
    "source": [
     "財務省 国債金利情報",
@@ -4397,7 +4453,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-30T08:36+09:00",
+  "checked_at": "2026-10-30T16:05+09:00",
   "counts": {
    "new": 8,
    "unchanged": 94,
