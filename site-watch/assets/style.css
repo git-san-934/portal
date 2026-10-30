@@ -98,7 +98,11 @@ p.empty { margin-left: 0; }
 .sites .sub { display: block; color: var(--text-sub); font-size: 0.72rem; }
 .badge.new { background: var(--accent); border-color: var(--accent); color: #fff; }
 .empty { list-style: none; color: var(--text-sub); font-size: 0.88rem; margin-left: -1.2rem; }
-.more summary { cursor: pointer; font-size: 0.85rem; color: var(--text-sub); margin-top: 0.3rem; }
+.more summary {
+  cursor: pointer; display: inline-block; font-size: 0.8rem; font-weight: 600; margin: 0.3rem 0 0 1.2rem;
+  padding: 0.2rem 0.8rem; border: 1px solid var(--border); border-radius: 999px; background: var(--card-bg); color: var(--text-sub);
+}
+.more[open] summary { margin-bottom: 0.3rem; }
 
 footer { margin-top: 2rem; font-size: 0.78rem; color: var(--text-sub); }
 footer p + p { margin-top: 0.4rem; }
