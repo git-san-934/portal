@@ -1,6 +1,6 @@
 # daily-picks(今日の3銘柄)
 
-AI株式投資の本の12条件で、平日の引け後に日本株を3銘柄選んだ記録を、新しい日が上に来るように並べるページです。サーバーは持たない静的サイトです。
+AI株式投資の本の12条件で、火〜土の朝に前日の終値で日本株を3銘柄選んだ記録を、新しい日が上に来るように並べるページです。サーバーは持たない静的サイトです。
 
 ## 公開URL
 
@@ -13,7 +13,7 @@ https://git-san-934.github.io/portal/daily-picks/
   - 1銘柄: `rank`、`code`(4桁などの証券コード)、`name`、`market`、`close`、`headline`、
     `conditions`(12件。`no`・`label`・`value`・`mark` は ◎ / ○ / △ / × / 不明)、`risks`、`sources`(`label`・`url`)
 - 銘柄名は Yahoo!ファイナンス(`https://finance.yahoo.co.jp/quote/<code>.T`)にリンクします
-- 毎営業日の分析は Claude の定期タスクが行い、`data/picks.json` に足して main に直接コミットします(『今日の3銘柄 (YYYY-MM-DD)』)
+- 分析は Claude の定期タスクが火〜土の 7:43(JST)に前日の終値で行い(土曜は金曜の終値)、`data/picks.json` に足して main に直接コミットします(『今日の3銘柄 (YYYY-MM-DD)』)
 - **投資助言ではありません。** 売買の判断はご自身の責任で行ってください
 
 ## 12条件
