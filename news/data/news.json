@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-10-31T22:05+09:00",
+ "updated_at": "2026-11-01T04:47+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,20 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-01",
+     "title": "「Hello! Pikmin #01 カエル」を公開しました。",
+     "url": "https://www.nintendo.com/jp/character/pikmin/hello-pikmin/index.html",
+     "source": "official",
+     "first_seen": "2026-11-01T04:47+09:00"
+    },
+    {
+     "date": "2026-10-31",
+     "title": "「Pikmin Day Direct」を公開しました。",
+     "url": "https://www.nintendo.com/jp/nintendo-direct/20261031/index.html",
+     "source": "official",
+     "first_seen": "2026-11-01T04:47+09:00"
+    },
     {
      "date": "2026-10-30",
      "title": "「制作企画系 オンラインセミナー」のお申し込み受付を開始しました。",
@@ -418,20 +432,6 @@
      "date": "2026-09-17",
      "title": "『ファイアーエムブレム 万紫千紅』は本日発売。無料アップデートでもらえるコラボ武器(全4種)など、最新情報もご紹介。 ※本作の対象年齢は「15歳以上」です。",
      "url": "https://www.nintendo.com/jp/topics/article/96a406b3-fa89-44f4-97ff-44fbc0a7aecf",
-     "source": "official",
-     "first_seen": "2026-09-17T00:00+09:00"
-    },
-    {
-     "date": "2026-09-17",
-     "title": "プレゼントを包んでも、おでかけに使っても。「ヨッシー」のラッピンググッズが本日発売。",
-     "url": "https://www.nintendo.com/jp/topics/article/bdbf856a-bc2a-4db4-bd01-ede60f666bbe",
-     "source": "official",
-     "first_seen": "2026-09-17T00:00+09:00"
-    },
-    {
-     "date": "2026-09-17",
-     "title": "「Hello! インディー」見習い魔女のスローライフ『Little Witch in the Woods』",
-     "url": "https://www.nintendo.com/jp/topics/article/ea57d4c2-38f4-4472-997b-9259bd00f0d1",
      "source": "official",
      "first_seen": "2026-09-17T00:00+09:00"
     }
@@ -2516,14 +2516,6 @@
      "source": "official",
      "first_seen": "2026-05-05T00:00+09:00",
      "title_ja": "シュレディンガー、2026年第1四半期の財務結果を報告"
-    },
-    {
-     "date": "2026-05-04",
-     "title": "Schrödinger to Participate in Upcoming Investor Conferences",
-     "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-to-Participate-in-Upcoming-Investor-Conferences-c9e0713c7/default.aspx",
-     "source": "official",
-     "first_seen": "2026-05-04T00:00+09:00",
-     "title_ja": "シュレーディンガー氏、今後の投資家向けカンファレンスに参加"
     }
    ]
   },
@@ -3201,15 +3193,15 @@
     },
     {
      "date": "2026-10-23",
-     "title": "6 2026年10月23日 企業・経営 トピックス パナソニック アビオニクス大阪・門真工場の拡張完了 ~次世代機内エンゲージメントソリューション「Astrova」の需要拡大に対応~",
-     "url": "https://news.panasonic.com/jp/topics/206931",
+     "title": "3 2026年10月23日 イベント・スポンサー活動 トピックス パナソニック野球部 柿本晟弥選手、プロ野球ドラフト会議で埼玉西武ライオンズから2位指名",
+     "url": "https://news.panasonic.com/jp/topics/206932",
      "source": "official",
      "first_seen": "2026-10-24T04:52+09:00"
     },
     {
      "date": "2026-10-23",
-     "title": "6 2026年10月23日 イベント・スポンサー活動 トピックス パナソニック野球部 柿本晟弥選手、プロ野球ドラフト会議で埼玉西武ライオンズから2位指名",
-     "url": "https://news.panasonic.com/jp/topics/206932",
+     "title": "6 2026年10月23日 企業・経営 トピックス パナソニック アビオニクス大阪・門真工場の拡張完了 ~次世代機内エンゲージメントソリューション「Astrova」の需要拡大に対応~",
+     "url": "https://news.panasonic.com/jp/topics/206931",
      "source": "official",
      "first_seen": "2026-10-24T04:52+09:00"
     },
@@ -3265,7 +3257,7 @@
     },
     {
      "date": "2026-10-15",
-     "title": "1 2026年10月15日 製品・サービス プレスリリース ドラム式電気洗濯乾燥機 事故防止のためのリコール社告実施について",
+     "title": "6 2026年10月15日 製品・サービス プレスリリース ドラム式電気洗濯乾燥機 事故防止のためのリコール社告実施について",
      "url": "https://news.panasonic.com/jp/press/jn261015-2",
      "source": "official",
      "first_seen": "2026-10-15T17:36+09:00"
