@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-02T05:21+09:00",
+ "updated_at": "2026-11-02T08:53+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -725,6 +725,13 @@
    ],
    "items": [
     {
+     "date": "2026-11-02",
+     "title": "新商品 デバッグも、ラダー作成も、プログラム要約も。PLC専用AIエージェント「KV Intelligence」登場。 自然文で訊くだけで、PLCにまつわるお困りごと解決を支援します。",
+     "url": "https://www.keyence.co.jp/news-events/20261102-kv-intelligence.jsp",
+     "source": "official",
+     "first_seen": "2026-11-02T08:53+09:00"
+    },
+    {
      "date": "2026-10-30",
      "title": "2026年度第2四半期決算説明会資料",
      "url": "https://www.keyence.co.jp/pdf/FinancialResults_202610_ja.pdf",
@@ -1253,6 +1260,13 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-11-02",
+     "title": "2027年度 キオクシア奨励研究の募集について",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20261102-1.html",
+     "source": "official",
+     "first_seen": "2026-11-02T08:53+09:00"
+    },
     {
      "date": "2026-10-30",
      "title": "株主還元方針及び剰余金の配当(中間配当・初配)に関するお知らせ",
