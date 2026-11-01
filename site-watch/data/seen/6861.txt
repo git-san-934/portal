@@ -66,6 +66,7 @@ https://www.keyence.co.jp/download/download/confirmation/?ad_local=CDc&dlAssetId
 https://www.keyence.co.jp/download/download/confirmation/?ad_local=CDc&dlAssetId=AS_149157&dlSeriesId=WS_157161&wl=1
 https://www.keyence.co.jp/download/download/confirmation/?ad_local=CDc&dlAssetId=AS_150096&dlSeriesId=WS_157173&wl=1
 https://www.keyence.co.jp/download/download/confirmation/?ad_local=CDc&dlAssetId=AS_151597&dlAssetId=AS_151601&dlSeriesId=WS_157186&dlSeriesId=WS_157186&wl=1
+https://www.keyence.co.jp/download/download/confirmation/?ad_local=CDc&dlAssetId=AS_151597&dlAssetId=AS_198310&dlSeriesId=WS_157158&dlSeriesId=WS_157158&wl=1
 https://www.keyence.co.jp/download/download/confirmation/?ad_local=CDc&dlAssetId=AS_151597&dlSeriesId=WS_157158&wl=1
 https://www.keyence.co.jp/download/download/confirmation/?ad_local=CDc&dlAssetId=AS_157751&dlSeriesId=WS_157182&wl=1
 https://www.keyence.co.jp/download/download/confirmation/?ad_local=CDc&dlAssetId=AS_159035&dlSeriesId=WS_157185&wl=1
@@ -272,6 +273,7 @@ https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_151518
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_151518&dlSeriesId=WS_SR57331
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_151597
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_151597&dlAssetId=AS_151601&dlSeriesId=WS_157186&dlSeriesId=WS_157186
+https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_151597&dlAssetId=AS_198310&dlSeriesId=WS_157158&dlSeriesId=WS_157158
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_151597&dlSeriesId=WS_157158
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_151597&dlSeriesId=WS_157186
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_15486
@@ -333,6 +335,7 @@ https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_170838
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_170838&dlSeriesId=WS_157325
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_170885
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_170885&dlSeriesId=WS_157327
+https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_198310
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_44589&dlSeriesId=WS_SR55059
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_4723&dlSeriesId=WS_SR_sj_m
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_4732&dlSeriesId=WS_SR_sj_h
@@ -5040,6 +5043,7 @@ https://www.keyence.co.jp/modal/support/global/service/asia-oceania.jsp
 https://www.keyence.co.jp/modal/support/global/service/europe.jsp
 https://www.keyence.co.jp/modal/support/manual_type.jsp
 https://www.keyence.co.jp/modal/support/software_type.jsp
+https://www.keyence.co.jp/news-events/20261102-kv-intelligence.jsp
 https://www.keyence.co.jp/pdf/57thGeneralmeetingConvocationElectronicProvision_202605.pdf
 https://www.keyence.co.jp/pdf/57thGeneralmeetingConvocation_202605_en.pdf
 https://www.keyence.co.jp/pdf/57thGeneralmeetingConvocation_202605_en_Revised.pdf
@@ -5495,6 +5499,7 @@ https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-wg/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/models/wm-wl/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/pr/211254001.jsp
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/pr/211254001.jsp?ad_local=sitetopslbn1
+https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/pr/211254001.jsp?ad_local=sitetopslbn2
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/pr/211254002.jsp
 https://www.keyence.co.jp/products/3d-measure/cmm/wm/
 https://www.keyence.co.jp/products/3d-measure/cmm/wm/get-pricing/
@@ -12188,6 +12193,7 @@ https://www.keyence.co.jp/products/mobile-computers/handheld-computers/bt-a700/m
 https://www.keyence.co.jp/products/mobile-computers/handheld-computers/bt-a700/specs/
 https://www.keyence.co.jp/products/mobile-computers/handheld-computers/bt-a800/
 https://www.keyence.co.jp/products/mobile-computers/handheld-computers/bt-a800/?ad_local=sitetopslbn4
+https://www.keyence.co.jp/products/mobile-computers/handheld-computers/bt-a800/?ad_local=sitetopslbn5
 https://www.keyence.co.jp/products/mobile-computers/handheld-computers/bt-a800/downloads/
 https://www.keyence.co.jp/products/mobile-computers/handheld-computers/bt-a800/downloads/?ad_local=seriesfooter&mode=ds
 https://www.keyence.co.jp/products/mobile-computers/handheld-computers/bt-a800/downloads/?ad_local=seriesfooter&mode=tg
@@ -23517,6 +23523,7 @@ https://www.keyence.co.jp/products/vision/vision-sys/cg-r/
 https://www.keyence.co.jp/products/vision/vision-sys/cg-r/get-pricing/
 https://www.keyence.co.jp/products/vision/vision-sys/cg-r/lp/210934001.jsp
 https://www.keyence.co.jp/products/vision/vision-sys/cg-r/lp/210934001.jsp?ad_local=sitetopslbn2
+https://www.keyence.co.jp/products/vision/vision-sys/cg-r/lp/210934001.jsp?ad_local=sitetopslbn3
 https://www.keyence.co.jp/products/vision/vision-sys/cg-r/models/
 https://www.keyence.co.jp/products/vision/vision-sys/cg-r/models/cg-r1000cd/
 https://www.keyence.co.jp/products/vision/vision-sys/cg-r/models/cg-r1500cd/
@@ -24588,6 +24595,7 @@ https://www.keyence.co.jp/products/vision/visual-inspection/qd/
 https://www.keyence.co.jp/products/vision/visual-inspection/qd/get-pricing/
 https://www.keyence.co.jp/products/vision/visual-inspection/qd/pr/210291001.jsp
 https://www.keyence.co.jp/products/vision/visual-inspection/qd/pr/210291001.jsp?ad_local=sitetopslbn3
+https://www.keyence.co.jp/products/vision/visual-inspection/qd/pr/210291001.jsp?ad_local=sitetopslbn4
 https://www.keyence.co.jp/r-yosan/
 https://www.keyence.co.jp/req/madoguchi/kakaku/?ad_local=HPn&motive=HPn
 https://www.keyence.co.jp/req/madoguchi/soudan/?ad_local=HPn&motive=HPn
@@ -27064,6 +27072,9 @@ https://www.keyence.co.jp/ss/products/controls/iot/network.jsp
 https://www.keyence.co.jp/ss/products/controls/kv-8000/001/2061_01.jsp
 https://www.keyence.co.jp/ss/products/controls/kv-8000/002/2091_01.jsp
 https://www.keyence.co.jp/ss/products/controls/kv-8000/003/2012_01.jsp
+https://www.keyence.co.jp/ss/products/controls/kv-intelligence-overview/
+https://www.keyence.co.jp/ss/products/controls/kv-intelligence-pr/
+https://www.keyence.co.jp/ss/products/controls/kv-intelligence-pr/?ad_local=sitetopslbn1
 https://www.keyence.co.jp/ss/products/controls/network/
 https://www.keyence.co.jp/ss/products/controls/network/basics/
 https://www.keyence.co.jp/ss/products/controls/network/basics/communication.jsp
