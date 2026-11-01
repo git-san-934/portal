@@ -1,6 +1,6 @@
 (() => {
   const FRESH_HOURS = 72;
-  const SHOW = 8; // 銘柄ごとに最初に見せる件数
+  const SHOW_DAYS = 8; // 銘柄ごとに最初に見せる日数(1日1件。それより古い日はまとめて折りたたむ)
   const LABEL = { official: "公式", tdnet: "適時開示", edinet: "EDINET", sec: "SEC" };
   let data = null;
   let filter = "all";
@@ -45,11 +45,41 @@
     return li;
   }
 
+  // 1日・1社ごとにまとめる。rows は [item, stock] の並び(新しい順)
+  function groupByDay(rows) {
+    const groups = new Map();
+    for (const r of rows) {
+      const k = `${r[0].date}|${r[1].code}`;
+      if (!groups.has(k)) groups.set(k, []);
+      groups.get(k).push(r);
+    }
+    return [...groups.values()];
+  }
+
+  // 1グループ = 1日・1社。1件目だけ見せ、残りは「(会社名) の残り N 件を表示」ボタンで開く
+  function groupNodes(g, showStock) {
+    const [first, ...rest] = g;
+    const nodes = [item(first[0], showStock ? first[1] : null)];
+    if (rest.length) {
+      const li = el("li", "more-li");
+      const more = el("details", "more");
+      const label = `${first[1].name} の残り ${rest.length} 件を表示`;
+      const sum = el("summary", null, label);
+      more.addEventListener("toggle", () => (sum.textContent = more.open ? "閉じる" : label));
+      const ul = el("ul", "news");
+      rest.forEach(([it, s]) => ul.append(item(it, showStock ? s : null)));
+      more.append(sum, ul);
+      li.append(more);
+      nodes.push(li);
+    }
+    return nodes;
+  }
+
   function render() {
     const fresh = [];
     for (const s of data.stocks) for (const it of s.items) if (isFresh(it) && pass(it)) fresh.push([it, s]);
     fresh.sort((a, b) => (b[0].date + (b[0].time || "")).localeCompare(a[0].date + (a[0].time || "")));
-    $("fresh").replaceChildren(...fresh.map(([it, s]) => item(it, s)));
+    $("fresh").replaceChildren(...groupByDay(fresh).flatMap((g) => groupNodes(g, true)));
     if (!fresh.length) $("fresh").append(el("li", "empty", "この3日間に見つけた新しい情報はありません"));
     $("fresh-panel").hidden = false;
 
@@ -76,15 +106,19 @@
       if (links.childNodes.length) sec.append(links);
 
       const ul = el("ul", "news");
-      items.slice(0, SHOW).forEach((it) => ul.append(item(it)));
+      const groups = groupByDay(items.map((it) => [it, s]));
+      groups.slice(0, SHOW_DAYS).forEach((g) => ul.append(...groupNodes(g, false)));
       if (!items.length) ul.append(el("li", "empty", "該当する情報はありません"));
       sec.append(ul);
-      if (items.length > SHOW) {
-        const more = el("details", "more");
-        more.append(el("summary", null, `さらに ${items.length - SHOW} 件`));
+      if (groups.length > SHOW_DAYS) {
+        const old = groups.slice(SHOW_DAYS);
+        const more = el("details", "more older");
+        const label = `それより前の ${old.reduce((a, g) => a + g.length, 0)} 件を表示`;
+        const sum = el("summary", null, label);
+        more.addEventListener("toggle", () => (sum.textContent = more.open ? "閉じる" : label));
         const ul2 = el("ul", "news");
-        items.slice(SHOW).forEach((it) => ul2.append(item(it)));
-        more.append(ul2);
+        old.forEach((g) => ul2.append(...groupNodes(g, false)));
+        more.append(sum, ul2);
         sec.append(more);
       }
 
