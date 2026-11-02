@@ -29,6 +29,12 @@
     .sortbar { display: flex; justify-content: flex-end; margin: 0 0 .6rem; }
     .sortbar button { font: inherit; font-size: .82rem; padding: .35rem .9rem; border-radius: 999px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text); cursor: pointer; }
     .sortbar button[aria-pressed="true"] { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .jump { position: sticky; top: 0; z-index: 10; display: flex; gap: .4rem; overflow-x: auto; -webkit-overflow-scrolling: touch; scrollbar-width: none; margin: 0 -1rem 1rem; padding: .55rem 1rem; background: var(--bg); border-bottom: 1px solid var(--border); }
+    .jump::-webkit-scrollbar { display: none; }
+    .jump a { flex-shrink: 0; font-size: .82rem; padding: .3rem .8rem; border-radius: 999px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text); text-decoration: none; white-space: nowrap; }
+    .jump a.on { background: var(--accent); border-color: var(--accent); color: #fff; }
+    .jump .n { margin-left: .3rem; font-size: .72rem; opacity: .7; }
+    h2.sec { scroll-margin-top: 3.6rem; }
   </style>
 </head>
 <body>
@@ -48,29 +54,30 @@
     <p class="sub" style="margin:0 0 .4rem">決算短信（TDnet）と有価証券報告書・半期報告書（EDINET）が直近7日間に出た銘柄です。日付は開示日・提出日で、ページには決算短信は当日夕方、有報・半期報告書は翌朝に反映されます。</p>
     <table><tbody id="recent-body"></tbody></table>
   </details>
+  <nav class="jump" id="jump" aria-label="項目へ移動"><a href="#hold">持ち株<span class="n" data-n="hold"></span></a><a href="#watch">気になる銘柄<span class="n" data-n="watch"></span></a><a href="#nvidia">NVIDIA関連<span class="n" data-n="nvidia"></span></a><a href="#niche">首位ニッチ<span class="n" data-n="niche"></span></a><a href="#sawakami">さわかみ投信<span class="n" data-n="sawakami"></span></a><a href="#float">浮動株5%未満<span class="n" data-n="float"></span></a><a href="#ricky">Ricky条件<span class="n" data-n="ricky"></span></a><a href="#progressive">累進配当株<span class="n" data-n="progressive"></span></a></nav>
   <div class="sortbar" id="sortbar" hidden><button type="button" id="sort" aria-pressed="false">更新順に並べる</button></div>
-  <h2 style="margin:0 0 .6rem">持ち株</h2>
+  <h2 class="sec" id="hold" style="margin:0 0 .6rem">持ち株</h2>
   <div class="list" id="list"></div>
-  <h2 style="margin:1.6rem 0 .3rem">気になる銘柄</h2>
+  <h2 class="sec" id="watch" style="margin:1.6rem 0 .3rem">気になる銘柄</h2>
   <p class="sub" style="margin-bottom:.6rem">持ち株以外で気になっている銘柄です。持ち株と重なる銘柄は上にあります。</p>
   <div class="list" id="list2"></div>
-  <h2 style="margin:1.6rem 0 .3rem">NVIDIA関連</h2>
+  <h2 class="sec" id="nvidia" style="margin:1.6rem 0 .3rem">NVIDIA関連</h2>
   <p class="sub" style="margin-bottom:.6rem">NVIDIA.csvの銘柄です。上の一覧と重なる銘柄（TOWA、味の素、太陽誘電など）は上にあります。</p>
   <div class="list" id="list3"></div>
-  <h2 style="margin:1.6rem 0 .3rem">首位ニッチ</h2>
+  <h2 class="sec" id="niche" style="margin:1.6rem 0 .3rem">首位ニッチ</h2>
   <p class="sub" style="margin-bottom:.6rem">首位ニッチ.csvの銘柄です。上の一覧と重なる銘柄（レーザーテック、東京エレクトロン、ファナックなど）は上にあります。</p>
   <div class="list" id="list4"></div>
-  <h2 style="margin:1.6rem 0 .3rem">さわかみ投信</h2>
+  <h2 class="sec" id="sawakami" style="margin:1.6rem 0 .3rem">さわかみ投信</h2>
   <p class="sub" style="margin-bottom:.6rem">さわかみ投信１.csvの銘柄です。上の一覧と重なる銘柄（日本電子、SCREEN、マニーなど）は上にあります。</p>
   <div class="list" id="list5"></div>
-  <h2 style="margin:1.6rem 0 .3rem">浮動株5%未満</h2>
+  <h2 class="sec" id="float" style="margin:1.6rem 0 .3rem">浮動株5%未満</h2>
   <p class="sub" style="margin-bottom:.6rem">stock_screen_2026-10-12.xlsx の「抽出_浮動株5%未満」（浮動株割合5%未満の60社）の銘柄です。浮動株割合が小さい順です。上の一覧と重なる銘柄（キーエンス、SMC、トレンドマイクロなど）は上にあります。</p>
   <div class="list" id="list6"></div>
-  <h2 style="margin:1.6rem 0 .3rem">Ricky条件</h2>
+  <h2 class="sec" id="ricky" style="margin:1.6rem 0 .3rem">Ricky条件</h2>
   <p class="sub" style="margin-bottom:.6rem">stock_screen_2026-10-12.xlsx の「Ricky条件（第1・第2段階）」（54社）の銘柄です。シートの並び順です。上の一覧と重なるツムラと椿本チエインは上にあります。</p>
   <div class="list" id="list7"></div>
 
-  <h2 style="margin:1.6rem 0 .3rem">累進配当株</h2>
+  <h2 class="sec" id="progressive" style="margin:1.6rem 0 .3rem">累進配当株</h2>
   <p class="sub" style="margin-bottom:.6rem">累進配当株スクリーニング表で5条件（配当利回り2.5%以上・配当性向38%以下・PER13倍以下・安全域1.7倍以上・時価総額800億円以下）をすべて満たし、10期減配のない銘柄です。安全域の大きい順です。上の一覧と重なる銘柄（極洋、田辺工業、ヤマタネなど）は上にあります。</p>
   <div class="list" id="list8"></div>
   <footer>
@@ -455,6 +462,23 @@
     document.getElementById(id).innerHTML = rows.map(row).join('');
   });
   render();
+  // 項目ジャンプ: 件数を入れ、いま見ている項目のボタンを色付けする
+  [['hold', L], ['watch', K], ['nvidia', N], ['niche', S], ['sawakami', W], ['float', F], ['ricky', R], ['progressive', P]]
+    .forEach(([id, a]) => { document.querySelector(`[data-n="${id}"]`).textContent = a.length; });
+  const secs = [...document.querySelectorAll('h2.sec')];
+  const pills = Object.fromEntries([...document.querySelectorAll('#jump a')].map((a) => [a.getAttribute('href').slice(1), a]));
+  let cur = '';
+  const mark = () => {
+    let id = secs[0].id;
+    for (const h of secs) if (h.getBoundingClientRect().top < 90) id = h.id;
+    if (id === cur) return;
+    if (cur) pills[cur].classList.remove('on');
+    cur = id;
+    pills[id].classList.add('on');
+    pills[id].scrollIntoView({ block: 'nearest', inline: 'nearest' });
+  };
+  addEventListener('scroll', mark, { passive: true });
+  mark();
   document.getElementById('sort').addEventListener('click', (e) => {
     byUpdate = !byUpdate;
     e.target.setAttribute('aria-pressed', byUpdate);
