@@ -111,10 +111,7 @@
     return sec;
   }
 
-  var refreshBtn = document.getElementById("refresh");
-
   function load() {
-    refreshBtn.disabled = true;
     statusEl.classList.remove("error");
     statusEl.textContent = "読み込み中...";
     return fetch("data/picks.json?t=" + Date.now(), { cache: "no-store" })
@@ -137,10 +134,8 @@
       .catch(function () {
         statusEl.textContent = "データを読み込めませんでした。時間をおいて再読み込みしてください。";
         statusEl.classList.add("error");
-      })
-      .then(function () { refreshBtn.disabled = false; });
+      });
   }
 
-  refreshBtn.addEventListener("click", load);
   load();
 })();
