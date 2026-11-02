@@ -5091,6 +5091,7 @@ https://www.keyence.co.jp/pdf/ConsolidatedFinancialResultsForThe2ndQuarterEndedS
 https://www.keyence.co.jp/pdf/ConsolidatedFinancialResultsForThe3rdQuarterEndedDecember_20_2024(JP_GAAP).pdf
 https://www.keyence.co.jp/pdf/ConsolidatedFinancialResultsForThe3rdQuarterEndedDecember_20_2025(JP_GAAP).pdf
 https://www.keyence.co.jp/pdf/ConsolidatedFinancialResultsForTheYearEndedMarch_20_2025(JP_GAAP).pdf
+https://www.keyence.co.jp/pdf/ConsolidatedSCF_202610.pdf
 https://www.keyence.co.jp/pdf/ConsolidatedSFP_202607.pdf
 https://www.keyence.co.jp/pdf/ConsolidatedSFP_202610.pdf
 https://www.keyence.co.jp/pdf/ConsolidatedSPLOCI_202607.pdf
@@ -5181,6 +5182,7 @@ https://www.keyence.co.jp/pdf/FinancialResults_202610_en.pdf
 https://www.keyence.co.jp/pdf/FinancialResults_202610_ja.pdf
 https://www.keyence.co.jp/pdf/HalfReport_202411_ja.pdf
 https://www.keyence.co.jp/pdf/HalfReport_202510_ja.pdf
+https://www.keyence.co.jp/pdf/HalfReport_202610_ja.pdf
 https://www.keyence.co.jp/pdf/PressRelease_20120820.pdf
 https://www.keyence.co.jp/pdf/PressRelease_20130802.pdf
 https://www.keyence.co.jp/pdf/PressRelease_20131028.pdf

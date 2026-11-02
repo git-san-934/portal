@@ -2416,6 +2416,7 @@ https://sumitomoelectric.com/jp/press/2026/10/prs121
 https://sumitomoelectric.com/jp/press/2026/10/prs122
 https://sumitomoelectric.com/jp/press/2026/10/prs123
 https://sumitomoelectric.com/jp/press/2026/11/prs128
+https://sumitomoelectric.com/jp/press/2026/11/prs129
 https://sumitomoelectric.com/jp/privacy/index2
 https://sumitomoelectric.com/jp/privacy/mynumber
 https://sumitomoelectric.com/jp/products/air-springs
@@ -4190,6 +4191,7 @@ https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs
 https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/prs126m.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/support2026j.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs128_0.pdf
+https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs129_0.pdf
 https://sumitomoelectric.com/jp/smp
 https://sumitomoelectric.com/jp/sustainability
 https://sumitomoelectric.com/jp/sustainability/csr
