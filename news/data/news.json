@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-03T01:33+09:00",
+ "updated_at": "2026-11-03T08:21+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-03",
+     "title": "Nintendo Switch 2 ソフト『ピクミン4 Nintendo Switch 2 Edition + だれでもチャレンジ! ダンドリ検定』のCMを公開しました。 小芝風花さんが、ダンドリ力を試す「ダンドリ検定」に挑戦します。",
+     "url": "https://www.nintendo.com/jp/games/switch2/ampyc/special/index.html",
+     "source": "official",
+     "first_seen": "2026-11-03T08:21+09:00"
+    },
     {
      "date": "2026-11-02",
      "title": "『ピクミン4 Nintendo Switch 2 Edition + だれでもチャレンジ! ダンドリ検定』の体験版が配信開始。「Pikmin Day Direct」で公開した情報もご紹介。",
@@ -425,13 +432,6 @@
      "date": "2026-09-18",
      "title": "「Hello! インディー」自分だけの英雄で強敵に挑む『Shape of Dreams』",
      "url": "https://www.nintendo.com/jp/topics/article/32f759f8-b700-48d0-a457-3be20e4cb02a",
-     "source": "official",
-     "first_seen": "2026-09-18T00:00+09:00"
-    },
-    {
-     "date": "2026-09-18",
-     "title": "ニンテンドーeショップ新作ソフト情報 9/18(金)号。",
-     "url": "https://www.nintendo.com/jp/topics/article/4936a483-a958-491f-bf82-f5e049c355f5",
      "source": "official",
      "first_seen": "2026-09-18T00:00+09:00"
     }
@@ -2174,6 +2174,14 @@
     "q4:https://investors.palantir.com"
    ],
    "items": [
+    {
+     "date": "2026-11-02",
+     "title": "Palantir Reports Q3 2026 U.S. Comm Revenue Growth of 148% Y/Y and Revenue Growth of 96% Y/Y; Raises FY 2026 Revenue Guidance to 91% Y/Y Growth and U.S. Comm Revenue Guidance to 143% Y/Y, Crushing Cons",
+     "url": "https://investors.palantir.com/news-details/2026/Palantir-Reports-Q3-2026-U-S--Comm-Revenue-Growth-of-148-YY-and-Revenue-Growth-of-96-YY-Raises-FY-2026-Revenue-Guidance-to-91-YY-Growth-and-U-S--Comm-Revenue-Guidance-to-143-YY-Crushing-Consensus-Expectations/default.aspx",
+     "source": "official",
+     "first_seen": "2026-11-03T08:21+09:00",
+     "title_ja": "パランティアは、2026 年第 3 四半期の米国通信の収益が前年比 148% 増加し、収益が前年比 96% 増加したと報告しています。 2026 年度の収益見通しを前年比 91% の成長に引き上げ、米国通信収益見通しを前年比 143% に引き上げ、デメリットを打ち砕く"
+    },
     {
      "date": "2026-10-22",
      "title": "Stagwell (STGW) and Palantir (PLTR) Expand AI Partnership to Transform Enterprise Marketing",
