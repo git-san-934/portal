@@ -48,6 +48,12 @@ h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
 .intro { color: var(--text-sub); font-size: 0.9rem; margin: 0.4rem auto 0; max-width: 36rem; }
 .updated { font-size: 0.8rem; margin-top: 0.3rem; }
 .updated.error { color: var(--bad); }
+.refresh { margin-top: 0.5rem; }
+.refresh-btn {
+  font: inherit; font-size: 0.85rem; font-weight: 700; padding: 0.3rem 1rem; border-radius: 999px;
+  border: none; background: var(--accent); color: #fff; cursor: pointer;
+}
+.refresh-btn:disabled { opacity: 0.6; cursor: wait; }
 .legend { font-size: 0.75rem; color: var(--text-sub); margin-top: 0.2rem; }
 
 /* ---------- 日付ごとのまとまり ---------- */

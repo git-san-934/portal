@@ -111,24 +111,36 @@
     return sec;
   }
 
-  fetch("data/picks.json?t=" + Date.now(), { cache: "no-store" })
-    .then(function (r) {
-      if (!r.ok) throw new Error(r.status);
-      return r.json();
-    })
-    .then(function (data) {
-      var days = (data.days || []).slice().sort(function (a, b) {
-        return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
-      });
-      if (!days.length) {
-        statusEl.textContent = "まだ記録がありません。";
-        return;
-      }
-      statusEl.textContent = "最新: " + fmtDate(days[0].date) + "(" + days.length + "日分)";
-      days.forEach(function (d, i) { daysEl.appendChild(renderDay(d, i === 0)); });
-    })
-    .catch(function () {
-      statusEl.textContent = "データを読み込めませんでした。時間をおいて再読み込みしてください。";
-      statusEl.classList.add("error");
-    });
+  var refreshBtn = document.getElementById("refresh");
+
+  function load() {
+    refreshBtn.disabled = true;
+    statusEl.classList.remove("error");
+    statusEl.textContent = "読み込み中...";
+    return fetch("data/picks.json?t=" + Date.now(), { cache: "no-store" })
+      .then(function (r) {
+        if (!r.ok) throw new Error(r.status);
+        return r.json();
+      })
+      .then(function (data) {
+        var days = (data.days || []).slice().sort(function (a, b) {
+          return a.date < b.date ? 1 : a.date > b.date ? -1 : 0;
+        });
+        daysEl.textContent = "";
+        if (!days.length) {
+          statusEl.textContent = "まだ記録がありません。";
+          return;
+        }
+        statusEl.textContent = "最新: " + fmtDate(days[0].date) + "(" + days.length + "日分)";
+        days.forEach(function (d, i) { daysEl.appendChild(renderDay(d, i === 0)); });
+      })
+      .catch(function () {
+        statusEl.textContent = "データを読み込めませんでした。時間をおいて再読み込みしてください。";
+        statusEl.classList.add("error");
+      })
+      .then(function () { refreshBtn.disabled = false; });
+  }
+
+  refreshBtn.addEventListener("click", load);
+  load();
 })();
