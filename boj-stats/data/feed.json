@@ -1,10 +1,17 @@
 {
- "generated_at": "2026-11-02T16:39+09:00",
- "report_date": "2026-11-02",
+ "generated_at": "2026-11-03T04:41+09:00",
+ "report_date": "2026-11-03",
  "days": [
   {
    "date": "2026-11-02",
    "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/paym/intlact_pm/cpss/cpss261102a.htm",
+     "name": "CPMIが報告書「進化する決済システムにおける中央銀行および中央銀行マネーの役割」を公表",
+     "url": "https://www.boj.or.jp/paym/intlact_pm/cpss/cpss261102a.htm",
+     "time": "17:00"
+    },
     {
      "kind": "news",
      "id": "https://www.boj.or.jp/mopo/measures/select/s_release/srel261102a.htm",
@@ -4507,7 +4514,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-02T16:39+09:00",
+  "checked_at": "2026-11-03T04:41+09:00",
   "counts": {
    "new": 0,
    "unchanged": 102,
