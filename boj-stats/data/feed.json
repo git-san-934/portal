@@ -1,10 +1,17 @@
 {
- "generated_at": "2026-11-02T14:36+09:00",
+ "generated_at": "2026-11-02T16:39+09:00",
  "report_date": "2026-11-02",
  "days": [
   {
    "date": "2026-11-02",
    "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/measures/select/s_release/srel261102a.htm",
+     "name": "気候変動対応を支援するための資金供給オペレーションの対象先公募について",
+     "url": "https://www.boj.or.jp/mopo/measures/select/s_release/srel261102a.htm",
+     "time": "16:00"
+    },
     {
      "kind": "news",
      "id": "https://www.boj.or.jp/about/press/kaiken_2026/kk261102a.pdf",
@@ -4500,7 +4507,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-02T14:36+09:00",
+  "checked_at": "2026-11-02T16:39+09:00",
   "counts": {
    "new": 0,
    "unchanged": 102,
