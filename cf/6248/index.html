@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>横田製作所 投資分析</title>
+  <meta name="description" content="横田製作所（6248）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>横田製作所（6248）は何に投資しているか</h1>
+    <p>財務諸表（単体）と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>業務用のポンプとバルブのメーカーです</b>。受注生産で、開発から鋳造・加工・組立まで自社で行っています。自社開発の特殊ステンレス合金鋳鋼を使ったポンプは、発電所、各種工場、農業用灌漑、上下水道、水族館などで使われています。子会社はなく、数字は単体です。</li>
+      <li><b>利益は過去最高です</b>。売上は17.3億円から23.1億円に、営業利益は2.5億円から4.7億円に増えました。</li>
+      <li><b>設備投資はごく小さく、年0.3〜1.2億円です</b>。設備の更新が中心で、鋳物砂の再生装置、基幹業務システム、電気炉などに投資しました。</li>
+      <li><b>借入金はなく、現金は17.6億円です</b>。売上の約8割にあたる現金を持っています。</li>
+      <li><b>配当を増やしています</b>。配当の支払いは年0.66億円から1.39億円に増えました。2026年3月期は1株60円（中間20円、期末40円）です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2023年3月期から毎年増えています。営業利益率は14%前後から2026年3月期は20.4%に上がりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年1.5〜4.6億円で毎年プラスです。設備投資と配当を営業CFでまかなっています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費は年0.1〜0.2億円です。内部留保は事業展開と研究開発にあてるとしています。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費（年0.5〜0.7億円）と同じくらいです。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期（0.46億円）</div>設備の更新など</li>
+      <li><div class="y">2021年3月期（0.62億円）</div>アルカリ砂再生装置の新設0.34億円など</li>
+      <li><div class="y">2022年3月期（0.31億円）</div>設備の更新など</li>
+      <li><div class="y">2023年3月期（1.22億円）</div>基幹業務システムの更新0.51億円など</li>
+      <li><div class="y">2024年3月期（0.51億円）</div>設備の更新など</li>
+      <li><div class="y">2025年3月期（0.91億円）</div>炉体昇降式箱型電気炉の新設0.37億円など</li>
+      <li><div class="y">2026年3月期（0.63億円）</div>設備の更新など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資の総額です。重要な設備の新設計画はありません。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">将来にわたり安定的な配当を行うことを重要な課題とし、内部留保と財政状態を考えて配当する方針です。年2回の配当で、2026年3月期は年60円です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>受注の動き</b>：発電所や工場などの設備投資が受注を左右します。</li>
+      <li><b>利益率</b>：営業利益率が20%を超えました。この水準を保てるかを見ます。</li>
+      <li><b>現金の使い道</b>：借入金がなく現金が多い会社です。増配が続くかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社横田製作所 有価証券報告書（2020年3月期〜2026年3月期）の財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

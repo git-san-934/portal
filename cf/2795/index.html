@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>日本プリメックス 投資分析</title>
+  <meta name="description" content="日本プリメックス（2795）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>日本プリメックス（2795）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>レシートなどを印刷する小型プリンタの会社です</b>。ケース入りのミニプリンタが売上の約半分で、プリンタの機構部品、消耗品、大型プリンタなども扱います。子会社でオリジナルのプリンタを開発・設計しています。</li>
+      <li><b>売上は年52〜71億円、営業利益は年3〜6億円です</b>。2026年3月期は売上70.4億円、営業利益4.9億円（前期比11.6%減）でした。</li>
+      <li><b>設備投資はごく小さく、年0.5〜2億円です</b>。金型などのリース資産、工具器具備品、ソフトウェアが中心です。</li>
+      <li><b>借入金はありません</b>。運転資金は自己資金でまかない、当面は借入金で資金を集めない方針です。自己資本比率は77.1%です。</li>
+      <li><b>配当は年1.0〜1.3億円です</b>。2026年3月期の期末配当は1株25円（総額1.3億円）の予定で、自社株買いも0.8億円行いました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2021年3月期の52億円を底に回復し、2024年3月期から70億円前後です。営業利益率は6〜9%です。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年3〜6億円で毎年プラスです。投資CFは主に有価証券の運用によるもので、年によってプラスにもマイナスにもなります。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費は年2.3〜2.8億円で、売上の3〜5%です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は2024年3月期を除いて減価償却費（年1億円前後）と同じくらいです。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期（0.9億円）</div>金型などのリース資産0.3億円、工具器具備品0.3億円、ソフトウェア0.1億円など</li>
+      <li><div class="y">2021年3月期（0.6億円）</div>金型などのリース資産0.3億円、ソフトウェア0.2億円など</li>
+      <li><div class="y">2022年3月期（1.0億円）</div>金型などのリース資産0.4億円、工具器具備品0.2億円など</li>
+      <li><div class="y">2023年3月期（0.6億円）</div>有形リース資産0.2億円、ソフトウェア0.1億円など</li>
+      <li><div class="y">2024年3月期（2.0億円）</div>建物0.4億円、無形リース資産0.2億円など</li>
+      <li><div class="y">2025年3月期（1.5億円）</div>有形リース資産1.1億円、工具器具備品0.2億円など</li>
+      <li><div class="y">2026年3月期（0.7億円）</div>有形リース資産0.4億円、工具器具備品0.2億円など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資の総額です。重要な設備の新設計画はありません。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">将来にわたる安定配当の維持を基本に、利益水準、財政状態、配当性向を総合して配当を決める方針です。年1回の期末配当で、2026年3月期は1株25円の予定です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>主力のミニプリンタ</b>：ケース入りミニプリンタの売上は前期比7.0%減りました。需要の動きを見ます。</li>
+      <li><b>消耗品と関連商品</b>：消耗品と関連商品は伸びています。安定した収益源に育つかを確認します。</li>
+      <li><b>現金の使い道</b>：借入金がなく自己資本比率が高い会社です。自社株買いなどの還元が続くかに注目します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 日本プリメックス株式会社 有価証券報告書（2020年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

@@ -88,8 +88,8 @@ main { margin-top: 1.25rem; display: flex; flex-direction: column; gap: 1rem; fo
 .table-scroll { overflow: auto; max-height: 75vh; }
 table { border-collapse: collapse; width: 100%; font-size: 0.85rem; }
 th, td { padding: 0.4rem 0.5rem; text-align: right; white-space: nowrap; border-bottom: 1px solid var(--grid); }
+thead { position: sticky; top: 0; z-index: 1; }
 thead th {
-  position: sticky; top: 0; z-index: 1;
   background: var(--card-bg);
   font-size: 0.72rem; color: var(--text-sub); font-weight: 700;
   cursor: pointer; user-select: none;
@@ -103,9 +103,41 @@ td.name { max-width: 16rem; overflow: hidden; text-overflow: ellipsis; }
 td.name a { color: inherit; text-decoration: none; border-bottom: 1px dotted var(--text-sub); }
 td.buy { text-align: left; font-size: 0.78rem; color: var(--text-sub); }
 td.buy.yes { color: var(--text); font-weight: 700; }
+td.text { min-width: 14rem; max-width: 22rem; white-space: normal; font-size: 0.78rem; line-height: 1.4; }
+td.yes:not(.buy) { color: var(--accent); font-weight: 700; }
 td.hit { background: var(--hit); font-weight: 700; }
 .empty { text-align: center; color: var(--text-sub); padding: 2rem 0; }
 
 footer { margin-top: 2rem; text-align: center; font-size: 0.78rem; color: var(--text-sub); line-height: 1.8; }
 footer a { color: var(--accent); }
 .warn { color: var(--accent); font-size: 0.72rem; margin-left: 0.15rem; }
+
+.cond-panel h2 { margin: 0 0 0.2rem; }
+.cond-row { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem; margin: 0.35rem 0; }
+.cond-row select, .cond-val { font: inherit; font-size: 0.85rem; min-height: 2.2rem; padding: 0.2rem 0.5rem; border: 1px solid var(--border); border-radius: 6px; background: var(--card-bg); color: var(--text); }
+.cond-key { max-width: 16rem; }
+.cond-val { width: 7rem; text-align: right; }
+.cond-val.bad { border-color: #c0392b; outline: 1px solid #c0392b; }
+.cond-unit { font-size: 0.8rem; color: var(--text-sub); min-width: 2.5rem; }
+.cond-del { font: inherit; border: none; background: none; color: var(--text-sub); font-size: 1.1rem; cursor: pointer; padding: 0 0.4rem; min-height: 2.2rem; }
+.cond-del:hover { color: var(--text); }
+.cond-empty { font-size: 0.8rem; color: var(--text-sub); margin: 0.4rem 0; }
+.cond-actions { display: flex; flex-wrap: wrap; align-items: center; gap: 0.5rem; margin-top: 0.6rem; }
+.cond-btn { font: inherit; font-size: 0.85rem; font-weight: 700; min-height: 2.4rem; padding: 0.3rem 1rem; border-radius: 999px; border: 1px solid var(--border); background: var(--card-bg); color: var(--text-sub); cursor: pointer; }
+.cond-btn.primary { background: var(--accent); border-color: var(--accent); color: #fff; padding: 0.3rem 1.6rem; }
+.cond-btn:focus-visible, .cond-row select:focus-visible, .cond-val:focus-visible { outline: 2px solid var(--accent); outline-offset: 2px; }
+.cond-msg { font-size: 0.8rem; color: #c0392b; }
+.cond-now { font-size: 0.8rem; color: var(--accent); margin: 0.5rem 0 0; }
+.cond-now:empty { display: none; }
+
+td.dt { padding: 0 0.2rem; }
+.dt-btn { font: inherit; font-size: 0.9rem; min-width: 2rem; min-height: 2rem; border: 1px solid var(--border); border-radius: 6px; background: var(--card-bg); color: var(--accent); cursor: pointer; }
+.dt-btn[aria-expanded="true"] { background: var(--accent); color: #fff; border-color: var(--accent); }
+tr.detail-row > td { padding: 0.4rem 0 0.8rem; background: var(--bg, transparent); text-align: left; white-space: normal; }
+.detail-box { position: sticky; left: 0; width: min(44rem, 85vw); overflow-x: auto; box-sizing: border-box; padding: 0.6rem 0.8rem; border: 1px solid var(--border); border-radius: 0.6rem; background: var(--card-bg); }
+.detail-title { margin: 0 0 0.4rem; font-weight: 700; font-size: 0.85rem; }
+.detail-table { width: 100%; font-size: 0.8rem; }
+.detail-table th { position: static; cursor: default; }
+.detail-table td, .detail-table th { padding: 0.25rem 0.5rem; }
+.detail-note { margin: 0.4rem 0 0; font-size: 0.72rem; color: var(--text-sub); }
+.detail-table thead { position: static; }

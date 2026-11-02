@@ -1,7 +1,7 @@
 """標準ライブラリだけで .xlsx のシートを読む最小実装（openpyxl が入れられない環境用）。
 
 read_sheet(path_or_bytes, index=0) → 行のリスト（各行はセル文字列のリスト、空セルは ""）。
-数式の結果・数値・共有文字列・インライン文字列に対応。書式や日付の変換はしない。
+数式の結果・数値・共有文字列・インライン文字列に対応。書式や日付の変換はしない。ふりがな（rPh）は除く。
 """
 import io, re, zipfile
 import xml.etree.ElementTree as ET
@@ -28,7 +28,9 @@ def read_sheet(src, index=0):
     shared = []
     if "xl/sharedStrings.xml" in z.namelist():
         for si in ET.fromstring(z.read("xl/sharedStrings.xml")).findall("m:si", NS):
-            shared.append("".join(t.text or "" for t in si.iter("{%s}t" % NS["m"])))
+            # ふりがな（rPh）は本文に含めない
+            ts = si.findall("m:t", NS) + si.findall("m:r/m:t", NS)
+            shared.append("".join(t.text or "" for t in ts))
     wb = ET.fromstring(z.read("xl/workbook.xml"))
     rid = wb.find("m:sheets", NS)[index].get(REL)
     rels = ET.fromstring(z.read("xl/_rels/workbook.xml.rels"))

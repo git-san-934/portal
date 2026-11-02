@@ -1,0 +1,52 @@
+name: 投資分析 新しい銘柄の下ごしらえ(EDINET)
+
+# cf/data/cf_queue.json の銘柄について、有価証券報告書7年分の数字と本文の一部を集めて cf/data/cf_raw/ にコミットする。
+# 新しい投資分析ページ(cf/<コード>/)は、この数字をもとに作る。時間がかかるので、途中で打ち切っても
+# それまでの結果をコミットし、次の実行で続きを取る。
+on:
+  workflow_dispatch:
+  pull_request:
+    paths:
+      - cf/data/cf_queue.json
+      - cf/scripts/fetch_cf.py
+      - .github/workflows/build-cf-raw.yml
+
+permissions:
+  contents: write # データをコミットする
+
+concurrency:
+  group: cf-raw-data
+  cancel-in-progress: false
+
+jobs:
+  collect:
+    runs-on: ubuntu-latest
+    timeout-minutes: 130
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          # PR では PR のブランチに結果をコミットする
+          ref: ${{ github.head_ref || github.ref }}
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r cf/scripts/requirements.txt
+      - name: 有価証券報告書から7年分の数字を集める
+        env:
+          EDINET_API_KEY: ${{ secrets.EDINET_API_KEY }}
+          TIME_LIMIT: "6000"
+        run: python cf/scripts/fetch_cf.py
+      - name: 結果をコミット
+        if: always()
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add -A cf/data
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "投資分析 新しい銘柄の有報データ ($(TZ=Asia/Tokyo date +%F))"
+          BRANCH="${{ github.head_ref || github.ref_name }}"
+          git pull --rebase origin "$BRANCH"
+          git push origin HEAD:"$BRANCH"

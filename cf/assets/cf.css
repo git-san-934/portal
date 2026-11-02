@@ -1,0 +1,99 @@
+:root {
+      --bg: #f7f5f0;
+      --card-bg: #ffffff;
+      --text: #23201b;
+      --text-sub: #6b645a;
+      --border: #e5e0d6;
+      --grid: #ece8df;
+      --accent: #c8502d;
+      --c-op: #2f7d5b;
+      --c-inv: #c8502d;
+      --c-fin: #8a8378;
+      --c-capex: #c8502d;
+      --c-dep: #b9a98f;
+      --c-rd: #3b6ea8;
+      --c-div: #3b6ea8;
+      --c-buy: #8db4dd;
+      --c-line: #23201b;
+      --warn-bg: #fbeee8;
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1a17;
+        --card-bg: #262320;
+        --text: #f0ece4;
+        --text-sub: #a89f92;
+        --border: #38342e;
+        --grid: #34302a;
+        --accent: #e0662f;
+        --c-op: #4fb388;
+        --c-inv: #e0662f;
+        --c-fin: #8f877b;
+        --c-capex: #e0662f;
+        --c-dep: #8c7f6a;
+        --c-rd: #6c9fd8;
+        --c-div: #6c9fd8;
+        --c-buy: #3d5f86;
+        --c-line: #f0ece4;
+        --warn-bg: #3a2a22;
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body {
+      font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      line-height: 1.75;
+      -webkit-font-smoothing: antialiased;
+      padding: 1.5rem 1rem 4rem;
+    }
+    .wrap { max-width: 44rem; margin: 0 auto; }
+    .back { font-size: 0.85rem; color: var(--text-sub); text-decoration: none; }
+    header { margin: 0.75rem 0 1.75rem; }
+    h1 { font-size: 1.45rem; line-height: 1.4; }
+    header p { color: var(--text-sub); font-size: 0.88rem; margin-top: 0.4rem; }
+    section {
+      background: var(--card-bg);
+      border: 1px solid var(--border);
+      border-radius: 1rem;
+      padding: 1.2rem 1.1rem 1.3rem;
+      margin-bottom: 1.1rem;
+    }
+    h2 { font-size: 1.08rem; margin-bottom: 0.6rem; }
+    h3 { font-size: 0.95rem; margin: 1rem 0 0.3rem; }
+    p, li { font-size: 0.93rem; }
+    .sub { color: var(--text-sub); font-size: 0.82rem; }
+    ul { padding-left: 1.2rem; }
+    li + li { margin-top: 0.45rem; }
+    b { color: var(--accent); font-weight: 700; }
+
+    .kpis { display: grid; grid-template-columns: repeat(2, 1fr); gap: 0.6rem; margin-top: 0.4rem; }
+    @media (min-width: 560px) { .kpis { grid-template-columns: repeat(4, 1fr); } }
+    .kpi { border: 1px solid var(--border); border-radius: 0.75rem; padding: 0.6rem 0.7rem; }
+    .kpi .l { font-size: 0.75rem; color: var(--text-sub); }
+    .kpi .v { font-size: 1.25rem; font-weight: 700; font-variant-numeric: tabular-nums; }
+    .kpi .d { font-size: 0.75rem; color: var(--text-sub); }
+
+    .chart { width: 100%; margin-top: 0.4rem; }
+    .chart svg { width: 100%; height: auto; display: block; overflow: visible; }
+    .chart text { fill: var(--text-sub); font-size: 17px; font-family: inherit; }
+    .legend { display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; font-size: 0.8rem; color: var(--text-sub); margin-top: 0.3rem; }
+    .legend span::before { content: ""; display: inline-block; width: 0.7rem; height: 0.7rem; border-radius: 2px; margin-right: 0.3rem; vertical-align: -1px; background: var(--sw); }
+    .legend span.ln::before { height: 3px; vertical-align: 3px; }
+    .tip { position: fixed; pointer-events: none; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.5rem; padding: 0.4rem 0.6rem; font-size: 0.8rem; box-shadow: 0 4px 16px rgba(0,0,0,.12); display: none; z-index: 9; font-variant-numeric: tabular-nums; }
+
+    .tbl { overflow-x: auto; margin-top: 0.5rem; }
+    table { border-collapse: collapse; width: 100%; font-size: 0.82rem; font-variant-numeric: tabular-nums; }
+    th, td { padding: 0.35rem 0.45rem; border-bottom: 1px solid var(--border); text-align: right; white-space: nowrap; }
+    th:first-child, td:first-child { text-align: left; position: sticky; left: 0; background: var(--card-bg); }
+    thead th { color: var(--text-sub); font-weight: 600; }
+    tr.sum td { font-weight: 700; }
+    td.neg { color: var(--accent); }
+
+    .timeline { list-style: none; padding: 0; }
+    .timeline li { border-left: 3px solid var(--border); padding: 0.1rem 0 0.5rem 0.8rem; margin: 0; }
+    .timeline li + li { margin-top: 0; }
+    .timeline .y { font-weight: 700; font-size: 0.85rem; }
+    .timeline .amt { font-variant-numeric: tabular-nums; color: var(--text-sub); font-size: 0.82rem; }
+    .warn { background: var(--warn-bg); border-radius: 0.6rem; padding: 0.7rem 0.8rem; margin-top: 0.6rem; }
+    footer { margin-top: 1.5rem; font-size: 0.78rem; color: var(--text-sub); line-height: 1.8; }

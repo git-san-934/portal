@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ＤＡＩＫＯ ＸＴＥＣＨ 投資分析</title>
+  <meta name="description" content="ＤＡＩＫＯ ＸＴＥＣＨ（8023）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>ＤＡＩＫＯ ＸＴＥＣＨ（8023）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>富士通製品の販売とシステム開発の会社です</b>。主に富士通製のハードウェアの販売、ソフトウェアの企画・開発・保守、ネットワーク工事を行っています。子会社で保険共済向けのソフトウェア開発、機器の保守、人材派遣なども手がけています。</li>
+      <li><b>売上は年355〜434億円、営業利益は年11〜29億円です</b>。2026年3月期は売上425億円、営業利益19.0億円でした。ハードウェア販売を抑えた一方、モダナイゼーション案件の受注が増えました。</li>
+      <li><b>設備投資はほとんどありません</b>。有報では2021年3月期の本社リニューアル（2.3億円）を除いて「特記すべき設備投資はない」としています。2023年3月期には社宅とデータセンターを売却しました。</li>
+      <li><b>借入金を減らし、現金は100億円です</b>。借入金などは34億円から18.5億円に減りました。</li>
+      <li><b>配当を大きく増やしています</b>。DOE3%をベースに配当しています。配当の支払いは年0.8億円から6.3億円に増え、2026年3月期は1株36円（中間18円、期末18円）の予定です。2023〜2025年3月期には自社株買いも行いました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">営業利益率は3.1〜6.7%です。2021年3月期は純損失4.5億円でした。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年6〜41億円で毎年プラスです。設備投資が小さいため、本業のフリーCFも毎年プラスです。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費はありません。2023年3月期からは子会社株式の取得にも資金を使っています。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費（年2億円前後）を下回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期</div>特記すべき設備投資なし（キャッシュ・フロー計算書の設備投資は1.7億円）</li>
+      <li><div class="y">2021年3月期（2.3億円）</div>本社の大規模リニューアルにともなう内装工事・備品など</li>
+      <li><div class="y">2022年3月期</div>特筆すべき設備投資なし（同0.6億円）</li>
+      <li><div class="y">2023年3月期</div>東京都墨田区の社宅、千葉県茂原市のデータセンターを売却（同1.6億円）</li>
+      <li><div class="y">2024年3月期</div>特筆すべき設備投資なし（同1.4億円）</li>
+      <li><div class="y">2025年3月期</div>特筆すべき設備投資なし（同1.1億円）</li>
+      <li><div class="y">2026年3月期</div>特筆すべき設備投資なし（同1.0億円）</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">有報「設備投資等の概要」に金額の記載がない年は、キャッシュ・フロー計算書の数字を示しています。重要な設備の新設計画はありません。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">業績と見通しを慎重に検討し、安定的な配当と内部留保の充実を総合的に考える方針です。中期経営計画「CANVAS TWO」ではDOE3%をベースとし、2026年3月期から年2回の配当にしました。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>ハードウェア販売</b>：利益率の低いハードウェア販売を抑えています。売上より利益の質を見ます。</li>
+      <li><b>モダナイゼーション案件</b>：古いシステムの刷新の受注が増えています。</li>
+      <li><b>DOE3%</b>：純資産が増えれば配当も増える方針です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET ＤＡＩＫＯ　ＸＴＥＣＨ株式会社 有価証券報告書（2020年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [34.1, 36.1, 27.8, 23.2, 20.9, 20.7, 18.5] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

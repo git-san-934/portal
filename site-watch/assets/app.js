@@ -1,6 +1,6 @@
 (() => {
   const FRESH_HOURS = 72;
-  const SHOW = 15; // 1日ぶん・1銘柄ごとに最初に見せる件数
+  const SHOW = 1; // 1日ぶん・1銘柄ごとに最初に見せる件数。残りはボタンで開く
   const KIND = { pdf: "PDF", xls: "Excel", xlsx: "Excel", doc: "Word", docx: "Word", ppt: "PowerPoint", pptx: "PowerPoint", csv: "CSV" };
   let data = null;
   let filter = "all";
@@ -12,9 +12,11 @@
     if (text != null) e.textContent = text;
     return e;
   };
+  // 外から集めた URL は http/https のときだけリンクにする(javascript: などを踏ませない)
+  const isWebUrl = (u) => /^https?:\/\//i.test(u || "");
   const link = (href, text, cls) => {
     const a = el("a", cls, text);
-    a.href = href;
+    if (isWebUrl(href)) a.href = href;
     a.target = "_blank";
     a.rel = "noopener";
     return a;
@@ -60,7 +62,10 @@
     wrap.append(ul);
     if (items.length > SHOW) {
       const more = el("details", "more");
-      more.append(el("summary", null, `さらに ${items.length - SHOW} 件`));
+      const label = `${names[items[0].code] || items[0].code} の残り ${items.length - SHOW} 件を表示`;
+      const sum = el("summary", null, label);
+      more.addEventListener("toggle", () => (sum.textContent = more.open ? "閉じる" : label));
+      more.append(sum);
       const ul2 = el("ul", "news");
       items.slice(SHOW).forEach((it) => ul2.append(item(it, names)));
       more.append(ul2);
@@ -100,9 +105,8 @@
     const rows = data.sites.map((s) => {
       const tr = el("tr");
       const name = el("td", "name");
-      if (s.home) name.append(link(s.home, s.name));
-      else name.append(el("span", null, s.name));
-      name.append(el("span", "sub", s.code));
+      name.append(el("span", null, s.name), el("span", "sub", s.code));
+      if (s.home) name.append(link(s.home, "公式サイト ↗", "home"));
       const st = el("td", s.status === "ok" ? "ok" : "warn");
       st.textContent = s.status === "ok" ? `OK(${fmtTime(s.checked_at)})` : s.status;
       if (s.status !== "ok" && s.last_ok_at) st.append(el("span", "sub", ` 前回OK ${fmtTime(s.last_ok_at)}`));

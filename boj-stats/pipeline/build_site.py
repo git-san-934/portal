@@ -4,6 +4,7 @@
 run_daily.sh（取得→status.py→analyze.py）の後に実行する。
 - 公表: 月次・四半期の系列で、最新の観測期が前回と変わったもの（reports/releases_log.csv に記録）
 - 変化検知: reports/signals_log.csv（analyze.py が書く）
+- 日銀の新着: reports/boj_news.csv（fetch_boj_news.py が書く。日本銀行ホームページの新着情報）
 日次の系列（金利・為替など）は毎日値が入るので新着には載せず、「毎日の値」に最新値を出す。
 標準ライブラリのみ。
 """
@@ -24,7 +25,7 @@ SOURCES = {
     "STAT": ("総務省統計局", "https://www.stat.go.jp/"),
     "ESTAT": ("政府統計の総合窓口 e-Stat", "https://www.e-stat.go.jp/"),
 }
-TRADE = ("財務省 貿易統計（e-Stat 貿易概況）", "https://www.customs.go.jp/toukei/info/index.htm")
+TRADE = ("財務省 貿易統計（税関の速報・e-Stat 貿易概況）", "https://www.customs.go.jp/toukei/info/index.htm")
 
 # (見出し, 判定) の順に最初に当てはまったカテゴリに入れる
 CATEGORIES = [
@@ -135,12 +136,28 @@ def main():
             "type": r["type"], "dir": r["dir"], "detail": r["detail"],
         })
 
+    # 日銀ホームページの新着情報（fetch_boj_news.py が書く。為替相場は除いてある）
+    for r in read_rows(os.path.join(REPORTS, "boj_news.csv")):
+        day = r["published"][:10]
+        if day < since:
+            continue
+        days.setdefault(day, []).append({
+            "kind": "news", "id": r["url"], "name": r["title"], "url": r["url"], "time": r["published"][11:16],
+        })
+
+    # 系列ごとに最後に新しい値が入った日（status.py の last_new）。ページの見出しの「更新」に使う
+    try:
+        with open(os.path.join(REPORTS, "status.json"), encoding="utf-8") as f:
+            last_new = {k: v.get("last_new") for k, v in json.load(f)["series"].items()}
+    except (OSError, ValueError, KeyError):
+        last_new = {}
+
     info = {}
     for s in series:
         l = latest.get(s["code"])
         info[sid(s)] = {
             "name": s["name"], "db": s["db"], "code": s["code"], "freq": s["freq"], "unit": s["unit"],
-            "kind": s["kind"], "category": category(s),
+            "kind": s["kind"], "category": category(s), "updated": last_new.get(sid(s)),
             "date": l and l["date"], "value": l and analyze.num(l["value"]), "change": l and change(s, l["value"], l["prev"]),
             "implication": analyze.IMPLICATIONS.get(s["code"], ""),
             "source": TRADE if s["code"].startswith("TRADE_") else SOURCES.get(s["db"], BOJ),
@@ -169,6 +186,13 @@ def main():
     except (OSError, ValueError):
         pass
 
+    tankan_latest = None  # 短観の推移（tankan.html）の最新の調査回
+    try:
+        with open(os.path.join(ROOT, "data", "tankan.json"), encoding="utf-8") as f:
+            tankan_latest = json.load(f).get("latest")
+    except (OSError, ValueError):
+        pass
+
     out = {
         "generated_at": dt.datetime.now().astimezone().isoformat(timespec="minutes"),
         "report_date": today,
@@ -177,6 +201,7 @@ def main():
         "series": info,
         "fetch_status": fetch_status,
         "trade_updated": trade_updated,
+        "tankan_latest": tankan_latest,
         "disclaimer": analyze.DISCLAIMER,
     }
     os.makedirs(os.path.dirname(OUT), exist_ok=True)

@@ -83,6 +83,7 @@ h1 { font-size: 1.5rem; }
 .item::marker { color: var(--text-sub); }
 .meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; font-size: 0.75rem; color: var(--text-sub); }
 .title { display: block; font-size: 0.93rem; overflow-wrap: anywhere; }
+.orig { display: block; font-size: 0.72rem; color: var(--text-sub); overflow-wrap: anywhere; }
 .stock { font-weight: 700; color: var(--text); }
 .badge { font-size: 0.68rem; font-weight: 700; padding: 0 0.45rem; border-radius: 999px; border: 1px solid currentColor; line-height: 1.5; }
 .src-official { color: var(--official); }
@@ -91,7 +92,13 @@ h1 { font-size: 1.5rem; }
 .src-sec { color: var(--sec); }
 .badge.new { background: var(--accent); border-color: var(--accent); color: #fff; }
 .empty { list-style: none; color: var(--text-sub); font-size: 0.88rem; margin-left: -1.2rem; }
-.more summary { cursor: pointer; font-size: 0.85rem; color: var(--text-sub); margin-top: 0.3rem; }
+.more-li { list-style: none; }
+.more summary {
+  cursor: pointer; display: inline-block; font-size: 0.8rem; font-weight: 600; margin: 0.2rem 0 0.2rem 0.3rem;
+  padding: 0.2rem 0.8rem; border: 1px solid var(--border); border-radius: 999px; background: var(--card-bg); color: var(--text-sub);
+}
+.more summary::-webkit-details-marker { display: none; }
+.more.older summary { margin-left: 1.2rem; }
 
 footer { margin-top: 2rem; font-size: 0.78rem; color: var(--text-sub); }
 footer p + p { margin-top: 0.4rem; }

@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>パラカ 投資分析</title>
+  <meta name="description" content="パラカ（4809）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>パラカ（4809）は何に投資しているか</h1>
+    <p>財務諸表（単体）と有価証券報告書の「設備の状況」をもとに、2019年9月期〜2025年9月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>時間貸駐車場の会社です</b>。大都市圏を中心に、借りた土地（賃借駐車場）や自社で買った土地（保有駐車場）で時間貸駐車場を開拓・運営しています。2025年9月期末で2,598件、4万8,232車室が稼働しています。</li>
+      <li><b>売上・利益とも過去最高です</b>。2025年9月期は売上176.3億円（前期比7.6%増）、営業利益32.7億円（8.1%増）でした。新規開設件数や運営車室数も過去最高でした。</li>
+      <li><b>お金の多くは駐車場用の土地の購入に使われます</b>。設備投資は年12〜56億円で、その大半が事業用の土地です。2024・2025年9月期は年50億円を超えました。</li>
+      <li><b>借入金で土地を買っています</b>。営業CFを上回る土地の購入が続き、借入金などは153億円から242億円に増えました。現金は52億円から36億円に減りました。</li>
+      <li><b>配当は年5.0億円から6.6億円に増えました</b>。2025年9月期は1株67円（期末）です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2025年9月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2021年9月期の118億円を底に毎年増えています。営業利益率は2023年9月期から18〜20%です。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年6〜30億円のプラスですが、土地の購入がそれを上回り、本業のフリーCFは7年のうち5年がマイナスでした。足りない分を借入金で補っています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費はありません。単体の会社で、数字は単体です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">土地は減価償却しないため、設備投資は減価償却費（年5〜8億円）を大きく上回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2019年9月期（34.5億円）</div>事業用土地30.8億円、リース資産（駐車場機器）2.2億円など</li>
+      <li><div class="y">2020年9月期（33.0億円）</div>事業用土地29.5億円、駐車場機器2.1億円など</li>
+      <li><div class="y">2021年9月期（11.7億円）</div>事業用土地10.7億円、駐車場機器0.5億円など</li>
+      <li><div class="y">2022年9月期（31.0億円）</div>事業用土地25.9億円、駐車場機器1.4億円など</li>
+      <li><div class="y">2023年9月期（27.2億円）</div>事業用土地22.3億円、駐車場機器2.7億円など</li>
+      <li><div class="y">2024年9月期（50.9億円）</div>事業用土地41.1億円、駐車場機器7.3億円など</li>
+      <li><div class="y">2025年9月期（55.7億円）</div>事業用土地39.4億円、駐車場機器9.1億円など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資総額です。重要な設備の新設計画はありません。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">資本効率、財務健全性、投資環境に応じて、再投資とのバランスをとりながら利益を配分する方針です。2025年9月期は1株67円（期末）です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は9月期決算です（例：「25/9」は2024年10月〜2025年9月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>借入金と金利</b>：土地の購入で借入金が242億円に増えました。金利の上昇に注意します。</li>
+      <li><b>駐車場の稼働</b>：新規開設が増えています。稼働率を保てるかを見ます。</li>
+      <li><b>配当の伸び</b>：利益の伸びに比べ、配当の伸びは緩やかです。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET パラカ株式会社 有価証券報告書（2019年9月期〜2025年9月期）の財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [152.7, 177.0, 171.7, 183.4, 189.5, 218.9, 242.2] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

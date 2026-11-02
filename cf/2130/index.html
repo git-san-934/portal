@@ -1,0 +1,99 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>メンバーズ 投資分析</title>
+  <meta name="description" content="メンバーズ（2130）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>メンバーズ（2130）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>企業のデジタル化を支援する会社です</b>。デジタルクリエイターが3名以上の専任チームを組み、ウェブ制作・UIUX、マーケティング、サービス開発、データ活用、脱炭素などの面で顧客企業と一緒にDXを進める「DX伴走支援サービス」を提供しています。</li>
+      <li><b>売上は7年で2.3倍になりました</b>。売上は106億円から244億円に増えました。営業利益は2024年3月期に0.4億円まで落ち込みましたが、2026年3月期は16.0億円に回復しました。</li>
+      <li><b>設備はほとんど持っていません</b>。設備投資はオフィスの内装・什器だけで、年0〜2.5億円です。</li>
+      <li><b>借入金はありません</b>。借入金などはゼロで、現金は44億円です。</li>
+      <li><b>DOE5%程度を目標に配当しています</b>。配当の支払いは年1.5億円から4.1億円に増えました。2026年3月期は1株33円（期末1回、総額4.2億円）の予定です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は毎年増えています。営業利益率は2022年3月期までは10〜13%でしたが、2024年3月期に0.2%に下がり、2026年3月期は6.6%に戻りました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年6〜18億円で毎年プラスです。設備投資が小さいため、営業CFのほとんどが手元に残り、配当と自社株買いに使われています。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費はありません。設備投資はオフィスの内装などに限られます。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費（年3〜6億円）を大きく下回っています。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020〜2022年3月期</div>設備投資等の概要は「該当事項はありません」</li>
+      <li><div class="y">2023年3月期（2.55億円）</div>本社の事務所内装設備・什器2.17億円、ウェブガーデン仙台の事務所内装0.36億円</li>
+      <li><div class="y">2024年3月期（1.00億円）</div>本社の事務所内装設備・什器0.78億円、ウェブガーデン仙台0.23億円</li>
+      <li><div class="y">2025年3月期（1.80億円）</div>武蔵小杉オフィスの内装0.98億円、大阪オフィスの内装0.33億円など</li>
+      <li><div class="y">2026年3月期（0.99億円）</div>本社の事務所内装0.50億円、名古屋オフィスの内装0.46億円</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資の総額です。重要な設備の新設計画はありません。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">事業投資に備える内部留保を確保しつつ、利益の伸びに見合った還元と配当金額の継続的な増額を基本方針としています。中期的にはDOE（連結親会社所有者帰属持分配当率）5%程度を目標にしています。期末配当の年1回で、2026年3月期は1株33円の予定です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>利益率の回復</b>：2024年3月期に利益が大きく落ち込みました。DX領域への転換で利益率が戻るかを見ます。</li>
+      <li><b>人材の確保</b>：売上は社員のデジタルクリエイターの数と稼働に左右されます。</li>
+      <li><b>DOE5%</b>：利益が減った年も配当を保ちやすい目標です。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社メンバーズ 有価証券報告書（2020年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

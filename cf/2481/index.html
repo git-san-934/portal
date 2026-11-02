@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>タウンニュース社 投資分析</title>
+  <meta name="description" content="タウンニュース社（2481）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>タウンニュース社（2481）は何に投資しているか</h1>
+    <p>財務諸表（単体）と有価証券報告書の「設備の状況」をもとに、2020年6月期〜2026年6月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>神奈川県を中心に無料の地域情報紙「タウンニュース」を発行する会社です</b>。行政区ごとに内容の違う紙面をつくり、広告枠の販売で稼いでいます。自治体との連携事業やウェブなどの紙面以外の売上も伸ばしています。</li>
+      <li><b>売上は過去最高です</b>。売上は28.1億円から39.9億円に、営業利益は1.2億円から5.9億円に増えました。2026年6月期は紙面以外の売上が全体を引っ張りました。</li>
+      <li><b>設備投資はごく小さく、年0.1〜0.8億円です</b>。本社ビルの改装、ウェブ版や販売管理システムの更新などです。</li>
+      <li><b>借入金はありません</b>。借入金などはゼロで、現金は12.7億円です。子会社はなく、数字は単体です。</li>
+      <li><b>配当を増やしています</b>。配当の支払いは年0.66億円から1.1億円に増えました。2026年6月期は1株22円（年1回）の予定です。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年6月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2023年6月期から37億円前後で推移し、2026年6月期は39.9億円でした。営業利益率は4.4%から15%前後に上がりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年1〜5億円で、毎年プラスです。投資CFは主に投資有価証券などの運用によるものです。財務CFは配当の支払いだけです。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費はありません。設備投資は売上の0.3〜2%です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費（年0.4〜0.5億円）と同じくらいです。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年6月期（0.36億円）</div>統合型の媒体製作システム0.30億円など</li>
+      <li><div class="y">2021年6月期（0.08億円）</div>江田本社ビルのエレベーター0.07億円など</li>
+      <li><div class="y">2022年6月期（0.55億円）</div>本社のエレベーターと内装工事0.16億円、ウェブ版のリニューアル0.10億円など</li>
+      <li><div class="y">2023年6月期（0.58億円）</div>平塚市の土地・建物0.30億円、ウェブ版のリニューアル0.21億円</li>
+      <li><div class="y">2024年6月期（0.84億円）</div>本社ビルの改装0.34億円、販売管理システムの更新0.21億円など</li>
+      <li><div class="y">2025年6月期（0.53億円）</div>販売管理システムの更新0.38億円など</li>
+      <li><div class="y">2026年6月期（0.28億円）</div>ウェブサイトのリニューアル0.18億円など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資の総額です。重要な設備の新設計画はありません。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">業績・配当性向・将来の事業展開を考えながら、安定的な配当を続ける方針です。年1回の期末配当で、2026年6月期は年22円（総額1.2億円）の予定です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は6月期決算です（例：「26/6」は2025年7月〜2026年6月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>紙面広告</b>：紙の広告市場は縮小傾向です。紙面の広告収入を保てるかを見ます。</li>
+      <li><b>紙面以外の売上</b>：自治体との連携事業やデジタル事業が伸びています。成長が続くかを確認します。</li>
+      <li><b>紙代・印刷代</b>：用紙や印刷の値上がりが利益を圧迫しないかに注意します。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET 株式会社タウンニュース社 有価証券報告書（2020年6月期〜2026年6月期）の財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

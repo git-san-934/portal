@@ -15,6 +15,10 @@ https://git-san-934.github.io/portal/news/
 
 「新着」は、このページがはじめて見つけてから3日以内のものです。
 
+英語のタイトル(米国株のニュースなど)は日本語に訳して表示し、原文をその下に小さく出します。
+翻訳は Google 翻訳の無料の窓口を使います(キー不要)。Secrets に `DEEPL_API_KEY` を入れると DeepL を使います(DeepL API Free は月50万文字まで無料)。
+訳は `data/translate_cache.json` に貯め、同じタイトルは訳し直しません。翻訳に失敗したときは英語のまま表示します。
+
 ## 更新のタイミング
 
 `.github/workflows/update-news.yml` が毎日 1:00・5:41・6:41・7:41・8:23・12:45・15:45(日本時間)に動きます。

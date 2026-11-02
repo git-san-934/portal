@@ -1,0 +1,101 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>フジ日本 投資分析</title>
+  <meta name="description" content="フジ日本（2114）のキャッシュフロー計算書から、何に投資しているかをたどる" />
+  <link rel="stylesheet" href="../assets/cf.css" />
+</head>
+<body>
+<div class="wrap">
+  <a class="back" href="../">← 投資分析の一覧へ</a>
+  <header>
+    <h1>フジ日本（2114）は何に投資しているか</h1>
+    <p>連結キャッシュ・フロー計算書と有価証券報告書の「設備の状況」をもとに、2020年3月期〜2026年3月期の7年間の推移をまとめました。単位は<strong>億円</strong>です。</p>
+  </header>
+
+  <section>
+    <h2>要点</h2>
+    <ul>
+      <li><b>砂糖と機能性食品素材「イヌリン」の会社です</b>。精製糖・砂糖関連製品の製造販売（糖類）と、食物繊維のイヌリンなどの機能性素材を手がけ、不動産事業も営んでいます。タイにイヌリンの子会社があります。</li>
+      <li><b>利益は7年で2倍以上になりました</b>。売上は190億円から284億円に、営業利益は14.9億円から35.5億円に増えました。</li>
+      <li><b>静岡県島田市に36億円の新事業所をつくります</b>。製造・物流・研究開発などの拠点で、日本のマザー工場の機能も持たせる計画です。2026年3月期は設備投資が11.8億円に増えました。</li>
+      <li><b>借入金が増えています</b>。借入金などは16億円から49億円に増えました。現金も29億円から72億円に増えています。</li>
+      <li><b>DOE3.5%以上を目指しています</b>。配当の支払いは年3.0億円から8.7億円に増えました。2026年3月期は1株25.5円（2026年1月に1株を2株に分割）です。2025年3月期には自社株買いを12.3億円行いました。</li>
+    </ul>
+  </section>
+  <section>
+    <h2>2026年3月期のキャッシュフロー</h2>
+    <div class="kpis" id="kpis"></div>
+  </section>
+  <section>
+    <h2>① 売上と利益</h2>
+    <p class="sub">売上は2021年3月期から毎年増えています。営業利益率は8%前後から2026年3月期は12.5%に上がりました。</p>
+    <div class="chart" id="c-pl"></div>
+  </section>
+  <section>
+    <h2>② お金の流れの推移</h2>
+    <p class="sub">営業CF（本業で稼いだお金）、投資CF（投資に使ったお金）、財務CF（借入・配当など）。線は、営業CFから設備投資を引いた「本業のフリーCF」です。営業CFは年6〜33億円で毎年プラスです。2025・2026年3月期は営業CFが30億円台に増えました。</p>
+    <div class="chart" id="c-flow"></div>
+  </section>
+  <section>
+    <h2>③ 将来への投資の大きさ</h2>
+    <p class="sub">研究開発費は年1億円前後です。</p>
+    <div class="chart" id="c-future"></div>
+    <h3>設備投資と減価償却費の比較</h3>
+    <p class="sub">設備投資は減価償却費（年1〜2億円）と同じくらいでしたが、2026年3月期は大きく上回りました。</p>
+    <div class="chart" id="c-dep"></div>
+  </section>
+  <section>
+    <h2>④ 投資の中身</h2>
+    <ul class="timeline">
+      <li><div class="y">2020年3月期（0.9億円）</div>精糖の製品運搬用備品、機能性素材の子会社の生産設備の増強など</li>
+      <li><div class="y">2021年3月期（2.5億円）</div>精糖の製品運搬用備品、機能性素材の子会社の生産設備の増強など</li>
+      <li><div class="y">2022年3月期（2.6億円）</div>精糖の製品運搬用備品、機能性素材の子会社の生産設備の増強など</li>
+      <li><div class="y">2023年3月期（3.1億円）</div>精糖の製品運搬用備品、機能性素材の子会社の生産設備の増強など</li>
+      <li><div class="y">2024年3月期（2.7億円）</div>精糖の製品運搬用備品、機能性素材の子会社の生産設備の増強など</li>
+      <li><div class="y">2025年3月期（2.0億円）</div>精糖の製品運搬用備品、機能性素材の子会社の生産設備の増強など</li>
+      <li><div class="y">2026年3月期（11.8億円）</div>糖類の製品運搬用備品、機能性素材の子会社の生産設備の増強など</li>
+    </ul>
+    <p class="sub" style="margin-top:.4rem">金額は有報「設備投資等の概要」の設備投資額（ソフトウェアを含む）です。計画中：島田事業所（静岡県島田市）の土地・建物・工具器具備品36億円（自己資金と借入金）。</p>
+  </section>
+  <section>
+    <h2>⑤ 稼いだお金の使い道</h2>
+    <p class="sub">配当と自社株買いの合計と、本業のフリーCF（線）を比べています。</p>
+    <div class="chart" id="c-ret"></div>
+    <p style="margin-top:.6rem">安定的な還元の継続と自社株買いなどの資本政策で株主価値を高めることを重要な課題とし、連結DOE3.5%以上を目指して継続的な安定配当を行う方針です。</p>
+    <h3>借入金・社債などの残高</h3>
+    <div class="chart" id="c-debt"></div>
+  </section>
+  <section>
+    <h2>⑥ 数字の一覧</h2>
+    <div class="tbl"><table id="tbl"></table></div>
+    <p class="sub" style="margin-top:.5rem">単位は億円。年度は3月期決算です（例：「26/3」は2025年4月〜2026年3月）。△はマイナス（お金が出ていったこと）を表します。</p>
+  </section>
+  <section>
+    <h2>今後を見るときのポイント</h2>
+    <ul>
+      <li><b>砂糖の採算</b>：原料糖の価格や物流費の上昇が糖類の利益を左右します。</li>
+      <li><b>イヌリンの伸び</b>：機能性表示食品などで採用が増えています。</li>
+      <li><b>新事業所への投資</b>：36億円の島田事業所が借入金と利益に与える影響を見ます。</li>
+    </ul>
+  </section>
+
+  <footer>
+    出典：EDINET フジ日本株式会社 有価証券報告書（2020年3月期〜2026年3月期）の連結財務諸表とXBRLデータ。<br>
+    「設備投資」は、キャッシュ・フロー計算書の「有形固定資産の取得による支出」と「無形固定資産の取得による支出」の合計です。この分析は情報の整理が目的で、投資を勧めるものではありません。
+  </footer>
+</div>
+<script src="data.js"></script>
+<script>
+window.CF.extra = { debt: [16.1, 16.1, 15.7, 22.3, 31.0, 48.2, 49.3] };
+window.CF_CHARTS = { 'c-debt': [[{ name: '借入金・社債など', key: 'debt', color: '--c-fin', type: 'bar' }], { h: 220 }] };
+</script>
+<script src="../assets/cf.js"></script>
+
+<script src="half.js"></script>
+<script src="../assets/half.js"></script>
+<script src="../assets/tanshin.js"></script>
+</body>
+</html>

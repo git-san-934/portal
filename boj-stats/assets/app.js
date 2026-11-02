@@ -10,6 +10,8 @@
     if (text != null) e.textContent = text;
     return e;
   };
+  // 外から集めた URL は http/https のときだけリンクにする(javascript: などを踏ませない)
+  const isWebUrl = (u) => /^https?:\/\//i.test(u || "");
   const fmtDay = (d) => d.split("-").map(Number).join("/");
   const fmtDate = (d) => {
     const [y, m, day] = d.split("-").map(Number);
@@ -55,6 +57,18 @@
       for (const g of groups.values()) {
         const it = g[0];
         const li = el("li", "item");
+        if (it.kind === "news") {
+          // 日銀ホームページの新着情報: 日銀のページへ直接リンク
+          const meta = el("span", "meta");
+          meta.append(el("span", "badge news", "日銀"), el("span", null, it.time));
+          const a = el("a", "title", it.name);
+          if (isWebUrl(it.url)) a.href = it.url;
+          a.target = "_blank";
+          a.rel = "noopener";
+          li.append(meta, a);
+          ul.append(li);
+          continue;
+        }
         const meta = el("span", "meta");
         meta.append(el("span", `badge ${it.kind}`, it.kind === "release" ? "公表" : "変化"));
         meta.append(el("span", null, fmtObs(it.obs)));
@@ -100,6 +114,12 @@
     return tr;
   }
 
+  // 見出しの横の「(YYYY/M/D 更新)」: その中の系列で最後に新しい値が入った日
+  const titleDate = (list) => {
+    const d = list.map(([, s]) => s.updated).filter(Boolean).sort().pop();
+    return d ? el("span", "title-date", ` (${fmtDay(d)} 更新)`) : "";
+  };
+
   function renderTables() {
     const entries = Object.entries(data.series);
     const head = () => {
@@ -109,7 +129,9 @@
     };
     const daily = $("daily");
     daily.replaceChildren(head());
-    entries.filter(([, s]) => s.freq === "D").forEach(([id, s]) => daily.append(row(id, s)));
+    const dailyList = entries.filter(([, s]) => s.freq === "D");
+    dailyList.forEach(([id, s]) => daily.append(row(id, s)));
+    $("daily-updated").replaceChildren(titleDate(dailyList));
 
     const jump = [];
     const cats = data.categories.map((c, i) => {
@@ -117,7 +139,9 @@
       if (!list.length) return null;
       const sec = el("section", "panel");
       sec.id = `c${i}`;
-      sec.append(el("h2", "panel-title", c));
+      const h = el("h2", "panel-title", c);
+      h.append(titleDate(list));
+      sec.append(h);
       const t = el("table", "vals");
       t.append(head());
       list.forEach(([id, s]) => t.append(row(id, s)));
@@ -192,6 +216,7 @@
       $("status").textContent = `最終更新: ${fmtDate(d.report_date)} ${t.toLocaleTimeString("ja-JP", { hour: "2-digit", minute: "2-digit", timeZone: "Asia/Tokyo" })}`;
       renderFetchStatus(d.fetch_status);
       if (d.trade_updated) $("trade-updated").textContent = ` (${fmtDay(d.trade_updated)} 更新)`;
+      if (d.tankan_latest) $("tankan-latest").textContent = ` (${+d.tankan_latest.slice(0, 4)}年${+d.tankan_latest.slice(5)}月調査まで)`;
       $("disclaimer").textContent = d.disclaimer;
       renderFeed();
       renderTables();

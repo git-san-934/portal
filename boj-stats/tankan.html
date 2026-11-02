@@ -1,0 +1,55 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>短観の推移 - 日銀統計の新着</title>
+  <meta name="description" content="日銀短観(概要)の業況判断DIなどを調査回ごとの折れ線で表示" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20261019a" />
+</head>
+<body>
+  <div class="wrap">
+    <p class="back"><a href="./">← 日銀統計の新着</a></p>
+    <header>
+      <h1>短観の推移 <span class="title-date" id="title-date"></span></h1>
+      <p class="intro">日本銀行の「全国企業短期経済観測調査(短観)」の概要から、企業の景況感(業況判断)や価格・人手・資金繰りの判断を調査回ごとに並べます。短観は3・6・9・12月の年4回で、新しい回が公表されると自動で取り込みます。</p>
+      <p class="updated" id="status">読み込み中...</p>
+    </header>
+
+    <section class="panel">
+      <h2 class="panel-title">業況判断DI <span class="code">「良い」−「悪い」(%ポイント)</span></h2>
+      <p class="note sub">景気が「良い」と答えた企業の割合から「悪い」の割合を引いた値。プラスなら良いと感じる企業の方が多いことを表します。</p>
+      <nav class="filters" id="biz-views" aria-label="表示する系列"></nav>
+      <select id="biz-ind" class="ind-select" aria-label="業種" hidden></select>
+      <div class="legend" id="biz-legend"></div>
+      <div class="chart tchart" id="biz-chart"></div>
+      <p class="note sub" id="fc-note"></p>
+      <table class="vals" id="biz-table"></table>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title"><span id="other-name">その他の判断</span> <span class="code" id="other-def"></span></h2>
+      <nav class="filters" id="other-items" aria-label="判断の種類"></nav>
+      <div class="legend" id="other-legend"></div>
+      <div class="chart tchart" id="other-chart"></div>
+      <table class="vals" id="other-table"></table>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">企業の物価見通し <span class="code">全規模・全産業の平均</span></h2>
+      <nav class="filters" id="price-kinds" aria-label="見通しの種類"></nav>
+      <div class="legend" id="price-legend"></div>
+      <div class="chart tchart" id="price-chart"></div>
+      <p class="note sub" id="price-note"></p>
+    </section>
+
+    <footer>
+      <p>出典: <a href="https://www.boj.or.jp/statistics/tk/gaiyo/2026/index.htm" target="_blank" rel="noopener">日本銀行 短観(概要)</a>の各回の Excel(zip)。2021年3月調査以降(グラフの最初の点 2020年12月調査は2021年3月調査の前回の値)。</p>
+      <p>※各回の値はその回に公表された値です。調査対象企業の見直しがあった回(2024年3月調査など)は、日銀が公表する変化幅が見直し後の企業で計算し直した前回値との差のため、ここでの「変化」と一致しないことがあります。</p>
+    </footer>
+  </div>
+  <script src="assets/linechart.js?v=20261019a"></script>
+  <script src="assets/tankan.js?v=20261019a"></script>
+</body>
+</html>

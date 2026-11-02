@@ -1,0 +1,113 @@
+:root {
+  --bg: #f7f5f0;
+  --card-bg: #ffffff;
+  --text: #23201b;
+  --text-sub: #6b645a;
+  --border: #e5e0d6;
+  --accent: #c8502d;
+  --best: #2f7d4f;
+  --good: #1a5fb4;
+  --part: #a8661a;
+  --bad: #c8102e;
+  --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.05);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #1c1a17;
+    --card-bg: #262320;
+    --text: #f0ece4;
+    --text-sub: #a89f92;
+    --border: #38342e;
+    --accent: #e0662f;
+    --best: #6cc58f;
+    --good: #6fa8ff;
+    --part: #e0a25a;
+    --bad: #ff6b81;
+    --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+  }
+}
+
+* { box-sizing: border-box; margin: 0; padding: 0; }
+
+body {
+  font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+  background: var(--bg);
+  color: var(--text);
+  line-height: 1.7;
+  -webkit-font-smoothing: antialiased;
+  padding: 2rem 1rem 4rem;
+}
+
+a { color: var(--accent); }
+
+.wrap { max-width: 44rem; margin: 0 auto; }
+
+header { text-align: center; margin-bottom: 1.25rem; }
+h1 { font-size: 1.5rem; letter-spacing: 0.02em; }
+.intro { color: var(--text-sub); font-size: 0.9rem; margin: 0.4rem auto 0; max-width: 36rem; }
+.updated { font-size: 0.8rem; margin-top: 0.3rem; }
+.updated.error { color: var(--bad); }
+.legend { font-size: 0.75rem; color: var(--text-sub); margin-top: 0.2rem; }
+
+/* ---------- 日付ごとのまとまり ---------- */
+.day { margin-top: 2rem; }
+.day + .day { border-top: 1px dashed var(--border); padding-top: 1.5rem; }
+.day-title { font-size: 1.15rem; display: flex; align-items: center; gap: 0.5rem; }
+.new {
+  font-size: 0.7rem; font-weight: 700; color: #fff; background: var(--accent);
+  padding: 0.05rem 0.55rem; border-radius: 999px;
+}
+.day-summary { font-size: 0.9rem; margin-top: 0.3rem; }
+.day-note { font-size: 0.8rem; color: var(--text-sub); margin-top: 0.2rem; }
+
+/* ---------- 銘柄カード ---------- */
+.cards { display: flex; flex-direction: column; gap: 0.9rem; margin-top: 0.8rem; font-variant-numeric: tabular-nums; }
+.card {
+  background: var(--card-bg);
+  border: 1px solid var(--border);
+  border-radius: 1rem;
+  box-shadow: var(--shadow);
+  padding: 1rem 1.1rem;
+  min-width: 0;
+}
+.card-head { display: flex; align-items: center; gap: 0.6rem; flex-wrap: wrap; }
+.rank {
+  flex-shrink: 0; width: 1.8rem; height: 1.8rem; border-radius: 50%;
+  display: grid; place-items: center; font-weight: 700; font-size: 0.9rem;
+  background: var(--bg); border: 1px solid var(--border);
+}
+.card-name { font-size: 1.1rem; line-height: 1.4; flex: 1; min-width: 0; }
+.card-name a { color: inherit; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
+.card-name .code { font-size: 0.8rem; color: var(--text-sub); font-weight: 400; margin-left: 0.4rem; white-space: nowrap; }
+.close { font-weight: 700; }
+
+.tally { display: flex; flex-wrap: wrap; gap: 0.3rem; margin-top: 0.5rem; }
+.chip { font-size: 0.75rem; font-weight: 700; border: 1px solid currentColor; border-radius: 999px; padding: 0 0.55rem; }
+.m-best { color: var(--best); }
+.m-good { color: var(--good); }
+.m-part { color: var(--part); }
+.m-bad { color: var(--bad); }
+.m-unknown { color: var(--text-sub); }
+
+.headline { font-weight: 700; font-size: 0.92rem; margin-top: 0.5rem; }
+
+.conds { margin-top: 0.6rem; font-size: 0.85rem; }
+.conds summary { cursor: pointer; color: var(--accent); font-weight: 700; }
+.conds table { width: 100%; border-collapse: collapse; margin-top: 0.4rem; }
+.conds td { border-top: 1px solid var(--border); padding: 0.35rem 0.3rem; vertical-align: top; }
+.conds .no { color: var(--text-sub); width: 1.8rem; }
+.conds .label { font-weight: 700; }
+.conds .value { color: var(--text-sub); font-size: 0.8rem; overflow-wrap: anywhere; }
+.conds .mark { width: 2.6rem; text-align: center; font-weight: 700; }
+
+.sub-title { font-size: 0.85rem; font-weight: 700; margin-top: 0.6rem; }
+.bullets { font-size: 0.85rem; padding-left: 1.2rem; }
+.bullets li + li { margin-top: 0.15rem; }
+.sources { font-size: 0.75rem; color: var(--text-sub); margin-top: 0.5rem; }
+
+footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: var(--text-sub); line-height: 1.8; }
+
+@media (max-width: 30rem) {
+  .card { padding: 0.85rem 0.9rem; }
+}

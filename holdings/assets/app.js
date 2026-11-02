@@ -4,6 +4,7 @@
   const CHECK_URL = "data/check.json";
   const PRICES_URL = "data/prices.json";
   const LIST_URL = "data/holdings.json"; // 銘柄リスト(ページの「銘柄リストの編集」から書き換わる)
+  const MARGIN_URL = "data/margin.json"; // 日本株の信用取引残高(東証の日次公表、scripts/fetch_margin.py)
   // 日本株は "<code>.T"、米国株などは check.json の ticker(例: ORCL)
   const YAHOO_URL = (stock) =>
     `https://finance.yahoo.co.jp/quote/${encodeURIComponent(stock.currency && stock.currency !== "JPY" ? stock.ticker || stock.code : `${stock.code}.T`)}`;
@@ -85,12 +86,34 @@
     return fx && fx.rate ? fx.rate : null;
   }
 
+  // 信用買いの平均買値(保有比率の右隣に置く)。現在値がそれより上なら信用買いは平均で含み益
+  function marginItem(code, currentPrice, cur) {
+    const m = book.margin.get(code);
+    if (!m) return null;
+    const gap = (currentPrice / m.avg - 1) * 100;
+    const item = el("div", "margin-item");
+    item.title = `東証の銘柄別信用取引残高(${dateFmt(m.date)}時点)の買残の金額 ÷ 株数。信用買い残 ${numFmt.format(m.shares)}株`;
+    const dd = el("dd", "pct", priceFmt(Math.round(m.avg), cur));
+    dd.appendChild(el("span", `margin-gap ${pctClass(gap)}`, `現在値 ${pctText(gap)}`));
+    item.append(el("dt", null, `信用買い平均(${shortDate(m.date)})`), dd);
+    return item;
+  }
+
   function renderPnl(code, slot = $(`pnl-${code}`)) {
     if (!slot) return;
     slot.replaceChildren();
     const position = getPositions()[code];
     const currentPrice = Number(slot.dataset.price);
-    if (!position || !currentPrice) return;
+    if (!position || !currentPrice) {
+      // 保有を入力していない銘柄でも、信用買いの平均買値は出す
+      const item = currentPrice ? marginItem(code, currentPrice, slot.dataset.currency || "JPY") : null;
+      if (item) {
+        const dl = el("dl", "stats pnl");
+        dl.appendChild(item);
+        slot.appendChild(dl);
+      }
+      return;
+    }
     const pnl = calcPnl(currentPrice, position.price, position.quantity);
     if (!pnl) return;
     const cur = slot.dataset.currency || "JPY";
@@ -114,6 +137,8 @@
       item.append(el("dt", null, dt), el("dd", cls, dd));
       pnlStats.appendChild(item);
     }
+    const mItem = marginItem(code, currentPrice, cur);
+    if (mItem) pnlStats.appendChild(mItem);
     slot.appendChild(pnlStats);
     if (cur !== "JPY") {
       const fx = book.fx[`${cur}JPY`];
@@ -135,7 +160,7 @@
   const WEIGHT_CAP = 25;
   const WEIGHT_TRIM = 35;
 
-  const book = { stocks: [], series: new Map(), fx: {}, weights: new Map() };
+  const book = { stocks: [], series: new Map(), fx: {}, weights: new Map(), margin: new Map() };
 
   // 2銘柄がどちらも取引した日だけで、直近20日分の日次対数リターンの組を作る
   // (東証と米国市場は休場日が違うため。米国の終値は日本時間では翌朝に付く点は近似)
@@ -230,7 +255,25 @@
     return { text: base, tone: h.stock.tone || "hold", why: "" };
   }
 
+  // 個別銘柄のカードを日本株→米国株の順に、それぞれ取得金額(取得単価×保有株数)の大きい順に並べる。
+  // 保有を登録していない銘柄は各グループの後ろに、銘柄リストの順で置く
+  function sortCards() {
+    const cards = $("cards");
+    if (!cards) return;
+    const positions = getPositions();
+    const order = book.stocks.map((stock, i) => {
+      const pos = positions[stock.code];
+      return { stock, i, us: curOf(stock) !== "JPY", cost: pos ? pos.price * pos.quantity : 0 };
+    });
+    order.sort((a, b) => a.us - b.us || b.cost - a.cost || a.i - b.i);
+    for (const { stock } of order) {
+      const card = $(`s-${stock.code}`);
+      if (card) cards.appendChild(card);
+    }
+  }
+
   function renderPortfolio() {
+    sortCards();
     const panel = $("portfolio-panel");
     if (!panel) return;
     const pf = portfolioStats();
@@ -365,7 +408,16 @@
 
   // ---------- チャート ----------
 
-  function buildChart(dates, close, lines, name, cur = "JPY") {
+  // 信用買いの平均買値(買残の金額 ÷ 株数)の推移。チャートの日付に載っている日だけ
+  function marginPoints(dates, margin) {
+    if (!margin || !margin.length) return [];
+    const idx = new Map(dates.map((d, i) => [d, i]));
+    return margin
+      .filter((m) => m.buy_shares > 0 && idx.has(m.date))
+      .map((m) => ({ i: idx.get(m.date), date: m.date, avg: m.buy_value / m.buy_shares, shares: m.buy_shares, sell: m.sell_shares }));
+  }
+
+  function buildChart(dates, close, lines, name, cur = "JPY", margin = null) {
     const wrap = el("div", "chart-wrap");
     const box = el("div", "chart-box");
     box.setAttribute("role", "img");
@@ -395,6 +447,14 @@
       min = Math.min(min, l.price);
       max = Math.max(max, l.price);
     }
+    // 信用買いの平均買値も、値幅の半分以内なら縦軸に含める
+    const mpts = marginPoints(dates, margin).filter((p) => p.avg > min - range0 * 0.5 && p.avg < max + range0 * 0.5);
+    const mByIndex = new Map(mpts.map((p) => [p.i, p]));
+    for (const p of mpts) {
+      min = Math.min(min, p.avg);
+      max = Math.max(max, p.avg);
+    }
+    const mLast = mpts.length ? mpts[mpts.length - 1] : null;
     const range = max - min || 1;
     const n = dates.length;
     const xPct = (i) => (n <= 1 ? 50 : (i / (n - 1)) * 100);
@@ -420,7 +480,13 @@
       return `<line class="grid-line" x1="${x}" x2="${x}" y1="0" y2="${H}" />`;
     });
     const rlines = shown.map((l) => `<line class="review-line" x1="0" x2="${W}" y1="${yOf(l.price).toFixed(1)}" y2="${yOf(l.price).toFixed(1)}" />`);
-    svg.innerHTML = `${vlines.join("")}${grid.join("")}${rlines.join("")}<path class="chart-line" d="${d}" />`;
+    let mpath = "";
+    if (mLast) {
+      const y = yOf(mLast.avg).toFixed(1);
+      const md = mpts.map((p, k) => `${k ? "L" : "M"}${((xPct(p.i) / 100) * W).toFixed(1)},${yOf(p.avg).toFixed(1)}`).join("");
+      mpath = `<line class="margin-level" x1="0" x2="${W}" y1="${y}" y2="${y}" />${mpts.length > 1 ? `<path class="margin-line" d="${md}" />` : ""}`;
+    }
+    svg.innerHTML = `${vlines.join("")}${grid.join("")}${rlines.join("")}${mpath}<path class="chart-line" d="${d}" />`;
 
     for (const t of ticks) {
       const lab = el("span", "tick-label", numFmt.format(t));
@@ -430,6 +496,11 @@
     for (const l of shown) {
       const lab = el("span", "line-label", `${l.label} ${numFmt.format(l.price)}`);
       lab.style.top = `${(yOf(l.price) / H) * 100}%`;
+      labels.appendChild(lab);
+    }
+    if (mLast) {
+      const lab = el("span", "line-label margin-label", `信用買い平均 ${numFmt.format(Math.round(mLast.avg))}`);
+      lab.style.top = `${(yOf(mLast.avg) / H) * 100}%`;
       labels.appendChild(lab);
     }
     for (const { i, label } of months) {
@@ -456,7 +527,10 @@
       const left = `${xPct(i)}%`;
       crosshair.style.left = dot.style.left = tooltip.style.left = left;
       dot.style.top = `${(yOf(close[i]) / H) * 100}%`;
-      tooltip.textContent = `${dateFmt(dates[i])}  ${priceFmt(close[i], cur)}\n現在まで ${pctText((last / close[i] - 1) * 100)}`;
+      const mp = mByIndex.get(i);
+      tooltip.textContent =
+        `${dateFmt(dates[i])}  ${priceFmt(close[i], cur)}\n現在まで ${pctText((last / close[i] - 1) * 100)}` +
+        (mp ? `\n信用買い平均 ${priceFmt(Math.round(mp.avg), cur)}` : "");
       tooltip.classList.toggle("edge-left", xPct(i) < 20);
       tooltip.classList.toggle("edge-right", xPct(i) > 80);
       crosshair.hidden = dot.hidden = tooltip.hidden = false;
@@ -555,9 +629,12 @@
     plan.append(el("strong", null, "判定"), document.createTextNode(stock.plan));
 
     card.append(head, stats, pnlSlot, rr);
+    const mpts = prices && curOf(stock) === "JPY" ? marginPoints(prices.dates, prices.margin) : [];
+    if (mpts.length) book.margin.set(stock.code, mpts[mpts.length - 1]);
     renderPnl(stock.code, pnlSlot);
     if (stock.risk_note) card.appendChild(el("p", "risk-note", `* ${stock.risk_note}`));
-    if (prices) card.appendChild(buildChart(prices.dates, prices.close, stock.lines || [], stock.name, curOf(stock)));
+    if (prices)
+      card.appendChild(buildChart(prices.dates, prices.close, stock.lines || [], stock.name, curOf(stock), curOf(stock) === "JPY" ? prices.margin : null));
     card.appendChild(plan);
 
     if (stock.memo && stock.memo.length) {
@@ -971,6 +1048,14 @@
     }
     const stocks = mergeStocks(check, list, (prices && prices.missing) || []);
 
+    // 信用取引残高(日本株のみ)。なくてもチャートは出す
+    let margin = {};
+    try {
+      margin = (await loadJson(MARGIN_URL)).stocks || {};
+    } catch (err) {
+      console.warn(err);
+    }
+
     const series = new Map();
     if (prices) for (const s of prices.stocks) series.set(s.code, s.close);
     book.stocks = stocks;
@@ -1003,7 +1088,7 @@
       const close = series.get(stock.code);
       const st = close ? statsFromPrices(prices.dates, close) : null;
       overview.appendChild(buildOverviewRow(stock));
-      cards.appendChild(buildCard(stock, st, close && st ? { dates: prices.dates, close } : null));
+      cards.appendChild(buildCard(stock, st, close && st ? { dates: prices.dates, close, margin: margin[stock.code] } : null));
     }
     $("overview-panel").hidden = false;
     cards.hidden = false;

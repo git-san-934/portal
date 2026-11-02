@@ -1,7 +1,1570 @@
 {
- "generated_at": "2026-10-07T08:28+09:00",
- "report_date": "2026-10-07",
+ "generated_at": "2026-11-02T14:36+09:00",
+ "report_date": "2026-11-02",
  "days": [
+  {
+   "date": "2026-11-02",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/kaiken_2026/kk261102a.pdf",
+     "name": "【記者会見】植田総裁（10月30日分）",
+     "url": "https://www.boj.or.jp/about/press/kaiken_2026/kk261102a.pdf",
+     "time": "14:10"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/outlook/gor2610b.pdf",
+     "name": "経済・物価情勢の展望（10月、全文）",
+     "url": "https://www.boj.or.jp/mopo/outlook/gor2610b.pdf",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/fm/juqf/juqf10.xlsx",
+     "name": "日銀当座預金増減要因と金融調節（10月実績）",
+     "url": "https://www.boj.or.jp/statistics/boj/fm/juqf/juqf10.xlsx",
+     "time": "13:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-30",
+   "items": [
+    {
+     "kind": "release",
+     "id": "STAT_CPI_TKY_ALL_YOY",
+     "name": "消費者物価（東京都区部・総合）前年比",
+     "obs": "2026-10",
+     "value": "2.8",
+     "unit": "%",
+     "change": "+0.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "STAT_CPI_TKY_CORE_YOY",
+     "name": "消費者物価（東京都区部・生鮮食品を除く総合）前年比",
+     "obs": "2026-10",
+     "value": "2.6",
+     "unit": "%",
+     "change": "-0.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "STAT_CPI_TKY_CORECORE_YOY",
+     "name": "消費者物価（東京都区部・生鮮食品及びエネルギーを除く総合）前年比",
+     "obs": "2026-10",
+     "value": "2.6",
+     "unit": "%",
+     "change": "-0.300%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_LFS_UNEMP_RATE",
+     "name": "完全失業率（季節調整値）",
+     "obs": "2026-09",
+     "value": "2.4",
+     "unit": "%",
+     "change": "-0.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_LFS_EMPLOYED",
+     "name": "就業者数（季節調整値）",
+     "obs": "2026-09",
+     "value": "6,868",
+     "unit": "万人",
+     "change": "+0.50%"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KOURI_TKY_RICE",
+     "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
+     "obs": "2026-10",
+     "value": "3,698",
+     "unit": "円",
+     "change": "-8.71%"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KOURI_TKY_EGG",
+     "name": "東京都区部 小売価格 鶏卵 1パック",
+     "obs": "2026-10",
+     "value": "324",
+     "unit": "円",
+     "change": "+0.00%"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KOURI_TKY_GASOLINE",
+     "name": "東京都区部 小売価格 ガソリン 1L",
+     "obs": "2026-10",
+     "value": "172",
+     "unit": "円",
+     "change": "+0.00%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_KOURI_TKY_RICE",
+     "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
+     "obs": "2026-10",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "3,698円"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030c.pdf",
+     "name": "長期国債買入れ（利回り・価格入札方式）の四半期予定（2026年10～12月）［日程更新］",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030c.pdf",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030b.pdf",
+     "name": "米ドル資金供給オペレーションのオファー日程（2026年11月～2027年3月）",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030b.pdf",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/release/sousaidouga.htm",
+     "name": "総裁記者会見（10月30日）動画の配信開始",
+     "url": "https://www.boj.or.jp/about/release/sousaidouga.htm",
+     "time": "16:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030a.pdf",
+     "name": "「指数連動型上場投資信託受益権等の処分の指針」の一部改正について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261030a.pdf",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/release/sousailive.htm",
+     "name": "総裁記者会見ライブ配信（10月30日15時30分予定）",
+     "url": "https://www.boj.or.jp/about/release/sousailive.htm",
+     "time": "13:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030a.pdf",
+     "name": "当面の金融政策運営について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030a.pdf",
+     "time": "13:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/outlook/gor2610a.pdf",
+     "name": "経済・物価情勢の展望（10月、基本的見解）",
+     "url": "https://www.boj.or.jp/mopo/outlook/gor2610a.pdf",
+     "time": "13:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030b.pdf",
+     "name": "（参考）経済・物価情勢の展望と基調的な物価上昇率に関連する各種指標",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030b.pdf",
+     "time": "12:02"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030c.pdf",
+     "name": "（参考）ETFの売却ペースの見直しに関する決定（2026年10月）",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k261030c.pdf",
+     "time": "12:02"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/set/kess/release/2026/kess2609.pdf",
+     "name": "決済動向（9月）",
+     "url": "https://www.boj.or.jp/statistics/set/kess/release/2026/kess2609.pdf",
+     "time": "11:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/release_2026/rel261030a.htm",
+     "name": "日本銀行の役員に就いている退職公務員等の状況等の公表について",
+     "url": "https://www.boj.or.jp/about/release_2026/rel261030a.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-29",
+   "items": [
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_NAND",
+     "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み）",
+     "obs": "2026-09",
+     "value": "364.2",
+     "unit": "億円",
+     "change": "+183億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_NAND_YOY",
+     "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み） 前年同月比",
+     "obs": "2026-09",
+     "value": "493.6",
+     "unit": "%",
+     "change": "+424.900%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_DRAM",
+     "name": "貿易統計 台湾向け輸出 DRAM（組立済み）",
+     "obs": "2026-09",
+     "value": "3.3",
+     "unit": "億円",
+     "change": "+1億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_DRAM_YOY",
+     "name": "貿易統計 台湾向け輸出 DRAM（組立済み） 前年同月比",
+     "obs": "2026-09",
+     "value": "3,293",
+     "unit": "%",
+     "change": "+2159.500%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_MEM_DIE",
+     "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ）",
+     "obs": "2026-09",
+     "value": "1,659",
+     "unit": "億円",
+     "change": "+138億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_MEM_DIE_YOY",
+     "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ） 前年同月比",
+     "obs": "2026-09",
+     "value": "88.2",
+     "unit": "%",
+     "change": "+2.200%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_MLCC",
+     "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC）",
+     "obs": "2026-09",
+     "value": "153.6",
+     "unit": "億円",
+     "change": "+17億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_MLCC_YOY",
+     "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC） 前年同月比",
+     "obs": "2026-09",
+     "value": "70.9",
+     "unit": "%",
+     "change": "+15.900%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_IC",
+     "name": "貿易統計 台湾向け輸出 集積回路 計",
+     "obs": "2026-09",
+     "value": "2,390",
+     "unit": "億円",
+     "change": "+311億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_IC_YOY",
+     "name": "貿易統計 台湾向け輸出 集積回路 計 前年同月比",
+     "obs": "2026-09",
+     "value": "97.2",
+     "unit": "%",
+     "change": "+31.000%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_SEMI_EQUIP",
+     "name": "貿易統計 台湾向け輸出 半導体等製造装置",
+     "obs": "2026-09",
+     "value": "1,180",
+     "unit": "億円",
+     "change": "+103億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_SEMI_EQUIP_YOY",
+     "name": "貿易統計 台湾向け輸出 半導体等製造装置 前年同月比",
+     "obs": "2026-09",
+     "value": "64.2",
+     "unit": "%",
+     "change": "+33.500%pt"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_NAND",
+     "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み）",
+     "obs": "2026-09",
+     "type": "急変",
+     "dir": "上昇",
+     "detail": "+183億円（z=+3.1）"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_NAND",
+     "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み）",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "364.2億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_NAND_YOY",
+     "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み） 前年同月比",
+     "obs": "2026-09",
+     "type": "急変",
+     "dir": "上昇",
+     "detail": "+424.900%pt（z=+5.8）"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_NAND_YOY",
+     "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み） 前年同月比",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "493.6%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_DRAM_YOY",
+     "name": "貿易統計 台湾向け輸出 DRAM（組立済み） 前年同月比",
+     "obs": "2026-09",
+     "type": "トレンド転換",
+     "dir": "上昇",
+     "detail": "3期移動平均が12期移動平均を上抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_MEM_DIE",
+     "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ）",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "1,659億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_MLCC",
+     "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC）",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "153.6億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_MLCC_YOY",
+     "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC） 前年同月比",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "70.9%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_IC",
+     "name": "貿易統計 台湾向け輸出 集積回路 計",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "2,390億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_IC_YOY",
+     "name": "貿易統計 台湾向け輸出 集積回路 計 前年同月比",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "97.2%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_SEMI_EQUIP_YOY",
+     "name": "貿易統計 台湾向け輸出 半導体等製造装置 前年同月比",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "64.2%"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-28",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/measures/select/s_release/srel261028a.htm",
+     "name": "金融市場調節取引の2026年度対象先公募の結果等について",
+     "url": "https://www.boj.or.jp/mopo/measures/select/s_release/srel261028a.htm",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/intlact_fs/risk/ris261028a.htm",
+     "name": "バーゼル銀行監督委員会による「AML/CFTに関する監督ニューズレター」の公表について",
+     "url": "https://www.boj.or.jp/finsys/intlact_fs/risk/ris261028a.htm",
+     "time": "11:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-27",
+   "items": [
+    {
+     "kind": "release",
+     "id": "PR02_PRCS20_5200000000%",
+     "name": "企業向けサービス価格指数 前年比",
+     "obs": "2026-09",
+     "value": "3.7",
+     "unit": "%",
+     "change": "+0.200%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_IDOU_TOKYO_AREA_NET",
+     "name": "東京圏の転入超過数（住民基本台帳）",
+     "obs": "2026-09",
+     "value": "3,803",
+     "unit": "人",
+     "change": "+542人"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_IDOU_TOKYO_NET",
+     "name": "東京都の転入超過数（住民基本台帳）",
+     "obs": "2026-09",
+     "value": "862",
+     "unit": "人",
+     "change": "-182人"
+    },
+    {
+     "kind": "signal",
+     "id": "PR02_PRCS20_5200000000%",
+     "name": "企業向けサービス価格指数 前年比",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "3.7%"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/cpi/index.htm",
+     "name": "消費者物価のコア指標",
+     "url": "https://www.boj.or.jp/research/research_data/cpi/index.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/release_2026/rel261027a.htm",
+     "name": "情報セキュリティ・セミナー「AIエージェント時代に求められるセキュリティ戦略と課題」開催のお知らせ",
+     "url": "https://www.boj.or.jp/about/release_2026/rel261027a.htm",
+     "time": "13:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/pi/cspi_release/sppi2609.pdf",
+     "name": "企業向けサービス価格指数（9月）",
+     "url": "https://www.boj.or.jp/statistics/pi/cspi_release/sppi2609.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-23",
+   "items": [
+    {
+     "kind": "release",
+     "id": "CPI_CPI_ALL_YOY",
+     "name": "消費者物価（全国・総合）前年比",
+     "obs": "2026-09",
+     "value": "2.1",
+     "unit": "%",
+     "change": "+0.200%pt"
+    },
+    {
+     "kind": "release",
+     "id": "CPI_CPI_CORE_YOY",
+     "name": "消費者物価（全国・生鮮食品を除く総合）前年比",
+     "obs": "2026-09",
+     "value": "2.1",
+     "unit": "%",
+     "change": "+0.400%pt"
+    },
+    {
+     "kind": "release",
+     "id": "CPI_CPI_CORECORE_YOY",
+     "name": "消費者物価（全国・生鮮食品及びエネルギーを除く総合）前年比",
+     "obs": "2026-09",
+     "value": "2.4",
+     "unit": "%",
+     "change": "+0.500%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_SVC_SALES_YOY",
+     "name": "サービス産業 売上高前年比（サービス産業計）",
+     "obs": "2026-08",
+     "value": "3.6",
+     "unit": "%",
+     "change": "-1.400%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_SVC_ICT_YOY",
+     "name": "サービス産業 売上高前年比（情報通信業）",
+     "obs": "2026-08",
+     "value": "3.3",
+     "unit": "%",
+     "change": "-3.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_SVC_HOTEL_FOOD_YOY",
+     "name": "サービス産業 売上高前年比（宿泊業・飲食サービス業）",
+     "obs": "2026-08",
+     "value": "3.3",
+     "unit": "%",
+     "change": "-2.800%pt"
+    },
+    {
+     "kind": "signal",
+     "id": "CPI_CPI_ALL_YOY",
+     "name": "消費者物価（全国・総合）前年比",
+     "obs": "2026-09",
+     "type": "トレンド転換",
+     "dir": "上昇",
+     "detail": "3期移動平均が12期移動平均を上抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "CPI_CPI_CORECORE_YOY",
+     "name": "消費者物価（全国・生鮮食品及びエネルギーを除く総合）前年比",
+     "obs": "2026-09",
+     "type": "急変",
+     "dir": "上昇",
+     "detail": "+0.500%pt（z=+2.6）"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_SVC_ICT_YOY",
+     "name": "サービス産業 売上高前年比（情報通信業）",
+     "obs": "2026-08",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "3.3%"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261023a.htm",
+     "name": "バーゼル銀行監督委員会による「グローバルなシステム上重要な銀行（G-SIB）-ウィンドウ・ドレッシング行動に対処するための評価枠組みの改訂」及び市中協議文書「G-SIB評価手法のレビュー」の公表について",
+     "url": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261023a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/organization/policyboard/pb_geppo/pbgp2609.htm",
+     "name": "日本銀行政策委員会月報（令和8年8・9月号）",
+     "url": "https://www.boj.or.jp/about/organization/policyboard/pb_geppo/pbgp2609.htm",
+     "time": "16:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/brp/fsr/fsr261023.htm",
+     "name": "金融システムレポート（2026年10月号）",
+     "url": "https://www.boj.or.jp/research/brp/fsr/fsr261023.htm",
+     "time": "15:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-22",
+   "items": [
+    {
+     "kind": "release",
+     "id": "LA05_DLLSDLPB",
+     "name": "資金需要判断DI 企業向け（主要銀行アンケート）",
+     "obs": "2026Q4",
+     "value": "3",
+     "unit": "%pt",
+     "change": "+4.000%pt"
+    },
+    {
+     "kind": "release",
+     "id": "LA05_DLLSDLPH",
+     "name": "資金需要判断DI 個人向け（主要銀行アンケート）",
+     "obs": "2026Q4",
+     "value": "5",
+     "unit": "%pt",
+     "change": "+2.000%pt"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261020.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261020.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j14.htm",
+     "name": "（日銀レビュー）企業の決算説明会テキストを用いた経済政策不確実性の考察",
+     "url": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j14.htm",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/reri/index.htm",
+     "name": "実質輸出入の動向",
+     "url": "https://www.boj.or.jp/research/research_data/reri/index.htm",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261020.htm",
+     "name": "営業毎旬報告（10月20日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261020.htm",
+     "time": "10:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/dl/loan/loos/release/loos2610.pdf",
+     "name": "主要銀行貸出動向アンケート調査（10月）",
+     "url": "https://www.boj.or.jp/statistics/dl/loan/loos/release/loos2610.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/bis/repo/index.htm",
+     "name": "FSBレポ統計の日本分集計結果",
+     "url": "https://www.boj.or.jp/statistics/bis/repo/index.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-21",
+   "items": [
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EXPORTS",
+     "name": "貿易統計 輸出額（財務省・通関ベース）",
+     "obs": "2026-09",
+     "value": "109,539",
+     "unit": "億円",
+     "change": "+9,106億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_IMPORTS",
+     "name": "貿易統計 輸入額（財務省・通関ベース）",
+     "obs": "2026-09",
+     "value": "115,103",
+     "unit": "億円",
+     "change": "+3,464億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_BALANCE",
+     "name": "貿易統計 差引（輸出−輸入）",
+     "obs": "2026-09",
+     "value": "-5,565",
+     "unit": "億円",
+     "change": "+5,641億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EXPORTS_YOY",
+     "name": "貿易統計 輸出額 前年同月比",
+     "obs": "2026-09",
+     "value": "16.5",
+     "unit": "%",
+     "change": "-2.800%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_IMPORTS_YOY",
+     "name": "貿易統計 輸入額 前年同月比",
+     "obs": "2026-09",
+     "value": "18.9",
+     "unit": "%",
+     "change": "-9.200%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_USA",
+     "name": "貿易統計 輸出 対米国",
+     "obs": "2026-09",
+     "value": "19,620",
+     "unit": "億円",
+     "change": "+2,376億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_USA_YOY",
+     "name": "貿易統計 輸出 対米国 前年同月比",
+     "obs": "2026-09",
+     "value": "22.9",
+     "unit": "%",
+     "change": "-2.000%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_IM_USA",
+     "name": "貿易統計 輸入 対米国",
+     "obs": "2026-09",
+     "value": "15,703",
+     "unit": "億円",
+     "change": "-847億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_IM_USA_YOY",
+     "name": "貿易統計 輸入 対米国 前年同月比",
+     "obs": "2026-09",
+     "value": "44.8",
+     "unit": "%",
+     "change": "-10.400%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_CHINA",
+     "name": "貿易統計 輸出 対中国",
+     "obs": "2026-09",
+     "value": "17,280",
+     "unit": "億円",
+     "change": "-811億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_CHINA_YOY",
+     "name": "貿易統計 輸出 対中国 前年同月比",
+     "obs": "2026-09",
+     "value": "8.5",
+     "unit": "%",
+     "change": "-12.000%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_IM_CHINA",
+     "name": "貿易統計 輸入 対中国",
+     "obs": "2026-09",
+     "value": "27,574",
+     "unit": "億円",
+     "change": "+3,950億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_IM_CHINA_YOY",
+     "name": "貿易統計 輸入 対中国 前年同月比",
+     "obs": "2026-09",
+     "value": "16.4",
+     "unit": "%",
+     "change": "-6.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_EU",
+     "name": "貿易統計 輸出 対EU",
+     "obs": "2026-09",
+     "value": "9,843",
+     "unit": "億円",
+     "change": "+1,179億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_EU_YOY",
+     "name": "貿易統計 輸出 対EU 前年同月比",
+     "obs": "2026-09",
+     "value": "10.4",
+     "unit": "%",
+     "change": "-0.600%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_IM_EU",
+     "name": "貿易統計 輸入 対EU",
+     "obs": "2026-09",
+     "value": "11,264",
+     "unit": "億円",
+     "change": "+293億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_IM_EU_YOY",
+     "name": "貿易統計 輸入 対EU 前年同月比",
+     "obs": "2026-09",
+     "value": "-0.1",
+     "unit": "%",
+     "change": "-20.500%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_ASEAN",
+     "name": "貿易統計 輸出 対ASEAN",
+     "obs": "2026-09",
+     "value": "17,171",
+     "unit": "億円",
+     "change": "+2,351億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_ASEAN_YOY",
+     "name": "貿易統計 輸出 対ASEAN 前年同月比",
+     "obs": "2026-09",
+     "value": "25",
+     "unit": "%",
+     "change": "+2.700%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_IM_ASEAN",
+     "name": "貿易統計 輸入 対ASEAN",
+     "obs": "2026-09",
+     "value": "18,414",
+     "unit": "億円",
+     "change": "+470億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_IM_ASEAN_YOY",
+     "name": "貿易統計 輸入 対ASEAN 前年同月比",
+     "obs": "2026-09",
+     "value": "16.1",
+     "unit": "%",
+     "change": "-10.900%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TAIWAN",
+     "name": "貿易統計 輸出 対台湾",
+     "obs": "2026-09",
+     "value": "9,182",
+     "unit": "億円",
+     "change": "+321億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TAIWAN_YOY",
+     "name": "貿易統計 輸出 対台湾 前年同月比",
+     "obs": "2026-09",
+     "value": "37.7",
+     "unit": "%",
+     "change": "-2.000%pt"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_EU_YOY",
+     "name": "貿易統計 輸出 対EU 前年同月比",
+     "obs": "2026-09",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "3期移動平均が12期移動平均を下抜け"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-20",
+   "items": [
+    {
+     "kind": "release",
+     "id": "ESTAT_POP_TOTAL",
+     "name": "総人口（各月1日）",
+     "obs": "2026-05",
+     "value": "122,812,150",
+     "unit": "人",
+     "change": "-0.02%"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_POP_NET_MIGRATION",
+     "name": "人口の社会増減（入国−出国）",
+     "obs": "2026-04",
+     "value": "37,214",
+     "unit": "人",
+     "change": "-73,250人"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_POP_NET_MIGRATION",
+     "name": "人口の社会増減（入国−出国）",
+     "obs": "2026-04",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "3期移動平均が12期移動平均を下抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261020a.htm",
+     "name": "バーゼル銀行監督委員会による「整合性評価プログラム（RCAP）におけるレバレッジ比率規制の評価」の公表について",
+     "url": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261020a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/kaiken_2026/kk261020a.pdf",
+     "name": "【記者会見】植田総裁（G20、10月16日分）",
+     "url": "https://www.boj.or.jp/about/press/kaiken_2026/kk261020a.pdf",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/imes/mes/mes26.htm",
+     "name": "「金融研究」掲載論文（2026年収録分）",
+     "url": "https://www.boj.or.jp/research/imes/mes/mes26.htm",
+     "time": "11:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-19",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/paym/intlact_pm/cpss/cpss261019a.htm",
+     "name": "「金融市場インフラ（FMI）によるビジネスリスク・ビジネスロス管理：金融市場インフラのための原則（FMI原則）に関する追加ガイダンス」の公表について",
+     "url": "https://www.boj.or.jp/paym/intlact_pm/cpss/cpss261019a.htm",
+     "time": "12:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-16",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261016a.htm",
+     "name": "金融安定理事会による最終報告書「AIの責任ある導入に関する健全な実務慣行」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261016a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/cabs/cabs.xlsx",
+     "name": "業態別の日銀当座預金残高（9月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/cabs/cabs.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/koen_2026/ko261016a.htm",
+     "name": "【挨拶】植田総裁（内田副総裁代読）（全国信用組合大会）",
+     "url": "https://www.boj.or.jp/about/press/koen_2026/ko261016a.htm",
+     "time": "15:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/kaiken_2026/kk261016a.pdf",
+     "name": "【記者会見】小枝審議委員（熊本、10月15日分）",
+     "url": "https://www.boj.or.jp/about/press/kaiken_2026/kk261016a.pdf",
+     "time": "13:30"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-15",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261015b.htm",
+     "name": "金融安定理事会による市中協議文書「規制・監督の現代化に係る原則」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261015b.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261015a.htm",
+     "name": "金融安定理事会による「G20金融規制改革の実施モニタリングレビュー：2026年報告書」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261015a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/koen_2026/ko261015a.htm",
+     "name": "【挨拶】小枝審議委員「わが国の経済・物価情勢と金融政策」（熊本）",
+     "url": "https://www.boj.or.jp/about/press/koen_2026/ko261015a.htm",
+     "time": "10:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/paym/market/mkt261015a.pdf",
+     "name": "「市場調節に関する意見交換会」（2026年10月）の概要",
+     "url": "https://www.boj.or.jp/paym/market/mkt261015a.pdf",
+     "time": "10:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-14",
+   "items": [
+    {
+     "kind": "release",
+     "id": "MD02_MAM1YAM2M2MO",
+     "name": "マネーストック M2 前年比",
+     "obs": "2026-09",
+     "value": "2",
+     "unit": "%",
+     "change": "+0.000%pt"
+    },
+    {
+     "kind": "release",
+     "id": "MD02_MAM1YAM3M3MO",
+     "name": "マネーストック M3 前年比",
+     "obs": "2026-09",
+     "value": "1.2",
+     "unit": "%",
+     "change": "+0.000%pt"
+    },
+    {
+     "kind": "signal",
+     "id": "MD02_MAM1YAM3M3MO",
+     "name": "マネーストック M3 前年比",
+     "obs": "2026-09",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "3期移動平均が12期移動平均を下抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/cooperate/coop261014a.pdf",
+     "name": "第15回日中韓・中央銀行総裁会合の開催について",
+     "url": "https://www.boj.or.jp/intl_finance/cooperate/coop261014a.pdf",
+     "time": "20:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261009.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261009.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261010.htm",
+     "name": "営業毎旬報告（10月10日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261010.htm",
+     "time": "10:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/money/ms/ms2609.pdf",
+     "name": "マネーストック（9月）",
+     "url": "https://www.boj.or.jp/statistics/money/ms/ms2609.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-13",
+   "items": [
+    {
+     "kind": "release",
+     "id": "PR01_PRCG20_2200000000",
+     "name": "国内企業物価指数 総平均",
+     "obs": "2026-09",
+     "value": "135.7",
+     "unit": "2020年=100",
+     "change": "-0.29%"
+    },
+    {
+     "kind": "release",
+     "id": "PR01_PRCG20_2200000000%",
+     "name": "国内企業物価指数 前年比",
+     "obs": "2026-09",
+     "value": "6.8",
+     "unit": "%",
+     "change": "-0.800%pt"
+    },
+    {
+     "kind": "release",
+     "id": "PR01_PRCG20_2600000000%",
+     "name": "輸入物価指数（円ベース）前年比",
+     "obs": "2026-09",
+     "value": "24.5",
+     "unit": "%",
+     "change": "-0.600%pt"
+    },
+    {
+     "kind": "release",
+     "id": "MD13_FAAPOBAL1_at_",
+     "name": "銀行貸出（総貸出平残）前年比",
+     "obs": "2026-09",
+     "value": "5.7",
+     "unit": "%",
+     "change": "-0.100%pt"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261013c.htm",
+     "name": "金融安定理事会による「グローバル・ステーブルコイン（GSC）：クロスボーダーの脆弱性と金融安定のモニタリング」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261013c.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261013a.htm",
+     "name": "金融安定理事会によるG20財務大臣・中央銀行総裁へのレターの公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261013a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/set/bffail/sjgb2609.pdf",
+     "name": "フェイルの発生状況（9月）",
+     "url": "https://www.boj.or.jp/statistics/set/bffail/sjgb2609.pdf",
+     "time": "16:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/o_survey/ishiki2610.htm",
+     "name": "「生活意識に関するアンケート調査」（第107回）の結果",
+     "url": "https://www.boj.or.jp/research/o_survey/ishiki2610.htm",
+     "time": "13:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/dl/depo/kashi/kasi2609.pdf",
+     "name": "貸出・預金動向（9月）",
+     "url": "https://www.boj.or.jp/statistics/dl/depo/kashi/kasi2609.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2609.pdf",
+     "name": "企業物価指数（9月）",
+     "url": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2609.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-09",
+   "items": [
+    {
+     "kind": "release",
+     "id": "MD06_MASDM_at_07",
+     "name": "日銀当座預金（増減要因）",
+     "obs": "2026-09",
+     "value": "4,165,953",
+     "unit": "億円",
+     "change": "-1.82%"
+    },
+    {
+     "kind": "release",
+     "id": "STAT_CTI_TOTAL_REAL",
+     "name": "総消費動向指数（実質）",
+     "obs": "2026-08",
+     "value": "100.64",
+     "unit": "2025年=100",
+     "change": "-0.09%"
+    },
+    {
+     "kind": "release",
+     "id": "STAT_CTI_TOTAL_REAL_YOY",
+     "name": "総消費動向指数（実質）前年比",
+     "obs": "2026-08",
+     "value": "0.4",
+     "unit": "%",
+     "change": "-0.200%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KAKEI_CONS_REAL_YOY",
+     "name": "家計調査 消費支出 実質前年比（二人以上の世帯）",
+     "obs": "2026-08",
+     "value": "-3.1",
+     "unit": "%",
+     "change": "+0.500%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KAKEI_GOODS_REAL_YOY",
+     "name": "家計調査 財（商品）支出 実質前年比",
+     "obs": "2026-08",
+     "value": "-2.8",
+     "unit": "%",
+     "change": "+2.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KAKEI_SVC_REAL_YOY",
+     "name": "家計調査 サービス支出 実質前年比",
+     "obs": "2026-08",
+     "value": "-3.3",
+     "unit": "%",
+     "change": "-2.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KAKEI_CONS_AMOUNT",
+     "name": "家計調査 消費支出（二人以上の世帯、1世帯当たり月額）",
+     "obs": "2026-08",
+     "value": "310,975",
+     "unit": "円",
+     "change": "+3.23%"
+    },
+    {
+     "kind": "signal",
+     "id": "MD06_MASDM_at_07",
+     "name": "日銀当座預金（増減要因）",
+     "obs": "2026-09",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "4,165,953億円"
+    },
+    {
+     "kind": "signal",
+     "id": "STAT_CTI_TOTAL_REAL_YOY",
+     "name": "総消費動向指数（実質）前年比",
+     "obs": "2026-08",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "0.4%"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/macpru/mac261009a.pdf",
+     "name": "第25回「金融庁・日本銀行連絡会」の開催について",
+     "url": "https://www.boj.or.jp/finsys/macpru/mac261009a.pdf",
+     "time": "18:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261009a.pdf",
+     "name": "「適格担保の担保価格」の一部改正等について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261009a.pdf",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/recruit/rec261009a.htm",
+     "name": "日本銀行に関する学生向けの説明会、職員との座談会、オープン・カンパニーへの参加募集について",
+     "url": "https://www.boj.or.jp/about/recruit/rec261009a.htm",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/paym/market/market2610.htm",
+     "name": "わが国短期金融市場の動向",
+     "url": "https://www.boj.or.jp/paym/market/market2610.htm",
+     "time": "13:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/imes/dps/dps26_e.htm",
+     "name": "金融研究所ディスカッション・ペーパー・シリーズ（E-Series : 英語版）（2026年収録分）",
+     "url": "https://www.boj.or.jp/research/imes/dps/dps26_e.htm",
+     "time": "11:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-08",
+   "items": [
+    {
+     "kind": "release",
+     "id": "BS01_MABJMA5B",
+     "name": "日銀保有 長期国債（月末残高）",
+     "obs": "2026-09",
+     "value": "5,040,079",
+     "unit": "億円",
+     "change": "-3.06%"
+    },
+    {
+     "kind": "release",
+     "id": "FM04_STTACLUTS1",
+     "name": "無担保コール残高（平残・出し手）",
+     "obs": "2026-09",
+     "value": "106,810",
+     "unit": "億円",
+     "change": "+5.23%"
+    },
+    {
+     "kind": "release",
+     "id": "BP01_BPBP6JYNCB",
+     "name": "国際収支 経常収支",
+     "obs": "2026-08",
+     "value": "40,620",
+     "unit": "億円",
+     "change": "+10,731億円"
+    },
+    {
+     "kind": "release",
+     "id": "BP01_BPBP6JYNTB",
+     "name": "国際収支 貿易収支",
+     "obs": "2026-08",
+     "value": "-6,877",
+     "unit": "億円",
+     "change": "-2,878億円"
+    },
+    {
+     "kind": "release",
+     "id": "BP01_BPBP6JYNSN",
+     "name": "国際収支 サービス収支",
+     "obs": "2026-08",
+     "value": "-1,158",
+     "unit": "億円",
+     "change": "+3,971億円"
+    },
+    {
+     "kind": "release",
+     "id": "BP01_BPBP6JYNPIN",
+     "name": "国際収支 第一次所得収支",
+     "obs": "2026-08",
+     "value": "51,332",
+     "unit": "億円",
+     "change": "+8,436億円"
+    },
+    {
+     "kind": "release",
+     "id": "BP01_BPBP6JYNFB",
+     "name": "国際収支 金融収支",
+     "obs": "2026-08",
+     "value": "22,183",
+     "unit": "億円",
+     "change": "+4,557億円"
+    },
+    {
+     "kind": "release",
+     "id": "BP01_BPBP6JYNFB1",
+     "name": "国際収支 直接投資",
+     "obs": "2026-08",
+     "value": "-10,164",
+     "unit": "億円",
+     "change": "-36,377億円"
+    },
+    {
+     "kind": "release",
+     "id": "BP01_BPBP6JYNFB2",
+     "name": "国際収支 証券投資",
+     "obs": "2026-08",
+     "value": "49,723",
+     "unit": "億円",
+     "change": "+56,477億円"
+    },
+    {
+     "kind": "release",
+     "id": "BP01_BPBP6JYNSN2",
+     "name": "国際収支 旅行収支",
+     "obs": "2026-08",
+     "value": "3,999",
+     "unit": "億円",
+     "change": "-1,586億円"
+    },
+    {
+     "kind": "release",
+     "id": "BP01_BPBP6JYNSN906",
+     "name": "国際収支 知的財産権等使用料",
+     "obs": "2026-08",
+     "value": "6,823",
+     "unit": "億円",
+     "change": "+6,586億円"
+    },
+    {
+     "kind": "release",
+     "id": "BP01_BPBP6JYNSN907",
+     "name": "国際収支 通信・コンピュータ・情報サービス",
+     "obs": "2026-08",
+     "value": "-2,464",
+     "unit": "億円",
+     "change": "-1,449億円"
+    },
+    {
+     "kind": "signal",
+     "id": "BS01_MABJMA5B",
+     "name": "日銀保有 長期国債（月末残高）",
+     "obs": "2026-09",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "5,040,079億円"
+    },
+    {
+     "kind": "signal",
+     "id": "FM04_STTACLUTS1",
+     "name": "無担保コール残高（平残・出し手）",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "106,810億円"
+    },
+    {
+     "kind": "signal",
+     "id": "BP01_BPBP6JYNTB",
+     "name": "国際収支 貿易収支",
+     "obs": "2026-08",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "-6,877億円"
+    },
+    {
+     "kind": "signal",
+     "id": "BP01_BPBP6JYNPIN",
+     "name": "国際収支 第一次所得収支",
+     "obs": "2026-08",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "51,332億円"
+    },
+    {
+     "kind": "signal",
+     "id": "BP01_BPBP6JYNFB1",
+     "name": "国際収支 直接投資",
+     "obs": "2026-08",
+     "type": "急変",
+     "dir": "低下",
+     "detail": "-36,377億円（z=-2.8）"
+    },
+    {
+     "kind": "signal",
+     "id": "BP01_BPBP6JYNFB1",
+     "name": "国際収支 直接投資",
+     "obs": "2026-08",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "3期移動平均が12期移動平均を下抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "BP01_BPBP6JYNFB1",
+     "name": "国際収支 直接投資",
+     "obs": "2026-08",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "-10,164億円"
+    },
+    {
+     "kind": "signal",
+     "id": "BP01_BPBP6JYNSN2",
+     "name": "国際収支 旅行収支",
+     "obs": "2026-08",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "3期移動平均が12期移動平均を下抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/recruit/rec261008a.htm",
+     "name": "金融経済調査および統計作成事務に関する「短期リサーチスタッフ」の募集について",
+     "url": "https://www.boj.or.jp/about/recruit/rec261008a.htm",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/brp/rer/rera261008.htm",
+     "name": "各地域からみた景気の現状（2026年10月支店長会議における報告）",
+     "url": "https://www.boj.or.jp/research/brp/rer/rera261008.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/brp/rer/rer261008.htm",
+     "name": "地域経済報告（さくらレポート、2026年10月）",
+     "url": "https://www.boj.or.jp/research/brp/rer/rer261008.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/other/toukai/toukai.xlsx",
+     "name": "東海地域業況判断DI（9月）",
+     "url": "https://www.boj.or.jp/statistics/other/toukai/toukai.xlsx",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/other/kantou/kantou.xlsx",
+     "name": "関東甲信越地域業況判断DI（9月）",
+     "url": "https://www.boj.or.jp/statistics/other/kantou/kantou.xlsx",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/br/bop_06/bpdata/diiqcy.htm",
+     "name": "業種別・地域別直接投資（2026年第2四半期）",
+     "url": "https://www.boj.or.jp/statistics/br/bop_06/bpdata/diiqcy.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-07",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/market/short/call/call.xlsx",
+     "name": "コール市場残高（9月）",
+     "url": "https://www.boj.or.jp/statistics/market/short/call/call.xlsx",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/cai/index.htm",
+     "name": "消費活動指数",
+     "url": "https://www.boj.or.jp/research/research_data/cai/index.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260930.htm",
+     "name": "営業毎旬報告（9月30日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260930.htm",
+     "time": "10:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mbt/mbt2609.pdf",
+     "name": "マネタリーベースと日本銀行の取引（9月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mbt/mbt2609.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/tseifu/release/2026/seifu2609.pdf",
+     "name": "日本銀行の対政府取引（9月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/tseifu/release/2026/seifu2609.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/fm/ope/m_release/2026/ope2609.xlsx",
+     "name": "オペレーション（9月）",
+     "url": "https://www.boj.or.jp/statistics/boj/fm/ope/m_release/2026/ope2609.xlsx",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-10-06",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261006a.htm",
+     "name": "バーゼル銀行監督委員会による議事要旨の公表について",
+     "url": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261006a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/koen_2026/ko261006a.htm",
+     "name": "【挨拶】植田総裁（全国証券大会）",
+     "url": "https://www.boj.or.jp/about/press/koen_2026/ko261006a.htm",
+     "time": "15:35"
+    }
+   ]
+  },
   {
    "date": "2026-10-05",
    "items": [
@@ -58,6 +1621,20 @@
      "type": "1年高値更新",
      "dir": "上昇",
      "detail": "1.51%"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/gap/index.htm",
+     "name": "需給ギャップ・潜在成長率および労働需給関連指標",
+     "url": "https://www.boj.or.jp/research/research_data/gap/index.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/fm/juqp/juqp2610.xlsx",
+     "name": "日銀当座預金増減要因（10月見込み）",
+     "url": "https://www.boj.or.jp/statistics/boj/fm/juqp/juqp2610.xlsx",
+     "time": "08:50"
     }
    ]
   },
@@ -141,9 +1718,9 @@
      "id": "STAT_CPI_TKY_CORECORE_YOY",
      "name": "消費者物価（東京都区部・生鮮食品及びエネルギーを除く総合）前年比",
      "obs": "2026-09",
-     "value": "3",
+     "value": "2.9",
      "unit": "%",
-     "change": "+1.000%pt"
+     "change": "+0.900%pt"
     },
     {
      "kind": "release",
@@ -243,6 +1820,41 @@
      "type": "1年高値更新",
      "dir": "上昇",
      "detail": "324円"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260930.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260930.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/col/col2609.xlsx",
+     "name": "日本銀行が受入れている担保の残高（9月末）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/col/col2609.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/dl/loan/yaku/yaku2608.pdf",
+     "name": "貸出約定平均金利（8月）",
+     "url": "https://www.boj.or.jp/statistics/dl/loan/yaku/yaku2608.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mb/mb.htm",
+     "name": "マネタリーベース（9月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mb/mb.htm",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/tk/tankan09b.htm",
+     "name": "短観（9月）＜調査全容＞",
+     "url": "https://www.boj.or.jp/statistics/tk/tankan09b.htm",
+     "time": "08:50"
     }
    ]
   },
@@ -311,6 +1923,48 @@
      "type": "1年高値更新",
      "dir": "上昇",
      "detail": "2,079億円"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261001a.htm",
+     "name": "バーゼル銀行監督委員会による「バーゼルIIIモニタリングレポート」の公表について",
+     "url": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261001a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261001a.pdf",
+     "name": "気候変動対応を支援するための資金供給オペレーションの実施スケジュールについて",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr261001a.pdf",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fso/fso261001a.pdf",
+     "name": "令和8年台風第25号に伴う災害等に対する金融上の措置について（神奈川県）",
+     "url": "https://www.boj.or.jp/about/bcp/fso/fso261001a.pdf",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/fm/juqf/juqf09.xlsx",
+     "name": "日銀当座預金増減要因と金融調節（9月実績）",
+     "url": "https://www.boj.or.jp/statistics/boj/fm/juqf/juqf09.xlsx",
+     "time": "13:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmsche_minu/opinion_2026/opi260918.pdf",
+     "name": "金融政策決定会合における主な意見（9月17、18日開催分）",
+     "url": "https://www.boj.or.jp/mopo/mpmsche_minu/opinion_2026/opi260918.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/tk/tankan09a.htm",
+     "name": "短観（9月）＜概要、要旨＞",
+     "url": "https://www.boj.or.jp/statistics/tk/tankan09a.htm",
+     "time": "08:50"
     }
    ]
   },
@@ -334,6 +1988,41 @@
      "value": "1,044",
      "unit": "人",
      "change": "+1,845人"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260930a.pdf",
+     "name": "長期国債買入れ（利回り・価格入札方式）の四半期予定（2026年10～12月）",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260930a.pdf",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/paym/bond/ryudo.pdf",
+     "name": "国債市場の流動性指標（8月）",
+     "url": "https://www.boj.or.jp/paym/bond/ryudo.pdf",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fso/fso260930a.pdf",
+     "name": "令和8年台風第18号に伴う災害等に対する金融上の措置について（鹿児島県）",
+     "url": "https://www.boj.or.jp/about/bcp/fso/fso260930a.pdf",
+     "time": "15:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/emeap/eme260930a.htm",
+     "name": "「AIに関するEMEAPノート：経済、金融安定、中央銀行業務への含意」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/emeap/eme260930a.htm",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/set/kess/release/2026/kess2608.pdf",
+     "name": "決済動向（8月）",
+     "url": "https://www.boj.or.jp/statistics/set/kess/release/2026/kess2608.pdf",
+     "time": "11:00"
     }
    ]
   },
@@ -582,6 +2271,381 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "838人"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/pi/cspi_release/sppi2608.pdf",
+     "name": "企業向けサービス価格指数（8月）",
+     "url": "https://www.boj.or.jp/statistics/pi/cspi_release/sppi2608.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmsche_minu/minu_2026/g260731.pdf",
+     "name": "金融政策決定会合議事要旨（7月30、31日開催分）",
+     "url": "https://www.boj.or.jp/mopo/mpmsche_minu/minu_2026/g260731.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-25",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260925a.pdf",
+     "name": "共通担保資金供給オペレーションの運用について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260925a.pdf",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260918.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260918.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j13.htm",
+     "name": "（日銀レビュー）証券会社による国債マーケットメイクビジネスの動向",
+     "url": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j13.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j12.htm",
+     "name": "（日銀レビュー）プライベートクレジットファンドの拡大と多様化について",
+     "url": "https://www.boj.or.jp/research/wps_rev/rev_2026/rev26j12.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/wps_rev/wps_2026/wp26j11.htm",
+     "name": "（論文）重要物資の供給制約と輸入調達構造の変化",
+     "url": "https://www.boj.or.jp/research/wps_rev/wps_2026/wp26j11.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-4.htm",
+     "name": "【地域の底力】三重県伊勢市（広報誌「にちぎん」No.87　2026年秋号）",
+     "url": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-4.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-5.htm",
+     "name": "【対談】東京藝術大学学長・現代美術家　日比野克彦氏 vs 増一行審議委員（広報誌「にちぎん」No.87　2026年秋号）",
+     "url": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-5.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-3.htm",
+     "name": "【インタビュー】書家、芸術家、大阪芸術大学教授　紫舟氏（広報誌「にちぎん」No.87　2026年秋号）",
+     "url": "https://www.boj.or.jp/about/koho_nichigin/backnumber/87-3.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/cpi/index.htm",
+     "name": "消費者物価のコア指標",
+     "url": "https://www.boj.or.jp/research/research_data/cpi/index.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/koho_nichigin/index.htm",
+     "name": "広報誌「にちぎん」（2026年秋号掲載）",
+     "url": "https://www.boj.or.jp/about/koho_nichigin/index.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260920.htm",
+     "name": "営業毎旬報告（9月20日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260920.htm",
+     "time": "10:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/bis/ibs/index.htm",
+     "name": "BIS国際資金取引統計および国際与信統計の日本分集計結果",
+     "url": "https://www.boj.or.jp/statistics/bis/ibs/index.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-24",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fso/fso260924a.pdf",
+     "name": "令和8年台風第25号に伴う災害等に対する金融上の措置について（千葉県、東京都）",
+     "url": "https://www.boj.or.jp/about/bcp/fso/fso260924a.pdf",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/kaiken_2026/kk260924a.pdf",
+     "name": "【記者会見】植田総裁（9月18日分）",
+     "url": "https://www.boj.or.jp/about/press/kaiken_2026/kk260924a.pdf",
+     "time": "15:20"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/bis/repo/index.htm",
+     "name": "FSBレポ統計の日本分集計結果",
+     "url": "https://www.boj.or.jp/statistics/bis/repo/index.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-18",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/release/sousaidouga.htm",
+     "name": "総裁記者会見（9月18日）動画の配信開始",
+     "url": "https://www.boj.or.jp/about/release/sousaidouga.htm",
+     "time": "16:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260918b.pdf",
+     "name": "「補完当座預金制度基本要領」の一部改正について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260918b.pdf",
+     "time": "12:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260918a.pdf",
+     "name": "「気候変動対応を支援するための資金供給オペレーション基本要領」の一部改正等について",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/mpr260918a.pdf",
+     "time": "12:15"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k260918b.pdf",
+     "name": "（参考）金融市場調節方針の変更（2026年9月金融政策決定会合）",
+     "url": "https://www.boj.or.jp/mopo/mpmdeci/mpr_2026/k260918b.pdf",
+     "time": "12:10"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-17",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/reri/index.htm",
+     "name": "実質輸出入の動向",
+     "url": "https://www.boj.or.jp/research/research_data/reri/index.htm",
+     "time": "16:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/sj/sj.htm",
+     "name": "資金循環統計（速報）（2026年第2四半期）",
+     "url": "https://www.boj.or.jp/statistics/sj/sj.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-16",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/cabs/cabs.xlsx",
+     "name": "業態別の日銀当座預金残高（8月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/cabs/cabs.xlsx",
+     "time": "17:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-15",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/cooperate/coop260915a.pdf",
+     "name": "日・マレーシア間の第三次二国間通貨スワップ契約の署名",
+     "url": "https://www.boj.or.jp/intl_finance/cooperate/coop260915a.pdf",
+     "time": "15:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-14",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260910.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei260910.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/imes/dps/dps260914b.htm",
+     "name": "（論文）金融研究所DPS：ユーザブルセキュリティ研究の現状と展望",
+     "url": "https://www.boj.or.jp/research/imes/dps/dps260914b.htm",
+     "time": "11:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/imes/dps/dps260914a.htm",
+     "name": "（論文）金融研究所DPS：2026年国際コンファランスの模様",
+     "url": "https://www.boj.or.jp/research/imes/dps/dps260914a.htm",
+     "time": "11:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/imes/dps/dps26_e.htm",
+     "name": "金融研究所ディスカッション・ペーパー・シリーズ（E-Series : 英語版）（2026年収録分）",
+     "url": "https://www.boj.or.jp/research/imes/dps/dps26_e.htm",
+     "time": "11:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260910.htm",
+     "name": "営業毎旬報告（9月10日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac260910.htm",
+     "time": "10:00"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-11",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/organization/policyboard/pb_geppo/pbgp2607.htm",
+     "name": "日本銀行政策委員会月報（令和8年7月号）",
+     "url": "https://www.boj.or.jp/about/organization/policyboard/pb_geppo/pbgp2607.htm",
+     "time": "16:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/paym/intlact_pm/cpss/cpss260911a.htm",
+     "name": "BIS決済・市場インフラ委員会及び証券監督者国際機構による市中協議文書「サイバーレジリエンス実用ツール集: FMIのための実務的考慮事項」及び「『金融市場インフラ（FMI）のサードパーティ業者への依存: 課題およびリスク』に関するディスカッション・ペーパー」の公表について",
+     "url": "https://www.boj.or.jp/paym/intlact_pm/cpss/cpss260911a.htm",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/kaiken_2026/kk260911a.pdf",
+     "name": "【記者会見】増審議委員（福井、9月10日分）",
+     "url": "https://www.boj.or.jp/about/press/kaiken_2026/kk260911a.pdf",
+     "time": "13:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2608.pdf",
+     "name": "企業物価指数（8月）",
+     "url": "https://www.boj.or.jp/statistics/pi/cgpi_release/cgpi2608.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-10",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/set/bffail/sjgb2608.pdf",
+     "name": "フェイルの発生状況（8月）",
+     "url": "https://www.boj.or.jp/statistics/set/bffail/sjgb2608.pdf",
+     "time": "16:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/pr_events/hontenkoho/hon260910.htm",
+     "name": "「日銀夏休み親子見学会2026」を開催しました（8月20日＜木＞～25日＜火＞）",
+     "url": "https://www.boj.or.jp/about/pr_events/hontenkoho/hon260910.htm",
+     "time": "15:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/bis/yoshi/index.htm",
+     "name": "デリバティブ取引に関する定例市場報告",
+     "url": "https://www.boj.or.jp/statistics/bis/yoshi/index.htm",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-09",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fso/fso260909a.pdf",
+     "name": "令和8年台風第24号及び前線による大雨に伴う災害等に対する金融上の措置について（愛知県）",
+     "url": "https://www.boj.or.jp/about/bcp/fso/fso260909a.pdf",
+     "time": "12:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/organization/notice/index.htm",
+     "name": "日本銀行やその役職員の関与を装った不審な連絡・勧誘・ウェブサイト・SNSアカウントなどにご注意ください",
+     "url": "https://www.boj.or.jp/about/organization/notice/index.htm",
+     "time": "10:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/money/ms/ms2608.pdf",
+     "name": "マネーストック（8月）",
+     "url": "https://www.boj.or.jp/statistics/money/ms/ms2608.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-08",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/dl/depo/kashi/kasi2608.pdf",
+     "name": "貸出・預金動向（8月）",
+     "url": "https://www.boj.or.jp/statistics/dl/depo/kashi/kasi2608.pdf",
+     "time": "08:50"
+    }
+   ]
+  },
+  {
+   "date": "2026-09-07",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fso/fso260907a.pdf",
+     "name": "令和8年台風第24号及び前線による大雨に伴う災害等に対する金融上の措置について（鹿児島県）",
+     "url": "https://www.boj.or.jp/about/bcp/fso/fso260907a.pdf",
+     "time": "11:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mbt/mbt2608.pdf",
+     "name": "マネタリーベースと日本銀行の取引（8月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mbt/mbt2608.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/tseifu/release/2026/seifu2608.pdf",
+     "name": "日本銀行の対政府取引（8月）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/tseifu/release/2026/seifu2608.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/fm/ope/m_release/2026/ope2608.xlsx",
+     "name": "オペレーション（8月）",
+     "url": "https://www.boj.or.jp/statistics/boj/fm/ope/m_release/2026/ope2608.xlsx",
+     "time": "08:50"
     }
    ]
   }
@@ -606,7 +2670,8 @@
    "unit": "%",
    "kind": "rate",
    "category": "短期金利・為替",
-   "date": "2026-10-02",
+   "updated": "2026-11-02",
+   "date": "2026-10-29",
    "value": "1.227",
    "change": "+0.000%pt",
    "implication": "短期金利の上昇は利上げ・引締め方向のシグナル。一般に債券（特に短中期）価格には下押し、円には上昇（円高）圧力、銀行株には利ざや改善期待でプラス、REIT・不動産や高PERのグロース株には逆風とされる。",
@@ -623,9 +2688,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "短期金利・為替",
-   "date": "2026-10-02",
-   "value": "52,020",
-   "change": "-2.86%",
+   "updated": "2026-11-02",
+   "date": "2026-10-29",
+   "value": "33,386",
+   "change": "-0.11%",
    "implication": "出来高の増加は短期金融市場の取引活発化（金利がつく環境への移行、市場機能の回復）を示すことが多い。直接の価格シグナルではなく、金利変化の裏付けとして見る。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -640,9 +2706,10 @@
    "unit": "円/ドル",
    "kind": "level",
    "category": "短期金利・為替",
-   "date": "2026-10-02",
-   "value": "157.58",
-   "change": "-0.51%",
+   "updated": "2026-11-02",
+   "date": "2026-10-29",
+   "value": "157.83",
+   "change": "+0.03%",
    "implication": "ドル円の上昇（円安）は一般に輸出関連株や外貨建て資産の円換算額にプラス、輸入物価経由で物価上昇圧力となり、日銀の引締め観測を強めることがある。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -657,9 +2724,10 @@
    "unit": "ドル/ユーロ",
    "kind": "level",
    "category": "短期金利・為替",
-   "date": "2026-10-02",
-   "value": "1.1248",
-   "change": "-0.70%",
+   "updated": "2026-11-02",
+   "date": "2026-10-29",
+   "value": "1.1156",
+   "change": "+0.26%",
    "implication": "ユーロドルの上昇はドル全面安を示す。ドル円と合わせて見ると、円安/円高がドル要因か円要因かの切り分けに使える。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -674,7 +2742,8 @@
    "unit": "%",
    "kind": "rate",
    "category": "短期金利・為替",
-   "date": "2026-10-04",
+   "updated": "2026-11-02",
+   "date": "2026-10-29",
    "value": "1.5",
    "change": "+0.000%pt",
    "implication": "基準貸付利率は政策金利の変更に連動しやすい。上昇なら利上げ局面入り/継続を示し、影響はコールレート上昇時と同方向でより強い。",
@@ -691,6 +2760,7 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
+   "updated": "2026-10-03",
    "date": "2026-09",
    "value": "5,328,464",
    "change": "-1.87%",
@@ -708,6 +2778,7 @@
    "unit": "%",
    "kind": "rate",
    "category": "日銀の資金供給",
+   "updated": "2026-10-03",
    "date": "2026-09",
    "value": "-15.2",
    "change": "+0.500%pt",
@@ -725,6 +2796,7 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
+   "updated": "2026-10-03",
    "date": "2026-09",
    "value": "4,136,678",
    "change": "-2.30%",
@@ -742,9 +2814,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "date": "2026-08",
-   "value": "4,243,220",
-   "change": "-3.13%",
+   "updated": "2026-10-09",
+   "date": "2026-09",
+   "value": "4,165,953",
+   "change": "-1.82%",
    "implication": "日銀当座預金の減少は資金供給の縮小を反映。長期金利上昇・円高方向の圧力とされる。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -759,6 +2832,7 @@
    "unit": "億円",
    "kind": "flow",
    "category": "日銀の資金供給",
+   "updated": "2026-10-05",
    "date": "2026-09",
    "value": "23,172",
    "change": "-40億円",
@@ -776,6 +2850,7 @@
    "unit": "億円",
    "kind": "flow",
    "category": "日銀の資金供給",
+   "updated": "2026-10-05",
    "date": "2026-09",
    "value": "-62,600",
    "change": "+96,749億円",
@@ -793,9 +2868,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "date": "2026-08",
-   "value": "5,199,276",
-   "change": "+0.11%",
+   "updated": "2026-10-08",
+   "date": "2026-09",
+   "value": "5,040,079",
+   "change": "-3.06%",
    "implication": "",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -810,9 +2886,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "date": "2026-10-05",
-   "value": "1.909",
-   "change": "-0.010%pt",
+   "updated": "2026-11-02",
+   "date": "2026-10-30",
+   "value": "1.875",
+   "change": "-0.026%pt",
    "implication": "2年債利回りは今後1〜2年の政策金利予想をよく映す。上昇は追加利上げ観測の強まりを示す。",
    "source": [
     "財務省 国債金利情報",
@@ -827,9 +2904,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "date": "2026-10-05",
-   "value": "3.085",
-   "change": "-0.012%pt",
+   "updated": "2026-11-02",
+   "date": "2026-10-30",
+   "value": "2.817",
+   "change": "-0.059%pt",
    "implication": "10年債利回りの上昇は債券価格の下落を意味し、住宅ローン固定金利や企業の借入コストの上昇、REIT・高PER株には逆風、利ざや面で銀行・保険株には追い風とされる。日米金利差が縮めば円高要因にもなりうる。",
    "source": [
     "財務省 国債金利情報",
@@ -844,9 +2922,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "date": "2026-10-05",
-   "value": "4.166",
-   "change": "+0.018%pt",
+   "updated": "2026-11-02",
+   "date": "2026-10-30",
+   "value": "3.908",
+   "change": "-0.048%pt",
    "implication": "超長期金利の上昇は財政や物価への懸念（タームプレミアム）の高まりを映すことが多く、生保・年金の需要動向にも左右される。",
    "source": [
     "財務省 国債金利情報",
@@ -861,9 +2940,10 @@
    "unit": "2020年=100",
    "kind": "level",
    "category": "物価",
-   "date": "2026-08",
-   "value": "136.1",
-   "change": "-0.22%",
+   "updated": "2026-10-13",
+   "date": "2026-09",
+   "value": "135.7",
+   "change": "-0.29%",
    "implication": "企業物価指数の上昇は仕入れコストの上昇を示す（前年比の説明を参照）。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -878,9 +2958,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "date": "2026-08",
-   "value": "7.6",
-   "change": "-0.100%pt",
+   "updated": "2026-10-13",
+   "date": "2026-09",
+   "value": "6.8",
+   "change": "-0.800%pt",
    "implication": "企業物価の上昇率の高まりは、川下の消費者物価への転嫁を通じて日銀の利上げ観測を強めやすい。一般に債券には逆風、価格転嫁力のある企業には相対的にプラスとされる。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -895,9 +2976,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "date": "2026-08",
-   "value": "24.8",
-   "change": "-4.500%pt",
+   "updated": "2026-10-13",
+   "date": "2026-09",
+   "value": "24.5",
+   "change": "-0.600%pt",
    "implication": "円ベースの輸入物価の上昇は、円安や資源高による輸入インフレを示す。数か月遅れで企業物価・消費者物価に波及しやすい。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -912,9 +2994,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "date": "2026-08",
+   "updated": "2026-10-27",
+   "date": "2026-09",
    "value": "3.7",
-   "change": "+0.100%pt",
+   "change": "+0.200%pt",
    "implication": "企業向けサービス価格は人件費の比率が高く、賃金上昇の価格転嫁を映す。上昇が続けば物価の基調の強さを示し、利上げ観測につながりやすい。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -929,9 +3012,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "お金の量・貸出",
-   "date": "2026-08",
+   "updated": "2026-10-14",
+   "date": "2026-09",
    "value": "2",
-   "change": "-0.100%pt",
+   "change": "+0.000%pt",
    "implication": "マネーストック（M2）の伸びは世の中に出回るお金の増え方。伸びの鈍化は金融引き締めや貸出の減速を映しやすい。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -946,9 +3030,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "お金の量・貸出",
-   "date": "2026-08",
+   "updated": "2026-10-14",
+   "date": "2026-09",
    "value": "1.2",
-   "change": "-0.100%pt",
+   "change": "+0.000%pt",
    "implication": "M3の伸び鈍化は預金の増え方が弱まっていることを示し、金融環境の引き締まりの目安になる。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -963,8 +3048,9 @@
    "unit": "%",
    "kind": "rate",
    "category": "お金の量・貸出",
-   "date": "2026-08",
-   "value": "5.8",
+   "updated": "2026-10-13",
+   "date": "2026-09",
+   "value": "5.7",
    "change": "-0.100%pt",
    "implication": "銀行貸出の伸びは企業・家計の資金需要を映す。金利上昇局面でも伸びが続けば景気の底堅さ、急減速なら引き締め効果の表れとされる。",
    "source": [
@@ -980,6 +3066,7 @@
    "unit": "%",
    "kind": "rate",
    "category": "お金の量・貸出",
+   "updated": "2026-10-05",
    "date": "2026-08",
    "value": "1.782",
    "change": "+0.076%pt",
@@ -997,6 +3084,7 @@
    "unit": "%",
    "kind": "rate",
    "category": "お金の量・貸出",
+   "updated": "2026-10-05",
    "date": "2026-08",
    "value": "1.51",
    "change": "+0.027%pt",
@@ -1014,9 +3102,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "短期金利・為替",
-   "date": "2026-08",
-   "value": "101,504",
-   "change": "+1.94%",
+   "updated": "2026-10-08",
+   "date": "2026-09",
+   "value": "106,810",
+   "change": "+5.23%",
    "implication": "無担保コールの残高増加は、金利のある世界への移行で短期市場の取引が戻っていることを示す。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1031,9 +3120,10 @@
    "unit": "%pt",
    "kind": "rate",
    "category": "お金の量・貸出",
-   "date": "2026Q3",
-   "value": "-1",
-   "change": "-5.000%pt",
+   "updated": "2026-10-22",
+   "date": "2026Q4",
+   "value": "3",
+   "change": "+4.000%pt",
    "implication": "企業の資金需要DIの上昇は設備投資・運転資金の需要増を示し、景気の強さの目安。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1048,9 +3138,10 @@
    "unit": "%pt",
    "kind": "rate",
    "category": "お金の量・貸出",
-   "date": "2026Q3",
-   "value": "3",
-   "change": "-2.000%pt",
+   "updated": "2026-10-22",
+   "date": "2026Q4",
+   "value": "5",
+   "change": "+2.000%pt",
    "implication": "個人の資金需要DI（住宅ローン等）。金利上昇で低下しやすく、住宅関連の需要の目安。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1065,6 +3156,7 @@
    "unit": "%pt",
    "kind": "rate",
    "category": "景況感・家計の資産",
+   "updated": "2026-10-03",
    "date": "2026Q3",
    "value": "24",
    "change": "+2.000%pt",
@@ -1082,6 +3174,7 @@
    "unit": "%pt",
    "kind": "rate",
    "category": "景況感・家計の資産",
+   "updated": "2026-10-03",
    "date": "2026Q3",
    "value": "35",
    "change": "-2.000%pt",
@@ -1099,6 +3192,7 @@
    "unit": "%",
    "kind": "rate",
    "category": "景況感・家計の資産",
+   "updated": "2026-10-03",
    "date": "2026Q3",
    "value": "2.6",
    "change": "-0.100%pt",
@@ -1116,6 +3210,7 @@
    "unit": "億円",
    "kind": "level",
    "category": "景況感・家計の資産",
+   "updated": "2026-10-03",
    "date": "2026Q2",
    "value": "25,191,289",
    "change": "+4.69%",
@@ -1133,6 +3228,7 @@
    "unit": "億円",
    "kind": "level",
    "category": "景況感・家計の資産",
+   "updated": "2026-10-03",
    "date": "2026Q2",
    "value": "11,315,943",
    "change": "+0.52%",
@@ -1150,6 +3246,7 @@
    "unit": "億円",
    "kind": "level",
    "category": "景況感・家計の資産",
+   "updated": "2026-10-03",
    "date": "2026Q2",
    "value": "6,789,608",
    "change": "+15.06%",
@@ -1167,9 +3264,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-07",
-   "value": "29,889",
-   "change": "+30,811億円",
+   "updated": "2026-10-08",
+   "date": "2026-08",
+   "value": "40,620",
+   "change": "+10,731億円",
    "implication": "経常収支の黒字拡大は海外から稼ぐ力の強さを示し、中長期的には円高要因とされる。ただし黒字の中心が第一次所得（海外で再投資されやすい）だと円買いにつながりにくい。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1184,9 +3282,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-07",
-   "value": "-3,999",
-   "change": "-2,647億円",
+   "updated": "2026-10-08",
+   "date": "2026-08",
+   "value": "-6,877",
+   "change": "-2,878億円",
    "implication": "貿易収支の悪化（赤字拡大）は円を売ってドルを買う実需が増えることを意味し、円安要因とされる。資源価格や円安で輸入額が膨らむと悪化しやすい。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1201,9 +3300,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-07",
-   "value": "-5,129",
-   "change": "-2,844億円",
+   "updated": "2026-10-08",
+   "date": "2026-08",
+   "value": "-1,158",
+   "change": "+3,971億円",
    "implication": "サービス収支。旅行（インバウンド）の黒字とデジタル関連の赤字の差し引き。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1218,9 +3318,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-07",
-   "value": "42,896",
-   "change": "+39,095億円",
+   "updated": "2026-10-08",
+   "date": "2026-08",
+   "value": "51,332",
+   "change": "+8,436億円",
    "implication": "第一次所得収支は海外投資からの利子・配当。日本の経常黒字の柱だが、多くは海外に再投資され円買いにつながりにくいとされる。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1235,9 +3336,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-07",
-   "value": "17,626",
-   "change": "+7,968億円",
+   "updated": "2026-10-08",
+   "date": "2026-08",
+   "value": "22,183",
+   "change": "+4,557億円",
    "implication": "金融収支のプラスは日本からの資金流出（対外資産の増加）を示す。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1252,9 +3354,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-07",
-   "value": "26,213",
-   "change": "+10,517億円",
+   "updated": "2026-10-08",
+   "date": "2026-08",
+   "value": "-10,164",
+   "change": "-36,377億円",
    "implication": "直接投資のプラスは日本企業の海外投資（M&A・工場など）が海外からの投資を上回っていることを示し、円売り要因になりやすい。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1269,9 +3372,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-07",
-   "value": "-6,753",
-   "change": "-96,082億円",
+   "updated": "2026-10-08",
+   "date": "2026-08",
+   "value": "49,723",
+   "change": "+56,477億円",
    "implication": "証券投資のプラスは日本からの外国証券購入（対外証券投資）が多いことを示す。国内金利の上昇で国内回帰が進むと縮小しやすい。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1286,9 +3390,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-07",
-   "value": "5,585",
-   "change": "+1,133億円",
+   "updated": "2026-10-08",
+   "date": "2026-08",
+   "value": "3,999",
+   "change": "-1,586億円",
    "implication": "旅行収支の黒字はインバウンド消費。円安で拡大しやすく、観光・小売株の業績に関係する。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1303,9 +3408,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-07",
-   "value": "236.551",
-   "change": "-2,658億円",
+   "updated": "2026-10-08",
+   "date": "2026-08",
+   "value": "6,823",
+   "change": "+6,586億円",
    "implication": "知的財産権等使用料。海外子会社からのロイヤルティ受取が中心で黒字になりやすい。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1320,9 +3426,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-07",
-   "value": "-1,015",
-   "change": "-643億円",
+   "updated": "2026-10-08",
+   "date": "2026-08",
+   "value": "-2,464",
+   "change": "-1,449億円",
    "implication": "通信・コンピュータ・情報サービスの赤字は、クラウドなど海外デジタルサービスへの支払い（いわゆるデジタル赤字）を映す。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -1337,9 +3444,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "date": "2026-08",
-   "value": "1.9",
-   "change": "+0.000%pt",
+   "updated": "2026-10-23",
+   "date": "2026-09",
+   "value": "2.1",
+   "change": "+0.200%pt",
    "implication": "消費者物価の上昇率。2%を上回る状態が続くと日銀の利上げ継続の根拠になりやすく、債券には逆風、実質金利の低下を通じて円安要因にもなりうる。",
    "source": [
     "総務省統計局 消費者物価指数",
@@ -1354,9 +3462,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "date": "2026-08",
-   "value": "1.7",
-   "change": "-0.100%pt",
+   "updated": "2026-10-23",
+   "date": "2026-09",
+   "value": "2.1",
+   "change": "+0.400%pt",
    "implication": "日銀が物価目標で重視する「生鮮食品を除く総合（コアCPI）」。2%目標との距離が利上げ判断の中心になる。",
    "source": [
     "総務省統計局 消費者物価指数",
@@ -1371,9 +3480,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "date": "2026-08",
-   "value": "1.9",
-   "change": "+0.000%pt",
+   "updated": "2026-10-23",
+   "date": "2026-09",
+   "value": "2.4",
+   "change": "+0.500%pt",
    "implication": "エネルギーも除いた「コアコアCPI」は物価の基調（賃金・サービス価格の転嫁）を映す。これが2%を超えて続くかが利上げ継続の鍵とされる。",
    "source": [
     "総務省統計局 消費者物価指数",
@@ -1388,9 +3498,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "date": "2026-09",
-   "value": "2.7",
-   "change": "+0.800%pt",
+   "updated": "2026-10-30",
+   "date": "2026-10",
+   "value": "2.8",
+   "change": "+0.100%pt",
    "implication": "東京都区部の総合。全国の先行指標。",
    "source": [
     "総務省統計局",
@@ -1405,9 +3516,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "date": "2026-09",
-   "value": "2.7",
-   "change": "+0.900%pt",
+   "updated": "2026-10-30",
+   "date": "2026-10",
+   "value": "2.6",
+   "change": "-0.100%pt",
    "implication": "東京都区部のコアCPIは全国より約1か月早く公表され、全国の先行指標として市場が注目する。",
    "source": [
     "総務省統計局",
@@ -1422,9 +3534,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "date": "2026-09",
-   "value": "3",
-   "change": "+1.000%pt",
+   "updated": "2026-10-30",
+   "date": "2026-10",
+   "value": "2.6",
+   "change": "-0.300%pt",
    "implication": "東京都区部のコアコア。物価の基調を早めに確認できる。",
    "source": [
     "総務省統計局",
@@ -1439,9 +3552,10 @@
    "unit": "2025年=100",
    "kind": "level",
    "category": "消費・雇用・人口",
-   "date": "2026-07",
-   "value": "100.77",
-   "change": "-0.04%",
+   "updated": "2026-10-09",
+   "date": "2026-08",
+   "value": "100.64",
+   "change": "-0.09%",
    "implication": "総消費動向指数（実質）の水準。",
    "source": [
     "総務省統計局",
@@ -1456,8 +3570,9 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "date": "2026-07",
-   "value": "0.6",
+   "updated": "2026-10-09",
+   "date": "2026-08",
+   "value": "0.4",
    "change": "-0.200%pt",
    "implication": "総消費動向指数（実質）は家計消費全体の動き。伸びがプラスなら個人消費が物価上昇を上回って増えていることを示し、景気や利上げ継続の支えになる。",
    "source": [
@@ -1473,9 +3588,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "date": "2026-08",
-   "value": "2.5",
-   "change": "+0.100%pt",
+   "updated": "2026-10-30",
+   "date": "2026-09",
+   "value": "2.4",
+   "change": "-0.100%pt",
    "implication": "完全失業率の上昇は労働需給の緩みを示し、賃金上昇の勢いが弱まる要因。利上げ観測の後退につながりやすく、債券にはプラス、円安方向とされる。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1490,9 +3606,10 @@
    "unit": "万人",
    "kind": "level",
    "category": "消費・雇用・人口",
-   "date": "2026-08",
-   "value": "6,834",
-   "change": "+0.04%",
+   "updated": "2026-10-30",
+   "date": "2026-09",
+   "value": "6,868",
+   "change": "+0.50%",
    "implication": "就業者数の増加は雇用の底堅さを示し、個人消費や賃金の下支えになる。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1507,9 +3624,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "date": "2026-07",
-   "value": "5",
-   "change": "+0.500%pt",
+   "updated": "2026-10-23",
+   "date": "2026-08",
+   "value": "3.6",
+   "change": "-1.400%pt",
    "implication": "サービス産業の売上高の伸び。個人・企業のサービス需要の強さを示し、物価（サービス価格）の上昇とあわせて見ると実質的な需要の強さがわかる。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1524,9 +3642,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "date": "2026-07",
-   "value": "6.4",
-   "change": "-0.200%pt",
+   "updated": "2026-10-23",
+   "date": "2026-08",
+   "value": "3.3",
+   "change": "-3.100%pt",
    "implication": "情報通信業の売上高。IT・通信投資の強さの目安。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1541,9 +3660,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "date": "2026-07",
-   "value": "6.1",
-   "change": "+4.700%pt",
+   "updated": "2026-10-23",
+   "date": "2026-08",
+   "value": "3.3",
+   "change": "-2.800%pt",
    "implication": "宿泊・飲食の売上高。インバウンドや外食需要を映し、旅行・外食関連株に関係する。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1558,9 +3678,10 @@
    "unit": "人",
    "kind": "level",
    "category": "消費・雇用・人口",
-   "date": "2026-04",
-   "value": "122,837,999",
-   "change": "+0.02%",
+   "updated": "2026-10-20",
+   "date": "2026-05",
+   "value": "122,812,150",
+   "change": "-0.02%",
    "implication": "総人口の減少は長期的な内需の縮小要因。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1575,9 +3696,10 @@
    "unit": "人",
    "kind": "flow",
    "category": "消費・雇用・人口",
-   "date": "2026-03",
-   "value": "110,464",
-   "change": "+193,034人",
+   "updated": "2026-10-20",
+   "date": "2026-04",
+   "value": "37,214",
+   "change": "-73,250人",
    "implication": "社会増減（入国−出国）のプラスは外国人の流入超を示し、人手不足の緩和や住宅需要の下支えになりうる。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1592,9 +3714,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "date": "2026-07",
-   "value": "-3.6",
-   "change": "-0.300%pt",
+   "updated": "2026-10-09",
+   "date": "2026-08",
+   "value": "-3.1",
+   "change": "+0.500%pt",
    "implication": "家計の実質消費の伸び。マイナスが続くと物価上昇に消費が追いついていないことを示し、日銀の利上げ判断を慎重にさせやすい。月ごとの振れが大きい点に注意。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1609,9 +3732,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "date": "2026-07",
-   "value": "-4.9",
-   "change": "-1.200%pt",
+   "updated": "2026-10-09",
+   "date": "2026-08",
+   "value": "-2.8",
+   "change": "+2.100%pt",
    "implication": "モノへの実質支出。物価高の影響を受けやすく、小売関連の需要の目安。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1626,9 +3750,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "date": "2026-07",
-   "value": "-1.2",
-   "change": "+1.100%pt",
+   "updated": "2026-10-09",
+   "date": "2026-08",
+   "value": "-3.3",
+   "change": "-2.100%pt",
    "implication": "サービスへの実質支出。外食・旅行・娯楽などの需要の強さの目安。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1643,9 +3768,10 @@
    "unit": "円",
    "kind": "level",
    "category": "消費・雇用・人口",
-   "date": "2026-07",
-   "value": "301,245",
-   "change": "+3.56%",
+   "updated": "2026-10-09",
+   "date": "2026-08",
+   "value": "310,975",
+   "change": "+3.23%",
    "implication": "1世帯当たりの名目の消費支出額。季節性が大きいので前年同月と比べて見る。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1660,9 +3786,10 @@
    "unit": "円",
    "kind": "level",
    "category": "物価",
-   "date": "2026-09",
-   "value": "4,051",
-   "change": "-6.36%",
+   "updated": "2026-10-30",
+   "date": "2026-10",
+   "value": "3,698",
+   "change": "-8.71%",
    "implication": "コメ5kgの店頭価格。消費者物価の食料を左右し、家計の体感物価に影響する。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1677,9 +3804,10 @@
    "unit": "円",
    "kind": "level",
    "category": "物価",
-   "date": "2026-09",
+   "updated": "2026-10-30",
+   "date": "2026-10",
    "value": "324",
-   "change": "+0.93%",
+   "change": "+0.00%",
    "implication": "鶏卵の店頭価格。鳥インフルエンザなど供給要因で動きやすい。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1694,7 +3822,8 @@
    "unit": "円",
    "kind": "level",
    "category": "物価",
-   "date": "2026-09",
+   "updated": "2026-10-30",
+   "date": "2026-10",
    "value": "172",
    "change": "+0.00%",
    "implication": "ガソリンの店頭価格。原油価格・為替・補助金の影響を受け、消費者物価のエネルギーを左右する。",
@@ -1711,9 +3840,10 @@
    "unit": "人",
    "kind": "flow",
    "category": "消費・雇用・人口",
-   "date": "2026-08",
-   "value": "3,261",
-   "change": "+2,423人",
+   "updated": "2026-10-27",
+   "date": "2026-09",
+   "value": "3,803",
+   "change": "+542人",
    "implication": "東京圏への人口の流入超過。首都圏の住宅需要や不動産（REIT）の下支え要因。3〜4月の転勤・進学期に大きく膨らむ季節性がある。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1728,9 +3858,10 @@
    "unit": "人",
    "kind": "flow",
    "category": "消費・雇用・人口",
-   "date": "2026-08",
-   "value": "1,044",
-   "change": "+1,845人",
+   "updated": "2026-10-27",
+   "date": "2026-09",
+   "value": "862",
+   "change": "-182人",
    "implication": "東京都への流入超過。都心の住宅・オフィス需要の目安。3〜4月に大きい季節性がある。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -1745,12 +3876,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-08",
-   "value": "100,433",
-   "change": "-14,661億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "109,539",
+   "change": "+9,106億円",
    "implication": "通関ベースの輸出額。国際収支より約1か月半早く出る。海外景気と円安の影響を受け、製造業・輸出関連株の業績の先行指標。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1762,12 +3894,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-08",
-   "value": "111,552",
-   "change": "-9,991億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "115,103",
+   "change": "+3,464億円",
    "implication": "通関ベースの輸入額。原油・LNGなど資源価格と円安で膨らみやすい。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1779,12 +3912,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "国際収支・貿易",
-   "date": "2026-08",
-   "value": "-11,119",
-   "change": "-4,670億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "-5,565",
+   "change": "+5,641億円",
    "implication": "貿易収支（通関ベース、原数値）の赤字拡大は円売りの実需を示し、円安要因とされる。1月は赤字、3月は黒字に振れやすい季節性があるので前年同月と比べる。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1796,12 +3930,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "国際収支・貿易",
-   "date": "2026-08",
-   "value": "19.3",
-   "change": "-3.900%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "16.5",
+   "change": "-2.800%pt",
    "implication": "輸出の伸び。数量の増減に加え円安による円建て金額の膨らみも含む点に注意。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1813,12 +3948,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "国際収支・貿易",
-   "date": "2026-08",
-   "value": "28",
-   "change": "+0.100%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "18.9",
+   "change": "-9.200%pt",
    "implication": "輸入の伸び。資源価格・為替の動きを強く映す。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1830,12 +3966,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "17,244",
-   "change": "-3,662億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "19,620",
+   "change": "+2,376億円",
    "implication": "米国向け輸出。自動車が中心で、米国の景気と関税の影響を受けやすい。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1847,12 +3984,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "24.9",
-   "change": "+2.900%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "22.9",
+   "change": "-2.000%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1864,12 +4002,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "16,544",
-   "change": "-1,572億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "15,703",
+   "change": "-847億円",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1881,12 +4020,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "55.2",
-   "change": "-2.900%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "44.8",
+   "change": "-10.400%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1898,12 +4038,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "18,091",
-   "change": "-1,995億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "17,280",
+   "change": "-811億円",
    "implication": "中国向け輸出。半導体製造装置・電子部品・化学品が多く、中国の景気と輸出規制の影響を受ける。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1915,12 +4056,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "20.5",
-   "change": "-5.300%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "8.5",
+   "change": "-12.000%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1932,12 +4074,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "23,612",
-   "change": "-4,238億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "27,574",
+   "change": "+3,950億円",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1949,12 +4092,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "22.5",
-   "change": "-3.700%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "16.4",
+   "change": "-6.100%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1966,12 +4110,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "8,664",
-   "change": "-1,661億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "9,843",
+   "change": "+1,179億円",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -1983,12 +4128,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "11",
-   "change": "-8.100%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "10.4",
+   "change": "-0.600%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2000,12 +4146,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "10,969",
-   "change": "-232億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "11,264",
+   "change": "+293億円",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2017,12 +4164,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "20.4",
-   "change": "+22.700%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "-0.1",
+   "change": "-20.500%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2034,12 +4182,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "14,820",
-   "change": "-2,569億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "17,171",
+   "change": "+2,351億円",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2051,12 +4200,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "22.3",
-   "change": "-5.500%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "25",
+   "change": "+2.700%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2068,12 +4218,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "17,889",
-   "change": "-1,704億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "18,414",
+   "change": "+470億円",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2085,12 +4236,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "27",
-   "change": "-4.200%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "16.1",
+   "change": "-10.900%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2102,12 +4254,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "8,861",
-   "change": "-227億円",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "9,182",
+   "change": "+321億円",
    "implication": "台湾向け輸出。半導体の受託製造（TSMCなど）向けの装置・材料・部品が多く、AI・半導体の設備投資の目安。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2119,12 +4272,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "39.7",
-   "change": "-3.700%pt",
+   "updated": "2026-10-21",
+   "date": "2026-09",
+   "value": "37.7",
+   "change": "-2.000%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2136,12 +4290,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "181",
-   "change": "+65億円",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "364.2",
+   "change": "+183億円",
    "implication": "台湾向けのフラッシュメモリ（組立済み）。NAND の需要と価格の動きを映す。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2153,12 +4308,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "68.7",
-   "change": "+28.800%pt",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "493.6",
+   "change": "+424.900%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2170,12 +4326,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "1.8",
-   "change": "-4億円",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "3.3",
+   "change": "+1億円",
    "implication": "台湾向けの DRAM（組立済み）。日本からの出荷は小さく、月ごとの振れが大きい。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2187,12 +4344,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "1,133",
-   "change": "-195.600%pt",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "3,293",
+   "change": "+2159.500%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2204,12 +4362,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "1,521",
-   "change": "+118億円",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "1,659",
+   "change": "+138億円",
    "implication": "台湾向けのメモリのウエハー・チップ（未組立）。台湾で組み立てるNANDなどの素材で、メモリ需要の先行指標。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2221,12 +4380,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "86",
-   "change": "+22.100%pt",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "88.2",
+   "change": "+2.200%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2238,12 +4398,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "136.6",
-   "change": "-16億円",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "153.6",
+   "change": "+17億円",
    "implication": "台湾向けの積層セラミックコンデンサ。スマホ・PC・AIサーバーの部品需要を映し、村田製作所など電子部品株に関係する。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2255,12 +4416,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "55",
-   "change": "+4.300%pt",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "70.9",
+   "change": "+15.900%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2272,12 +4434,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "2,079",
-   "change": "+163億円",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "2,390",
+   "change": "+311億円",
    "implication": "台湾向けの集積回路の合計（メモリ・ロジックなど）。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2289,12 +4452,13 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "66.2",
-   "change": "+13.300%pt",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "97.2",
+   "change": "+31.000%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2306,12 +4470,13 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "1,077",
-   "change": "-95億円",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "1,180",
+   "change": "+103億円",
    "implication": "台湾向けの半導体製造装置。TSMCなどの設備投資の動きを映し、東京エレクトロンなど装置株に関係する。",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   },
@@ -2323,18 +4488,19 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "date": "2026-08",
-   "value": "30.7",
-   "change": "-5.500%pt",
+   "updated": "2026-10-29",
+   "date": "2026-09",
+   "value": "64.2",
+   "change": "+33.500%pt",
    "implication": "",
    "source": [
-    "財務省 貿易統計（e-Stat 貿易概況）",
+    "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
   }
  },
  "fetch_status": {
-  "checked_at": "2026-10-07T08:12+09:00",
+  "checked_at": "2026-11-02T14:36+09:00",
   "counts": {
    "new": 0,
    "unchanged": 102,
@@ -2345,6 +4511,7 @@
   "problems": [],
   "other_errors": []
  },
- "trade_updated": "2026-10-01",
+ "trade_updated": "2026-10-29",
+ "tankan_latest": "2026-09",
  "disclaimer": "※資産クラスとの関係は過去に一般的に観察されてきた傾向の整理で、将来の値動きや個別銘柄の売買を示すものではありません。"
 }

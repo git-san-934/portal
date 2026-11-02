@@ -9,6 +9,8 @@
 | fetch.py | APIから取得して data/<DB>_<CODE>.csv に追記・改定反映。`python3 fetch.py discover FM08 D` で日次系列の候補一覧 |
 | analyze.py | 変化検知。reports/YYYY-MM-DD.md, reports/latest.json, reports/signals_log.csv（検知履歴） |
 | status.py | 取り込みの成功・失敗を系列ごとに記録。reports/status.json（系列ごとの状態）, reports/fetch_history.csv（実行ごとの記録） |
+| fetch_boj_news.py | 日本銀行ホームページ「新着情報（総合）」のRSSを reports/boj_news.csv に蓄積（RSSは約1か月分なので毎回足していく）。為替相場のお知らせは除く。ページの新着に「日銀」として載る |
+| fetch_tankan.py | 日銀「短観（概要）」の各回の zip（Excel）から業況判断DI・需給/在庫/価格・設備・雇用人員・資金繰り/貸出態度/借入金利水準・企業の物価見通しを data/tankan.json に蓄積（2021年3月調査〜）。毎回は今の5年分の一覧ページだけを見て、新しい回の zip があるときだけ取る。ページは tankan.html |
 | run_daily.sh | 取得→取り込み状況の記録→分析をまとめて実行（日次ルーチン用） |
 | raw/ | APIの生レスポンス（日付ごと） |
 
@@ -26,6 +28,10 @@
 ## 追加の対象（2026-09-30）
 - 財務省 貿易統計（通関ベース、月次原数値）: 輸出額・輸入額・差引（億円）と輸出入の前年同月比。
   e-Stat の「貿易概況 州別輸出入時系列表」CSV から fetch_estat.py の trade() で取る。2007-12〜
+- 2026-10-21: e-Stat には前月分が月末ごろ（確報の時期）に載るため、総額と地域(国)別（米国・中国・EU・ASEAN・台湾）は
+  税関の報道発表 https://www.customs.go.jp/toukei/shinbun/happyou.htm の月ごとの XML（速報、公表日 8:50）で e-Stat に無い月を埋める。
+  e-Stat に載ればそちらの値で上書き。品別国別表（HS 9桁、台湾向け半導体など）は税関の検索システムでも月末まで出ないので従来どおり。
+  税関サイトはこの開発環境のプロキシでは 403 で、GitHub Actions からは届く。
 - 2026-10-01: 貿易統計を細分化。地域(国)別（米国・中国・EU・ASEAN・台湾の輸出入）と、品別国別表（HS 9桁×国）から台湾向けの
   NAND（854232921）・DRAM（854232911）・未組立メモリ（854232100）・MLCC（853224）・集積回路計（8542）・半導体製造装置（8486）。
   品目・国を足すときは series.json に "trade" 付きの系列を1件足す（書き方は fetch_estat.py の trade() を参照）。

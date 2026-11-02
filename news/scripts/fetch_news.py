@@ -9,6 +9,9 @@
   EDINET_API_KEY(環境変数)があるときだけ。
 - SEC EDGAR(米国株): 8-K・10-Q・10-K などの提出書類。EDINET の米国版。
 
+英語のタイトル(米国株のニュースなど)は日本語に訳して title_ja に入れる(原文は title に残す)。
+DEEPL_API_KEY(環境変数)があれば DeepL、無ければ(または失敗したら)無料の窓口(Google 翻訳 → MyMemory)を順に試す。訳は data/translate_cache.json に貯めて、同じタイトルは訳し直さない。
+
 銘柄は持ち株チェックと共通(holdings/data/holdings.json)。
 結果は data/news.json。前回の news.json を読んで、はじめて見つけた時刻(first_seen)を引き継ぐ。
 GitHub Actions(.github/workflows/update-news.yml)から 1日4回(1:00 / 8:30 / 12:45 / 15:45 JST)実行する。
@@ -42,6 +45,11 @@ EDINET_CODELIST = "https://disclosure2dl.edinet-fsa.go.jp/searchdocument/codelis
 EDINET_VIEW = "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?"
 TDNET_LIST = "https://www.release.tdnet.info/inbs/I_list_{page:03d}_{ymd}.html"
 TDNET_CACHE_PATH = DATA_DIR / "tdnet_cache.json"
+TRANSLATE_CACHE_PATH = DATA_DIR / "translate_cache.json"
+TRANSLATE_MAX = 300  # 1回の実行で新しく訳す最大件数(残りは次回)
+GTX_URL = "https://translate.googleapis.com/translate_a/single"
+GDICT_URL = "https://clients5.google.com/translate_a/t"
+MYMEMORY_URL = "https://api.mymemory.translated.net/get"
 TDNET_DAYS = 31  # TDnet の一覧は1か月分だけ公開されている
 SEC_TICKERS = "https://www.sec.gov/files/company_tickers.json"
 SEC_SUBMISSIONS = "https://data.sec.gov/submissions/CIK{cik:010d}.json"
@@ -127,6 +135,12 @@ def get(url, headers=None, retries=2, **kw):
 def clean(text):
     text = unicodedata.normalize("NFKC", text or "")
     return re.sub(r"\s+", " ", text).strip()
+
+
+def is_web_url(url):
+    """http/https の URL だけ True(javascript: などのリンクをページに載せない)"""
+    p = urlparse((url or "").strip())
+    return p.scheme.lower() in ("http", "https") and bool(p.netloc)
 
 
 def make_date(y, m, d):
@@ -679,6 +693,112 @@ def fetch_sec(stocks, sources):
 
 
 # ---------------------------------------------------------------------------
+# 英語タイトルの翻訳
+# ---------------------------------------------------------------------------
+
+HAS_JA = re.compile(r"[\u3040-\u30ff\u3400-\u9fff]")
+
+
+def needs_translation(title):
+    return not HAS_JA.search(title) and len(re.findall(r"[A-Za-z]{2,}", title)) >= 2
+
+
+def translate_deepl(texts, key):
+    host = "api-free.deepl.com" if key.endswith(":fx") else "api.deepl.com"
+    r = requests.post(f"https://{host}/v2/translate", headers={"Authorization": f"DeepL-Auth-Key {key}"},
+                      data={"text": texts, "source_lang": "EN", "target_lang": "JA"}, timeout=60)
+    r.raise_for_status()
+    return [t["text"] for t in r.json()["translations"]]
+
+
+def translate_gtx(text):
+    r = requests.get(GTX_URL, params={"client": "gtx", "sl": "en", "tl": "ja", "dt": "t", "q": text},
+                     headers={"User-Agent": HEADERS["User-Agent"]}, timeout=30)
+    r.raise_for_status()
+    return "".join(part[0] for part in r.json()[0] if part and part[0])
+
+
+def translate_gdict(text):
+    # Google 翻訳の別の窓口(gtx が断られたとき用)。応答は ["訳"] か [["訳", "en"]]
+    r = requests.get(GDICT_URL, params={"client": "dict-chrome-ex", "sl": "en", "tl": "ja", "q": text},
+                     headers={"User-Agent": HEADERS["User-Agent"]}, timeout=30)
+    r.raise_for_status()
+    first = r.json()[0]
+    return first[0] if isinstance(first, list) else first
+
+
+def translate_mymemory(text):
+    r = requests.get(MYMEMORY_URL, params={"q": text, "langpair": "en|ja"}, timeout=30)
+    r.raise_for_status()
+    body = r.json()
+    if body.get("responseStatus") not in (200, "200"):
+        raise RuntimeError(body.get("responseDetails"))
+    return body["responseData"]["translatedText"]
+
+
+FREE_ENGINES = [("Google 翻訳", translate_gtx), ("Google 翻訳(dict)", translate_gdict), ("MyMemory", translate_mymemory)]
+
+
+def translate_free(text, errors):
+    """無料の窓口を順に試す。訳と使った窓口を返す(全部だめなら None)"""
+    for name, fn in FREE_ENGINES:
+        try:
+            ja = fn(text)
+        except Exception as e:  # noqa: BLE001
+            errors.setdefault(name, str(e)[:120])
+            continue
+        if ja and HAS_JA.search(ja):
+            return ja, name
+        errors.setdefault(name, "訳が空か英語のまま")
+    return None, None
+
+
+def translate_titles(out_stocks):
+    try:
+        cache = json.loads(TRANSLATE_CACHE_PATH.read_text(encoding="utf-8"))
+    except (FileNotFoundError, json.JSONDecodeError):
+        cache = {}
+    used = [it for s in out_stocks for it in s["items"] if needs_translation(it["title"])]
+    todo = list(dict.fromkeys(it["title"] for it in used if it["title"] not in cache))[:TRANSLATE_MAX]
+    key = os.environ.get("DEEPL_API_KEY", "").strip()
+    engines = {}  # 窓口 → 訳した件数
+    errors = {}  # 窓口 → 最初のエラー
+    if key and todo:
+        try:
+            for i in range(0, len(todo), 50):
+                for src, ja in zip(todo[i:i + 50], translate_deepl(todo[i:i + 50], key)):
+                    cache[src] = ja
+                    engines["DeepL"] = engines.get("DeepL", 0) + 1
+        except Exception as e:  # noqa: BLE001
+            errors["DeepL"] = str(e)[:120]  # 残りは無料の窓口で訳す
+    fails = 0
+    for src in [t for t in todo if t not in cache]:
+        ja, name = translate_free(src, errors)
+        if ja:
+            cache[src] = ja
+            engines[name] = engines.get(name, 0) + 1
+            fails = 0
+        else:
+            fails += 1
+            log(f"翻訳: 失敗(英語のまま): {src[:60]}")
+            if fails >= 5:
+                log("翻訳: 失敗が続くので、残りは次回にします")
+                break
+        time.sleep(0.3)
+    for name, err in errors.items():
+        log(f"翻訳: {name} のエラー: {err}")
+    for it in used:
+        if cache.get(it["title"]):
+            it["title_ja"] = cache[it["title"]]
+    # 今の一覧で使っているタイトルの訳だけ残す
+    keep = {it["title"] for it in used}
+    cache = {k: v for k, v in cache.items() if k in keep}
+    TRANSLATE_CACHE_PATH.write_text(json.dumps(cache, ensure_ascii=False, indent=1, sort_keys=True) + "\n", encoding="utf-8")
+    done = "、".join(f"{k} {v} 件" for k, v in engines.items()) or "0 件"
+    log(f"翻訳: 新しく {done}、訳あり {sum(1 for it in used if 'title_ja' in it)}/{len(used)} 件")
+
+
+# ---------------------------------------------------------------------------
 
 
 def main():
@@ -735,7 +855,7 @@ def main():
             for it in items:
                 # 同じ記事が HTML と RSS の両方から、別の URL で取れることがある
                 key = (it["date"], re.sub(r"\W", "", it["title"]).lower()[:40])
-                if it["url"] in merged or key in seen_titles:
+                if not is_web_url(it["url"]) or it["url"] in merged or key in seen_titles:
                     continue
                 seen_titles.add(key)
                 old = prev_items.get((code, it["url"]))
@@ -751,7 +871,7 @@ def main():
                 merged[it["url"]] = {**it, "source": source, "first_seen": first_seen}
         # 一覧から消えた記事や、取得に失敗した情報源の記事も、KEEP_DAYS 日までは残す
         for (c, url), old in prev_items.items():
-            if prev.get("version") == VERSION and c == code and url not in merged and old["date"] >= (TODAY - timedelta(days=KEEP_DAYS)).isoformat():
+            if prev.get("version") == VERSION and c == code and url not in merged and is_web_url(url) and old["date"] >= (TODAY - timedelta(days=KEEP_DAYS)).isoformat():
                 merged[url] = old
         items = sorted(merged.values(), key=lambda x: (x["date"], x.get("time", ""), x["first_seen"]), reverse=True)[:MAX_PER_STOCK]
         st = status.get(code, {})
@@ -764,6 +884,8 @@ def main():
             "official_pages": st.get("pages", []),
             "items": items,
         })
+
+    translate_titles(out_stocks)
 
     out = {
         "version": VERSION,
@@ -783,7 +905,7 @@ def main():
             counts[it["source"]] = counts.get(it["source"], 0) + 1
         log(f"  {s['code']:5} {s['name']}: 公式 {counts.get('official', 0)} / 適時開示 {counts.get('tdnet', 0)} / EDINET {counts.get('edinet', 0)} / SEC {counts.get('sec', 0)}  ({s['official_status']})")
         for it in s["items"][:3]:
-            log(f"      {it['date']} [{it['source']}] {it['title'][:60]}")
+            log(f"      {it['date']} [{it['source']}] {it.get('title_ja', it['title'])[:60]}")
     ok_official = sum(1 for s in out_stocks if s["official_status"] == "ok")
     if ok_official == 0 and tdnet is None and edinet is None and sec is None:
         log("どこからも取得できませんでした")

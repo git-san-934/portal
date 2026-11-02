@@ -27,6 +27,16 @@
     { key: "y3", label: "3年", days: 735 },
     { key: "all", label: "全期間", days: null },
   ];
+  // 売りのルール。基準価額が1年前(SELL_LOOKBACK 営業日前)の SELL_MULT 倍以上なら、次の営業日に持ち分の SELL_FRAC を売る。
+  // 合図は SELL_GAP 営業日に1回まで。売ったお金は暴落買いに先に使い、残りは200日平均より REBUY_TH 以上安い日に REBUY_FRAC ずつ買い戻す
+  const SELL_LOOKBACK = 245;
+  const SELL_MULT = 3;
+  const SELL_FRAC = 0.25;
+  const SELL_GAP = 20;
+  const MA_DAYS = 200;
+  const REBUY_TH = -0.2;
+  const REBUY_FRAC = 0.1;
+  const TAX = 0.20315; // 特定口座の譲渡益課税
   const DEFAULTS = { start: "2026-09-28", daily: 10000, scale: 1, period: "y1" };
 
   const $ = (id) => document.getElementById(id);
@@ -84,7 +94,7 @@
     }
   }
 
-  const state = { dates: [], nav: [], high: [], dd: [], settings: loadSettings(), charts: [] };
+  const state = { dates: [], nav: [], high: [], dd: [], ma: [], yr: [], sellSig: [], rebuy: [], settings: loadSettings(), charts: [] };
 
   // ---------- 計算 ----------
 
@@ -99,6 +109,24 @@
       for (let k = Math.max(0, i - WINDOW + 1); k <= i; k++) h = Math.max(h, data.nav[k]);
       state.high[i] = h;
       state.dd[i] = data.nav[i] / h - 1;
+    }
+    // 200日平均、1年前比、売りの合図(20営業日に1回まで)、買い戻しの日
+    state.ma = new Array(n).fill(null);
+    state.yr = new Array(n).fill(null);
+    state.sellSig = new Array(n).fill(false);
+    state.rebuy = new Array(n).fill(false);
+    let sum = 0;
+    let lastSig = -Infinity;
+    for (let i = 0; i < n; i++) {
+      sum += data.nav[i];
+      if (i >= MA_DAYS) sum -= data.nav[i - MA_DAYS];
+      if (i >= MA_DAYS - 1) state.ma[i] = sum / MA_DAYS;
+      if (i >= SELL_LOOKBACK) state.yr[i] = data.nav[i] / data.nav[i - SELL_LOOKBACK];
+      if (state.yr[i] >= SELL_MULT && i - lastSig > SELL_GAP) {
+        state.sellSig[i] = true;
+        lastSig = i;
+      }
+      state.rebuy[i] = state.ma[i] != null && data.nav[i] < state.ma[i] * (1 + REBUY_TH);
     }
   }
 
@@ -157,6 +185,51 @@
     return { invested, extra, count, units, value, ret: invested ? value / invested - 1 : 0 };
   }
 
+  // simulate に売りルールを足したもの。判定は start(自分の積立の開始日)からの自分の持ち分で行う:
+  // 基準価額が1年前の SELL_MULT 倍以上で、持ち分に利益が出ていれば売りの合図(SELL_GAP 営業日に1回まで)。合図の次の営業日に持ち分の
+  // SELL_FRAC を売り(利益には税金)、現金は暴落買いに先に使い、前の営業日が買い戻しの日なら現金の REBUY_FRAC を買う。
+  // 外から入れたお金(invested)は現金で払った分を除く。sigs は合図の日、最後の日の合図は次の営業日に売る分
+  function simulateSell(start, end, daily, scale) {
+    let units = 0, cost = 0, cash = 0, invested = 0, sells = 0, taxPaid = 0, lastSig = -Infinity;
+    const sigs = [];
+    const { extras } = scale > 0 ? planExtras(start, end - 1, scale) : { extras: {} };
+    for (let i = start; i <= end; i++) {
+      const nav = state.nav[i];
+      const a = extras[i] ? extras[i].a : 0;
+      const fromCash = Math.min(cash, a);
+      cash -= fromCash;
+      invested += daily + a - fromCash;
+      units += (daily + a) / nav;
+      cost += daily + a;
+      if (i > start && state.rebuy[i - 1] && cash > 0) {
+        const r = cash * REBUY_FRAC;
+        cash -= r;
+        units += r / nav;
+        cost += r;
+      }
+      if (lastSig === i - 1 && units > 0) {
+        const u = units * SELL_FRAC;
+        const c = cost * SELL_FRAC;
+        const tax = Math.max(0, u * nav - c) * TAX;
+        cash += u * nav - tax;
+        taxPaid += tax;
+        units -= u;
+        cost -= c;
+        sells++;
+      }
+      if (state.yr[i] >= SELL_MULT && units * nav >= cost && i - lastSig > SELL_GAP) {
+        sigs.push(i);
+        lastSig = i;
+      }
+    }
+    const hold = units * state.nav[end];
+    const value = hold + cash;
+    return { invested, hold, cash, value, units, cost, sells, sigs, lastSig, taxPaid, ret: invested ? value / invested - 1 : 0 };
+  }
+
+  // 自分の積立の開始日(のデータ上の位置)。まだデータがなければ -1
+  const startIndex = () => state.dates.findIndex((d) => d >= state.settings.start);
+
   // ---------- 今日のアドバイス ----------
 
   function renderAdvice() {
@@ -212,6 +285,87 @@
     $("advice-note").textContent =
       (staleDays > 4 ? "⚠ データが数日更新されていません。最新の基準価額を確かめてから判断してください。 " : "") +
       `金額の下の値は、今の20日高値で換算した基準価額の目安です。−50%以下の大口買いは1回の暴落で合計 ${man(BIG_CAP * scale)} まで(使い切ったあとは ${man(BIG_FALLBACK * scale)} ずつ)。追加額の大きさは「自分の積立シミュレーション」で変えられます。`;
+  }
+
+  // ---------- 売り時 ----------
+
+  function renderSell() {
+    const last = state.nav.length - 1;
+    const nav = state.nav[last];
+    const yr = state.yr[last];
+    const ma = state.ma[last];
+    const rebuy = state.rebuy[last];
+    const { start, daily, scale } = state.settings;
+    const s = startIndex();
+    const q = s >= 0 ? simulateSell(s, last, daily, scale) : null;
+    const sig = q != null && q.lastSig === last;
+    const cooling = q != null && !sig && q.lastSig >= s && last - q.lastSig <= SELL_GAP;
+    const avg = q && q.units > 0 ? q.cost / q.units : null; // 平均取得単価(1万口あたり)
+    const gain = avg ? nav / avg - 1 : null;
+    const doRebuy = rebuy && q != null && q.cash > 0;
+
+    $("sell").classList.toggle("on", sig || doRebuy);
+    $("sell-when").textContent = `売り時の判定(${dateJa(state.dates[last])} の基準価額)→ 次の営業日 ${nextWeekday(state.dates[last])} の注文`;
+    const action = $("sell-action");
+    action.textContent = "";
+    if (sig) action.append(Object.assign(el("span", "plus"), { textContent: `持ち分の1/4(約${man(q.units * nav * SELL_FRAC)})を売る` }));
+    else if (doRebuy) action.append(Object.assign(el("span", "plus"), { textContent: `現金の10%(${man(q.cash * REBUY_FRAC)})を買い戻す` }));
+    else action.textContent = q ? "売らずに持ち続ける" : "まだ持ち分がありません";
+
+    const base = state.nav[last - SELL_LOOKBACK];
+    let reason = q
+      ? `${dateJa(state.dates[s])} からの持ち分: 評価額 ${yen(q.hold)}・平均取得単価 ${yen(avg || 0)}(${pctText(gain)})${q.cash > 0 ? `・売って取ってある現金 ${yen(q.cash)}` : ""}。`
+      : `積立の開始日(${start})以降の基準価額がまだないので、売りの判定はできません。`;
+    if (yr != null) reason += ` 基準価額は1年前(${dateJa(state.dates[last - SELL_LOOKBACK])})の ${yen(base)} の ${yr.toFixed(2)}倍です。`;
+    if (sig) reason += `1年前の${SELL_MULT}倍を超え、持ち分にも利益が出ているので、1/4を利益確定します。`;
+    else if (cooling) reason += `${dateJa(state.dates[q.lastSig])} に売りの合図が出たので、20営業日あけます(次は早くて ${SELL_GAP + 1 - (last - q.lastSig)} 営業日後)。`;
+    else if (q && yr >= SELL_MULT) reason += `1年前の${SELL_MULT}倍は超えていますが、持ち分が含み損なので売りません。`;
+    else if (yr != null) reason += `売りの目安(1年前の${SELL_MULT}倍)まで、あと ${pctText(SELL_MULT / yr - 1)} です。`;
+    if (ma != null) {
+      reason += ` 200日平均(${yen(ma)})から ${pctText(nav / ma - 1)}。`;
+      if (rebuy) reason += doRebuy ? "買い戻しの目安(−20%)を下回っているので、現金の10%を買い戻します。" : "買い戻しの目安(−20%)を下回っていますが、売って取ってある現金はありません。";
+    }
+    $("sell-reason").textContent = reason;
+
+    const ladder = $("sell-ladder");
+    ladder.textContent = "";
+    const sellLv = Math.ceil(Math.max(base * SELL_MULT, avg || 0));
+    const steps = [
+      { on: sig, title: "売る", b: "持ち分の1/4", lv: `${yen(sellLv)}以上`, color: "var(--sell)" },
+      { on: !sig && !doRebuy, title: "持ち続ける", b: "何もしない", lv: "その間", color: "var(--border)" },
+      { on: doRebuy, title: "買い戻す", b: "現金の10%", lv: ma != null ? `${yen(Math.floor(ma * (1 + REBUY_TH)))}未満` : "—", color: "var(--ma)" },
+    ];
+    steps.forEach((x) => {
+      const box = el("div", "step" + (x.on ? " current" : ""));
+      const title = el("div");
+      const sw = el("span", "swatch");
+      sw.style.background = x.color;
+      title.append(sw, x.title);
+      box.append(title, el("b", null, x.b), el("span", "lv", x.lv));
+      ladder.append(box);
+    });
+    $("sell-note").textContent =
+      "判定は「自分の積立シミュレーション」の開始日・毎日の金額・追加額の設定どおりに買った持ち分で行います。売りは、基準価額が1年前の3倍以上で、しかも持ち分に利益が出ているとき(売りの目安は、1年前の3倍と平均取得単価の高い方)。売ったお金はまず暴落時の追加買いに使い、残りを買い戻しに回します。売った利益には約20%の税金がかかります。信託期間は 2027年9月7日まで(延長されることがあります)。";
+  }
+
+  function renderSellTable() {
+    const table = $("sell-table");
+    table.textContent = "";
+    const head = el("tr");
+    ["売りの合図の日", "基準価額", "1年前の何倍", "3ヶ月後", "半年後", "1年後"].forEach((h) => head.append(el("th", null, h)));
+    table.append(head);
+    const n = state.nav.length;
+    const after = (i, k) => (i + k < n ? state.nav[i + k] / state.nav[i] - 1 : null);
+    for (let i = 0; i < n; i++) {
+      if (!state.sellSig[i]) continue;
+      const tr = el("tr");
+      tr.append(el("td", null, dateJa(state.dates[i])), el("td", null, yen(state.nav[i])), el("td", null, `${state.yr[i].toFixed(2)}倍`));
+      [63, 125, 245].forEach((k) => {
+        const v = after(i, k);
+        tr.append(el("td", pctClass(v), v == null ? "—" : pctText(v, 0)));
+      });
+      table.append(tr);
+    }
   }
 
   function tile(label, value, sub, cls) {
@@ -294,7 +448,15 @@
     hlines.forEach((h) => svg.append(svgEl("line", { x1: 0, x2: W, y1: y(h.v), y2: y(h.v), class: "th-line", style: `stroke:${h.color}` })));
     series.forEach((ser) => {
       let d = "";
-      for (let i = s; i <= e; i++) d += `${i === s ? "M" : "L"}${x(i).toFixed(2)},${y(ser.values[i]).toFixed(2)}`;
+      let pen = "M";
+      for (let i = s; i <= e; i++) {
+        if (ser.values[i] == null) {
+          pen = "M";
+          continue;
+        }
+        d += `${pen}${x(i).toFixed(2)},${y(ser.values[i]).toFixed(2)}`;
+        pen = "L";
+      }
       if (ser.area) svg.append(svgEl("path", { d: `${d}L${x(e)},${y(ser.base)}L${x(s)},${y(ser.base)}Z`, class: ser.area }));
       svg.append(svgEl("path", { d, class: ser.cls }));
     });
@@ -310,7 +472,7 @@
       box.append(lab);
     });
     marks.forEach((m) => {
-      const d = el("span", "mark");
+      const d = el("span", "mark" + (m.cls ? " " + m.cls : ""));
       d.style.left = `${(x(m.i) / W) * 100}%`;
       d.style.top = `${(y(m.v) / H) * 100}%`;
       d.style.background = m.color;
@@ -375,16 +537,22 @@
     // 追加買いの日(合図の翌営業日)に印をつける
     // 大口買いの上限は過去からの続きで数えるので、データの最初から計画する
     const { extras } = planExtras(0, state.nav.length - 2, scale);
+    // 売りの印は、自分の積立の開始日からの持ち分で出た合図の次の営業日(実際に売る日)
+    const st = startIndex();
+    const sold = new Set(st >= 0 ? simulateSell(st, state.nav.length - 1, state.settings.daily, scale).sigs.map((j) => j + 1) : []);
     const marks = [];
     for (let i = Math.max(1, s); i <= e; i++) {
       const x = extras[i];
       if (x) marks.push({ i, v: state.nav[i], color: TIERS[x.t - 1].color });
+      if (sold.has(i)) marks.push({ i, v: state.nav[i], color: "var(--sell)", cls: "sell" });
     }
     const tipFor = (i) => {
       const x = extras[i];
       return (
         `${dateJa(state.dates[i])}\n基準価額 ${yen(state.nav[i])}\n20日高値から ${pctText(state.dd[i])}` +
-        (x ? `\nこの日の追加 ${man(x.a)}${x.capped ? "(上限到達)" : ""}` : "")
+        (x ? `\nこの日の追加 ${man(x.a)}${x.capped ? "(上限到達)" : ""}` : "") +
+        (state.yr[i] != null ? `\n1年前の ${state.yr[i].toFixed(2)}倍` : "") +
+        (sold.has(i) ? "\nこの日に1/4を売る" : "")
       );
     };
 
@@ -397,16 +565,21 @@
     };
     item(el("i", "ln"), "基準価額");
     item(el("i", "ln high"), "20日高値");
+    item(el("i", "ln ma"), "200日平均");
     TIERS.forEach((t) => {
       const pt = el("i", "pt");
       pt.style.background = t.color;
       item(pt, `+${man(t.amount * scale)}の日`);
     });
+    const sp = el("i", "pt sq");
+    sp.style.background = "var(--sell)";
+    item(sp, "1/4を売る日(自分の持ち分)");
 
     const setNav = drawChart($("chart-nav"), {
       s, e, lo, hi,
       series: [
         { values: state.high, cls: "l-high" },
+        { values: state.ma, cls: "l-ma" },
         { values: state.nav, cls: "l-nav" },
       ],
       ticks: niceTicks(lo, hi, 4),
@@ -437,7 +610,7 @@
     const { start, daily, scale } = state.settings;
     const box = $("mine");
     box.textContent = "";
-    const s = state.dates.findIndex((d) => d >= start);
+    const s = startIndex();
     if (s < 0) {
       box.append(el("p", "sub", `${start} 以降の基準価額はまだありません。公表されしだい計算します。`));
       return;
@@ -451,6 +624,14 @@
       tile("損益", `${pl >= 0 ? "+" : "−"}${yen(Math.abs(pl))}`, pctText(r.ret), pctClass(pl)),
       tile("平均取得単価", yen(r.invested / r.units), "1万口あたり"),
       tile("投資した日数", `${e - s + 1}日`, `追加 ${r.count}回`)
+    );
+    const q = simulateSell(s, e, daily, scale);
+    // 現金から払った暴落買いの分は外から入れずに済んだお金なので、差に足す
+    const diff = q.value + (r.invested - q.invested) - r.value;
+    box.append(
+      tile("売りルールも使うと", yen(q.value), q.sells ? `売り ${q.sells}回` : "まだ売りなし"),
+      tile("うち現金", yen(q.cash), q.taxPaid ? `税金 ${q.taxPaid < 10000 ? yen(q.taxPaid) : man(q.taxPaid)} 支払い後` : null),
+      tile("売らない場合との差", `${diff >= 0 ? "+" : "−"}${yen(Math.abs(diff))}`, null, pctClass(Math.round(diff)))
     );
   }
 
@@ -517,10 +698,12 @@
 
   function renderAll() {
     renderAdvice();
+    renderSell();
     renderTiles();
     renderCharts();
     renderMine();
     renderBacktest();
+    renderSellTable();
   }
 
   function setupControls() {
@@ -535,7 +718,7 @@
       if (!inStart.value) return;
       state.settings.start = inStart.value;
       saveSettings();
-      renderMine();
+      renderAll();
     };
     inDaily.onchange = () => {
       const v = Math.round(Number(inDaily.value));
@@ -546,22 +729,54 @@
     };
   }
 
-  async function main() {
+  // データの更新日時 "2026-10-16T09:36+09:00" → "10/16 9:36"
+  const updatedJa = (s) => {
+    const m = /^\d{4}-(\d{2})-(\d{2})T(\d{2}):(\d{2})/.exec(s || "");
+    return m ? `${Number(m[1])}/${Number(m[2])} ${Number(m[3])}:${m[4]}` : "";
+  };
+
+  let controlsReady = false;
+
+  // nav.json をキャッシュなしで取り直して描き直す(最初の表示と「最新データを読み込む」ボタンの両方で使う)
+  async function load() {
+    const reloadBtn = $("reload");
+    reloadBtn.disabled = true;
+    const prevLast = state.dates[state.dates.length - 1];
     try {
       const res = await fetch(`${DATA_URL}?t=${Date.now()}`, { cache: "no-store" });
       if (!res.ok) throw new Error(`HTTP ${res.status}`);
       const data = await res.json();
       prepare(data);
       const last = data.dates[data.dates.length - 1];
-      statusEl.textContent = `最新の基準価額: ${dateJa(last)}(${data.nav.length.toLocaleString("ja-JP")}日分)`;
-      setupControls();
+      const upd = updatedJa(data.updated);
+      let text = `最新の基準価額: ${dateJa(last)}(${data.nav.length.toLocaleString("ja-JP")}日分)`;
+      if (upd) text += ` ・ データ更新 ${upd}`;
+      if (prevLast) text += prevLast === last ? " ・ 新しいデータはまだありません" : " ・ 新しいデータを読み込みました";
+      statusEl.textContent = text;
+      statusEl.classList.remove("error");
+      if (!controlsReady) {
+        setupControls();
+        controlsReady = true;
+      }
       $("main").hidden = false;
       renderAll();
     } catch (err) {
-      statusEl.textContent = `データを読み込めませんでした(${err.message})。時間をおいて開き直してください。`;
+      statusEl.textContent = `データを読み込めませんでした(${err.message})。時間をおいてもう一度お試しください。`;
       statusEl.classList.add("error");
+    } finally {
+      reloadBtn.disabled = false;
     }
   }
 
-  main();
+  $("reload").onclick = load;
+
+  // 「今すぐ更新」: 更新依頼の Issue を作る画面を開く。所有者が作ると Actions が基準価額を取りに行く
+  // (.github/workflows/request-nikkei43-update.yml)
+  const q = new URLSearchParams({
+    title: "日経4.3ブルの基準価額を更新",
+    body: "暴落買いナビの「今すぐ更新」から作成。\n\nこのまま「Create」(または「Submit new issue」)を押すと、2〜5分で基準価額の取得とページの更新が行われます。反映後にページの「最新データを読み込む」を押してください。",
+  });
+  $("refresh").href = `https://github.com/git-san-934/portal/issues/new?${q}`;
+
+  load();
 })();
