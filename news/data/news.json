@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-02T11:34+09:00",
+ "updated_at": "2026-11-02T19:53+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-02",
+     "title": "『ピクミン4 Nintendo Switch 2 Edition + だれでもチャレンジ! ダンドリ検定』の体験版が配信開始。「Pikmin Day Direct」で公開した情報もご紹介。",
+     "url": "https://www.nintendo.com/jp/topics/article/8a0fad53-c589-4304-98b2-f86bd3d5764f",
+     "source": "official",
+     "first_seen": "2026-11-02T19:53+09:00"
+    },
     {
      "date": "2026-11-01",
      "title": "「Hello! Pikmin #02 あこがれ」を公開しました。",
@@ -427,13 +434,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/4936a483-a958-491f-bf82-f5e049c355f5",
      "source": "official",
      "first_seen": "2026-09-18T00:00+09:00"
-    },
-    {
-     "date": "2026-09-17",
-     "title": "『ファイアーエムブレム 万紫千紅』は本日発売。無料アップデートでもらえるコラボ武器(全4種)など、最新情報もご紹介。 ※本作の対象年齢は「15歳以上」です。",
-     "url": "https://www.nintendo.com/jp/topics/article/96a406b3-fa89-44f4-97ff-44fbc0a7aecf",
-     "source": "official",
-     "first_seen": "2026-09-17T00:00+09:00"
     }
    ]
   },
@@ -726,6 +726,22 @@
    "items": [
     {
      "date": "2026-11-02",
+     "time": "15:31",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZAMJ",
+     "source": "edinet",
+     "first_seen": "2026-11-02T19:53+09:00"
+    },
+    {
+     "date": "2026-11-02",
+     "time": "15:30",
+     "title": "半期報告書-第58期(2026/03/21-2027/03/20)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZAMI",
+     "source": "edinet",
+     "first_seen": "2026-11-02T19:53+09:00"
+    },
+    {
+     "date": "2026-11-02",
      "title": "新商品 デバッグも、ラダー作成も、プログラム要約も。PLC専用AIエージェント「KV Intelligence」登場。 自然文で訊くだけで、PLCにまつわるお困りごと解決を支援します。",
      "url": "https://www.keyence.co.jp/news-events/20261102-kv-intelligence.jsp",
      "source": "official",
@@ -824,6 +840,13 @@
      "url": "https://www.keyence.co.jp/products/vision/visual-inspection/qd/pr/210291001.jsp",
      "source": "official",
      "first_seen": "2026-09-30T13:02+09:00"
+    },
+    {
+     "date": "2026-09-20",
+     "title": "半期報告書第58期中間期 (2026年3月21日-2026年9月20日)",
+     "url": "https://www.keyence.co.jp/pdf/HalfReport_202610_ja.pdf",
+     "source": "official",
+     "first_seen": "2026-09-20T00:00+09:00"
     },
     {
      "date": "2026-09-04",
@@ -2971,6 +2994,14 @@
    "official_pages": [],
    "items": [
     {
+     "date": "2026-11-02",
+     "time": "16:26",
+     "title": "変更報告書(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZB19",
+     "source": "edinet",
+     "first_seen": "2026-11-02T19:53+09:00"
+    },
+    {
      "date": "2026-10-26",
      "time": "15:30",
      "title": "第4回新株予約権の行使完了および新株発行に関するお知らせ",
@@ -3119,6 +3150,13 @@
    ],
    "items": [
     {
+     "date": "2026-11-02",
+     "title": "製品・サービス パナソニックが省エネNo.1(★)のルームエアコン エオリアXシリーズを発売",
+     "url": "https://news.panasonic.com/jp/press/jn261102-1",
+     "source": "official",
+     "first_seen": "2026-11-02T19:53+09:00"
+    },
+    {
      "date": "2026-10-30",
      "time": "15:30",
      "title": "2027年3月期 第2四半期(中間期)決算短信〔IFRS〕(連結)",
@@ -3150,7 +3188,7 @@
     },
     {
      "date": "2026-10-30",
-     "title": "企業・経営 AI関連事業へ約920億円を投資、成長を加速",
+     "title": "2 2026年10月30日 企業・経営 プレスリリース AI関連事業へ約920億円を投資、成長を加速",
      "url": "https://news.panasonic.com/jp/press/jn261030-3",
      "source": "official",
      "first_seen": "2026-10-30T19:28+09:00"
@@ -3500,6 +3538,22 @@
    ],
    "items": [
     {
+     "date": "2026-11-02",
+     "time": "16:18",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZAZM",
+     "source": "edinet",
+     "first_seen": "2026-11-02T00:00+09:00"
+    },
+    {
+     "date": "2026-11-02",
+     "time": "16:16",
+     "title": "半期報告書-第157期(2026/04/01-2027/03/31)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZAZ3",
+     "source": "edinet",
+     "first_seen": "2026-11-02T00:00+09:00"
+    },
+    {
      "date": "2026-10-30",
      "time": "15:00",
      "title": "2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
@@ -3604,6 +3658,14 @@
     "https://www.mirait-one.com/info/"
    ],
    "items": [
+    {
+     "date": "2026-11-02",
+     "time": "16:19",
+     "title": "大量保有報告書(提出: Oasis Management Company Ltd.)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZAY1",
+     "source": "edinet",
+     "first_seen": "2026-11-02T19:53+09:00"
+    },
     {
      "date": "2026-10-23",
      "title": "「CEATEC2026」ご来場の御礼",
