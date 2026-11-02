@@ -8841,6 +8841,7 @@ https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/op-88610/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/op-89238/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/pr/182844001.jsp
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/pr/182844002.jsp
+https://www.keyence.co.jp/products/controls/plc-building/kv-x/pr/217038001.jsp
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/specs/
 https://www.keyence.co.jp/products/controls/plc-package/
 https://www.keyence.co.jp/products/controls/plc-package/kv-p/
@@ -29802,6 +29803,7 @@ https://www.keyence.co.jp/support/recoder/trus/setsumei7.jsp
 https://www.keyence.co.jp/support/recoder/trus/setsumei8.jsp
 https://www.keyence.co.jp/support/registration/
 https://www.keyence.co.jp/support/repair/
+https://www.keyence.co.jp/support/software-activation/kv-intelligence/terms-conditions/
 https://www.keyence.co.jp/support/startup-guide/fr/
 https://www.keyence.co.jp/support/strength/
 https://www.keyence.co.jp/support/tellus/
