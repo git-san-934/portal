@@ -263,3 +263,16 @@ footer a { color: var(--accent); }
   .settings input { width: 8.5rem; }
 }
 .tiles > p { grid-column: 1 / -1; }
+
+/* 条件の毎日見直し */
+.opt-block { margin-top: 1rem; }
+.opt-title { font-size: 0.95rem; display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.badge { font-size: 0.72rem; font-weight: 700; padding: 0.1rem 0.55rem; border-radius: 999px; border: 1px solid var(--border); color: var(--text-sub); }
+.badge.keep { color: var(--text); }
+#opt .bt th, #opt .bt td { white-space: normal; }
+#opt .bt td:first-child { min-width: 9rem; }
+.badge.change { color: #fff; background: var(--accent); border-color: var(--accent); }
+.opt-verdict { font-size: 0.88rem; margin: 0.3rem 0 0.5rem; }
+.opt-more { margin-top: 1rem; font-size: 0.85rem; }
+.opt-more summary { cursor: pointer; font-weight: 700; color: var(--accent); }
+.bt tr.cur td:first-child { font-weight: 700; }
