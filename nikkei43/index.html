@@ -6,7 +6,7 @@
   <title>日経4.3ブル 暴落買いナビ</title>
   <meta name="description" content="SBI日本株4.3ブルの基準価額を毎日分析し、暴落した日に追加でいくら買うか、上がりすぎた日にどれだけ売るかの目安を出すページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261103a" />
+  <link rel="stylesheet" href="assets/style.css?v=20261103b" />
 </head>
 <body>
   <div class="wrap">
@@ -115,20 +115,25 @@
           <h3 class="opt-title">追加買い(暴落買い) <span class="badge" id="opt-buy-badge"></span></h3>
           <p class="opt-verdict" id="opt-buy-verdict"></p>
           <div class="table-wrap"><table class="bt" id="opt-buy-table"></table></div>
+          <h4 class="opt-sub">ルールの種類ごとのいちばん良い条件</h4>
+          <div class="table-wrap"><table class="bt" id="opt-buy-fam"></table></div>
           <ul class="why" id="opt-buy-why"></ul>
         </div>
         <div class="opt-block">
           <h3 class="opt-title">売り <span class="badge" id="opt-sell-badge"></span></h3>
           <p class="opt-verdict" id="opt-sell-verdict"></p>
           <div class="table-wrap"><table class="bt" id="opt-sell-table"></table></div>
+          <h4 class="opt-sub">ルールの種類ごとのいちばん良い条件</h4>
+          <div class="table-wrap"><table class="bt" id="opt-sell-fam"></table></div>
           <ul class="why" id="opt-sell-why"></ul>
         </div>
         <details class="opt-more">
           <summary>選び方と、ここ最近の結果</summary>
           <ul class="why">
-            <li><b>試す条件:</b> 追加買いは「何日の高値から測るか(10〜40日)」「最初の段階の下落率(−20〜−40%。残りの段階はその −10・−20・−40ポイント下)」「大口買いの上限(100〜300万円)」の75通り。売りは「1年前の何倍で売るか(2〜4倍)」「売る割合(1/5〜1/3)」「200日平均から何%安い日に買い戻すか(−10〜−30%)」の45通りです。</li>
+            <li><b>試すルール(追加買い 166通り):</b> ①N日高値からの下落(今のルールの仲間: 10〜40日・最初の段階 −20〜−40%・大口の上限 100〜300万円)、②移動平均(50・100・200日)からの下落で段階的に、③RSI(14日)が売られすぎの日、④20日の下げが「ふだんの値動き」の何倍か、⑤1年高値からの下落の深さに比例した金額、⑥大きく下げたあとの反発の日。</li>
+            <li><b>試すルール(売り 243通り):</b> ①1年前の何倍(今のルールの仲間)、②200日平均の何倍、③RSI(14日)が買われすぎ、④1年前の何倍かまで上がったあと20日高値から下げはじめた日、⑤自分の持ち分が買値の何倍。どれも売る割合(1/5〜1/3)と買い戻しの目安(200日平均 −10〜−30%)を組み合わせ、持ち分に利益が出ているときだけ売ります。</li>
             <li><b>比べ方:</b> 1996年から開始日を少しずつずらした3年・5年の期間(2017年12月より前は日経平均×4.3の仮の基準価額)で、追加買いは今のルールと、売りは「売らない」と比べた倍率の中央値を見ます。</li>
-            <li><b>たまたまを避ける工夫:</b> その条件だけでなく、すぐ隣の条件も平均した成績で選びます。追加買いは、1年で要る追加の現金が今のルールの1.1倍を超える条件は選びません(現金を多く入れれば成績が上がるのは当たり前なので)。さらに過去の各年について「その年より前のデータだけで選んだ条件」がその後3年で今のルールに勝ったかを確かめ、負け越すなら見直し候補にしません。</li>
+            <li><b>たまたまを避ける工夫:</b> その条件だけでなく、同じ種類のすぐ隣の条件も平均した成績で選びます。追加買いは、1年で要る追加の現金が今のルールの1.1倍を超えるもの、5年でいちばん負けた回が −15% より悪いものは選びません(現金を多く入れれば成績が上がるのは当たり前で、当たり外れが大きすぎるものも困るので)。売りは、5年でいちばん負けた回が −10% より悪いものを選びません。さらに過去の各年について「その年より前のデータだけで選んだ条件」がその後3年で今のルールに勝ったかを確かめ、負け越すなら見直し候補にしません。</li>
             <li><b>ページのルールは自動では変わりません。</b>「見直し候補あり」が続くときに、採るかどうかを決めてください。</li>
           </ul>
           <div class="table-wrap"><table class="bt" id="opt-history"></table></div>
@@ -156,6 +161,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20261103a"></script>
+  <script src="assets/app.js?v=20261103b"></script>
 </body>
 </html>

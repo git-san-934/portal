@@ -763,14 +763,14 @@
     badge.textContent = change ? "見直し候補あり" : "今のルールのまま";
     const same = o.best.label === o.current.label;
     let v = same
-      ? `${o.tested}通りを試して、今のルール(${o.current.label})がいちばん良い結果でした。`
-      : `${o.tested}通りの中でいちばん良かったのは「${o.best.label}」。`;
+      ? `${(o.families || []).length}種類・${o.tested}通りのルールを試して、今のルール(${o.current.label})がいちばん良い結果でした。`
+      : `${(o.families || []).length}種類・${o.tested}通りのルールの中でいちばん良かったのは「${o.best.label}」。`;
     if (!same) v += change ? " 下の確認もすべて通ったので、ルールを変える候補です。" : " ただし下の理由で、今のルールを変えるほどではありません。";
-    if (since && since.date && !same) v += ` この条件がいちばん良い状態は ${dateJa(since.date)} の基準価額から続いています。`;
+    if (since && since.date && !same) v += ` このルールがいちばん良い状態は ${dateJa(since.date)} の基準価額から続いています。`;
     $(`opt-${key}-verdict`).textContent = v;
 
     const rows = [{ ...o.current, name: "今のルール", cls: "cur" }];
-    if (!same) rows.push({ ...o.best, name: "いちばん良かった条件", cls: change ? "total" : null });
+    if (!same) rows.push({ ...o.best, name: "いちばん良かったルール", cls: change ? "total" : null });
     o.top.filter((t) => t.label !== o.best.label && t.label !== o.current.label).slice(0, 3).forEach((t) => rows.push({ ...t, name: "次の候補" }));
     const pc = (x) => (x == null ? "pct" : pctClass(x));
     const cols = [{ h: "条件", f: (r) => `${r.name}: ${r.label}` }];
@@ -793,6 +793,18 @@
       );
     }
     optTable($(`opt-${key}-table`), rows, cols);
+
+    // 種類ごとのいちばん良い条件(条件を満たすものがない種類も出す)
+    const fam = (o.families || []).map((f) => ({ ...f.best, name: f.name, excluded: f.excluded }));
+    const fcols = [
+      { h: "種類", f: (r) => r.name },
+      { h: "いちばん良い条件", f: (r) => (r.excluded ? `${r.label}(選ばない: ${r.excluded})` : r.label), cls: () => "lt" },
+      { h: key === "buy" ? "5年の差(中央値)" : "5年: 売らないとの差", f: (r) => `${ptText(r.y5.med)}%`, cls: (r) => pc(r.y5.med) },
+      { h: "5年で勝った", f: (r) => `${Math.round(r.y5.win * 100)}%` },
+      { h: "いちばん負けた回", f: (r) => `${ptText(r.y5.worst)}%` },
+      { h: "2018年〜", f: (r) => `×${r.real_mult.toFixed(2)}` },
+    ];
+    optTable($(`opt-${key}-fam`), fam, fcols);
 
     const why = $(`opt-${key}-why`);
     why.textContent = "";

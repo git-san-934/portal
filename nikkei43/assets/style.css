@@ -276,3 +276,5 @@ footer a { color: var(--accent); }
 .opt-more { margin-top: 1rem; font-size: 0.85rem; }
 .opt-more summary { cursor: pointer; font-weight: 700; color: var(--accent); }
 .bt tr.cur td:first-child { font-weight: 700; }
+.opt-sub { font-size: 0.8rem; margin: 0.8rem 0 0.2rem; color: var(--text-sub); }
+#opt .bt td.lt { text-align: left; min-width: 12rem; }
