@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-03T20:22+09:00",
+ "updated_at": "2026-11-03T23:39+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-03",
+     "title": "「開発者に訊きました:ゼルダの伝説 時のオカリナ」のChapter3、4を公開しました。 今の時代のゲームとして再構築されたアクションやダンジョン、ハイラルをより豊かにするサウンドのこだわりなど、くわしいお話をお届けします。",
+     "url": "https://www.nintendo.com/jp/interview/aa9ja/03.html",
+     "source": "official",
+     "first_seen": "2026-11-03T23:39+09:00"
+    },
     {
      "date": "2026-11-03",
      "title": "Nintendo Switch 2 ソフト『ピクミン4 Nintendo Switch 2 Edition + だれでもチャレンジ! ダンドリ検定』の紹介映像とゲーム画面CMを公開しました。",
@@ -427,13 +434,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/e94b27af-d05f-41d9-94ab-dce0d7d26c00",
      "source": "official",
      "first_seen": "2026-09-25T00:00+09:00"
-    },
-    {
-     "date": "2026-09-18",
-     "title": "「デザイナー職 キャリア採用説明会」の情報を掲載しました。",
-     "url": "https://www.nintendo.co.jp/jobs/career/session.html",
-     "source": "official",
-     "first_seen": "2026-09-18T00:00+09:00"
     }
    ]
   },
@@ -1585,6 +1585,14 @@
     "q4:https://investor.oracle.com"
    ],
    "items": [
+    {
+     "date": "2026-11-02",
+     "title": "Oracle Announces Pricing of $20 Billion of Common Stock and Senior Notes",
+     "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Pricing-of-20-Billion-of-Common-Stock-and-Senior-Notes/default.aspx",
+     "source": "official",
+     "first_seen": "2026-11-03T23:39+09:00",
+     "title_ja": "オラクル、200億ドルの普通株式と優先債券の価格決定を発表"
+    },
     {
      "date": "2026-10-28",
      "title": "Oracle Investor Day 2026: Accelerating Value Creation",
