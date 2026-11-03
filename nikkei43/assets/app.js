@@ -735,6 +735,106 @@
     return m ? `${Number(m[1])}/${Number(m[2])} ${Number(m[3])}:${m[4]}` : "";
   };
 
+
+  // ---------- 条件の毎日見直し(data/optimize.json。scripts/optimize.py が基準価額の更新ごとに作る) ----------
+
+  const OPT_URL = "data/optimize.json";
+  const ptText = (v) => (v == null ? "—" : `${v >= 0 ? "+" : "−"}${Math.abs(v * 100).toFixed(1)}`);
+
+  function optTable(table, rows, cols) {
+    table.textContent = "";
+    const head = el("tr");
+    cols.forEach((c) => head.append(el("th", null, c.h)));
+    table.append(head);
+    rows.forEach((r) => {
+      const tr = el("tr", r.cls || null);
+      cols.forEach((c) => {
+        const v = c.f(r);
+        tr.append(el("td", c.cls ? c.cls(r) : null, v));
+      });
+      table.append(tr);
+    });
+  }
+
+  function renderOptPart(key, o, since) {
+    const badge = $(`opt-${key}-badge`);
+    const change = o.verdict === "change";
+    badge.className = "badge " + (change ? "change" : "keep");
+    badge.textContent = change ? "見直し候補あり" : "今のルールのまま";
+    const same = o.best.label === o.current.label;
+    let v = same
+      ? `${o.tested}通りを試して、今のルール(${o.current.label})がいちばん良い結果でした。`
+      : `${o.tested}通りの中でいちばん良かったのは「${o.best.label}」。`;
+    if (!same) v += change ? " 下の確認もすべて通ったので、ルールを変える候補です。" : " ただし下の理由で、今のルールを変えるほどではありません。";
+    if (since && since.date && !same) v += ` この条件がいちばん良い状態は ${dateJa(since.date)} の基準価額から続いています。`;
+    $(`opt-${key}-verdict`).textContent = v;
+
+    const rows = [{ ...o.current, name: "今のルール", cls: "cur" }];
+    if (!same) rows.push({ ...o.best, name: "いちばん良かった条件", cls: change ? "total" : null });
+    o.top.filter((t) => t.label !== o.best.label && t.label !== o.current.label).slice(0, 3).forEach((t) => rows.push({ ...t, name: "次の候補" }));
+    const pc = (x) => (x == null ? "pct" : pctClass(x));
+    const cols = [{ h: "条件", f: (r) => `${r.name}: ${r.label}` }];
+    if (key === "buy") {
+      cols.push(
+        { h: "3年の差(中央値)", f: (r) => `${ptText(r.y3.med)}%`, cls: (r) => pc(r.y3.med) },
+        { h: "5年の差(中央値)", f: (r) => `${ptText(r.y5.med)}%`, cls: (r) => pc(r.y5.med) },
+        { h: "5年で勝った", f: (r) => (r.cls === "cur" ? "—" : `${Math.round(r.y5.win * 100)}%`) },
+        { h: "5年でいちばん負けた回", f: (r) => (r.cls === "cur" ? "—" : `${ptText(r.y5.worst)}%`) },
+        { h: "1年で要った追加の現金(最大)", f: (r) => man(r.cash_peak) },
+        { h: "2018年〜の実際の基準価額", f: (r) => `×${r.real_mult.toFixed(2)}` }
+      );
+    } else {
+      cols.push(
+        { h: "3年: 売らないとの差", f: (r) => `${ptText(r.y3.med)}%`, cls: (r) => pc(r.y3.med) },
+        { h: "5年: 売らないとの差", f: (r) => `${ptText(r.y5.med)}%`, cls: (r) => pc(r.y5.med) },
+        { h: "5年で勝った(同じ)", f: (r) => `${Math.round(r.y5.win * 100)}%(${Math.round(r.y5.tie * 100)}%)` },
+        { h: "5年でいちばん負けた回", f: (r) => `${ptText(r.y5.worst)}%` },
+        { h: "2018年〜の実際の基準価額", f: (r) => `×${r.real_mult.toFixed(2)}` }
+      );
+    }
+    optTable($(`opt-${key}-table`), rows, cols);
+
+    const why = $(`opt-${key}-why`);
+    why.textContent = "";
+    o.reasons.forEach((t) => why.append(el("li", null, t)));
+    const w = o.walk;
+    if (w && w.n) {
+      why.append(
+        el(
+          "li",
+          null,
+          `過去の確かめ(${w.years[0].year}〜${w.years[w.years.length - 1].year}年の${w.n}年): その年より前のデータだけで選び直すと、今のルールと違う条件になったのが ${w.changed}年。その後3年で今のルールに勝ったのが ${w.win}年、負けたのが ${w.lose}年でした。`
+        )
+      );
+    }
+    if (key === "sell") why.append(el("li", null, `2018年〜の実際の基準価額で「売らない」は ×${o.never_real_mult.toFixed(2)}(倍率は最後に全部売ったときの税引後の資産 ÷ 自分で入れたお金)。`));
+    else why.append(el("li", null, "差は、同じ期間に今のルールで買った場合の「資産 ÷ 入れたお金」との比べです。2018年〜は売らずに持ち続けた場合の倍率。"));
+  }
+
+  function renderOpt(o) {
+    $("opt").hidden = false;
+    $("opt-sub").textContent =
+      `${dateJa(o.data_end)} までの基準価額(${o.data_start.slice(0, 4)}年〜。${o.real_start.slice(0, 7).replace("-", "年")}月より前は日経平均×4.3の仮の値)で、買い時・売り時の条件を計算し直した結果です(計算 ${updatedJa(o.computed)})。基準価額が更新されるたびに自動で計算し直します。ページのルール自体は変えていません。`;
+    renderOptPart("buy", o.buy, o.best_since && o.best_since.buy);
+    renderOptPart("sell", o.sell, o.best_since && o.best_since.sell);
+    const h = (o.history || []).slice(-10).reverse();
+    optTable($("opt-history"), h, [
+      { h: "基準価額の日", f: (r) => dateJa(r.data_end) },
+      { h: "追加買い", f: (r) => `${r.buy_verdict === "change" ? "見直し候補" : "そのまま"}(いちばん良い: ${r.buy})` },
+      { h: "売り", f: (r) => `${r.sell_verdict === "change" ? "見直し候補" : "そのまま"}(いちばん良い: ${r.sell})` },
+    ]);
+  }
+
+  async function loadOpt() {
+    try {
+      const res = await fetch(`${OPT_URL}?t=${Date.now()}`, { cache: "no-store" });
+      if (!res.ok) throw new Error(`HTTP ${res.status}`);
+      renderOpt(await res.json());
+    } catch {
+      $("opt").hidden = true; // 見直しの結果がまだなくても、ほかの表示は続ける
+    }
+  }
+
   let controlsReady = false;
 
   // nav.json をキャッシュなしで取り直して描き直す(最初の表示と「最新データを読み込む」ボタンの両方で使う)
@@ -760,6 +860,7 @@
       }
       $("main").hidden = false;
       renderAll();
+      loadOpt();
     } catch (err) {
       statusEl.textContent = `データを読み込めませんでした(${err.message})。時間をおいてもう一度お試しください。`;
       statusEl.classList.add("error");

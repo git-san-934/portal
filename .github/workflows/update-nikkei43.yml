@@ -18,7 +18,7 @@ on:
       - .github/workflows/update-nikkei43.yml
 
 permissions:
-  contents: write # nav.json をコミットする
+  contents: write # nav.json と optimize.json をコミットする
   actions: write # 更新後に Pages のデプロイを起動する
 
 concurrency:
@@ -37,16 +37,23 @@ jobs:
       - name: 基準価額を取得(確認のみ)
         if: github.event_name == 'pull_request'
         run: python nikkei43/scripts/fetch_nav.py --check
+      - name: 買い時・売り時の条件を見直す(確認のみ)
+        if: github.event_name == 'pull_request'
+        run: python nikkei43/scripts/optimize.py --check
       - name: 基準価額を取得
         if: github.event_name != 'pull_request'
         run: python nikkei43/scripts/fetch_nav.py
-      - name: nav.json をコミット
+      # 新しい基準価額が入ったら(またはスクリプトが変わったら)、買い時・売り時の条件を全部計算し直す。数秒で終わる
+      - name: 買い時・売り時の条件を見直す
+        if: github.event_name != 'pull_request'
+        run: python nikkei43/scripts/optimize.py
+      - name: nav.json と見直し結果をコミット
         id: commit
         if: github.event_name != 'pull_request'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add nikkei43/data/nav.json
+          git add nikkei43/data/nav.json nikkei43/data/optimize.json
           if git diff --cached --quiet; then
             echo "変更なし"
             exit 0
