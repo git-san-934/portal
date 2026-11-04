@@ -176,7 +176,7 @@
     const T = state.data.trade;
     if (!T) return;
     const R = T.rule, now = T.now, S = state.data.series, st = T.stats;
-    $("t-lead").textContent = `現金のときは PBR が${R.buy_pbr.toFixed(1)}倍を下回ったら買い、持っているときは PBR が${R.sell_pbr.toFixed(1)}倍を超え、しかも PER が${R.sell_per}倍を超えたら売り。合図は終値で判定し、次の営業日に売買します。持っている間は売りの合図だけ、現金の間は買いの合図だけが出るので、買いと売りは必ず交互になります。`;
+    $("t-lead").textContent = `現金のときは PBR が${R.buy_pbr.toFixed(1)}倍を下回ったあと、下から上に${R.buy_pbr.toFixed(1)}倍を抜けたら買い、持っているときは PBR が${R.sell_pbr.toFixed(1)}倍を超え、しかも PER が${R.sell_per}倍を超えたら売り。合図は終値で判定し、次の営業日に売買します。持っている間は売りの合図だけ、現金の間は買いの合図だけが出るので、買いと売りは必ず交互になります。`;
     const pill = $("t-pill");
     pill.classList.toggle("out", !now.holding);
     pill.classList.remove("mid");
@@ -185,7 +185,7 @@
     $("t-pills").textContent = `${fmtD(now.since)} から`;
     const next = now.holding
       ? `<div class="stat"><div class="k">売りの線の株価(PBR ${R.sell_pbr}倍・PER ${R.sell_per}倍の両方を超える)</div><div class="v zone-s">${yen(now.sell_price)}</div><div class="s">あと ${pct(now.sell_price / now.close - 1)} 上がると売り</div></div>`
-      : `<div class="stat"><div class="k">買いの線の株価(PBR ${R.buy_pbr}倍)</div><div class="v zone-b">${yen(now.buy_price)}</div><div class="s">あと ${pct(now.buy_price / now.close - 1)} 下がると買い</div></div>`;
+      : `<div class="stat"><div class="k">買いの線の株価(PBR ${R.buy_pbr}倍)</div><div class="v zone-b">${yen(now.buy_price)}</div><div class="s">${now.armed ? `線を割っています。${yen(now.buy_price)}を上に抜けたら買い` : `あと ${pct(now.buy_price / now.close - 1)} 下がって線を割り、そのあと上に抜けたら買い`}</div></div>`;
     $("t-stats").innerHTML = `
       <div class="stat"><div class="k">PBR / PER</div><div class="v">${now.pbr.toFixed(2)}倍 / ${now.per.toFixed(1)}倍</div><div class="s">日経平均 ${yen(now.close)}(${fmtD(T.to)})</div></div>
       ${next}
@@ -205,7 +205,7 @@
       <tr><td>始める日を3か月ずつずらして5年続けた場合</td><td colspan="2">${rr("5y")}</td></tr>
       <tr><td>　〃 10年続けた場合</td><td colspan="2">${rr("10y")}</td></tr>`;
     const notes = [
-      "なぜこの線か: PBR 1倍は、株価が1株あたりの純資産(会社を解散したときの価値)と同じ水準です。2008年10月・2012年・2016年・2020年3月の底はどれも PBR 1倍前後でした。ただ1倍割れは2004年以降22年のうち5つの年にしかなく、売ったあと何年も買えなくなるので、少し上の1.1倍(10の年で起きた)を買いの線にしています。PBR 2倍超は2005〜2007年の上げ相場の天井付近だけで、2013〜2024年の高値は1.4〜1.6倍でした。",
+      "なぜこの線か: PBR 1倍は、株価が1株あたりの純資産(会社を解散したときの価値)と同じ水準です。2008年10月・2012年・2016年・2020年3月の底はどれも PBR 1倍前後でした。ただ1倍割れは2004年以降22年のうち5つの年にしかなく、売ったあと何年も買えなくなるので、少し上の1.1倍(10の年で起きた)を買いの線にしています。線を割った日ではなく、割ったあと下から上に抜けた日に買うので、下げの途中で買うのを避けられます(そのぶん買値は少し高くなります)。PBR 2倍超は2005〜2007年の上げ相場の天井付近だけで、2013〜2024年の高値は1.4〜1.6倍でした。",
       "売りに PER も使う理由: リーマン・ショック後(2009年)のように利益が大きく減ると、PER だけが何十倍にも跳ね上がります。そこは底だったので、PBR も高いときだけ売るようにしています。反対に、PER が高いだけ・PER が低いだけの線(例: PER 14倍で買い・16倍で売り)では、上がり続ける相場で早く売りすぎて、持ち続けた場合の×5.83に対して×1.81と大きく負けました(売買23回)。",
       "線の決め方: 買い0.9〜1.4倍・売り1.6〜2.4倍・PER の条件あり/なしなど約500通りを比べ、成績が近い中からキリのよい数字を選びました。売りの線を1.6倍まで下げると売買は増えますが、5年続けた回でいちばん負けた回が −31% になりました。",
       "限界: この期間に売りが出たのは2005年9月の1回だけで、2008年10月に買ったあとは今まで持ち続けています。つまり成績の差は、2005〜2008年の1回の山と谷でほぼ決まっています。2008年以降に始めた人には「持ち続け」と同じ結果です。データは2004年9月からしかなく、それより前(バブル期など)では確かめられていません。",
