@@ -306,6 +306,112 @@ def trade_report(pts: list[dict]) -> dict | None:
     }
 
 
+# ---------- 持ち方のくらべ(全部・半分・段階) ----------
+# 同じ PBR・PER の線で「全部売り買い」「半分ずつ」「現金の半分だけ買う」などを比べる。売買は合図の次の営業日の終値、
+# コストは動かした割合 × TRADE_COST。保有の割合 w(0〜1)は、上がる向きは買いの条件、下がる向きは売りの条件でだけ動く
+def _pbr_lt(th):
+    return lambda p: p["pbr"] < th
+
+
+def _pbr_gt(th, per=None):
+    return lambda p: p["pbr"] > th and (per is None or per < p["per"] <= REL_EXCLUDE_ABOVE)
+
+
+def _per_lt(th):
+    return lambda p: p["per"] < th
+
+
+def _per_gt(th):
+    return lambda p: th < p["per"] <= REL_EXCLUDE_ABOVE
+
+
+def _steps(buys, sells):
+    """buys/sells: [(条件, 目標の割合)]。上へは買いの条件、下へは売りの条件でだけ動く(行ったり来たりを防ぐ)。"""
+    def f(p, w):
+        up = [tw for c, tw in buys if tw > w + 1e-9 and c(p)]
+        if up:
+            return max(up)
+        down = [tw for c, tw in sells if tw < w - 1e-9 and c(p)]
+        return min(down) if down else None
+    return f
+
+
+def _linear(lo, hi, step=0.25):
+    def f(p, w):
+        t = round(min(1.0, max(0.0, (hi - p["pbr"]) / (hi - lo))) / step) * step
+        return t if abs(t - w) >= step - 1e-9 else None
+    return f
+
+
+PATTERNS = [
+    ("all", "全部売り・全部買い(上の売買ルール)", f"PBR {TRADE_BUY_PBR}倍割れで全部買い / PBR {TRADE_SELL_PBR}倍超かつPER {TRADE_SELL_PER:g}倍超で全部売り",
+     _steps([(_pbr_lt(TRADE_BUY_PBR), 1.0)], [(_pbr_gt(TRADE_SELL_PBR, TRADE_SELL_PER), 0.0)])),
+    ("half", "半分ずつ", "PBR 1.0倍割れで半分・0.9倍割れで残りを買い / PBR 1.8倍超で半分・2.0倍超かつPER 16倍超で残りを売り",
+     _steps([(_pbr_lt(1.0), 0.5), (_pbr_lt(0.9), 1.0)], [(_pbr_gt(1.8), 0.5), (_pbr_gt(2.0, 16), 0.0)])),
+    ("keep_half", "半分だけ売る", "売りの合図で半分だけ売り(最低でも半分は持つ) / 買いの合図で全部に戻す",
+     _steps([(_pbr_lt(1.0), 1.0)], [(_pbr_gt(2.0, 16), 0.5)])),
+    ("third", "3段階(1/3ずつ)", "PBR 1.6・1.8・2.0倍超で1/3ずつ売り / 1.2・1.1・1.0倍割れで1/3ずつ買い",
+     _steps([(_pbr_lt(1.2), 1 / 3), (_pbr_lt(1.1), 2 / 3), (_pbr_lt(1.0), 1.0)], [(_pbr_gt(1.6), 2 / 3), (_pbr_gt(1.8), 1 / 3), (_pbr_gt(2.0), 0.0)])),
+    ("cash_half", "現金の半分だけ買う", "売りの合図で全部売り / 買いの合図では現金の半分だけ買う",
+     _steps([(_pbr_lt(1.0), 0.5)], [(_pbr_gt(2.0, 16), 0.0)])),
+    ("linear", "PBR に合わせて毎日調整", "PBR 1.0倍以下で全部、2.0倍以上で0、そのあいだは25%刻みで割合を変える",
+     _linear(1.0, 2.0)),
+    ("per_all", "PER だけ・全部", "PER 14倍割れで全部買い / PER 16倍超で全部売り",
+     _steps([(_per_lt(14), 1.0)], [(_per_gt(16), 0.0)])),
+    ("per_half", "PER だけ・半分ずつ", "PER 14倍割れで半分・13倍割れで残りを買い / 16倍超で半分・17倍超で残りを売り",
+     _steps([(_per_lt(14), 0.5), (_per_lt(13), 1.0)], [(_per_gt(16), 0.5), (_per_gt(17), 0.0)])),
+]
+
+
+def weight_sim(pts: list[dict], s: int, e: int, target) -> dict:
+    w, eq, peak, mdd, pend, n, inm, curve = 1.0, 1.0, 1.0, 0.0, None, 0, 0.0, []
+    for i in range(s, e):
+        if i > s:
+            eq *= 1 + w * (pts[i]["close"] / pts[i - 1]["close"] - 1)
+        if pend is not None and abs(pend - w) > 1e-9:
+            eq *= 1 - TRADE_COST * abs(pend - w)
+            w, n = pend, n + 1
+        t = target(pts[i], w)
+        pend = t if t is not None and abs(t - w) > 1e-9 else None
+        peak, inm = max(peak, eq), inm + w
+        mdd = min(mdd, eq / peak - 1)
+        curve.append(eq)
+    return {"eq": eq, "mdd": mdd, "n": n, "w": w, "pending": pend, "in_market": inm / max(1, e - s), "curve": curve}
+
+
+def patterns_report(pts: list[dict]) -> dict | None:
+    idx = [i for i, p in enumerate(pts) if p.get("pbr") is not None]
+    if len(idx) < 250:
+        return None
+    s, e = idx[0], idx[-1] + 1
+    d0, d1 = pts[s]["date"], pts[e - 1]["date"]
+    dates = [p["date"] for p in pts[s:e]]
+    hold = [p["close"] / pts[s]["close"] for p in pts[s:e]]
+    keep = [k for k in range(e - s) if k % 5 == 0 or k == e - s - 1]
+    out = {"from": d0, "to": d1, "date": [dates[k] for k in keep], "hold": [round(hold[k], 4) for k in keep],
+           "hold_stats": {"eq": hold[-1], "cagr": cagr(hold[-1], d0, d1), "mdd": hold_stats(pts, s, e)["mdd"]}, "items": []}
+    for key, name, desc, target in PATTERNS:
+        r = weight_sim(pts, s, e, target)
+        c = r["curve"]
+        # 開始日を3か月ずつずらして5年続けたとき、持ち続けより良かった/悪かった割合
+        win = lose = cnt = 0
+        t = date.fromisoformat(d0)
+        while True:
+            i0 = bisect.bisect_left(dates, t.isoformat())
+            t1 = (date.fromisoformat(dates[i0]) + timedelta(days=int(365.25 * 5))).isoformat()
+            if t1 > d1:
+                break
+            i1 = bisect.bisect_left(dates, t1)
+            diff = c[i1] / c[i0] - hold[i1] / hold[i0]
+            cnt, win, lose = cnt + 1, win + (diff > 0.005), lose + (diff < -0.005)
+            t += timedelta(days=ROLL_STEP_DAYS)
+        out["items"].append({"key": key, "name": name, "desc": desc, "eq": r["eq"], "cagr": cagr(r["eq"], d0, d1), "mdd": r["mdd"],
+                             "n": r["n"], "in_market": r["in_market"], "w": r["w"], "pending": r["pending"],
+                             "win5": win / cnt if cnt else None, "lose5": lose / cnt if cnt else None,
+                             "curve": [round(c[k], 4) for k in keep]})
+    return out
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
@@ -346,6 +452,7 @@ def main() -> int:
                                     f"その月より前の{n}年間の月末 PER の平均から1σ下で買い検討、1σ上で売り検討")
 
     trade = trade_report(pts)
+    patterns = patterns_report(pts)
 
     # チャート用の系列(日次は全部、月次期間は月末)
     series = {"date": [], "close": [], "per": [], "pbr": [], "sig": [], "eps": [], "freq": []}
@@ -378,7 +485,7 @@ def main() -> int:
                               "price_lo": round(last["eps"] * lo), "price_hi": round(last["eps"] * hi),
                               "price_mean": round(last["eps"] * b[0])}
 
-    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "tests": tests, "series": series,
+    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "patterns": patterns, "tests": tests, "series": series,
            "settings": {"fixed": [FIXED_LOW, FIXED_HIGH], "rel_years": list(REL_YEARS), "rel_sigma": REL_SIGMA,
                         "event_gap_days": EVENT_GAP_DAYS, "basis_change": BASIS_CHANGE,
                         "per_columns": list(PER_COLUMNS), "rel_exclude_above": REL_EXCLUDE_ABOVE}}
@@ -386,6 +493,8 @@ def main() -> int:
         st_ = trade["stats"]
         print(f"  trade: {'持つ' if trade['now']['holding'] else '現金'} 取引{st_['rule']['n']}回 x{st_['rule']['eq']:.2f} (持ち続け x{st_['hold']['eq']:.2f}) "
               f"最大下落 {st_['rule']['mdd']:.0%} / {st_['hold']['mdd']:.0%} 5年比較 {trade['rolling'].get('5y')}")
+    for it in (patterns or {}).get("items", []):
+        print(f"  pattern {it['key']}: x{it['eq']:.2f} 最大下落 {it['mdd']:.0%} 売買{it['n']}回 いま{it['w']:.0%}")
     print(f"{info} 最新 {last['date']} PER {last['per']} 終値 {last['close']}")
     for k, t in tests.items():
         if "buy" in t:

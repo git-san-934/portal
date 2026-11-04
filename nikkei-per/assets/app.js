@@ -323,6 +323,47 @@
     $("t-notes").innerHTML = notes.map((t) => `<li>${esc(t)}</li>`).join("");
   }
 
+  // ---------- 持ち方のくらべ ----------
+  const PCOL = { all: "--line", half: "--p-b", cash_half: "--p-d", per_all: "--p-h" };
+  function renderPatterns() {
+    const P = state.data.patterns;
+    if (!P) return;
+    const items = P.items.slice().sort((a, b) => b.eq - a.eq), H = P.hold_stats;
+    const max = Math.max(H.eq, ...items.map((x) => x.eq)), W = (v) => (v / max) * 82 + "%";
+    $("c-lead").textContent = `同じ PBR・PER の線を使って、売り買いを「全部」「半分ずつ」「1/3ずつ」「現金の半分だけ」などに変えたら、${fmtD(P.from)}〜${fmtD(P.to)}にどうなったかを比べました。売買は合図の次の営業日の終値、コストは動かした金額の0.1%です。`;
+    $("c-hold").textContent = mult(H.eq);
+    const held = (w) => (w >= 0.999 ? "全部持つ" : w <= 0.001 ? "全部現金" : `${Math.round(w * 100)}%持つ`);
+    $("c-bars").innerHTML = items.map((x) => {
+      const better = x.eq > H.eq * 1.005, worse = x.eq < H.eq * 0.995;
+      return `<li class="${x.key === "all" ? "main" : ""}" title="${esc(x.desc)}">
+        <div class="nm">${esc(x.name)}<small>${esc(x.desc)}</small></div>
+        <div>
+          <div class="tr"><div class="bar" style="width:${W(x.eq)}"></div><span class="val" style="left:${W(x.eq)}">${mult(x.eq)}</span><div class="ref" style="left:${W(H.eq)}"></div></div>
+          <div class="meta"><span class="${better ? "up" : worse ? "dn" : ""}">${better ? "持ち続けより良い" : worse ? "持ち続けより悪い" : "持ち続けと同じ"}</span> · いちばん大きな下げ <b>${pct(x.mdd, 0)}</b> · 売買 <b>${x.n}回</b> · いま <b>${held(x.w)}</b></div>
+        </div></li>`;
+    }).join("");
+    // 資産の推移
+    const pick = ["all", "half", "cash_half", "per_all"].map((k) => P.items.find((x) => x.key === k)).filter(Boolean);
+    $("c-legend").innerHTML = `<span><i class="dash" style="border-color:var(--muted)"></i>持ち続け ${mult(H.eq)}</span>` +
+      pick.map((x) => `<span><i style="background:var(${PCOL[x.key]})"></i>${esc(x.name)} ${mult(x.eq)}</span>`).join("");
+    lineChart($("c-ch"), {
+      d: P.date, t: P.date.map(toT), h: 260, label: "持ち方ごとの資産の推移",
+      series: [{ n: "持ち続け", v: P.hold, c: "--muted", w: 1.5, dash: "5 4" }]
+        .concat(pick.map((x) => ({ n: x.name, v: x.curve, c: PCOL[x.key], w: x.key === "all" ? 2.25 : 1.75 }))),
+      ymin: 0, yfmt: (v) => "×" + v, tfmt: (v) => mult(v),
+    });
+    $("c-table").innerHTML = `<tr><th>持ち方</th><th>資産</th><th>年あたり</th><th>いちばん大きな下げ</th><th>売買</th><th>平均の持ち分</th><th>5年続けて持ち続けに負けた回</th><th>いま</th></tr>
+      <tr><td>持ち続け</td><td>${mult(H.eq)}</td><td>${pct(H.cagr)}</td><td>${pct(H.mdd, 0)}</td><td>—</td><td>100%</td><td>—</td><td>全部持つ</td></tr>` +
+      items.map((x) => `<tr><td>${esc(x.name)}</td><td>${mult(x.eq)}</td><td>${pct(x.cagr)}</td><td>${pct(x.mdd, 0)}</td><td>${x.n}回</td><td>${Math.round(x.in_market * 100)}%</td><td>${x.lose5 == null ? "—" : Math.round(x.lose5 * 100) + "%"}</td><td>${held(x.w)}</td></tr>`).join("");
+    const notes = [
+      "PBR で決める持ち方は、全部でも半分ずつでも結果はほぼ同じです。2005年に売って2008年のリーマン・ショック後に買い戻した1回の往復で、成績のほとんどが決まっています。",
+      "半分ずつ・1/3ずつにすると売買が増え、少しだけ成績が下がります。PBR 1.8倍で一部を売る持ち方は、2026年1月(日経平均 約54,000円)に一部を手放し、そのあとの上昇を取り逃しています。",
+      "「現金の半分だけ買う」は、2008年の底で半分しか買い戻さず、そのあとずっと半分が現金のままになるので大きく負けます。下げはいちばん小さくなります。",
+      "PER だけで決める持ち方は、全部でも半分ずつでも大きく負けます。景気が悪いときは利益が減って PER が上がるので、底で売ってしまうためです。",
+    ];
+    $("c-notes").innerHTML = notes.map((t) => `<li>${esc(t)}</li>`).join("");
+  }
+
   // ---------- 答え合わせ ----------
   const cell = (st) => (st ? `${pct(st.median)} <span class="muted">${Math.round(st.win * 100)}%</span>` : "—");
   function renderBacktest() {
@@ -388,6 +429,7 @@
     seg($("method"), methods(), "method", () => { renderStatus(); renderCharts(); renderEvents(); });
     seg($("rng"), RANGES, "range", renderCharts);
     renderTrade();
+    renderPatterns();
     renderStatus();
     renderCharts();
     renderBacktest();
@@ -428,6 +470,6 @@
   $("refresh").href = `https://github.com/git-san-934/portal/issues/new?${q}`;
 
   let rt;
-  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => state.data && state.data.ready && (renderTrade(), renderCharts()), 150); });
+  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => state.data && state.data.ready && (renderTrade(), renderPatterns(), renderCharts()), 150); });
   load(false);
 })();
