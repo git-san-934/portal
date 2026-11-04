@@ -6,7 +6,7 @@
   <title>日経平均PER・PBR 売買ルール</title>
   <meta name="description" content="日経平均のPERが14倍未満なら買い検討、16倍超なら売り検討。固定の線と、過去の平均からのずれ(相対バンド)の2つで毎日判定し、合図のあとの値動きを検証するページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261104e" />
+  <link rel="stylesheet" href="assets/style.css?v=20261104f" />
 </head>
 <body>
 
@@ -52,6 +52,23 @@
   <div><div class="tag" style="margin-bottom:4px">売買の記録(売買は合図の次の営業日の終値)</div><ul class="trades" id="t-trades"></ul></div>
   <div class="tw"><table id="t-table"></table></div>
   <ul class="notes" id="t-notes"></ul>
+</section>
+
+<section class="card" aria-labelledby="c1">
+  <div class="tag">持ち方のくらべ(全部・半分・段階)</div>
+  <h2 id="c1">全部売り買い？ 半分ずつ？ どれがよかった？</h2>
+  <p class="lead" id="c-lead"></p>
+  <h3>資産がいくつになったか(はじめを1として)</h3>
+  <p class="reflab"><i class="dash" style="display:inline-block;width:14px;border-top:2px dashed var(--muted);vertical-align:middle;margin-right:5px"></i>点線は持ち続けた場合 <span id="c-hold"></span>。右に長いほど増えた</p>
+  <ul class="pbars" id="c-bars"></ul>
+  <h3>資産の推移(代表的な4つ)</h3>
+  <div class="legend" id="c-legend"></div>
+  <div class="chart" id="c-ch"></div>
+  <details>
+    <summary>全部のパターンの数字(表)</summary>
+    <div class="tw"><table id="c-table"></table></div>
+  </details>
+  <ul class="notes" id="c-notes"></ul>
 </section>
 
 <section class="card" aria-labelledby="p1">
@@ -115,6 +132,6 @@
 
 </main>
 </div>
-<script src="assets/app.js?v=20261104e"></script>
+<script src="assets/app.js?v=20261104f"></script>
 </body>
 </html>
