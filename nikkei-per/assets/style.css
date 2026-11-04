@@ -117,3 +117,4 @@ a.reload{text-decoration:none}
 .mk.sq{border-radius:3px}
 :root{--pbr-b:#39ff14;--pbr-s:#ffea00}
 .mk.sq.b{background:var(--pbr-b);color:#1a1a1a}.mk.sq.s{background:var(--pbr-s);color:#1a1a1a}
+.wrap{grid-template-columns:minmax(0,1fr)}.card>*{min-width:0}

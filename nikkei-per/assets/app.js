@@ -169,82 +169,89 @@
     hit.addEventListener("pointerleave", () => { tip.hidden = true; cross.setAttribute("opacity", 0); dots.forEach((d) => d.setAttribute("opacity", 0)); });
   }
 
-  // ---------- 売買ルール(PER・PBR) ----------
+  // ---------- 買いの合図(PER・PBR) ----------
+  // 売りの合図は出さない(売り時は見ない)。買いの合図だけを出し、そのあとの値動きを確かめる
   const toT = (s) => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
-  const mult = (v) => "×" + v.toFixed(2);
+  const PER_LO = 14, PER_RE = 16, PBR_RE = 1.3;
+  // PBR: 買いの線を下回ったあと、下から上に抜けた日が買い。次の合図は PBR が一度 1.3倍を超えてから(線の近くで何度も出ないように)
+  // PER: 14倍を上から下に割った日が買い。次の合図は PER が一度 16倍を超えてから
+  function buySignals(S, from, buyPbr) {
+    const pbr = [], per = [];
+    let armed = false, okB = true, okE = true, prev = null;
+    for (let i = 0; i < S.date.length; i++) {
+      if (S.date[i] < from || S.pbr[i] == null) continue;
+      const b = S.pbr[i], e = S.per[i];
+      if (b > PBR_RE) okB = true;
+      if (b < buyPbr && okB) armed = true;
+      else if (armed && b >= buyPbr) { pbr.push({ i, date: S.date[i], close: S.close[i], pbr: b, per: e }); armed = false; okB = false; }
+      if (e > PER_RE) okE = true;
+      if (okE && prev != null && prev >= PER_LO && e < PER_LO) { per.push({ i, date: S.date[i], close: S.close[i], pbr: b, per: e }); okE = false; }
+      prev = e;
+    }
+    return { pbr, per, armed, okB, okE };
+  }
+  // 合図の日から n 年後の終値までの上がり下がり
+  function fwd(S, i, years) {
+    const t = toT(S.date[i]) + years * 365.25 * DAY;
+    let j = i; while (j < S.date.length && state.t[j] < t) j++;
+    return j < S.date.length ? S.close[j] / S.close[i] - 1 : null;
+  }
+  const sigs = () => { const T = state.data.trade; return buySignals(state.data.series, T.from, T.rule.buy_pbr); };
+  const avg = (a) => { const x = a.filter((v) => v != null); return x.length ? { m: x.reduce((p, v) => p + v, 0) / x.length, win: x.filter((v) => v > 0).length / x.length, n: x.length } : null; };
+
   function renderTrade() {
     const T = state.data.trade;
     if (!T) return;
-    const R = T.rule, now = T.now, S = state.data.series, st = T.stats;
-    $("t-lead").textContent = `現金のときは PBR が${R.buy_pbr.toFixed(1)}倍を下回ったあと、下から上に${R.buy_pbr.toFixed(1)}倍を抜けたら買い、持っているときは PBR が${R.sell_pbr.toFixed(1)}倍を上回ったあと、上から下に${R.sell_pbr.toFixed(1)}倍を抜けたら売り。合図は終値で判定し、次の営業日に売買します。持っている間は売りの合図だけ、現金の間は買いの合図だけが出るので、買いと売りは必ず交互になります。`;
+    const R = T.rule, now = T.now, S = state.data.series, G = sigs();
+    $("t-lead").textContent = `売りの合図は出さず、買いの合図だけを出します。PBR は${R.buy_pbr.toFixed(1)}倍を下回ったあと、下から上に${R.buy_pbr.toFixed(1)}倍を抜けた日、PER は${PER_LO}倍を上から下に割った日が買いの合図です。合図は終値で判定します。`;
+    const last = [...G.pbr.map((x) => ({ ...x, k: "PBR" })), ...G.per.map((x) => ({ ...x, k: "PER" }))].sort((a, b) => (a.date < b.date ? 1 : -1))[0];
+    const end = S.date.length - 1, recent = last && end - last.i <= 5;
     const pill = $("t-pill");
-    pill.classList.toggle("out", !now.holding);
+    pill.classList.toggle("out", !recent);
     pill.classList.remove("mid");
-    const pend = now.pending === "sell" ? "(売りの合図:次の営業日に売る)" : now.pending === "buy" ? "(買いの合図:次の営業日に買う)" : "";
-    $("t-pillv").textContent = (now.holding ? "持つ" : "現金で待つ") + pend;
-    $("t-pills").textContent = `${fmtD(now.since)} から`;
-    const next = now.holding
-      ? `<div class="stat"><div class="k">売りの線の株価(PBR ${R.sell_pbr}倍)</div><div class="v zone-s">${yen(now.sell_price)}</div><div class="s">${now.top ? `線を上回っています。${yen(now.sell_price)}を下に抜けたら売り` : `あと ${pct(now.sell_price / now.close - 1)} 上がって線を超え、そのあと下に抜けたら売り`}</div></div>`
-      : `<div class="stat"><div class="k">買いの線の株価(PBR ${R.buy_pbr}倍)</div><div class="v zone-b">${yen(now.buy_price)}</div><div class="s">${now.armed ? `線を割っています。${yen(now.buy_price)}を上に抜けたら買い` : `あと ${pct(now.buy_price / now.close - 1)} 下がって線を割り、そのあと上に抜けたら買い`}</div></div>`;
+    $("t-pillv").textContent = recent ? `買いの合図(${last.k})` : "合図はまだ";
+    $("t-pills").textContent = last ? `最後の合図 ${fmtD(last.date)}(${last.k})` : "";
+    const bp = now.buy_price;
+    const pbrS = G.armed ? `線を割っています。${yen(bp)}を上に抜けたら買いの合図`
+      : !G.okB ? `前の合図のあと PBR が${PBR_RE}倍を超えていないので、次の合図はまだ出ません`
+      : `あと ${pct(1 - bp / now.close).replace("+", "")} 下がって線を割り、そのあと上に抜けたら買いの合図`;
+    const perS = !G.okE ? `前の合図のあと PER が${PER_RE}倍を超えていないので、次の合図はまだ出ません`
+      : now.per < PER_LO ? `いま${PER_LO}倍より下です。一度${PER_LO}倍を超えてから割ると合図`
+      : `あと ${pct(1 - PER_LO / now.per).replace("+", "")} 下がって${PER_LO}倍を割ったら買いの合図(利益が同じなら)`;
     $("t-stats").innerHTML = `
       <div class="stat"><div class="k">PBR / PER</div><div class="v">${now.pbr.toFixed(2)}倍 / ${now.per.toFixed(1)}倍</div><div class="s">日経平均 ${yen(now.close)}(${fmtD(T.to)})</div></div>
-      ${next}
-      ${(() => { const q = perTrades(S, T.from), lt = q.trades[q.trades.length - 1];
-        return `<div class="stat"><div class="k">参考: PER のルール(14倍割れで買い・16倍超で売り)</div><div class="v">${q.holding ? "持つ" : "現金で待つ"}</div><div class="s">${lt ? fmtD(lt.date) + " から" : ""}</div></div>`; })()}`;
-    const tr = T.trades;
-    $("t-trades").innerHTML = tr.map((t) => `<li><span class="mk sq ${t.side === "buy" ? "b" : "s"}">${t.side === "buy" ? "買" : "売"}</span>${fmtD(t.date)}　${yen(t.close)}(売買した日の PBR ${t.pbr}倍・PER ${t.per}倍)${t.ret != null ? `(${fmtD(t.from)}から ${pct(t.ret)})` : ""}</li>`).join("") || "<li>売買なし</li>";
-    const ro = T.rolling, rr = (k) => ro[k] ? `${Math.round(ro[k].win * 100)}%で勝ち・${Math.round(ro[k].same * 100)}%で同じ・${Math.round(ro[k].lose * 100)}%で負け(${ro[k].n}回、いちばん勝った回 ${pct(ro[k].best, 0)})` : "—";
-    $("t-table").innerHTML = `
-      <tr><th>${fmtD(T.from)}〜${fmtD(T.to)}</th><th>このルール</th><th>持ち続けた場合</th></tr>
-      <tr><td>資産(はじめを1として)</td><td>${mult(st.rule.eq)}</td><td>${mult(st.hold.eq)}</td></tr>
-      <tr><td>年あたり</td><td>${pct(st.rule.cagr)}</td><td>${pct(st.hold.cagr)}</td></tr>
-      <tr><td>途中のいちばん大きな下げ</td><td>${pct(st.rule.mdd, 0)}</td><td>${pct(st.hold.mdd, 0)}</td></tr>
-      <tr><td>売買の回数</td><td>${st.rule.n}回</td><td>—</td></tr>
-      <tr><td>勝率(買ってから売るまで、今の持ち分も含む)</td><td>${st.rule.win == null ? "—" : Math.round(st.rule.win * 100) + "%"}(${st.rule.rounds}回)</td><td>—</td></tr>
-      <tr><td>持っていた期間</td><td>${Math.round(st.rule.in_market * 100)}%</td><td>100%</td></tr>
-      <tr><td>始める日を3か月ずつずらして5年続けた場合</td><td colspan="2">${rr("5y")}</td></tr>
-      <tr><td>　〃 10年続けた場合</td><td colspan="2">${rr("10y")}</td></tr>`;
+      <div class="stat"><div class="k">PBR の買いの線の株価(${R.buy_pbr}倍)</div><div class="v zone-b">${yen(bp)}</div><div class="s">${pbrS}</div></div>
+      <div class="stat"><div class="k">PER の買いの線(${PER_LO}倍)の株価</div><div class="v zone-b">${yen(now.close * PER_LO / now.per)}</div><div class="s">${perS}</div></div>`;
+
+    // 成績: 合図ごとのその後と、いつ買っても(毎日)の平均
+    const rows = [...G.pbr.map((x) => ({ ...x, k: "PBR" })), ...G.per.map((x) => ({ ...x, k: "PER" }))].sort((a, b) => (a.date < b.date ? 1 : -1));
+    rows.forEach((x) => { x.y1 = fwd(S, x.i, 1); x.y3 = fwd(S, x.i, 3); x.now = S.close[end] / x.close - 1; });
+    const base = [];
+    for (let i = 0; i < S.date.length; i++) if (S.date[i] >= T.from && S.pbr[i] != null) base.push(i);
+    const b1 = avg(base.map((i) => fwd(S, i, 1))), b3 = avg(base.map((i) => fwd(S, i, 3)));
+    const sum = (k) => { const g = rows.filter((x) => x.k === k), a1 = avg(g.map((x) => x.y1)), a3 = avg(g.map((x) => x.y3));
+      return `<tr><td>${k} の買いの合図(${g.length}回)</td><td>${a1 ? pct(a1.m) + ` <span class="muted">${Math.round(a1.win * 100)}%</span>` : "—"}</td><td>${a3 ? pct(a3.m) + ` <span class="muted">${Math.round(a3.win * 100)}%</span>` : "—"}</td></tr>`; };
+    $("t-table").innerHTML = `<tr><th>${fmtD(T.from)}〜${fmtD(T.to)}</th><th>1年後</th><th>3年後</th></tr>
+      <tr><th class="muted"></th><th class="muted" colspan="2" style="text-align:center">平均と上がった割合</th></tr>
+      ${sum("PBR")}${sum("PER")}
+      <tr><td>いつ買っても(毎日買った場合)</td><td>${pct(b1.m)} <span class="muted">${Math.round(b1.win * 100)}%</span></td><td>${pct(b3.m)} <span class="muted">${Math.round(b3.win * 100)}%</span></td></tr>`;
+    $("s-table").innerHTML = `<tr><th>合図の日</th><th>合図</th><th>終値</th><th>1年後</th><th>3年後</th><th>いままで</th></tr>` +
+      rows.map((x) => `<tr><td>${fmtD(x.date)}</td><td><span class="mk ${x.k === "PBR" ? "sq b" : "b"}">買</span>${x.k} ${x.k === "PBR" ? x.pbr.toFixed(2) : x.per.toFixed(1)}倍</td><td>${yen(x.close)}</td><td>${pct(x.y1)}</td><td>${pct(x.y3)}</td><td>${pct(x.now)}</td></tr>`).join("");
     const notes = [
-      "なぜこの線か: PBR 1倍は、株価が1株あたりの純資産(会社を解散したときの価値)と同じ水準です。2008年10月・2012年・2016年・2020年3月の底はどれも PBR 1倍前後でした。ただ1倍割れは2004年以降22年のうち5つの年にしかなく、売ったあと何年も買えなくなるので、少し上の1.2倍(13の年で起きた)を買いの線にしています。線を割った日ではなく、割ったあと下から上に抜けた日に買うので、下げの途中で買うのを避けられます(そのぶん買値は少し高くなります)。売りの1.5倍は、2013〜2024年の高値(1.4〜1.6倍)のあたりです。",
-      "PER について: PER が高いだけ・PER が低いだけの線(例: PER 14倍で買い・16倍で売り)では、上がり続ける相場で早く売りすぎて、持ち続けた場合の×5.83に対して×1.81と大きく負けました(売買23回)。",
-      "線の組み合わせ(どれも「線を抜けた日」に売買): 買い1.2倍・売り1.5倍 ×9.47(売買6回)、買い1.1倍・売り1.5倍 ×5.44、買い1.2倍・売り2.0倍 ×8.44、買い1.3倍・売り1.5倍 ×6.67。持ち続けは ×5.83 です。1.1倍では2024年3月に売ったあと買い直せませんでしたが、1.2倍だと2024年8月(35,090円)に買い直せました。",
-      "限界: 売買の回数が少なく(2004年9月から5回)、成績は数回の山と谷で決まっています。データは2004年9月からしかなく、それより前(バブル期など)では確かめられていません。",
-      "計算の前提: 売買のたびに0.1%のコスト、現金の利息は0、税金は考えていません。配当も入れていない(日経平均の値だけ)ので、持ち続けた場合の実際の成績はもう少し良くなります。",
+      "売りの合図はやめました: PER・PBR の売りの線(PER 16倍・PBR 1.5倍など)で売ると、上がり続ける相場で早く売りすぎることが多く、うまく働きませんでした。いまは「いつ買うか」の目安だけを出しています。",
+      `なぜこの線か: PBR 1倍は、株価が1株あたりの純資産と同じ水準で、2008年・2012年・2016年・2020年の底はどれも1倍前後でした。1倍割れはめったにないので、少し上の${R.buy_pbr}倍を買いの線にしています。線を割った日ではなく、割ったあと下から上に抜けた日を合図にするので、下げの途中で買うのを避けられます。`,
+      `同じ合図が続かないように: PBR は一度${PBR_RE}倍を超えるまで、PER は一度${PER_RE}倍を超えるまで、次の合図を出しません(線の近くを行ったり来たりすると、毎週のように合図が出てしまうため)。`,
+      "「いつ買っても」は2004年9月からの毎営業日に買ったとした場合の平均です。合図の行がこれより高ければ、合図の日に買うほうが有利だったことになります。合図の回数は少ないので、たまたまの結果である可能性があります。",
+      "配当・税金・売買のコストは入れていません(日経平均の値だけ)。",
     ];
     $("t-notes").innerHTML = notes.map((t) => `<li>${esc(t)}</li>`).join("");
   }
 
-  // ---------- 持ち方のくらべ(表だけ) ----------
-  function renderPatterns() {
-    const P = state.data.patterns;
-    if (!P) return;
-    const items = P.items.slice().sort((a, b) => b.eq - a.eq), H = P.hold_stats;
-    const held = (w) => (w >= 0.999 ? "全部持つ" : w <= 0.001 ? "全部現金" : `${Math.round(w * 100)}%持つ`);
-    $("c-table").innerHTML = `<tr><th>持ち方</th><th>資産</th><th>いちばん大きな下げ</th><th>売買</th><th>いま</th></tr>
-      <tr><td>持ち続け</td><td>${mult(H.eq)}</td><td>${pct(H.mdd, 0)}</td><td>—</td><td>全部持つ</td></tr>` +
-      items.map((x) => `<tr><td title="${esc(x.desc)}">${esc(x.name)}<br><span class="muted">${esc(x.desc)}</span></td><td>${mult(x.eq)}</td><td>${pct(x.mdd, 0)}</td><td>${x.n}回</td><td>${held(x.w)}</td></tr>`).join("");
-  }
-
   // ---------- 3つのチャート ----------
-  const PER_LO = 14, PER_HI = 16;
-  // PER のルール: 持っているときは PER 16倍超で売り、現金のときは PER 14倍割れで買い(合図の次の営業日の終値)。PBR のルールと同じく2004年9月に持っている状態から始める
-  function perTrades(S, from) {
-    let holding = true, pend = null;
-    const out = [];
-    for (let i = 0; i < S.date.length; i++) {
-      if (S.date[i] < from || S.pbr[i] == null) continue;
-      if (pend) { holding = pend === "buy"; out.push({ i, date: S.date[i], side: pend, close: S.close[i], per: S.per[i] }); pend = null; }
-      const p = S.per[i];
-      if (!holding && p < PER_LO) pend = "buy";
-      else if (holding && p > PER_HI && p <= 50) pend = "sell";
-    }
-    return { trades: out, holding, pending: pend };
-  }
-
   function renderCharts() {
     const d = state.data, S = d.series, T = d.trade;
     if (!T) return;
-    const R = T.rule;
+    const R = T.rule, G = sigs();
     const all = S.date.map((x, i) => i).filter((i) => S.pbr[i] != null && S.date[i] >= T.from);
     const r = RANGES.find((x) => x.key === state.settings.range2) || RANGES[RANGES.length - 1];
     const tEnd = state.t[all[all.length - 1]];
@@ -252,25 +259,23 @@
     const dd = idx.map((i) => S.date[i]), tt = idx.map((i) => state.t[i]);
     const pos = {}; dd.forEach((x, k) => (pos[x] = k));
     const v = (key, f = (x) => x) => idx.map((i) => (S[key][i] == null ? null : f(S[key][i])));
-    const pbrT = T.trades.filter((t) => pos[t.date] != null);
-    const perT = perTrades(S, T.from).trades.filter((t) => pos[t.date] != null);
-    const pbrMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", c: t.side === "buy" ? "--pbr-b" : "--pbr-s", tc: "#1a1a1a", sq: true, big: true, t: `PBR のルールで${t.side === "buy" ? "買い" : "売り"}(PBR ${t.pbr}倍)` });
-    const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", big: true, t: `PER のルールで${t.side === "buy" ? "買い" : "売り"}(PER ${t.per.toFixed(1)}倍)` });
+    const pbrT = G.pbr.filter((t) => pos[t.date] != null), perT = G.per.filter((t) => pos[t.date] != null);
+    const pbrMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: "b", c: "--pbr-b", tc: "#1a1a1a", sq: true, big: true, t: `PBR の買いの合図(PBR ${t.pbr.toFixed(2)}倍)` });
+    const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: "b", big: true, t: `PER の買いの合図(PER ${t.per.toFixed(1)}倍)` });
     const tip = (k) => `PER ${S.per[idx[k]].toFixed(1)}倍 · PBR ${S.pbr[idx[k]].toFixed(2)}倍`;
     const yenAx = (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP"));
     // ① 日経平均
     lineChart($("ch-n"), {
-      d: dd, t: tt, h: 300, label: "日経平均と売買のポイント",
+      d: dd, t: tt, h: 300, label: "日経平均と買いの合図",
       series: [{ n: "日経平均", v: v("close"), c: "--line", w: 1.75 }],
       marks: [...perT.map(perMark((t) => t.close)), ...pbrT.map(pbrMark((t) => t.close))],
       ymin: 0, yfmt: yenAx, tfmt: (x) => yen(x), tipExtra: tip,
     });
     // ② PER
-    $("per-lo").textContent = `${PER_LO}倍`; $("per-hi").textContent = `${PER_HI}倍`;
+    $("per-lo").textContent = `${PER_LO}倍`;
     lineChart($("ch-per"), {
       d: dd, t: tt, h: 220, label: "PER",
       series: [
-        { n: "売りの線", v: dd.map(() => PER_HI), c: "--out", w: 1.5, dash: "5 4", noTip: true },
         { n: "買いの線", v: dd.map(() => PER_LO), c: "--in", w: 1.5, dash: "5 4", noTip: true },
         { n: "PER", v: v("per"), c: "--line", w: 1.75 },
       ],
@@ -278,21 +283,17 @@
       yfmt: (x) => x + "倍", tfmt: (x) => x.toFixed(2) + "倍",
     });
     // ③ PBR
-    $("pbr-lo").textContent = `${R.buy_pbr}倍`; $("pbr-hi").textContent = `${R.sell_pbr}倍`;
+    $("pbr-lo").textContent = `${R.buy_pbr}倍`;
     lineChart($("ch-pbr"), {
       d: dd, t: tt, h: 220, label: "PBR",
       series: [
-        { n: "売りの線", v: dd.map(() => R.sell_pbr), c: "--out", w: 1.5, dash: "5 4", noTip: true },
         { n: "買いの線", v: dd.map(() => R.buy_pbr), c: "--in", w: 1.5, dash: "5 4", noTip: true },
         { n: "PBR", v: v("pbr"), c: "--line", w: 1.75 },
       ],
       marks: pbrT.map(pbrMark((t) => t.pbr)), ymin: 0,
       yfmt: (x) => x.toFixed(1) + "倍", tfmt: (x) => x.toFixed(2) + "倍",
     });
-    $("chnote").textContent = "PER は30倍より上を上端に貼りつけて表示しています(2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました)。PER のルールは PER 14倍割れで買い・16倍超で売りを、PBR のルールと同じく持つ/現金を交互にして当てはめたものです。";
-    const pt = perTrades(S, T.from).trades.slice().reverse();
-    $("per-trades").innerHTML = pt.slice(0, 12).map((t) => `<li><span class="mk ${t.side === "buy" ? "b" : "s"}">${t.side === "buy" ? "買" : "売"}</span>${fmtD(t.date)}　${yen(t.close)}(PER ${t.per.toFixed(1)}倍)</li>`).join("") +
-      (pt.length > 12 ? `<li class="muted">ほか ${pt.length - 12} 回</li>` : "") || "<li>売買なし</li>";
+    $("chnote").textContent = "PER は30倍より上を上端に貼りつけて表示しています(2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました)。売りの合図は出していません。";
   }
 
   // ---------- 答え合わせ ----------
@@ -305,12 +306,11 @@
       if (!t.buy) return;
       const rows = [
         ["b", "買い", t.buy.events.length + "回", t.buy.event_stats],
-        ["s", "売り", t.sell.events.length + "回", t.sell.event_stats],
         ["", "いつでも", "毎月", t.baseline],
       ];
       rows.forEach((r, j) => {
         h += "<tr>";
-        if (j === 0) h += `<td rowspan="3">${esc(t.label)}<br><span class="muted">${t.from.slice(0, 7).replace("-", "/")}〜</span></td>`;
+        if (j === 0) h += `<td rowspan="2">${esc(t.label)}<br><span class="muted">${t.from.slice(0, 7).replace("-", "/")}〜</span></td>`;
         h += `<td class="${r[0] || "lbl"}">${r[1]}</td><td>${r[2]}</td>` + ["1m", "3m", "1y"].map((k) => `<td>${cell(r[3][k])}</td>`).join("") + "</tr>";
       });
     });
@@ -321,9 +321,9 @@
   function renderEvents() {
     const t = state.data.tests[method().test];
     if (!t || !t.buy) { $("ev").innerHTML = ""; return; }
-    const evs = [...t.buy.events.map((e) => ({ ...e, k: "b" })), ...t.sell.events.map((e) => ({ ...e, k: "s" }))].sort((a, b) => (a.date < b.date ? 1 : -1));
+    const evs = t.buy.events.map((e) => ({ ...e, k: "b" })).sort((a, b) => (a.date < b.date ? 1 : -1));
     $("ev").innerHTML = `<tr><th>日付(${esc(t.label)})</th><th>合図</th><th>PER</th><th>終値</th><th>1か月後</th><th>3か月後</th><th>1年後</th></tr>` +
-      (evs.length ? evs.map((e) => `<tr><td>${fmtD(e.date)}</td><td class="${e.k}">${e.k === "b" ? "買い時" : "売り時"}</td><td>${times(e.per)}</td><td>${yen(e.close)}</td>${["1m", "3m", "1y"].map((k) => `<td>${pct(e[k])}</td>`).join("")}</tr>`).join("")
+      (evs.length ? evs.map((e) => `<tr><td>${fmtD(e.date)}</td><td class="${e.k}">買い時</td><td>${times(e.per)}</td><td>${yen(e.close)}</td>${["1m", "3m", "1y"].map((k) => `<td>${pct(e[k])}</td>`).join("")}</tr>`).join("")
         : `<tr><td colspan="7" class="muted">合図はありませんでした</td></tr>`);
   }
 
@@ -359,7 +359,6 @@
     seg($("rng"), RANGES, "range2", renderCharts);
     renderTrade();
     renderCharts();
-    renderPatterns();
     renderBacktest();
     renderNotes();
   }
