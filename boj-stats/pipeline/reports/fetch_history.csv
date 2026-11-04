@@ -70,3 +70,4 @@ checked_at,new,unchanged,error,stale,errors
 2026-11-03T16:55+09:00,0,102,0,0,
 2026-11-04T02:14+09:00,0,102,0,0,
 2026-11-04T10:37+09:00,11,91,0,0,
+2026-11-04T10:43+09:00,0,99,3,0,ESTAT サービス産業動態統計: HTTPError: HTTP Error 503: Service Temporarily Unavailable

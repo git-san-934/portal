@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-04T10:37+09:00",
+ "generated_at": "2026-11-04T10:43+09:00",
  "report_date": "2026-11-04",
  "days": [
   {
@@ -4569,15 +4569,43 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-04T10:37+09:00",
+  "checked_at": "2026-11-04T10:43+09:00",
   "counts": {
-   "new": 11,
-   "unchanged": 91,
-   "error": 0,
+   "new": 0,
+   "unchanged": 99,
+   "error": 3,
    "stale": 0
   },
   "total": 102,
-  "problems": [],
+  "problems": [
+   {
+    "id": "ESTAT_SVC_SALES_YOY",
+    "name": "サービス産業 売上高前年比（サービス産業計）",
+    "state": "error",
+    "error": "ESTAT サービス産業動態統計: HTTPError: HTTP Error 503: Service Temporarily Unavailable",
+    "latest": "2026-08",
+    "last_ok": "2026-11-04",
+    "last_new": "2026-10-23"
+   },
+   {
+    "id": "ESTAT_SVC_ICT_YOY",
+    "name": "サービス産業 売上高前年比（情報通信業）",
+    "state": "error",
+    "error": "ESTAT サービス産業動態統計: HTTPError: HTTP Error 503: Service Temporarily Unavailable",
+    "latest": "2026-08",
+    "last_ok": "2026-11-04",
+    "last_new": "2026-10-23"
+   },
+   {
+    "id": "ESTAT_SVC_HOTEL_FOOD_YOY",
+    "name": "サービス産業 売上高前年比（宿泊業・飲食サービス業）",
+    "state": "error",
+    "error": "ESTAT サービス産業動態統計: HTTPError: HTTP Error 503: Service Temporarily Unavailable",
+    "latest": "2026-08",
+    "last_ok": "2026-11-04",
+    "last_new": "2026-10-23"
+   }
+  ],
   "other_errors": []
  },
  "trade_updated": "2026-10-29",
