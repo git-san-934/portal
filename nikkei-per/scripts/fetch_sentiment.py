@@ -182,8 +182,8 @@ def jpx_pages():
     pages = [
         JPX + "/markets/statistics-equities/program/index.html",
         JPX + "/markets/statistics-derivatives/sector/index.html",
-        JPX + "/markets/statistics-derivatives/sector/archives-01.html",
-        JPX + "/markets/statistics-equities/program/archives-01.html",
+        JPX + "/markets/statistics-derivatives/daily/index.html",
+        JPX + "/markets/statistics-derivatives/trading-volume/index.html",
     ]
     for url in pages:
         try:
@@ -195,7 +195,9 @@ def jpx_pages():
         files = [x for x in links if re.search(r"\.(xlsx?|csv|pdf)$", x)]
         arch = [x for x in links if "archives" in x or "index" in x]
         print(f"JPX: {url} 資料 {len(files)} 個。例 {files[:12]} … {files[-6:]}")
-        print(f"   関連ページ {[x for x in arch if 'statistics' in x][:30]}")
+        here = url.rsplit("/", 1)[0].replace(JPX, "")
+        print(f"   同じ場所のページ {[x for x in links if x.startswith(here) and x.endswith('.html')]}")
+        print(f"   ファイルの種類 {sorted(set(re.sub(r'[0-9]+', '#', x.rsplit('/', 1)[-1]) for x in files))}")
         xls = [x for x in files if re.search(r"\.xlsx?$", x)]
         if xls:
             u = xls[0] if xls[0].startswith("http") else JPX + xls[0]
