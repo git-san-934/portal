@@ -1,9 +1,10 @@
-"""日経平均の日次PERと終値を日経平均プロフィル(日経公式)から取り、../data/per_daily.json に追記する。
+"""日経平均の日次PER・PBRと終値を日経平均プロフィル(日経公式)から取り、../data/per_daily.json に追記する。
 
 GitHub Actions(.github/workflows/update-nikkei-per.yml)から平日の夕方と夜に実行される。
 
 取得元: 日経平均プロフィル https://indexes.nikkei.co.jp/nkave/
   - PER  : /nkave/statistics/dataload?list=per&year=YYYY&month=M   (月ごとの日次表)
+  - PBR  : /nkave/statistics/dataload?list=pbr&year=YYYY&month=M   (列は pbr_weighted / pbr_index_based)
   - 終値 : /nkave/statistics/dataload?list=daily&year=YYYY&month=M
   - 当月分は /nkave/archives/data?list=per と list=daily のページにも同じ表がある(上が取れないときの予備)
 
@@ -41,6 +42,7 @@ JST = timezone(timedelta(hours=9))
 RETRIES = 3
 # 2009年春は利益が大きく落ちて加重平均でも約290倍、指数ベースは800倍を超えた(本当の値)。それより桁違いの値だけを誤りとみなす
 PER_RANGE = (3.0, 2000.0)
+PBR_RANGE = (0.2, 20.0)
 MAX_DAILY_MOVE = 0.2  # 日経平均の過去最大の下落は1日 −14.9%(1987年)
 MATCH_TOLERANCE = 0.005
 FIRST_BACKFILL = "1986-01"
@@ -186,6 +188,18 @@ def main() -> int:
         except RuntimeError as e:
             print(f"{y}-{m:02d}: {e}", file=sys.stderr)
             continue
+        # PBR は同じ形の表(list=pbr)。取れなくても PER と終値は使う
+        try:
+            bh, brow = fetch_month("pbr", y, m, current)
+        except RuntimeError as e:
+            print(f"{y}-{m:02d}: PBR を取れませんでした: {e}", file=sys.stderr)
+            bh, brow = [], {}
+        bnames = ["pbr_" + n for n in per_columns(bh, max((len(v) for v in brow.values()), default=0))]
+        for d, vals in brow.items():
+            rec = fetched.setdefault(d, {"date": d})
+            for n, v in zip(bnames, vals):
+                if v is not None:
+                    rec[n] = v
         names = per_columns(ph, max((len(v) for v in prow.values()), default=0))
         for d, vals in prow.items():
             rec = fetched.setdefault(d, {"date": d})
@@ -197,8 +211,8 @@ def main() -> int:
         for d, vals in drow.items():
             if len(vals) > ci and vals[ci] is not None:
                 fetched.setdefault(d, {"date": d})["close"] = vals[ci]
-        print(f"{y}-{m:02d}: PER {len(prow)}日 / 終値 {len(drow)}日 (PER列: {names})")
-        if args.backfill and (prow or drow):
+        print(f"{y}-{m:02d}: PER {len(prow)}日 / PBR {len(brow)}日 / 終値 {len(drow)}日 (PER列: {names} PBR列: {bnames})")
+        if args.backfill and (prow or drow or brow):
             time.sleep(1.0)
 
     if not fetched:
@@ -211,6 +225,7 @@ def main() -> int:
     for d in sorted(fetched):
         rec = fetched[d]
         bad = [k for k in ("weighted", "index_based") if k in rec and not (PER_RANGE[0] <= rec[k] <= PER_RANGE[1])]
+        bad += [k for k in ("pbr_weighted", "pbr_index_based") if k in rec and not (PBR_RANGE[0] <= rec[k] <= PBR_RANGE[1])]
         if bad:
             print(f"  {d}: PER がありえない値 {rec} — 使いません", file=sys.stderr)
             problems += 1
