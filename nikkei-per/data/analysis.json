@@ -1,0 +1,12 @@
+{
+ "updated": "2026-11-04T13:15+09:00",
+ "ready": false,
+ "info": {
+  "daily_from": null,
+  "daily_days": 0,
+  "monthly_from": null,
+  "monthly_months": 0,
+  "per_columns": {}
+ },
+ "message": "まだ PER のデータがありません。毎日の取得が始まるとここに結果が出ます。"
+}
