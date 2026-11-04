@@ -114,3 +114,4 @@ a.reload{text-decoration:none}
 .tri.up{border-bottom:10px solid currentColor}.tri.dn{border-top:10px solid currentColor}
 .legend .mk{width:1.1rem;height:1.1rem;font-size:.62rem;margin-right:2px}
 .trades .mk.per{background:var(--m-per)}.trades .mk.pbr{background:var(--m-pbr)}
+.mk.sq{border-radius:3px}
