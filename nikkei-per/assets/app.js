@@ -287,19 +287,6 @@
       (zones ? ` ①の薄い色の期間は「過熱のサイン」の点灯中です。信用取引の買い残(金額)が1年前からどれだけ増えたかが、過去${H.rule.years}年の中で上位${Math.round(H.rule.top * 100)}%に入った週(公表を待つため申込日の${H.rule.lag_days}日後から)に点灯します。` : "");
   }
 
-  function renderNotes() {
-    const i = state.data.info;
-    const items = [
-      i.monthly_from
-        ? `いま使っているデータ: ${i.monthly_from.replace("-", "年")}月〜は月末の値(${i.monthly_months}か月)、${i.daily_from.slice(0, 7).replace("-", "年")}月〜は日次(${i.daily_days.toLocaleString()}日)。`
-        : `いま使っているデータ: ${fmtD(i.daily_from)}〜の日次(${i.daily_days.toLocaleString()}日)。`,
-      "PER は日経平均プロフィルが公表する「加重平均」の値を使い、無い日は「指数ベース」を使います(指数ベースは加重平均より高めに出ます)。",
-      "PBR も日経平均プロフィルの「加重平均」の値です。PBR の日次データは2004年9月からなので、チャートはそこから始めています。",
-      "検証の数字は過去の結果で、将来の値動きを約束するものではありません。合図の回数が少ないものは、たまたまの結果である可能性が高いです。",
-    ];
-    $("notes").innerHTML = items.map((t) => `<li>${esc(t)}</li>`).join("");
-  }
-
   function seg(box, options, key, onChange) {
     box.innerHTML = "";
     options.forEach((o) => {
@@ -319,7 +306,6 @@
     seg($("rng"), RANGES, "range2", renderCharts);
     renderTrade();
     renderCharts();
-    renderNotes();
   }
 
   async function load(noCache) {
