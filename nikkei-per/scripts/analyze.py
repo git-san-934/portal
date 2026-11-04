@@ -343,9 +343,28 @@ def _linear(lo, hi, step=0.25):
     return f
 
 
+def _recross(arm, up):
+    """現金のとき PBR が arm を割ったら「準備」、そのあと PBR が up を上に抜けた日に全部買う(底を確かめてから買う)。売りは上の売買ルール。"""
+    st = {"armed": False}
+
+    def f(p, w):
+        if w < 0.5:
+            if p["pbr"] < arm:
+                st["armed"] = True
+            if st["armed"] and p["pbr"] > up:
+                st["armed"] = False
+                return 1.0
+            return None
+        st["armed"] = False
+        return 0.0 if _pbr_gt(TRADE_SELL_PBR, TRADE_SELL_PER)(p) else None
+    return f
+
+
 PATTERNS = [
     ("all", "全部売り・全部買い(上の売買ルール)", f"PBR {TRADE_BUY_PBR}倍割れで全部買い / PBR {TRADE_SELL_PBR}倍超かつPER {TRADE_SELL_PER:g}倍超で全部売り",
      _steps([(_pbr_lt(TRADE_BUY_PBR), 1.0)], [(_pbr_gt(TRADE_SELL_PBR, TRADE_SELL_PER), 0.0)])),
+    ("recross", "1倍割れのあと上抜けで買う", "PBR 1.0倍を割ったあと、1.0倍を上に抜けた日に全部買い / 売りは上の売買ルールと同じ",
+     _recross(1.0, 1.0)),
     ("half", "半分ずつ", "PBR 1.0倍割れで半分・0.9倍割れで残りを買い / PBR 1.8倍超で半分・2.0倍超かつPER 16倍超で残りを売り",
      _steps([(_pbr_lt(1.0), 0.5), (_pbr_lt(0.9), 1.0)], [(_pbr_gt(1.8), 0.5), (_pbr_gt(2.0, 16), 0.0)])),
     ("keep_half", "半分だけ売る", "売りの合図で半分だけ売り(最低でも半分は持つ) / 買いの合図で全部に戻す",
