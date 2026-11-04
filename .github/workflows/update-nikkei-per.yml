@@ -23,7 +23,7 @@ on:
       - .github/workflows/update-nikkei-per.yml
 
 permissions:
-  contents: write # per_daily.json と analysis.json をコミットする
+  contents: write # per_daily.json・analysis.json・sentiment.json をコミットする
   actions: write # 更新後に Pages のデプロイを起動する
 
 concurrency:
@@ -51,7 +51,7 @@ jobs:
       - name: 分析(確認のみ)
         if: github.event_name == 'pull_request'
         run: python nikkei-per/scripts/analyze.py --check
-      # 信用取引残高・日経VI が取れるかの確認(PR だけ。取れる形がわかったら毎日の取得に入れる)
+      # 信用残・裁定残・先物の投資部門別・日経VI が取れるかの確認(PR だけ)
       - name: 需給データの取得確認
         if: github.event_name == 'pull_request'
         continue-on-error: true
@@ -68,6 +68,14 @@ jobs:
           else
             python nikkei-per/scripts/fetch_per.py
           fi
+      # 信用残・裁定残・先物の投資部門別・日経VI をためていく(JPX には直近の分しか無いものがあるため毎回取る)。
+      # 取れなくても PER の更新は続ける
+      - name: 需給データを取得
+        if: github.event_name != 'pull_request'
+        continue-on-error: true
+        run: |
+          pip install -q xlrd openpyxl
+          python nikkei-per/scripts/fetch_sentiment.py
       # 取得で一部おかしな値があっても、取れた分で分析し直してコミットする(おかしな日は上書きしていない)
       - name: 分析し直す
         if: github.event_name != 'pull_request' && !cancelled()
@@ -79,6 +87,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add nikkei-per/data/per_daily.json nikkei-per/data/analysis.json
+          if [ -f nikkei-per/data/sentiment.json ]; then git add nikkei-per/data/sentiment.json; fi
           if git diff --cached --quiet; then
             echo "変更なし"
             exit 0

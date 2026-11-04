@@ -458,6 +458,43 @@ def patterns_report(pts: list[dict]) -> dict | None:
     return out
 
 
+
+# ---------- 過熱のサイン(信用取引の買い残) ----------
+# 買い残(金額)の1年前からの増え方が、その時点までの3年間の中で上位10%に入った週を「過熱のサイン点灯」とする。
+# 2004〜2026年の検証では、点灯した週のあと1年の上がり方は平均+2.8%(すべての週は+10.6%)と鈍かった。
+# ただし点灯で売って消えたら買い直すと、持ち続けに負けた(売りの合図にはしない。目安として表示するだけ)
+HEAT_TOP = 0.10
+HEAT_YEARS = 3
+HEAT_LAG_DAYS = 5  # 申込日の数営業日後に公表されるので、5日後から使えたことにする
+
+
+def heat_report():
+    path = DATA / "sentiment.json"
+    if not path.exists():
+        return None
+    try:
+        m = json.loads(path.read_text(encoding="utf-8")).get("margin") or {}
+    except ValueError:
+        return None
+    ds = sorted(m)
+    if len(ds) < 52 * (HEAT_YEARS + 1):
+        return None
+    buy = [m[d][3] for d in ds]
+    g = [None] * len(ds)
+    for i in range(52, len(ds)):
+        g[i] = buy[i] / buy[i - 52] - 1
+    weeks = []
+    for i, d in enumerate(ds):
+        past = [x for x in g[max(0, i - 52 * HEAT_YEARS):i] if x is not None]
+        if g[i] is None or len(past) < 100:
+            continue
+        pct = sum(p < g[i] for p in past) / len(past)
+        avail = (date.fromisoformat(d) + timedelta(days=HEAT_LAG_DAYS)).isoformat()
+        weeks.append([d, avail, round(g[i], 4), round(pct, 3), int(pct >= 1 - HEAT_TOP)])
+    on = [w for w in weeks if w[4]]
+    return {"rule": {"top": HEAT_TOP, "years": HEAT_YEARS, "lag_days": HEAT_LAG_DAYS},
+            "weeks": weeks, "now": weeks[-1] if weeks else None, "count_on": len(on)}
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
@@ -531,7 +568,10 @@ def main() -> int:
                               "price_lo": round(last["eps"] * lo), "price_hi": round(last["eps"] * hi),
                               "price_mean": round(last["eps"] * b[0])}
 
-    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "patterns": patterns, "tests": tests, "series": series,
+    heat = heat_report()
+    if heat:
+        print(f"  heat: 点灯 {heat['count_on']}週 / {len(heat['weeks'])}週 いま {heat['now']}")
+    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "patterns": patterns, "tests": tests, "series": series, "heat": heat,
            "settings": {"fixed": [FIXED_LOW, FIXED_HIGH], "rel_years": list(REL_YEARS), "rel_sigma": REL_SIGMA,
                         "event_gap_days": EVENT_GAP_DAYS, "basis_change": BASIS_CHANGE,
                         "per_columns": list(PER_COLUMNS), "rel_exclude_above": REL_EXCLUDE_ABOVE}}
