@@ -137,7 +137,7 @@
       el("circle", { cx: x, cy: y, r: 3.5, fill: col, stroke: css("--card"), "stroke-width": 1.5 }, svg);
       if (mk.sq) el("rect", { x: x - 10, y: cy - 10, width: 20, height: 20, rx: 3, fill: col, stroke: css("--card"), "stroke-width": 2 }, svg);
       else el("circle", { cx: x, cy, r: 10, fill: col, stroke: css("--card"), "stroke-width": 2 }, svg);
-      el("text", { x, y: cy + 4, "text-anchor": "middle", style: "fill:#fff;font-weight:700;font-size:11px" }, svg).textContent = b ? "買" : "売";
+      el("text", { x, y: cy + 4, "text-anchor": "middle", style: `fill:${mk.tc || "#fff"};font-weight:700;font-size:11px` }, svg).textContent = b ? "買" : "売";
     }
     // ホバー
     const cross = el("line", { y1: m.t, y2: m.t + ih, stroke: css("--sub"), "stroke-width": 1, opacity: 0 }, svg);
@@ -255,7 +255,7 @@
     const v = (key, f = (x) => x) => idx.map((i) => (S[key][i] == null ? null : f(S[key][i])));
     const pbrT = T.trades.filter((t) => pos[t.date] != null);
     const perT = perTrades(S, T.from).trades.filter((t) => pos[t.date] != null);
-    const pbrMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", sq: true, big: true, t: `PBR のルールで${t.side === "buy" ? "買い" : "売り"}(PBR ${t.pbr}倍)` });
+    const pbrMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", c: t.side === "buy" ? "--pbr-b" : "--pbr-s", tc: "#1a1a1a", sq: true, big: true, t: `PBR のルールで${t.side === "buy" ? "買い" : "売り"}(PBR ${t.pbr}倍)` });
     const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", big: true, t: `PER のルールで${t.side === "buy" ? "買い" : "売り"}(PER ${t.per.toFixed(1)}倍)` });
     const tip = (k) => `PER ${S.per[idx[k]].toFixed(1)}倍 · PBR ${S.pbr[idx[k]].toFixed(2)}倍`;
     const yenAx = (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP"));
