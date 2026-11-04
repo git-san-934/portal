@@ -36,6 +36,11 @@ jobs:
     timeout-minutes: 40
     steps:
       - uses: actions/checkout@v4
+      # 順番待ちしていた実行は、起動した時点の古い main を取り出す。前の実行がコミットしたデータと
+      # ぶつからないように、最新の main から始める(PR では行わない)
+      - name: 最新の main に合わせる
+        if: github.event_name != 'pull_request'
+        run: git pull --ff-only origin main
       - uses: actions/setup-python@v5
         with:
           python-version: "3.12"
