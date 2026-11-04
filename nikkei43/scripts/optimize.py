@@ -9,7 +9,7 @@ data/nav.json(実際の基準価額)と data/nikkei_1996-2017.json(それより�
   追加買い: 20日高値からの下落(今のルールの仲間) / 移動平均からの下落 / RSI(売られすぎ) /
             変動率で割った下落(いつもより大きい下げ) / 1年高値からの下落に比例 / 大きな下げからの反発
   売り:     1年前の何倍(今のルールの仲間) / 200日平均からの上昇 / RSI(買われすぎ) /
-            大きく上がったあとの下げはじめ / 自分の持ち分の含み益
+            大きく上がったあとの下げはじめ / 自分の持ち分の含み益。売る割合は 1/5・1/4・1/3・半分・全部
 
 たまたま当たったルールを選ばないための工夫:
   1. 開始日を少しずつずらした多数の期間(3年・5年)で比べ、中央値と勝った割合で見る
@@ -54,7 +54,7 @@ SELL_GAP = 20
 REBUY_FRAC = 0.1
 MA_DAYS = 200
 DD_TIERS = [(0.0, 30000, False), (-0.10, 60000, False), (-0.20, 300000, True), (-0.40, 500000, True)]
-FRACS = [0.2, 0.25, 1 / 3]
+FRACS = [0.2, 0.25, 1 / 3, 0.5, 1.0]  # 1.0 = 全部売る
 REBUYS = [-0.10, -0.20, -0.30]
 
 # ---------- 試すルール(種類ごとの条件の組み合わせ。隣どうしの条件で成績をならす) ----------
@@ -73,7 +73,7 @@ BUY_FAMILIES = {
     "rb": {"name": "大きな下げからの反発", "grid": {"u": [0.1, 0.2, 0.3], "y": [0.5, 0.7], "a": [50000, 100000, 300000]}},
 }
 SELL_FAMILIES = {
-    "yr": {"name": "1年前の何倍", "grid": {"m": [2.0, 2.5, 3.0, 3.5, 4.0], "f": FRACS, "rb": REBUYS}},
+    "yr": {"name": "1年前の何倍", "grid": {"m": [2.0, 2.5, 3.0, 3.5, 4.0, 4.5, 5.0], "f": FRACS, "rb": REBUYS}},
     "ma": {"name": "200日平均からの上昇", "grid": {"x": [0.5, 0.8, 1.0, 1.5, 2.0], "f": FRACS, "rb": REBUYS}},
     "rsi": {"name": "RSI(買われすぎ)", "grid": {"r": [75, 80, 85, 90], "f": FRACS, "rb": REBUYS}},
     "tr": {"name": "大きく上がったあとの下げはじめ", "grid": {"m": [2.0, 2.5, 3.0], "y": [0.10, 0.20, 0.30], "f": FRACS, "rb": REBUYS}},
@@ -88,6 +88,8 @@ BUY_CASH_TOL = 1.10  # 1年で要る追加の現金は今のルールの1.1倍�
 BUY_MAX_WORST = -0.15  # 5年で今のルールにいちばん負けた回が −15% より悪いものは選ばない(当たり外れが大きすぎる)
 SELL_MIN_GAIN = 0.03  # 「売らない」との差(5年の中央値)が今のルールより +3ポイント以上
 SELL_MAX_WORST = -0.10  # 5年でいちばん負けた回が −10% より悪いものは選ばない
+SELL_NEIGHBOR_WORST = -0.20  # 隣の条件のどれかが5年で −20% より大きく負けるなら、尖った(たまたまの)結果とみて候補にしない
+BUY_NEIGHBOR_WORST = -0.25
 MIN_SMOOTH_GAIN = 0.015  # まわりの条件も含めた成績でも、今のルールより +1.5ポイント以上
 WF_MIN_WIN = 0.50  # ウォークフォワードで、選び直したルールが今のルールに勝った割合(引き分けを除く)
 
@@ -189,7 +191,7 @@ def summarize(ratios):
 
 
 def frac_ja(f):
-    return {0.2: "1/5", 0.25: "1/4", 1 / 3: "1/3"}.get(f, f"{f:.2f}")
+    return {0.2: "1/5", 0.25: "1/4", 1 / 3: "1/3", 0.5: "半分", 1.0: "全部"}.get(f, f"{f:.2f}")
 
 
 def pct(x):
@@ -219,16 +221,17 @@ def buy_label(k):
 def sell_label(k):
     f, *v = k
     fr, rb = frac_ja(v[-2]), f"200日平均{round(v[-1] * 100)}%で買い戻す".replace("-", "−")
+    sv = "全部売る" if v[-2] == 1.0 else f"{fr}を売る"
     if f == "yr":
-        return f"1年前の{v[0]:g}倍で{fr}を売る・{rb}"
+        return f"1年前の{v[0]:g}倍で{sv}・{rb}"
     if f == "ma":
-        return f"200日平均の{1 + v[0]:g}倍で{fr}を売る・{rb}"
+        return f"200日平均の{1 + v[0]:g}倍で{sv}・{rb}"
     if f == "rsi":
-        return f"RSI(14日)が{v[0]}以上で{fr}を売る・{rb}"
+        return f"RSI(14日)が{v[0]}以上で{sv}・{rb}"
     if f == "tr":
-        return f"1年前の{v[0]:g}倍以上から20日高値で{round(v[1] * 100)}%下げたら{fr}を売る・{rb}"
+        return f"1年前の{v[0]:g}倍以上から20日高値で{round(v[1] * 100)}%下げたら{sv}・{rb}"
     if f == "gain":
-        return f"自分の持ち分が買値の{v[0]:g}倍で{fr}を売る・{rb}"
+        return f"自分の持ち分が買値の{v[0]:g}倍で{sv}・{rb}"
     return str(k)
 
 
@@ -484,9 +487,11 @@ def optimize_buy(M):
     if not ok:
         reasons.append("試したルールの中で、今のルールがいちばん良い(まわりの条件も含めた成績)")
     else:
+        nb_worst = min(res[n]["m5"]["worst"] for n in neighbors(best_k, fams))
         checks = [
             (best["m5"]["med"] >= BUY_MIN_GAIN, f"5年の差が中央値 {best['m5']['med'] * 100:+.1f}% で、+{BUY_MIN_GAIN * 100:.0f}% に届かない"),
             (best["smooth"] - cur["smooth"] >= MIN_SMOOTH_GAIN, f"まわりの条件も含めた成績では、今のルールとの差が {(best['smooth'] - cur['smooth']) * 100:+.1f}%しかない(たまたま良かった可能性)"),
+            (nb_worst >= BUY_NEIGHBOR_WORST, f"条件を少し変えると(隣の条件のどれか)5年で今のルールにいちばん負けた回が {nb_worst * 100:+.0f}% になる。とがった結果で、たまたまの可能性がある"),
             (best["m5"]["win"] >= BUY_MIN_WIN5, f"5年で勝ったのが {best['m5']['win'] * 100:.0f}% で、{BUY_MIN_WIN5 * 100:.0f}% に届かない"),
             (best["m3"]["win"] >= BUY_MIN_WIN3, f"3年で勝ったのが {best['m3']['win'] * 100:.0f}% で、{BUY_MIN_WIN3 * 100:.0f}% に届かない"),
             (not (walk["win"] + walk["lose"]) or walk["win"] / (walk["win"] + walk["lose"]) >= WF_MIN_WIN, f"過去の確かめ(下)で、選び直したルールが今のルールに {walk['win']}勝{walk['lose']}敗と負け越した。いま良く見えるのは、たまたまの可能性がある"),
@@ -588,11 +593,13 @@ def optimize_sell(M):
     if not ok:
         reasons.append("試したルールの中で、今のルールがいちばん良い(まわりの条件も含めた成績)")
     else:
+        nb_worst = min(res[n]["m5"]["worst"] for n in neighbors(best_k, fams))
         lose_b = 1 - best["m5"]["win"] - best["m5"]["tie"]
         lose_c = 1 - cur["m5"]["win"] - cur["m5"]["tie"]
         checks = [
             (gain >= SELL_MIN_GAIN, f"「売らない」との差(5年の中央値)が今のルールより {gain * 100:+.1f}ポイントで、+{SELL_MIN_GAIN * 100:.0f}ポイントに届かない"),
             (best["smooth"] - cur["smooth"] >= MIN_SMOOTH_GAIN, f"まわりの条件も含めた成績では、今のルールとの差が {(best['smooth'] - cur['smooth']) * 100:+.1f}ポイントしかない(たまたま良かった可能性)"),
+            (nb_worst >= SELL_NEIGHBOR_WORST, f"条件を少し変えると(隣の条件のどれか)5年でいちばん負けた回が {nb_worst * 100:+.0f}% になる。とがった結果で、たまたまの可能性がある"),
             (lose_b <= lose_c + 0.05, f"5年で「売らない」に負けた回が {lose_b * 100:.0f}% で、今のルール({lose_c * 100:.0f}%)より増える"),
             (not (walk["win"] + walk["lose"]) or walk["win"] / (walk["win"] + walk["lose"]) >= WF_MIN_WIN, f"過去の確かめ(下)で、選び直したルールが今のルールに {walk['win']}勝{walk['lose']}敗と負け越した。いま良く見えるのは、たまたまの可能性がある"),
         ]
