@@ -125,8 +125,8 @@
     const markAt = {};
     for (const mk of o.marks || []) {
       markAt[mk.i] = mk;
-      const x = X(mk.i), y = Y(mk.y), b = mk.k === "b", col = css(b ? "--in" : "--out");
-      if (o.marks.length > 24) {
+      const x = X(mk.i), y = Y(mk.y), b = mk.k === "b", col = css(mk.c || (b ? "--in" : "--out"));
+      if (mk.tri || (o.marks.length > 24 && !mk.big)) {
         // 合図が多いときは lev3watch の答え合わせのチャートと同じ小さな ▲▼ にする(重なって読めなくなるため)
         const sz = 5, ty = b ? y + 5 : y - 5, dir = b ? 1 : -1;
         el("path", { d: `M${x},${ty} L${x - sz},${ty + dir * sz * 1.6} L${x + sz},${ty + dir * sz * 1.6} Z`, fill: col, stroke: css("--card"), "stroke-width": 1, "stroke-linejoin": "round" }, svg);
@@ -154,7 +154,7 @@
       o.series.forEach((s, k) => { const v = s.v[i]; if (v == null) { dots[k].setAttribute("opacity", 0); return; } dots[k].setAttribute("cx", X(i)); dots[k].setAttribute("cy", Y(v)); dots[k].setAttribute("opacity", 1); });
       const mk = markAt[i];
       tip.innerHTML = `<div class="d">${fmtD(o.d[i])}${o.tipExtra ? " · " + o.tipExtra(i) : ""}</div>` +
-        (mk ? `<div><b style="color:${css(mk.k === "b" ? "--in" : "--out")}">${mk.k === "b" ? "▲ " : "▼ "}${esc(mk.t)}</b></div>` : "") +
+        (mk ? `<div><b style="color:${css(mk.c || (mk.k === "b" ? "--in" : "--out"))}">${mk.k === "b" ? "▲ " : "▼ "}${esc(mk.t)}</b></div>` : "") +
         o.series.filter((s) => !s.noTip).map((s) => `<div><i style="background:${css(s.c)}"></i>${s.n}　<b>${s.v[i] == null ? "—" : o.tfmt(s.v[i])}</b></div>`).join("");
       tip.hidden = false;
       const px = (X(i) * r.width) / W, hw = r.width;
@@ -166,91 +166,6 @@
     hit.addEventListener("pointerdown", move);
     if (clipped) el("text", { x: m.l + 4, y: m.t + 12, style: "font-size:10px" }, svg).textContent = `${o.yfmt(o.ymax)}より上は上端に表示`;
     hit.addEventListener("pointerleave", () => { tip.hidden = true; cross.setAttribute("opacity", 0); dots.forEach((d) => d.setAttribute("opacity", 0)); });
-  }
-
-  // ---------- いまの判定 ----------
-  function renderStatus() {
-    const d = state.data, S = d.series, c = d.current, m = method(), B = bands();
-    const N = S.per.length, last = N - 1;
-    const lo = B.lo[last], hi = B.hi[last];
-    const z = zoneAt(c.per, lo, hi) || "m";
-    $("lead").textContent = m.n
-      ? `その月より前の${m.n}年間の PER の平均から1σ下(いまは${lo.toFixed(1)}倍)を下回ったら買い時、1σ上(${hi.toFixed(1)}倍)を超えたら売り時の検討。時代ごとの水準の違いを吸収できます。`
-      : "日経平均の PER が14倍を下回ったら買い時、16倍を超えたら売り時の検討。直近10年ほどの水準に合わせた線です。";
-    const pill = $("pill");
-    pill.classList.toggle("out", z === "s");
-    pill.classList.toggle("mid", z === "m");
-    $("pillv").textContent = ZONE[z];
-    // いまの状態がいつから続いているか
-    let since = last;
-    while (since > 0 && zoneAt(S.per[since - 1], B.lo[since - 1], B.hi[since - 1]) === z) since--;
-    $("pills").textContent = `${fmtD(S.date[since])} から(${fmtD(c.date)} の終値)`;
-    const pLo = c.eps * lo, pHi = c.eps * hi;
-    $("stats").innerHTML = `
-      <div class="stat"><div class="k">PER</div><div class="v">${times(c.per)}</div><div class="s">日経平均 ${yen(c.close)}・EPS ${yen(c.eps)}</div></div>
-      <div class="stat"><div class="k">買いの線(${lo.toFixed(1)}倍)の株価</div><div class="v zone-b">${yen(pLo)}</div><div class="s">${z === "b" ? "いまは線より下(買い時)" : `あと ${pct(pLo / c.close - 1)} 下がると買い時`}</div></div>
-      <div class="stat"><div class="k">売りの線(${hi.toFixed(1)}倍)の株価</div><div class="v zone-s">${yen(pHi)}</div><div class="s">${z === "s" ? "いまは線より上(売り時)" : `あと ${pct(pHi / c.close - 1)} 上がると売り時`}</div></div>`;
-    $("lead2").textContent = `買いの線・売りの線は「EPS × ${m.n ? "その時の線の倍率" : "14倍・16倍"}」で計算した理論株価です。日経平均(黒い線)が赤い線より下なら買い時、青い線より上なら売り時の検討です。`;
-  }
-
-  // ---------- チャート ----------
-  function renderCharts() {
-    const d = state.data, S = d.series, m = method(), B = bands();
-    const N = S.date.length;
-    const r = RANGES.find((x) => x.key === state.settings.range) || RANGES[1];
-    const tEnd = state.t[N - 1];
-    let s = 0;
-    if (r.years) while (s < N - 1 && state.t[s] < tEnd - r.years * 365.25 * DAY) s++;
-    const sl = (a) => a.slice(s);
-    const zones = S.per.map((p, i) => zoneAt(p, B.lo[i], B.hi[i]));
-    const pLo = S.eps.map((e, i) => (B.lo[i] == null ? null : e * B.lo[i]));
-    const pHi = S.eps.map((e, i) => (B.hi[i] == null ? null : e * B.hi[i]));
-    const idx = {}; S.date.forEach((dd, i) => (idx[dd] = i));
-    const test = d.tests[m.test];
-    const evs = test && test.buy ? [...test.buy.events.map((e) => ({ ...e, k: "b" })), ...test.sell.events.map((e) => ({ ...e, k: "s" }))] : [];
-    const marks = (valOf) => evs.filter((e) => idx[e.date] >= s).map((e) => ({
-      i: idx[e.date] - s, y: valOf(idx[e.date]), k: e.k,
-      t: `${e.k === "b" ? "買い時の検討" : "売り時の検討"}(PER ${e.per.toFixed(1)}倍)`,
-    }));
-    const zoneTip = (i) => { const z = zones[s + i]; return z ? `<span class="zone-${z}">${ZONE[z]}</span>` : ""; };
-    const common = { d: sl(S.date), t: sl(state.t), zones: sl(zones), tipExtra: zoneTip };
-    lineChart($("ch1"), {
-      ...common, h: 280, label: "日経平均と買いの線・売りの線",
-      band: { lo: sl(pLo), hi: sl(pHi) },
-      series: [
-        { n: "売りの線", v: sl(pHi), c: "--out", w: 1.5, dash: "5 4", end: "売りの線" },
-        { n: "買いの線", v: sl(pLo), c: "--in", w: 1.5, dash: "5 4", end: "買いの線", dy: 14 },
-        { n: "日経平均", v: sl(S.close), c: "--line", w: 1.75 },
-      ],
-      marks: marks((i) => S.close[i]), ymin: 0,
-      yfmt: (v) => (v >= 10000 ? (v / 10000).toLocaleString("ja-JP") + "万" : v.toLocaleString("ja-JP")),
-      tfmt: (v) => yen(v),
-    });
-    const perSeries = [
-      { n: "売りの線", v: sl(B.hi), c: "--out", w: 1.5, dash: "5 4", end: m.n ? "売りの線" : "16倍 売り" },
-      { n: "買いの線", v: sl(B.lo), c: "--in", w: 1.5, dash: "5 4", end: m.n ? "買いの線" : "14倍 買い", dy: 14 },
-    ];
-    if (B.mean) perSeries.push({ n: `過去${m.n}年の平均`, v: sl(B.mean), c: "--muted", w: 1.2, dash: "2 3" });
-    perSeries.push({ n: "PER", v: sl(S.per), c: "--line", w: 1.75 });
-    lineChart($("ch2"), {
-      ...common, h: 220, label: "PERの推移",
-      band: { lo: sl(B.lo), hi: sl(B.hi) },
-      series: perSeries, marks: marks((i) => Math.min(S.per[i], 40)), ymin: 0, ymax: 40,
-      yfmt: (v) => v + "倍", tfmt: (v) => v.toFixed(2) + "倍",
-    });
-    const info = d.info;
-    $("chnote").textContent =
-      (info.monthly_from && info.daily_from ? `${info.daily_from.slice(0, 4)}年より前は月末の値です。` : "") +
-      `${d.settings.basis_change.slice(0, 4)}年頃に PER の計算が単体決算から連結決算に変わりました。` +
-      "2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました(株価は安かったのに PER では「売り時」になる、PER の弱いところです)。" +
-      (m.n ? `相対バンドの平均・σには、PER が${d.settings.rel_exclude_above || 50}倍を超えた月を入れていません。` : "");
-    // 合図の一覧(新しい順、最大12件)
-    const recent = evs.filter((e) => idx[e.date] >= s).sort((a, b) => (a.date < b.date ? 1 : -1));
-    $("trtag").textContent = `合図の出た日(${r.label}・${m.label})`;
-    $("trades").innerHTML = recent.length
-      ? recent.slice(0, 12).map((e) => `<li><span class="mk ${e.k}">${e.k === "b" ? "買" : "売"}</span>${fmtD(e.date)}　PER ${e.per.toFixed(1)}倍・${yen(e.close)}</li>`).join("") +
-        (recent.length > 12 ? `<li class="muted">ほか ${recent.length - 12} 回</li>` : "")
-      : "<li>この期間は合図なし</li>";
   }
 
   // ---------- 売買ルール(PER・PBR) ----------
@@ -272,35 +187,11 @@
       : `<div class="stat"><div class="k">買いの線の株価(PBR ${R.buy_pbr}倍)</div><div class="v zone-b">${yen(now.buy_price)}</div><div class="s">あと ${pct(now.buy_price / now.close - 1)} 下がると買い</div></div>`;
     $("t-stats").innerHTML = `
       <div class="stat"><div class="k">PBR / PER</div><div class="v">${now.pbr.toFixed(2)}倍 / ${now.per.toFixed(1)}倍</div><div class="s">日経平均 ${yen(now.close)}(${fmtD(T.to)})</div></div>
-      ${next}`;
-    // PBR のチャート
-    const idx = S.date.map((d, i) => i).filter((i) => S.pbr[i] != null && S.date[i] >= T.from);
-    const tr = T.trades, cashAt = (d) => { let h = true; for (const t of tr) { if (t.date > d) break; h = t.side === "buy"; } return h ? "m" : "s"; };
-    const dd = idx.map((i) => S.date[i]);
-    const pos = {}; dd.forEach((d, k) => (pos[d] = k));
-    const marks = tr.filter((t) => pos[t.date] != null).map((t) => ({ i: pos[t.date], y: t.pbr, k: t.side === "buy" ? "b" : "s", t: `${t.side === "buy" ? "買い" : "売り"}(PBR ${t.pbr}倍・PER ${t.per}倍)` }));
-    lineChart($("t-ch1"), {
-      d: dd, t: dd.map(toT), zones: dd.map(cashAt), h: 240, label: "PBRと売買の線",
-      series: [
-        { n: "売りの線", v: dd.map(() => R.sell_pbr), c: "--out", w: 1.5, dash: "5 4", end: `${R.sell_pbr}倍 売り` },
-        { n: "買いの線", v: dd.map(() => R.buy_pbr), c: "--in", w: 1.5, dash: "5 4", end: `${R.buy_pbr}倍 買い`, dy: 14 },
-        { n: "PBR", v: idx.map((i) => S.pbr[i]), c: "--line", w: 1.75 },
-      ],
-      marks, ymin: 0, yfmt: (v) => v.toFixed(1) + "倍", tfmt: (v) => v.toFixed(2) + "倍",
-      tipExtra: (k) => (cashAt(dd[k]) === "s" ? '<b class="zone-s">現金</b>' : '<b class="zone-b">持つ</b>'),
-    });
-    // 資産の推移
-    const C = T.curve;
-    lineChart($("t-ch2"), {
-      d: C.date, t: C.date.map(toT), zones: C.date.map(cashAt), h: 220, label: "資産の推移",
-      series: [
-        { n: "持ち続け", v: C.hold, c: "--muted", w: 1.5 },
-        { n: "このルール", v: C.rule, c: "--line", w: 2 },
-      ],
-      ymin: 0, yfmt: (v) => "×" + v, tfmt: (v) => mult(v),
-      tipExtra: (k) => (cashAt(C.date[k]) === "s" ? '<b class="zone-s">現金</b>' : '<b class="zone-b">持つ</b>'),
-    });
-    $("t-trades").innerHTML = tr.map((t) => `<li><span class="mk ${t.side === "buy" ? "b" : "s"}">${t.side === "buy" ? "買" : "売"}</span>${fmtD(t.date)}　${yen(t.close)}(売買した日の PBR ${t.pbr}倍・PER ${t.per}倍)${t.ret != null ? `(${fmtD(t.from)}から ${pct(t.ret)})` : ""}</li>`).join("") || "<li>売買なし</li>";
+      ${next}
+      ${(() => { const q = perTrades(S, T.from), lt = q.trades[q.trades.length - 1];
+        return `<div class="stat"><div class="k">参考: PER のルール(14倍割れで買い・16倍超で売り)</div><div class="v" style="color:var(--m-per)">${q.holding ? "持つ" : "現金で待つ"}</div><div class="s">${lt ? fmtD(lt.date) + " から" : ""}</div></div>`; })()}`;
+    const tr = T.trades;
+    $("t-trades").innerHTML = tr.map((t) => `<li><span class="mk pbr">${t.side === "buy" ? "買" : "売"}</span>${fmtD(t.date)}　${yen(t.close)}(売買した日の PBR ${t.pbr}倍・PER ${t.per}倍)${t.ret != null ? `(${fmtD(t.from)}から ${pct(t.ret)})` : ""}</li>`).join("") || "<li>売買なし</li>";
     const ro = T.rolling, rr = (k) => ro[k] ? `${Math.round(ro[k].win * 100)}%で勝ち・${Math.round(ro[k].same * 100)}%で同じ・${Math.round(ro[k].lose * 100)}%で負け(${ro[k].n}回、いちばん勝った回 ${pct(ro[k].best, 0)})` : "—";
     $("t-table").innerHTML = `
       <tr><th>${fmtD(T.from)}〜${fmtD(T.to)}</th><th>このルール</th><th>持ち続けた場合</th></tr>
@@ -314,7 +205,7 @@
       <tr><td>　〃 10年続けた場合</td><td colspan="2">${rr("10y")}</td></tr>`;
     const notes = [
       "なぜこの線か: PBR 1倍は、株価が1株あたりの純資産(会社を解散したときの価値)と同じ水準です。2008年10月・2012年・2016年・2020年3月の底はどれも PBR 1倍前後でした。ただ1倍割れは2004年以降22年のうち5つの年にしかなく、売ったあと何年も買えなくなるので、少し上の1.1倍(10の年で起きた)を買いの線にしています。PBR 2倍超は2005〜2007年の上げ相場の天井付近だけで、2013〜2024年の高値は1.4〜1.6倍でした。",
-      "売りに PER も使う理由: リーマン・ショック後(2009年)のように利益が大きく減ると、PER だけが何十倍にも跳ね上がります。そこは底だったので、PBR も高いときだけ売るようにしています。反対に、PER が高いだけ・PER が低いだけの線(例: PER 14倍で買い・16倍で売り)では、上がり続ける相場で早く売りすぎて、持ち続けた場合の×5.83に対して×1.81と大きく負けました(売買12回)。",
+      "売りに PER も使う理由: リーマン・ショック後(2009年)のように利益が大きく減ると、PER だけが何十倍にも跳ね上がります。そこは底だったので、PBR も高いときだけ売るようにしています。反対に、PER が高いだけ・PER が低いだけの線(例: PER 14倍で買い・16倍で売り)では、上がり続ける相場で早く売りすぎて、持ち続けた場合の×5.83に対して×1.81と大きく負けました(売買23回)。",
       "線の決め方: 買い0.9〜1.4倍・売り1.6〜2.4倍・PER の条件あり/なしなど約500通りを比べ、成績が近い中からキリのよい数字を選びました。売りの線を1.6倍まで下げると売買は増えますが、5年続けた回でいちばん負けた回が −31% になりました。",
       "限界: この期間に売りが出たのは2005年9月の1回だけで、2008年10月に買ったあとは今まで持ち続けています。つまり成績の差は、2005〜2008年の1回の山と谷でほぼ決まっています。2008年以降に始めた人には「持ち続け」と同じ結果です。データは2004年9月からしかなく、それより前(バブル期など)では確かめられていません。",
       `いまの PBR は${now.pbr.toFixed(2)}倍で、売りの線(2倍)に近づいています。PBR 2倍・PER 16倍を両方超えると、次の営業日に売りの合図が出ます。`,
@@ -323,46 +214,85 @@
     $("t-notes").innerHTML = notes.map((t) => `<li>${esc(t)}</li>`).join("");
   }
 
-  // ---------- 持ち方のくらべ ----------
-  const PCOL = { all: "--line", half: "--p-b", cash_half: "--p-d", per_all: "--p-h" };
+  // ---------- 持ち方のくらべ(表だけ) ----------
   function renderPatterns() {
     const P = state.data.patterns;
     if (!P) return;
     const items = P.items.slice().sort((a, b) => b.eq - a.eq), H = P.hold_stats;
-    const max = Math.max(H.eq, ...items.map((x) => x.eq)), W = (v) => (v / max) * 82 + "%";
-    $("c-lead").textContent = `同じ PBR・PER の線を使って、売り買いを「全部」「半分ずつ」「1/3ずつ」「現金の半分だけ」などに変えたら、${fmtD(P.from)}〜${fmtD(P.to)}にどうなったかを比べました。売買は合図の次の営業日の終値、コストは動かした金額の0.1%です。`;
-    $("c-hold").textContent = mult(H.eq);
     const held = (w) => (w >= 0.999 ? "全部持つ" : w <= 0.001 ? "全部現金" : `${Math.round(w * 100)}%持つ`);
-    $("c-bars").innerHTML = items.map((x) => {
-      const better = x.eq > H.eq * 1.005, worse = x.eq < H.eq * 0.995;
-      return `<li class="${x.key === "all" ? "main" : ""}" title="${esc(x.desc)}">
-        <div class="nm">${esc(x.name)}<small>${esc(x.desc)}</small></div>
-        <div>
-          <div class="tr"><div class="bar" style="width:${W(x.eq)}"></div><span class="val" style="left:${W(x.eq)}">${mult(x.eq)}</span><div class="ref" style="left:${W(H.eq)}"></div></div>
-          <div class="meta"><span class="${better ? "up" : worse ? "dn" : ""}">${better ? "持ち続けより良い" : worse ? "持ち続けより悪い" : "持ち続けと同じ"}</span> · いちばん大きな下げ <b>${pct(x.mdd, 0)}</b> · 売買 <b>${x.n}回</b> · いま <b>${held(x.w)}</b></div>
-        </div></li>`;
-    }).join("");
-    // 資産の推移
-    const pick = ["all", "half", "cash_half", "per_all"].map((k) => P.items.find((x) => x.key === k)).filter(Boolean);
-    $("c-legend").innerHTML = `<span><i class="dash" style="border-color:var(--muted)"></i>持ち続け ${mult(H.eq)}</span>` +
-      pick.map((x) => `<span><i style="background:var(${PCOL[x.key]})"></i>${esc(x.name)} ${mult(x.eq)}</span>`).join("");
-    lineChart($("c-ch"), {
-      d: P.date, t: P.date.map(toT), h: 260, label: "持ち方ごとの資産の推移",
-      series: [{ n: "持ち続け", v: P.hold, c: "--muted", w: 1.5, dash: "5 4" }]
-        .concat(pick.map((x) => ({ n: x.name, v: x.curve, c: PCOL[x.key], w: x.key === "all" ? 2.25 : 1.75 }))),
-      ymin: 0, yfmt: (v) => "×" + v, tfmt: (v) => mult(v),
+    $("c-table").innerHTML = `<tr><th>持ち方</th><th>資産</th><th>いちばん大きな下げ</th><th>売買</th><th>いま</th></tr>
+      <tr><td>持ち続け</td><td>${mult(H.eq)}</td><td>${pct(H.mdd, 0)}</td><td>—</td><td>全部持つ</td></tr>` +
+      items.map((x) => `<tr><td title="${esc(x.desc)}">${esc(x.name)}<br><span class="muted">${esc(x.desc)}</span></td><td>${mult(x.eq)}</td><td>${pct(x.mdd, 0)}</td><td>${x.n}回</td><td>${held(x.w)}</td></tr>`).join("");
+  }
+
+  // ---------- 3つのチャート ----------
+  const PER_LO = 14, PER_HI = 16;
+  // PER のルール: 持っているときは PER 16倍超で売り、現金のときは PER 14倍割れで買い(合図の次の営業日の終値)。PBR のルールと同じく2004年9月に持っている状態から始める
+  function perTrades(S, from) {
+    let holding = true, pend = null;
+    const out = [];
+    for (let i = 0; i < S.date.length; i++) {
+      if (S.date[i] < from || S.pbr[i] == null) continue;
+      if (pend) { holding = pend === "buy"; out.push({ i, date: S.date[i], side: pend, close: S.close[i], per: S.per[i] }); pend = null; }
+      const p = S.per[i];
+      if (!holding && p < PER_LO) pend = "buy";
+      else if (holding && p > PER_HI && p <= 50) pend = "sell";
+    }
+    return { trades: out, holding, pending: pend };
+  }
+
+  function renderCharts() {
+    const d = state.data, S = d.series, T = d.trade;
+    if (!T) return;
+    const R = T.rule;
+    const all = S.date.map((x, i) => i).filter((i) => S.pbr[i] != null && S.date[i] >= T.from);
+    const r = RANGES.find((x) => x.key === state.settings.range2) || RANGES[RANGES.length - 1];
+    const tEnd = state.t[all[all.length - 1]];
+    const idx = r.years ? all.filter((i) => state.t[i] >= tEnd - r.years * 365.25 * DAY) : all;
+    const dd = idx.map((i) => S.date[i]), tt = idx.map((i) => state.t[i]);
+    const pos = {}; dd.forEach((x, k) => (pos[x] = k));
+    const v = (key, f = (x) => x) => idx.map((i) => (S[key][i] == null ? null : f(S[key][i])));
+    const pbrT = T.trades.filter((t) => pos[t.date] != null);
+    const perT = perTrades(S, T.from).trades.filter((t) => pos[t.date] != null);
+    const pbrMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", c: "--m-pbr", big: true, t: `PBR のルールで${t.side === "buy" ? "買い" : "売り"}(PBR ${t.pbr}倍)` });
+    const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", c: "--m-per", tri: true, t: `PER のルールで${t.side === "buy" ? "買い" : "売り"}(PER ${t.per.toFixed(1)}倍)` });
+    const tip = (k) => `PER ${S.per[idx[k]].toFixed(1)}倍 · PBR ${S.pbr[idx[k]].toFixed(2)}倍`;
+    const yenAx = (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP"));
+    // ① 日経平均
+    lineChart($("ch-n"), {
+      d: dd, t: tt, h: 300, label: "日経平均と売買のポイント",
+      series: [{ n: "日経平均", v: v("close"), c: "--line", w: 1.75 }],
+      marks: [...perT.map(perMark((t) => t.close)), ...pbrT.map(pbrMark((t) => t.close))],
+      ymin: 0, yfmt: yenAx, tfmt: (x) => yen(x), tipExtra: tip,
     });
-    $("c-table").innerHTML = `<tr><th>持ち方</th><th>資産</th><th>年あたり</th><th>いちばん大きな下げ</th><th>売買</th><th>平均の持ち分</th><th>5年続けて持ち続けに負けた回</th><th>いま</th></tr>
-      <tr><td>持ち続け</td><td>${mult(H.eq)}</td><td>${pct(H.cagr)}</td><td>${pct(H.mdd, 0)}</td><td>—</td><td>100%</td><td>—</td><td>全部持つ</td></tr>` +
-      items.map((x) => `<tr><td>${esc(x.name)}</td><td>${mult(x.eq)}</td><td>${pct(x.cagr)}</td><td>${pct(x.mdd, 0)}</td><td>${x.n}回</td><td>${Math.round(x.in_market * 100)}%</td><td>${x.lose5 == null ? "—" : Math.round(x.lose5 * 100) + "%"}</td><td>${held(x.w)}</td></tr>`).join("");
-    const notes = [
-      "PBR で決める持ち方は、全部でも半分ずつでも結果はほぼ同じです。2005年に売って2008年のリーマン・ショック後に買い戻した1回の往復で、成績のほとんどが決まっています。",
-      "半分ずつ・1/3ずつにすると売買が増え、少しだけ成績が下がります。PBR 1.8倍で一部を売る持ち方は、2026年1月(日経平均 約54,000円)に一部を手放し、そのあとの上昇を取り逃しています。",
-      "「現金の半分だけ買う」は、2008年の底で半分しか買い戻さず、そのあとずっと半分が現金のままになるので大きく負けます。下げはいちばん小さくなります。",
-      "「PBR 1倍割れのあと、1倍を上に抜けたら買う」は、底を確かめてから買う分だけ安心ですが、期待値は上がりませんでした。2004年以降の1倍割れ6回で比べると、1倍を割った日に買った場合の1年後の平均は+28%、上に抜けた日に買った場合は+27%(3年後はどちらも約+52%)。上に抜けた日のほうが買値が高くなりやすく、2008年10月は上に抜けた直後にまた大きく下げています(1年後 +22% に対して +6%)。",
-      "PER だけで決める持ち方は、全部でも半分ずつでも大きく負けます。景気が悪いときは利益が減って PER が上がるので、底で売ってしまうためです。",
-    ];
-    $("c-notes").innerHTML = notes.map((t) => `<li>${esc(t)}</li>`).join("");
+    // ② PER
+    $("per-lo").textContent = `${PER_LO}倍`; $("per-hi").textContent = `${PER_HI}倍`;
+    lineChart($("ch-per"), {
+      d: dd, t: tt, h: 220, label: "PER",
+      series: [
+        { n: "売りの線", v: dd.map(() => PER_HI), c: "--out", w: 1.5, dash: "5 4", noTip: true },
+        { n: "買いの線", v: dd.map(() => PER_LO), c: "--in", w: 1.5, dash: "5 4", noTip: true },
+        { n: "PER", v: v("per"), c: "--line", w: 1.75 },
+      ],
+      marks: perT.map(perMark((t) => Math.min(t.per, 30))), ymin: 0, ymax: 30,
+      yfmt: (x) => x + "倍", tfmt: (x) => x.toFixed(2) + "倍",
+    });
+    // ③ PBR
+    $("pbr-lo").textContent = `${R.buy_pbr}倍`; $("pbr-hi").textContent = `${R.sell_pbr}倍(PER ${R.sell_per}倍超も必要)`;
+    lineChart($("ch-pbr"), {
+      d: dd, t: tt, h: 220, label: "PBR",
+      series: [
+        { n: "売りの線", v: dd.map(() => R.sell_pbr), c: "--out", w: 1.5, dash: "5 4", noTip: true },
+        { n: "買いの線", v: dd.map(() => R.buy_pbr), c: "--in", w: 1.5, dash: "5 4", noTip: true },
+        { n: "PBR", v: v("pbr"), c: "--line", w: 1.75 },
+      ],
+      marks: pbrT.map(pbrMark((t) => t.pbr)), ymin: 0,
+      yfmt: (x) => x.toFixed(1) + "倍", tfmt: (x) => x.toFixed(2) + "倍",
+    });
+    $("chnote").textContent = "PER は30倍より上を上端に貼りつけて表示しています(2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました)。PER のルールは PER 14倍割れで買い・16倍超で売りを、PBR のルールと同じく持つ/現金を交互にして当てはめたものです。";
+    const pt = perTrades(S, T.from).trades.slice().reverse();
+    $("per-trades").innerHTML = pt.slice(0, 12).map((t) => `<li><span class="mk per">${t.side === "buy" ? "買" : "売"}</span>${fmtD(t.date)}　${yen(t.close)}(PER ${t.per.toFixed(1)}倍)</li>`).join("") +
+      (pt.length > 12 ? `<li class="muted">ほか ${pt.length - 12} 回</li>` : "") || "<li>売買なし</li>";
   }
 
   // ---------- 答え合わせ ----------
@@ -404,8 +334,7 @@
         ? `いま使っているデータ: ${i.monthly_from.replace("-", "年")}月〜は月末の値(${i.monthly_months}か月)、${i.daily_from.slice(0, 7).replace("-", "年")}月〜は日次(${i.daily_days.toLocaleString()}日)。`
         : `いま使っているデータ: ${fmtD(i.daily_from)}〜の日次(${i.daily_days.toLocaleString()}日)。`,
       "PER は日経平均プロフィルが公表する「加重平均」の値を使い、無い日は「指数ベース」を使います(指数ベースは加重平均より高めに出ます)。",
-      "2004年頃に PER の計算が単体決算から連結決算に変わり、それより前とあとの数字はそのまま比べられません。固定の14/16倍は直近10年で、相対バンドは全期間で見るのが基本です。",
-      "相対バンドは、その月より前の月末の値だけで作ります(先の値は使っていません)。",
+      "PBR も日経平均プロフィルの「加重平均」の値です。PBR の日次データは2004年9月からなので、チャートと成績はそこから始めています。",
       "検証の数字は過去の結果で、将来の値動きを約束するものではありません。合図の回数が少ないものは、たまたまの結果である可能性が高いです。",
     ];
     $("notes").innerHTML = items.map((t) => `<li>${esc(t)}</li>`).join("");
@@ -425,14 +354,12 @@
 
   function renderAll() {
     const d = state.data;
-    state.t = d.series.date.map((s) => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10)));
-    if (!methods().some((m) => m.key === state.settings.method)) state.settings.method = "fixed";
-    seg($("method"), methods(), "method", () => { renderStatus(); renderCharts(); renderEvents(); });
-    seg($("rng"), RANGES, "range", renderCharts);
+    state.t = d.series.date.map((x) => Date.UTC(+x.slice(0, 4), +x.slice(5, 7) - 1, +x.slice(8, 10)));
+    if (!state.settings.range2) state.settings.range2 = "all";
+    seg($("rng"), RANGES, "range2", renderCharts);
     renderTrade();
-    renderPatterns();
-    renderStatus();
     renderCharts();
+    renderPatterns();
     renderBacktest();
     renderNotes();
   }
@@ -471,6 +398,6 @@
   $("refresh").href = `https://github.com/git-san-934/portal/issues/new?${q}`;
 
   let rt;
-  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => state.data && state.data.ready && (renderTrade(), renderPatterns(), renderCharts()), 150); });
+  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => state.data && state.data.ready && renderCharts(), 150); });
   load(false);
 })();
