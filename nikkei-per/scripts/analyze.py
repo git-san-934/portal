@@ -190,20 +190,31 @@ def backtest(pts: list[dict], band_of, since: str | None, label: str, note: str)
 
 # ---------- 売買ルール(持つ / 現金 を交互に) ----------
 # 2004年9月〜の PER・PBR で約500通りを比べて決めた。キリのよい数字にして、たまたま当たった細かい値を避けている
-TRADE_BUY_PBR = 1.1    # 現金のとき: PBR がこれを下回った日 → 次の営業日に買う(解散価値の1倍の少し上。1.0倍割れは22年中5つの年しかなく、売ったあと買う機会が少なすぎるため)
-TRADE_SELL_PBR = 2.0   # 持っているとき: PBR がこれを超え、
-TRADE_SELL_PER = 16.0  #   しかも PER がこれを超えた日(利益が落ちて PER だけ高い時期は売らない) → 次の営業日に売る
+TRADE_BUY_PBR = 1.1    # 現金のとき: PBR がこれを下回ったあと、下から上に抜けた日 → 次の営業日に買う(底を確かめてから買う。1.0倍割れは22年中5つの年しかなく少なすぎるため1.1倍)
+TRADE_SELL_PBR = 1.5   # 持っているとき: PBR がこれを上回ったあと、上から下に抜けた日 → 次の営業日に売る(天井を確かめてから売る)
+TRADE_SELL_PER = 16.0  # 「持ち方のくらべ」の一部の持ち方だけで使う(売買ルールの売りには使わない)
 TRADE_COST = 0.001     # 売買1回ごとのコスト(片道0.1%)。現金の利息は0とする
 ROLL_STEP_DAYS = 91
 
 
-def trade_signal(p: dict, holding: bool) -> str | None:
+def trade_signal(p: dict, holding: bool, st: dict) -> str | None:
+    """st["armed"]: 現金のときに PBR が買いの線を下回ったことがあるか。下回ったあと上に抜けた日が買いの合図。"""
     if p.get("pbr") is None:
         return None
-    if not holding and p["pbr"] < TRADE_BUY_PBR:
+    if holding:
+        st["armed"] = False
+        if p["pbr"] > TRADE_SELL_PBR:
+            st["top"] = True
+        elif st.get("top") and p["pbr"] < TRADE_SELL_PBR:
+            st["top"] = False
+            return "sell"
+        return None
+    st["top"] = False
+    if p["pbr"] < TRADE_BUY_PBR:
+        st["armed"] = True
+    elif st["armed"] and p["pbr"] > TRADE_BUY_PBR:
+        st["armed"] = False
         return "buy"
-    if holding and p["pbr"] > TRADE_SELL_PBR and TRADE_SELL_PER < p["per"] <= REL_EXCLUDE_ABOVE:
-        return "sell"
     return None
 
 
@@ -211,7 +222,7 @@ def simulate(pts: list[dict], start: int, end: int, holding: bool = True) -> dic
     """pts[start:end] を、はじめは holding の状態から売買ルールどおりに動かす。合図は終値で判定し、次の営業日の終値で売買。"""
     eq, peak, mdd, pending = 1.0, 1.0, 0.0, None
     trades, curve, entry = [], [], (start, 1.0) if holding else None
-    days_in = 0
+    days_in, st = 0, {"armed": False}
     for i in range(start, end):
         if i > start and holding:
             eq *= pts[i]["close"] / pts[i - 1]["close"]
@@ -224,14 +235,14 @@ def simulate(pts: list[dict], start: int, end: int, holding: bool = True) -> dic
             trades.append({"date": pts[i]["date"], "side": "sell", "close": pts[i]["close"], "pbr": pts[i]["pbr"], "per": round(pts[i]["per"], 2),
                            "ret": round(eq / entry[1] - 1, 4) if entry else None, "from": pts[entry[0]]["date"] if entry else None})
             entry = None
-        pending = trade_signal(pts[i], holding)
+        pending = trade_signal(pts[i], holding, st)
         if pending:
             pts[i].setdefault("sig", pending)
         days_in += holding
         peak = max(peak, eq)
         mdd = min(mdd, eq / peak - 1)
         curve.append(eq)
-    return {"eq": eq, "mdd": mdd, "trades": trades, "curve": curve, "holding": holding, "pending": pending,
+    return {"eq": eq, "mdd": mdd, "trades": trades, "curve": curve, "holding": holding, "pending": pending, "armed": st["armed"], "top": st.get("top", False),
             "in_market": days_in / max(1, end - start), "open_from": pts[entry[0]]["date"] if (holding and entry) else None,
             "open_ret": (eq / entry[1] - 1) if (holding and entry) else None}
 
@@ -292,10 +303,10 @@ def trade_report(pts: list[dict]) -> dict | None:
     return {
         "rule": {"buy_pbr": TRADE_BUY_PBR, "sell_pbr": TRADE_SELL_PBR, "sell_per": TRADE_SELL_PER, "cost": TRADE_COST},
         "from": d0, "to": d1,
-        "now": {"holding": sim["holding"], "pending": sim["pending"], "since": (sim["trades"][-1]["date"] if sim["trades"] else d0),
+        "now": {"holding": sim["holding"], "pending": sim["pending"], "armed": sim["armed"], "since": (sim["trades"][-1]["date"] if sim["trades"] else d0),
                 "pbr": last["pbr"], "per": round(last["per"], 2), "close": last["close"], "bps": round(bps), "eps": round(eps),
                 "buy_price": round(bps * TRADE_BUY_PBR),
-                "sell_price": round(max(bps * TRADE_SELL_PBR, eps * TRADE_SELL_PER))},
+                "sell_price": round(bps * TRADE_SELL_PBR), "top": sim["top"]},
         "trades": sim["trades"],
         "stats": {"rule": {"eq": sim["eq"], "cagr": cagr(sim["eq"], d0, d1), "mdd": sim["mdd"], "in_market": sim["in_market"],
                            "n": len(sim["trades"]), "rounds": len(rounds),
@@ -356,13 +367,29 @@ def _recross(arm, up):
                 return 1.0
             return None
         st["armed"] = False
-        return 0.0 if _pbr_gt(TRADE_SELL_PBR, TRADE_SELL_PER)(p) else None
+        return 0.0 if _pbr_gt(2.0, 16)(p) else None
+    return f
+
+
+def _rule(buy_now=False):
+    """上の売買ルール(trade_signal)そのもの。buy_now=True は買いだけ「線を割った日」にする比較用。"""
+    st = {"armed": False}
+
+    def f(p, w):
+        if buy_now and w < 0.5 and p["pbr"] < TRADE_BUY_PBR:
+            return 1.0
+        s = trade_signal(p, w > 0.5, st)
+        return 1.0 if s == "buy" else 0.0 if s == "sell" else None
     return f
 
 
 PATTERNS = [
-    ("all", "全部売り・全部買い(上の売買ルール)", f"PBR {TRADE_BUY_PBR}倍割れで全部買い / PBR {TRADE_SELL_PBR}倍超かつPER {TRADE_SELL_PER:g}倍超で全部売り",
-     _steps([(_pbr_lt(TRADE_BUY_PBR), 1.0)], [(_pbr_gt(TRADE_SELL_PBR, TRADE_SELL_PER), 0.0)])),
+    ("all", "全部売り・全部買い(上の売買ルール)", f"PBR {TRADE_BUY_PBR}倍を割ったあと上に抜けたら全部買い / PBR {TRADE_SELL_PBR}倍を超えたあと下に抜けたら全部売り",
+     _rule()),
+    ("under", "線を割ったらすぐ買う", f"PBR {TRADE_BUY_PBR}倍を割った日に全部買い / 売りは上の売買ルールと同じ",
+     _rule(buy_now=True)),
+    ("old", "前のルール(PBR 2倍超かつPER 16倍超で売り)", f"PBR {TRADE_BUY_PBR}倍割れで全部買い / PBR 2.0倍超かつPER 16倍超で全部売り",
+     _steps([(_pbr_lt(TRADE_BUY_PBR), 1.0)], [(_pbr_gt(2.0, 16), 0.0)])),
     ("recross", "1倍割れのあと上抜けで買う", "PBR 1.0倍を割ったあと、1.0倍を上に抜けた日に全部買い / 売りは上の売買ルールと同じ",
      _recross(1.0, 1.0)),
     ("half", "半分ずつ", "PBR 1.0倍割れで半分・0.9倍割れで残りを買い / PBR 1.8倍超で半分・2.0倍超かつPER 16倍超で残りを売り",
