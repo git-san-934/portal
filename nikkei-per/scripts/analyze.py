@@ -63,7 +63,8 @@ def load_points() -> tuple[list[dict], dict]:
                 continue
             cols_used[col] = cols_used.get(col, 0) + 1
             daily.append({"date": r["date"], "close": r["close"], "per": per, "freq": "d", "basis": "連結",
-                          "per_index": r.get("index_based"), "per_weighted": r.get("weighted")})
+                          "per_index": r.get("index_based"), "per_weighted": r.get("weighted"),
+                          "pbr": r.get("pbr_weighted")})
     first_daily = daily[0]["date"] if daily else "9999-99-99"
 
     monthly = []
@@ -187,6 +188,124 @@ def backtest(pts: list[dict], band_of, since: str | None, label: str, note: str)
     return res
 
 
+# ---------- 売買ルール(持つ / 現金 を交互に) ----------
+# 2004年9月〜の PER・PBR で約500通りを比べて決めた。キリのよい数字にして、たまたま当たった細かい値を避けている
+TRADE_BUY_PBR = 1.0    # 現金のとき: PBR がこれを下回った日 → 次の営業日に買う(1株あたり純資産=解散価値を割った水準)
+TRADE_SELL_PBR = 2.0   # 持っているとき: PBR がこれを超え、
+TRADE_SELL_PER = 16.0  #   しかも PER がこれを超えた日(利益が落ちて PER だけ高い時期は売らない) → 次の営業日に売る
+TRADE_COST = 0.001     # 売買1回ごとのコスト(片道0.1%)。現金の利息は0とする
+ROLL_STEP_DAYS = 91
+
+
+def trade_signal(p: dict, holding: bool) -> str | None:
+    if p.get("pbr") is None:
+        return None
+    if not holding and p["pbr"] < TRADE_BUY_PBR:
+        return "buy"
+    if holding and p["pbr"] > TRADE_SELL_PBR and TRADE_SELL_PER < p["per"] <= REL_EXCLUDE_ABOVE:
+        return "sell"
+    return None
+
+
+def simulate(pts: list[dict], start: int, end: int, holding: bool = True) -> dict:
+    """pts[start:end] を、はじめは holding の状態から売買ルールどおりに動かす。合図は終値で判定し、次の営業日の終値で売買。"""
+    eq, peak, mdd, pending = 1.0, 1.0, 0.0, None
+    trades, curve, entry = [], [], (start, 1.0) if holding else None
+    days_in = 0
+    for i in range(start, end):
+        if i > start and holding:
+            eq *= pts[i]["close"] / pts[i - 1]["close"]
+        if pending == "buy" and not holding:
+            holding, eq = True, eq * (1 - TRADE_COST)
+            entry = (i, eq)
+            trades.append({"date": pts[i]["date"], "side": "buy", "close": pts[i]["close"], "pbr": pts[i]["pbr"], "per": round(pts[i]["per"], 2)})
+        elif pending == "sell" and holding:
+            holding, eq = False, eq * (1 - TRADE_COST)
+            trades.append({"date": pts[i]["date"], "side": "sell", "close": pts[i]["close"], "pbr": pts[i]["pbr"], "per": round(pts[i]["per"], 2),
+                           "ret": round(eq / entry[1] - 1, 4) if entry else None, "from": pts[entry[0]]["date"] if entry else None})
+            entry = None
+        pending = trade_signal(pts[i], holding)
+        if pending:
+            pts[i].setdefault("sig", pending)
+        days_in += holding
+        peak = max(peak, eq)
+        mdd = min(mdd, eq / peak - 1)
+        curve.append(eq)
+    return {"eq": eq, "mdd": mdd, "trades": trades, "curve": curve, "holding": holding, "pending": pending,
+            "in_market": days_in / max(1, end - start), "open_from": pts[entry[0]]["date"] if (holding and entry) else None,
+            "open_ret": (eq / entry[1] - 1) if (holding and entry) else None}
+
+
+def hold_stats(pts: list[dict], start: int, end: int) -> dict:
+    peak, mdd = 0.0, 0.0
+    for p in pts[start:end]:
+        peak = max(peak, p["close"])
+        mdd = min(mdd, p["close"] / peak - 1)
+    return {"eq": pts[end - 1]["close"] / pts[start]["close"], "mdd": mdd}
+
+
+def cagr(eq: float, d0: str, d1: str) -> float:
+    yrs = (date.fromisoformat(d1) - date.fromisoformat(d0)).days / 365.25
+    return eq ** (1 / yrs) - 1 if yrs > 0 else 0.0
+
+
+def trade_report(pts: list[dict]) -> dict | None:
+    idx = [i for i, p in enumerate(pts) if p.get("pbr") is not None]
+    if len(idx) < 250:
+        return None
+    s, e = idx[0], idx[-1] + 1
+    sim = simulate(pts, s, e, holding=True)
+    hold = hold_stats(pts, s, e)
+    d0, d1 = pts[s]["date"], pts[e - 1]["date"]
+    sells = [t for t in sim["trades"] if t["side"] == "sell" and t.get("ret") is not None]
+    rounds = [t["ret"] for t in sells] + ([sim["open_ret"]] if sim["open_ret"] is not None else [])
+    # 開始日を約3か月ずつずらして、5年・10年続けた場合に「持ち続け」と比べる
+    rolling = {}
+    for years in (5, 10):
+        diffs = []
+        t = date.fromisoformat(d0)
+        while True:
+            i0 = bisect.bisect_left([p["date"] for p in pts], t.isoformat(), lo=s, hi=e)
+            t1 = (date.fromisoformat(pts[i0]["date"]) + timedelta(days=int(365.25 * years))).isoformat() if i0 < e else None
+            if t1 is None or t1 > d1:
+                break
+            i1 = bisect.bisect_left([p["date"] for p in pts], t1, lo=s, hi=e)
+            r = simulate([dict(p) for p in pts], i0, i1 + 1, holding=True)
+            diffs.append(r["eq"] / (pts[i1]["close"] / pts[i0]["close"]) - 1)
+            t += timedelta(days=ROLL_STEP_DAYS)
+        if diffs:
+            rolling[f"{years}y"] = {"n": len(diffs), "win": sum(d > 0.001 for d in diffs) / len(diffs),
+                                    "same": sum(abs(d) <= 0.001 for d in diffs) / len(diffs),
+                                    "lose": sum(d < -0.001 for d in diffs) / len(diffs),
+                                    "median": statistics.median(diffs), "worst": min(diffs), "best": max(diffs)}
+    # 資産の推移(週1点に間引く)
+    curve = {"date": [], "rule": [], "hold": []}
+    base = pts[s]["close"]
+    for k, i in enumerate(range(s, e)):
+        if k % 5 and i != e - 1:
+            continue
+        curve["date"].append(pts[i]["date"])
+        curve["rule"].append(round(sim["curve"][i - s], 4))
+        curve["hold"].append(round(pts[i]["close"] / base, 4))
+    last = pts[e - 1]
+    bps, eps = last["close"] / last["pbr"], last["close"] / last["per"]
+    return {
+        "rule": {"buy_pbr": TRADE_BUY_PBR, "sell_pbr": TRADE_SELL_PBR, "sell_per": TRADE_SELL_PER, "cost": TRADE_COST},
+        "from": d0, "to": d1,
+        "now": {"holding": sim["holding"], "pending": sim["pending"], "since": (sim["trades"][-1]["date"] if sim["trades"] else d0),
+                "pbr": last["pbr"], "per": round(last["per"], 2), "close": last["close"], "bps": round(bps), "eps": round(eps),
+                "buy_price": round(bps * TRADE_BUY_PBR),
+                "sell_price": round(max(bps * TRADE_SELL_PBR, eps * TRADE_SELL_PER))},
+        "trades": sim["trades"],
+        "stats": {"rule": {"eq": sim["eq"], "cagr": cagr(sim["eq"], d0, d1), "mdd": sim["mdd"], "in_market": sim["in_market"],
+                           "n": len(sim["trades"]), "rounds": len(rounds),
+                           "win": (sum(r > 0 for r in rounds) / len(rounds)) if rounds else None},
+                  "hold": {"eq": hold["eq"], "cagr": cagr(hold["eq"], d0, d1), "mdd": hold["mdd"]}},
+        "rolling": rolling,
+        "curve": curve,
+    }
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
@@ -226,8 +345,10 @@ def main() -> int:
         tests[f"rel{n}"] = backtest(pts, rel_of(n), None, f"相対 過去{n}年の平均±1σ(全期間)",
                                     f"その月より前の{n}年間の月末 PER の平均から1σ下で買い検討、1σ上で売り検討")
 
+    trade = trade_report(pts)
+
     # チャート用の系列(日次は全部、月次期間は月末)
-    series = {"date": [], "close": [], "per": [], "eps": [], "freq": []}
+    series = {"date": [], "close": [], "per": [], "pbr": [], "sig": [], "eps": [], "freq": []}
     for n in REL_YEARS:
         series[f"m{n}"] = []
         series[f"s{n}"] = []
@@ -235,6 +356,8 @@ def main() -> int:
         series["date"].append(p["date"])
         series["close"].append(round(p["close"], 2))
         series["per"].append(round(p["per"], 2))
+        series["pbr"].append(p.get("pbr"))
+        series["sig"].append(p.get("sig"))
         series["eps"].append(round(p["eps"], 2))
         series["freq"].append(p["freq"])
         for n in REL_YEARS:
@@ -255,10 +378,14 @@ def main() -> int:
                               "price_lo": round(last["eps"] * lo), "price_hi": round(last["eps"] * hi),
                               "price_mean": round(last["eps"] * b[0])}
 
-    out = {"updated": now, "ready": True, "info": info, "current": cur, "tests": tests, "series": series,
+    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "tests": tests, "series": series,
            "settings": {"fixed": [FIXED_LOW, FIXED_HIGH], "rel_years": list(REL_YEARS), "rel_sigma": REL_SIGMA,
                         "event_gap_days": EVENT_GAP_DAYS, "basis_change": BASIS_CHANGE,
                         "per_columns": list(PER_COLUMNS), "rel_exclude_above": REL_EXCLUDE_ABOVE}}
+    if trade:
+        st_ = trade["stats"]
+        print(f"  trade: {'持つ' if trade['now']['holding'] else '現金'} 取引{st_['rule']['n']}回 x{st_['rule']['eq']:.2f} (持ち続け x{st_['hold']['eq']:.2f}) "
+              f"最大下落 {st_['rule']['mdd']:.0%} / {st_['hold']['mdd']:.0%} 5年比較 {trade['rolling'].get('5y')}")
     print(f"{info} 最新 {last['date']} PER {last['per']} 終値 {last['close']}")
     for k, t in tests.items():
         if "buy" in t:
