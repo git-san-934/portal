@@ -226,13 +226,6 @@
       ${heatStat()}
       <div class="stat"><div class="k">PER の買いの線(${PER_LO}倍)の株価</div><div class="v zone-b">${yen(now.close * PER_LO / now.per)}</div><div class="s">${perS}</div></div>`;
 
-    const notes = [
-      "売りの合図はやめました: PER・PBR の売りの線(PER 16倍・PBR 1.5倍など)で売ると、上がり続ける相場で早く売りすぎることが多く、うまく働きませんでした。いまは「いつ買うか」の目安だけを出しています。",
-      `なぜこの線か: PBR 1倍は、株価が1株あたりの純資産と同じ水準で、2008年・2012年・2016年・2020年の底はどれも1倍前後でした。1倍割れはめったにないので、少し上の${R.buy_pbr}倍を買いの線にしています。線を割った日ではなく、割ったあと下から上に抜けた日を合図にするので、下げの途中で買うのを避けられます。`,
-      `同じ合図が続かないように: PBR は一度${PBR_RE}倍を超えるまで、PER は一度${PER_RE}倍を超えるまで、次の合図を出しません(線の近くを行ったり来たりすると、毎週のように合図が出てしまうため)。`,
-      "過熱のサイン(①の薄い色): 信用取引の買い残が1年で大きく増えた週のあと1年の上がり方は、平均+2.8%と、すべての週の平均+10.6%より鈍くなっていました(2004〜2026年)。ただ、点灯で売って消えたら買い直すと、上がる場面も逃して持ち続けに負けたので、売りの合図ではなく目安として表示しています。",
-    ];
-    $("t-notes").innerHTML = notes.map((t) => `<li>${esc(t)}</li>`).join("");
   }
 
   // ---------- 3つのチャート ----------
@@ -294,19 +287,6 @@
       (zones ? ` ①の薄い色の期間は「過熱のサイン」の点灯中です。信用取引の買い残(金額)が1年前からどれだけ増えたかが、過去${H.rule.years}年の中で上位${Math.round(H.rule.top * 100)}%に入った週(公表を待つため申込日の${H.rule.lag_days}日後から)に点灯します。` : "");
   }
 
-  function renderNotes() {
-    const i = state.data.info;
-    const items = [
-      i.monthly_from
-        ? `いま使っているデータ: ${i.monthly_from.replace("-", "年")}月〜は月末の値(${i.monthly_months}か月)、${i.daily_from.slice(0, 7).replace("-", "年")}月〜は日次(${i.daily_days.toLocaleString()}日)。`
-        : `いま使っているデータ: ${fmtD(i.daily_from)}〜の日次(${i.daily_days.toLocaleString()}日)。`,
-      "PER は日経平均プロフィルが公表する「加重平均」の値を使い、無い日は「指数ベース」を使います(指数ベースは加重平均より高めに出ます)。",
-      "PBR も日経平均プロフィルの「加重平均」の値です。PBR の日次データは2004年9月からなので、チャートはそこから始めています。",
-      "検証の数字は過去の結果で、将来の値動きを約束するものではありません。合図の回数が少ないものは、たまたまの結果である可能性が高いです。",
-    ];
-    $("notes").innerHTML = items.map((t) => `<li>${esc(t)}</li>`).join("");
-  }
-
   function seg(box, options, key, onChange) {
     box.innerHTML = "";
     options.forEach((o) => {
@@ -326,7 +306,6 @@
     seg($("rng"), RANGES, "range2", renderCharts);
     renderTrade();
     renderCharts();
-    renderNotes();
   }
 
   async function load(noCache) {
