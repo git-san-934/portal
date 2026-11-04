@@ -3,17 +3,17 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
-  <title>日経平均PER 買い時・売り時</title>
+  <title>日経平均PER・PBR 売買ルール</title>
   <meta name="description" content="日経平均のPERが14倍未満なら買い検討、16倍超なら売り検討。固定の線と、過去の平均からのずれ(相対バンド)の2つで毎日判定し、合図のあとの値動きを検証するページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261104c" />
+  <link rel="stylesheet" href="assets/style.css?v=20261104e" />
 </head>
 <body>
 
 <div class="wrap">
 <header>
   <a class="back" href="../">← わたしのアプリ</a>
-  <h1>日経平均PER 買い時・売り時</h1>
+  <h1>日経平均PER・PBR 売買ルール</h1>
   <p id="status">読み込み中...</p>
   <p class="refresh">
     <button type="button" class="reload" id="reload">最新データを読み込む</button>
@@ -24,12 +24,42 @@
 
 <main id="main" style="display:none">
 
+<section class="card" aria-labelledby="t1">
+  <div class="tag">売買ルール(PER・PBR)</div>
+  <h2 id="t1">いまは持つ？ 現金で待つ？</h2>
+  <p class="lead" id="t-lead"></p>
+  <div class="status">
+    <div class="pill" id="t-pill"><span>いまの状態</span><b id="t-pillv"></b><span id="t-pills"></span></div>
+    <div class="stats" id="t-stats"></div>
+  </div>
+  <h3>PBR と売買の線</h3>
+  <div class="legend">
+    <span><i style="background:var(--line)"></i>PBR(加重平均)</span>
+    <span><i class="dash" style="border-color:var(--in)"></i>買いの線</span>
+    <span><i class="dash" style="border-color:var(--out)"></i>売りの線</span>
+    <span><i class="box s"></i>現金だった期間</span>
+    <span><span class="mk b">買</span>買い</span>
+    <span><span class="mk s">売</span>売り</span>
+  </div>
+  <div class="chart" id="t-ch1"></div>
+  <h3>資産の推移(はじめを1として)</h3>
+  <div class="legend">
+    <span><i style="background:var(--line)"></i>このルール</span>
+    <span><i style="background:var(--muted)"></i>持ち続けた場合</span>
+    <span><i class="box s"></i>現金だった期間</span>
+  </div>
+  <div class="chart" id="t-ch2"></div>
+  <div><div class="tag" style="margin-bottom:4px">売買の記録(売買は合図の次の営業日の終値)</div><ul class="trades" id="t-trades"></ul></div>
+  <div class="tw"><table id="t-table"></table></div>
+  <ul class="notes" id="t-notes"></ul>
+</section>
+
 <section class="card" aria-labelledby="p1">
   <div class="row">
-    <div class="tag">判定の方法</div>
+    <div class="tag">参考: PER の水準(売買の合図ではありません)</div>
     <div class="seg" id="method" role="group" aria-label="判定の方法"></div>
   </div>
-  <h2 id="p1">今は買い時？ 売り時？</h2>
+  <h2 id="p1">PER で見ると割安？ 割高？</h2>
   <p class="lead" id="lead"></p>
   <div class="status">
     <div class="pill" id="pill"><span id="pillk">いまの判定</span><b id="pillv"></b><span id="pills"></span></div>
@@ -85,6 +115,6 @@
 
 </main>
 </div>
-<script src="assets/app.js?v=20261104c"></script>
+<script src="assets/app.js?v=20261104e"></script>
 </body>
 </html>

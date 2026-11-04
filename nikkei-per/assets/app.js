@@ -253,6 +253,76 @@
       : "<li>この期間は合図なし</li>";
   }
 
+  // ---------- 売買ルール(PER・PBR) ----------
+  const toT = (s) => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10));
+  const mult = (v) => "×" + v.toFixed(2);
+  function renderTrade() {
+    const T = state.data.trade;
+    if (!T) return;
+    const R = T.rule, now = T.now, S = state.data.series, st = T.stats;
+    $("t-lead").textContent = `現金のときは PBR が${R.buy_pbr.toFixed(1)}倍を下回ったら買い、持っているときは PBR が${R.sell_pbr.toFixed(1)}倍を超え、しかも PER が${R.sell_per}倍を超えたら売り。合図は終値で判定し、次の営業日に売買します。持っている間は売りの合図だけ、現金の間は買いの合図だけが出るので、買いと売りは必ず交互になります。`;
+    const pill = $("t-pill");
+    pill.classList.toggle("out", !now.holding);
+    pill.classList.remove("mid");
+    const pend = now.pending === "sell" ? "(売りの合図:次の営業日に売る)" : now.pending === "buy" ? "(買いの合図:次の営業日に買う)" : "";
+    $("t-pillv").textContent = (now.holding ? "持つ" : "現金で待つ") + pend;
+    $("t-pills").textContent = `${fmtD(now.since)} から`;
+    const next = now.holding
+      ? `<div class="stat"><div class="k">売りの線の株価(PBR ${R.sell_pbr}倍・PER ${R.sell_per}倍の両方を超える)</div><div class="v zone-s">${yen(now.sell_price)}</div><div class="s">あと ${pct(now.sell_price / now.close - 1)} 上がると売り</div></div>`
+      : `<div class="stat"><div class="k">買いの線の株価(PBR ${R.buy_pbr}倍)</div><div class="v zone-b">${yen(now.buy_price)}</div><div class="s">あと ${pct(now.buy_price / now.close - 1)} 下がると買い</div></div>`;
+    $("t-stats").innerHTML = `
+      <div class="stat"><div class="k">PBR / PER</div><div class="v">${now.pbr.toFixed(2)}倍 / ${now.per.toFixed(1)}倍</div><div class="s">日経平均 ${yen(now.close)}(${fmtD(T.to)})</div></div>
+      ${next}`;
+    // PBR のチャート
+    const idx = S.date.map((d, i) => i).filter((i) => S.pbr[i] != null && S.date[i] >= T.from);
+    const tr = T.trades, cashAt = (d) => { let h = true; for (const t of tr) { if (t.date > d) break; h = t.side === "buy"; } return h ? "m" : "s"; };
+    const dd = idx.map((i) => S.date[i]);
+    const pos = {}; dd.forEach((d, k) => (pos[d] = k));
+    const marks = tr.filter((t) => pos[t.date] != null).map((t) => ({ i: pos[t.date], y: t.pbr, k: t.side === "buy" ? "b" : "s", t: `${t.side === "buy" ? "買い" : "売り"}(PBR ${t.pbr}倍・PER ${t.per}倍)` }));
+    lineChart($("t-ch1"), {
+      d: dd, t: dd.map(toT), zones: dd.map(cashAt), h: 240, label: "PBRと売買の線",
+      series: [
+        { n: "売りの線", v: dd.map(() => R.sell_pbr), c: "--out", w: 1.5, dash: "5 4", end: `${R.sell_pbr}倍 売り` },
+        { n: "買いの線", v: dd.map(() => R.buy_pbr), c: "--in", w: 1.5, dash: "5 4", end: `${R.buy_pbr}倍 買い`, dy: 14 },
+        { n: "PBR", v: idx.map((i) => S.pbr[i]), c: "--line", w: 1.75 },
+      ],
+      marks, ymin: 0, yfmt: (v) => v.toFixed(1) + "倍", tfmt: (v) => v.toFixed(2) + "倍",
+      tipExtra: (k) => (cashAt(dd[k]) === "s" ? '<b class="zone-s">現金</b>' : '<b class="zone-b">持つ</b>'),
+    });
+    // 資産の推移
+    const C = T.curve;
+    lineChart($("t-ch2"), {
+      d: C.date, t: C.date.map(toT), zones: C.date.map(cashAt), h: 220, label: "資産の推移",
+      series: [
+        { n: "持ち続け", v: C.hold, c: "--muted", w: 1.5 },
+        { n: "このルール", v: C.rule, c: "--line", w: 2 },
+      ],
+      ymin: 0, yfmt: (v) => "×" + v, tfmt: (v) => mult(v),
+      tipExtra: (k) => (cashAt(C.date[k]) === "s" ? '<b class="zone-s">現金</b>' : '<b class="zone-b">持つ</b>'),
+    });
+    $("t-trades").innerHTML = tr.map((t) => `<li><span class="mk ${t.side === "buy" ? "b" : "s"}">${t.side === "buy" ? "買" : "売"}</span>${fmtD(t.date)}　${yen(t.close)}(売買した日の PBR ${t.pbr}倍・PER ${t.per}倍)${t.ret != null ? `(${fmtD(t.from)}から ${pct(t.ret)})` : ""}</li>`).join("") || "<li>売買なし</li>";
+    const ro = T.rolling, rr = (k) => ro[k] ? `${Math.round(ro[k].win * 100)}%で勝ち・${Math.round(ro[k].same * 100)}%で同じ・${Math.round(ro[k].lose * 100)}%で負け(${ro[k].n}回、いちばん勝った回 ${pct(ro[k].best, 0)})` : "—";
+    $("t-table").innerHTML = `
+      <tr><th>${fmtD(T.from)}〜${fmtD(T.to)}</th><th>このルール</th><th>持ち続けた場合</th></tr>
+      <tr><td>資産(はじめを1として)</td><td>${mult(st.rule.eq)}</td><td>${mult(st.hold.eq)}</td></tr>
+      <tr><td>年あたり</td><td>${pct(st.rule.cagr)}</td><td>${pct(st.hold.cagr)}</td></tr>
+      <tr><td>途中のいちばん大きな下げ</td><td>${pct(st.rule.mdd, 0)}</td><td>${pct(st.hold.mdd, 0)}</td></tr>
+      <tr><td>売買の回数</td><td>${st.rule.n}回</td><td>—</td></tr>
+      <tr><td>勝率(買ってから売るまで、今の持ち分も含む)</td><td>${st.rule.win == null ? "—" : Math.round(st.rule.win * 100) + "%"}(${st.rule.rounds}回)</td><td>—</td></tr>
+      <tr><td>持っていた期間</td><td>${Math.round(st.rule.in_market * 100)}%</td><td>100%</td></tr>
+      <tr><td>始める日を3か月ずつずらして5年続けた場合</td><td colspan="2">${rr("5y")}</td></tr>
+      <tr><td>　〃 10年続けた場合</td><td colspan="2">${rr("10y")}</td></tr>`;
+    const notes = [
+      "なぜこの線か: PBR 1倍は、株価が1株あたりの純資産(会社を解散したときの価値)と同じ水準です。2008年10月・2012年・2016年・2020年3月の底はどれも PBR 1倍前後でした。PBR 2倍超は2005〜2007年の上げ相場の天井付近だけで、2013〜2024年の高値は1.4〜1.6倍でした。",
+      "売りに PER も使う理由: リーマン・ショック後(2009年)のように利益が大きく減ると、PER だけが何十倍にも跳ね上がります。そこは底だったので、PBR も高いときだけ売るようにしています。反対に、PER が高いだけ・PER が低いだけの線(例: PER 14倍で買い・16倍で売り)では、上がり続ける相場で早く売りすぎて、持ち続けた場合の×5.83に対して×1.81と大きく負けました(売買12回)。",
+      "線の決め方: 買い0.9〜1.2倍・売り1.6〜2.4倍・PER の条件あり/なしなど約500通りを比べ、成績が近い中からキリのよい数字を選びました。売りの線を1.6倍まで下げると売買は増えますが、5年続けた回でいちばん負けた回が −31% になりました。",
+      "限界: この期間に売りが出たのは2005年9月の1回だけで、2008年10月に買ったあとは今まで持ち続けています。つまり成績の差は、2005〜2008年の1回の山と谷でほぼ決まっています。2008年以降に始めた人には「持ち続け」と同じ結果です。データは2004年9月からしかなく、それより前(バブル期など)では確かめられていません。",
+      `いまの PBR は${now.pbr.toFixed(2)}倍で、売りの線(2倍)に近づいています。PBR 2倍・PER 16倍を両方超えると、次の営業日に売りの合図が出ます。`,
+      "計算の前提: 売買のたびに0.1%のコスト、現金の利息は0、税金は考えていません。配当も入れていない(日経平均の値だけ)ので、持ち続けた場合の実際の成績はもう少し良くなります。",
+    ];
+    $("t-notes").innerHTML = notes.map((t) => `<li>${esc(t)}</li>`).join("");
+  }
+
   // ---------- 答え合わせ ----------
   const cell = (st) => (st ? `${pct(st.median)} <span class="muted">${Math.round(st.win * 100)}%</span>` : "—");
   function renderBacktest() {
@@ -317,6 +387,7 @@
     if (!methods().some((m) => m.key === state.settings.method)) state.settings.method = "fixed";
     seg($("method"), methods(), "method", () => { renderStatus(); renderCharts(); renderEvents(); });
     seg($("rng"), RANGES, "range", renderCharts);
+    renderTrade();
     renderStatus();
     renderCharts();
     renderBacktest();
@@ -357,6 +428,6 @@
   $("refresh").href = `https://github.com/git-san-934/portal/issues/new?${q}`;
 
   let rt;
-  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => state.data && state.data.ready && renderCharts(), 150); });
+  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => state.data && state.data.ready && (renderTrade(), renderCharts()), 150); });
   load(false);
 })();
