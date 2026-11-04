@@ -135,7 +135,8 @@
       const cy = Math.min(m.t + ih - 10, Math.max(m.t + 10, b ? y + 20 : y - 20));
       el("line", { x1: x, x2: x, y1: y, y2: cy, stroke: col, "stroke-width": 1.5 }, svg);
       el("circle", { cx: x, cy: y, r: 3.5, fill: col, stroke: css("--card"), "stroke-width": 1.5 }, svg);
-      el("circle", { cx: x, cy, r: 10, fill: col, stroke: css("--card"), "stroke-width": 2 }, svg);
+      if (mk.sq) el("rect", { x: x - 10, y: cy - 10, width: 20, height: 20, rx: 3, fill: col, stroke: css("--card"), "stroke-width": 2 }, svg);
+      else el("circle", { cx: x, cy, r: 10, fill: col, stroke: css("--card"), "stroke-width": 2 }, svg);
       el("text", { x, y: cy + 4, "text-anchor": "middle", style: "fill:#fff;font-weight:700;font-size:11px" }, svg).textContent = b ? "買" : "売";
     }
     // ホバー
@@ -189,9 +190,9 @@
       <div class="stat"><div class="k">PBR / PER</div><div class="v">${now.pbr.toFixed(2)}倍 / ${now.per.toFixed(1)}倍</div><div class="s">日経平均 ${yen(now.close)}(${fmtD(T.to)})</div></div>
       ${next}
       ${(() => { const q = perTrades(S, T.from), lt = q.trades[q.trades.length - 1];
-        return `<div class="stat"><div class="k">参考: PER のルール(14倍割れで買い・16倍超で売り)</div><div class="v" style="color:var(--m-per)">${q.holding ? "持つ" : "現金で待つ"}</div><div class="s">${lt ? fmtD(lt.date) + " から" : ""}</div></div>`; })()}`;
+        return `<div class="stat"><div class="k">参考: PER のルール(14倍割れで買い・16倍超で売り)</div><div class="v">${q.holding ? "持つ" : "現金で待つ"}</div><div class="s">${lt ? fmtD(lt.date) + " から" : ""}</div></div>`; })()}`;
     const tr = T.trades;
-    $("t-trades").innerHTML = tr.map((t) => `<li><span class="mk pbr">${t.side === "buy" ? "買" : "売"}</span>${fmtD(t.date)}　${yen(t.close)}(売買した日の PBR ${t.pbr}倍・PER ${t.per}倍)${t.ret != null ? `(${fmtD(t.from)}から ${pct(t.ret)})` : ""}</li>`).join("") || "<li>売買なし</li>";
+    $("t-trades").innerHTML = tr.map((t) => `<li><span class="mk sq ${t.side === "buy" ? "b" : "s"}">${t.side === "buy" ? "買" : "売"}</span>${fmtD(t.date)}　${yen(t.close)}(売買した日の PBR ${t.pbr}倍・PER ${t.per}倍)${t.ret != null ? `(${fmtD(t.from)}から ${pct(t.ret)})` : ""}</li>`).join("") || "<li>売買なし</li>";
     const ro = T.rolling, rr = (k) => ro[k] ? `${Math.round(ro[k].win * 100)}%で勝ち・${Math.round(ro[k].same * 100)}%で同じ・${Math.round(ro[k].lose * 100)}%で負け(${ro[k].n}回、いちばん勝った回 ${pct(ro[k].best, 0)})` : "—";
     $("t-table").innerHTML = `
       <tr><th>${fmtD(T.from)}〜${fmtD(T.to)}</th><th>このルール</th><th>持ち続けた場合</th></tr>
@@ -254,8 +255,8 @@
     const v = (key, f = (x) => x) => idx.map((i) => (S[key][i] == null ? null : f(S[key][i])));
     const pbrT = T.trades.filter((t) => pos[t.date] != null);
     const perT = perTrades(S, T.from).trades.filter((t) => pos[t.date] != null);
-    const pbrMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", c: "--m-pbr", big: true, t: `PBR のルールで${t.side === "buy" ? "買い" : "売り"}(PBR ${t.pbr}倍)` });
-    const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", c: "--m-per", big: true, t: `PER のルールで${t.side === "buy" ? "買い" : "売り"}(PER ${t.per.toFixed(1)}倍)` });
+    const pbrMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", sq: true, big: true, t: `PBR のルールで${t.side === "buy" ? "買い" : "売り"}(PBR ${t.pbr}倍)` });
+    const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", big: true, t: `PER のルールで${t.side === "buy" ? "買い" : "売り"}(PER ${t.per.toFixed(1)}倍)` });
     const tip = (k) => `PER ${S.per[idx[k]].toFixed(1)}倍 · PBR ${S.pbr[idx[k]].toFixed(2)}倍`;
     const yenAx = (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP"));
     // ① 日経平均
@@ -291,7 +292,7 @@
     });
     $("chnote").textContent = "PER は30倍より上を上端に貼りつけて表示しています(2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました)。PER のルールは PER 14倍割れで買い・16倍超で売りを、PBR のルールと同じく持つ/現金を交互にして当てはめたものです。";
     const pt = perTrades(S, T.from).trades.slice().reverse();
-    $("per-trades").innerHTML = pt.slice(0, 12).map((t) => `<li><span class="mk per">${t.side === "buy" ? "買" : "売"}</span>${fmtD(t.date)}　${yen(t.close)}(PER ${t.per.toFixed(1)}倍)</li>`).join("") +
+    $("per-trades").innerHTML = pt.slice(0, 12).map((t) => `<li><span class="mk ${t.side === "buy" ? "b" : "s"}">${t.side === "buy" ? "買" : "売"}</span>${fmtD(t.date)}　${yen(t.close)}(PER ${t.per.toFixed(1)}倍)</li>`).join("") +
       (pt.length > 12 ? `<li class="muted">ほか ${pt.length - 12} 回</li>` : "") || "<li>売買なし</li>";
   }
 
