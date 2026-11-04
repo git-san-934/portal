@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-04T20:36+09:00",
+ "updated_at": "2026-11-04T23:53+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2070,6 +2070,14 @@
    ],
    "items": [
     {
+     "date": "2026-11-04",
+     "title": "Circle Reports Third Quarter 2026 Results Circle Internet Group, Inc. (NYSE: CRCL) today announced results for the third quarter of fiscal year 2026.",
+     "url": "https://www.circle.com/pressroom/circle-reports-third-quarter-2026-results",
+     "source": "official",
+     "first_seen": "2026-11-04T23:53+09:00",
+     "title_ja": "Circle が 2026 年度第 3 四半期の業績を報告 Circle Internet Group, Inc. (NYSE: CRCL) は本日、2026 会計年度第 3 四半期の業績を発表しました。"
+    },
+    {
      "date": "2026-10-27",
      "title": "ACI Worldwide and Circle Collaborate to Bring USDC Settlement to Existing Payments Infrastructure in Latin America Colombian pilot demonstrates how financial institutions can integrate USDC settlement",
      "url": "https://www.circle.com/pressroom/aci-worldwide-and-circle-collaborate-to-bring-usdc-settlement-to-existing-payments-infrastructure-in-latin-america",
@@ -2205,6 +2213,14 @@
     "q4:https://investors.palantir.com"
    ],
    "items": [
+    {
+     "date": "2026-11-04",
+     "title": "Changshin and Palantir Partner to Connect Footwear Development and Factory Operations with Data and AI",
+     "url": "https://investors.palantir.com/news-details/2026/Changshin-and-Palantir-Partner-to-Connect-Footwear-Development-and-Factory-Operations-with-Data-and-AI/default.aspx",
+     "source": "official",
+     "first_seen": "2026-11-04T23:53+09:00",
+     "title_ja": "Changshin と Palantir が提携して靴の開発と工場運営をデータと AI で接続"
+    },
     {
      "date": "2026-11-02",
      "title": "Palantir Reports Q3 2026 U.S. Comm Revenue Growth of 148% Y/Y and Revenue Growth of 96% Y/Y; Raises FY 2026 Revenue Guidance to 91% Y/Y Growth and U.S. Comm Revenue Guidance to 143% Y/Y, Crushing Cons",
