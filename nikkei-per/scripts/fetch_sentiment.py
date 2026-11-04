@@ -178,40 +178,55 @@ def vi(check: bool) -> dict:
 
 
 def jpx_pages():
-    """裁定残(プログラム売買)・投資部門別(先物)のページにある資料の置き場所を調べる。"""
-    pages = [
-        JPX + "/markets/statistics-equities/program/index.html",
-        JPX + "/markets/statistics-derivatives/sector/index.html",
-        JPX + "/markets/statistics-derivatives/daily/index.html",
-        JPX + "/markets/statistics-derivatives/trading-volume/index.html",
-    ]
+    """裁定残(プログラム売買)・投資部門別(先物)の過去分のページを調べる。"""
+    pages = [JPX + "/markets/statistics-equities/program/01.html"] + [JPX + f"/markets/statistics-derivatives/sector/0{k}.html" for k in (1, 2, 3)]
     for url in pages:
         try:
             page = get(url)
         except RuntimeError as e:
             print(f"JPX: {url} 失敗 {str(e)[:120]}")
             continue
+        title = re.search(r"<title>(.*?)</title>", page, re.S)
         links = sorted(set(re.findall(r'href="([^"]+)"', page)))
-        files = [x for x in links if re.search(r"\.(xlsx?|csv|pdf)$", x)]
-        arch = [x for x in links if "archives" in x or "index" in x]
-        print(f"JPX: {url} 資料 {len(files)} 個。例 {files[:12]} … {files[-6:]}")
+        files = [x for x in links if re.search(r"\.(xlsx?|csv|pdf|zip)$", x)]
         here = url.rsplit("/", 1)[0].replace(JPX, "")
+        print(f"JPX: {url} {title[1].strip() if title else ''} 資料 {len(files)} 個")
+        kinds = {}
+        for x in files:
+            kinds.setdefault(re.sub(r"[0-9]+", "#", x.rsplit("/", 1)[-1]), []).append(x.rsplit("/", 1)[-1])
+        for k, v in kinds.items():
+            v = sorted(v)
+            print(f"   {k}: {len(v)} 個 {v[0]} 〜 {v[-1]}")
         print(f"   同じ場所のページ {[x for x in links if x.startswith(here) and x.endswith('.html')]}")
-        print(f"   ファイルの種類 {sorted(set(re.sub(r'[0-9]+', '#', x.rsplit('/', 1)[-1]) for x in files))}")
-        xls = [x for x in files if re.search(r"\.xlsx?$", x)]
-        if xls:
-            u = xls[0] if xls[0].startswith("http") else JPX + xls[0]
+        for x in files[:1] + [f for f in files if f.endswith(".csv")][:1] + [f for f in files if "zip" in f or "xls" in f][:1]:
+            u = x if x.startswith("http") else JPX + x
             try:
                 raw = get(u, binary=True)
-                for title, rows in sheet_rows(raw, u):
-                    print(f"   見本 {u.rsplit('/', 1)[-1]} / {title}: {len(rows)} 行")
-                    for r in rows[:40]:
-                        cells = [c for c in r if c not in (None, "")]
-                        if cells:
-                            print("     ", cells[:16])
-                    break
+                print(f"   見本 {u} {len(raw)} バイト")
+                if u.endswith(".csv"):
+                    t = raw.decode("cp932", "replace").splitlines()
+                    for ln in t[:70]:
+                        print("     |", ln[:220])
+                elif re.search(r"\.xlsx?$", u):
+                    for title2, rows in sheet_rows(raw, u):
+                        print(f"   シート {title2}: {len(rows)} 行")
+                        for r in rows[:14] + rows[-4:]:
+                            cells = [c for c in r if c not in (None, "")]
+                            if cells:
+                                print("     ", cells[:16])
             except Exception as e:  # noqa: BLE001
                 print(f"   見本 {u} 失敗 {e}")
+    # 直近の投資部門別 CSV の中身も見る
+    try:
+        page = get(JPX + "/markets/statistics-derivatives/sector/index.html")
+        csv = sorted(set(re.findall(r'href="([^"]+Tousi_DV_W_[^"]+\.csv)"', page)))[-1:]
+        for x in csv:
+            t = get(JPX + x, binary=True).decode("cp932", "replace").splitlines()
+            print(f"   最新 CSV {x} {len(t)} 行")
+            for ln in t[:80]:
+                print("     |", ln[:220])
+    except Exception as e:  # noqa: BLE001
+        print(f"   最新 CSV 失敗 {e}")
 
 
 def main() -> int:
