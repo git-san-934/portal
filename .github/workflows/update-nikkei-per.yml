@@ -51,6 +51,13 @@ jobs:
       - name: 分析(確認のみ)
         if: github.event_name == 'pull_request'
         run: python nikkei-per/scripts/analyze.py --check
+      # 信用取引残高・日経VI が取れるかの確認(PR だけ。取れる形がわかったら毎日の取得に入れる)
+      - name: 需給データの取得確認
+        if: github.event_name == 'pull_request'
+        continue-on-error: true
+        run: |
+          pip install -q xlrd openpyxl
+          python nikkei-per/scripts/fetch_sentiment.py --check
       - name: PER と終値を取得
         if: github.event_name != 'pull_request'
         env:
