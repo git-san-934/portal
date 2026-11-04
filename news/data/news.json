@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-04T09:52+09:00",
+ "updated_at": "2026-11-04T10:37+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -585,6 +585,14 @@
     "https://www.soc.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-11-04",
+     "time": "10:00",
+     "title": "変更報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZAB9",
+     "source": "edinet",
+     "first_seen": "2026-11-04T10:37+09:00"
+    },
     {
      "date": "2026-10-19",
      "title": "大型船舶のCO2を回収するCa化合物循環利用技術に関する実証試験の開始について",
