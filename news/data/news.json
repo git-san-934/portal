@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-03T12:56+09:00",
+ "updated_at": "2026-11-04T12:02+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-03",
+     "title": "「開発者に訊きました:ゼルダの伝説 時のオカリナ」のChapter3、4を公開しました。 今の時代のゲームとして再構築されたアクションやダンジョン、ハイラルをより豊かにするサウンドのこだわりなど、くわしいお話をお届けします。",
+     "url": "https://www.nintendo.com/jp/interview/aa9ja/03.html",
+     "source": "official",
+     "first_seen": "2026-11-03T23:39+09:00"
+    },
     {
      "date": "2026-11-03",
      "title": "Nintendo Switch 2 ソフト『ピクミン4 Nintendo Switch 2 Edition + だれでもチャレンジ! ダンドリ検定』の紹介映像とゲーム画面CMを公開しました。",
@@ -427,13 +434,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/e94b27af-d05f-41d9-94ab-dce0d7d26c00",
      "source": "official",
      "first_seen": "2026-09-25T00:00+09:00"
-    },
-    {
-     "date": "2026-09-18",
-     "title": "「デザイナー職 キャリア採用説明会」の情報を掲載しました。",
-     "url": "https://www.nintendo.co.jp/jobs/career/session.html",
-     "source": "official",
-     "first_seen": "2026-09-18T00:00+09:00"
     }
    ]
   },
@@ -585,6 +585,14 @@
     "https://www.soc.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-11-04",
+     "time": "10:00",
+     "title": "変更報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZAB9",
+     "source": "edinet",
+     "first_seen": "2026-11-04T10:37+09:00"
+    },
     {
      "date": "2026-10-19",
      "title": "大型船舶のCO2を回収するCa化合物循環利用技術に関する実証試験の開始について",
@@ -934,6 +942,13 @@
     "https://www.enplas.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-11-04",
+     "title": "MEMA OE 2026 Annual Conference & Expo 出展のご案内",
+     "url": "https://www.enplas.co.jp/news/business-news/9844/",
+     "source": "official",
+     "first_seen": "2026-11-04T09:52+09:00"
+    },
     {
      "date": "2026-10-30",
      "time": "15:30",
@@ -1585,6 +1600,14 @@
     "q4:https://investor.oracle.com"
    ],
    "items": [
+    {
+     "date": "2026-11-02",
+     "title": "Oracle Announces Pricing of $20 Billion of Common Stock and Senior Notes",
+     "url": "https://investor.oracle.com/investor-news/news-details/2026/Oracle-Announces-Pricing-of-20-Billion-of-Common-Stock-and-Senior-Notes/default.aspx",
+     "source": "official",
+     "first_seen": "2026-11-03T23:39+09:00",
+     "title_ja": "オラクル、200億ドルの普通株式と優先債券の価格決定を発表"
+    },
     {
      "date": "2026-10-28",
      "title": "Oracle Investor Day 2026: Accelerating Value Creation",
@@ -3143,6 +3166,13 @@
    "items": [
     {
      "date": "2026-11-02",
+     "title": "4 2026年11月2日 企業・経営 トピックス パナソニックのエアコン事業70周年",
+     "url": "https://news.panasonic.com/jp/topics/206941",
+     "source": "official",
+     "first_seen": "2026-11-04T06:38+09:00"
+    },
+    {
+     "date": "2026-11-02",
      "title": "製品・サービス パナソニックが省エネNo.1(★)のルームエアコン エオリアXシリーズを発売",
      "url": "https://news.panasonic.com/jp/press/jn261102-1",
      "source": "official",
@@ -3180,7 +3210,7 @@
     },
     {
      "date": "2026-10-30",
-     "title": "1 2026年10月30日 企業・経営 プレスリリース AI関連事業へ約920億円を投資、成長を加速",
+     "title": "2 2026年10月30日 企業・経営 プレスリリース AI関連事業へ約920億円を投資、成長を加速",
      "url": "https://news.panasonic.com/jp/press/jn261030-3",
      "source": "official",
      "first_seen": "2026-10-30T19:28+09:00"
@@ -3201,7 +3231,7 @@
     },
     {
      "date": "2026-10-27",
-     "title": "4 2026年10月27日 技術・研究開発 トピックス ヒューマノイドロボットによる家具組立コンペティションIROS 2026「Humanoid IKEA Assembly Challenge」で2位入賞",
+     "title": "5 2026年10月27日 技術・研究開発 トピックス ヒューマノイドロボットによる家具組立コンペティションIROS 2026「Humanoid IKEA Assembly Challenge」で2位入賞",
      "url": "https://news.panasonic.com/jp/topics/206930",
      "source": "official",
      "first_seen": "2026-10-30T05:57+09:00"
@@ -3293,7 +3323,7 @@
     },
     {
      "date": "2026-10-15",
-     "title": "1 2026年10月15日 製品・サービス プレスリリース ドラム式電気洗濯乾燥機 事故防止のためのリコール社告実施について",
+     "title": "6 2026年10月15日 製品・サービス プレスリリース ドラム式電気洗濯乾燥機 事故防止のためのリコール社告実施について",
      "url": "https://news.panasonic.com/jp/press/jn261015-2",
      "source": "official",
      "first_seen": "2026-10-15T17:36+09:00"
