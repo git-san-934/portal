@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-04T10:43+09:00",
+ "generated_at": "2026-11-04T16:30+09:00",
  "report_date": "2026-11-04",
  "days": [
   {
@@ -40,6 +40,13 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "5,325,717億円"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/bcp/fin_bcp/fbcp261104a.pdf",
+     "name": "訓練目的の共通担保資金供給オペの実施について",
+     "url": "https://www.boj.or.jp/about/bcp/fin_bcp/fbcp261104a.pdf",
+     "time": "13:00"
     },
     {
      "kind": "news",
@@ -4569,43 +4576,15 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-04T10:43+09:00",
+  "checked_at": "2026-11-04T16:30+09:00",
   "counts": {
    "new": 0,
-   "unchanged": 99,
-   "error": 3,
+   "unchanged": 102,
+   "error": 0,
    "stale": 0
   },
   "total": 102,
-  "problems": [
-   {
-    "id": "ESTAT_SVC_SALES_YOY",
-    "name": "サービス産業 売上高前年比（サービス産業計）",
-    "state": "error",
-    "error": "ESTAT サービス産業動態統計: HTTPError: HTTP Error 503: Service Temporarily Unavailable",
-    "latest": "2026-08",
-    "last_ok": "2026-11-04",
-    "last_new": "2026-10-23"
-   },
-   {
-    "id": "ESTAT_SVC_ICT_YOY",
-    "name": "サービス産業 売上高前年比（情報通信業）",
-    "state": "error",
-    "error": "ESTAT サービス産業動態統計: HTTPError: HTTP Error 503: Service Temporarily Unavailable",
-    "latest": "2026-08",
-    "last_ok": "2026-11-04",
-    "last_new": "2026-10-23"
-   },
-   {
-    "id": "ESTAT_SVC_HOTEL_FOOD_YOY",
-    "name": "サービス産業 売上高前年比（宿泊業・飲食サービス業）",
-    "state": "error",
-    "error": "ESTAT サービス産業動態統計: HTTPError: HTTP Error 503: Service Temporarily Unavailable",
-    "latest": "2026-08",
-    "last_ok": "2026-11-04",
-    "last_new": "2026-10-23"
-   }
-  ],
+  "problems": [],
   "other_errors": []
  },
  "trade_updated": "2026-10-29",
