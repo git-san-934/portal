@@ -62,7 +62,10 @@
     for (const s of o.series.concat(o.extent || [])) for (const v of s.v) if (v != null) { lo = Math.min(lo, v); hi = Math.max(hi, v); }
     const pad = (hi - lo) * 0.05; lo -= pad; hi += pad;
     if (o.ymin != null) lo = Math.max(lo, o.ymin);
-    const Y = (v) => m.t + ih - ((v - lo) / (hi - lo)) * ih;
+    // 上限を超える値(2009年春の PER 100倍超など)は上端に貼りつけて描く
+    const clipped = o.ymax != null && hi > o.ymax;
+    if (clipped) hi = o.ymax;
+    const Y = (v) => Math.max(m.t, m.t + ih - ((v - lo) / (hi - lo)) * ih);
     // 買い時・売り時の期間の塗り
     if (o.zones) {
       let s = -1, z = null;
@@ -161,6 +164,7 @@
     };
     hit.addEventListener("pointermove", move);
     hit.addEventListener("pointerdown", move);
+    if (clipped) el("text", { x: m.l + 4, y: m.t + 12, style: "font-size:10px" }, svg).textContent = `${o.yfmt(o.ymax)}より上は上端に表示`;
     hit.addEventListener("pointerleave", () => { tip.hidden = true; cross.setAttribute("opacity", 0); dots.forEach((d) => d.setAttribute("opacity", 0)); });
   }
 
@@ -231,14 +235,15 @@
     lineChart($("ch2"), {
       ...common, h: 220, label: "PERの推移",
       band: { lo: sl(B.lo), hi: sl(B.hi) },
-      series: perSeries, marks: marks((i) => S.per[i]), ymin: 0,
+      series: perSeries, marks: marks((i) => Math.min(S.per[i], 40)), ymin: 0, ymax: 40,
       yfmt: (v) => v + "倍", tfmt: (v) => v.toFixed(2) + "倍",
     });
     const info = d.info;
     $("chnote").textContent =
       (info.monthly_from && info.daily_from ? `${info.daily_from.slice(0, 4)}年より前は月末の値です。` : "") +
       `${d.settings.basis_change.slice(0, 4)}年頃に PER の計算が単体決算から連結決算に変わりました。` +
-      (m.n ? "" : "固定の14/16倍は今の水準に合わせた線なので、昔の期間は売り時ばかりになります。");
+      "2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました(株価は安かったのに PER では「売り時」になる、PER の弱いところです)。" +
+      (m.n ? `相対バンドの平均・σには、PER が${d.settings.rel_exclude_above || 50}倍を超えた月を入れていません。` : "");
     // 合図の一覧(新しい順、最大12件)
     const recent = evs.filter((e) => idx[e.date] >= s).sort((a, b) => (a.date < b.date ? 1 : -1));
     $("trtag").textContent = `合図の出た日(${r.label}・${m.label})`;
