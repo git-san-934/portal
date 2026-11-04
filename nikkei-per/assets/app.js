@@ -1,364 +1,320 @@
 (() => {
   "use strict";
 
+  // チャートの作りは lev3watch(3倍ブル見張り台)に合わせている。x 軸だけ日付の間隔どおり(月次と日次が混ざるため)
   const DATA_URL = "data/analysis.json";
-  const SVG = "http://www.w3.org/2000/svg";
-  const W = 1000;
-  const H = 300;
+  const NS = "http://www.w3.org/2000/svg";
   const DAY = 86400000;
-  const PERIODS = [
+  const RANGES = [
     { key: "1y", label: "1年", years: 1 },
-    { key: "5y", label: "5年", years: 5 },
+    { key: "3y", label: "3年", years: 3 },
     { key: "10y", label: "10年", years: 10 },
     { key: "all", label: "全期間", years: 0 },
   ];
-  const ZONE = { buy: "買い時の検討", sell: "売り時の検討", mid: "中立" };
   const STORE = "nikkei-per-settings";
-
-  const state = { data: null, t: [], charts: [], settings: { period: "10y", rel: 5, ev: "fixed_recent" } };
-  try {
-    Object.assign(state.settings, JSON.parse(localStorage.getItem(STORE) || "{}"));
-  } catch (_) { /* 保存できない環境では既定値のまま */ }
-  const save = () => {
-    try { localStorage.setItem(STORE, JSON.stringify(state.settings)); } catch (_) { /* noop */ }
-  };
+  const state = { data: null, t: [], settings: { range: "3y", method: "fixed" } };
+  try { Object.assign(state.settings, JSON.parse(localStorage.getItem(STORE) || "{}")); } catch (_) { /* 既定値のまま */ }
+  const save = () => { try { localStorage.setItem(STORE, JSON.stringify(state.settings)); } catch (_) { /* noop */ } };
 
   const $ = (id) => document.getElementById(id);
-  function el(tag, cls, text) {
-    const e = document.createElement(tag);
-    if (cls) e.className = cls;
-    if (text != null) e.textContent = text;
-    return e;
-  }
-  function svgEl(tag, attrs) {
-    const e = document.createElementNS(SVG, tag);
-    for (const k in attrs) e.setAttribute(k, attrs[k]);
-    return e;
-  }
+  const css = (n) => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
+  const el = (t, a = {}, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
+  const fmtD = (s) => s.replace(/-/g, "/");
+  const pct = (v, d = 1) => (v == null ? "—" : (v > 0 ? "+" : v < 0 ? "−" : "") + Math.abs(v * 100).toFixed(d) + "%");
   const yen = (v) => (v == null ? "—" : Math.round(v).toLocaleString("ja-JP") + "円");
   const times = (v) => (v == null ? "—" : v.toFixed(2) + "倍");
-  const pct = (v, d = 1) => (v == null ? "—" : (v >= 0 ? "+" : "−") + Math.abs(v * 100).toFixed(d) + "%");
-  const fmtDate = (s) => s.replace(/-/g, "/");
+  const esc = (s) => String(s).replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+  const ZONE = { b: "買い時の検討", s: "売り時の検討", m: "中立(何もしない)" };
 
-  // ---------- 今日の判定 ----------
-  function renderAdvice() {
-    const c = state.data.current;
-    $("advice-when").textContent = `${fmtDate(c.date)} の終値での判定`;
-    $("advice-per").textContent = `PER ${times(c.per)}`;
-    const extra = c.per_index != null && c.per_weighted != null ? `(加重平均 ${times(c.per_weighted)}・指数ベース ${times(c.per_index)})` : "";
-    $("advice-reason").textContent = `日経平均 ${yen(c.close)} ・ EPS ${yen(c.eps)} ${extra}`;
-    const box = $("verdicts");
-    box.textContent = "";
-    const add = (title, z, lines) => {
-      const v = el("div", "verdict" + (z !== "mid" ? " on-" + z : ""));
-      v.append(el("h3", null, title), el("p", "zone " + z, ZONE[z]));
-      lines.forEach((l) => v.append(el("p", null, l)));
-      box.append(v);
+  // ---------- 判定の方法 ----------
+  function methods() {
+    const d = state.data;
+    const out = [{ key: "fixed", label: "固定 14/16倍", test: "fixed_all" }];
+    d.settings.rel_years.forEach((n) => out.push({ key: "rel" + n, label: `相対 過去${n}年`, test: "rel" + n, n }));
+    return out;
+  }
+  const method = () => methods().find((m) => m.key === state.settings.method) || methods()[0];
+
+  // その日の買いの線・売りの線(PER)
+  function bands() {
+    const S = state.data.series, m = method();
+    if (!m.n) return { lo: S.per.map(() => 14), hi: S.per.map(() => 16), mean: null };
+    const mean = S["m" + m.n], sd = S["s" + m.n];
+    return {
+      lo: mean.map((v, i) => (v == null ? null : v - sd[i])),
+      hi: mean.map((v, i) => (v == null ? null : v + sd[i])),
+      mean,
     };
-    add("固定 14/16倍", c.fixed.zone, [`14倍の株価 ${yen(c.fixed.price_lo)}`, `16倍の株価 ${yen(c.fixed.price_hi)}`]);
-    state.data.settings.rel_years.forEach((n) => {
-      const r = c["rel" + n];
-      if (!r) return add(`相対 過去${n}年`, "mid", ["データが足りません"]);
-      add(`相対 過去${n}年 平均±1σ`, r.zone, [
-        `線: ${r.lo.toFixed(1)}〜${r.hi.toFixed(1)}倍(平均 ${r.mean.toFixed(1)}倍)`,
-        `株価で ${yen(r.price_lo)}〜${yen(r.price_hi)}`,
-      ]);
-    });
-    const any = [c.fixed.zone, ...state.data.settings.rel_years.map((n) => c["rel" + n] && c["rel" + n].zone)];
-    $("advice").classList.toggle("on", any.some((z) => z === "buy" || z === "sell"));
   }
+  const zoneAt = (per, lo, hi) => (lo == null ? null : per < lo ? "b" : per > hi ? "s" : "m");
 
-  // ---------- チャート ----------
-  function niceTicks(lo, hi, count) {
-    const raw = (hi - lo) / count;
-    const mag = Math.pow(10, Math.floor(Math.log10(raw)));
-    const step = [1, 2, 2.5, 5, 10].map((k) => k * mag).find((st) => st >= raw);
-    const out = [];
-    for (let v = Math.ceil(lo / step) * step; v <= hi + 1e-9; v += step) out.push(+v.toFixed(6));
-    return out;
-  }
+  // ---------- チャート(lev3watch の lineChart を時間軸にしたもの) ----------
+  function niceStep(x) { const p = Math.pow(10, Math.floor(Math.log10(x))), f = x / p; return (f < 1.5 ? 1 : f < 3 ? 2 : f < 7 ? 5 : 10) * p; }
 
-  function range() {
-    const t = state.t;
-    const p = PERIODS.find((x) => x.key === state.settings.period) || PERIODS[2];
-    const t1 = t[t.length - 1];
-    const t0 = p.years ? Math.max(t[0], t1 - p.years * 365.25 * DAY) : t[0];
-    let s = 0;
-    while (s < t.length - 1 && t[s] < t0) s++;
-    return { s, e: t.length - 1, t0, t1 };
-  }
-
-  function xLabels(t0, t1) {
-    const span = (t1 - t0) / (365.25 * DAY);
-    const out = [];
-    const d = new Date(t0);
-    if (span <= 1.5) {
-      d.setUTCDate(1);
-      for (d.setUTCMonth(d.getUTCMonth() + 1); d.getTime() <= t1; d.setUTCMonth(d.getUTCMonth() + 1)) {
-        const m = d.getUTCMonth() + 1;
-        if (span > 0.8 && (m - 1) % 2) continue;
-        out.push({ t: d.getTime(), text: m === 1 ? `${d.getUTCFullYear()}` : `${m}月` });
-      }
-    } else {
-      const stepY = span <= 6 ? 1 : span <= 12 ? 2 : 5;
-      for (let y = new Date(t0).getUTCFullYear() + 1; Date.UTC(y, 0, 1) <= t1; y++) {
-        if (y % stepY) continue;
-        out.push({ t: Date.UTC(y, 0, 1), text: String(y) });
-      }
+  function lineChart(host, o) {
+    host.innerHTML = "";
+    const W = host.clientWidth || 640, H = o.h || 260, m = { l: 52, r: 12, t: 10, b: 24 };
+    const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": o.label || "" }, host);
+    const t = o.t, n = t.length, iw = W - m.l - m.r, ih = H - m.t - m.b;
+    const t0 = t[0], t1 = t[n - 1];
+    const X = (i) => m.l + (t1 === t0 ? 0 : ((t[i] - t0) / (t1 - t0)) * iw);
+    let lo = Infinity, hi = -Infinity;
+    for (const s of o.series.concat(o.extent || [])) for (const v of s.v) if (v != null) { lo = Math.min(lo, v); hi = Math.max(hi, v); }
+    const pad = (hi - lo) * 0.05; lo -= pad; hi += pad;
+    if (o.ymin != null) lo = Math.max(lo, o.ymin);
+    const Y = (v) => m.t + ih - ((v - lo) / (hi - lo)) * ih;
+    // 買い時・売り時の期間の塗り
+    if (o.zones) {
+      let s = -1, z = null;
+      const flush = (end) => {
+        if (s >= 0 && z !== "m" && z != null) {
+          const x1 = X(s), x2 = end < n ? X(end) : X(n - 1);
+          el("rect", { x: x1, y: m.t, width: Math.max(1, x2 - x1), height: ih, fill: css(z === "b" ? "--shade-b" : "--shade-s") }, svg);
+        }
+      };
+      for (let i = 0; i <= n; i++) { const zi = i < n ? o.zones[i] : "end"; if (zi !== z) { flush(i); s = i; z = zi; } }
     }
-    return out;
-  }
-
-  function drawChart(box, { s, e, t0, t1, series, bands = [], hlines = [], vlines = [], lo, hi, tickFmt, tipFor, dot }) {
-    box.textContent = "";
-    const x = (tt) => ((tt - t0) / Math.max(1, t1 - t0)) * W;
-    const y = (v) => H - ((v - lo) / (hi - lo)) * H;
-    const ticks = niceTicks(lo, hi, 4);
-    const svg = svgEl("svg", { viewBox: `0 0 ${W} ${H}`, preserveAspectRatio: "none", "aria-hidden": "true" });
-    ticks.forEach((v) => svg.append(svgEl("line", { x1: 0, x2: W, y1: y(v), y2: y(v), class: "grid-line" })));
-    bands.forEach((b) => {
-      // 上の線を左→右、下の線を右→左でつないで塗る。値が無いところで区切る
+    // 目盛り
+    const st = niceStep((hi - lo) / 4);
+    for (let v = Math.ceil(lo / st) * st; v <= hi; v += st) {
+      el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), stroke: css("--grid"), "stroke-width": 1 }, svg);
+      el("text", { x: m.l - 6, y: Y(v) + 4, "text-anchor": "end" }, svg).textContent = o.yfmt(v);
+    }
+    // x の目盛り
+    const span = (t1 - t0) / (365.25 * DAY);
+    const xk = span > 2.5 ? (i) => o.d[i].slice(0, 4) : (i) => o.d[i].slice(0, 7);
+    const xf = span > 2.5 ? (i) => o.d[i].slice(0, 4) : (i) => (+o.d[i].slice(5, 7) === 1 ? o.d[i].slice(0, 4) : +o.d[i].slice(5, 7) + "月");
+    let last = xk(0), lastX = -1e9;
+    for (let i = 1; i < n; i++) {
+      const k = xk(i); if (k === last) continue; last = k;
+      if (X(i) - lastX < 46) continue; lastX = X(i);
+      el("line", { x1: X(i), x2: X(i), y1: m.t + ih, y2: m.t + ih + 4, stroke: css("--border") }, svg);
+      el("text", { x: X(i), y: H - 6, "text-anchor": "middle" }, svg).textContent = xf(i);
+    }
+    // 中立のあいだ(買いの線〜売りの線)の帯
+    if (o.band) {
       let seg = [];
       const flush = () => {
         if (seg.length > 1) {
-          const top = seg.map((i) => `${x(state.t[i]).toFixed(1)},${y(b.hi[i]).toFixed(1)}`);
-          const bot = seg.slice().reverse().map((i) => `${x(state.t[i]).toFixed(1)},${y(b.lo[i]).toFixed(1)}`);
-          svg.append(svgEl("path", { d: "M" + top.join("L") + "L" + bot.join("L") + "Z", class: b.cls }));
+          let p = seg.map((i, k) => (k ? "L" : "M") + X(i).toFixed(1) + "," + Y(o.band.hi[i]).toFixed(1)).join("");
+          for (let k = seg.length - 1; k >= 0; k--) p += "L" + X(seg[k]).toFixed(1) + "," + Y(o.band.lo[seg[k]]).toFixed(1);
+          el("path", { d: p + "Z", fill: css("--neutral") }, svg);
         }
         seg = [];
       };
-      for (let i = s; i <= e; i++) (b.hi[i] == null ? flush() : seg.push(i));
+      for (let i = 0; i < n; i++) (o.band.hi[i] == null ? flush() : seg.push(i));
       flush();
-    });
-    vlines.forEach((v) => {
-      if (v.t < t0 || v.t > t1) return;
-      svg.append(svgEl("line", { x1: x(v.t), x2: x(v.t), y1: 0, y2: H, class: "basis-line" }));
-    });
-    hlines.forEach((h) => {
-      if (h.v < lo || h.v > hi) return;
-      svg.append(svgEl("line", { x1: 0, x2: W, y1: y(h.v), y2: y(h.v), class: "th-line", style: `stroke:var(${h.color})` }));
-    });
-    series.forEach((ser) => {
-      let d = "";
-      let pen = "M";
-      for (let i = s; i <= e; i++) {
-        const v = ser.values[i];
-        if (v == null) { pen = "M"; continue; }
-        d += `${pen}${x(state.t[i]).toFixed(1)},${y(v).toFixed(1)}`;
-        pen = "L";
+    }
+    // 線
+    for (const s of o.series) {
+      let p = "", pen = false;
+      s.v.forEach((v, i) => { if (v == null) { pen = false; return; } p += (pen ? "L" : "M") + X(i).toFixed(1) + "," + Y(v).toFixed(1); pen = true; });
+      el("path", { d: p, fill: "none", stroke: css(s.c), "stroke-width": s.w || 2, "stroke-linejoin": "round", "stroke-linecap": "round", "stroke-dasharray": s.dash || "" }, svg);
+    }
+    // 線の名前(右端)
+    for (const s of o.series) {
+      if (!s.end) continue;
+      let i = n - 1; while (i > 0 && s.v[i] == null) i--;
+      if (s.v[i] == null) continue;
+      el("text", { x: W - m.r, y: Y(s.v[i]) + (s.dy || -5), "text-anchor": "end", style: `fill:${css(s.c)};font-weight:600` }, svg).textContent = s.end;
+    }
+    // 買・売の印
+    const markAt = {};
+    for (const mk of o.marks || []) {
+      markAt[mk.i] = mk;
+      const x = X(mk.i), y = Y(mk.y), b = mk.k === "b", col = css(b ? "--in" : "--out");
+      if (o.marks.length > 24) {
+        // 合図が多いときは lev3watch の答え合わせのチャートと同じ小さな ▲▼ にする(重なって読めなくなるため)
+        const sz = 5, ty = b ? y + 5 : y - 5, dir = b ? 1 : -1;
+        el("path", { d: `M${x},${ty} L${x - sz},${ty + dir * sz * 1.6} L${x + sz},${ty + dir * sz * 1.6} Z`, fill: col, stroke: css("--card"), "stroke-width": 1, "stroke-linejoin": "round" }, svg);
+        continue;
       }
-      svg.append(svgEl("path", { d, class: ser.cls }));
-    });
-    box.append(svg);
-    ticks.forEach((v) => {
-      const lab = el("span", "tick-label", tickFmt(v));
-      lab.style.top = `${(y(v) / H) * 100}%`;
-      box.append(lab);
-    });
-    xLabels(t0, t1).forEach((l) => {
-      const lab = el("span", "x-label", l.text);
-      lab.style.left = `${(x(l.t) / W) * 100}%`;
-      box.append(lab);
-    });
-    const cross = el("div", "crosshair");
-    const dt = el("div", "dot");
-    const tip = el("div", "tooltip");
-    [cross, dt, tip].forEach((n) => { n.hidden = true; box.append(n); });
-    const setHover = (i) => {
-      const show = i != null && i >= s && i <= e;
-      [cross, dt, tip].forEach((n) => (n.hidden = !show));
-      if (!show) return;
-      const left = (x(state.t[i]) / W) * 100;
-      cross.style.left = dt.style.left = tip.style.left = `${left}%`;
-      dt.style.top = `${(y(dot[i]) / H) * 100}%`;
-      tip.textContent = tipFor(i);
-      tip.classList.toggle("edge-left", left < 15);
-      tip.classList.toggle("edge-right", left > 85);
+      const cy = Math.min(m.t + ih - 10, Math.max(m.t + 10, b ? y + 20 : y - 20));
+      el("line", { x1: x, x2: x, y1: y, y2: cy, stroke: col, "stroke-width": 1.5 }, svg);
+      el("circle", { cx: x, cy: y, r: 3.5, fill: col, stroke: css("--card"), "stroke-width": 1.5 }, svg);
+      el("circle", { cx: x, cy, r: 10, fill: col, stroke: css("--card"), "stroke-width": 2 }, svg);
+      el("text", { x, y: cy + 4, "text-anchor": "middle", style: "fill:#fff;font-weight:700;font-size:11px" }, svg).textContent = b ? "買" : "売";
+    }
+    // ホバー
+    const cross = el("line", { y1: m.t, y2: m.t + ih, stroke: css("--sub"), "stroke-width": 1, opacity: 0 }, svg);
+    const dots = o.series.map((s) => el("circle", { r: 4, fill: css(s.c), stroke: css("--card"), "stroke-width": 2, opacity: 0 }, svg));
+    const tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; host.appendChild(tip);
+    const hit = el("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" }, svg);
+    const move = (ev) => {
+      const r = svg.getBoundingClientRect(), sx = ((ev.clientX - r.left) * W) / r.width;
+      const tt = t0 + ((sx - m.l) / iw) * (t1 - t0);
+      let a = 0, b = n - 1;
+      while (a < b) { const c = (a + b) >> 1; if (t[c] < tt) a = c + 1; else b = c; }
+      if (a > 0 && tt - t[a - 1] < t[a] - tt) a--;
+      const i = a;
+      cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("opacity", 0.5);
+      o.series.forEach((s, k) => { const v = s.v[i]; if (v == null) { dots[k].setAttribute("opacity", 0); return; } dots[k].setAttribute("cx", X(i)); dots[k].setAttribute("cy", Y(v)); dots[k].setAttribute("opacity", 1); });
+      const mk = markAt[i];
+      tip.innerHTML = `<div class="d">${fmtD(o.d[i])}${o.tipExtra ? " · " + o.tipExtra(i) : ""}</div>` +
+        (mk ? `<div><b style="color:${css(mk.k === "b" ? "--in" : "--out")}">${mk.k === "b" ? "▲ " : "▼ "}${esc(mk.t)}</b></div>` : "") +
+        o.series.filter((s) => !s.noTip).map((s) => `<div><i style="background:${css(s.c)}"></i>${s.n}　<b>${s.v[i] == null ? "—" : o.tfmt(s.v[i])}</b></div>`).join("");
+      tip.hidden = false;
+      const px = (X(i) * r.width) / W, hw = r.width;
+      tip.style.left = Math.min(Math.max(0, px + 12), hw - tip.offsetWidth) + "px";
+      if (px + 12 + tip.offsetWidth > hw) tip.style.left = Math.max(0, px - 12 - tip.offsetWidth) + "px";
+      tip.style.top = "8px";
     };
-    const onMove = (ev) => {
-      const r = box.getBoundingClientRect();
-      const px = (ev.touches ? ev.touches[0].clientX : ev.clientX) - r.left;
-      const tt = t0 + (px / r.width) * (t1 - t0);
-      // いちばん近い日を二分探索で探す
-      let a = s, b = e;
-      while (a < b) {
-        const m = (a + b) >> 1;
-        if (state.t[m] < tt) a = m + 1; else b = m;
-      }
-      if (a > s && tt - state.t[a - 1] < state.t[a] - tt) a--;
-      state.charts.forEach((c) => c(a));
-    };
-    box.onpointermove = onMove;
-    box.onpointerdown = onMove;
-    box.onpointerleave = () => state.charts.forEach((c) => c(null));
-    return setHover;
+    hit.addEventListener("pointermove", move);
+    hit.addEventListener("pointerdown", move);
+    hit.addEventListener("pointerleave", () => { tip.hidden = true; cross.setAttribute("opacity", 0); dots.forEach((d) => d.setAttribute("opacity", 0)); });
   }
 
+  // ---------- いまの判定 ----------
+  function renderStatus() {
+    const d = state.data, S = d.series, c = d.current, m = method(), B = bands();
+    const N = S.per.length, last = N - 1;
+    const lo = B.lo[last], hi = B.hi[last];
+    const z = zoneAt(c.per, lo, hi) || "m";
+    $("lead").textContent = m.n
+      ? `その月より前の${m.n}年間の PER の平均から1σ下(いまは${lo.toFixed(1)}倍)を下回ったら買い時、1σ上(${hi.toFixed(1)}倍)を超えたら売り時の検討。時代ごとの水準の違いを吸収できます。`
+      : "日経平均の PER が14倍を下回ったら買い時、16倍を超えたら売り時の検討。直近10年ほどの水準に合わせた線です。";
+    const pill = $("pill");
+    pill.classList.toggle("out", z === "s");
+    pill.classList.toggle("mid", z === "m");
+    $("pillv").textContent = ZONE[z];
+    // いまの状態がいつから続いているか
+    let since = last;
+    while (since > 0 && zoneAt(S.per[since - 1], B.lo[since - 1], B.hi[since - 1]) === z) since--;
+    $("pills").textContent = `${fmtD(S.date[since])} から(${fmtD(c.date)} の終値)`;
+    const pLo = c.eps * lo, pHi = c.eps * hi;
+    $("stats").innerHTML = `
+      <div class="stat"><div class="k">PER</div><div class="v">${times(c.per)}</div><div class="s">日経平均 ${yen(c.close)}・EPS ${yen(c.eps)}</div></div>
+      <div class="stat"><div class="k">買いの線(${lo.toFixed(1)}倍)の株価</div><div class="v zone-b">${yen(pLo)}</div><div class="s">${z === "b" ? "いまは線より下(買い時)" : `あと ${pct(pLo / c.close - 1)} 下がると買い時`}</div></div>
+      <div class="stat"><div class="k">売りの線(${hi.toFixed(1)}倍)の株価</div><div class="v zone-s">${yen(pHi)}</div><div class="s">${z === "s" ? "いまは線より上(売り時)" : `あと ${pct(pHi / c.close - 1)} 上がると売り時`}</div></div>`;
+    $("lead2").textContent = `買いの線・売りの線は「EPS × ${m.n ? "その時の線の倍率" : "14倍・16倍"}」で計算した理論株価です。日経平均(黒い線)が赤い線より下なら買い時、青い線より上なら売り時の検討です。`;
+  }
+
+  // ---------- チャート ----------
   function renderCharts() {
-    const S = state.data.series;
-    const { s, e, t0, t1 } = range();
-    const n = state.settings.rel;
-    const m = S["m" + n];
-    const sd = S["s" + n];
-    const relLo = m.map((v, i) => (v == null ? null : v - sd[i]));
-    const relHi = m.map((v, i) => (v == null ? null : v + sd[i]));
-    const p14 = S.eps.map((v) => v * 14);
-    const p16 = S.eps.map((v) => v * 16);
-    const basis = state.data.settings.basis_change;
-    const vlines = [{ t: Date.UTC(+basis.slice(0, 4), +basis.slice(5, 7) - 1, 1) }];
-
-    let lo = Infinity, hi = -Infinity;
-    for (let i = s; i <= e; i++) {
-      [S.per[i], relLo[i], relHi[i]].forEach((v) => { if (v != null) { lo = Math.min(lo, v); hi = Math.max(hi, v); } });
-    }
-    lo = Math.min(lo, 13); hi = Math.max(hi, 17);
-    const pad = (hi - lo) * 0.06;
-    state.charts = [];
-    const tipPer = (i) => {
-      const lines = [`${fmtDate(S.date[i])}${S.freq[i] === "m" ? "(月末)" : ""}`, `PER ${times(S.per[i])}`];
-      if (m[i] != null) lines.push(`過去${n}年 ${relLo[i].toFixed(1)}〜${relHi[i].toFixed(1)}倍`);
-      return lines.join("\n");
-    };
-    state.charts.push(drawChart($("chart-per"), {
-      s, e, t0, t1, lo: Math.max(0, lo - pad), hi: hi + pad, vlines,
-      bands: [{ lo: relLo, hi: relHi, cls: "a-band" }],
-      hlines: [{ v: 14, color: "--buy" }, { v: 16, color: "--sell" }],
-      series: [{ values: m, cls: "l-mean" }, { values: S.per, cls: "l-main" }],
-      tickFmt: (v) => v + "倍", tipFor: tipPer, dot: S.per,
+    const d = state.data, S = d.series, m = method(), B = bands();
+    const N = S.date.length;
+    const r = RANGES.find((x) => x.key === state.settings.range) || RANGES[1];
+    const tEnd = state.t[N - 1];
+    let s = 0;
+    if (r.years) while (s < N - 1 && state.t[s] < tEnd - r.years * 365.25 * DAY) s++;
+    const sl = (a) => a.slice(s);
+    const zones = S.per.map((p, i) => zoneAt(p, B.lo[i], B.hi[i]));
+    const pLo = S.eps.map((e, i) => (B.lo[i] == null ? null : e * B.lo[i]));
+    const pHi = S.eps.map((e, i) => (B.hi[i] == null ? null : e * B.hi[i]));
+    const idx = {}; S.date.forEach((dd, i) => (idx[dd] = i));
+    const test = d.tests[m.test];
+    const evs = test && test.buy ? [...test.buy.events.map((e) => ({ ...e, k: "b" })), ...test.sell.events.map((e) => ({ ...e, k: "s" }))] : [];
+    const marks = (valOf) => evs.filter((e) => idx[e.date] >= s).map((e) => ({
+      i: idx[e.date] - s, y: valOf(idx[e.date]), k: e.k,
+      t: `${e.k === "b" ? "買い時の検討" : "売り時の検討"}(PER ${e.per.toFixed(1)}倍)`,
     }));
-
-    lo = Infinity; hi = -Infinity;
-    for (let i = s; i <= e; i++) {
-      [S.close[i], p14[i], p16[i]].forEach((v) => { lo = Math.min(lo, v); hi = Math.max(hi, v); });
-    }
-    const pad2 = (hi - lo) * 0.06;
-    state.charts.push(drawChart($("chart-price"), {
-      s, e, t0, t1, lo: Math.max(0, lo - pad2), hi: hi + pad2, vlines,
-      series: [{ values: p14, cls: "l-buy" }, { values: p16, cls: "l-sell" }, { values: S.close, cls: "l-main" }],
-      tickFmt: (v) => (v >= 10000 ? (v / 10000).toLocaleString("ja-JP") + "万" : v.toLocaleString("ja-JP")),
-      tipFor: (i) => [`${fmtDate(S.date[i])}`, `終値 ${yen(S.close[i])}`, `14倍 ${yen(p14[i])}`, `16倍 ${yen(p16[i])}`].join("\n"),
-      dot: S.close,
-    }));
-    $("chart-note").textContent =
-      `点線の縦線は ${basis.replace("-", "年")}月(この頃 PER の計算が単体決算から連結決算に変わりました)。` +
-      (state.data.info.monthly_from ? `${state.data.info.daily_from.slice(0, 4)}年より前は月末の値です。` : "") +
-      "チャートに触れると、その日の値が出ます。";
+    const zoneTip = (i) => { const z = zones[s + i]; return z ? `<span class="zone-${z}">${ZONE[z]}</span>` : ""; };
+    const common = { d: sl(S.date), t: sl(state.t), zones: sl(zones), tipExtra: zoneTip };
+    lineChart($("ch1"), {
+      ...common, h: 280, label: "日経平均と買いの線・売りの線",
+      band: { lo: sl(pLo), hi: sl(pHi) },
+      series: [
+        { n: "売りの線", v: sl(pHi), c: "--out", w: 1.5, dash: "5 4", end: "売りの線" },
+        { n: "買いの線", v: sl(pLo), c: "--in", w: 1.5, dash: "5 4", end: "買いの線", dy: 14 },
+        { n: "日経平均", v: sl(S.close), c: "--line", w: 1.75 },
+      ],
+      marks: marks((i) => S.close[i]), ymin: 0,
+      yfmt: (v) => (v >= 10000 ? (v / 10000).toLocaleString("ja-JP") + "万" : v.toLocaleString("ja-JP")),
+      tfmt: (v) => yen(v),
+    });
+    const perSeries = [
+      { n: "売りの線", v: sl(B.hi), c: "--out", w: 1.5, dash: "5 4", end: m.n ? "売りの線" : "16倍 売り" },
+      { n: "買いの線", v: sl(B.lo), c: "--in", w: 1.5, dash: "5 4", end: m.n ? "買いの線" : "14倍 買い", dy: 14 },
+    ];
+    if (B.mean) perSeries.push({ n: `過去${m.n}年の平均`, v: sl(B.mean), c: "--muted", w: 1.2, dash: "2 3" });
+    perSeries.push({ n: "PER", v: sl(S.per), c: "--line", w: 1.75 });
+    lineChart($("ch2"), {
+      ...common, h: 220, label: "PERの推移",
+      band: { lo: sl(B.lo), hi: sl(B.hi) },
+      series: perSeries, marks: marks((i) => S.per[i]), ymin: 0,
+      yfmt: (v) => v + "倍", tfmt: (v) => v.toFixed(2) + "倍",
+    });
+    const info = d.info;
+    $("chnote").textContent =
+      (info.monthly_from && info.daily_from ? `${info.daily_from.slice(0, 4)}年より前は月末の値です。` : "") +
+      `${d.settings.basis_change.slice(0, 4)}年頃に PER の計算が単体決算から連結決算に変わりました。` +
+      (m.n ? "" : "固定の14/16倍は今の水準に合わせた線なので、昔の期間は売り時ばかりになります。");
+    // 合図の一覧(新しい順、最大12件)
+    const recent = evs.filter((e) => idx[e.date] >= s).sort((a, b) => (a.date < b.date ? 1 : -1));
+    $("trtag").textContent = `合図の出た日(${r.label}・${m.label})`;
+    $("trades").innerHTML = recent.length
+      ? recent.slice(0, 12).map((e) => `<li><span class="mk ${e.k}">${e.k === "b" ? "買" : "売"}</span>${fmtD(e.date)}　PER ${e.per.toFixed(1)}倍・${yen(e.close)}</li>`).join("") +
+        (recent.length > 12 ? `<li class="muted">ほか ${recent.length - 12} 回</li>` : "")
+      : "<li>この期間は合図なし</li>";
   }
 
-  // ---------- 検証の表 ----------
-  function statCell(st, side) {
-    if (!st) return "—";
-    return `${pct(st.median)} ${Math.round(st.win * 100)}%`;
-  }
-
+  // ---------- 答え合わせ ----------
+  const cell = (st) => (st ? `${pct(st.median)} <span class="muted">${Math.round(st.win * 100)}%</span>` : "—");
   function renderBacktest() {
     const T = state.data.tests;
-    const tb = $("bt-table");
-    tb.textContent = "";
-    const head = el("tr");
-    ["判定の方法", "期間", "", "合図", "1か月後", "3か月後", "1年後"].forEach((h) => head.append(el("th", null, h)));
-    tb.append(head);
-    const sub = el("tr");
-    ["", "", "", "回数", "中央値・当たり", "中央値・当たり", "中央値・当たり"].forEach((h) => sub.append(el("th", "muted", h)));
-    tb.append(sub);
+    let h = `<tr><th>判定の方法</th><th></th><th>合図</th><th>1か月後</th><th>3か月後</th><th>1年後</th></tr>
+      <tr><th class="muted" colspan="3"></th><th class="muted" colspan="3" style="text-align:center">中央値と当たりの割合</th></tr>`;
     Object.values(T).forEach((t) => {
       if (!t.buy) return;
       const rows = [
-        ["buy", "買い", t.buy.events.length, (k) => statCell(t.buy.event_stats[k])],
-        ["sell", "売り", t.sell.events.length, (k) => statCell(t.sell.event_stats[k])],
-        ["", "いつでも", "毎月", (k) => statCell(t.baseline[k])],
+        ["b", "買い", t.buy.events.length + "回", t.buy.event_stats],
+        ["s", "売り", t.sell.events.length + "回", t.sell.event_stats],
+        ["", "いつでも", "毎月", t.baseline],
       ];
       rows.forEach((r, j) => {
-        const tr = el("tr");
-        if (j === 0) {
-          const a = el("td", null, t.label);
-          a.rowSpan = 3;
-          const b = el("td", null, `${t.from.slice(0, 7).replace("-", "/")}〜`);
-          b.rowSpan = 3;
-          tr.append(a, b);
-        }
-        tr.append(el("td", r[0], r[1]), el("td", null, String(r[2])));
-        ["1m", "3m", "1y"].forEach((k) => tr.append(el("td", null, r[3](k))));
-        tb.append(tr);
+        h += "<tr>";
+        if (j === 0) h += `<td rowspan="3">${esc(t.label)}<br><span class="muted">${t.from.slice(0, 7).replace("-", "/")}〜</span></td>`;
+        h += `<td class="${r[0] || "lbl"}">${r[1]}</td><td>${r[2]}</td>` + ["1m", "3m", "1y"].map((k) => `<td>${cell(r[3][k])}</td>`).join("") + "</tr>";
       });
     });
+    $("bt").innerHTML = h;
+    renderEvents();
   }
 
   function renderEvents() {
-    const t = state.data.tests[state.settings.ev];
-    const tb = $("ev-table");
-    tb.textContent = "";
-    if (!t || !t.buy) return;
-    const head = el("tr");
-    ["日付", "合図", "PER", "線", "終値", "1か月後", "3か月後", "1年後"].forEach((h) => head.append(el("th", null, h)));
-    tb.append(head);
-    const evs = [...t.buy.events.map((e) => ({ ...e, side: "buy" })), ...t.sell.events.map((e) => ({ ...e, side: "sell" }))]
-      .sort((a, b) => (a.date < b.date ? 1 : -1));
-    if (!evs.length) {
-      const tr = el("tr");
-      const td = el("td", "muted", "この期間に合図はありませんでした");
-      td.colSpan = 8;
-      tr.append(td);
-      tb.append(tr);
-    }
-    evs.forEach((ev) => {
-      const tr = el("tr");
-      tr.append(
-        el("td", null, fmtDate(ev.date)),
-        el("td", ev.side, ev.side === "buy" ? "買い検討" : "売り検討"),
-        el("td", null, times(ev.per)),
-        el("td", "muted", ev.side === "buy" ? `${ev.lo.toFixed(1)}未満` : `${ev.hi.toFixed(1)}超`),
-        el("td", null, yen(ev.close)),
-      );
-      ["1m", "3m", "1y"].forEach((k) => tr.append(el("td", null, pct(ev[k]))));
-      tb.append(tr);
-    });
+    const t = state.data.tests[method().test];
+    if (!t || !t.buy) { $("ev").innerHTML = ""; return; }
+    const evs = [...t.buy.events.map((e) => ({ ...e, k: "b" })), ...t.sell.events.map((e) => ({ ...e, k: "s" }))].sort((a, b) => (a.date < b.date ? 1 : -1));
+    $("ev").innerHTML = `<tr><th>日付(${esc(t.label)})</th><th>合図</th><th>PER</th><th>終値</th><th>1か月後</th><th>3か月後</th><th>1年後</th></tr>` +
+      (evs.length ? evs.map((e) => `<tr><td>${fmtD(e.date)}</td><td class="${e.k}">${e.k === "b" ? "買い時" : "売り時"}</td><td>${times(e.per)}</td><td>${yen(e.close)}</td>${["1m", "3m", "1y"].map((k) => `<td>${pct(e[k])}</td>`).join("")}</tr>`).join("")
+        : `<tr><td colspan="7" class="muted">合図はありませんでした</td></tr>`);
   }
 
   function renderNotes() {
-    const d = state.data;
-    const i = d.info;
-    const ul = $("notes");
-    ul.textContent = "";
-    const items = [];
-    items.push(i.monthly_from
-      ? `いま使っているデータ: ${i.monthly_from.replace("-", "年")}月〜${i.daily_from.slice(0, 7).replace("-", "年")}月は月末の値(${i.monthly_months}か月)、それ以降は日次(${i.daily_days.toLocaleString()}日)。`
-      : `いま使っているデータ: ${fmtDate(i.daily_from)}〜の日次(${i.daily_days.toLocaleString()}日)。過去40年分にするための月次データはまだ入っていません。`);
-    items.push("PERは日経平均プロフィルが公表する「加重平均」の値を使い、無い日は「指数ベース」を使います。計算の方法は日経平均プロフィルの説明のとおりです。");
-    items.push("2004年頃に、PERの計算が単体決算から連結決算に変わりました。それより前とあとの数字はそのまま比べられないので、固定の14/16倍は直近10年で見るのが基本です。相対バンドは、その時点までの平均からのずれで判定するので、水準の違いをある程度吸収できます。");
-    items.push("バブル期(1989年頃)の日経平均のPERは60倍を超えていました。固定の16倍で見ると昔の期間は「売り検討」ばかりになるのはこのためです。");
-    items.push("相対バンドは、その月より前の月末の値だけで作ります(先の値を使っていません)。");
-    items.push("検証の数字は過去の結果で、将来の値動きを約束するものではありません。合図の回数が少ない行は、たまたまの結果である可能性が高いです。");
-    items.forEach((t) => ul.append(el("li", null, t)));
+    const i = state.data.info;
+    const items = [
+      i.monthly_from
+        ? `いま使っているデータ: ${i.monthly_from.replace("-", "年")}月〜は月末の値(${i.monthly_months}か月)、${i.daily_from.slice(0, 7).replace("-", "年")}月〜は日次(${i.daily_days.toLocaleString()}日)。`
+        : `いま使っているデータ: ${fmtD(i.daily_from)}〜の日次(${i.daily_days.toLocaleString()}日)。`,
+      "PER は日経平均プロフィルが公表する「加重平均」の値を使い、無い日は「指数ベース」を使います(指数ベースは加重平均より高めに出ます)。",
+      "2004年頃に PER の計算が単体決算から連結決算に変わり、それより前とあとの数字はそのまま比べられません。固定の14/16倍は直近10年で、相対バンドは全期間で見るのが基本です。",
+      "相対バンドは、その月より前の月末の値だけで作ります(先の値は使っていません)。",
+      "検証の数字は過去の結果で、将来の値動きを約束するものではありません。合図の回数が少ないものは、たまたまの結果である可能性が高いです。",
+    ];
+    $("notes").innerHTML = items.map((t) => `<li>${esc(t)}</li>`).join("");
   }
 
-  function buildToggle(box, options, key, onChange) {
-    box.textContent = "";
+  function seg(box, options, key, onChange) {
+    box.innerHTML = "";
     options.forEach((o) => {
-      const b = el("button", "toggle-btn" + (state.settings[key] === o.key ? " active" : ""), o.label);
+      const b = document.createElement("button");
       b.type = "button";
-      b.setAttribute("aria-pressed", state.settings[key] === o.key);
-      b.onclick = () => {
-        state.settings[key] = o.key;
-        save();
-        buildToggle(box, options, key, onChange);
-        onChange();
-      };
-      box.append(b);
+      b.textContent = o.label;
+      b.setAttribute("aria-pressed", String(state.settings[key] === o.key));
+      b.onclick = () => { state.settings[key] = o.key; save(); seg(box, options, key, onChange); onChange(); };
+      box.appendChild(b);
     });
   }
 
   function renderAll() {
     const d = state.data;
     state.t = d.series.date.map((s) => Date.UTC(+s.slice(0, 4), +s.slice(5, 7) - 1, +s.slice(8, 10)));
-    renderAdvice();
-    buildToggle($("period-toggle"), PERIODS, "period", renderCharts);
-    buildToggle($("rel-toggle"), d.settings.rel_years.map((n) => ({ key: n, label: `過去${n}年` })), "rel", renderCharts);
-    if (!d.tests[state.settings.ev]) state.settings.ev = "fixed_recent";
-    buildToggle($("ev-toggle"), Object.entries(d.tests).filter(([, t]) => t.buy).map(([k, t]) => ({ key: k, label: t.label })), "ev", renderEvents);
+    if (!methods().some((m) => m.key === state.settings.method)) state.settings.method = "fixed";
+    seg($("method"), methods(), "method", () => { renderStatus(); renderCharts(); renderEvents(); });
+    seg($("rng"), RANGES, "range", renderCharts);
+    renderStatus();
     renderCharts();
     renderBacktest();
-    renderEvents();
     renderNotes();
   }
 
@@ -378,19 +334,16 @@
     const up = d.updated ? d.updated.replace("T", " ").slice(0, 16).replace(/-/g, "/") : "";
     if (!d.ready) {
       st.textContent = `${d.message}(確認 ${up})`;
-      $("main").hidden = true;
+      $("main").style.display = "none";
       return;
     }
-    st.textContent = `最新データ ${fmtDate(d.current.date)} ・ 分析 ${up}`;
-    $("main").hidden = false;
+    st.textContent = `最新データ ${fmtD(d.current.date)} ・ 分析 ${up}`;
+    $("main").style.display = "contents";
     renderAll();
   }
 
-  $("reload").onclick = async () => {
-    $("reload").disabled = true;
-    await load(true);
-    $("reload").disabled = false;
-  };
-  window.addEventListener("resize", () => state.data && state.data.ready && renderCharts());
+  $("reload").onclick = async () => { $("reload").disabled = true; await load(true); $("reload").disabled = false; };
+  let rt;
+  window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => state.data && state.data.ready && renderCharts(), 150); });
   load(false);
 })();
