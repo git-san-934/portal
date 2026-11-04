@@ -941,6 +941,10 @@ https://www.nippon-chem.co.jp/products/etc/sodium_sulfate/sodium_sulfate_anhydro
 https://www.nippon-chem.co.jp/products/etc/synthesis/
 https://www.nippon-chem.co.jp/products/etc/synthesis/%e5%b0%8f%e3%82%ab%e3%83%86%e3%82%b4%e3%83%aa%e3%83%bc%e3%81%aa%e3%81%97/
 https://www.nippon-chem.co.jp/products/etc/synthesis/%e5%b0%8f%e3%82%ab%e3%83%86%e3%82%b4%e3%83%aa%e3%83%bc%e3%81%aa%e3%81%97/%e5%8f%97%e8%a8%97%e5%90%88%e6%88%90/
+https://www.nippon-chem.co.jp/products/etc/synthesis/chrome_custom_manufacturing/
+https://www.nippon-chem.co.jp/products/etc/synthesis/chrome_custom_manufacturing/%e3%82%af%e3%83%ad%e3%83%a0%e5%8c%96%e5%90%88%e7%89%a9%e5%8f%97%e8%a8%97%e8%a3%bd%e9%80%a0/
+https://www.nippon-chem.co.jp/products/etc/synthesis/custom_manufacturing/
+https://www.nippon-chem.co.jp/products/etc/synthesis/custom_manufacturing/%e5%8f%97%e8%a8%97%e5%90%88%e6%88%90/
 https://www.nippon-chem.co.jp/products/etc/thiourea/
 https://www.nippon-chem.co.jp/products/etc/thiourea/thiourea/
 https://www.nippon-chem.co.jp/products/etc/thiourea/thiourea/%e3%83%81%e3%82%aa%e5%b0%bf%e7%b4%a0/
@@ -1376,6 +1380,7 @@ https://www.nippon-chem.co.jp/wp-content/uploads/Carbotorim.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/EAP.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/Engチタン酸バリウムの生産能力増強について.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/HP_jutaku.pdf
+https://www.nippon-chem.co.jp/wp-content/uploads/HP_jyutaku_chrome.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/Low-toxicity-Quantum-Dot.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/MMA.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/NCI-Phosphine-Ligands.pdf
