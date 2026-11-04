@@ -15,7 +15,7 @@ PER の表には「加重平均」と「指数ベース」の2列がある(時�
   python fetch_per.py --backfill 2004-01    # 指定の月から当月まで1か月ずつ取る(初回用。数分かかる)
   python fetch_per.py --check               # 取得と検証だけ行い、ファイルは書き換えない(PR での確認用)
 
-取れた値がおかしいとき(既存データと食い違う、PER が 3〜200 倍の外、終値が1日で20%超動く)は
+取れた値がおかしいとき(既存データと食い違う、PER が 3〜2000 倍の外、終値が1日で20%超動く)は
 その日を上書きせず、終了コード1で終わる。何も取れなかったときも終了コード1。
 """
 
@@ -39,7 +39,8 @@ UA = (
 OUT_PATH = Path(__file__).resolve().parent.parent / "data" / "per_daily.json"
 JST = timezone(timedelta(hours=9))
 RETRIES = 3
-PER_RANGE = (3.0, 200.0)
+# 2009年春は利益が大きく落ちて加重平均でも約290倍、指数ベースは800倍を超えた(本当の値)。それより桁違いの値だけを誤りとみなす
+PER_RANGE = (3.0, 2000.0)
 MAX_DAILY_MOVE = 0.2  # 日経平均の過去最大の下落は1日 −14.9%(1987年)
 MATCH_TOLERANCE = 0.005
 FIRST_BACKFILL = "1986-01"

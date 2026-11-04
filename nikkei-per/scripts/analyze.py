@@ -45,7 +45,10 @@ REL_SIGMA = 1.0
 HORIZONS = (("1m", 30), ("3m", 91), ("1y", 365))
 EVENT_GAP_DAYS = 30
 FIXED_RECENT_YEARS = 10
-BASIS_CHANGE = "2004-01"  # この頃から連結決算ベース(それより前は単体)
+BASIS_CHANGE = "2004-01"
+# 利益が一時的に落ちて PER が意味を持たない月(2009年春は100〜290倍)は、相対バンドの平均・σの計算から外す。
+# 入れると、その後5〜10年の線が何十倍にも広がって判定にならないため。判定そのもの(線より上か下か)はそのまま行う
+REL_EXCLUDE_ABOVE = 50.0  # この頃から連結決算ベース(それより前は単体)
 
 
 def load_points() -> tuple[list[dict], dict]:
@@ -109,7 +112,8 @@ def relative_bands(pts: list[dict]) -> dict:
         need = int(n * 12 * 0.8)
         for ym in months:
             lo = add_months(ym, -n * 12)
-            vals = [month_end[k] for k in months[bisect.bisect_left(months, lo):bisect.bisect_left(months, ym)]]
+            vals = [month_end[k] for k in months[bisect.bisect_left(months, lo):bisect.bisect_left(months, ym)]
+                    if month_end[k] <= REL_EXCLUDE_ABOVE]
             if len(vals) >= need:
                 bands[ym] = (statistics.fmean(vals), statistics.pstdev(vals))
         out[n] = bands
@@ -254,7 +258,7 @@ def main() -> int:
     out = {"updated": now, "ready": True, "info": info, "current": cur, "tests": tests, "series": series,
            "settings": {"fixed": [FIXED_LOW, FIXED_HIGH], "rel_years": list(REL_YEARS), "rel_sigma": REL_SIGMA,
                         "event_gap_days": EVENT_GAP_DAYS, "basis_change": BASIS_CHANGE,
-                        "per_columns": list(PER_COLUMNS)}}
+                        "per_columns": list(PER_COLUMNS), "rel_exclude_above": REL_EXCLUDE_ABOVE}}
     print(f"{info} 最新 {last['date']} PER {last['per']} 終値 {last['close']}")
     for k, t in tests.items():
         if "buy" in t:
