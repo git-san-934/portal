@@ -72,7 +72,7 @@
       const flush = (end) => {
         if (s >= 0 && z !== "m" && z != null) {
           const x1 = X(s), x2 = end < n ? X(end) : X(n - 1);
-          el("rect", { x: x1, y: m.t, width: Math.max(1, x2 - x1), height: ih, fill: css(z === "b" ? "--shade-b" : "--shade-s") }, svg);
+          el("rect", { x: x1, y: m.t, width: Math.max(1, x2 - x1), height: ih, fill: css(z === "b" ? "--shade-b" : z === "h" ? "--heat" : "--shade-s") }, svg);
         }
       };
       for (let i = 0; i <= n; i++) { const zi = i < n ? o.zones[i] : "end"; if (zi !== z) { flush(i); s = i; z = zi; } }
@@ -199,6 +199,15 @@
   const sigs = () => { const T = state.data.trade; return buySignals(state.data.series, T.from, T.rule.buy_pbr); };
   const avg = (a) => { const x = a.filter((v) => v != null); return x.length ? { m: x.reduce((p, v) => p + v, 0) / x.length, win: x.filter((v) => v > 0).length / x.length, n: x.length } : null; };
 
+  function heatStat() {
+    const H = state.data.heat;
+    if (!H || !H.now) return "";
+    const n = H.now, on = !!n[4];
+    let since = null;
+    for (let k = H.weeks.length - 1; k >= 0 && !!H.weeks[k][4] === on; k--) since = H.weeks[k][0];
+    return `<div class="stat"><div class="k">過熱のサイン(信用の買い残)</div><div class="v ${on ? "zone-h" : ""}">${on ? "点灯中" : "消えている"}</div><div class="s">買い残が1年前より ${pct(n[2], 0)}(過去${H.rule.years}年で上位${Math.max(1, Math.round((1 - n[3]) * 100))}%)・${fmtD(n[0])}の週${since && since !== n[0] ? `・${fmtD(since)}の週から` : ""}</div></div>`;
+  }
+
   function renderTrade() {
     const T = state.data.trade;
     if (!T) return;
@@ -221,6 +230,7 @@
     $("t-stats").innerHTML = `
       <div class="stat"><div class="k">PBR / PER</div><div class="v">${now.pbr.toFixed(2)}倍 / ${now.per.toFixed(1)}倍</div><div class="s">日経平均 ${yen(now.close)}(${fmtD(T.to)})</div></div>
       <div class="stat"><div class="k">PBR の買いの線の株価(${R.buy_pbr}倍)</div><div class="v zone-b">${yen(bp)}</div><div class="s">${pbrS}</div></div>
+      ${heatStat()}
       <div class="stat"><div class="k">PER の買いの線(${PER_LO}倍)の株価</div><div class="v zone-b">${yen(now.close * PER_LO / now.per)}</div><div class="s">${perS}</div></div>`;
 
     // 成績: 合図ごとのその後と、いつ買っても(毎日)の平均
@@ -242,6 +252,7 @@
       `なぜこの線か: PBR 1倍は、株価が1株あたりの純資産と同じ水準で、2008年・2012年・2016年・2020年の底はどれも1倍前後でした。1倍割れはめったにないので、少し上の${R.buy_pbr}倍を買いの線にしています。線を割った日ではなく、割ったあと下から上に抜けた日を合図にするので、下げの途中で買うのを避けられます。`,
       `同じ合図が続かないように: PBR は一度${PBR_RE}倍を超えるまで、PER は一度${PER_RE}倍を超えるまで、次の合図を出しません(線の近くを行ったり来たりすると、毎週のように合図が出てしまうため)。`,
       "「いつ買っても」は2004年9月からの毎営業日に買ったとした場合の平均です。合図の行がこれより高ければ、合図の日に買うほうが有利だったことになります。合図の回数は少ないので、たまたまの結果である可能性があります。",
+      "過熱のサイン(①の薄い色): 信用取引の買い残が1年で大きく増えた週のあと1年の上がり方は、平均+2.8%と、すべての週の平均+10.6%より鈍くなっていました(2004〜2026年)。ただ、点灯で売って消えたら買い直すと、上がる場面も逃して持ち続けに負けたので、売りの合図ではなく目安として表示しています。",
       "配当・税金・売買のコストは入れていません(日経平均の値だけ)。",
     ];
     $("t-notes").innerHTML = notes.map((t) => `<li>${esc(t)}</li>`).join("");
@@ -264,8 +275,17 @@
     const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: "b", big: true, t: `PER の買いの合図(PER ${t.per.toFixed(1)}倍)` });
     const tip = (k) => `PER ${S.per[idx[k]].toFixed(1)}倍 · PBR ${S.pbr[idx[k]].toFixed(2)}倍`;
     const yenAx = (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP"));
+    // 過熱のサイン(信用取引の買い残)が点灯していた期間を塗る
+    const H = d.heat;
+    let zones = null;
+    if (H && H.weeks.length) {
+      let w = 0, on = 0;
+      zones = dd.map((x) => { while (w < H.weeks.length && H.weeks[w][1] <= x) { on = H.weeks[w][4]; w++; } return on ? "h" : "m"; });
+    }
+    $("heat-lg").hidden = !zones;
     // ① 日経平均
     lineChart($("ch-n"), {
+      zones,
       d: dd, t: tt, h: 300, label: "日経平均と買いの合図",
       series: [{ n: "日経平均", v: v("close"), c: "--line", w: 1.75 }],
       marks: [...perT.map(perMark((t) => t.close)), ...pbrT.map(pbrMark((t) => t.close))],
@@ -293,7 +313,8 @@
       marks: pbrT.map(pbrMark((t) => t.pbr)), ymin: 0,
       yfmt: (x) => x.toFixed(1) + "倍", tfmt: (x) => x.toFixed(2) + "倍",
     });
-    $("chnote").textContent = "PER は30倍より上を上端に貼りつけて表示しています(2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました)。売りの合図は出していません。";
+    $("chnote").textContent = "PER は30倍より上を上端に貼りつけて表示しています(2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました)。売りの合図は出していません。" +
+      (zones ? ` ①の薄い色の期間は「過熱のサイン」の点灯中です。信用取引の買い残(金額)が1年前からどれだけ増えたかが、過去${H.rule.years}年の中で上位${Math.round(H.rule.top * 100)}%に入った週(公表を待つため申込日の${H.rule.lag_days}日後から)に点灯します。` : "");
   }
 
   // ---------- 答え合わせ ----------
