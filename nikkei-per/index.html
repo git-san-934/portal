@@ -6,7 +6,7 @@
   <title>日経平均PER 買い時・売り時</title>
   <meta name="description" content="日経平均のPERが14倍未満なら買い検討、16倍超なら売り検討。固定の線と、過去の平均からのずれ(相対バンド)の2つで毎日判定し、合図のあとの値動きを検証するページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261104c" />
+  <link rel="stylesheet" href="assets/style.css?v=20261104d" />
 </head>
 <body>
 
@@ -45,6 +45,7 @@
       <span><i style="background:var(--line)"></i>日経平均(終値)</span>
       <span><i class="dash" style="border-color:var(--in)"></i>買いの線</span>
       <span><i class="dash" style="border-color:var(--out)"></i>売りの線</span>
+      <span><i style="background:var(--ma)"></i>200日平均</span>
       <span><i class="box" style="background:var(--neutral)"></i>あいだ(中立)</span>
       <span><i class="box b"></i>買い時の期間</span>
       <span><i class="box s"></i>売り時の期間</span>
@@ -66,6 +67,15 @@
   <div><div class="tag" style="margin-bottom:4px" id="trtag">合図の出た日</div><ul class="trades" id="trades"></ul></div>
 </section>
 
+<section class="card" aria-labelledby="p4">
+  <div class="tag">参考</div>
+  <h2 id="p4">全て売却すべき時点は？</h2>
+  <p class="lead">PER が売りの線(16倍)より上のまま、日経平均が200日平均を下回った日を「全売却の検討」としています。割高なうえに値動きが下向きに変わった、という意味です。ただし過去の成績は弱く、これだけで全部売るのはおすすめしません(下の答え合わせ)。</p>
+  <div class="stats" id="sa-stats"></div>
+  <div class="tw"><table id="sa-table"></table></div>
+  <p class="note" id="sa-note"></p>
+</section>
+
 <section class="card" aria-labelledby="p3">
   <div class="tag">答え合わせ</div>
   <h2 id="p3">合図のあと、日経平均はどう動いた？</h2>
@@ -85,6 +95,6 @@
 
 </main>
 </div>
-<script src="assets/app.js?v=20261104c"></script>
+<script src="assets/app.js?v=20261104d"></script>
 </body>
 </html>

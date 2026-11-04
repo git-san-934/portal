@@ -48,7 +48,12 @@ FIXED_RECENT_YEARS = 10
 BASIS_CHANGE = "2004-01"
 # 利益が一時的に落ちて PER が意味を持たない月(2009年春は100〜290倍)は、相対バンドの平均・σの計算から外す。
 # 入れると、その後5〜10年の線が何十倍にも広がって判定にならないため。判定そのもの(線より上か下か)はそのまま行う
-REL_EXCLUDE_ABOVE = 50.0  # この頃から連結決算ベース(それより前は単体)
+REL_EXCLUDE_ABOVE = 50.0
+# 全売却の検討: PER が売りの線(16倍)より上のまま、終値が200日平均を下回った(割高のまま下げ始めた)とき。
+# PER が高いだけでは全売却の合図にならない(2004年以降、PER 16〜22倍超の日のあとは1年後に上がっていた日が多い)ため、
+# 値動きが下向きに変わったことを条件に足す。PER が REL_EXCLUDE_ABOVE を超える日は利益が落ちた底の時期なので除く
+SELL_ALL_PER = FIXED_HIGH
+MA_DAYS = 200  # この頃から連結決算ベース(それより前は単体)
 
 
 def load_points() -> tuple[list[dict], dict]:
@@ -187,6 +192,44 @@ def backtest(pts: list[dict], band_of, since: str | None, label: str, note: str)
     return res
 
 
+def add_ma(pts: list[dict]) -> None:
+    """日次の点に200日平均(ma)をつける。月次の期間と、200日たまるまでは None。"""
+    window, total = [], 0.0
+    for p in pts:
+        if p["freq"] != "d":
+            p["ma"] = None
+            continue
+        window.append(p["close"])
+        total += p["close"]
+        if len(window) > MA_DAYS:
+            total -= window.pop(0)
+        p["ma"] = total / MA_DAYS if len(window) == MA_DAYS else None
+
+
+def sell_all_on(p: dict) -> bool:
+    return p.get("ma") is not None and SELL_ALL_PER < p["per"] <= REL_EXCLUDE_ABOVE and p["close"] < p["ma"]
+
+
+def sell_all_test(pts: list[dict]) -> dict:
+    sel = [p for p in pts if p.get("ma") is not None]
+    res = {"label": "全売却の検討(PER16倍超のまま200日平均割れ)", "from": sel[0]["date"] if sel else None}
+    if not sel:
+        return res
+    month_end = list({month_key(p["date"]): p for p in sel}.values())
+    res["baseline"] = {k: summarize([p["r" + k] for p in month_end], "buy") for k, _ in HORIZONS}
+    events, last_in = [], None
+    for p in sel:
+        if not sell_all_on(p):
+            continue
+        d = date.fromisoformat(p["date"])
+        if last_in is None or (d - last_in).days > EVENT_GAP_DAYS:
+            events.append({"date": p["date"], "per": round(p["per"], 2), "close": p["close"], "ma": round(p["ma"]),
+                           **{k: (None if p["r" + k] is None else round(p["r" + k], 4)) for k, _ in HORIZONS}})
+        last_in = d
+    res["sell"] = {"events": events, "event_stats": {k: summarize([e[k] for e in events], "sell") for k, _ in HORIZONS}}
+    return res
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
@@ -204,6 +247,7 @@ def main() -> int:
 
     rel = relative_bands(pts)
     forward_returns(pts)
+    add_ma(pts)
 
     def fixed(_p):
         return (FIXED_LOW, FIXED_HIGH)
@@ -226,8 +270,10 @@ def main() -> int:
         tests[f"rel{n}"] = backtest(pts, rel_of(n), None, f"相対 過去{n}年の平均±1σ(全期間)",
                                     f"その月より前の{n}年間の月末 PER の平均から1σ下で買い検討、1σ上で売り検討")
 
+    sell_all = sell_all_test(pts)
+
     # チャート用の系列(日次は全部、月次期間は月末)
-    series = {"date": [], "close": [], "per": [], "eps": [], "freq": []}
+    series = {"date": [], "close": [], "per": [], "eps": [], "freq": [], "ma": []}
     for n in REL_YEARS:
         series[f"m{n}"] = []
         series[f"s{n}"] = []
@@ -237,6 +283,7 @@ def main() -> int:
         series["per"].append(round(p["per"], 2))
         series["eps"].append(round(p["eps"], 2))
         series["freq"].append(p["freq"])
+        series["ma"].append(None if p.get("ma") is None else round(p["ma"], 2))
         for n in REL_YEARS:
             b = rel[n].get(month_key(p["date"]))
             series[f"m{n}"].append(None if b is None else round(b[0], 2))
@@ -246,6 +293,9 @@ def main() -> int:
            "per_index": last.get("per_index"), "per_weighted": last.get("per_weighted"),
            "fixed": {"lo": FIXED_LOW, "hi": FIXED_HIGH, "zone": zone_of(last["per"], FIXED_LOW, FIXED_HIGH),
                      "price_lo": round(last["eps"] * FIXED_LOW), "price_hi": round(last["eps"] * FIXED_HIGH)}}
+    cur["sell_all"] = {"on": sell_all_on(last), "per_over": SELL_ALL_PER < last["per"] <= REL_EXCLUDE_ABOVE,
+                       "ma": None if last.get("ma") is None else round(last["ma"]),
+                       "below_ma": last.get("ma") is not None and last["close"] < last["ma"]}
     for n in REL_YEARS:
         b = rel[n].get(month_key(last["date"]))
         if b:
@@ -255,14 +305,17 @@ def main() -> int:
                               "price_lo": round(last["eps"] * lo), "price_hi": round(last["eps"] * hi),
                               "price_mean": round(last["eps"] * b[0])}
 
-    out = {"updated": now, "ready": True, "info": info, "current": cur, "tests": tests, "series": series,
+    out = {"updated": now, "ready": True, "info": info, "current": cur, "tests": tests, "sell_all": sell_all, "series": series,
            "settings": {"fixed": [FIXED_LOW, FIXED_HIGH], "rel_years": list(REL_YEARS), "rel_sigma": REL_SIGMA,
                         "event_gap_days": EVENT_GAP_DAYS, "basis_change": BASIS_CHANGE,
-                        "per_columns": list(PER_COLUMNS), "rel_exclude_above": REL_EXCLUDE_ABOVE}}
+                        "per_columns": list(PER_COLUMNS), "rel_exclude_above": REL_EXCLUDE_ABOVE,
+                        "sell_all_per": SELL_ALL_PER, "ma_days": MA_DAYS}}
     print(f"{info} 最新 {last['date']} PER {last['per']} 終値 {last['close']}")
     for k, t in tests.items():
         if "buy" in t:
             print(f"  {k}: 買い合図 {len(t['buy']['events'])}回 / 売り合図 {len(t['sell']['events'])}回 ({t['from']}〜)")
+    if "sell" in sell_all:
+        print(f"  sell_all: 合図 {len(sell_all['sell']['events'])}回 {sell_all['sell']['event_stats']}")
     if not args.check:
         OUT_PATH.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     return 0

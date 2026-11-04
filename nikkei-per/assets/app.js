@@ -220,6 +220,7 @@
       series: [
         { n: "売りの線", v: sl(pHi), c: "--out", w: 1.5, dash: "5 4", end: "売りの線" },
         { n: "買いの線", v: sl(pLo), c: "--in", w: 1.5, dash: "5 4", end: "買いの線", dy: 14 },
+        ...(S.ma ? [{ n: "200日平均", v: sl(S.ma), c: "--ma", w: 1.25 }] : []),
         { n: "日経平均", v: sl(S.close), c: "--line", w: 1.75 },
       ],
       marks: marks((i) => S.close[i]), ymin: 0,
@@ -285,6 +286,32 @@
         : `<tr><td colspan="7" class="muted">合図はありませんでした</td></tr>`);
   }
 
+  // ---------- 全て売却すべき時点(参考) ----------
+  function renderSellAll() {
+    const d = state.data, sa = d.sell_all, c = d.current.sell_all;
+    if (!sa || !sa.sell || !c) return;
+    const per = d.settings.sell_all_per, ok = (b) => (b ? "当てはまる" : "当てはまらない");
+    $("sa-stats").innerHTML = `
+      <div class="stat"><div class="k">いまの判定</div><div class="v ${c.on ? "zone-s" : ""}">${c.on ? "全売却の検討" : "該当なし"}</div><div class="s">${fmtD(d.current.date)} の終値</div></div>
+      <div class="stat"><div class="k">① PER が${per}倍を超える</div><div class="v">${ok(c.per_over)}</div><div class="s">いま ${times(d.current.per)}</div></div>
+      <div class="stat"><div class="k">② 200日平均を下回る</div><div class="v">${ok(c.below_ma)}</div><div class="s">200日平均 ${yen(c.ma)}・終値 ${yen(d.current.close)}</div></div>`;
+    const ev = sa.sell.events, st = sa.sell.event_stats, b = sa.baseline;
+    const fell = (s) => (s ? `${Math.round(s.win * 100)}%(${s.n}回中${Math.round(s.win * s.n)}回)` : "—");
+    const bfell = (s) => (s ? `${Math.round((1 - s.win) * 100)}%` : "—");
+    $("sa-table").innerHTML =
+      `<tr><th></th><th>1か月後</th><th>3か月後</th><th>1年後</th></tr>
+       <tr><td class="s">全売却の合図のあと 下がった割合</td>${["1m", "3m", "1y"].map((k) => `<td>${fell(st[k])}</td>`).join("")}</tr>
+       <tr><td class="s">　〃 値動きの中央値</td>${["1m", "3m", "1y"].map((k) => `<td>${st[k] ? pct(st[k].median) : "—"}</td>`).join("")}</tr>
+       <tr><td class="lbl">いつ売っても 下がった割合</td>${["1m", "3m", "1y"].map((k) => `<td>${bfell(b[k])}</td>`).join("")}</tr>
+       <tr><td class="lbl">　〃 値動きの中央値</td>${["1m", "3m", "1y"].map((k) => `<td>${b[k] ? pct(b[k].median) : "—"}</td>`).join("")}</tr>` +
+      `<tr><th colspan="4" style="text-align:left;padding-top:10px">合図の出た日(${ev.length}回)</th></tr>` +
+      ev.slice().reverse().map((e) => `<tr><td>${fmtD(e.date)} <span class="muted">PER ${e.per.toFixed(1)}倍・${yen(e.close)}</span></td>${["1m", "3m", "1y"].map((k) => `<td class="${e[k] != null && e[k] < 0 ? "s" : ""}">${pct(e[k])}</td>`).join("")}</tr>`).join("");
+    $("sa-note").textContent =
+      "当たったのは2007年7月・2008年4月(リーマン・ショック前)など。外れたのは、暴落のあと利益が落ちて PER が高く見えた時期(2009〜2010年、2020年)で、そこはむしろ買い場でした。" +
+      "PER が高いだけの日(18〜22倍超)も、1年後は上がっていた日がほとんどです。大きな下げの直前の PER は14〜20倍で、ふだんと見分けがつきませんでした。" +
+      `PER が${d.settings.rel_exclude_above || 50}倍を超える日(利益が落ちた底の時期)は合図から外しています。`;
+  }
+
   function renderNotes() {
     const i = state.data.info;
     const items = [
@@ -320,6 +347,7 @@
     renderStatus();
     renderCharts();
     renderBacktest();
+    renderSellAll();
     renderNotes();
   }
 
