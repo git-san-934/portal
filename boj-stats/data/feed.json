@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-04T16:30+09:00",
- "report_date": "2026-11-04",
+ "generated_at": "2026-11-05T02:26+09:00",
+ "report_date": "2026-11-05",
  "days": [
   {
    "date": "2026-11-04",
@@ -40,6 +40,20 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "5,325,717億円"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261030.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261030.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/col/col2610.xlsx",
+     "name": "日本銀行が受入れている担保の残高（10月末）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/col/col2610.xlsx",
+     "time": "17:00"
     },
     {
      "kind": "news",
@@ -4576,7 +4590,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-04T16:30+09:00",
+  "checked_at": "2026-11-05T02:26+09:00",
   "counts": {
    "new": 0,
    "unchanged": 102,
