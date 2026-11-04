@@ -2,82 +2,85 @@
 <html lang="ja">
 <head>
   <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>日経平均PER 買い時・売り時</title>
   <meta name="description" content="日経平均のPERが14倍未満なら買い検討、16倍超なら売り検討。固定の線と、過去の平均からのずれ(相対バンド)の2つで毎日判定し、合図のあとの値動きを検証するページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261104a" />
+  <link rel="stylesheet" href="assets/style.css?v=20261104b" />
 </head>
 <body>
-  <div class="wrap">
-    <header>
-      <h1>日経平均PER 買い時・売り時</h1>
-      <p class="intro">日経平均のPER(株価収益率)が14倍未満なら「買い時の検討」、16倍を超えたら「売り時の検討」。この固定の線に加えて、その時点までの過去5年・10年の平均±1σ(相対バンド)でも判定し、合図が出たあとの1か月・3か月・1年の値動きを検証します。</p>
-      <p class="updated" id="status">読み込み中...</p>
-      <p class="refresh"><button type="button" class="reload-btn" id="reload">最新データを読み込む</button></p>
-    </header>
 
-    <main id="main" hidden>
-      <section class="card advice" id="advice" aria-live="polite">
-        <p class="advice-label" id="advice-when"></p>
-        <p class="advice-amount" id="advice-per"></p>
-        <p class="advice-reason" id="advice-reason"></p>
-        <div class="verdicts" id="verdicts"></div>
-        <p class="advice-note">EPS(1株あたり利益)= 終値 ÷ PER。「○倍の株価」は、今のEPSのままPERが○倍になったときの日経平均です。</p>
-      </section>
+<div class="wrap">
+<header>
+  <a class="back" href="../">← わたしのアプリ</a>
+  <h1>日経平均PER 買い時・売り時</h1>
+  <p id="status">読み込み中...</p>
+  <button type="button" class="reload" id="reload">最新データを読み込む</button>
+</header>
 
-      <section class="card">
-        <div class="section-head">
-          <h2>PERの推移と判定の線</h2>
-          <div class="toggle" id="period-toggle" role="group" aria-label="期間"></div>
-        </div>
-        <div class="section-head">
-          <span class="control-label">相対バンドの期間</span>
-          <div class="toggle" id="rel-toggle" role="group" aria-label="相対バンドの期間"></div>
-        </div>
-        <div class="legend" id="legend-per">
-          <span><i class="ln"></i>PER</span>
-          <span><i class="ln th-buy"></i>14倍(買い検討)</span>
-          <span><i class="ln th-sell"></i>16倍(売り検討)</span>
-          <span><i class="bx"></i>相対バンド(平均±1σ)</span>
-          <span><i class="ln dash"></i>過去の平均</span>
-        </div>
-        <div class="chart-box tall" id="chart-per"></div>
-        <h3 class="chart-title">日経平均と理論株価(EPS × 14倍・16倍)</h3>
-        <div class="legend">
-          <span><i class="ln"></i>日経平均(終値)</span>
-          <span><i class="ln buy"></i>EPS × 14倍</span>
-          <span><i class="ln sell"></i>EPS × 16倍</span>
-        </div>
-        <div class="chart-box tall" id="chart-price"></div>
-        <p class="chart-note" id="chart-note">チャートに触れると、その日の値が出ます。</p>
-      </section>
+<main id="main" style="display:none">
 
-      <section class="card">
-        <h2>合図のあとの値動き(検証)</h2>
-        <p class="sub">「合図」は判定の線の外に出た最初の日です(前に線の外だった日から30日以上空いたら別の合図として数えます)。買いは上がった割合、売りは下がった割合を「当たり」としています。「いつでも」は同じ期間の毎月末に買った場合で、これより良ければ合図に意味があったことになります。</p>
-        <div class="table-wrap"><table class="bt" id="bt-table"></table></div>
-        <details>
-          <summary>合図が出た日の一覧</summary>
-          <div class="section-head" style="margin-top:0.5rem">
-            <div class="toggle" id="ev-toggle" role="group" aria-label="判定の方法"></div>
-          </div>
-          <div class="table-wrap"><table class="bt" id="ev-table"></table></div>
-        </details>
-      </section>
-
-      <section class="card notes">
-        <h2>データと注意点</h2>
-        <ul id="notes"></ul>
-      </section>
-    </main>
-
-    <footer>
-      <p><b>投資助言ではありません。</b>売買の判断はご自身の責任で行ってください。</p>
-      <p>データ: 日経平均プロフィル(日本経済新聞社)の日次PER・終値。毎営業日の夕方と夜に自動で取り直して分析し直します。</p>
-      <p><a href="../">ポータルに戻る</a></p>
-    </footer>
+<section class="card" aria-labelledby="p1">
+  <div class="row">
+    <div class="tag">判定の方法</div>
+    <div class="seg" id="method" role="group" aria-label="判定の方法"></div>
   </div>
-  <script src="assets/app.js?v=20261104a"></script>
+  <h2 id="p1">今は買い時？ 売り時？</h2>
+  <p class="lead" id="lead"></p>
+  <div class="status">
+    <div class="pill" id="pill"><span id="pillk">いまの判定</span><b id="pillv"></b><span id="pills"></span></div>
+    <div class="stats" id="stats"></div>
+  </div>
+</section>
+
+<section class="card" aria-labelledby="p2">
+  <h2 id="p2">日経平均と買いの線・売りの線</h2>
+  <p class="lead" id="lead2"></p>
+  <div class="row">
+    <div class="legend">
+      <span><i style="background:var(--line)"></i>日経平均(終値)</span>
+      <span><i class="dash" style="border-color:var(--in)"></i>買いの線</span>
+      <span><i class="dash" style="border-color:var(--out)"></i>売りの線</span>
+      <span><i class="box" style="background:var(--neutral)"></i>あいだ(中立)</span>
+      <span><i class="box b"></i>買い時の期間</span>
+      <span><i class="box s"></i>売り時の期間</span>
+      <span><span class="mk b">買</span>買いの合図</span>
+      <span><span class="mk s">売</span>売りの合図(多いときは ▲▼)</span>
+    </div>
+    <div class="seg" id="rng" role="group" aria-label="期間"></div>
+  </div>
+  <div class="chart" id="ch1"></div>
+  <h3>PERの推移</h3>
+  <div class="legend">
+    <span><i style="background:var(--line)"></i>PER</span>
+    <span><i class="dash" style="border-color:var(--in)"></i>買いの線</span>
+    <span><i class="dash" style="border-color:var(--out)"></i>売りの線</span>
+    <span><i class="dash" style="border-color:var(--muted)"></i>過去の平均(相対のとき)</span>
+  </div>
+  <div class="chart" id="ch2"></div>
+  <p class="note" id="chnote"></p>
+  <div><div class="tag" style="margin-bottom:4px" id="trtag">合図の出た日</div><ul class="trades" id="trades"></ul></div>
+</section>
+
+<section class="card" aria-labelledby="p3">
+  <div class="tag">答え合わせ</div>
+  <h2 id="p3">合図のあと、日経平均はどう動いた？</h2>
+  <p class="lead">「合図」は線の外に出た最初の日です(前に線の外だった日から30日以上空いたら別の合図)。買いは上がった割合、売りは下がった割合を「当たり」としています。「いつでも」は同じ期間の毎月末に買った場合で、これより良ければ合図に意味があったことになります。</p>
+  <div class="tw"><table id="bt"></table></div>
+  <details>
+    <summary>合図が出た日の一覧と、そのあとの値動き</summary>
+    <div class="tw"><table id="ev"></table></div>
+  </details>
+</section>
+
+<section class="card ask">
+  <strong>データと注意点</strong>
+  <ul class="notes" id="notes"></ul>
+  <p class="note"><b>投資助言ではありません。</b>売買の判断はご自身の責任で行ってください。データ: 日経平均プロフィル(日本経済新聞社)の日次PER・終値。平日 17:30・21:00 に自動で取り直して分析し直します。</p>
+</section>
+
+</main>
+</div>
+<script src="assets/app.js?v=20261104b"></script>
 </body>
 </html>
