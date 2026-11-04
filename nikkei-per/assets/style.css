@@ -85,6 +85,8 @@ td.b{color:var(--in)}td.s{color:var(--out)}
 .muted{color:var(--sub)}
 .notes{margin:0;padding-left:1.2rem;font-size:.85rem;display:grid;gap:6px}
 #status.error{color:var(--in)}
-button.reload{all:unset;cursor:pointer;font-size:.8rem;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:2px 12px;margin-top:6px}
+p.refresh{display:flex;gap:8px;flex-wrap:wrap;margin:6px 0 0}
+a.reload{text-decoration:none}
+.reload{all:unset;cursor:pointer;font-size:.8rem;color:var(--accent);border:1px solid var(--accent);border-radius:999px;padding:2px 12px;margin-top:6px}
 #bt td,#bt th,#ev td,#ev th{white-space:nowrap}
 #bt td.b,#bt td.s,#bt td.lbl{text-align:left}

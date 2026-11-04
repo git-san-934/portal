@@ -37,7 +37,7 @@ https://git-san-934.github.io/portal/nikkei-per/
 
 `.github/workflows/update-nikkei-per.yml` が平日 17:30・21:00(JST)頃に
 `scripts/fetch_per.py` → `scripts/analyze.py` を実行し、変わっていればコミットして GitHub Pages を再デプロイします。
-手で動かすときは Actions タブ →「日経平均PER更新」→「Run workflow」(`backfill` に `YYYY-MM` を入れるとその月から取り直します)。
+手で動かすときは、ページの「今すぐ更新」から Issue を作る(所有者が作ると `.github/workflows/request-nikkei-per-update.yml` が更新を起動して Issue を閉じる)か、Actions タブ →「日経平均PER更新」→「Run workflow」(`backfill` に `YYYY-MM` を入れるとその月から取り直します)。
 
 ## ファイル構成
 

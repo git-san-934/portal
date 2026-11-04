@@ -348,6 +348,14 @@
   }
 
   $("reload").onclick = async () => { $("reload").disabled = true; await load(true); $("reload").disabled = false; };
+  // 「今すぐ更新」: 更新依頼の Issue を作る画面を開く。所有者が作ると Actions が PER を取り直して分析し直す
+  // (.github/workflows/request-nikkei-per-update.yml)。トークンはページに置かない
+  const q = new URLSearchParams({
+    title: "日経平均PERを更新",
+    body: "日経平均PER 買い時・売り時の「今すぐ更新」から作成。\n\nこのまま「Create」(または「Submit new issue」)を押すと、2〜5分で PER の取得・再分析とページの更新が行われます。反映後にページの「最新データを読み込む」を押してください。",
+  });
+  $("refresh").href = `https://github.com/git-san-934/portal/issues/new?${q}`;
+
   let rt;
   window.addEventListener("resize", () => { clearTimeout(rt); rt = setTimeout(() => state.data && state.data.ready && renderCharts(), 150); });
   load(false);
