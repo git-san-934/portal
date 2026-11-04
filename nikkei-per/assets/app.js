@@ -190,14 +190,7 @@
     }
     return { pbr, per, armed, okB, okE };
   }
-  // 合図の日から n 年後の終値までの上がり下がり
-  function fwd(S, i, years) {
-    const t = toT(S.date[i]) + years * 365.25 * DAY;
-    let j = i; while (j < S.date.length && state.t[j] < t) j++;
-    return j < S.date.length ? S.close[j] / S.close[i] - 1 : null;
-  }
   const sigs = () => { const T = state.data.trade; return buySignals(state.data.series, T.from, T.rule.buy_pbr); };
-  const avg = (a) => { const x = a.filter((v) => v != null); return x.length ? { m: x.reduce((p, v) => p + v, 0) / x.length, win: x.filter((v) => v > 0).length / x.length, n: x.length } : null; };
 
   function heatStat() {
     const H = state.data.heat;
@@ -233,27 +226,11 @@
       ${heatStat()}
       <div class="stat"><div class="k">PER の買いの線(${PER_LO}倍)の株価</div><div class="v zone-b">${yen(now.close * PER_LO / now.per)}</div><div class="s">${perS}</div></div>`;
 
-    // 成績: 合図ごとのその後と、いつ買っても(毎日)の平均
-    const rows = [...G.pbr.map((x) => ({ ...x, k: "PBR" })), ...G.per.map((x) => ({ ...x, k: "PER" }))].sort((a, b) => (a.date < b.date ? 1 : -1));
-    rows.forEach((x) => { x.y1 = fwd(S, x.i, 1); x.y3 = fwd(S, x.i, 3); x.now = S.close[end] / x.close - 1; });
-    const base = [];
-    for (let i = 0; i < S.date.length; i++) if (S.date[i] >= T.from && S.pbr[i] != null) base.push(i);
-    const b1 = avg(base.map((i) => fwd(S, i, 1))), b3 = avg(base.map((i) => fwd(S, i, 3)));
-    const sum = (k) => { const g = rows.filter((x) => x.k === k), a1 = avg(g.map((x) => x.y1)), a3 = avg(g.map((x) => x.y3));
-      return `<tr><td>${k} の買いの合図(${g.length}回)</td><td>${a1 ? pct(a1.m) + ` <span class="muted">${Math.round(a1.win * 100)}%</span>` : "—"}</td><td>${a3 ? pct(a3.m) + ` <span class="muted">${Math.round(a3.win * 100)}%</span>` : "—"}</td></tr>`; };
-    $("t-table").innerHTML = `<tr><th>${fmtD(T.from)}〜${fmtD(T.to)}</th><th>1年後</th><th>3年後</th></tr>
-      <tr><th class="muted"></th><th class="muted" colspan="2" style="text-align:center">平均と上がった割合</th></tr>
-      ${sum("PBR")}${sum("PER")}
-      <tr><td>いつ買っても(毎日買った場合)</td><td>${pct(b1.m)} <span class="muted">${Math.round(b1.win * 100)}%</span></td><td>${pct(b3.m)} <span class="muted">${Math.round(b3.win * 100)}%</span></td></tr>`;
-    $("s-table").innerHTML = `<tr><th>合図の日</th><th>合図</th><th>終値</th><th>1年後</th><th>3年後</th><th>いままで</th></tr>` +
-      rows.map((x) => `<tr><td>${fmtD(x.date)}</td><td><span class="mk ${x.k === "PBR" ? "sq b" : "b"}">買</span>${x.k} ${x.k === "PBR" ? x.pbr.toFixed(2) : x.per.toFixed(1)}倍</td><td>${yen(x.close)}</td><td>${pct(x.y1)}</td><td>${pct(x.y3)}</td><td>${pct(x.now)}</td></tr>`).join("");
     const notes = [
       "売りの合図はやめました: PER・PBR の売りの線(PER 16倍・PBR 1.5倍など)で売ると、上がり続ける相場で早く売りすぎることが多く、うまく働きませんでした。いまは「いつ買うか」の目安だけを出しています。",
       `なぜこの線か: PBR 1倍は、株価が1株あたりの純資産と同じ水準で、2008年・2012年・2016年・2020年の底はどれも1倍前後でした。1倍割れはめったにないので、少し上の${R.buy_pbr}倍を買いの線にしています。線を割った日ではなく、割ったあと下から上に抜けた日を合図にするので、下げの途中で買うのを避けられます。`,
       `同じ合図が続かないように: PBR は一度${PBR_RE}倍を超えるまで、PER は一度${PER_RE}倍を超えるまで、次の合図を出しません(線の近くを行ったり来たりすると、毎週のように合図が出てしまうため)。`,
-      "「いつ買っても」は2004年9月からの毎営業日に買ったとした場合の平均です。合図の行がこれより高ければ、合図の日に買うほうが有利だったことになります。合図の回数は少ないので、たまたまの結果である可能性があります。",
       "過熱のサイン(①の薄い色): 信用取引の買い残が1年で大きく増えた週のあと1年の上がり方は、平均+2.8%と、すべての週の平均+10.6%より鈍くなっていました(2004〜2026年)。ただ、点灯で売って消えたら買い直すと、上がる場面も逃して持ち続けに負けたので、売りの合図ではなく目安として表示しています。",
-      "配当・税金・売買のコストは入れていません(日経平均の値だけ)。",
     ];
     $("t-notes").innerHTML = notes.map((t) => `<li>${esc(t)}</li>`).join("");
   }
@@ -317,37 +294,6 @@
       (zones ? ` ①の薄い色の期間は「過熱のサイン」の点灯中です。信用取引の買い残(金額)が1年前からどれだけ増えたかが、過去${H.rule.years}年の中で上位${Math.round(H.rule.top * 100)}%に入った週(公表を待つため申込日の${H.rule.lag_days}日後から)に点灯します。` : "");
   }
 
-  // ---------- 答え合わせ ----------
-  const cell = (st) => (st ? `${pct(st.median)} <span class="muted">${Math.round(st.win * 100)}%</span>` : "—");
-  function renderBacktest() {
-    const T = state.data.tests;
-    let h = `<tr><th>判定の方法</th><th></th><th>合図</th><th>1か月後</th><th>3か月後</th><th>1年後</th></tr>
-      <tr><th class="muted" colspan="3"></th><th class="muted" colspan="3" style="text-align:center">中央値と当たりの割合</th></tr>`;
-    Object.values(T).forEach((t) => {
-      if (!t.buy) return;
-      const rows = [
-        ["b", "買い", t.buy.events.length + "回", t.buy.event_stats],
-        ["", "いつでも", "毎月", t.baseline],
-      ];
-      rows.forEach((r, j) => {
-        h += "<tr>";
-        if (j === 0) h += `<td rowspan="2">${esc(t.label)}<br><span class="muted">${t.from.slice(0, 7).replace("-", "/")}〜</span></td>`;
-        h += `<td class="${r[0] || "lbl"}">${r[1]}</td><td>${r[2]}</td>` + ["1m", "3m", "1y"].map((k) => `<td>${cell(r[3][k])}</td>`).join("") + "</tr>";
-      });
-    });
-    $("bt").innerHTML = h;
-    renderEvents();
-  }
-
-  function renderEvents() {
-    const t = state.data.tests[method().test];
-    if (!t || !t.buy) { $("ev").innerHTML = ""; return; }
-    const evs = t.buy.events.map((e) => ({ ...e, k: "b" })).sort((a, b) => (a.date < b.date ? 1 : -1));
-    $("ev").innerHTML = `<tr><th>日付(${esc(t.label)})</th><th>合図</th><th>PER</th><th>終値</th><th>1か月後</th><th>3か月後</th><th>1年後</th></tr>` +
-      (evs.length ? evs.map((e) => `<tr><td>${fmtD(e.date)}</td><td class="${e.k}">買い時</td><td>${times(e.per)}</td><td>${yen(e.close)}</td>${["1m", "3m", "1y"].map((k) => `<td>${pct(e[k])}</td>`).join("")}</tr>`).join("")
-        : `<tr><td colspan="7" class="muted">合図はありませんでした</td></tr>`);
-  }
-
   function renderNotes() {
     const i = state.data.info;
     const items = [
@@ -355,7 +301,7 @@
         ? `いま使っているデータ: ${i.monthly_from.replace("-", "年")}月〜は月末の値(${i.monthly_months}か月)、${i.daily_from.slice(0, 7).replace("-", "年")}月〜は日次(${i.daily_days.toLocaleString()}日)。`
         : `いま使っているデータ: ${fmtD(i.daily_from)}〜の日次(${i.daily_days.toLocaleString()}日)。`,
       "PER は日経平均プロフィルが公表する「加重平均」の値を使い、無い日は「指数ベース」を使います(指数ベースは加重平均より高めに出ます)。",
-      "PBR も日経平均プロフィルの「加重平均」の値です。PBR の日次データは2004年9月からなので、チャートと成績はそこから始めています。",
+      "PBR も日経平均プロフィルの「加重平均」の値です。PBR の日次データは2004年9月からなので、チャートはそこから始めています。",
       "検証の数字は過去の結果で、将来の値動きを約束するものではありません。合図の回数が少ないものは、たまたまの結果である可能性が高いです。",
     ];
     $("notes").innerHTML = items.map((t) => `<li>${esc(t)}</li>`).join("");
@@ -380,7 +326,6 @@
     seg($("rng"), RANGES, "range2", renderCharts);
     renderTrade();
     renderCharts();
-    renderBacktest();
     renderNotes();
   }
 
