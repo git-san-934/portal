@@ -108,8 +108,8 @@ a.reload{text-decoration:none}
 .reflab{font-size:.74rem;color:var(--sub)}
 @media (max-width:560px){.pbars li{grid-template-columns:1fr}.pbars .meta{grid-column:1}}
 /* 3つのチャート: PER と PBR の売買ポイントの色 */
-:root{--m-per:#eb6834;--m-pbr:#6250d6}
-@media (prefers-color-scheme:dark){:root{--m-per:#d95926;--m-pbr:#9085e9}}
+:root{--m-per:#d7102e;--m-pbr:#6250d6}
+@media (prefers-color-scheme:dark){:root{--m-per:#ff5a6e;--m-pbr:#9085e9}}
 .tri{display:inline-block;width:0;height:0;border-left:6px solid transparent;border-right:6px solid transparent;vertical-align:middle;margin-right:4px}
 .tri.up{border-bottom:10px solid currentColor}.tri.dn{border-top:10px solid currentColor}
 .legend .mk{width:1.1rem;height:1.1rem;font-size:.62rem;margin-right:2px}

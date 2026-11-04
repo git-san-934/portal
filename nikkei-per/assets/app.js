@@ -255,7 +255,7 @@
     const pbrT = T.trades.filter((t) => pos[t.date] != null);
     const perT = perTrades(S, T.from).trades.filter((t) => pos[t.date] != null);
     const pbrMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", c: "--m-pbr", big: true, t: `PBR のルールで${t.side === "buy" ? "買い" : "売り"}(PBR ${t.pbr}倍)` });
-    const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", c: "--m-per", tri: true, t: `PER のルールで${t.side === "buy" ? "買い" : "売り"}(PER ${t.per.toFixed(1)}倍)` });
+    const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: t.side === "buy" ? "b" : "s", c: "--m-per", big: true, t: `PER のルールで${t.side === "buy" ? "買い" : "売り"}(PER ${t.per.toFixed(1)}倍)` });
     const tip = (k) => `PER ${S.per[idx[k]].toFixed(1)}倍 · PBR ${S.pbr[idx[k]].toFixed(2)}倍`;
     const yenAx = (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP"));
     // ① 日経平均

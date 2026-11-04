@@ -6,7 +6,7 @@
   <title>日経平均PER・PBR 売買ルール</title>
   <meta name="description" content="日経平均のPERが14倍未満なら買い検討、16倍超なら売り検討。固定の線と、過去の平均からのずれ(相対バンド)の2つで毎日判定し、合図のあとの値動きを検証するページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261104i" />
+  <link rel="stylesheet" href="assets/style.css?v=20261104j" />
 </head>
 <body>
 
@@ -44,7 +44,7 @@
   <div class="legend">
     <span><i style="background:var(--line)"></i>日経平均(終値)</span>
     <span><span class="mk" style="background:var(--m-pbr)">買</span><span class="mk" style="background:var(--m-pbr)">売</span>PBR のルール</span>
-    <span><span class="tri up" style="color:var(--m-per)"></span><span class="tri dn" style="color:var(--m-per)"></span>PER のルール(▲買い ▼売り)</span>
+    <span><span class="mk" style="background:var(--m-per)">買</span><span class="mk" style="background:var(--m-per)">売</span>PER のルール</span>
   </div>
   <div class="chart" id="ch-n"></div>
 
@@ -53,7 +53,7 @@
     <span><i style="background:var(--line)"></i>PER</span>
     <span><i class="dash" style="border-color:var(--in)"></i>買いの線 <span id="per-lo"></span></span>
     <span><i class="dash" style="border-color:var(--out)"></i>売りの線 <span id="per-hi"></span></span>
-    <span><span class="tri up" style="color:var(--m-per)"></span><span class="tri dn" style="color:var(--m-per)"></span>PER の売買</span>
+    <span><span class="mk" style="background:var(--m-per)">買</span><span class="mk" style="background:var(--m-per)">売</span>PER の売買</span>
   </div>
   <div class="chart" id="ch-per"></div>
 
@@ -95,6 +95,6 @@
 
 </main>
 </div>
-<script src="assets/app.js?v=20261104i"></script>
+<script src="assets/app.js?v=20261104j"></script>
 </body>
 </html>
