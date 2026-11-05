@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-05T23:57+09:00",
+ "updated_at": "2026-11-06T06:50+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2283,6 +2283,14 @@
    ],
    "items": [
     {
+     "date": "2026-11-05",
+     "title": "AmeriLife and Palantir Announce Enterprise Partnership to Bring AI-Driven Transformation to Insurance and Retirement Distribution",
+     "url": "https://investors.palantir.com/news-details/2026/AmeriLife-and-Palantir-Announce-Enterprise-Partnership-to-Bring-AI-Driven-Transformation-to-Insurance-and-Retirement-Distribution/default.aspx",
+     "source": "official",
+     "first_seen": "2026-11-06T06:50+09:00",
+     "title_ja": "アメリライフとパランティア、保険と退職金流通に AI 主導の変革をもたらす企業提携を発表"
+    },
+    {
      "date": "2026-11-04",
      "title": "Changshin and Palantir Partner to Connect Footwear Development and Factory Operations with Data and AI",
      "url": "https://investors.palantir.com/news-details/2026/Changshin-and-Palantir-Partner-to-Connect-Footwear-Development-and-Factory-Operations-with-Data-and-AI/default.aspx",
@@ -3281,6 +3289,13 @@
     },
     {
      "date": "2026-11-04",
+     "title": "5 2026年11月4日 イベント・スポンサー活動 トピックス パナソニック インダストリー、半導体製造装置向けオンライン展示会「Machine Evolution Expo」を公開 ~装置の進化を支えるFAデバイス技術・製品・ソリューションを紹介~",
+     "url": "https://news.panasonic.com/jp/topics/206945",
+     "source": "official",
+     "first_seen": "2026-11-06T06:50+09:00"
+    },
+    {
+     "date": "2026-11-04",
      "title": "企業・経営 水利事業の事業譲渡について",
      "url": "https://news.panasonic.com/jp/press/jn261104-1",
      "source": "official",
@@ -3332,7 +3347,7 @@
     },
     {
      "date": "2026-10-30",
-     "title": "4 2026年10月30日 企業・経営 プレスリリース AI関連事業へ約920億円を投資、成長を加速",
+     "title": "6 2026年10月30日 企業・経営 プレスリリース AI関連事業へ約920億円を投資、成長を加速",
      "url": "https://news.panasonic.com/jp/press/jn261030-3",
      "source": "official",
      "first_seen": "2026-10-30T19:28+09:00"
@@ -3360,14 +3375,14 @@
     },
     {
      "date": "2026-10-27",
-     "title": "6 2026年10月27日 技術・研究開発 トピックス ヒューマノイドロボットによる家具組立コンペティションIROS 2026「Humanoid IKEA Assembly Challenge」で2位入賞",
+     "title": "5 2026年10月27日 技術・研究開発 トピックス ヒューマノイドロボットによる家具組立コンペティションIROS 2026「Humanoid IKEA Assembly Challenge」で2位入賞",
      "url": "https://news.panasonic.com/jp/topics/206930",
      "source": "official",
      "first_seen": "2026-10-30T05:57+09:00"
     },
     {
      "date": "2026-10-26",
-     "title": "5 2026年10月26日 企業・経営 Stories 物流を競争力へ――経営基盤を強化するパナソニックグループの物流改革",
+     "title": "2 2026年10月26日 企業・経営 Stories 物流を競争力へ――経営基盤を強化するパナソニックグループの物流改革",
      "url": "https://news.panasonic.com/jp/stories/19087",
      "source": "official",
      "first_seen": "2026-10-26T18:22+09:00"
@@ -3459,7 +3474,7 @@
     },
     {
      "date": "2026-10-14",
-     "title": "2 2026年10月14日 企業・経営 Stories デバイスからシステムまで統合提案――パナソニック エナジーが描く成長戦略とAIインフラへの貢献",
+     "title": "3 2026年10月14日 企業・経営 Stories デバイスからシステムまで統合提案――パナソニック エナジーが描く成長戦略とAIインフラへの貢献",
      "url": "https://news.panasonic.com/jp/stories/19081",
      "source": "official",
      "first_seen": "2026-10-14T18:02+09:00"
