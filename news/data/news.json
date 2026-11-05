@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-05T06:45+09:00",
+ "updated_at": "2026-11-05T10:02+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -35,6 +35,13 @@
      "url": "https://www.nintendo.com/jp/games/switch2/ampyc/special/index.html",
      "source": "official",
      "first_seen": "2026-11-03T08:21+09:00"
+    },
+    {
+     "date": "2026-11-02",
+     "title": "「開発者に訊きました:ゼルダの伝説 時のオカリナ」のChapter1、2を公開しました。 NINTENDO 64版から受け継いできたこと、原作の体験を大切にした開発、今作を象徴するアートのこだわりなど、開発者みずからの言葉でお届けします。 ※Chapter3、4は明日公開予定です。",
+     "url": "https://www.nintendo.com/jp/interview/aa9ja/index.html",
+     "source": "official",
+     "first_seen": "2026-11-05T10:02+09:00"
     },
     {
      "date": "2026-11-02",
@@ -425,13 +432,6 @@
      "date": "2026-09-25",
      "title": "スタジアムの外にも広がるサッカー体験を新たに。『EA SPORTS FCTM 27』がNintendo Switch 2 / Nintendo Switchで本日発売。",
      "url": "https://www.nintendo.com/jp/topics/article/54116f00-894a-4a30-8229-5db013652894",
-     "source": "official",
-     "first_seen": "2026-09-25T00:00+09:00"
-    },
-    {
-     "date": "2026-09-25",
-     "title": "ニンテンドーeショップ新作ソフト情報 9/25(金)号。",
-     "url": "https://www.nintendo.com/jp/topics/article/e94b27af-d05f-41d9-94ab-dce0d7d26c00",
      "source": "official",
      "first_seen": "2026-09-25T00:00+09:00"
     }
