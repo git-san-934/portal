@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-05T10:02+09:00",
+ "updated_at": "2026-11-05T10:45+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,34 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-05",
+     "title": "Nintendo Switch 2 ソフト『ゼルダの伝説 時のオカリナ』の「オカリナの楽譜」ページを公開しました。 ゲーム中に登場するオカリナのメロディを、実際に演奏してみませんか? 楽譜と運指ガイドを紹介しています。",
+     "url": "https://www.nintendo.com/jp/games/switch2/aa9ja/melody/index.html",
+     "source": "official",
+     "first_seen": "2026-11-05T10:45+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "Nintendo Switch 2『ゼルダの伝説 時のオカリナ』は本日発売。グッズなどの最新情報もご紹介。",
+     "url": "https://www.nintendo.com/jp/topics/article/c6084b0b-594c-4506-90c9-89b3fbb6ed9b",
+     "source": "official",
+     "first_seen": "2026-11-05T10:45+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "スマートフォンでご利用いただける連携サービス「ZELDA NOTES」の公式サイトを更新しました。 写真をヒントにゲーム内を探索する遊びや、オカリナの自由演奏など、Nintendo Switch 2 ソフト『ゼルダの伝説 時のオカリナ』と連携した機能を紹介しています。",
+     "url": "https://www.nintendo.com/jp/zelda/notes/ocarina/index.html",
+     "source": "official",
+     "first_seen": "2026-11-05T10:45+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "Nintendo Switch 2 ソフト『ゼルダの伝説 時のオカリナ』の映像を公開しました。 目黒蓮さんが「ドドンゴの洞窟」に挑みます。",
+     "url": "https://www.nintendo.com/jp/games/switch2/aa9ja/special/index.html",
+     "source": "official",
+     "first_seen": "2026-10-29T10:56+09:00"
+    },
     {
      "date": "2026-11-03",
      "title": "「開発者に訊きました:ゼルダの伝説 時のオカリナ」のChapter3、4を公開しました。 今の時代のゲームとして再構築されたアクションやダンジョン、ハイラルをより豊かにするサウンドのこだわりなど、くわしいお話をお届けします。",
@@ -131,13 +159,6 @@
      "date": "2026-10-29",
      "title": "「Hello! インディー」おそうじはパンダにおまかせ!?『バオバオのほっこりクリーニングサービス』",
      "url": "https://www.nintendo.com/jp/topics/article/01b4a338-028e-44c2-8266-b8567a081f0a",
-     "source": "official",
-     "first_seen": "2026-10-29T10:56+09:00"
-    },
-    {
-     "date": "2026-10-29",
-     "title": "Nintendo Switch 2 ソフト『ゼルダの伝説 時のオカリナ』を、目黒蓮さんが体験するCMを公開しました。",
-     "url": "https://www.nintendo.com/jp/games/switch2/aa9ja/special/index.html",
      "source": "official",
      "first_seen": "2026-10-29T10:56+09:00"
     },
@@ -413,27 +434,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/dff1fc71-a113-425b-8161-77573fdf210d",
      "source": "official",
      "first_seen": "2026-09-29T00:00+09:00"
-    },
-    {
-     "date": "2026-09-29",
-     "title": "運命を導き、テト1を狙え。テト1カップ「ファイアーエムブレム 万紫千紅 コラボ祭!」開催。",
-     "url": "https://www.nintendo.com/jp/topics/article/e32c58f0-37f1-4958-9eb6-7ab3f021237e",
-     "source": "official",
-     "first_seen": "2026-09-29T00:00+09:00"
-    },
-    {
-     "date": "2026-09-25",
-     "title": "全国のアニメイトにて「ゼルダの伝説」オリジナル商品を発売。",
-     "url": "https://www.nintendo.com/jp/topics/article/568d0d19-99f8-4fd9-97f6-56b841a50fd7",
-     "source": "official",
-     "first_seen": "2026-09-25T00:00+09:00"
-    },
-    {
-     "date": "2026-09-25",
-     "title": "スタジアムの外にも広がるサッカー体験を新たに。『EA SPORTS FCTM 27』がNintendo Switch 2 / Nintendo Switchで本日発売。",
-     "url": "https://www.nintendo.com/jp/topics/article/54116f00-894a-4a30-8229-5db013652894",
-     "source": "official",
-     "first_seen": "2026-09-25T00:00+09:00"
     }
    ]
   },
