@@ -756,6 +756,8 @@ https://www.fuji.co.jp/en/ir/library/annualreport.html
 https://www.fuji.co.jp/en/ir/library/financial.html
 https://www.fuji.co.jp/en/ir/library/integration-report.html
 https://www.fuji.co.jp/en/ir/library/pdf/20260803_Financial_Results_Explanatory_Materials_E.pdf
+https://www.fuji.co.jp/en/ir/library/pdf/20261105_CONSOLIDATED_FINANCIAL_RESULTS_E.pdf
+https://www.fuji.co.jp/en/ir/library/pdf/20261105_Financial_Results_Explanatory_Materials_E.pdf
 https://www.fuji.co.jp/en/ir/library/pdf/IR2026_E.pdf
 https://www.fuji.co.jp/en/ir/mail/input.html
 https://www.fuji.co.jp/en/ir/news.html
@@ -805,6 +807,8 @@ https://www.fuji.co.jp/en/news/assets/pdf/20260319_Notice_Regarding_Changes_to_S
 https://www.fuji.co.jp/en/news/assets/pdf/20260724_Notice_regarding_the_Completion_of_Payment_for_Disposal_of_Treasury_Shares_for_Transfer-Restricted_Stock_Compensation_E.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/20260803_CONSOLIDATED_FINANCIAL_RESULTS_E.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/20260803_Notice_of_Revision_to_Forecast_of_Business_Results_E.pdf
+https://www.fuji.co.jp/en/news/assets/pdf/20261105_Notice_Regarding_Acquisition_and_Cancellation_of_Treasury_Shares_E.pdf
+https://www.fuji.co.jp/en/news/assets/pdf/20261105_Notice_Regarding_the_Acquisition_of_Treasury_Shares_through_the_Off-Auction_Treasury_Share_Repurchase_Trading_System_%28ToSTNeT-3%29_E.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/2501_INJ2025_E.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/FUJI_OrganizationalChange2026_EN.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/PROTEC2025_EncoreFair_EN.pdf
@@ -1037,6 +1041,8 @@ https://www.fuji.co.jp/ir/library/pdf/20260514_Consolidatedfinancialresults_J.pd
 https://www.fuji.co.jp/ir/library/pdf/20260514_FinancialresultbriefingJ.pdf
 https://www.fuji.co.jp/ir/library/pdf/20260803_CONSOLIDATED_FINANCIAL_RESULTS_J.pdf
 https://www.fuji.co.jp/ir/library/pdf/20260803_Financial_Results_Explanatory_Materials_J.pdf
+https://www.fuji.co.jp/ir/library/pdf/20261105_CONSOLIDATED_FINANCIAL_RESULTS_J.pdf
+https://www.fuji.co.jp/ir/library/pdf/20261105_Financial_Results_Explanatory_Materials_J.pdf
 https://www.fuji.co.jp/ir/library/pdf/AR2016_financial_j1.pdf
 https://www.fuji.co.jp/ir/library/pdf/AR2016_j1.pdf
 https://www.fuji.co.jp/ir/library/pdf/AR2017_financial_j2.pdf
@@ -1225,6 +1231,8 @@ https://www.fuji.co.jp/news/assets/pdf/20260717_nhk_marutto_notice.pdf
 https://www.fuji.co.jp/news/assets/pdf/20260803_Notice_of_Revision_to_Forecast_of_Business_Results_J.pdf
 https://www.fuji.co.jp/news/assets/pdf/20260807_donation_kumamoto.pdf
 https://www.fuji.co.jp/news/assets/pdf/20261020_Quist_nitori_store_pickup.pdf
+https://www.fuji.co.jp/news/assets/pdf/20261105_Notice_Regarding_Acquisition_and_Cancellation_of_Treasury_Shares_J.pdf
+https://www.fuji.co.jp/news/assets/pdf/20261105_Notice_Regarding_the_Acquisition_of_Treasury_Shares_through_the_Off-Auction_Treasury_Share_Repurchase_Trading_System_%28ToSTNeT-3%29_J.pdf
 https://www.fuji.co.jp/news/assets/pdf/2026_SOMPO_Sustainability_Index_J.pdf
 https://www.fuji.co.jp/news/assets/pdf/2501_INJ2025_J.pdf
 https://www.fuji.co.jp/news/assets/pdf/E260105_SEA_JP.pdf

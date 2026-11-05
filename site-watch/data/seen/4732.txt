@@ -219,6 +219,7 @@ https://www.ussnet.co.jp/en/ir/item/data202605.pdf
 https://www.ussnet.co.jp/en/ir/item/data202606.pdf
 https://www.ussnet.co.jp/en/ir/item/data202608.pdf
 https://www.ussnet.co.jp/en/ir/item/data202609.pdf
+https://www.ussnet.co.jp/en/ir/item/data202610.pdf
 https://www.ussnet.co.jp/en/ir/item/data_202604.pdf
 https://www.ussnet.co.jp/en/ir/item/data_202607.pdf
 https://www.ussnet.co.jp/en/ir/item/databook2026.pdf
@@ -1256,6 +1257,7 @@ https://www.ussnet.co.jp/ir/item/data202606.pdf
 https://www.ussnet.co.jp/ir/item/data202607.pdf
 https://www.ussnet.co.jp/ir/item/data202608.pdf
 https://www.ussnet.co.jp/ir/item/data202609.pdf
+https://www.ussnet.co.jp/ir/item/data202610.pdf
 https://www.ussnet.co.jp/ir/item/data_202604.pdf
 https://www.ussnet.co.jp/ir/item/databook.pdf
 https://www.ussnet.co.jp/ir/item/databook2011-2.pdf

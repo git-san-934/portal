@@ -39,6 +39,14 @@ https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrate
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2025/asset/Integrated-Report-2025-06-en.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2025/asset/Integrated-Report-2025-all-print-en.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2025/asset/Integrated-Report-2025-all-view-en.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2026/asset/Integrated-Report-2026-01-en.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2026/asset/Integrated-Report-2026-02-en.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2026/asset/Integrated-Report-2026-03-en.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2026/asset/Integrated-Report-2026-04-en.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2026/asset/Integrated-Report-2026-05-en.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2026/asset/Integrated-Report-2026-06-en.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2026/asset/Integrated-Report-2026-07-en.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/integrated-report/2026/asset/Integrated-Report-2026-all-en.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/securities/asset/Annual-Securities-Report-FY2024-EN.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/securities/asset/Annual-Securities-Report-FY2025-EN.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/en-jp/ir/library/securities/asset/Semi-Annual-Securities-Report-FY2025-EN.pdf
@@ -120,6 +128,14 @@ https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrat
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2025/asset/Integrated-Report-2025-06-ja.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2025/asset/Integrated-Report-2025-all-print-ja.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2025/asset/Integrated-Report-2025-all-view-ja.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2026/asset/Integrated-Report-2026-01-ja.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2026/asset/Integrated-Report-2026-02-ja.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2026/asset/Integrated-Report-2026-03-ja.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2026/asset/Integrated-Report-2026-04-ja.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2026/asset/Integrated-Report-2026-05-ja.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2026/asset/Integrated-Report-2026-06-ja.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2026/asset/Integrated-Report-2026-07-ja.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/library/integrated-report/2026/asset/Integrated-Report-2026-all-ja.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/meeting/asset/Extraordinary-Report-250702-JP.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/meeting/asset/Extraordinary-Report-260702-JP.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/ir/meeting/asset/Partial-Correction-of-Notice-of-Convocation-250718-JP.pdf
@@ -219,6 +235,7 @@ https://www.kioxia-holdings.com/en-jp/ir/earnings.html
 https://www.kioxia-holdings.com/en-jp/ir/earnings/chart.html
 https://www.kioxia-holdings.com/en-jp/ir/earnings/highlights.html
 https://www.kioxia-holdings.com/en-jp/ir/governance.html
+https://www.kioxia-holdings.com/en-jp/ir/ir-message.html
 https://www.kioxia-holdings.com/en-jp/ir/library.html
 https://www.kioxia-holdings.com/en-jp/ir/library/data.html
 https://www.kioxia-holdings.com/en-jp/ir/library/event.html
@@ -424,6 +441,7 @@ https://www.kioxia-holdings.com/ja-jp/ir/earnings.html
 https://www.kioxia-holdings.com/ja-jp/ir/earnings/chart.html
 https://www.kioxia-holdings.com/ja-jp/ir/earnings/highlights.html
 https://www.kioxia-holdings.com/ja-jp/ir/governance.html
+https://www.kioxia-holdings.com/ja-jp/ir/ir-message.html
 https://www.kioxia-holdings.com/ja-jp/ir/library.html
 https://www.kioxia-holdings.com/ja-jp/ir/library/data.html
 https://www.kioxia-holdings.com/ja-jp/ir/library/event.html

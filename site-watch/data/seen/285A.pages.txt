@@ -13,6 +13,7 @@ https://www.kioxia-holdings.com/en-jp/ir/earnings.html
 https://www.kioxia-holdings.com/en-jp/ir/earnings/chart.html
 https://www.kioxia-holdings.com/en-jp/ir/earnings/highlights.html
 https://www.kioxia-holdings.com/en-jp/ir/governance.html
+https://www.kioxia-holdings.com/en-jp/ir/ir-message.html
 https://www.kioxia-holdings.com/en-jp/ir/library.html
 https://www.kioxia-holdings.com/en-jp/ir/library/data.html
 https://www.kioxia-holdings.com/en-jp/ir/library/event.html
@@ -82,6 +83,7 @@ https://www.kioxia-holdings.com/ja-jp/ir/earnings.html
 https://www.kioxia-holdings.com/ja-jp/ir/earnings/chart.html
 https://www.kioxia-holdings.com/ja-jp/ir/earnings/highlights.html
 https://www.kioxia-holdings.com/ja-jp/ir/governance.html
+https://www.kioxia-holdings.com/ja-jp/ir/ir-message.html
 https://www.kioxia-holdings.com/ja-jp/ir/library.html
 https://www.kioxia-holdings.com/ja-jp/ir/library/data.html
 https://www.kioxia-holdings.com/ja-jp/ir/library/event.html

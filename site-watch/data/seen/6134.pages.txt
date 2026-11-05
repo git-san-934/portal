@@ -161,6 +161,7 @@ https://www.fuji.co.jp/ir/policy/message.html
 https://www.fuji.co.jp/ir/policy/plan.html
 https://www.fuji.co.jp/ir/stock/
 https://www.fuji.co.jp/ir/stock/chart.html
+https://www.fuji.co.jp/ir/stock/stockinfo.html
 https://www.fuji.co.jp/news/
 https://www.fuji.co.jp/news/2026/
 https://www.fuji.co.jp/news/20260701.html
