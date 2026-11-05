@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-05T10:45+09:00",
+ "updated_at": "2026-11-05T11:44+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-05",
+     "title": "Nintendo Switch ソフト『ピクミン4』の無料アップデートを本日より配信開始しました。 Nintendo Switch 2 本体のディスプレイに対応し、よりくっきりとした表示で遊べます。",
+     "url": "https://www.nintendo.com/jp/hardware/switch2/guide/free-update/index.html",
+     "source": "official",
+     "first_seen": "2026-11-05T11:44+09:00"
+    },
     {
      "date": "2026-11-05",
      "title": "Nintendo Switch 2 ソフト『ゼルダの伝説 時のオカリナ』の「オカリナの楽譜」ページを公開しました。 ゲーム中に登場するオカリナのメロディを、実際に演奏してみませんか? 楽譜と運指ガイドを紹介しています。",
@@ -427,13 +434,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/397de170-5c61-4586-a937-e4e7127b3a4f",
      "source": "official",
      "first_seen": "2026-09-30T00:00+09:00"
-    },
-    {
-     "date": "2026-09-29",
-     "title": "『Minecraft』の世界で始まる新たな冒険。『Minecraft Dungeons II』がNintendo Switch 2 / Nintendo Switchで本日配信。",
-     "url": "https://www.nintendo.com/jp/topics/article/dff1fc71-a113-425b-8161-77573fdf210d",
-     "source": "official",
-     "first_seen": "2026-09-29T00:00+09:00"
     }
    ]
   },
@@ -3197,6 +3197,20 @@
    ],
    "items": [
     {
+     "date": "2026-11-05",
+     "title": "企業・経営 / Stories 【ポイント解説】2026年度2Q決算:2Qの過去最高益更新 年間見通しを上方修正、2028年度目標を2年前倒し達成へ",
+     "url": "https://news.panasonic.com/jp/stories/19138",
+     "source": "official",
+     "first_seen": "2026-11-05T11:44+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "技術・研究開発 パナソニックHD、指先の触覚に即応して器用な両手作業を行うロボット操作AIを共同開発",
+     "url": "https://news.panasonic.com/jp/press/jn261105-1",
+     "source": "official",
+     "first_seen": "2026-11-05T11:44+09:00"
+    },
+    {
      "date": "2026-11-04",
      "title": "企業・経営 水利事業の事業譲渡について",
      "url": "https://news.panasonic.com/jp/press/jn261104-1",
@@ -3284,7 +3298,7 @@
     },
     {
      "date": "2026-10-26",
-     "title": "企業・経営 / Stories 物流を競争力へ――経営基盤を強化するパナソニックグループの物流改革",
+     "title": "5 2026年10月26日 企業・経営 Stories 物流を競争力へ――経営基盤を強化するパナソニックグループの物流改革",
      "url": "https://news.panasonic.com/jp/stories/19087",
      "source": "official",
      "first_seen": "2026-10-26T18:22+09:00"
