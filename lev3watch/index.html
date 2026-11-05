@@ -63,6 +63,12 @@ td,th{padding:3px 10px;border-bottom:1px solid var(--grid);text-align:right}
 th:first-child,td:first-child{text-align:left}
 .tw{overflow-x:auto}
 a.back{color:var(--sub);font-size:.85rem;text-decoration:none}
+.refresh{display:flex;flex-wrap:wrap;gap:8px;margin:10px 0 0}
+.reload-btn,.refresh-btn{font:inherit;font-size:.85rem;font-weight:700;padding:6px 16px;border-radius:999px;text-decoration:none;cursor:pointer;border:1px solid var(--accent);line-height:1.4}
+.reload-btn{background:var(--accent);color:#fff}
+.reload-btn:disabled{opacity:.6;cursor:wait}
+.refresh-btn{background:var(--card);color:var(--accent)}
+.refresh-note{font-size:.75rem;color:var(--sub);margin:6px 0 0}
 body{margin:0}
 @media (max-width:560px){
 body{font-size:14px}
@@ -90,7 +96,12 @@ header h1{font-size:1.3rem}
 <header>
   <a class="back" href="../">← わたしのアプリ</a>
   <h1>3倍ブル見張り台</h1>
-  <p id="asof"></p>
+  <p id="asof">読み込み中…</p>
+  <p class="refresh">
+    <button type="button" class="reload-btn" id="reload">最新データを読み込む</button>
+    <a class="refresh-btn" id="refresh" target="_blank" rel="noopener">今すぐ更新</a>
+  </p>
+  <p class="refresh-note">「最新データを読み込む」はページを開いたまま最新のデータを取り直します。「今すぐ更新」は GitHub の画面が開くので「Create」を押すと、3〜5分で株価を取りに行きます（GitHub へのログインが必要です。ふだんは火〜土の朝 7:20・9:20 に自動更新）。</p>
 </header>
 
 <section class="card" aria-labelledby="p1">
@@ -154,7 +165,7 @@ header h1{font-size:1.3rem}
 </div>
 
 <script>
-let D;
+let D, k1 = 252, drawAll = () => {}, histCache = null;
 const css = n => getComputedStyle(document.documentElement).getPropertyValue(n).trim();
 const NS = 'http://www.w3.org/2000/svg';
 const el = (t, a = {}, p) => { const e = document.createElementNS(NS, t); for (const k in a) e.setAttribute(k, a[k]); if (p) p.appendChild(e); return e; };
@@ -242,15 +253,21 @@ async function load(name) {
   return r.json();
 }
 async function main() {
-const [live, hist] = await Promise.all([load('lev3watch.json'), load('history.json')]);
+const btn = document.getElementById('reload'), asofEl = document.getElementById('asof');
+const prevGen = D ? D.gen : null;
+btn.disabled = true;
+try {
+const [live, hist] = await Promise.all([load('lev3watch.json'), histCache || load('history.json')]);
+histCache = hist;
 // 2006年〜の下落率: 固定の再現値のあとに、実際の値を5営業日ごとにつなぐ
 const ddlong = { d: [...hist.ddlong.d] };
 for (const f of ['TQQQ', 'UPRO', 'UDOW', 'TNA', 'MIDU']) ddlong[f] = [...hist.ddlong[f]];
 const hl = hist.ddlong.d[hist.ddlong.d.length - 1];
 live.dd.d.forEach((d, i) => { if (d > hl && ((live.dd.d.length - 1 - i) % 5 === 0)) { ddlong.d.push(d); for (const f of ['TQQQ', 'UPRO', 'UDOW', 'TNA', 'MIDU']) ddlong[f].push(live.dd[f][i]); } });
-D = { asof: live.asof, spy: live.spy, dd: live.dd, ddlong, eq: hist.eq };
+D = { asof: live.asof, spy: live.spy, dd: live.dd, ddlong, eq: hist.eq, gen: live.generated_at };
 const gen = live.generated_at ? live.generated_at.replace('T', ' ').slice(0, 16) : '';
-document.getElementById('asof').textContent = `データ：${fmtD(D.asof)} 終値時点（${gen.replace(/-/g, '/')} 更新・平日の朝に自動更新）` + (live.stale && live.stale.length ? `　取得できず前回の値：${live.stale.join('、')}` : '');
+document.getElementById('asof').textContent = `データ：${fmtD(D.asof)} 終値時点（${gen.replace(/-/g, '/')} 更新・平日の朝に自動更新）` + (live.stale && live.stale.length ? `　取得できず前回の値：${live.stale.join('、')}` : '')
+  + (prevGen ? (prevGen === live.generated_at ? ' ・新しいデータはまだありません' : ' ・新しいデータを読み込みました') : '');
 document.getElementById('hasof').textContent = fmtD(hist.asof);
 document.getElementById('foot').textContent = `3倍ETFの2006年〜${fmtD(hist.asof)}の値と検証結果は、元の指数から計算した再現値です。それ以降は実際の終値（Yahoo Finance）。投資助言ではありません。`;
 
@@ -281,7 +298,6 @@ function draw1(k) {
     xkey: k > 300 ? (d => d.slice(0, 4)) : (d => d.slice(0, 7)), xfmt: k > 300 ? (d => d.slice(0, 4)) : (d => (+d.slice(5, 7)) + '月')
   });
 }
-let k1 = 252;
 document.querySelectorAll('#rng1 button').forEach(b => b.onclick = () => { k1 = +b.dataset.n; document.querySelectorAll('#rng1 button').forEach(x => x.setAttribute('aria-pressed', x === b)); draw1(k1); });
 
 /* ---- 案2 ---- */
@@ -346,12 +362,25 @@ function draw3() {
     xkey: d => d.slice(0, 4), xfmt: d => d.slice(0, 4)
   });
 }
-function drawAll() { draw1(k1); drawBul(); draw2(); draw3(); }
+drawAll = () => { draw1(k1); drawBul(); draw2(); draw3(); };
 drawAll();
-let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(drawAll, 150); });
-matchMedia('(prefers-color-scheme: dark)').addEventListener('change', drawAll);
+} catch (e) {
+  asofEl.textContent = 'データを読み込めませんでした（' + e.message + '）';
+} finally {
+  btn.disabled = false;
 }
-main().catch(e => { document.getElementById('asof').textContent = 'データを読み込めませんでした（' + e.message + '）'; });
+}
+let rt; window.addEventListener('resize', () => { clearTimeout(rt); rt = setTimeout(() => drawAll(), 150); });
+matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => drawAll());
+document.getElementById('reload').onclick = main;
+// 「今すぐ更新」: 更新依頼の Issue を作る画面を開く。所有者が作ると Actions が株価を取りに行く
+// (.github/workflows/request-lev3watch-update.yml)
+const q = new URLSearchParams({
+  title: '3倍ブル見張り台を更新',
+  body: '3倍ブル見張り台の「今すぐ更新」から作成。\n\nこのまま「Create」(または「Submit new issue」)を押すと、3〜5分で株価の取得とページの更新が行われます。反映後にページの「最新データを読み込む」を押してください。',
+});
+document.getElementById('refresh').href = `https://github.com/git-san-934/portal/issues/new?${q}`;
+main();
 </script>
 </body>
 </html>
