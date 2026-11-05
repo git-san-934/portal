@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-05T12:30+09:00",
+ "updated_at": "2026-11-05T20:32+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,43 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-05",
+     "time": "15:30",
+     "title": "剰余金の配当(中間配当)および期末配当予想に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261027557155.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-05T00:00+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "time": "15:30",
+     "title": "2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261027557139.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-05T00:00+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "「2027年3月期 第2四半期 決算説明資料」を掲載しました。",
+     "url": "https://www.nintendo.co.jp/ir/pdf/2026/261105_3.pdf",
+     "source": "official",
+     "first_seen": "2026-11-05T20:32+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "「剰余金の配当(中間配当)および期末配当予想に関するお知らせ」を掲載しました。",
+     "url": "https://www.nintendo.co.jp/ir/pdf/2026/261105_2.pdf",
+     "source": "official",
+     "first_seen": "2026-11-05T20:32+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "「2027年3月期 第2四半期 決算短信」を掲載しました。",
+     "url": "https://www.nintendo.co.jp/ir/pdf/2026/261105.pdf",
+     "source": "official",
+     "first_seen": "2026-11-05T20:32+09:00"
+    },
     {
      "date": "2026-11-05",
      "title": "Nintendo Switch ソフト『ピクミン4』の無料アップデートを本日より配信開始しました。 Nintendo Switch 2 本体のディスプレイに対応し、よりくっきりとした表示で遊べます。",
@@ -399,41 +436,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/d33dd7e0-e58b-4b05-b22c-4c3b93d2f050",
      "source": "official",
      "first_seen": "2026-10-02T11:24+09:00"
-    },
-    {
-     "date": "2026-10-02",
-     "title": "「アニメソング大集合『カラオケJOYSOUND for Nintendo Switch』10日間無料キャンペーン」開催。",
-     "url": "https://www.nintendo.com/jp/topics/article/8c957f1f-99e5-449f-808f-b4c81f184d2f",
-     "source": "official",
-     "first_seen": "2026-10-02T11:24+09:00"
-    },
-    {
-     "date": "2026-10-02",
-     "title": "「仕事を読み解くキーワード」のページを更新しました。任天堂ではたらく社員の声を追加しています。",
-     "url": "https://www.nintendo.co.jp/jobs/keyword/index.html",
-     "source": "official",
-     "first_seen": "2026-09-18T00:00+09:00"
-    },
-    {
-     "date": "2026-10-01",
-     "title": "『ゼノブレイド2 Nintendo Switch 2 Edition』のパッケージ版が本日より発売開始。アップグレードパス / ダウンロード版は配信中。 ※本作の対象年齢は「15歳以上」です。",
-     "url": "https://www.nintendo.com/jp/topics/article/cf2ecdd9-7072-408b-99b5-40bd7b48e884",
-     "source": "official",
-     "first_seen": "2026-10-01T11:16+09:00"
-    },
-    {
-     "date": "2026-10-01",
-     "title": "キャラクターフィギュアがゲットできる『ドンキーコング バナンザ DKアイランド&エメラルドラッシュ』の期間限定イベント(全12回)が、月替わりで遊べるように。",
-     "url": "https://www.nintendo.com/jp/topics/article/ceab0dcc-3faf-4ff0-bbf2-e2ed3984315d",
-     "source": "official",
-     "first_seen": "2026-10-01T11:16+09:00"
-    },
-    {
-     "date": "2026-09-30",
-     "title": "『Star Fox』の無料アップデートは本日配信。『Nintendo Music』での楽曲配信や折り紙で作るアーウィンの情報も。",
-     "url": "https://www.nintendo.com/jp/topics/article/397de170-5c61-4586-a937-e4e7127b3a4f",
-     "source": "official",
-     "first_seen": "2026-09-30T00:00+09:00"
     }
    ]
   },
@@ -1129,6 +1131,66 @@
    ],
    "items": [
     {
+     "date": "2026-11-05",
+     "time": "16:45",
+     "title": "自己株式立会外買付取引(ToSTNeT-3)による自己株式の買付けに関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261105565533.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-05T00:00+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "time": "15:30",
+     "title": "2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261105564997.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-05T00:00+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "time": "15:30",
+     "title": "2027年3月期第2四半期(中間期) 決算説明資料",
+     "url": "https://www.release.tdnet.info/inbs/140120261105565177.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-05T00:00+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "time": "15:30",
+     "title": "自己株式の取得および自己株式立会外買付取引(ToSTNeT-3)による自己株式の買付けならびに自己株式消却に係る事項の決定に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261105565247.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-05T00:00+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "お知らせ IR 2027年3月期 第2四半期(中間期)決算説明資料",
+     "url": "https://www.fuji.co.jp/ir/library/pdf/20261105_Financial_Results_Explanatory_Materials_J.pdf",
+     "source": "official",
+     "first_seen": "2026-11-05T20:32+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "お知らせ IR 自己株式立会外買付取引(ToSTNeT-3)による自己株式の買付けに関するお知らせ [PDF:136.9KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/20261105_Notice_Regarding_the_Acquisition_of_Treasury_Shares_through_the_Off-Auction_Treasury_Share_Repurchase_Trading_System_%28ToSTNeT-3%29_J.pdf",
+     "source": "official",
+     "first_seen": "2026-11-05T20:32+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "お知らせ IR 自己株式の取得および自己株式立会外買付取引(ToSTNeT-3)による自己株式の買付けならびに自己株式消却に係る事項の決定に関するお知らせ [PDF:293.8KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/20261105_Notice_Regarding_Acquisition_and_Cancellation_of_Treasury_Shares_J.pdf",
+     "source": "official",
+     "first_seen": "2026-11-05T20:32+09:00"
+    },
+    {
+     "date": "2026-11-05",
+     "title": "お知らせ IR 2027年3月期 第2四半期(中間期)決算短信",
+     "url": "https://www.fuji.co.jp/ir/library/pdf/20261105_CONSOLIDATED_FINANCIAL_RESULTS_J.pdf",
+     "source": "official",
+     "first_seen": "2026-11-05T20:32+09:00"
+    },
+    {
      "date": "2026-10-22",
      "title": "お知らせ 企業情報 製品・事業 製品サイト緊急メンテナンスのお知らせ(電子部品実装ロボット / 移乗サポートロボット)",
      "url": "https://www.fuji.co.jp/news/fuji_smt_site.html",
@@ -1298,6 +1360,13 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-11-05",
+     "title": "「統合報告書2026」を公開しました。",
+     "url": "https://www.kioxia-holdings.com/ja-jp/ir/library/integrated-report.html",
+     "source": "official",
+     "first_seen": "2026-11-05T20:32+09:00"
+    },
     {
      "date": "2026-11-04",
      "time": "16:00",
