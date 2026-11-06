@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-06T10:46+09:00",
+ "updated_at": "2026-11-06T11:48+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-06",
+     "title": "「2027年3月期 第2四半期決算説明会/ 経営方針説明会(オンライン)プレゼンテーション資料」を掲載しました。",
+     "url": "https://www.nintendo.co.jp/ir/pdf/2026/261106.pdf",
+     "source": "official",
+     "first_seen": "2026-11-06T11:48+09:00"
+    },
     {
      "date": "2026-11-06",
      "title": "美しくも苛烈な地球奪還の戦いへ。SFアクション・アドベンチャー『Stellar BladeTM コンプリートエディション』がNintendo Switch 2 で本日発売。 ※本作の対象年齢は「17歳以上」です。",
@@ -429,13 +436,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/92bfdd2b-48b0-40bb-a1d9-5ebd6a5d451b",
      "source": "official",
      "first_seen": "2026-10-06T10:52+09:00"
-    },
-    {
-     "date": "2026-10-06",
-     "title": "ニュースリリース「3本のソフトからお好きな1本を選択してダウンロードできる「Nintendo Switch 2(日本語・国内専用) 選べるソフト セット」を発売」を公開しました。",
-     "url": "https://www.nintendo.co.jp/corporate/release/2026/261006.html",
-     "source": "official",
-     "first_seen": "2026-10-06T10:26+09:00"
     }
    ]
   },
@@ -1131,6 +1131,22 @@
    ],
    "items": [
     {
+     "date": "2026-11-06",
+     "time": "11:28",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZCDI",
+     "source": "edinet",
+     "first_seen": "2026-11-06T11:48+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "time": "11:27",
+     "title": "半期報告書-第81期(2026/04/01-2027/03/31)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZCDH",
+     "source": "edinet",
+     "first_seen": "2026-11-06T11:48+09:00"
+    },
+    {
      "date": "2026-11-05",
      "time": "16:45",
      "title": "自己株式立会外買付取引(ToSTNeT-3)による自己株式の買付けに関するお知らせ",
@@ -1360,6 +1376,21 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-11-06",
+     "time": "11:22",
+     "title": "半期報告書-第9期(2026/04/01-2027/03/31)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZCHE",
+     "source": "edinet",
+     "first_seen": "2026-11-06T11:48+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "title": "2027年3月期 半期報告書",
+     "url": "https://ssl4.eir-parts.net/doc/285A/yuho_pdf/S100ZCHE/00.pdf",
+     "source": "official",
+     "first_seen": "2026-11-06T11:48+09:00"
+    },
     {
      "date": "2026-11-06",
      "title": "「KIOXIA Forum 2026」の開催について",
