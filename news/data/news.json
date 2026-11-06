@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-06T12:27+09:00",
+ "updated_at": "2026-11-06T20:31+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,29 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-06",
+     "time": "13:47",
+     "title": "半期報告書-第87期(2026/04/01-2027/03/31)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZB07",
+     "source": "edinet",
+     "first_seen": "2026-11-06T00:00+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "time": "13:36",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZB30",
+     "source": "edinet",
+     "first_seen": "2026-11-06T00:00+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "title": "「第87期 半期報告書」を掲載しました。",
+     "url": "https://www.nintendo.co.jp/ir/pdf/2026/security_q2609.pdf",
+     "source": "official",
+     "first_seen": "2026-11-06T20:31+09:00"
+    },
     {
      "date": "2026-11-06",
      "title": "「2027年3月期 第2四半期決算説明会/ 経営方針説明会(オンライン)プレゼンテーション資料」を掲載しました。",
@@ -42,6 +65,13 @@
      "url": "https://www.nintendo.com/jp/topics/article/66b54cd2-6cb3-42fa-8e74-eac83abb50f6",
      "source": "official",
      "first_seen": "2026-11-06T10:46+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "title": "「デザイン系 オンラインセミナー アートワーク制作」「デザイン系 オンラインセミナー ソフトウェア制作」のお申し込み受付を開始しました。",
+     "url": "https://www.nintendo.co.jp/jobs/recruit/event/index.html",
+     "source": "official",
+     "first_seen": "2026-10-16T17:30+09:00"
     },
     {
      "date": "2026-11-05",
@@ -320,13 +350,6 @@
     },
     {
      "date": "2026-10-16",
-     "title": "理工系・デザイン系・サウンド系の各採用イベントへのお申し込み受付を開始しました。",
-     "url": "https://www.nintendo.co.jp/jobs/recruit/event/index.html",
-     "source": "official",
-     "first_seen": "2026-10-16T17:30+09:00"
-    },
-    {
-     "date": "2026-10-16",
      "title": "ニンテンドーeショップ新作ソフト情報 10/16(金)号。",
      "url": "https://www.nintendo.com/jp/topics/article/d99e9c21-98d1-48cd-b732-7daaf6084fda",
      "source": "official",
@@ -415,27 +438,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/4a70ddcf-0562-410c-9b0f-23cbe7817730",
      "source": "official",
      "first_seen": "2026-10-08T11:14+09:00"
-    },
-    {
-     "date": "2026-10-06",
-     "title": "「マイマリオ(MY MARIO)」の公式サイトを更新しました。 つみきシリーズの新商品「のせかえメロディーカー」や、Nintendo Switchソフト「かおルイージ」「かおピーチ」の情報を掲載。コマどりマリオ第8話、第9話も公開しています。",
-     "url": "https://www.nintendo.com/jp/my-mario/index.html",
-     "source": "official",
-     "first_seen": "2026-10-06T10:52+09:00"
-    },
-    {
-     "date": "2026-10-06",
-     "title": "3本のソフトからお好きな1本を選択してダウンロードできるお得な「Nintendo Switch 2(日本語・国内専用) 選べるソフトセット」が登場。",
-     "url": "https://www.nintendo.com/jp/topics/article/965576b6-1e14-409c-8da6-515804839baf",
-     "source": "official",
-     "first_seen": "2026-10-06T10:52+09:00"
-    },
-    {
-     "date": "2026-10-06",
-     "title": "「マイマリオ」に「のせかえメロディーカー」が登場。「かおルイージ」「かおピーチ」の配信や、キャラクターのつみきを使った「かおあそび」、「コマどりマリオ」最新話もご紹介。",
-     "url": "https://www.nintendo.com/jp/topics/article/92bfdd2b-48b0-40bb-a1d9-5ebd6a5d451b",
-     "source": "official",
-     "first_seen": "2026-10-06T10:52+09:00"
     }
    ]
   },
@@ -1132,6 +1134,22 @@
    "items": [
     {
      "date": "2026-11-06",
+     "time": "16:00",
+     "title": "自己株式立会外買付取引(ToSTNeT-3)による取得結果および取得終了ならびに自己株式の消却に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261106564916.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-06T20:31+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "time": "16:00",
+     "title": "コミットメント型自己株式取得(FCSR)による自己株式取得のための第三者割当による第1回新株予約権の発行中止に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261106567522.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-06T20:31+09:00"
+    },
+    {
+     "date": "2026-11-06",
      "time": "11:28",
      "title": "確認書",
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZCDI",
@@ -1145,6 +1163,20 @@
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZCDH",
      "source": "edinet",
      "first_seen": "2026-11-06T11:48+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "title": "お知らせ IR コミットメント型自己株式取得(FCSR)による自己株式取得のための第三者割当による第1回新株予約権の発行中止に関するお知らせ [PDF:104.4KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/20261106_Notice_on_the_Cancellation_of_the_1st_Issuance_of_Stock_Acquisition_Right_J.pdf",
+     "source": "official",
+     "first_seen": "2026-11-06T20:31+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "title": "お知らせ IR 自己株式立会外買付取引(ToSTNeT-3)による取得結果および取得終了ならびに自己株式の消却に関するお知らせ [PDF:128.7KB] PDFファイルが新規ウィンドウで開きます",
+     "url": "https://www.fuji.co.jp/news/assets/pdf/20261106_Notice_of_the_Result_and_Completion_of_the_Acquisition_of_Treasury_Shares_J.pdf",
+     "source": "official",
+     "first_seen": "2026-11-06T20:31+09:00"
     },
     {
      "date": "2026-11-05",
@@ -1376,6 +1408,14 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-11-06",
+     "time": "13:33",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZCHQ",
+     "source": "edinet",
+     "first_seen": "2026-11-06T20:31+09:00"
+    },
     {
      "date": "2026-11-06",
      "time": "11:22",
@@ -2877,6 +2917,13 @@
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZBRF",
      "source": "edinet",
      "first_seen": "2026-11-06T12:27+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "title": "自己株式の取得状況に関するお知らせ",
+     "url": "https://www.nippon-chem.co.jp/news/14178",
+     "source": "official",
+     "first_seen": "2026-11-06T20:31+09:00"
     },
     {
      "date": "2026-10-29",
