@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-06T10:06+09:00",
+ "updated_at": "2026-11-06T10:46+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,27 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-06",
+     "title": "美しくも苛烈な地球奪還の戦いへ。SFアクション・アドベンチャー『Stellar BladeTM コンプリートエディション』がNintendo Switch 2 で本日発売。 ※本作の対象年齢は「17歳以上」です。",
+     "url": "https://www.nintendo.com/jp/topics/article/b1972348-4cb5-4c66-994c-0f78076f1e24",
+     "source": "official",
+     "first_seen": "2026-11-06T10:46+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "title": "「応援ソング大集合『カラオケJOYSOUND for Nintendo Switch』10日間無料キャンペーン」開催。",
+     "url": "https://www.nintendo.com/jp/topics/article/b55c5dd2-bff4-4979-a43f-d5578bfb91e2",
+     "source": "official",
+     "first_seen": "2026-11-06T10:46+09:00"
+    },
+    {
+     "date": "2026-11-06",
+     "title": "ニンテンドーeショップ新作ソフト情報 11/6(金)号。",
+     "url": "https://www.nintendo.com/jp/topics/article/66b54cd2-6cb3-42fa-8e74-eac83abb50f6",
+     "source": "official",
+     "first_seen": "2026-11-06T10:46+09:00"
+    },
     {
      "date": "2026-11-05",
      "time": "15:30",
@@ -415,27 +436,6 @@
      "url": "https://www.nintendo.co.jp/corporate/release/2026/261006.html",
      "source": "official",
      "first_seen": "2026-10-06T10:26+09:00"
-    },
-    {
-     "date": "2026-10-05",
-     "title": "『Nintendo Today!』の「ゼルダの伝説 コレクション・カード」で「ムジュラの仮面 パック」を配信中。『Nintendo Music』で「ムジュラの仮面」の楽曲も配信予定。アイコンパーツも登場。",
-     "url": "https://www.nintendo.com/jp/topics/article/8c4941f0-c924-4d46-864d-967ea8338f42",
-     "source": "official",
-     "first_seen": "2026-10-05T17:56+09:00"
-    },
-    {
-     "date": "2026-10-02",
-     "title": "「ゼルダの伝説40周年コンサート」は、2027年1月より全国5都市で開催。チケットの先行申込(抽選)も受付中。",
-     "url": "https://www.nintendo.com/jp/topics/article/a65622f7-c603-4685-bef7-2e98feb50bf4",
-     "source": "official",
-     "first_seen": "2026-10-02T11:24+09:00"
-    },
-    {
-     "date": "2026-10-02",
-     "title": "ニンテンドーeショップ新作ソフト情報 10/2(金)号。",
-     "url": "https://www.nintendo.com/jp/topics/article/d33dd7e0-e58b-4b05-b22c-4c3b93d2f050",
-     "source": "official",
-     "first_seen": "2026-10-02T11:24+09:00"
     }
    ]
   },
@@ -1356,9 +1356,17 @@
    "home": "https://www.kioxia-holdings.com/ja-jp/",
    "official_status": "ok",
    "official_pages": [
-    "https://www.kioxia-holdings.com/ja-jp/news.html"
+    "https://www.kioxia-holdings.com/ja-jp/news.html",
+    "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-11-06",
+     "title": "「KIOXIA Forum 2026」の開催について",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20261106-1.html",
+     "source": "official",
+     "first_seen": "2026-11-06T10:46+09:00"
+    },
     {
      "date": "2026-11-05",
      "title": "「統合報告書2026」を公開しました。",
