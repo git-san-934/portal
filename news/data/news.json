@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-06T23:37+09:00",
+ "updated_at": "2026-11-07T06:22+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2771,6 +2771,14 @@
    ],
    "items": [
     {
+     "date": "2026-11-06",
+     "title": "SpaceX Thanks Don Harrison for His Service on the Board",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-Thanks-Don-Harrison-for-His-Service-on-the-Board--2026-Si4CNaX_y_/default.aspx",
+     "source": "official",
+     "first_seen": "2026-11-07T06:22+09:00",
+     "title_ja": "SpaceX、ドン・ハリソンの取締役会での功績に感謝"
+    },
+    {
      "date": "2026-10-26",
      "title": "SPACEX SECURES $40 BILLION IN THE LARGEST GPU FINANCING EVER",
      "url": "https://ir.spacex.com/updates/releases-details/2026/SPACEX-SECURES-40-BILLION-IN-THE-LARGEST-GPU-FINANCING-EVER-2026-EnDqGhTAB3/default.aspx",
@@ -3440,7 +3448,7 @@
     },
     {
      "date": "2026-10-30",
-     "title": "6 2026年10月30日 企業・経営 プレスリリース AI関連事業へ約920億円を投資、成長を加速",
+     "title": "5 2026年10月30日 企業・経営 プレスリリース AI関連事業へ約920億円を投資、成長を加速",
      "url": "https://news.panasonic.com/jp/press/jn261030-3",
      "source": "official",
      "first_seen": "2026-10-30T19:28+09:00"
@@ -3475,7 +3483,7 @@
     },
     {
      "date": "2026-10-26",
-     "title": "2 2026年10月26日 企業・経営 Stories 物流を競争力へ――経営基盤を強化するパナソニックグループの物流改革",
+     "title": "6 2026年10月26日 企業・経営 Stories 物流を競争力へ――経営基盤を強化するパナソニックグループの物流改革",
      "url": "https://news.panasonic.com/jp/stories/19087",
      "source": "official",
      "first_seen": "2026-10-26T18:22+09:00"
