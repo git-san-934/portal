@@ -68,6 +68,7 @@ https://www.nippon-chem.co.jp/en/news/11884
 https://www.nippon-chem.co.jp/en/news/12036
 https://www.nippon-chem.co.jp/en/news/12584
 https://www.nippon-chem.co.jp/en/news/13381
+https://www.nippon-chem.co.jp/en/news/14180
 https://www.nippon-chem.co.jp/en/news/1428
 https://www.nippon-chem.co.jp/en/news/1433
 https://www.nippon-chem.co.jp/en/news/8705
@@ -549,6 +550,7 @@ https://www.nippon-chem.co.jp/news/1409
 https://www.nippon-chem.co.jp/news/1411
 https://www.nippon-chem.co.jp/news/1413
 https://www.nippon-chem.co.jp/news/1416
+https://www.nippon-chem.co.jp/news/14178
 https://www.nippon-chem.co.jp/news/1419
 https://www.nippon-chem.co.jp/news/1422
 https://www.nippon-chem.co.jp/news/1425
@@ -1388,6 +1390,7 @@ https://www.nippon-chem.co.jp/wp-content/uploads/Notice-Concerning-Revisions-to-
 https://www.nippon-chem.co.jp/wp-content/uploads/Notice-Regarding-Sale-of-Cross-Shareholdings-and-Expected-Recording-of-Extraordinary-Income260810.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/Notice-Regarding-the-Purchase-Status-of-Treasury-Shares（20260904）.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/Notice-Regarding-the-Purchase-Status-of-Treasury-Shares（20261005）.pdf
+https://www.nippon-chem.co.jp/wp-content/uploads/Notice-Regarding-the-Purchase-Status-of-Treasury-Shares（20261106）.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/PAP.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/SMERF.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/bisphosphine-series.pdf
@@ -1562,3 +1565,4 @@ https://www.nippon-chem.co.jp/wp-content/uploads/持続的な企業価値向上�
 https://www.nippon-chem.co.jp/wp-content/uploads/第168期定時株主総会決議ご通知.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/自己株式の取得状況に関するお知らせ（20260904）.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/自己株式の取得状況に関するお知らせ（20261005）.pdf
+https://www.nippon-chem.co.jp/wp-content/uploads/自己株式の取得状況に関するお知らせ（20261106）.pdf

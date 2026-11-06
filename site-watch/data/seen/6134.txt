@@ -809,6 +809,8 @@ https://www.fuji.co.jp/en/news/assets/pdf/20260803_CONSOLIDATED_FINANCIAL_RESULT
 https://www.fuji.co.jp/en/news/assets/pdf/20260803_Notice_of_Revision_to_Forecast_of_Business_Results_E.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/20261105_Notice_Regarding_Acquisition_and_Cancellation_of_Treasury_Shares_E.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/20261105_Notice_Regarding_the_Acquisition_of_Treasury_Shares_through_the_Off-Auction_Treasury_Share_Repurchase_Trading_System_%28ToSTNeT-3%29_E.pdf
+https://www.fuji.co.jp/en/news/assets/pdf/20261106_Notice_of_the_Result_and_Completion_of_the_Acquisition_of_Treasury_Shares_E.pdf
+https://www.fuji.co.jp/en/news/assets/pdf/20261106_Notice_on_the_Cancellation_of_the_1st_Issuance_of_Stock_Acquisition_Right_E.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/2501_INJ2025_E.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/FUJI_OrganizationalChange2026_EN.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/PROTEC2025_EncoreFair_EN.pdf
@@ -1234,6 +1236,8 @@ https://www.fuji.co.jp/news/assets/pdf/20260807_donation_kumamoto.pdf
 https://www.fuji.co.jp/news/assets/pdf/20261020_Quist_nitori_store_pickup.pdf
 https://www.fuji.co.jp/news/assets/pdf/20261105_Notice_Regarding_Acquisition_and_Cancellation_of_Treasury_Shares_J.pdf
 https://www.fuji.co.jp/news/assets/pdf/20261105_Notice_Regarding_the_Acquisition_of_Treasury_Shares_through_the_Off-Auction_Treasury_Share_Repurchase_Trading_System_%28ToSTNeT-3%29_J.pdf
+https://www.fuji.co.jp/news/assets/pdf/20261106_Notice_of_the_Result_and_Completion_of_the_Acquisition_of_Treasury_Shares_J.pdf
+https://www.fuji.co.jp/news/assets/pdf/20261106_Notice_on_the_Cancellation_of_the_1st_Issuance_of_Stock_Acquisition_Right_J.pdf
 https://www.fuji.co.jp/news/assets/pdf/2026_SOMPO_Sustainability_Index_J.pdf
 https://www.fuji.co.jp/news/assets/pdf/2501_INJ2025_J.pdf
 https://www.fuji.co.jp/news/assets/pdf/E260105_SEA_JP.pdf
