@@ -1,7 +1,19 @@
 {
- "generated_at": "2026-11-06T16:55+09:00",
- "report_date": "2026-11-06",
+ "generated_at": "2026-11-07T01:53+09:00",
+ "report_date": "2026-11-07",
  "days": [
+  {
+   "date": "2026-11-07",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/koen_2026/ko261107a.htm",
+     "name": "【講演】植田総裁「日本の経常収支黒字と企業行動の変容」（IMF）",
+     "url": "https://www.boj.or.jp/about/press/koen_2026/ko261107a.htm",
+     "time": "01:00"
+    }
+   ]
+  },
   {
    "date": "2026-11-06",
    "items": [
@@ -4701,10 +4713,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-06T16:55+09:00",
+  "checked_at": "2026-11-07T01:53+09:00",
   "counts": {
-   "new": 8,
-   "unchanged": 94,
+   "new": 0,
+   "unchanged": 102,
    "error": 0,
    "stale": 0
   },
