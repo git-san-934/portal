@@ -173,6 +173,8 @@ https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/asse
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/asset/2023-Sustainability-KIOXIA-JP.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/asset/2024-Sustainability-KIOXIA-JP.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/asset/2025-Sustainability-KIOXIA-JP.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/asset/Third-Party-GHG-Verification-jp.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/governance/asset/kioxia-hotline-retired-jp.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/performance-data/asset/kioxia-performance-data_2024Env_J.xlsx
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/performance-data/asset/kioxia-performance-data_2024Gov_J.xlsx
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/performance-data/asset/kioxia-performance-data_2024Soc_J.xlsx
@@ -181,6 +183,7 @@ https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/soci
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/sustainability/social/asset/Action-plan_kioxia_jp_w_2026.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia-hd/shared/top/asset/kioxia-technology-rd-j.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia/en-jp/about/news/2018/asset/20180517_1.pdf
+https://www.kioxia-holdings.com/content/dam/kioxia/ja-jp/about/asset/kioxia-hotline-201910-jp.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia/ja-jp/about/news/2017/asset/20170127_1.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia/ja-jp/about/news/2017/asset/20170224_1.pdf
 https://www.kioxia-holdings.com/content/dam/kioxia/ja-jp/about/news/2017/asset/20170906_1.pdf
@@ -227,6 +230,8 @@ https://www.kioxia-holdings.com/en-jp/contact.html
 https://www.kioxia-holdings.com/en-jp/contact/agree-ir.html
 https://www.kioxia-holdings.com/en-jp/contact/agree-privacy.html
 https://www.kioxia-holdings.com/en-jp/contact/agree.html
+https://www.kioxia-holdings.com/en-jp/contact/form-ir.html
+https://www.kioxia-holdings.com/en-jp/contact/form.html
 https://www.kioxia-holdings.com/en-jp/ir.html
 https://www.kioxia-holdings.com/en-jp/ir/calendar.html
 https://www.kioxia-holdings.com/en-jp/ir/disclaimer.html
@@ -432,6 +437,7 @@ https://www.kioxia-holdings.com/ja-jp/contact/agree-ir.html
 https://www.kioxia-holdings.com/ja-jp/contact/agree-privacy.html
 https://www.kioxia-holdings.com/ja-jp/contact/agree.html
 https://www.kioxia-holdings.com/ja-jp/contact/form-ir.html
+https://www.kioxia-holdings.com/ja-jp/contact/form-privacy.html
 https://www.kioxia-holdings.com/ja-jp/contact/form.html
 https://www.kioxia-holdings.com/ja-jp/ir.html
 https://www.kioxia-holdings.com/ja-jp/ir/calendar.html
