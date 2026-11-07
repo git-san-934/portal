@@ -9,10 +9,12 @@
   --up: #c8102e;
   --down: #1a5fb4;
   /* 追加買いの段階(浅い → 深い)。同じ色相の明るい → 暗い */
-  --tier1: #f0a35e;
-  --tier2: #d9622b;
-  --tier3: #9c2f12;
-  --tier4: #5e1a08;
+  --tier1: #f6c48f;
+  --tier2: #f0a35e;
+  --tier3: #d9622b;
+  --tier4: #b8391a;
+  --tier5: #7d2410;
+  --tier6: #4a1406;
   --high: #8a8175;
   /* 売りの合図と200日平均 */
   --sell: #1a5fb4;
@@ -31,10 +33,12 @@
     --accent: #e0662f;
     --up: #ff6b81;
     --down: #6fa8ff;
-    --tier1: #f7c08a;
-    --tier2: #ee8a4f;
-    --tier3: #d8552a;
-    --tier4: #b8391a;
+    --tier1: #fbd9b0;
+    --tier2: #f7c08a;
+    --tier3: #ee8a4f;
+    --tier4: #d8552a;
+    --tier5: #b8391a;
+    --tier6: #8f2a12;
     --high: #8f877b;
     --sell: #6fa8ff;
     --ma: #8fbf7a;
@@ -95,7 +99,7 @@ main { display: flex; flex-direction: column; gap: 1rem; }
 
 .ladder {
   display: grid;
-  grid-template-columns: repeat(5, minmax(0, 1fr));
+  grid-template-columns: repeat(4, minmax(0, 1fr));
   gap: 0.4rem;
   margin-top: 0.8rem;
   text-align: center;
