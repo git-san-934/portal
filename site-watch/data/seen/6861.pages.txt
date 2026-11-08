@@ -68,6 +68,7 @@ https://www.keyence.co.jp/products/3d-measure/cmm/am-1000/pr/205577001.jsp?ad_lo
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/pr/211254001.jsp
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/pr/211254001.jsp?ad_local=sitetopslbn1
 https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/pr/211254001.jsp?ad_local=sitetopslbn2
+https://www.keyence.co.jp/products/3d-measure/cmm/wm-7000/pr/211254001.jsp?ad_local=sitetopslbn3
 https://www.keyence.co.jp/products/3d-printers/3d-printers/
 https://www.keyence.co.jp/products/applisensor/
 https://www.keyence.co.jp/products/barcode/
@@ -83,6 +84,8 @@ https://www.keyence.co.jp/products/controls/wireless-system/
 https://www.keyence.co.jp/products/controls/wireless-system/ws-1000/
 https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/pr/201244001.jsp
 https://www.keyence.co.jp/products/marker/
+https://www.keyence.co.jp/products/marker/inkjet-printers/mk-r1000/pr/210288001.jsp
+https://www.keyence.co.jp/products/marker/inkjet-printers/mk-r1000/pr/210288001.jsp?ad_local=sitetopslbn1
 https://www.keyence.co.jp/products/measure-sys/image-measure/
 https://www.keyence.co.jp/products/measure-sys/image-measure/im-x1000/pr/186643003.jsp
 https://www.keyence.co.jp/products/measure-sys/image-measure/im-x1000/pr/206538002.jsp
@@ -137,10 +140,12 @@ https://www.keyence.co.jp/products/vision/vision-sys/
 https://www.keyence.co.jp/products/vision/vision-sys/cg-r/lp/210934001.jsp
 https://www.keyence.co.jp/products/vision/vision-sys/cg-r/lp/210934001.jsp?ad_local=sitetopslbn2
 https://www.keyence.co.jp/products/vision/vision-sys/cg-r/lp/210934001.jsp?ad_local=sitetopslbn3
+https://www.keyence.co.jp/products/vision/vision-sys/cg-r/lp/210934001.jsp?ad_local=sitetopslbn4
 https://www.keyence.co.jp/products/vision/visual-inspection/
 https://www.keyence.co.jp/products/vision/visual-inspection/qd/pr/210291001.jsp
 https://www.keyence.co.jp/products/vision/visual-inspection/qd/pr/210291001.jsp?ad_local=sitetopslbn3
 https://www.keyence.co.jp/products/vision/visual-inspection/qd/pr/210291001.jsp?ad_local=sitetopslbn4
+https://www.keyence.co.jp/products/vision/visual-inspection/qd/pr/210291001.jsp?ad_local=sitetopslbn5
 https://www.keyence.co.jp/search/documents/?mode=ca
 https://www.keyence.co.jp/search/documents/?mode=cd
 https://www.keyence.co.jp/search/documents/?mode=ma
@@ -170,6 +175,7 @@ https://www.keyence.co.jp/ss/general/embedded-software/
 https://www.keyence.co.jp/ss/general/siteguide/
 https://www.keyence.co.jp/ss/products/controls/kv-intelligence-pr/
 https://www.keyence.co.jp/ss/products/controls/kv-intelligence-pr/?ad_local=sitetopslbn1
+https://www.keyence.co.jp/ss/products/controls/kv-intelligence-pr/?ad_local=sitetopslbn2
 https://www.keyence.co.jp/ss/products/controls/wifi/
 https://www.keyence.co.jp/ss/products/microscope/bc-1000/002/2073_01.jsp
 https://www.keyence.co.jp/ss/products/microscope/ea-300/001/2071_01.jsp
