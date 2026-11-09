@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-09T11:42+09:00",
+ "updated_at": "2026-11-09T21:09+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1141,7 +1141,15 @@
    "items": [
     {
      "date": "2026-11-09",
-     "title": "リリース 製品・事業 ヒマラヤスポーツ&ゴルフ アピタ稲沢店で 『Quist』を活用した店舗受取サービスを開始 [PDF:712.2KB] PDFファイルが新規ウィンドウで開きます",
+     "time": "14:53",
+     "title": "変更報告書(特例対象株券等)(提出: 野村證券株式会社)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZCYA",
+     "source": "edinet",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "title": "リリース 製品・事業 ヒマラヤスポーツ&ゴルフ アピタ稲沢店で 『Quist』を活用した店舗受取サービスを開始 [PDF:716.0KB] PDFファイルが新規ウィンドウで開きます",
      "url": "https://www.fuji.co.jp/news/assets/pdf/Quist_himaraya_store_pickup.pdf",
      "source": "official",
      "first_seen": "2026-11-09T10:11+09:00"
@@ -3241,6 +3249,46 @@
    "official_pages": [],
    "items": [
     {
+     "date": "2026-11-09",
+     "time": "15:02",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZCR4",
+     "source": "edinet",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:01",
+     "title": "半期報告書-第132期(2026/04/01-2026/09/30)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZCR0",
+     "source": "edinet",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:00",
+     "title": "2027年3月期 第2四半期(中間期)決算短信[日本基準](連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261022554746.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:00",
+     "title": "2027年3月期 第2四半期決算補足説明資料",
+     "url": "https://www.release.tdnet.info/inbs/140120261104563652.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:00",
+     "title": "連結業績予想の修正に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261104563592.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
      "date": "2026-11-02",
      "time": "16:26",
      "title": "変更報告書(提出: SH Investment, Inc)",
@@ -3398,6 +3446,13 @@
    "items": [
     {
      "date": "2026-11-09",
+     "title": "製品・サービス 高濃度セルロースファイバー成形材料kinariに新たに3グレードを追加 国産の未利用のヒノキ、スギを活用したグレードと、コスト競争力を高めたグレードの量産販売を開始",
+     "url": "https://news.panasonic.com/jp/press/jn261109-2",
+     "source": "official",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
+     "date": "2026-11-09",
      "title": "企業・経営 パナソニック オートモーティブシステムズ、本社機能を横浜・みなとみらいへ移転",
      "url": "https://news.panasonic.com/jp/press/jn261109-1",
      "source": "official",
@@ -3412,7 +3467,7 @@
     },
     {
      "date": "2026-11-05",
-     "title": "技術・研究開発 パナソニックHD、指先の触覚に即応して器用な両手作業を行うロボット操作AIを共同開発",
+     "title": "5 2026年11月5日 技術・研究開発 プレスリリース パナソニックHD、指先の触覚に即応して器用な両手作業を行うロボット操作AIを共同開発",
      "url": "https://news.panasonic.com/jp/press/jn261105-1",
      "source": "official",
      "first_seen": "2026-11-05T11:44+09:00"
@@ -3812,14 +3867,6 @@
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZ4B",
      "source": "edinet",
      "first_seen": "2026-08-28T00:00+09:00"
-    },
-    {
-     "date": "2026-08-03",
-     "time": "09:00",
-     "title": "訂正発行登録書",
-     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YTKU",
-     "source": "edinet",
-     "first_seen": "2026-08-03T00:00+09:00"
     }
    ]
   },
@@ -3954,6 +4001,77 @@
     "https://www.mirait-one.com/info/"
    ],
    "items": [
+    {
+     "date": "2026-11-09",
+     "time": "15:01",
+     "title": "訂正発行登録書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZDAB",
+     "source": "edinet",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:00",
+     "title": "半期報告書-第17期(2026/04/01-2027/03/31)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZDBG",
+     "source": "edinet",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:00",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZDD5",
+     "source": "edinet",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:00",
+     "title": "臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZDA2",
+     "source": "edinet",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:00",
+     "title": "自己株式取得に係る事項の決定に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261109568566.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-09T00:00+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:00",
+     "title": "株式給付信託(BBT)への追加拠出に伴う自己株式の処分に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261109568921.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-09T00:00+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:00",
+     "title": "2027年3月期 第2四半期(中間期)決算短信[日本基準](連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261109568586.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-09T00:00+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "time": "15:00",
+     "title": "2027年3月期 第2四半期決算補足資料",
+     "url": "https://www.release.tdnet.info/inbs/140120261109568599.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-09T00:00+09:00"
+    },
+    {
+     "date": "2026-11-09",
+     "title": "IRサイト更新情報(月次受注状況のお知らせ(9月分))",
+     "url": "https://www.mirait-one.com/info/002023.html",
+     "source": "official",
+     "first_seen": "2026-11-09T21:09+09:00"
+    },
     {
      "date": "2026-11-05",
      "time": "12:00",
