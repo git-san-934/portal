@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-09T10:56+09:00",
+ "updated_at": "2026-11-09T11:42+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -3397,6 +3397,13 @@
    ],
    "items": [
     {
+     "date": "2026-11-09",
+     "title": "企業・経営 パナソニック オートモーティブシステムズ、本社機能を横浜・みなとみらいへ移転",
+     "url": "https://news.panasonic.com/jp/press/jn261109-1",
+     "source": "official",
+     "first_seen": "2026-11-09T11:42+09:00"
+    },
+    {
      "date": "2026-11-05",
      "title": "企業・経営 / Stories 【ポイント解説】2026年度2Q決算:2Qの過去最高益更新 年間見通しを上方修正、2028年度目標を2年前倒し達成へ",
      "url": "https://news.panasonic.com/jp/stories/19138",
@@ -3419,7 +3426,7 @@
     },
     {
      "date": "2026-11-04",
-     "title": "企業・経営 水利事業の事業譲渡について",
+     "title": "4 2026年11月4日 企業・経営 プレスリリース 水利事業の事業譲渡について",
      "url": "https://news.panasonic.com/jp/press/jn261104-1",
      "source": "official",
      "first_seen": "2026-11-04T20:36+09:00"
