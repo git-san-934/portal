@@ -28239,6 +28239,7 @@ https://www.keyence.co.jp/ss/products/microscope/ea-casestudy/
 https://www.keyence.co.jp/ss/products/microscope/ea-casestudy/?cid=WEB063
 https://www.keyence.co.jp/ss/products/microscope/knowledge/vhx_deep-contrast.jsp
 https://www.keyence.co.jp/ss/products/microscope/knowledge/vhx_wafer-edges-observation.jsp
+https://www.keyence.co.jp/ss/products/microscope/knowledge/vl-fast-easy.jsp
 https://www.keyence.co.jp/ss/products/microscope/knowledge/vl_precision-sheet-metal.jsp
 https://www.keyence.co.jp/ss/products/microscope/measurement-solutions/
 https://www.keyence.co.jp/ss/products/microscope/measurement-solutions/additive-manufacturing.jsp
@@ -30293,6 +30294,7 @@ https://www.keyence.co.jp/support/user/mobile-computers/bt-a2000_a1000/verup/
 https://www.keyence.co.jp/support/user/mobile-computers/bt-a800/
 https://www.keyence.co.jp/support/user/mobile-computers/bt-a800/manual/
 https://www.keyence.co.jp/support/user/mobile-computers/bt-a800/software/
+https://www.keyence.co.jp/support/user/mobile-computers/bt-a800/verup/
 https://www.keyence.co.jp/support/user/mobile-computers/bt_dx/knowledge/
 https://www.keyence.co.jp/support/user/mobile-computers/bt_dx/knowledge/bt-h2a/tips_001.jsp
 https://www.keyence.co.jp/support/user/mobile-computers/bt_dx/knowledge/bt-h2a/tips_002.jsp
@@ -30631,6 +30633,10 @@ https://www.keyence.co.jp/support/user/vision/iv4/video/
 https://www.keyence.co.jp/support/user/vision/iv_support.jsp
 https://www.keyence.co.jp/support/user/vision/robotvision-3d/
 https://www.keyence.co.jp/support/user/vision/seminar/
+https://www.keyence.co.jp/support/user/vision/visual-inspection/qd/
+https://www.keyence.co.jp/support/user/vision/visual-inspection/qd/e-learning/
+https://www.keyence.co.jp/support/user/vision/visual-inspection/qd/manual/
+https://www.keyence.co.jp/support/user/vision/visual-inspection/qd/video/
 https://www.keyence.co.jp/support/user/vision/vs/
 https://www.keyence.co.jp/support/user/vision/vs/activation/
 https://www.keyence.co.jp/support/user/vision/vs/ai_setting/
