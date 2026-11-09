@@ -1,0 +1,56 @@
+name: 今日の3銘柄 その後の成績を更新
+
+on:
+  schedule:
+    # 平日 16:30 JST(大引け後の終値)と 20:00 JST(取りこぼしの補い)
+    - cron: "30 7 * * 1-5"
+    - cron: "0 11 * * 1-5"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - daily-picks/data/picks.json
+      - daily-picks/scripts/**
+      - .github/workflows/update-daily-picks-performance.yml
+
+permissions:
+  contents: write
+  actions: write
+
+concurrency:
+  group: daily-picks-performance
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r daily-picks/scripts/requirements.txt
+      - name: 株価を取得して成績を集計
+        run: python daily-picks/scripts/build_performance.py --yfinance
+      - name: コミット
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add daily-picks/data/performance.json daily-picks/data/prices.json
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "3銘柄のその後を更新 ($(TZ=Asia/Tokyo date +%F))"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
+      - name: GitHub Pages を再デプロイ
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main

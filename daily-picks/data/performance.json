@@ -1,0 +1,750 @@
+{
+ "updated_at": "2026-11-10T08:22+09:00",
+ "latest_price_date": "2026-11-09",
+ "rules": {
+  "stop_buffer": 0.99,
+  "rr": 3.0
+ },
+ "summary": {
+  "picks": 23,
+  "with_data": 20,
+  "avg_ret_pct": -0.6,
+  "win_rate_pct": 45.0,
+  "best": "コナミグループ",
+  "worst": "丸文",
+  "closed": 9,
+  "closed_wins": 2,
+  "closed_sum_r": 0.18,
+  "open": 11,
+  "avg_1d_pct": 0.65,
+  "n_1d": 20,
+  "avg_3d_pct": -0.02,
+  "n_3d": 14,
+  "avg_5d_pct": -0.01,
+  "n_5d": 7
+ },
+ "rows": [
+  {
+   "date": "2026-11-10",
+   "dates": [
+    "2026-11-10"
+   ],
+   "price_date": "2026-11-09",
+   "code": "7458",
+   "name": "第一興商",
+   "rank": 1,
+   "base": 1739,
+   "data_close": 1739.0,
+   "support": 1685.0,
+   "support_date": "2026-10-29",
+   "stop": 1668.2,
+   "target": 1951.4,
+   "risk_pct": 4.1,
+   "target_pct": 12.2,
+   "days_held": 0,
+   "status": "これから"
+  },
+  {
+   "date": "2026-11-10",
+   "dates": [
+    "2026-11-10"
+   ],
+   "price_date": "2026-11-09",
+   "code": "6089",
+   "name": "ウィルグループ",
+   "rank": 2,
+   "base": 1146,
+   "data_close": 1146.0,
+   "support": 1114.0,
+   "support_date": "2026-10-29",
+   "stop": 1102.9,
+   "target": 1275.3,
+   "risk_pct": 3.8,
+   "target_pct": 11.3,
+   "days_held": 0,
+   "status": "これから"
+  },
+  {
+   "date": "2026-11-10",
+   "dates": [
+    "2026-11-10"
+   ],
+   "price_date": "2026-11-09",
+   "code": "2533",
+   "name": "オエノンホールディングス",
+   "rank": 3,
+   "base": 476,
+   "data_close": 476.0,
+   "support": 443.0,
+   "support_date": "2026-10-29",
+   "stop": 438.6,
+   "target": 588.2,
+   "risk_pct": 7.9,
+   "target_pct": 23.6,
+   "days_held": 0,
+   "status": "これから"
+  },
+  {
+   "date": "2026-11-07",
+   "dates": [
+    "2026-11-07"
+   ],
+   "price_date": "2026-11-06",
+   "code": "3252",
+   "name": "地主",
+   "rank": 1,
+   "base": 2924,
+   "data_close": 2924.0,
+   "support": 2613.0,
+   "support_date": "2026-11-04",
+   "stop": 2586.9,
+   "target": 3935.3,
+   "risk_pct": 11.5,
+   "target_pct": 34.6,
+   "days_held": 1,
+   "last_date": "2026-11-09",
+   "last_close": 2943.0,
+   "ret_pct": 0.65,
+   "max_up_pct": 3.11,
+   "max_down_pct": -0.44,
+   "horizon": {
+    "1": 0.65
+   },
+   "status": "保有中",
+   "open_r": 0.06
+  },
+  {
+   "date": "2026-11-07",
+   "dates": [
+    "2026-11-07"
+   ],
+   "price_date": "2026-11-06",
+   "code": "3028",
+   "name": "アルペン",
+   "rank": 2,
+   "base": 2476,
+   "data_close": 2476.0,
+   "support": 2278.0,
+   "support_date": "2026-10-29",
+   "stop": 2255.2,
+   "target": 3138.4,
+   "risk_pct": 8.9,
+   "target_pct": 26.8,
+   "days_held": 1,
+   "last_date": "2026-11-09",
+   "last_close": 2565.0,
+   "ret_pct": 3.59,
+   "max_up_pct": 5.25,
+   "max_down_pct": 1.49,
+   "horizon": {
+    "1": 3.59
+   },
+   "status": "保有中",
+   "open_r": 0.4
+  },
+  {
+   "date": "2026-11-07",
+   "dates": [
+    "2026-11-07"
+   ],
+   "price_date": "2026-11-06",
+   "code": "7956",
+   "name": "ピジョン",
+   "rank": 3,
+   "base": 2189.5,
+   "data_close": 2189.5,
+   "support": 2035.0,
+   "support_date": "2026-11-04",
+   "stop": 2014.7,
+   "target": 2713.9,
+   "risk_pct": 8.0,
+   "target_pct": 24.0,
+   "days_held": 1,
+   "last_date": "2026-11-09",
+   "last_close": 2281.0,
+   "ret_pct": 4.18,
+   "max_up_pct": 4.64,
+   "max_down_pct": 0.57,
+   "horizon": {
+    "1": 4.18
+   },
+   "status": "保有中",
+   "open_r": 0.52
+  },
+  {
+   "date": "2026-11-06",
+   "dates": [
+    "2026-11-06"
+   ],
+   "price_date": "2026-11-05",
+   "code": "3401",
+   "name": "帝人",
+   "rank": 1,
+   "base": 1873,
+   "data_close": 1873.0,
+   "support": 1596.0,
+   "support_date": "2026-10-29",
+   "stop": 1580.0,
+   "target": 2752.0,
+   "risk_pct": 15.6,
+   "target_pct": 46.9,
+   "days_held": 2,
+   "last_date": "2026-11-09",
+   "last_close": 1726.5,
+   "ret_pct": -7.82,
+   "max_up_pct": -3.07,
+   "max_down_pct": -11.77,
+   "horizon": {
+    "1": -9.74
+   },
+   "status": "保有中",
+   "open_r": -0.5
+  },
+  {
+   "date": "2026-11-06",
+   "dates": [
+    "2026-11-06"
+   ],
+   "price_date": "2026-11-05",
+   "code": "2730",
+   "name": "エディオン",
+   "rank": 2,
+   "base": 2500,
+   "data_close": 2500.0,
+   "support": 2265.0,
+   "support_date": "2026-10-29",
+   "stop": 2242.3,
+   "target": 3273.1,
+   "risk_pct": 10.3,
+   "target_pct": 30.9,
+   "days_held": 2,
+   "last_date": "2026-11-09",
+   "last_close": 2536.0,
+   "ret_pct": 1.44,
+   "max_up_pct": 3.4,
+   "max_down_pct": -1.68,
+   "horizon": {
+    "1": -0.64
+   },
+   "status": "保有中",
+   "open_r": 0.14
+  },
+  {
+   "date": "2026-11-06",
+   "dates": [
+    "2026-11-06"
+   ],
+   "price_date": "2026-11-05",
+   "code": "4559",
+   "name": "ゼリア新薬工業",
+   "rank": 3,
+   "base": 2132,
+   "data_close": 2132.0,
+   "support": 1929.0,
+   "support_date": "2026-10-29",
+   "stop": 1909.7,
+   "target": 2798.9,
+   "risk_pct": 10.4,
+   "target_pct": 31.3,
+   "days_held": 2,
+   "last_date": "2026-11-09",
+   "last_close": 2063.0,
+   "ret_pct": -3.24,
+   "max_up_pct": -0.33,
+   "max_down_pct": -5.53,
+   "horizon": {
+    "1": -5.21
+   },
+   "status": "保有中",
+   "open_r": -0.31
+  },
+  {
+   "date": "2026-11-04",
+   "dates": [
+    "2026-11-04",
+    "2026-11-05"
+   ],
+   "price_date": "2026-11-04",
+   "code": "8058",
+   "name": "三菱商事",
+   "rank": 1,
+   "base": 5148,
+   "data_close": 5148.0,
+   "support": 4676.0,
+   "support_date": "2026-10-23",
+   "stop": 4629.2,
+   "target": 6704.4,
+   "risk_pct": 10.1,
+   "target_pct": 30.2,
+   "days_held": 3,
+   "last_date": "2026-11-09",
+   "last_close": 5170.0,
+   "ret_pct": 0.43,
+   "max_up_pct": 5.03,
+   "max_down_pct": -5.3,
+   "horizon": {
+    "1": 2.45,
+    "3": 0.43
+   },
+   "status": "保有中",
+   "open_r": 0.04
+  },
+  {
+   "date": "2026-11-05",
+   "dates": [
+    "2026-11-05"
+   ],
+   "price_date": "2026-11-04",
+   "code": "5697",
+   "name": "サンユウ",
+   "rank": 1,
+   "base": 856,
+   "data_close": 856.0,
+   "support": 810.0,
+   "support_date": "2026-10-30",
+   "stop": 801.9,
+   "target": 1018.3,
+   "risk_pct": 6.3,
+   "target_pct": 19.0,
+   "days_held": 3,
+   "last_date": "2026-11-09",
+   "last_close": 839.0,
+   "ret_pct": -1.99,
+   "max_up_pct": 7.13,
+   "max_down_pct": -2.92,
+   "horizon": {
+    "1": 5.02,
+    "3": -1.99
+   },
+   "status": "保有中",
+   "open_r": -0.31
+  },
+  {
+   "date": "2026-11-04",
+   "dates": [
+    "2026-11-04",
+    "2026-11-05"
+   ],
+   "price_date": "2026-11-04",
+   "code": "7537",
+   "name": "丸文",
+   "rank": 2,
+   "base": 2087,
+   "data_close": 2087.0,
+   "support": 1780.0,
+   "support_date": "2026-10-30",
+   "stop": 1762.2,
+   "target": 3061.4,
+   "risk_pct": 15.6,
+   "target_pct": 46.7,
+   "days_held": 3,
+   "last_date": "2026-11-09",
+   "last_close": 1988.0,
+   "ret_pct": -4.74,
+   "max_up_pct": 2.49,
+   "max_down_pct": -10.97,
+   "horizon": {
+    "1": -1.72,
+    "3": -4.74
+   },
+   "exit": {
+    "date": "2026-11-06",
+    "price": 1950.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -6.56,
+    "r": -0.42
+   },
+   "status": "高値後の安値割れ"
+  },
+  {
+   "date": "2026-11-04",
+   "dates": [
+    "2026-11-04"
+   ],
+   "price_date": "2026-11-04",
+   "code": "8255",
+   "name": "アクシアル リテイリング",
+   "rank": 3,
+   "base": 1445,
+   "data_close": 1445.0,
+   "support": 1278.0,
+   "support_date": "2026-10-28",
+   "stop": 1265.2,
+   "target": 1984.4,
+   "risk_pct": 12.4,
+   "target_pct": 37.3,
+   "days_held": 3,
+   "last_date": "2026-11-09",
+   "last_close": 1547.0,
+   "ret_pct": 7.06,
+   "max_up_pct": 10.24,
+   "max_down_pct": 0.28,
+   "horizon": {
+    "1": 9.07,
+    "3": 7.06
+   },
+   "status": "保有中",
+   "open_r": 0.57
+  },
+  {
+   "date": "2026-11-02",
+   "dates": [
+    "2026-11-02",
+    "2026-11-03"
+   ],
+   "price_date": "2026-11-02",
+   "code": "7537",
+   "name": "丸文",
+   "rank": 1,
+   "base": 2180,
+   "data_close": 2180.0,
+   "support": 1777.0,
+   "support_date": "2026-10-23",
+   "stop": 1759.2,
+   "target": 3442.4,
+   "risk_pct": 19.3,
+   "target_pct": 57.9,
+   "days_held": 4,
+   "last_date": "2026-11-09",
+   "last_close": 1988.0,
+   "ret_pct": -8.81,
+   "max_up_pct": 4.59,
+   "max_down_pct": -14.77,
+   "horizon": {
+    "1": -4.27,
+    "3": -10.55
+   },
+   "exit": {
+    "date": "2026-11-05",
+    "price": 2051.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -5.92,
+    "r": -0.31
+   },
+   "status": "高値後の安値割れ"
+  },
+  {
+   "date": "2026-11-02",
+   "dates": [
+    "2026-11-02",
+    "2026-11-03"
+   ],
+   "price_date": "2026-11-02",
+   "code": "4228",
+   "name": "積水化成品工業",
+   "rank": 2,
+   "base": 715,
+   "data_close": 715.0,
+   "support": 545.0,
+   "support_date": "2026-10-23",
+   "stop": 539.5,
+   "target": 1241.5,
+   "risk_pct": 24.5,
+   "target_pct": 73.6,
+   "days_held": 4,
+   "last_date": "2026-11-09",
+   "last_close": 675.0,
+   "ret_pct": -5.59,
+   "max_up_pct": 1.54,
+   "max_down_pct": -10.77,
+   "horizon": {
+    "1": -1.82,
+    "3": -8.81
+   },
+   "exit": {
+    "date": "2026-11-06",
+    "price": 652.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -8.81,
+    "r": -0.36
+   },
+   "status": "高値後の安値割れ"
+  },
+  {
+   "date": "2026-11-02",
+   "dates": [
+    "2026-11-02",
+    "2026-11-03"
+   ],
+   "price_date": "2026-11-02",
+   "code": "1939",
+   "name": "四電工",
+   "rank": 3,
+   "base": 2325,
+   "data_close": 2325.0,
+   "support": 2153.0,
+   "support_date": "2026-10-23",
+   "stop": 2131.5,
+   "target": 2905.5,
+   "risk_pct": 8.3,
+   "target_pct": 25.0,
+   "days_held": 4,
+   "last_date": "2026-11-09",
+   "last_close": 2318.0,
+   "ret_pct": -0.3,
+   "max_up_pct": 1.89,
+   "max_down_pct": -5.89,
+   "horizon": {
+    "1": -0.69,
+    "3": -3.7
+   },
+   "exit": {
+    "date": "2026-11-06",
+    "price": 2239.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -3.7,
+    "r": -0.44
+   },
+   "status": "高値後の安値割れ"
+  },
+  {
+   "date": "2026-10-30",
+   "dates": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
+   "price_date": "2026-10-30",
+   "code": "9536",
+   "name": "西部ガスホールディングス",
+   "rank": 1,
+   "base": 2794,
+   "data_close": 2794.0,
+   "support": 2375.0,
+   "support_date": "2026-10-15",
+   "stop": 2351.2,
+   "target": 4122.4,
+   "risk_pct": 15.8,
+   "target_pct": 47.5,
+   "days_held": 5,
+   "last_date": "2026-11-09",
+   "last_close": 2844.0,
+   "ret_pct": 1.79,
+   "max_up_pct": 4.29,
+   "max_down_pct": -2.51,
+   "horizon": {
+    "1": -0.21,
+    "3": 3.97,
+    "5": 1.79
+   },
+   "status": "保有中",
+   "open_r": 0.11
+  },
+  {
+   "date": "2026-10-31",
+   "dates": [
+    "2026-10-31"
+   ],
+   "price_date": "2026-10-30",
+   "code": "4228",
+   "name": "積水化成品工業",
+   "rank": 1,
+   "base": 725,
+   "data_close": 725.0,
+   "support": 545.0,
+   "support_date": "2026-10-23",
+   "stop": 539.5,
+   "target": 1281.5,
+   "risk_pct": 25.6,
+   "target_pct": 76.8,
+   "days_held": 5,
+   "last_date": "2026-11-09",
+   "last_close": 675.0,
+   "ret_pct": -6.9,
+   "max_up_pct": 0.14,
+   "max_down_pct": -12.0,
+   "horizon": {
+    "1": -1.38,
+    "3": -2.21,
+    "5": -6.9
+   },
+   "exit": {
+    "date": "2026-11-06",
+    "price": 652.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -10.07,
+    "r": -0.39
+   },
+   "status": "高値後の安値割れ"
+  },
+  {
+   "date": "2026-10-30",
+   "dates": [
+    "2026-10-30",
+    "2026-10-31"
+   ],
+   "price_date": "2026-10-30",
+   "code": "9766",
+   "name": "コナミグループ",
+   "rank": 2,
+   "base": 26385,
+   "data_close": 26385.0,
+   "support": 21935.0,
+   "support_date": "2026-10-06",
+   "stop": 21715.7,
+   "target": 40392.9,
+   "risk_pct": 17.7,
+   "target_pct": 53.1,
+   "days_held": 5,
+   "last_date": "2026-11-09",
+   "last_close": 28555.0,
+   "ret_pct": 8.22,
+   "max_up_pct": 11.22,
+   "max_down_pct": -1.8,
+   "horizon": {
+    "1": -1.06,
+    "3": 9.85,
+    "5": 8.22
+   },
+   "status": "保有中",
+   "open_r": 0.46
+  },
+  {
+   "date": "2026-10-30",
+   "dates": [
+    "2026-10-30"
+   ],
+   "price_date": "2026-10-30",
+   "code": "6744",
+   "name": "能美防災",
+   "rank": 3,
+   "base": 4445,
+   "data_close": 4445.0,
+   "support": 4040.0,
+   "support_date": "2026-10-21",
+   "stop": 3999.6,
+   "target": 5781.2,
+   "risk_pct": 10.0,
+   "target_pct": 30.1,
+   "days_held": 5,
+   "last_date": "2026-11-09",
+   "last_close": 4220.0,
+   "ret_pct": -5.06,
+   "max_up_pct": 2.81,
+   "max_down_pct": -8.32,
+   "horizon": {
+    "1": 0.11,
+    "3": -0.56,
+    "5": -5.06
+   },
+   "exit": {
+    "date": "2026-11-06",
+    "price": 4120.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -7.31,
+    "r": -0.73
+   },
+   "status": "高値後の安値割れ"
+  },
+  {
+   "date": "2026-10-29",
+   "dates": [
+    "2026-10-29"
+   ],
+   "price_date": "2026-10-29",
+   "code": "3843",
+   "name": "フリービット",
+   "rank": 1,
+   "base": 1950,
+   "data_close": 1950.0,
+   "support": 1721.0,
+   "support_date": "2026-10-26",
+   "stop": 1703.8,
+   "target": 2688.6,
+   "risk_pct": 12.6,
+   "target_pct": 37.9,
+   "days_held": 6,
+   "last_date": "2026-11-09",
+   "last_close": 1926.0,
+   "ret_pct": -1.23,
+   "max_up_pct": 8.41,
+   "max_down_pct": -2.46,
+   "horizon": {
+    "1": 3.23,
+    "3": 0.92,
+    "5": 1.64
+   },
+   "exit": {
+    "date": "2026-11-04",
+    "price": 1968.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": 0.92,
+    "r": 0.07
+   },
+   "status": "高値後の安値割れ"
+  },
+  {
+   "date": "2026-10-29",
+   "dates": [
+    "2026-10-29"
+   ],
+   "price_date": "2026-10-29",
+   "code": "4228",
+   "name": "積水化成品工業",
+   "rank": 2,
+   "base": 688,
+   "data_close": 688.0,
+   "support": 545.0,
+   "support_date": "2026-10-23",
+   "stop": 539.5,
+   "target": 1133.5,
+   "risk_pct": 21.6,
+   "target_pct": 64.8,
+   "days_held": 6,
+   "last_date": "2026-11-09",
+   "last_close": 675.0,
+   "ret_pct": -1.89,
+   "max_up_pct": 7.27,
+   "max_down_pct": -7.27,
+   "horizon": {
+    "1": 5.38,
+    "3": 2.03,
+    "5": -5.23
+   },
+   "exit": {
+    "date": "2026-11-06",
+    "price": 652.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -5.23,
+    "r": -0.24
+   },
+   "status": "高値後の安値割れ"
+  },
+  {
+   "date": "2026-10-29",
+   "dates": [
+    "2026-10-29"
+   ],
+   "price_date": "2026-10-29",
+   "code": "9081",
+   "name": "神奈川中央交通",
+   "rank": 3,
+   "base": 3635,
+   "data_close": 3635.0,
+   "support": 3610.0,
+   "support_date": "2026-10-08",
+   "stop": 3573.9,
+   "target": 3818.3,
+   "risk_pct": 1.7,
+   "target_pct": 5.0,
+   "days_held": 6,
+   "last_date": "2026-11-09",
+   "last_close": 3930.0,
+   "ret_pct": 8.12,
+   "max_up_pct": 11.14,
+   "max_down_pct": 0.0,
+   "horizon": {
+    "1": 6.05,
+    "3": 7.98,
+    "5": 5.5
+   },
+   "exit": {
+    "date": "2026-10-30",
+    "price": 3818.3,
+    "reason": "利確(1:3)",
+    "ret_pct": 5.04,
+    "r": 3.0
+   },
+   "status": "利確(1:3)"
+  }
+ ]
+}
