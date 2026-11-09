@@ -20,7 +20,7 @@
   }
 
   function yahooUrl(code) {
-    return "https://finance.yahoo.co.jp/quote/" + encodeURIComponent(code) + ".T";
+    return "https://finance.yahoo.co.jp/quote/" + encodeURIComponent(code) + ".T/chart?frm=mthly&trm=10y";
   }
 
   function markClass(m) {
