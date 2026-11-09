@@ -17,7 +17,7 @@
   （州別の総額、地域(国)別、主要商品別の輸出・輸入。億円の原数値か前年同月比）。速報→確報の改定は毎月のファイルで上書きされる。
   品目や国を足すときは series.json に1件追加するだけでよい（見出しは表の英語表記: 例 "MOTOR VEHICLES", "USA"）
   e-Stat には前月分が月末ごろ載るため、総額と地域(国)別（米国・中国・EU・ASEAN・台湾）はその前に
-  税関の報道発表（公表日 8:50、https://www.customs.go.jp/toukei/shinbun/happyou.htm の月ごとの XML）の速報で埋める。
+  税関の報道発表（公表日 8:50、https://www.customs.go.jp/toukei/shinbun/happyou.htm の月ごとの HTML 版）の速報で埋める。
   品別国別表（HS 9桁）は税関でも月末まで出ないので e-Stat のみ
 ファイルの統計表IDは一覧ページから毎回探す（更新時に変わっても追随するため）。
 Excel は標準ライブラリだけで読む（xlsx.py）。
@@ -467,36 +467,49 @@ def trade_goods(countries):
 
 
 # 財務省（税関）の報道発表。e-Stat には前月分が月末ごろ載るが、速報は公表日（毎月20日前後）の 8:50 にここに出る。
-# 月ごとの XML（総額・地域(国)別、単位百万円）から、e-Stat にまだ無い月だけ埋める。e-Stat に載ればそちらで上書きされる
+# 月ごとの HTML 版（総額・地域(国)別、単位百万円）から、e-Stat にまだ無い月だけ埋める。e-Stat に載ればそちらで上書きされる。
+# XML 版は 2027年12月公表分をめどに廃止予定（税関のお知らせ 2026-11-06）なので、2026-11 から HTML 版を読む
 CUSTOMS_RELEASES = "https://www.customs.go.jp/toukei/shinbun/happyou.htm"
 # 報道発表の地域(国)名 → e-Stat の地域(国)別表の見出し
 CUSTOMS_AREAS = {"総額": ("area", "Total"), "アメリカ合衆国": ("country", "USA"), "中華人民共和国": ("country", "CHINA"),
                  "EU": ("country", "EU"), "ASEAN": ("country", "ASEAN"), "台湾": ("country", "TAIWAN")}
 
 
+def _customs_area_rows(body):
+    """報道発表 HTML の「地域（国）別輸出入」の表を {地域名: (輸出価額, 輸入価額)}（百万円の文字列）にする"""
+    m = re.search(r"<h2[^>]*>\s*地域（国）別輸出入\s*</h2>.*?(<table.*?</table>)", body, re.S)
+    if not m:
+        raise RuntimeError("地域（国）別輸出入の表が見つからない")
+    rows = {}
+    for tr in re.findall(r"<tr[^>]*>(.*?)</tr>", m.group(1), re.S):
+        cells = [html.unescape(re.sub(r"<[^>]+>", "", c)) for c in re.findall(r"<td[^>]*>(.*?)</td>", tr, re.S)]
+        if len(cells) >= 4:
+            name = unicodedata.normalize("NFKC", cells[0]).strip("()　 \t\r\n")
+            rows[name] = (cells[1], cells[3])
+    return rows
+
+
 def _customs_latest(raw):
     """raw（{(表, 見出し, EX/IM): {YYYY-MM: 千円}}）に、報道発表の速報で e-Stat に無い月を足す。足した月を返す。"""
     have = max((d for k, v in raw.items() if k[:2] == ("area", "Total") for d in v), default="")
     page = get(CUSTOMS_RELEASES).decode("shift_jis", "replace")
-    # 月次の行は title="2026.09" href="./trade-st/2026/2026094.xml"（上中旬などの旬報も同じ形なので中身で見分ける）
-    links = dict.fromkeys(re.findall(r'title="(\d{4})\.(\d{2})" href="\./(trade-st/\d{4}/\d{7}\.xml)"', page))
+    # 月次の行は <a href="./trade-st/2026/2026095.html">2026年9月</a>（半期・年分は「2026年4月～9月（年度上半期）」なので外れる）
+    links = dict.fromkeys(re.findall(r'<a href="\./(trade-st/\d{4}/\d{7}\.html)">(\d{4})年(\d{1,2})月</a>', page))
     added = []
-    for y, m, path in sorted(links, reverse=True):
-        month = f"{y}-{m}"
+    for path, y, m in sorted(links, key=lambda x: (x[1], int(x[2])), reverse=True):
+        month = f"{y}-{int(m):02d}"
         if month <= have or month in added:
             continue
-        body = get(CUSTOMS_RELEASES.rsplit("/", 1)[0] + "/" + path).decode("utf-8", "replace")
-        if not re.search(r"<title>[^<]*月分貿易統計", body):
-            continue  # 旬報
+        body = get(CUSTOMS_RELEASES.rsplit("/", 1)[0] + "/" + path).decode("utf-8-sig", "replace")
+        if not re.search(r"令和\s*\d+年\s*\d+月分", body):
+            continue  # 月次以外
+        rows = _customs_area_rows(body)
         found = 0
-        for blk in re.findall(r"<chiikikunisogakuinfo>(.*?)</chiikikunisogakuinfo>", body, re.S):
-            name = unicodedata.normalize("NFKC", re.search(r"<chiikikuni>([^<]*)", blk).group(1)).strip("() ")
-            if name not in CUSTOMS_AREAS:
-                continue
-            for side, tag in (("EX", "exportkagakue"), ("IM", "importkagakue")):
-                v = re.search(f"<{tag}>([^<]*)</{tag}>", blk).group(1).replace(",", "").strip()
+        for name, key in CUSTOMS_AREAS.items():
+            for side, v in zip(("EX", "IM"), rows.get(name, ())):
+                v = v.replace(",", "").strip()
                 if re.fullmatch(r"\d+", v):
-                    raw.setdefault(CUSTOMS_AREAS[name] + (side,), {})[month] = int(v) * 1000  # 百万円 → 千円
+                    raw.setdefault(key + (side,), {})[month] = int(v) * 1000  # 百万円 → 千円
                     found += 1
         if found < 2 * len(CUSTOMS_AREAS):
             raise RuntimeError(f"報道発表 {path} の地域(国)別の表に対象の地域が揃っていない（{found}件）")
