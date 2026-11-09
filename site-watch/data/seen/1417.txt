@@ -128,6 +128,10 @@ https://www.mirait-one.com/assets/pdf/esg_en/report-2025-introduction.pdf
 https://www.mirait-one.com/assets/pdf/esg_en/report-2025-materiality-Initiatives.pdf
 https://www.mirait-one.com/assets/pdf/esg_en/report-2025-transformation-on-track.pdf
 https://www.mirait-one.com/assets/pdf/esg_en/report-2025.pdf
+https://www.mirait-one.com/assets/pdf/esg_en/report-2026-pt1-ourfocus.pdf
+https://www.mirait-one.com/assets/pdf/esg_en/report-2026-pt2-corporatevalueimprovementstrategy.pdf
+https://www.mirait-one.com/assets/pdf/esg_en/report-2026-pt3-data.pdf
+https://www.mirait-one.com/assets/pdf/esg_en/report-2026.pdf
 https://www.mirait-one.com/assets/pdf/esg_en/safetycompliance.pdf
 https://www.mirait-one.com/assets/pdf/esg_en/smart-work-life-declaration-20221226.pdf
 https://www.mirait-one.com/assets/pdf/esg_en/supply-chain-sustainability-promotion-guidelines-20241101.pdf
@@ -852,6 +856,7 @@ https://www.mirait-one.com/miraiz/5g/column132.html
 https://www.mirait-one.com/miraiz/5g/column133.html
 https://www.mirait-one.com/miraiz/5g/column134.html
 https://www.mirait-one.com/miraiz/5g/column135.html
+https://www.mirait-one.com/miraiz/5g/column136.html
 https://www.mirait-one.com/miraiz/about/
 https://www.mirait-one.com/miraiz/future/
 https://www.mirait-one.com/miraiz/future/interview067.html
@@ -861,11 +866,13 @@ https://www.mirait-one.com/miraiz/monthly/
 https://www.mirait-one.com/miraiz/monthly/monthly_2026_08.html
 https://www.mirait-one.com/miraiz/monthly/monthly_2026_09.html
 https://www.mirait-one.com/miraiz/monthly/monthly_2026_10.html
+https://www.mirait-one.com/miraiz/monthly/monthly_2026_11.html
 https://www.mirait-one.com/miraiz/newsflash/
 https://www.mirait-one.com/miraiz/newsflash/article153.html
 https://www.mirait-one.com/miraiz/newsflash/article154.html
 https://www.mirait-one.com/miraiz/newsflash/article155.html
 https://www.mirait-one.com/miraiz/newsflash/article156.html
+https://www.mirait-one.com/miraiz/newsflash/article157.html
 https://www.mirait-one.com/miraiz/search/
 https://www.mirait-one.com/miraiz/sitemap/
 https://www.mirait-one.com/miraiz/whatsnew/
@@ -883,6 +890,7 @@ https://www.mirait-one.com/miraiz/whatsnew/trend-data_0079.html
 https://www.mirait-one.com/miraiz/whatsnew/trend-data_0080.html
 https://www.mirait-one.com/miraiz/whatsnew/trend-data_0081.html
 https://www.mirait-one.com/miraiz/whatsnew/trend-data_0082.html
+https://www.mirait-one.com/miraiz/whatsnew/trend-data_0083.html
 https://www.mirait-one.com/privacypolicy/
 https://www.mirait-one.com/privacypolicy/index.html
 https://www.mirait-one.com/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2Fcaa89991%2Fsearch&ct=&d=&doctype=all&htmlLang=ja&imgsize=3&page=1&pagemax=10&q=%E3%80%8C%E3%82%A2%E3%83%A9%E3%82%A4%E3%82%A2%E3%83%B3%E3%82%B9%E3%83%93%E3%82%B8%E3%83%8D%E3%82%B9%E6%8E%A8%E9%80%B2%E9%83%A8%E3%80%8D%E3%81%AE%E8%A8%AD%E7%BD%AE&sort=0
