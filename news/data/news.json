@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-09T05:17+09:00",
+ "updated_at": "2026-11-09T08:59+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -736,6 +736,13 @@
     "https://www.keyence.co.jp/investor/"
    ],
    "items": [
+    {
+     "date": "2026-11-09",
+     "title": "新商品 ラインに設置したまま自動でヘッド洗浄!産業用インクジェットプリンタ 「MK-R1000シリーズ」登場。 万一のトラブルも迷わず簡単。ヘッドコア交換でスピード復旧。",
+     "url": "https://www.keyence.co.jp/products/marker/inkjet-printers/mk-r1000/pr/210288001.jsp",
+     "source": "official",
+     "first_seen": "2026-11-09T08:59+09:00"
+    },
     {
      "date": "2026-11-02",
      "time": "15:31",
