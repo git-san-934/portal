@@ -1,0 +1,5 @@
+NG yahoo1.json <HTTPError 429: 'Too Many Requests'>
+NG yahoo2.json <HTTPError 429: 'Too Many Requests'>
+OK nasdaq.json 142 try0
+NG fred.csv TimeoutError('The read operation timed out')
+OK cboe.csv 1708780 try0
