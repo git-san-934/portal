@@ -147,29 +147,44 @@
   }
 
   // ---------- いまの状態 ----------
+  // ---------- 合図の種類 ----------
+  // per20: PER 20倍割れ(赤い丸) / perma: PER が1年平均より15%低い(オレンジの丸) / pbrma: PBR が2年平均より5%低い(緑の四角)
+  const STYLE = {
+    per20: { c: "--in", tc: "#fff", sq: false },
+    perma: { c: "--perma", tc: "#fff", sq: false },
+    pbrma: { c: "--pbr-b", tc: "#1a1a1a", sq: true },
+  };
+  const devS = (v) => (v == null ? "—" : (v < 0 ? "−" : "+") + Math.abs(v * 100).toFixed(1) + "%");
+
+  // ---------- いまの状態 ----------
   function renderNow() {
-    const d = state.data, c = d.current, R = d.rule, sg = d.signals;
-    $("t-lead").textContent = `PER が${R.per_lo}倍を上から下に割った日が買いの合図です(終値で判定)。次の合図は、PER が一度${R.per_re}倍を超えてから。売りの合図は出しません。PBR は参考に表示しています。`;
+    const d = state.data, c = d.current, R = d.rule, sg = d.signals, K = d.kinds;
+    const thPer = Math.round((1 - R.per_ma_th) * 100), thPbr = Math.round((1 - R.pbr_ma_th) * 100);
+    $("t-lead").textContent = `買いの合図は3種類です(終値で判定、売りの合図は出しません)。①PER が${R.per_lo}倍を上から下に割った日(次は一度${R.per_re}倍を超えてから)。②PER が1年(${R.per_ma}日)の移動平均より${thPer}%以上低くなった日。③PBR が2年(${R.pbr_ma}日)の移動平均より${thPbr}%以上低くなった日(②③の次の合図は、移動平均の上に戻ってから)。②③は「割高なりに、ふだんより下がった日」を拾うので、好調な相場でも出ます。`;
     const last = sg[sg.length - 1];
     const end = d.series.date.length - 1;
     const recent = last && d.series.date.indexOf(last.date) >= end - 5;
     const pill = $("t-pill");
     pill.classList.toggle("out", !recent);
-    $("t-pillv").textContent = recent ? "買いの合図(PER)" : "合図はまだ";
-    $("t-pills").textContent = last ? `最後の合図 ${fmtD(last.date)}` : "";
+    $("t-pillv").textContent = recent ? `買いの合図(${K[last.kind].short})` : "合図はまだ";
+    $("t-pills").textContent = last ? `最後の合図 ${fmtD(last.date)}(${K[last.kind].label})` : "";
+    const left = (p) => `あと ${pct(1 - p / c.close).replace("+", "")} 下がったら買いの合図`;
     const perS = !c.armed ? `前の合図のあと PER が${R.per_re}倍を超えていないので、次の合図はまだ出ません`
       : c.per < R.per_lo ? `いま${R.per_lo}倍より下です。一度${R.per_lo}倍を超えてから割ると合図`
-      : `あと ${pct(1 - c.price_lo / c.close).replace("+", "")} 下がって${R.per_lo}倍を割ったら買いの合図(利益が同じなら)`;
+      : left(c.price_lo) + "(利益が同じなら)";
+    const maS = (armed, p, dev, th) => !armed ? "前の合図のあと移動平均の上に戻っていないので、次の合図はまだ出ません"
+      : dev <= -th ? "いま線より下です。移動平均の上に戻ってから、また線を割ると合図"
+      : left(p) + "(移動平均がいまのままなら)";
     $("t-stats").innerHTML = `
       <div class="stat"><div class="k">PER / PBR</div><div class="v">${c.per.toFixed(1)}倍 / ${c.pbr == null ? "—" : c.pbr.toFixed(2) + "倍"}</div><div class="s">S&amp;P 500 ${pt(c.close)}(${fmtD(c.date)})</div></div>
-      <div class="stat"><div class="k">PER の買いの線(${R.per_lo}倍)の株価</div><div class="v zone-b">${pt(c.price_lo)}</div><div class="s">${perS}</div></div>
-      <div class="stat"><div class="k">PER の位置</div><div class="v">${Math.round(c.per_rank * 100)}%</div><div class="s">${R.from.slice(0, 4)}年以降で、いまより低かった日の割合(中央値 ${c.per_median.toFixed(1)}倍)</div></div>
-      <div class="stat"><div class="k">PBR の位置(参考)</div><div class="v">${c.pbr_rank == null ? "—" : Math.round(c.pbr_rank * 100) + "%"}</div><div class="s">2000年以降で、いまより低かった日の割合(中央値 ${c.pbr_median.toFixed(2)}倍、最高 ${c.pbr_max.toFixed(2)}倍)</div></div>`;
+      <div class="stat"><div class="k">① PER ${R.per_lo}倍の株価</div><div class="v zone-b">${pt(c.price_lo)}</div><div class="s">${perS}</div></div>
+      <div class="stat"><div class="k">② PER の1年平均との差</div><div class="v" style="color:var(--perma)">${devS(c.per_dev)}</div><div class="s">1年平均 ${c.per_ma.toFixed(1)}倍。−${thPer}%の株価は ${pt(c.price_perma)}。${maS(c.perma_armed, c.price_perma, c.per_dev, 1 - R.per_ma_th)}</div></div>
+      <div class="stat"><div class="k">③ PBR の2年平均との差</div><div class="v">${devS(c.pbr_dev)}</div><div class="s">2年平均 ${c.pbr_ma == null ? "—" : c.pbr_ma.toFixed(2) + "倍"}。−${thPbr}%の株価は ${pt(c.price_pbrma)}。${maS(c.pbrma_armed, c.price_pbrma, c.pbr_dev, 1 - R.pbr_ma_th)}</div></div>`;
   }
 
   // ---------- 3つのチャート ----------
   function renderCharts() {
-    const d = state.data, S = d.series, R = d.rule, c = d.current;
+    const d = state.data, S = d.series, R = d.rule, c = d.current, K = d.kinds;
     const all = S.date.map((x, i) => i);
     const r = RANGES.find((x) => x.key === state.settings.range2) || RANGES[RANGES.length - 1];
     const tEnd = state.t[all[all.length - 1]];
@@ -178,8 +193,13 @@
     const pos = {}; dd.forEach((x, k) => (pos[x] = k));
     const v = (key) => idx.map((i) => S[key][i]);
     const sg = d.signals.filter((s) => pos[s.date] != null);
-    const mark = (y) => (s) => ({ i: pos[s.date], y: y(s), k: "b", big: true, t: `PER の買いの合図(PER ${s.per.toFixed(1)}倍)` });
+    const mark = (y) => (s) => {
+      const z = STYLE[s.kind];
+      return { i: pos[s.date], y: y(s), k: "b", big: true, c: z.c, tc: z.tc, sq: z.sq,
+        t: `${K[s.kind].label}(PER ${s.per.toFixed(1)}倍${s.pbr == null ? "" : " · PBR " + s.pbr.toFixed(2) + "倍"}${s.dev == null ? "" : " · 平均との差 " + devS(s.dev)})` };
+    };
     const tip = (k) => `PER ${S.per[idx[k]] == null ? "—" : S.per[idx[k]].toFixed(1) + "倍"} · PBR ${S.pbr[idx[k]] == null ? "—" : S.pbr[idx[k]].toFixed(2) + "倍"}`;
+    // 同じ日に2つの合図が出たら、後のほうを少しずらさず重ねる(ホバーでは最後の1つを表示)
     lineChart($("ch-n"), {
       d: dd, t: tt, h: 300, label: "S&P 500 と買いの合図",
       series: [{ n: "S&P 500", v: v("close"), c: "--line", w: 1.75 }],
@@ -188,49 +208,67 @@
     });
     $("per-lo").textContent = `${R.per_lo}倍`;
     $("per-re").textContent = `${R.per_re}倍`;
+    $("per-ma-th").textContent = `−${Math.round((1 - R.per_ma_th) * 100)}%`;
+    const pm = v("per_ma");
     lineChart($("ch-per"), {
-      d: dd, t: tt, h: 220, label: "PER",
+      d: dd, t: tt, h: 240, label: "PER",
       series: [
         { n: "準備の線", v: dd.map(() => R.per_re), c: "--muted", w: 1.25, dash: "3 4", noTip: true },
         { n: "買いの線", v: dd.map(() => R.per_lo), c: "--in", w: 1.5, dash: "5 4", noTip: true },
+        { n: "1年平均", v: pm, c: "--perma", w: 1.5 },
+        { n: "1年平均の線", v: pm.map((x) => (x == null ? null : x * R.per_ma_th)), c: "--perma", w: 1.25, dash: "5 4" },
         { n: "PER", v: v("per"), c: "--line", w: 1.75 },
       ],
-      marks: sg.map(mark((s) => s.per)), ymin: 0, ymax: 45,
+      marks: sg.filter((s) => s.kind !== "pbrma").map(mark((s) => Math.min(s.per, 45))), ymin: 0, ymax: 45,
       yfmt: (x) => x + "倍", tfmt: (x) => x.toFixed(1) + "倍",
     });
-    const pb = v("pbr"), has = pb.some((x) => x != null);
-    $("pbr-md").textContent = `${c.pbr_median.toFixed(2)}倍`;
+    const pb = v("pbr"), has = pb.some((x) => x != null), bm = v("pbr_ma");
+    $("pbr-ma-th").textContent = `−${Math.round((1 - R.pbr_ma_th) * 100)}%`;
     if (has) {
       lineChart($("ch-pbr"), {
         d: dd, t: tt, h: 220, label: "PBR",
         series: [
-          { n: "中央値", v: dd.map((x) => (x >= R.pbr_from ? c.pbr_median : null)), c: "--muted", w: 1.25, dash: "3 4", noTip: true },
+          { n: "2年平均", v: bm, c: "--pbr-line", w: 1.5 },
+          { n: "2年平均の線", v: bm.map((x) => (x == null ? null : x * R.pbr_ma_th)), c: "--pbr-line", w: 1.25, dash: "5 4" },
           { n: "PBR", v: pb, c: "--line", w: 1.75 },
         ],
+        marks: sg.filter((s) => s.kind === "pbrma").map(mark((s) => s.pbr)),
         ymin: 0, yfmt: (x) => x.toFixed(1) + "倍", tfmt: (x) => x.toFixed(2) + "倍",
       });
     } else $("ch-pbr").innerHTML = '<p class="note">この期間は PBR のデータがありません(2000年から)</p>';
-    $("chnote").textContent = `PER は${45}倍より上を上端に貼りつけて表示しています(2009年はリーマン・ショックで利益が大きく減り、PER が100倍を超えました)。PER は${fmtD(c.eps_q)}期までの1年間の利益(as reported)、PBR は${fmtD(c.bps_q)}末の1株純資産で計算しています。四半期の数字は、期末の3か月後(先に公表されたらその日)から使います。`;
+    $("chnote").textContent = `PER は45倍より上を上端に貼りつけて表示しています(2009年はリーマン・ショックで利益が大きく減り、PER が100倍を超えました)。PER は${fmtD(c.eps_q)}期までの1年間の利益(as reported)、PBR は${fmtD(c.bps_q)}末の1株純資産で計算しています。四半期の数字は、期末の3か月後(先に公表されたらその日)から使います。移動平均は営業日で数えています(1年=${R.per_ma}日、2年=${R.pbr_ma}日)。`;
   }
 
   // ---------- 答え合わせ ----------
   function renderResult() {
-    const d = state.data, st = d.stats, R = d.rule;
-    const yr = R.from.slice(0, 4);
-    $("r-lead").textContent = `${yr}年以降の合図は${d.signals.length}回。合図の1年後は平均 ${pct(st.sig1.mean)}(上がったのは${st.sig1.n}回中${st.sig1.win}回)、3年後は平均 ${pct(st.sig3.mean)}(${st.sig3.n}回中${st.sig3.win}回)。同じ期間に毎日買った場合の平均は、1年後 ${pct(st.all1.mean)}・3年後 ${pct(st.all3.mean)} です。`;
-    const rows = d.signals.map((s) => `<tr><td>${fmtD(s.date)}</td><td>${pt(s.close)}</td><td>${s.per.toFixed(1)}倍</td><td>${s.pbr == null ? "—" : s.pbr.toFixed(2) + "倍"}</td><td class="${s.r1 == null ? "" : s.r1 > 0 ? "zone-b" : "zone-s"}">${s.r1 == null ? "まだ" : pct(s.r1)}</td><td class="${s.r3 == null ? "" : s.r3 > 0 ? "zone-b" : "zone-s"}">${s.r3 == null ? "まだ" : pct(s.r3)}</td></tr>`).join("");
-    $("r-tbl").innerHTML = `<thead><tr><th>合図の日</th><th>終値</th><th>PER</th><th>PBR</th><th>1年後</th><th>3年後</th></tr></thead><tbody>${rows}</tbody>
-      <tfoot><tr><td>合図の平均</td><td></td><td></td><td></td><td>${pct(st.sig1.mean)}</td><td>${pct(st.sig3.mean)}</td></tr>
-      <tr><td>毎日買った平均</td><td></td><td></td><td></td><td>${pct(st.all1.mean)}</td><td>${pct(st.all3.mean)}</td></tr></tfoot>`;
-    $("r-note").textContent = `値動きは終値の変化だけで、配当(年1〜2%ほど)は含めていません。「毎日買った平均」は${yr}年以降のすべての日について、その日に買って1年後・3年後に見た変化率の平均です(毎日買って上がった割合は1年後 ${Math.round(st.all1.win * 100)}%、3年後 ${Math.round(st.all3.win * 100)}%)。合図の回数が少ないので、たまたまの部分もあります。`;
+    const d = state.data, ST = d.stats, K = d.kinds;
+    const kinds = Object.keys(K);
+    const box = $("r-kind");
+    if (!state.settings.kind || !K[state.settings.kind]) state.settings.kind = "all";
+    seg(box, [{ key: "all", label: "すべて" }, ...kinds.map((k) => ({ key: k, label: K[k].short }))], "kind", renderResult);
+    const sel = state.settings.kind;
+    $("r-lead").innerHTML = kinds.map((k) => {
+      const s = ST[k];
+      return `<b>${esc(K[k].label)}</b>(${s.from.slice(0, 4)}年〜、${s.n}回): 1年後 平均 ${pct(s.sig1.mean)}(${s.sig1.n}回中${s.sig1.win}回上昇、毎日買うと ${pct(s.all1.mean)})・3年後 平均 ${pct(s.sig3.mean)}(${s.sig3.n}回中${s.sig3.win}回上昇、毎日買うと ${pct(s.all3.mean)})`;
+    }).join("<br>");
+    const list = d.signals.filter((s) => sel === "all" || s.kind === sel).slice().reverse();
+    const cls = (x) => (x == null ? "" : x > 0 ? "zone-b" : "zone-s");
+    const rows = list.map((s) => {
+      const z = STYLE[s.kind];
+      return `<tr><td>${fmtD(s.date)}</td><td><span class="mk${z.sq ? " sq" : ""}" style="background:var(${z.c});color:${z.tc}">買</span>${esc(K[s.kind].short)}</td><td>${pt(s.close)}</td><td>${s.per.toFixed(1)}倍</td><td>${s.pbr == null ? "—" : s.pbr.toFixed(2) + "倍"}</td><td class="${cls(s.r1)}">${s.r1 == null ? "まだ" : pct(s.r1)}</td><td class="${cls(s.r3)}">${s.r3 == null ? "まだ" : pct(s.r3)}</td></tr>`;
+    }).join("");
+    $("r-tbl").innerHTML = `<thead><tr><th>合図の日</th><th>種類</th><th>終値</th><th>PER</th><th>PBR</th><th>1年後</th><th>3年後</th></tr></thead><tbody>${rows}</tbody>`;
+    $("r-note").textContent = `値動きは終値の変化だけで、配当(年1〜2%ほど)は含めていません。「毎日買うと」は、その合図が出うる期間のすべての日について、その日に買って1年後・3年後に見た変化率の平均です(毎日買って1年後に上がった割合は約8割)。合図の回数が少ないので、たまたまの部分もあります。`;
   }
 
   function renderWhy() {
     $("why").innerHTML = `
       <p>日経平均のルール(PER 14倍割れ・PBR 1.2倍上抜け)は、S&amp;P 500 にはそのまま使えません。S&amp;P 500 は PER も PBR もずっと高い水準にあるためです(2000年以降の PER の中央値は約23倍、PBR は約3倍で、日経平均の15.7倍・1.28倍とは別物)。そこで、2000年以降の S&amp;P 500 のデータで線を決め直しました。</p>
-      <p><b>PER</b>: 買いの線を17〜24倍、準備の線を「買いの線+2〜4倍」で試しました。17〜21倍あたりなら、どれも合図のあとの1年・3年が「毎日買った平均」を上回り、結果が安定していました。その真ん中の<b>20倍(準備の線23倍)</b>にしています。20倍は2000年以降の PER の下から3割ほどの水準で、日経平均の14倍(下から2割強)と近い位置です。線を決めるのに使わなかった1990年代も、2回の合図はどちらも1年後・3年後に上がっていました。</p>
-      <p><b>PBR</b>: 2.0〜4.5倍の固定の線と、過去3・5・10年の平均からの離れ方(−1.5σ〜−0.5σ)を試しましたが、線を少し動かすだけで成績が良くなったり悪くなったりして、安定しませんでした。S&amp;P 500 の PBR は、自社株買いやIT企業の比重が増えたことで2000年代の2倍前後から今は6倍前後まで上がり続けていて、「何倍なら割安」が時代とともに変わってしまうためです(たとえば4.5倍は2000年には天井でしたが、2025年には安いほうでした)。日経平均の PBR 1倍のような「解散価値」の目安も働きません。そのため PBR には買いの線を置かず、いまの位置を参考に表示しています。</p>
-      <p class="note">EPS は S&amp;P が公表する as reported(一時的な損益を含む)の12か月合計で、不況で利益が落ちると PER が跳ね上がります(2009年など)。そのため不況のどん底では PER の合図が出ず、利益が戻る途中で出ることがあります。投資助言ではありません。売買の判断はご自身の責任で行ってください。</p>`;
+      <p><b>① PER 20倍</b>: 買いの線を17〜24倍、準備の線を「買いの線+2〜4倍」で試しました。17〜21倍あたりなら、どれも合図のあとの1年・3年が「毎日買った平均」を上回り、結果が安定していました。その真ん中の<b>20倍(準備の線23倍)</b>にしています。</p>
+      <p><b>② PER の1年平均</b>: ①は割高な相場が続くと何年も出ません。そこで「PER の水準」ではなく「PER がふだん(移動平均)よりどれだけ下がったか」を見ました。移動平均50〜500日 × 下がり方5〜20% を試すと、5%・10%では毎日買うのとほとんど変わらず、<b>15〜20%下がったときだけ</b>、どの長さでも毎日買うより良くなりました。1年(250日)・15%を使っています(20%にすると回数は減り、成績は上がります)。</p>
+      <p><b>③ PBR の2年平均</b>: PBR の水準そのもの(2.0〜4.5倍の固定の線)は、線を少し動かすだけで成績が逆転し使えませんでした。S&amp;P 500 の PBR は自社株買いやIT企業の比重が増えたことで、2009年の約1.4倍から今の約6倍まで上がり続けているためです。ところが「2年平均より5%下がった日」は、2010年以降の12回がすべて1年後に上がっていて、好調な相場の浅い押し目を拾えていました(2007〜08年の下げ始めでは2回はずれています)。</p>
+      <p><b>試して使わなかったもの</b>: PER や株価の移動平均のゴールデンクロス(短い平均が長い平均を上に抜けたら買い)は、毎日買うより悪い結果でした。PER が平均より上がったら売り、下がったら買い直す切り替えは、2001年からで×2.4〜5.9倍と、持ち続け(×5.9倍)にほぼ負けました。売りの合図を出していないのはこのためです。</p>
+      <p class="note">EPS は S&amp;P が公表する as reported(一時的な損益を含む)の12か月合計で、不況で利益が落ちると PER が跳ね上がります(2009年など)。1株純資産は公表が遅く、1年以上前の値で計算していることがあります。投資助言ではありません。売買の判断はご自身の責任で行ってください。</p>`;
   }
 
   function seg(box, options, key, onChange) {
