@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-10T09:01+09:00",
+ "updated_at": "2026-11-10T11:54+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,34 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-10",
+     "title": "「Nintendo Switch Sports ゲーム運動会 シニアボウリングトーナメント2026」のページを更新しました。 全国から集った16団体の頂点をかけ、「広川町ゲームサポーター」と「けっぱれ!青森県」が決勝戦に臨みます。 これまでの全試合の様子も公開しています。",
+     "url": "https://www.nintendo.com/jp/switch/as8sa/senior-bowling-2026/index.html",
+     "source": "official",
+     "first_seen": "2026-11-10T11:54+09:00"
+    },
+    {
+     "date": "2026-11-10",
+     "title": "Nintendo Switch 2 / Nintendo Switchの本体機能をバージョンアップ。新しい機能をご紹介します。",
+     "url": "https://www.nintendo.com/jp/topics/article/31e57164-941c-4103-bd30-f04744073cc3",
+     "source": "official",
+     "first_seen": "2026-11-10T11:54+09:00"
+    },
+    {
+     "date": "2026-11-10",
+     "title": "『スーパー マリオパーティ ジャンボリー Nintendo Switch 2 Edition + ジャンボリーTV』が無料アップデート。ソフトが1本あれば、オンラインで、みんなでスゴロクができるように。",
+     "url": "https://www.nintendo.com/jp/topics/article/1f0dba7a-c553-4ae7-bb75-a6586db1d824",
+     "source": "official",
+     "first_seen": "2026-11-10T11:54+09:00"
+    },
+    {
+     "date": "2026-11-10",
+     "title": "「Hello! インディー」遊べるテーブルゲームは40種類以上『テーブルゲームワールド CCFOLIA for Nintendo Switch 2』",
+     "url": "https://www.nintendo.com/jp/topics/article/e77acfd6-fdd4-4265-9d2f-d682b85430d9",
+     "source": "official",
+     "first_seen": "2026-11-10T11:54+09:00"
+    },
     {
      "date": "2026-11-06",
      "time": "13:47",
@@ -410,34 +438,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/9c619551-4244-4871-bc20-8d44f66a7904",
      "source": "official",
      "first_seen": "2026-10-09T11:32+09:00"
-    },
-    {
-     "date": "2026-10-09",
-     "title": "誰も知らない英雄譚が、ここにある。王道ファンタジーの世界で自由な冒険を楽しむオープンワールドアクション『Dragon's Dogma 2: Dark Arisen』が、Nintendo Switch 2 で本日発売。",
-     "url": "https://www.nintendo.com/jp/topics/article/765035e5-1a1c-45c6-9e49-9980069c9150",
-     "source": "official",
-     "first_seen": "2026-10-09T11:32+09:00"
-    },
-    {
-     "date": "2026-10-09",
-     "title": "ニンテンドーeショップ新作ソフト情報 10/9(金)号。",
-     "url": "https://www.nintendo.com/jp/topics/article/12b661be-9be3-45c9-aca9-0c9bdf3cb746",
-     "source": "official",
-     "first_seen": "2026-10-09T11:32+09:00"
-    },
-    {
-     "date": "2026-10-08",
-     "title": "2028年度 プレエントリー受付を開始しました。理工系の採用イベントへのお申し込みも受付中です。",
-     "url": "https://www.nintendo.co.jp/jobs/recruit/index.html",
-     "source": "official",
-     "first_seen": "2026-10-08T19:56+09:00"
-    },
-    {
-     "date": "2026-10-08",
-     "title": "Nintendo Switch 2 ソフト『Nintendo Switch Sports Resort』の紹介映像を公開しました。",
-     "url": "https://www.nintendo.com/jp/games/switch2/aacha/index.html",
-     "source": "official",
-     "first_seen": "2026-10-08T11:14+09:00"
     }
    ]
   },
@@ -1430,6 +1430,13 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-11-10",
+     "title": "異業種交流展示会「メッセナゴヤ2026」への出展について",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20261110-1.html",
+     "source": "official",
+     "first_seen": "2026-11-10T11:54+09:00"
+    },
     {
      "date": "2026-11-06",
      "time": "13:33",
@@ -2948,6 +2955,14 @@
     "https://www.nippon-chem.co.jp/news/feed/"
    ],
    "items": [
+    {
+     "date": "2026-11-10",
+     "time": "10:40",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZDAS",
+     "source": "edinet",
+     "first_seen": "2026-11-10T11:54+09:00"
+    },
     {
      "date": "2026-11-06",
      "time": "11:50",
