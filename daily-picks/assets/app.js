@@ -27,7 +27,17 @@
     return { "◎": "m-best", "○": "m-good", "△": "m-part", "×": "m-bad" }[m] || "m-unknown";
   }
 
-  function renderPick(p) {
+  var perf = {}; // "price_date|code" -> performance.json の行
+
+  function plText(r) {
+    var v = r.ret_pct;
+    var t = Math.abs(v) < 0.05 ? 0 : v;
+    var diff = r.last_close - r.base;
+    return "いま " + (t > 0 ? "+" : t < 0 ? "−" : "±") + Math.abs(t).toFixed(1) + "%(" +
+      (diff > 0 ? "+" : diff < 0 ? "−" : "±") + Math.abs(diff).toLocaleString("ja-JP", { maximumFractionDigits: 1 }) + "円)";
+  }
+
+  function renderPick(p, day) {
     var card = el("article", "card");
 
     var head = el("div", "card-head");
@@ -41,6 +51,14 @@
     name.appendChild(el("span", "code", p.code + (p.market ? "・" + p.market : "")));
     head.appendChild(name);
     if (p.close != null) head.appendChild(el("span", "close", Number(p.close).toLocaleString("ja-JP") + "円"));
+    var r = perf[(day.price_date || day.date) + "|" + p.code];
+    if (r && r.ret_pct != null && r.last_close != null) {
+      var t = Math.abs(r.ret_pct) < 0.05 ? "" : r.ret_pct > 0 ? " up" : " down";
+      var pl = el("a", "pl" + t, plText(r));
+      pl.href = "results.html";
+      pl.title = r.last_date + " の終値 " + r.last_close + "円";
+      head.appendChild(pl);
+    }
     card.appendChild(head);
 
     var counts = {};
@@ -106,7 +124,7 @@
     if (day.summary) sec.appendChild(el("p", "day-summary", day.summary));
     if (day.scope) sec.appendChild(el("p", "day-note", day.scope));
     var list = el("div", "cards");
-    (day.picks || []).forEach(function (p) { list.appendChild(renderPick(p)); });
+    (day.picks || []).forEach(function (p) { list.appendChild(renderPick(p, day)); });
     sec.appendChild(list);
     return sec;
   }
@@ -137,5 +155,12 @@
       });
   }
 
-  load();
+  // 成績(performance.json)を先に読む。読めなくても一覧は出す
+  fetch("data/performance.json?t=" + Date.now(), { cache: "no-store" })
+    .then(function (r) { return r.ok ? r.json() : null; })
+    .catch(function () { return null; })
+    .then(function (d) {
+      ((d && d.rows) || []).forEach(function (r) { perf[r.price_date + "|" + r.code] = r; });
+      load();
+    });
 })();

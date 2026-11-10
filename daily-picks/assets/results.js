@@ -28,6 +28,14 @@
     return "https://finance.yahoo.co.jp/quote/" + encodeURIComponent(code) + ".T/chart?frm=mthly&trm=10y";
   }
 
+  // 銘柄名の隣に出す最新の損益(基準=分析に使った終値)
+  function plBadge(r) {
+    if (r.ret_pct == null || r.last_close == null) return el("span", "pl none", "損益はまだなし");
+    var diff = r.last_close - r.base;
+    var yenTxt = (diff > 0 ? "+" : diff < 0 ? "−" : "±") + Math.abs(diff).toLocaleString("ja-JP", { maximumFractionDigits: 1 }) + "円";
+    return el("span", "pl " + sign(r.ret_pct), pct(r.ret_pct) + "(" + yenTxt + ")");
+  }
+
   function stat(label, value, cls, note) {
     var d = el("div", "stat");
     d.appendChild(el("div", "stat-label", label));
@@ -72,6 +80,7 @@
       var a = el("a", null, r.name);
       a.href = yahooUrl(r.code); a.target = "_blank"; a.rel = "noopener";
       n.appendChild(a);
+      n.appendChild(plBadge(r));
       n.appendChild(el("div", "sub", r.code));
       tr.appendChild(n);
       tr.appendChild(el("td", "num", yen(r.base)));

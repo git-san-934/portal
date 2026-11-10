@@ -17,7 +17,7 @@ https://git-san-934.github.io/portal/daily-picks/
 - ページの「分析をやり直す」は、タイトル『今日の3銘柄を再分析』の Issue を作る GitHub の画面を開きます。Claude の定期タスクが毎時その Issue を確かめ、あれば最新の終値で分析し直して `picks.json` を更新し、Issue を閉じます
 - `results.html`(3銘柄のその後) — 選んだ銘柄が分析日の終値からどう動いたかの一覧。`data/performance.json` を表示します
   - `scripts/build_performance.py` が `picks.json` と株価から集計します。株価は `data/prices.json` に貯めます
-  - GitHub Actions(`update-daily-picks-performance.yml`)が平日 16:30・20:00 JST と `picks.json` の更新時に yfinance で株価を取って更新します
+  - GitHub Actions(`update-daily-picks-performance.yml`)が平日の大引け後(15:45〜22:00 JST に数回) と `picks.json` の更新時に yfinance で株価を取って更新します
   - ローカルでは `--tse-db <tse-price-db のパス>` や `--csv <code,date,open,high,low,close,volume>` で株価を足せます
   - 本のルールでの売買の仮定: 損切りは前20営業日の押し安値の1%下、利確はリスクリワード 1:3、基準より上で高値を付けたあと上昇の起点の安値を終値で割ったら売り
 - **投資助言ではありません。** 売買の判断はご自身の責任で行ってください

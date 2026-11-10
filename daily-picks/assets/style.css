@@ -146,3 +146,10 @@ footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: var(-
 .badge.hold { color: var(--good); }
 .badge.none { color: var(--text-sub); }
 .rule-note { font-size: 0.72rem; color: var(--text-sub); margin-top: 0.1rem; }
+
+/* 銘柄名の隣の損益 */
+.pl { display: inline-block; font-size: 0.78rem; font-weight: 700; border: 1px solid currentColor; border-radius: 999px; padding: 0 0.5rem; margin-left: 0.4rem; white-space: nowrap; color: var(--text-sub); text-decoration: none; }
+.pl.up { color: var(--best); }
+.pl.down { color: var(--bad); }
+.card-head .pl { margin-left: 0; }
+.card-head .card-name { flex: 1 1 9rem; }
