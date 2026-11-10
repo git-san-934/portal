@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-11T00:14+09:00",
+ "updated_at": "2026-11-11T06:43+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1809,6 +1809,14 @@
    ],
    "items": [
     {
+     "date": "2026-11-10",
+     "title": "Oracle Celebrates Groundbreaking on Future Global Headquarters in Nashville",
+     "url": "https://www.oracle.com/news/announcement/oracle-celebrates-groundbreaking-on-future-global-headquarters-in-nashville-2026-11-10/",
+     "source": "official",
+     "first_seen": "2026-11-11T06:43+09:00",
+     "title_ja": "オラクル、ナッシュビルの将来のグローバル本社建設の着工を祝う"
+    },
+    {
      "date": "2026-11-06",
      "title": "Oracle's Annual Meeting of Stockholders to be held November 18, 2026",
      "url": "https://investor.oracle.com/investor-news/news-details/2026/ORACLES-ANNUAL-MEETING-OF-STOCKHOLDERS-TO-BE-HELD-NOVEMBER-18-2026/default.aspx",
@@ -3591,7 +3599,7 @@
     },
     {
      "date": "2026-10-27",
-     "title": "6 2026年10月27日 技術・研究開発 トピックス ヒューマノイドロボットによる家具組立コンペティションIROS 2026「Humanoid IKEA Assembly Challenge」で2位入賞",
+     "title": "5 2026年10月27日 技術・研究開発 トピックス ヒューマノイドロボットによる家具組立コンペティションIROS 2026「Humanoid IKEA Assembly Challenge」で2位入賞",
      "url": "https://news.panasonic.com/jp/topics/206930",
      "source": "official",
      "first_seen": "2026-10-30T05:57+09:00"
