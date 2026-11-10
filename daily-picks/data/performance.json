@@ -1,12 +1,12 @@
 {
- "updated_at": "2026-11-11T02:23+09:00",
+ "updated_at": "2026-11-11T03:20+09:00",
  "latest_price_date": "2026-11-10",
  "rules": {
   "stop_buffer": 0.99,
   "rr": 3.0
  },
  "summary": {
-  "picks": 23,
+  "picks": 26,
   "with_data": 23,
   "avg_ret_pct": 1.43,
   "win_rate_pct": 60.9,
@@ -24,6 +24,50 @@
   "n_5d": 10
  },
  "rows": [
+  {
+   "date": "2026-11-11",
+   "dates": [
+    "2026-11-11"
+   ],
+   "price_date": "2026-11-10",
+   "code": "6089",
+   "name": "ウィルグループ",
+   "rank": 1,
+   "base": 1205,
+   "data_close": 1205.0,
+   "support": 1144.0,
+   "support_date": "2026-11-06",
+   "stop": 1132.6,
+   "target": 1422.2,
+   "risk_pct": 6.0,
+   "target_pct": 18.0,
+   "days_held": 0,
+   "status": "これから"
+  },
+  {
+   "date": "2026-11-11",
+   "dates": [
+    "2026-11-11"
+   ],
+   "price_date": "2026-11-10",
+   "code": "1720",
+   "name": "東急建設",
+   "rank": 2,
+   "base": 1218,
+   "status": "株価データなし"
+  },
+  {
+   "date": "2026-11-11",
+   "dates": [
+    "2026-11-11"
+   ],
+   "price_date": "2026-11-10",
+   "code": "7417",
+   "name": "南陽",
+   "rank": 3,
+   "base": 1837,
+   "status": "株価データなし"
+  },
   {
    "date": "2026-11-10",
    "dates": [
