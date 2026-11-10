@@ -1,0 +1,86 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
+  <title>S&amp;P 500 PER・PBR 買いの合図</title>
+  <meta name="description" content="S&amp;P 500 の PER が20倍を割った日を買いの合図として毎日判定し、合図のあとの値動きを確かめるページ。PBR は参考に表示" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20261110" />
+</head>
+<body>
+
+<div class="wrap">
+<header>
+  <a class="back" href="../">← わたしのアプリ</a>
+  <h1>S&amp;P 500 PER・PBR 買いの合図</h1>
+  <p id="status">読み込み中...</p>
+  <p class="refresh">
+    <button type="button" class="reload" id="reload">最新データを読み込む</button>
+    <a class="reload" id="refresh" target="_blank" rel="noopener">今すぐ更新</a>
+  </p>
+  <p class="note">「今すぐ更新」は GitHub の画面が開くので「Create」を押すと、2〜5分でデータを取り直して分析し直します(GitHub へのログインが必要です。ふだんは火〜土の 7:30 に自動更新。米国の取引が終わったあと)。反映されたら「最新データを読み込む」を押してください。</p>
+</header>
+
+<main id="main" style="display:none">
+
+<section class="card" aria-labelledby="t1">
+  <div class="tag">買いの合図(PER)</div>
+  <h2 id="t1">いまは買い時？</h2>
+  <p class="lead" id="t-lead"></p>
+  <div class="status">
+    <div class="pill" id="t-pill"><span>いま</span><b id="t-pillv"></b><span id="t-pills"></span></div>
+    <div class="stats" id="t-stats"></div>
+  </div>
+</section>
+
+<section class="card" aria-labelledby="g1">
+  <div class="row">
+    <h2 id="g1">チャート</h2>
+    <div class="seg" id="rng" role="group" aria-label="期間"></div>
+  </div>
+
+  <h3>① S&amp;P 500 と買いの合図</h3>
+  <div class="legend">
+    <span><i style="background:var(--line)"></i>S&amp;P 500(終値)</span>
+    <span><span class="mk b">買</span>PER の買いの合図</span>
+  </div>
+  <div class="chart" id="ch-n"></div>
+
+  <h3>② PER</h3>
+  <div class="legend">
+    <span><i style="background:var(--line)"></i>PER</span>
+    <span><i class="dash" style="border-color:var(--in)"></i>買いの線 <span id="per-lo"></span></span>
+    <span><i class="dash" style="border-color:var(--muted)"></i>次の合図の準備の線 <span id="per-re"></span></span>
+    <span><span class="mk b">買</span>PER の買いの合図</span>
+  </div>
+  <div class="chart" id="ch-per"></div>
+
+  <h3>③ PBR(参考。買いの線は置いていません)</h3>
+  <div class="legend">
+    <span><i style="background:var(--line)"></i>PBR</span>
+    <span><i class="dash" style="border-color:var(--muted)"></i>2000年以降の中央値 <span id="pbr-md"></span></span>
+  </div>
+  <div class="chart" id="ch-pbr"></div>
+  <p class="note" id="chnote"></p>
+</section>
+
+<section class="card" aria-labelledby="r1">
+  <div class="tag">答え合わせ</div>
+  <h2 id="r1">合図のあとの値動き</h2>
+  <p class="lead" id="r-lead"></p>
+  <div class="tw"><table id="r-tbl"></table></div>
+  <p class="note" id="r-note"></p>
+</section>
+
+<section class="card" aria-labelledby="w1">
+  <div class="tag">線の決め方</div>
+  <h2 id="w1">なぜ PER 20倍で、PBR には線が無いの？</h2>
+  <div class="lead" id="why"></div>
+</section>
+
+</main>
+</div>
+<script src="assets/app.js?v=20261110"></script>
+</body>
+</html>
