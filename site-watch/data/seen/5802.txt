@@ -2418,6 +2418,7 @@ https://sumitomoelectric.com/jp/press/2026/10/prs123
 https://sumitomoelectric.com/jp/press/2026/11/prs128
 https://sumitomoelectric.com/jp/press/2026/11/prs129
 https://sumitomoelectric.com/jp/press/2026/11/prs131
+https://sumitomoelectric.com/jp/press/2026/11/prs133
 https://sumitomoelectric.com/jp/privacy/index2
 https://sumitomoelectric.com/jp/privacy/mynumber
 https://sumitomoelectric.com/jp/products/air-springs
@@ -4194,6 +4195,7 @@ https://sumitomoelectric.com/jp/sites/japan/files/2026-10/download_documents/sup
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs128_0.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs129_0.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs131.pdf
+https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs133.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/sei_id29.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/yuuka157-1.pdf
 https://sumitomoelectric.com/jp/smp
@@ -4752,6 +4754,7 @@ https://sumitomoelectric.com/press/2026/10/prs047
 https://sumitomoelectric.com/press/2026/10/prs048
 https://sumitomoelectric.com/press/2026/11/prs049
 https://sumitomoelectric.com/press/2026/11/prs051
+https://sumitomoelectric.com/press/2026/11/prs052
 https://sumitomoelectric.com/product/optical-fibers/special-contents-reduced-diameter-fibers
 https://sumitomoelectric.com/products/10g-epon
 https://sumitomoelectric.com/products/FlexBeamGuidE
