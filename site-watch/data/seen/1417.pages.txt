@@ -58,6 +58,7 @@ https://www.mirait-one.com/casestudy/
 https://www.mirait-one.com/casestudy/20260402-00.html
 https://www.mirait-one.com/casestudy/20260427-00.html
 https://www.mirait-one.com/casestudy/20260928-00.html
+https://www.mirait-one.com/casestudy/20261110-00.html
 https://www.mirait-one.com/contact/
 https://www.mirait-one.com/cookiepolicy/
 https://www.mirait-one.com/corporate/
@@ -306,6 +307,7 @@ https://www.mirait-one.com/solution/issue/equipment-reliability/
 https://www.mirait-one.com/solution/issue/government-dx/
 https://www.mirait-one.com/solution/issue/water-dx/
 https://www.mirait-one.com/solution/issue/wireless-communications/
+https://www.mirait-one.com/solution/sl157-ev-mobile-robot.html
 https://www.mirait-one.com/solution/sl172-sxgp-for-hospitals.html
 https://www.mirait-one.com/solution/sl191-miratis.html
 https://www.mirait-one.com/solution/sl192-genba-koreichi.html
