@@ -82,6 +82,7 @@ https://www.keyence.co.jp/products/controls/plc-building/
 https://www.keyence.co.jp/products/controls/plc-package/
 https://www.keyence.co.jp/products/controls/wireless-system/
 https://www.keyence.co.jp/products/controls/wireless-system/ws-1000/
+https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/
 https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/pr/201244001.jsp
 https://www.keyence.co.jp/products/marker/
 https://www.keyence.co.jp/products/marker/inkjet-printers/mk-r1000/pr/210288001.jsp

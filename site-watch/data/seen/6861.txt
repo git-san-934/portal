@@ -322,6 +322,7 @@ https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_166932&dl
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_168389
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_168389&dlSeriesId=WS_157288
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_168664
+https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_168755&dlSeriesId=WS_157316
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_169606
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_169801
 https://www.keyence.co.jp/download/download/confirmation/?dlAssetId=AS_170055
@@ -771,9 +772,11 @@ https://www.keyence.co.jp/inquiry/askKeyence/?ad_local=footer_inquiry&groupId=tc
 https://www.keyence.co.jp/inquiry/askKeyence/?ad_local=footer_inquiry&groupId=tcm%3A106-2276055&modelId=&seriesId=&typeId=tcm%3A106-2276061
 https://www.keyence.co.jp/inquiry/askKeyence/?ad_local=footer_inquiry&groupId=tcm%3A106-2276055&modelId=&seriesId=&typeId=tcm%3A106-2279566
 https://www.keyence.co.jp/inquiry/askKeyence/?ad_local=footer_inquiry&groupId=tcm%3A106-2276055&modelId=&seriesId=&typeId=tcm%3A106-2279605
+https://www.keyence.co.jp/inquiry/askKeyence/?ad_local=footer_inquiry&groupId=tcm%3A106-2297915&modelId=&seriesId=WS_157316&typeId=tcm%3A106-2297928
 https://www.keyence.co.jp/inquiry/askKeyence/?ad_local=seriesfooter&groupId=tcm%3A106-1619383&modelId=&seriesId=WS_157165&typeId=tcm%3A106-1925171
 https://www.keyence.co.jp/inquiry/askKeyence/?ad_local=seriesfooter&groupId=tcm%3A106-1619394&modelId=&seriesId=WS_157151&typeId=tcm%3A106-2093665
 https://www.keyence.co.jp/inquiry/askKeyence/?ad_local=seriesfooter&groupId=tcm%3A106-2006123&modelId=&seriesId=WS_157302&typeId=tcm%3A106-1619448
+https://www.keyence.co.jp/inquiry/askKeyence/?ad_local=seriesfooter&groupId=tcm%3A106-2297915&modelId=&seriesId=WS_157316&typeId=tcm%3A106-2297928
 https://www.keyence.co.jp/inquiry/askKeyence/?groupId=&modelId=&seriesId=&typeId=
 https://www.keyence.co.jp/inquiry/askKeyence/?groupId=tcm%3A106-1603501
 https://www.keyence.co.jp/inquiry/askKeyence/?groupId=tcm%3A106-1603501&modelId=&seriesId=&typeId=
@@ -915,6 +918,7 @@ https://www.keyence.co.jp/inquiry/askKeyence/?groupId=tcm%3A106-2276055&typeId=t
 https://www.keyence.co.jp/inquiry/askKeyence/?groupId=tcm%3A106-2276055&typeId=tcm%3A106-2279566
 https://www.keyence.co.jp/inquiry/askKeyence/?groupId=tcm%3A106-2276055&typeId=tcm%3A106-2279605
 https://www.keyence.co.jp/inquiry/askKeyence/?groupId=tcm%3A106-2297915
+https://www.keyence.co.jp/inquiry/askKeyence/?groupId=tcm%3A106-2297915&modelId=&seriesId=WS_157316&typeId=tcm%3A106-2297928
 https://www.keyence.co.jp/inquiry/askKeyence/?groupId=tcm%3A106-2297915&typeId=tcm%3A106-2297928
 https://www.keyence.co.jp/inquiry/calibration/
 https://www.keyence.co.jp/inquiry/contact/
@@ -1175,9 +1179,11 @@ https://www.keyence.co.jp/inquiry/requestFreeTrial/?ad_local=footer_inquiry&grou
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?ad_local=footer_inquiry&groupId=tcm%3A106-2276055&modelId=&seriesId=&typeId=tcm%3A106-2276061
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?ad_local=footer_inquiry&groupId=tcm%3A106-2276055&modelId=&seriesId=&typeId=tcm%3A106-2279566
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?ad_local=footer_inquiry&groupId=tcm%3A106-2276055&modelId=&seriesId=&typeId=tcm%3A106-2279605
+https://www.keyence.co.jp/inquiry/requestFreeTrial/?ad_local=footer_inquiry&groupId=tcm%3A106-2297915&modelId=&seriesId=WS_157316&typeId=tcm%3A106-2297928
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?ad_local=seriesfooter&groupId=tcm%3A106-1619383&modelId=&seriesId=WS_157165&typeId=tcm%3A106-1925171
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?ad_local=seriesfooter&groupId=tcm%3A106-1619394&modelId=&seriesId=WS_157151&typeId=tcm%3A106-2093665
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?ad_local=seriesfooter&groupId=tcm%3A106-2006123&modelId=&seriesId=WS_157302&typeId=tcm%3A106-1619448
+https://www.keyence.co.jp/inquiry/requestFreeTrial/?ad_local=seriesfooter&groupId=tcm%3A106-2297915&modelId=&seriesId=WS_157316&typeId=tcm%3A106-2297928
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?groupId=&modelId=&seriesId=&typeId=
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?groupId=tcm%3A106-1603501
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?groupId=tcm%3A106-1603501&modelId=&seriesId=&typeId=
@@ -1316,6 +1322,7 @@ https://www.keyence.co.jp/inquiry/requestFreeTrial/?groupId=tcm%3A106-2276055&ty
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?groupId=tcm%3A106-2276055&typeId=tcm%3A106-2279566
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?groupId=tcm%3A106-2276055&typeId=tcm%3A106-2279605
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?groupId=tcm%3A106-2297915
+https://www.keyence.co.jp/inquiry/requestFreeTrial/?groupId=tcm%3A106-2297915&modelId=&seriesId=WS_157316&typeId=tcm%3A106-2297928
 https://www.keyence.co.jp/inquiry/requestFreeTrial/?groupId=tcm%3A106-2297915&typeId=tcm%3A106-2297928
 https://www.keyence.co.jp/investor/
 https://www.keyence.co.jp/investor/business-model/
@@ -1775,6 +1782,7 @@ https://www.keyence.co.jp/landing/req/general/ai-assistant.jsp
 https://www.keyence.co.jp/landing/req/general/ai-assistant.jsp?ad_local=series_ai-assistant&groupId=tcm%3A106-1619383&seriesId=WS_157165&typeId=tcm%3A106-1925171
 https://www.keyence.co.jp/landing/req/general/ai-assistant.jsp?ad_local=series_ai-assistant&groupId=tcm%3A106-1619394&seriesId=WS_157151&typeId=tcm%3A106-2093665
 https://www.keyence.co.jp/landing/req/general/ai-assistant.jsp?ad_local=series_ai-assistant&groupId=tcm%3A106-2006123&seriesId=WS_157302&typeId=tcm%3A106-1619448
+https://www.keyence.co.jp/landing/req/general/ai-assistant.jsp?ad_local=series_ai-assistant&groupId=tcm%3A106-2297915&seriesId=WS_157316&typeId=tcm%3A106-2297928
 https://www.keyence.co.jp/landing/req/general/bz-x700_1126_01.jsp
 https://www.keyence.co.jp/landing/req/general/bz-x700_1126_02.jsp
 https://www.keyence.co.jp/landing/req/general/consultation_campaign_2030_01.jsp
@@ -9111,7 +9119,15 @@ https://www.keyence.co.jp/products/controls/wireless-system/ws-1000/voice/ykk.js
 https://www.keyence.co.jp/products/development-support/
 https://www.keyence.co.jp/products/development-support/verification-system/
 https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/
+https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/downloads/
+https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/downloads/?ad_local=seriesfooter&mode=cd
+https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/downloads/?ad_local=seriesfooter&mode=ds
+https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/downloads/?ad_local=seriesfooter&mode=ma
+https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/downloads/?ad_local=seriesfooter&mode=so
+https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/downloads/?ad_local=seriesfooter&mode=tg
 https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/get-pricing/
+https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/get-pricing/?ad_local=pa22061
+https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/get-pricing/?ad_local=seriesfooter
 https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/models/
 https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/models/op-26486/
 https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/models/op-26487/
