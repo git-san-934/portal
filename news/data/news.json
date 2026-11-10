@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-10T20:48+09:00",
+ "updated_at": "2026-11-11T00:14+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2240,30 +2240,6 @@
      "source": "official",
      "first_seen": "2026-05-20T00:00+09:00",
      "title_ja": "この CEO が複雑な AI ストーリーを 950 億ドルの IPO に変えた 2026 年 5 月 20 日 ニュース"
-    },
-    {
-     "date": "2026-05-14",
-     "title": "Cerebras CEO says AI chip demand is ‘not speculative’ as shares double in blockbuster IPO debut May 14, 2026 News",
-     "url": "https://fortune.com/2026/05/14/cerebras-one-of-the-biggest-ipos-of-the-year/",
-     "source": "official",
-     "first_seen": "2026-05-14T00:00+09:00",
-     "title_ja": "セレブラスCEO、大ヒットIPOデビューで株価2倍にAIチップ需要は「投機的ではない」と発言 2026年5月14日 ニュース"
-    },
-    {
-     "date": "2026-05-14",
-     "title": "A.I. Chip Maker Soars 68% in Market Debut, as Tech I.P.O.s Ramp Up May 14, 2026 News",
-     "url": "https://www.nytimes.com/2026/05/14/technology/cerebras-ipo-ai.html",
-     "source": "official",
-     "first_seen": "2026-05-14T00:00+09:00",
-     "title_ja": "A.I.テクノロジー関連I.P.O.の増加に伴い、チップメーカーが市場デビューで68%急上昇 2026年5月14日 ニュース"
-    },
-    {
-     "date": "2026-05-14",
-     "title": "Cerebras Shares Soar in Hotly Anticipated Year for AI Debuts May 14, 2026 News",
-     "url": "https://www.wsj.com/finance/stocks/cerebras-to-kick-off-hotly-anticipated-year-for-artificial-intelligence-ipos-8b08ead7",
-     "source": "official",
-     "first_seen": "2026-05-14T00:00+09:00",
-     "title_ja": "AIデビューが大いに期待される年にセレブラス株が急上昇 2026年5月14日 ニュース"
     }
    ]
   },
@@ -2277,6 +2253,14 @@
     "https://www.circle.com/pressroom"
    ],
    "items": [
+    {
+     "date": "2026-11-10",
+     "title": "Global Citizen and Circle Partner to Expand Economic Opportunity Across Africa Through Digital Financial Innovation The partnership brings together two missions: Circle’s work to raise global economic",
+     "url": "https://www.circle.com/pressroom/global-citizen-and-circle-partner-to-expand-economic-opportunity-across-africa-through-digital-financial-innovation",
+     "source": "official",
+     "first_seen": "2026-11-11T00:14+09:00",
+     "title_ja": "Global Citizen と Circle が提携し、デジタル金融イノベーションを通じてアフリカ全土の経済機会を拡大 この提携により、2 つの使命が統合されます: 世界経済を向上させるための Circle の取り組み"
+    },
     {
      "date": "2026-11-04",
      "title": "Circle Reports Third Quarter 2026 Results Circle Internet Group, Inc. (NYSE: CRCL) today announced results for the third quarter of fiscal year 2026.",
