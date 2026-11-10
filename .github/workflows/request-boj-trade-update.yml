@@ -1,0 +1,38 @@
+name: 日銀統計の新着 貿易ページ 手動更新
+
+# 貿易ページ(boj-stats/trade.html)の「このページを更新」を押すと、更新依頼の Issue を作る画面が開く。
+# リポジトリ所有者がその Issue を作ったときだけ、貿易統計だけの取り込み(update-boj-stats.yml の scope=trade)を
+# 起動して Issue を閉じる。(ページから直接 Actions を動かすにはトークンが要るため、新着情報の「今すぐ更新」と同じ仕組み)
+on:
+  issues:
+    types: [opened]
+
+permissions:
+  issues: write # 結果をコメントして Issue を閉じる
+  actions: write # 貿易統計の取り込みを起動する
+
+jobs:
+  request:
+    if: >-
+      github.event.issue.user.login == github.repository_owner &&
+      startsWith(github.event.issue.title, '貿易統計を更新')
+    runs-on: ubuntu-latest
+    steps:
+      - name: 貿易統計の取り込みを起動
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run update-boj-stats.yml --repo "$GITHUB_REPOSITORY" --ref main -f scope=trade
+      - name: 結果をコメントして閉じる
+        if: always()
+        env:
+          GH_TOKEN: ${{ github.token }}
+          NUMBER: ${{ github.event.issue.number }}
+          OK: ${{ job.status == 'success' }}
+        run: |
+          if [ "$OK" = "true" ]; then
+            gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "貿易統計の取り込みを始めました。5分ほどで貿易ページに反映されます(新しい公表が無ければ表示は変わりません)。"
+            gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --reason completed
+          else
+            gh issue comment "$NUMBER" --repo "$GITHUB_REPOSITORY" --body "取り込みを始められませんでした。Actions のログを確認してください。"
+            gh issue close "$NUMBER" --repo "$GITHUB_REPOSITORY" --reason "not planned"
+          fi

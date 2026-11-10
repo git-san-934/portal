@@ -22,7 +22,7 @@
 ファイルの統計表IDは一覧ページから毎回探す（更新時に変わっても追随するため）。
 Excel は標準ライブラリだけで読む（xlsx.py）。
 """
-import csv, datetime as dt, html, io, json, os, re, time, unicodedata, urllib.error, urllib.request
+import csv, datetime as dt, html, io, json, os, re, sys, time, unicodedata, urllib.error, urllib.request
 from fetch import ROOT, RAW, load_series, csv_path, read_csv, write_csv, load_summary, save_summary, guarded
 import xlsx
 
@@ -627,13 +627,19 @@ SOURCES = (("労働力調査", labour, ("LFS_",)),
 
 
 def main():
-    series = [s for s in load_series() if s["db"] == "ESTAT"]
+    # --only trade のように取得関数の名前を並べると、その取得元だけを取る（貿易ページの単独更新など）
+    only = sys.argv[sys.argv.index("--only") + 1].split(",") if "--only" in sys.argv else None
+    sources = [src for src in SOURCES if only is None or src[1].__name__ in only]
+    if not sources:
+        raise SystemExit(f"--only に該当する取得元がない: {only}（{', '.join(src[1].__name__ for src in SOURCES)}）")
+    series = [s for s in load_series() if s["db"] == "ESTAT"
+              and (only is None or s["code"].startswith(tuple(pre for _, _, ps in sources for pre in ps)))]
     today = dt.date.today().isoformat()
     rawdir = os.path.join(RAW, today)
     os.makedirs(rawdir, exist_ok=True)
     summary = load_summary()
     data, failed = {}, set()
-    for name, fn, prefixes in SOURCES:
+    for name, fn, prefixes in sources:
         try:
             data.update(fn(rawdir))
         except Exception as e:  # 1つ失敗しても他は続ける

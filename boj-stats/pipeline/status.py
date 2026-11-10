@@ -10,7 +10,7 @@
 - error か stale の系列があれば、内容を表示して終了コード 1 を返す（run_daily.sh の終了コードに反映）
 標準ライブラリのみ。
 """
-import csv, datetime as dt, json, os
+import csv, datetime as dt, json, os, sys
 
 from fetch import ROOT, load_series, csv_path, read_csv, load_summary
 import fetch_estat, fetch_stat
@@ -41,6 +41,9 @@ def hits(s, err):
 
 
 def main():
+    # --only ESTAT_TRADE_ のように系列ID（CSV名）の接頭辞を渡すと、その系列だけ状態を更新し、
+    # 他の系列は前回の記録をそのまま残す（一部の取得元だけを取り直したとき。取っていない系列を「成功」にしない）
+    only = sys.argv[sys.argv.index("--only") + 1] if "--only" in sys.argv else None
     now = dt.datetime.now().astimezone()
     today = now.date().isoformat()
     summary = load_summary()
@@ -55,6 +58,10 @@ def main():
     for s in load_series():
         sid = os.path.basename(csv_path(s["db"], s["code"]))[:-4]
         p = prev.get(sid, {})
+        if only and not sid.startswith(only) and p:
+            out[sid] = p
+            counts[p["state"]] += 1
+            continue
         rows = read_csv(csv_path(s["db"], s["code"]))
         latest = max(rows) if rows else None
         errs = [e for e in errors if hits(s, e)]
