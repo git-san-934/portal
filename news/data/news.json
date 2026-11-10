@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-10T13:39+09:00",
+ "updated_at": "2026-11-10T20:48+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -451,6 +451,22 @@
     "https://www.ussnet.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-11-10",
+     "time": "15:40",
+     "title": "2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261110571414.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-10T20:48+09:00"
+    },
+    {
+     "date": "2026-11-10",
+     "time": "15:40",
+     "title": "連結業績予想および配当予想の修正に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261110571488.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-10T20:48+09:00"
+    },
     {
      "date": "2026-10-05",
      "time": "15:30",
@@ -3271,6 +3287,14 @@
    "official_status": "取得できませんでした",
    "official_pages": [],
    "items": [
+    {
+     "date": "2026-11-10",
+     "time": "16:47",
+     "title": "自己株券買付状況報告書(法24条の6第1項に基づくもの)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZEDP",
+     "source": "edinet",
+     "first_seen": "2026-11-10T20:48+09:00"
+    },
     {
      "date": "2026-11-09",
      "time": "15:02",
