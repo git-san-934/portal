@@ -122,3 +122,7 @@ a.reload{text-decoration:none}
 @media (prefers-color-scheme:dark){:root{--heat:rgba(255,160,60,.2)}}
 .legend i.box.h{background:var(--heat)}
 .zone-h{color:#c46a00;font-weight:700}@media (prefers-color-scheme:dark){.zone-h{color:#ffa94d}}
+:root{--perma:#f08c00;--pbr-line:#2f9e44}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--perma:#ffa94d;--pbr-line:#69db7c}}
+:root[data-theme="dark"]{--perma:#ffa94d;--pbr-line:#69db7c}
+#r-kind{margin:8px 0}

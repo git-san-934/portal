@@ -4,9 +4,9 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover" />
   <title>S&amp;P 500 PER・PBR 買いの合図</title>
-  <meta name="description" content="S&amp;P 500 の PER が20倍を割った日を買いの合図として毎日判定し、合図のあとの値動きを確かめるページ。PBR は参考に表示" />
+  <meta name="description" content="S&amp;P 500 の PER 20倍割れ、PER・PBR が移動平均より下がった日を買いの合図として毎日判定し、合図のあとの値動きを確かめるページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261110" />
+  <link rel="stylesheet" href="assets/style.css?v=20261110b" />
 </head>
 <body>
 
@@ -25,7 +25,7 @@
 <main id="main" style="display:none">
 
 <section class="card" aria-labelledby="t1">
-  <div class="tag">買いの合図(PER)</div>
+  <div class="tag">買いの合図(PER・PBR)</div>
   <h2 id="t1">いまは買い時？</h2>
   <p class="lead" id="t-lead"></p>
   <div class="status">
@@ -43,7 +43,9 @@
   <h3>① S&amp;P 500 と買いの合図</h3>
   <div class="legend">
     <span><i style="background:var(--line)"></i>S&amp;P 500(終値)</span>
-    <span><span class="mk b">買</span>PER の買いの合図</span>
+    <span><span class="mk b">買</span>① PER 20倍割れ</span>
+    <span><span class="mk" style="background:var(--perma)">買</span>② PER が1年平均より下</span>
+    <span><span class="mk sq b">買</span>③ PBR が2年平均より下</span>
   </div>
   <div class="chart" id="ch-n"></div>
 
@@ -52,14 +54,16 @@
     <span><i style="background:var(--line)"></i>PER</span>
     <span><i class="dash" style="border-color:var(--in)"></i>買いの線 <span id="per-lo"></span></span>
     <span><i class="dash" style="border-color:var(--muted)"></i>次の合図の準備の線 <span id="per-re"></span></span>
-    <span><span class="mk b">買</span>PER の買いの合図</span>
+    <span><i style="background:var(--perma)"></i>1年(250日)平均</span>
+    <span><i class="dash" style="border-color:var(--perma)"></i>1年平均の <span id="per-ma-th"></span></span>
   </div>
   <div class="chart" id="ch-per"></div>
 
-  <h3>③ PBR(参考。買いの線は置いていません)</h3>
+  <h3>③ PBR</h3>
   <div class="legend">
     <span><i style="background:var(--line)"></i>PBR</span>
-    <span><i class="dash" style="border-color:var(--muted)"></i>2000年以降の中央値 <span id="pbr-md"></span></span>
+    <span><i style="background:var(--pbr-line)"></i>2年(500日)平均</span>
+    <span><i class="dash" style="border-color:var(--pbr-line)"></i>2年平均の <span id="pbr-ma-th"></span></span>
   </div>
   <div class="chart" id="ch-pbr"></div>
   <p class="note" id="chnote"></p>
@@ -69,18 +73,19 @@
   <div class="tag">答え合わせ</div>
   <h2 id="r1">合図のあとの値動き</h2>
   <p class="lead" id="r-lead"></p>
+  <div class="seg" id="r-kind" role="group" aria-label="合図の種類"></div>
   <div class="tw"><table id="r-tbl"></table></div>
   <p class="note" id="r-note"></p>
 </section>
 
 <section class="card" aria-labelledby="w1">
   <div class="tag">線の決め方</div>
-  <h2 id="w1">なぜ PER 20倍で、PBR には線が無いの？</h2>
+  <h2 id="w1">3つの合図の決め方</h2>
   <div class="lead" id="why"></div>
 </section>
 
 </main>
 </div>
-<script src="assets/app.js?v=20261110"></script>
+<script src="assets/app.js?v=20261110b"></script>
 </body>
 </html>
