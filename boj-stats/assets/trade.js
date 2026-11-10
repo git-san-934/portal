@@ -6,6 +6,12 @@
     if (text != null) e.textContent = text;
     return e;
   };
+  // 「このページを更新」: 更新依頼の Issue を作る画面を開く。所有者が作ると Actions が貿易統計だけを取り直す
+  // (.github/workflows/request-boj-trade-update.yml → update-boj-stats.yml の scope=trade)
+  $("refresh").href = `https://github.com/git-san-934/portal/issues/new?${new URLSearchParams({
+    title: "貿易統計を更新",
+    body: "貿易ページ(boj-stats/trade.html)の「このページを更新」から作成。\n\nこのまま「Create」(または「Submit new issue」)を押すと、貿易統計だけを取り直して5分ほどでページに反映されます。",
+  })}`;
   const TOP = 5;
   const COLORS = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)", "var(--s5)"];
   const OTHER = "var(--s-other)";

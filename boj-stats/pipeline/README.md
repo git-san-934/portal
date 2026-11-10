@@ -56,6 +56,7 @@
 - error か stale があれば run_daily.sh は終了コード 1。共有フォルダの日次ルーチンはその日にスレッドで知らせ、
   portal の GitHub Actions はジョブを失敗にせず（メールは送らない）、注釈と実行の要約に残す。
   portal のページにも「前回の取得」として失敗した系列が出る。ページの「今すぐ更新」から GitHub の Run workflow で手動実行もできる
+- 貿易ページ(trade.html)の「このページを更新」は貿易統計だけを取り直す: 更新依頼の Issue を作ると request-boj-trade-update.yml が update-boj-stats.yml を scope=trade で起動し、run_trade.sh（fetch_estat.py --only trade → status.py --only ESTAT_TRADE_ → analyze.py）を動かす。他の系列の取り込み状況は前回のまま
 
 ## 検知ルール
 - 急変: 前回比が過去の変化の標準偏差の2.5倍超。金利系は0.05%pt以上の動きも急変扱い

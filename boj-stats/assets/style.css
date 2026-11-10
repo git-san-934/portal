@@ -63,6 +63,7 @@ h1 { font-size: 1.5rem; }
   font-size: 0.85rem; font-weight: 700; padding: 0.3rem 0.9rem; border-radius: 999px;
   background: var(--accent); color: #fff; text-decoration: none;
 }
+.trade-refresh { display: flex; flex-wrap: wrap; align-items: center; gap: 0.4rem 0.7rem; margin-top: 0.6rem; }
 .refresh-note { font-size: 0.75rem; color: var(--text-sub); flex: 1 1 14rem; }
 
 .filters { display: flex; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 1rem; }

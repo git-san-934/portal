@@ -7,6 +7,12 @@ on:
     - cron: "15 1 * * 1-5" # 平日 10:15 JST
     - cron: "30 9 * * 1-5" # 平日 18:30 JST
   workflow_dispatch:
+    inputs:
+      scope:
+        description: "取り込む範囲（all: すべて / trade: 貿易統計だけ。trade.html の「このページを更新」が使う）"
+        type: choice
+        options: [all, trade]
+        default: all
   pull_request:
     paths:
       - boj-stats/pipeline/*.py
@@ -41,7 +47,11 @@ jobs:
         id: fetch
         run: |
           rc=0
-          sh boj-stats/pipeline/run_daily.sh || rc=$?
+          if [ "${{ inputs.scope }}" = "trade" ]; then
+            sh boj-stats/pipeline/run_trade.sh || rc=$?
+          else
+            sh boj-stats/pipeline/run_daily.sh || rc=$?
+          fi
           cat boj-stats/pipeline/logs/*.fetch.log || true
           echo "rc=$rc" >> "$GITHUB_OUTPUT"
       - name: ページ用のデータを作る
@@ -61,7 +71,11 @@ jobs:
             git diff --cached --stat | tail -3
             exit 0
           fi
-          git commit -m "日銀統計の新着 データ更新 ($(date +%F))"
+          if [ "${{ inputs.scope }}" = "trade" ]; then
+            git commit -m "日銀統計の新着 貿易統計の更新 ($(date +%F))"
+          else
+            git commit -m "日銀統計の新着 データ更新 ($(date +%F))"
+          fi
           git pull --rebase origin "${{ github.ref_name }}"
           git push origin HEAD:"${{ github.ref_name }}"
           echo "changed=true" >> "$GITHUB_OUTPUT"
