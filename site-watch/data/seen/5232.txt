@@ -598,6 +598,7 @@ https://www.soc.co.jp/ir_news/page/19/
 https://www.soc.co.jp/ir_news/page/2/
 https://www.soc.co.jp/ir_news/page/20/
 https://www.soc.co.jp/ir_news/page/21/
+https://www.soc.co.jp/ir_news/page/22/
 https://www.soc.co.jp/ir_news/page/3/
 https://www.soc.co.jp/ir_news/page/4/
 https://www.soc.co.jp/ir_news/page/5/
@@ -1084,6 +1085,10 @@ https://www.soc.co.jp/news/88404/
 https://www.soc.co.jp/news/88527/
 https://www.soc.co.jp/news/88702/
 https://www.soc.co.jp/news/88754/
+https://www.soc.co.jp/news/89112/
+https://www.soc.co.jp/news/89115/
+https://www.soc.co.jp/news/89118/
+https://www.soc.co.jp/news/89121/
 https://www.soc.co.jp/news/page/2/
 https://www.soc.co.jp/news/page/28/
 https://www.soc.co.jp/news/page/29/
@@ -2629,6 +2634,7 @@ https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/ir/document/document0
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/ir/document/document03/analyst/analkessan_2602.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/ir/document/document03/analyst/analkessan_2605.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/ir/document/document03/analyst/analkessan_2608.pdf
+https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/ir/document/document03/analyst/analkessan_2611.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/ir/document/document03/analyst/analkessan_genkou_2205.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/ir/document/document03/analyst/analkessan_genkou_2305.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/ir/document/document03/analyst/analkessan_genkou_2311.pdf
@@ -2785,8 +2791,12 @@ https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/new_material/
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/new_material/pdf/HighPurity_jp2.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/new_material/pdf/Sic_en2.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/new_material/pdf/Sic_jp2.pdf
+https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/new_material/pdf/antibacterial14_en2.pdf
+https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/new_material/pdf/antibacterial14_jp2.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/new_material/pdf/electrostatic15_1_en2.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/new_material/pdf/electrostatic15_1_jp2.pdf
+https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/new_material/pdf/hydrophile_property8_en2.pdf
+https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/new_material/pdf/hydrophile_property8_jp2.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/optical/ln01j.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/optical/ln04j.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/service/optical/ln05j.pdf
@@ -3103,6 +3113,10 @@ https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20060512_News_Release.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20060608_News_Release.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20060712_News_Release.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20061102_News_Release.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20061204_News_Release.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20070214_News_Release.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20070320_01_News_Release.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2020/01/20070320_News_Release.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/249fbea2452fae648c5303f4b8f5c74f.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/29a5797e84041df39faf0a1840fda2a2.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2020/01/69fd61c09d7bb0674b67a8a5223dcfbc1.pdf
@@ -3199,5 +3213,10 @@ https://www.soc.co.jp/sys/wp-content/uploads/2026/10/702558cf6573d6a34b9790485f8
 https://www.soc.co.jp/sys/wp-content/uploads/2026/10/7a5e5344cba3f95a989f8405c11e8706.pdf
 https://www.soc.co.jp/sys/wp-content/uploads/2026/10/bb01a00c3482f049afcb5259626f22fa.docx
 https://www.soc.co.jp/sys/wp-content/uploads/2026/10/bb01a00c3482f049afcb5259626f22fa.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2026/11/56ae25343e9947e85a9149636ca2de34.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2026/11/6b35ca42f9cb38c3b98643b81fa8c08e.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2026/11/d7d504178f2a796346b1f87dcd39aeb2.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2026/11/ef1ae53dfc397e1c5d446afb2817504c.pdf
+https://www.soc.co.jp/sys/wp-content/uploads/2026/11/soc_IRK_202611.pdf
 https://www.soc.co.jp/tochigi
 https://www.soc.co.jp/tochigi/

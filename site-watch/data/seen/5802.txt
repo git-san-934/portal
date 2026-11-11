@@ -1064,6 +1064,7 @@ https://sumitomoelectric.com/jp/end-products
 https://sumitomoelectric.com/jp/environment-energy
 https://sumitomoelectric.com/jp/faq
 https://sumitomoelectric.com/jp/five_way_win
+https://sumitomoelectric.com/jp/flexflyer/dchighspeedwiring
 https://sumitomoelectric.com/jp/fusion-splicers-tools
 https://sumitomoelectric.com/jp/global-privacy-policy
 https://sumitomoelectric.com/jp/global-privacy-policy/verification_test
@@ -2463,6 +2464,7 @@ https://sumitomoelectric.com/jp/products/ewp/wire_for_consumer_applications
 https://sumitomoelectric.com/jp/products/ewp/wire_for_information_system
 https://sumitomoelectric.com/jp/products/fex
 https://sumitomoelectric.com/jp/products/fextape
+https://sumitomoelectric.com/jp/products/flexflyer
 https://sumitomoelectric.com/jp/products/fpc
 https://sumitomoelectric.com/jp/products/fusion
 https://sumitomoelectric.com/jp/products/high-temperature-furnace-parts
@@ -4196,6 +4198,7 @@ https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs129_0.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs131.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs133.pdf
+https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/prs134.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/sei_id29.pdf
 https://sumitomoelectric.com/jp/sites/japan/files/2026-11/download_documents/yuuka157-1.pdf
 https://sumitomoelectric.com/jp/smp

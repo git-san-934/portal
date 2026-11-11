@@ -80,6 +80,7 @@ https://www.soc.co.jp/ir/stakeholder/
 https://www.soc.co.jp/ir_news/
 https://www.soc.co.jp/ir_news/page/2/
 https://www.soc.co.jp/ir_news/page/21/
+https://www.soc.co.jp/ir_news/page/22/
 https://www.soc.co.jp/ir_news/page/3/
 https://www.soc.co.jp/ir_news/page/4/
 https://www.soc.co.jp/ir_news/page/5/
@@ -158,7 +159,11 @@ https://www.soc.co.jp/service/development/technology/technology01/
 https://www.soc.co.jp/service/development/technology/technology02/
 https://www.soc.co.jp/service/hp-products/
 https://www.soc.co.jp/service/hp-products/health/
+https://www.soc.co.jp/service/hp-products/health/health01/
+https://www.soc.co.jp/service/hp-products/health/health03/
 https://www.soc.co.jp/service/hp-products/ln/
+https://www.soc.co.jp/service/hp-products/search_function02/
+https://www.soc.co.jp/service/hp-products/search_tm03/
 https://www.soc.co.jp/service/hp-products/semiconductor/
 https://www.soc.co.jp/service/hp-products/semiconductor/semiconductor01/
 https://www.soc.co.jp/service/hp-products/semiconductor/semiconductor02/

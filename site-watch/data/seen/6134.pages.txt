@@ -90,11 +90,13 @@ https://smt.fuji.co.jp/office/
 https://smt.fuji.co.jp/printer/
 https://smt.fuji.co.jp/product/
 https://smt.fuji.co.jp/product/nexim
+https://smt.fuji.co.jp/product/nexim/
 https://smt.fuji.co.jp/product_tools/
 https://smt.fuji.co.jp/service_support/
 https://smt.fuji.co.jp/service_support/fuji_showroom
 https://smt.fuji.co.jp/service_support/jisso_demo
 https://smt.fuji.co.jp/service_support/tech_info
+https://smt.fuji.co.jp/service_support/tech_info/
 https://smt.fuji.co.jp/sitemap/
 https://smt.fuji.co.jp/solution-report/
 https://smt.fuji.co.jp/solution/
