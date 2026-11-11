@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-11T09:53+09:00",
+ "updated_at": "2026-11-11T10:27+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -3484,6 +3484,22 @@
    ],
    "items": [
     {
+     "date": "2026-11-11",
+     "time": "10:21",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZE2D",
+     "source": "edinet",
+     "first_seen": "2026-11-11T10:27+09:00"
+    },
+    {
+     "date": "2026-11-11",
+     "time": "10:20",
+     "title": "半期報告書-第120期(2026/04/01-2027/03/31)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZE3H",
+     "source": "edinet",
+     "first_seen": "2026-11-11T10:27+09:00"
+    },
+    {
      "date": "2026-11-09",
      "title": "製品・サービス 高濃度セルロースファイバー成形材料kinariに新たに3グレードを追加 国産の未利用のヒノキ、スギを活用したグレードと、コスト競争力を高めたグレードの量産販売を開始",
      "url": "https://news.panasonic.com/jp/press/jn261109-2",
@@ -3891,21 +3907,6 @@
      "url": "https://news.panasonic.com/jp/press/jn260901-1",
      "source": "official",
      "first_seen": "2026-09-01T00:00+09:00"
-    },
-    {
-     "date": "2026-09-01",
-     "title": "6 2026年9月1日 企業・経営 Stories AI時代のモノづくり人財を育成~国立高専機構とパナソニックの挑戦",
-     "url": "https://news.panasonic.com/jp/stories/18907",
-     "source": "official",
-     "first_seen": "2026-09-01T00:00+09:00"
-    },
-    {
-     "date": "2026-08-28",
-     "time": "09:57",
-     "title": "発行登録追補書類(株券、社債券等)",
-     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100YZ4B",
-     "source": "edinet",
-     "first_seen": "2026-08-28T00:00+09:00"
     }
    ]
   },
