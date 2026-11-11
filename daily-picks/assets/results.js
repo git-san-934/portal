@@ -28,9 +28,9 @@
     return "https://finance.yahoo.co.jp/quote/" + encodeURIComponent(code) + ".T/chart?frm=mthly&trm=10y";
   }
 
-  // 銘柄名の隣に出す最新の損益(基準=分析に使った終値)
+  // 銘柄名の隣に出す最新の損益(基準=分析日の翌営業日の初値)
   function plBadge(r) {
-    if (r.ret_pct == null || r.last_close == null) return el("span", "pl none", "損益はまだなし");
+    if (r.ret_pct == null || r.last_close == null) return el("span", "pl none", "翌日の初値で買い");
     var diff = r.last_close - r.base;
     var yenTxt = (diff > 0 ? "+" : diff < 0 ? "−" : "±") + Math.abs(diff).toLocaleString("ja-JP", { maximumFractionDigits: 1 }) + "円";
     return el("span", "pl " + sign(r.ret_pct), pct(r.ret_pct) + "(" + yenTxt + ")");
@@ -47,10 +47,10 @@
   function renderSummary(s) {
     sumEl.textContent = "";
     sumEl.appendChild(stat("平均の騰落率(最新)", pct(s.avg_ret_pct), sign(s.avg_ret_pct), s.with_data + "件"));
-    sumEl.appendChild(stat("上がった割合", s.win_rate_pct == null ? "—" : s.win_rate_pct.toFixed(0) + "%", "", "基準より上の件数"));
+    sumEl.appendChild(stat("上がった割合", s.win_rate_pct == null ? "—" : s.win_rate_pct.toFixed(0) + "%", "", "買値より上の件数"));
     [1, 3, 5, 10, 20].forEach(function (h) {
       var v = s["avg_" + h + "d_pct"];
-      if (v != null) sumEl.appendChild(stat(h + "営業日後の平均", pct(v), sign(v), s["n_" + h + "d"] + "件"));
+      if (v != null) sumEl.appendChild(stat(h === 1 ? "買った日の終値の平均" : "買って" + h + "日目の平均", pct(v), sign(v), s["n_" + h + "d"] + "件"));
     });
     sumEl.appendChild(stat("本のルールで決済", s.closed + "件", "", "うち利益 " + s.closed_wins + "件・合計 " + (s.closed_sum_r > 0 ? "+" : "") + s.closed_sum_r + "R"));
     sumEl.appendChild(stat("保有中", s.open + "件", ""));
@@ -83,7 +83,13 @@
       n.appendChild(plBadge(r));
       n.appendChild(el("div", "sub", r.code));
       tr.appendChild(n);
-      tr.appendChild(el("td", "num", yen(r.base)));
+      var bc = el("td", "num", yen(r.base));
+      if (r.entry_date) {
+        bc.appendChild(el("div", "sub", md(r.entry_date) + "の初値"));
+        bc.title = "分析日の終値 " + yen(r.analysis_close) + "円";
+      }
+      else bc.appendChild(el("div", "sub", "分析日終値 " + yen(r.analysis_close)));
+      tr.appendChild(bc);
       var last = el("td", "num", yen(r.last_close));
       if (r.last_date) last.appendChild(el("div", "sub", md(r.last_date)));
       tr.appendChild(last);

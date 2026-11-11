@@ -134,7 +134,7 @@ footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: var(-
 .table-wrap { margin-top: 1rem; overflow-x: auto; -webkit-overflow-scrolling: touch; background: var(--card-bg); border: 1px solid var(--border); border-radius: 0.8rem; }
 .results { width: 100%; border-collapse: collapse; font-size: 0.85rem; font-variant-numeric: tabular-nums; }
 .results th { text-align: left; font-size: 0.75rem; color: var(--text-sub); font-weight: 700; padding: 0.5rem 0.6rem; border-bottom: 1px solid var(--border); white-space: nowrap; position: sticky; top: 0; background: var(--card-bg); }
-.results td { padding: 0.45rem 0.6rem; border-top: 1px solid var(--border); vertical-align: top; white-space: nowrap; }
+.results td { padding: 0.45rem 0.55rem; border-top: 1px solid var(--border); vertical-align: top; white-space: nowrap; }
 .results .num { text-align: right; }
 .results .strong { font-weight: 700; }
 .results .name a { color: inherit; font-weight: 700; text-decoration: underline; text-decoration-color: var(--accent); text-underline-offset: 0.2em; }
@@ -153,3 +153,4 @@ footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: var(-
 .pl.down { color: var(--bad); }
 .card-head .pl { margin-left: 0; }
 .card-head .card-name { flex: 1 1 9rem; }
+.results .name .pl { display: block; width: fit-content; margin: 0.15rem 0 0; }

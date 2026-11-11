@@ -1,7 +1,7 @@
 #!/usr/bin/env python3
 """今日の3銘柄の「その後」を集計して data/performance.json を書き出す。
 
-基準: 分析に使った終値(picks.json の close、price_date の終値)
+基準: 分析日(price_date)の翌営業日の初値で買ったとみなす(picks.json の close は参考として残す)
 本のルールで売買したと仮定した結果も出す:
   - 損切り: 直近の押し安値(サポート)の少し下 (安値 × 0.99)
   - 利確目標: リスクリワード 1:3 (基準 + 3 × (基準 − 損切り))
@@ -112,6 +112,11 @@ def from_yfinance(store, codes, start: str):
         for idx, r in sub.dropna(subset=["Close"]).iterrows():
             rows.append([idx.strftime("%Y-%m-%d"), round(float(r["Open"]), 2), round(float(r["High"]), 2),
                          round(float(r["Low"]), 2), round(float(r["Close"]), 2), int(r["Volume"] or 0)])
+        # 取引時間中(15:30 JST 前)の当日の足は途中の値なので使わない
+        now = dt.datetime.now(dt.timezone(dt.timedelta(hours=9)))
+        if now.hour * 60 + now.minute < 15 * 60 + 30:
+            today = now.date().isoformat()
+            rows = [r for r in rows if r[0] != today]
         merge(store, c, rows)
 
 
@@ -129,19 +134,30 @@ def swing_low_before(bars, i_base, base):
 
 
 def evaluate(pick, bars):
-    base = pick["base"]
+    """分析日(price_date)の翌営業日の初値で買ったとみなして評価する。"""
     res = dict(pick)
+    res["analysis_close"] = pick["base"]  # 分析に使った終値(参考)
+    res["base"] = None
     idx = {b[0]: i for i, b in enumerate(bars)}
-    if pick["price_date"] not in idx or base is None:
+    if pick["price_date"] not in idx:
         res["status"] = "株価データなし"
         return res
     ib = idx[pick["price_date"]]
-    after = bars[ib + 1:]
-    res["data_close"] = bars[ib][4]
+    after = bars[ib + 1:]  # 買った日(翌営業日)から
+    if not after or after[0][1] is None:
+        res["status"] = "これから"
+        return res
+
+    entry = after[0]
+    base = entry[1]
+    res["base"] = base
+    res["entry_date"] = entry[0]
+    if pick["base"]:
+        res["gap_pct"] = round((base / pick["base"] - 1) * 100, 2)  # 分析日の終値→翌日の初値
 
     support, support_date = swing_low_before(bars, ib, base)
     stop = round(support * STOP_BUFFER, 1)
-    if stop >= base:  # 念のため
+    if stop >= base:  # 初値がサポートより下に窓を開けたとき
         stop = round(base * 0.95, 1)
     risk = base - stop
     target = round(base + RR * risk, 1)
@@ -149,24 +165,24 @@ def evaluate(pick, bars):
                risk_pct=round(risk / base * 100, 1), target_pct=round(RR * risk / base * 100, 1))
 
     res["days_held"] = len(after)
-    if not after:
-        res["status"] = "これから"
-        return res
-
     last = after[-1]
     res["last_date"], res["last_close"] = last[0], last[4]
     res["ret_pct"] = round((last[4] / base - 1) * 100, 2)
     res["max_up_pct"] = round((max(b[2] for b in after) / base - 1) * 100, 2)
     res["max_down_pct"] = round((min(b[3] for b in after) / base - 1) * 100, 2)
+    # 1 = 買った日の終値、2 = その翌営業日の終値 ...
     res["horizon"] = {str(h): round((after[h - 1][4] / base - 1) * 100, 2) for h in HORIZONS if len(after) >= h}
 
-    # 本のルールでの売買
+    # 本のルールでの売買(買った日も初値のあとの値動きで判定)
     peak = base
-    pre_low = bars[ib][3]  # 上昇の起点の安値(初期値は基準日の安値)
-    run_low = bars[ib][3]  # 直近の高値以降の安値
+    pre_low = bars[ib][3]  # 上昇の起点の安値(初期値は分析日の安値)
+    run_low = bars[ib][3]
     exit_ = None
-    for b in after:
+    for k, b in enumerate(after):
         d, o, h, l, c = b[0], b[1], b[2], b[3], b[4]
+        if k == 0:
+            o = base
+            run_low = min(run_low, l)
         if l <= stop:
             px = min(o, stop) if o is not None else stop
             exit_ = {"date": d, "price": px, "reason": "損切り"}
@@ -176,8 +192,7 @@ def evaluate(pick, bars):
             exit_ = {"date": d, "price": px, "reason": "利確(1:3)"}
             break
         if h > peak:
-            if peak > base or h > base:
-                pre_low = run_low
+            pre_low = run_low
             peak = h
             run_low = l
         else:

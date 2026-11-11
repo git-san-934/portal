@@ -56,7 +56,7 @@
       var t = Math.abs(r.ret_pct) < 0.05 ? "" : r.ret_pct > 0 ? " up" : " down";
       var pl = el("a", "pl" + t, plText(r));
       pl.href = "results.html";
-      pl.title = r.last_date + " の終値 " + r.last_close + "円";
+      pl.title = "買値(" + r.entry_date + " の初値) " + r.base + "円 → " + r.last_date + " の終値 " + r.last_close + "円";
       head.appendChild(pl);
     }
     card.appendChild(head);
