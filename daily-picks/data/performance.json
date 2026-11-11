@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-11T22:47+09:00",
+ "updated_at": "2026-11-11T23:44+09:00",
  "latest_price_date": "2026-11-11",
  "rules": {
   "stop_buffer": 0.99,
@@ -275,7 +275,7 @@
    "last_date": "2026-11-11",
    "last_close": 1816.0,
    "ret_pct": 2.45,
-   "max_up_pct": 2.65,
+   "max_up_pct": 2.68,
    "max_down_pct": -6.77,
    "horizon": {
     "1": -4.63,
