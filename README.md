@@ -39,7 +39,6 @@ https://git-san-934.github.io/portal/
 | 米国3倍ブル 下落率ランキング | https://git-san-934.github.io/portal/lev3x/ |
 | 3倍ブル見張り台 | https://git-san-934.github.io/portal/lev3watch/ |
 | 日銀統計の新着 | https://git-san-934.github.io/portal/boj-stats/ |
-| 日経ヒートマップ | https://git-san-934.github.io/nikkei-heatmap/ |
 | 銘柄スクリーニング | https://git-san-934.github.io/portal/float-screen/ |
 | 東証株価データベース | https://git-san-934.github.io/tse-price-db/ |
 | 東証チャートスクロール | https://git-san-934.github.io/portal/tse-chart-scroll/ |
