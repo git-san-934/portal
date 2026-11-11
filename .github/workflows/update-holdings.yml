@@ -54,7 +54,7 @@ jobs:
             exit 0
           fi
           git commit -m "持ち株データ更新 ($(TZ=Asia/Tokyo date +%F))"
-          # 業種別ETFの更新など、他のコミットが先に入っていても push できるようにする
+          # 他のデータ更新のコミットが先に入っていても push できるようにする
           git pull --rebase origin main
           git push origin HEAD:main
           echo "changed=true" >> "$GITHUB_OUTPUT"

@@ -12,7 +12,6 @@ https://git-san-934.github.io/portal/
 
 - `index.html` — 入口ページ本体。1ファイルだけで動きます。
 - `tse-chart-scroll/` — 掲載アプリの1つ「東証チャートスクロール」の本体(このリポジトリ内に同梱)。詳細は `tse-chart-scroll/README.md` を参照。
-- `sector-etf/` — 掲載アプリの1つ「業種別ETFチャート一覧」の本体(このリポジトリ内に同梱)。株価データは GitHub Actions が平日に自動更新します。詳細は `sector-etf/README.md` を参照。
 - `holdings/` — 掲載アプリの1つ「持ち株チェック」の本体(このリポジトリ内に同梱)。毎日のチェック結果は `holdings/data/check.json`、株価データは GitHub Actions が平日に自動更新します。詳細は `holdings/README.md` を参照。
 - `news/` — 掲載アプリの1つ「持ち株の新着情報」の本体(このリポジトリ内に同梱)。持ち株の公式サイトのニュースと EDINET(米国株は SEC)の提出書類を GitHub Actions が毎日 1:00・5:41・6:41・7:41・8:23・12:45・15:45 に集めます。詳細は `news/README.md` を参照。
 - `site-watch/` — 掲載アプリの1つ「持ち株サイトの新着ページ」の本体(このリポジトリ内に同梱)。持ち株(日本株)の公式サイト全体を GitHub Actions が毎日 5:04・8:48・11:50・17:34 に巡回し、新しく増えたページ・PDF を一覧にします。詳細は `site-watch/README.md` を参照。
@@ -44,7 +43,6 @@ https://git-san-934.github.io/portal/
 | 銘柄スクリーニング | https://git-san-934.github.io/portal/float-screen/ |
 | 東証株価データベース | https://git-san-934.github.io/tse-price-db/ |
 | 東証チャートスクロール | https://git-san-934.github.io/portal/tse-chart-scroll/ |
-| 業種別ETFチャート一覧 | https://git-san-934.github.io/portal/sector-etf/ |
 | 自社株買情報 | https://git-san-934.github.io/ir-watch-app/ |
 
 新しいアプリを増やすときは、`index.html` の `<main class="apps">` の中に

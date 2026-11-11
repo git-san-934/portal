@@ -83,7 +83,7 @@ https://git-san-934.github.io/portal/nikkei43/
 ## ファイル構成
 
 - `index.html` — ページ本体
-- `assets/style.css` — スタイル(portal / sector-etf と同じデザイントークン)
+- `assets/style.css` — スタイル(portal と同じデザイントークン)
 - `assets/app.js` — 下落率・追加額・シミュレーションの計算とチャート描画
 - `scripts/optimize.py` — 買い時・売り時の条件を計算し直して `data/optimize.json` を書くスクリプト(標準ライブラリのみ)
 - `scripts/fetch_nav.py` — 基準価額を取得して `data/nav.json` に追記するスクリプト(標準ライブラリのみ)
