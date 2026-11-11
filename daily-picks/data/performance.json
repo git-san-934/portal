@@ -1,12 +1,12 @@
 {
- "updated_at": "2026-11-12T02:34+09:00",
+ "updated_at": "2026-11-12T03:21+09:00",
  "latest_price_date": "2026-11-11",
  "rules": {
   "stop_buffer": 0.99,
   "rr": 3.0
  },
  "summary": {
-  "picks": 26,
+  "picks": 28,
   "with_data": 23,
   "avg_ret_pct": 1.69,
   "win_rate_pct": 69.6,
@@ -27,7 +27,8 @@
   {
    "date": "2026-11-11",
    "dates": [
-    "2026-11-11"
+    "2026-11-11",
+    "2026-11-12"
    ],
    "price_date": "2026-11-11",
    "code": "7482",
@@ -36,6 +37,19 @@
    "base": null,
    "analysis_close": 1467,
    "status": "これから"
+  },
+  {
+   "date": "2026-11-12",
+   "dates": [
+    "2026-11-12"
+   ],
+   "price_date": "2026-11-11",
+   "code": "1762",
+   "name": "高松コンストラクショングループ",
+   "rank": 1,
+   "base": null,
+   "analysis_close": 4105,
+   "status": "株価データなし"
   },
   {
    "date": "2026-11-11",
@@ -62,6 +76,19 @@
    "base": null,
    "analysis_close": 1036,
    "status": "これから"
+  },
+  {
+   "date": "2026-11-12",
+   "dates": [
+    "2026-11-12"
+   ],
+   "price_date": "2026-11-11",
+   "code": "4118",
+   "name": "カネカ",
+   "rank": 3,
+   "base": null,
+   "analysis_close": 6188,
+   "status": "株価データなし"
   },
   {
    "date": "2026-11-10",
