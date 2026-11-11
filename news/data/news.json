@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-11T20:28+09:00",
+ "updated_at": "2026-11-11T23:43+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -42,6 +42,13 @@
      "url": "https://www.nintendo.com/jp/topics/article/11a5acfe-42af-4294-b421-1504a2a8cf45",
      "source": "official",
      "first_seen": "2026-11-11T11:13+09:00"
+    },
+    {
+     "date": "2026-11-11",
+     "title": "「Hello! Pikmin 03 ボウリング」を公開しました。",
+     "url": "https://www.nintendo.com/jp/character/pikmin/hello-pikmin/index.html",
+     "source": "official",
+     "first_seen": "2026-11-01T04:47+09:00"
     },
     {
      "date": "2026-11-10",
@@ -242,13 +249,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/8a0fad53-c589-4304-98b2-f86bd3d5764f",
      "source": "official",
      "first_seen": "2026-11-02T19:53+09:00"
-    },
-    {
-     "date": "2026-11-01",
-     "title": "「Hello! Pikmin #02 あこがれ」を公開しました。",
-     "url": "https://www.nintendo.com/jp/character/pikmin/hello-pikmin/index.html",
-     "source": "official",
-     "first_seen": "2026-11-01T04:47+09:00"
     },
     {
      "date": "2026-10-31",
