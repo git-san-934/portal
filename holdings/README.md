@@ -53,7 +53,7 @@ https://git-san-934.github.io/portal/holdings/
 ## ファイル構成
 
 - `index.html` — ページ本体
-- `assets/style.css` — スタイル(portal / sector-etf と同じデザイントークン)
+- `assets/style.css` — スタイル(portal と同じデザイントークン)
 - `assets/app.js` — データ読み込み・騰落率計算・チャート描画
 - `scripts/fetch_prices.py` — yfinance から終値を取得して `data/prices.json` を作るスクリプト
 - `scripts/fetch_margin.py` — JPX の銘柄別信用取引残高(PDF)から持ち株の信用残を取り出して `data/margin.json` を作るスクリプト
