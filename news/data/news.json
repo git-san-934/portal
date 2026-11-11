@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-11T10:27+09:00",
+ "updated_at": "2026-11-11T11:13+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,27 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-11",
+     "title": "「マイマリオ(MY MARIO)」の公式サイトを更新しました。 コマどりマリオ 第10話「がんばれキノピオ!」を公開しています。",
+     "url": "https://www.nintendo.com/jp/my-mario/index.html",
+     "source": "official",
+     "first_seen": "2026-11-11T11:13+09:00"
+    },
+    {
+     "date": "2026-11-11",
+     "title": "「Hello! インディー」特殊コインを投入し、効率よくコインを集める『RACCOIN: Chaos Max Edition』",
+     "url": "https://www.nintendo.com/jp/topics/article/98f912b6-f33b-4dfa-940c-a6681bb2ea9e",
+     "source": "official",
+     "first_seen": "2026-11-11T11:13+09:00"
+    },
+    {
+     "date": "2026-11-11",
+     "title": "「Hello! インディー」タヌキがBMXで郵便配達!?『TANUKI: Pon's Summer - タヌキ:ポンの夏』",
+     "url": "https://www.nintendo.com/jp/topics/article/11a5acfe-42af-4294-b421-1504a2a8cf45",
+     "source": "official",
+     "first_seen": "2026-11-11T11:13+09:00"
+    },
     {
      "date": "2026-11-10",
      "title": "「Nintendo Switch Sports ゲーム運動会 シニアボウリングトーナメント2026」のページを更新しました。 全国から集った16団体の頂点をかけ、「広川町ゲームサポーター」と「けっぱれ!青森県」が決勝戦に臨みます。 これまでの全試合の様子も公開しています。",
@@ -417,27 +438,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/7c22bd96-d725-402e-84c2-fc27c6c13693",
      "source": "official",
      "first_seen": "2026-10-15T10:31+09:00"
-    },
-    {
-     "date": "2026-10-14",
-     "title": "【10月14日追加】「ゲームボーイアドバンス Nintendo Classics」に3タイトルを追加。",
-     "url": "https://www.nintendo.com/jp/topics/article/b25b50d8-a2ae-4db1-9f15-5415317fb510",
-     "source": "official",
-     "first_seen": "2026-10-14T10:56+09:00"
-    },
-    {
-     "date": "2026-10-09",
-     "title": "『マリオカート ワールド』のゲーム内イベント「オンラインチャレンジ サバイバルの秋」を10月17日(土)13:00~17:00に開催。",
-     "url": "https://www.nintendo.com/jp/topics/article/322e44dd-a061-46b5-8526-c53c1b860169",
-     "source": "official",
-     "first_seen": "2026-10-09T19:55+09:00"
-    },
-    {
-     "date": "2026-10-09",
-     "title": "『Nintendo Switch Sports Resort』の紹介映像とTVCMを公開。",
-     "url": "https://www.nintendo.com/jp/topics/article/9c619551-4244-4871-bc20-8d44f66a7904",
-     "source": "official",
-     "first_seen": "2026-10-09T11:32+09:00"
     }
    ]
   },
@@ -3500,6 +3500,13 @@
      "first_seen": "2026-11-11T10:27+09:00"
     },
     {
+     "date": "2026-11-11",
+     "title": "製品・サービス 「でんきの設備でeくらし」(配線:マンション編)の提案を開始 居住者の多様なくらしに対応する配線プランを策定",
+     "url": "https://news.panasonic.com/jp/press/jn261111-1",
+     "source": "official",
+     "first_seen": "2026-11-11T11:13+09:00"
+    },
+    {
      "date": "2026-11-09",
      "title": "製品・サービス 高濃度セルロースファイバー成形材料kinariに新たに3グレードを追加 国産の未利用のヒノキ、スギを活用したグレードと、コスト競争力を高めたグレードの量産販売を開始",
      "url": "https://news.panasonic.com/jp/press/jn261109-2",
@@ -3508,7 +3515,7 @@
     },
     {
      "date": "2026-11-09",
-     "title": "企業・経営 パナソニック オートモーティブシステムズ、本社機能を横浜・みなとみらいへ移転",
+     "title": "1 2026年11月9日 企業・経営 プレスリリース パナソニック オートモーティブシステムズ、本社機能を横浜・みなとみらいへ移転",
      "url": "https://news.panasonic.com/jp/press/jn261109-1",
      "source": "official",
      "first_seen": "2026-11-09T11:42+09:00"
@@ -3900,13 +3907,6 @@
      "url": "https://news.panasonic.com/jp/stories/19001",
      "source": "official",
      "first_seen": "2026-09-11T00:00+09:00"
-    },
-    {
-     "date": "2026-09-01",
-     "title": "1 2026年9月1日 企業・経営 プレスリリース 電動工具事業の事業移管手続き完了に関するお知らせ",
-     "url": "https://news.panasonic.com/jp/press/jn260901-1",
-     "source": "official",
-     "first_seen": "2026-09-01T00:00+09:00"
     }
    ]
   },
