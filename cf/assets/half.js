@@ -1,6 +1,6 @@
 // 「最新の半期」の節: window.CF_HALF (cf/scripts/half.py が毎朝の更新で半期報告書から作る。単位は億円、1株あたりは円) から描く。
-// 有報をもとにした分析(ページの本文)のあと、footer の前に差し込む。上期の数字から「上期のポイント」の文章も作る。
-// 半期報告書が年次の有報より古いとき(新しい有報が出たとき)は、分析を外して次の提出時期の目安だけを出す。
+// 年次の数字より新しい上期の数字があるときは、最新の情報としてページの最上部(header の直後)に差し込む。上期の数字から「上期のポイント」の文章も作る。
+// 半期報告書が年次の有報より古いとき(新しい有報が出たとき)は、分析を外して次の提出時期の目安だけを出し、本文のあと(footer の前)に置く。
 (function () {
   const H = window.CF_HALF;
   if (!H) return;
@@ -14,6 +14,7 @@
   const diff = (a, b) => (a == null || b == null) ? '－' : fmt(+(a - b).toFixed(DEC)).replace(/^(?!△)/, a - b > 0 ? '+' : '');
 
   const sec = document.createElement('section');
+  sec.id = 'cf-half';
   let h = '<h2>最新の半期（上期）</h2>';
   if (!H.newer) {
     h += `<p>直近の半期報告書${H.halfStart ? `（${span(H.halfStart, H.halfEnd)}）` : ''}の内容は、上の年次の数字（${fyName(H.annualEnd)}）にすでに含まれています。</p>`;
@@ -56,8 +57,10 @@
     h += `<p class="sub" style="margin-top:.5rem">次の半期報告書（${span(H.next.halfStart, H.next.halfEnd)}）は、${ym(H.next.fileBy).y}年${ym(H.next.fileBy).m}月ごろに提出される見込みです。</p>`;
   }
   sec.innerHTML = h;
+  const head = document.querySelector('.wrap > header');
   const foot = document.querySelector('footer');
-  if (foot) foot.parentNode.insertBefore(sec, foot); else document.querySelector('.wrap').appendChild(sec);
+  if (H.newer && head) head.after(sec);
+  else if (foot) foot.parentNode.insertBefore(sec, foot); else document.querySelector('.wrap').appendChild(sec);
 
   // 「上期のポイント」: 上期の数字を、前年上期・前期末・年次の数字(window.CF。前期の1年分があるとき)と比べて文章にする
   function points(capex, fcf) {
