@@ -1164,6 +1164,141 @@
     "side": "EX",
     "calc": "yoy"
    }
+  },
+  {
+   "db": "ACM",
+   "code": "TOTAL",
+   "name": "日銀 総資産（営業毎旬報告）",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "JGB",
+   "name": "日銀保有 国債",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "TBILL",
+   "name": "日銀保有 国庫短期証券",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "ETF",
+   "name": "日銀保有 ETF（金銭の信託）",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "REIT",
+   "name": "日銀保有 J-REIT（金銭の信託）",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "CORP_BOND",
+   "name": "日銀保有 社債",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "LOANS",
+   "name": "日銀 貸付金",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "LSF",
+   "name": "日銀 貸出支援基金",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "FX",
+   "name": "日銀 外国為替（資産）",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "BANKNOTES",
+   "name": "発行銀行券",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "CURRENT_DEP",
+   "name": "日銀当座預金（営業毎旬報告）",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "OTHER_DEP",
+   "name": "日銀 その他預金（海外中銀等）",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "GOV_DEP",
+   "name": "政府預金",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "REPO",
+   "name": "日銀 売現先勘定",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ACM",
+   "code": "PROVISIONS",
+   "name": "日銀 引当金勘定",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
   }
  ],
  "trade_by_country": [
@@ -1222,5 +1357,6 @@
   "105",
   "106"
  ],
- "_note_trade_goods_countries": "国別概況品別表から、これらの国（税関の国コード: 米国304・中国105・台湾106）向けの主な品目の月次輸出額を data/trade_goods_by_country.json に蓄積（系列ページの品目内訳）"
+ "_note_trade_goods_countries": "国別概況品別表から、これらの国（税関の国コード: 米国304・中国105・台湾106）向けの主な品目の月次輸出額を data/trade_goods_by_country.json に蓄積（系列ページの品目内訳）",
+ "_note_acm": "db ACM は日銀 営業毎旬報告（旬次: 毎月10日・20日・月末現在）。fetch_acmai.py が公表ページの HTML から取る。freq J = 旬"
 }

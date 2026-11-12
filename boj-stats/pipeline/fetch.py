@@ -123,7 +123,7 @@ def fetch(years=None):
     # getDataCode は同一DB・同一期種でまとめて取得する
     groups = defaultdict(list)
     for s in series:
-        if s["db"] in ("MOF", "CPI", "STAT", "ESTAT"):  # 日銀以外は fetch_mof.py / fetch_cpi.py / fetch_stat.py / fetch_estat.py で取る
+        if s["db"] in ("MOF", "CPI", "STAT", "ESTAT", "ACM"):  # APIの外は fetch_mof.py / fetch_cpi.py / fetch_stat.py / fetch_estat.py / fetch_acmai.py で取る
             continue
         groups[(s["db"], s["freq"])].append(s)
 

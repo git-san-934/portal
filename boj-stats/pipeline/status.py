@@ -19,8 +19,8 @@ REPORTS = os.path.join(ROOT, "reports")
 STATUS = os.path.join(REPORTS, "status.json")
 HISTORY = os.path.join(REPORTS, "fetch_history.csv")
 # 新しい値が最後に入ってからこの日数を超えたら stale。公表の間隔＋祝日・公表の遅れの余裕
-STALE_DAYS = {"D": 8, "M": 50, "Q": 110}
-OTHER_DBS = ("MOF", "CPI", "STAT", "ESTAT")  # 日銀API以外（fetch.py の外で取る）
+STALE_DAYS = {"D": 8, "J": 20, "M": 50, "Q": 110}  # J = 旬（営業毎旬報告）
+OTHER_DBS = ("MOF", "CPI", "STAT", "ESTAT", "ACM")  # 日銀API以外（fetch.py の外で取る）
 # "STAT 東京都区部CPI: ..." のような取得元単位のエラーと、その取得元の系列コードの接頭辞
 SOURCE_PREFIXES = {f"{db} {name}": prefixes
                    for db, mod in (("STAT", fetch_stat), ("ESTAT", fetch_estat))
