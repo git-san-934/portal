@@ -1242,6 +1242,7 @@ https://www.ussnet.co.jp/ir/item/2025_2q.pdf
 https://www.ussnet.co.jp/ir/item/2025_3q.pdf
 https://www.ussnet.co.jp/ir/item/2025_4_financial.pdf
 https://www.ussnet.co.jp/ir/item/2025_4q.pdf
+https://www.ussnet.co.jp/ir/item/2026.9_financial.pdf
 https://www.ussnet.co.jp/ir/item/2026_1_financial.pdf
 https://www.ussnet.co.jp/ir/item/2026_1q.pdf
 https://www.ussnet.co.jp/ir/item/2026_2q.pdf
@@ -1429,6 +1430,7 @@ https://www.ussnet.co.jp/ir/item/Explanation2013_1q.pdf
 https://www.ussnet.co.jp/ir/item/Explanation2013_3q.pdf
 https://www.ussnet.co.jp/ir/item/Explanation2013_4q.pdf
 https://www.ussnet.co.jp/ir/item/Explanation2013_sq.pdf
+https://www.ussnet.co.jp/ir/item/QA2027.3_2q.pdf
 https://www.ussnet.co.jp/ir/item/annual_2026.pdf
 https://www.ussnet.co.jp/ir/item/data202605.pdf
 https://www.ussnet.co.jp/ir/item/data202606.pdf
@@ -1557,6 +1559,7 @@ https://www.ussnet.co.jp/ir/item/script2025_2q.pdf
 https://www.ussnet.co.jp/ir/item/script2025_4q.pdf
 https://www.ussnet.co.jp/ir/item/script2026_4q.pdf
 https://www.ussnet.co.jp/ir/item/script2026_half.pdf
+https://www.ussnet.co.jp/ir/item/script2027.3_2q.pdf
 https://www.ussnet.co.jp/ir/library/annual/ceo-message/index.html
 https://www.ussnet.co.jp/ir/library/annual/coo-message/index.html
 https://www.ussnet.co.jp/ir/library/annual/independent-message/index.html
@@ -2138,6 +2141,7 @@ https://www.ussnet.co.jp/sustainability/governance/index.html
 https://www.ussnet.co.jp/sustainability/gri/index.html
 https://www.ussnet.co.jp/sustainability/index.html
 https://www.ussnet.co.jp/sustainability/item/2606CG_jp.pdf
+https://www.ussnet.co.jp/sustainability/item/2611CG.pdf
 https://www.ussnet.co.jp/sustainability/management/index.html
 https://www.ussnet.co.jp/sustainability/materiality/index.html
 https://www.ussnet.co.jp/sustainability/pdf/uss_code.pdf

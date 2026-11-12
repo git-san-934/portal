@@ -28171,6 +28171,7 @@ https://www.keyence.co.jp/ss/products/microscope/bz-casestudy/human-ips-cells.js
 https://www.keyence.co.jp/ss/products/microscope/bz-casestudy/image-cytometer.jsp
 https://www.keyence.co.jp/ss/products/microscope/bz-casestudy/interview-antibodies.jsp
 https://www.keyence.co.jp/ss/products/microscope/bz-casestudy/interview-applied-oxygen-physiology.jsp
+https://www.keyence.co.jp/ss/products/microscope/bz-casestudy/interview-biomedical-sciences.jsp
 https://www.keyence.co.jp/ss/products/microscope/bz-casestudy/interview-biomedical.jsp
 https://www.keyence.co.jp/ss/products/microscope/bz-casestudy/interview-cancer.jsp
 https://www.keyence.co.jp/ss/products/microscope/bz-casestudy/interview-cardiovascular-disease.jsp

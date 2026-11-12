@@ -554,6 +554,9 @@ https://www.nippon-chem.co.jp/news/14178
 https://www.nippon-chem.co.jp/news/1419
 https://www.nippon-chem.co.jp/news/1422
 https://www.nippon-chem.co.jp/news/1425
+https://www.nippon-chem.co.jp/news/14374
+https://www.nippon-chem.co.jp/news/14470
+https://www.nippon-chem.co.jp/news/14476
 https://www.nippon-chem.co.jp/news/2969
 https://www.nippon-chem.co.jp/news/2972
 https://www.nippon-chem.co.jp/news/2982
@@ -1371,11 +1374,13 @@ https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/s
 https://www.nippon-chem.co.jp/wp-content/themes/nippon-chem/pdf/sustainability/sustainability_report2023.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/168_有価証券報告書.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/168期‗決算短信20260513.pdf
+https://www.nippon-chem.co.jp/wp-content/uploads/169_2_決算短信_20261112.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/169期第1四半期_決算短信20260810.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/2026年3月期本決算決算説明会HP用.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/2026年3月期第3四半期HP用.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/2027年3月期第1四半期HP用260810.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/2027年3月期第1四半期HP用260818.pdf
+https://www.nippon-chem.co.jp/wp-content/uploads/2027年3月期第2四半期HP用-.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/Additive-Type-Antistatic-Agent.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/BS朝日『トップの源流』に当社社長の棚橋が出演します.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/Carbotorim.pdf
@@ -1559,6 +1564,7 @@ https://www.nippon-chem.co.jp/wp-content/uploads/specification_sheet_yellow_phos
 https://www.nippon-chem.co.jp/wp-content/uploads/tcep-hcl_tds.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/tcep_tds.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/tmsp_tds.pdf
+https://www.nippon-chem.co.jp/wp-content/uploads/中間配当金のお支払いに関するお知らせ-1.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/令和8年熊本地震による被害に対する支援について.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/周南市水泳場ネーミングライツ契約締結のお知らせ.pdf
 https://www.nippon-chem.co.jp/wp-content/uploads/持続的な企業価値向上に向けた取り組み2025アップデート.pdf
