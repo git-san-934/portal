@@ -412,6 +412,7 @@ https://www.mirait-one.com/english/info/001983.html
 https://www.mirait-one.com/english/info/001994.html
 https://www.mirait-one.com/english/info/002027.html
 https://www.mirait-one.com/english/info/002028.html
+https://www.mirait-one.com/english/info/002031.html
 https://www.mirait-one.com/english/info/2022/
 https://www.mirait-one.com/english/info/2023/
 https://www.mirait-one.com/english/info/2024/
@@ -740,6 +741,8 @@ https://www.mirait-one.com/info/002024.html
 https://www.mirait-one.com/info/002025.html
 https://www.mirait-one.com/info/002026.html
 https://www.mirait-one.com/info/002029.html
+https://www.mirait-one.com/info/002030.html
+https://www.mirait-one.com/info/002032.html
 https://www.mirait-one.com/info/2022/
 https://www.mirait-one.com/info/2022/index_2.html
 https://www.mirait-one.com/info/2022/index_3.html

@@ -111,6 +111,7 @@ https://www.mirait-one.com/english/info/001983.html
 https://www.mirait-one.com/english/info/001994.html
 https://www.mirait-one.com/english/info/002027.html
 https://www.mirait-one.com/english/info/002028.html
+https://www.mirait-one.com/english/info/002031.html
 https://www.mirait-one.com/english/inquiry/
 https://www.mirait-one.com/english/privacypolicy/
 https://www.mirait-one.com/english/search/?ajaxUrl=https%3A%2F%2Ffinder.api.mf.marsflag.com%2Fapi%2Fv1%2Ffinder_service%2Fdocuments%2F2b2c3581%2Fsearch&ct=&d=&doctype=all&htmlLang=en&imgsize=3&page=1&pagemax=10&q=Act+on+Promotion+of+Women%27s+Participation+and+Advancement+in+the+Workplace&sort=0
@@ -182,6 +183,8 @@ https://www.mirait-one.com/info/002024.html
 https://www.mirait-one.com/info/002025.html
 https://www.mirait-one.com/info/002026.html
 https://www.mirait-one.com/info/002029.html
+https://www.mirait-one.com/info/002030.html
+https://www.mirait-one.com/info/002032.html
 https://www.mirait-one.com/info/2022/
 https://www.mirait-one.com/info/2023/
 https://www.mirait-one.com/info/2024/
