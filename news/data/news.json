@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-12T08:54+09:00",
+ "updated_at": "2026-11-12T10:59+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,34 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-12",
+     "title": "『ピクミン4 Nintendo Switch 2 Edition + だれでもチャレンジ! ダンドリ検定』は本日発売。小芝風花さんがダンドリ検定に挑む長編映像も公開中。",
+     "url": "https://www.nintendo.com/jp/topics/article/b852fe50-71bf-4c1a-a338-5b75951d040d",
+     "source": "official",
+     "first_seen": "2026-11-12T10:59+09:00"
+    },
+    {
+     "date": "2026-11-12",
+     "title": "「ソードカービィ&ドラグーン」「ノワールデデデ&ハイドラ」のamiiboは本日発売。ゲーム内イベントも近日開催予定。",
+     "url": "https://www.nintendo.com/jp/topics/article/13827716-39ef-4435-911e-ab6583921da4",
+     "source": "official",
+     "first_seen": "2026-11-12T10:59+09:00"
+    },
+    {
+     "date": "2026-11-12",
+     "title": "プレゼントにおすすめのグッズをご紹介。『マリオカート ワールド』のラッピンググッズは本日発売。",
+     "url": "https://www.nintendo.com/jp/topics/article/680e0eda-8dd6-4533-9f42-ef26376f111f",
+     "source": "official",
+     "first_seen": "2026-11-12T10:59+09:00"
+    },
+    {
+     "date": "2026-11-12",
+     "title": "幻想を超える旅が始まる。ファンタジーRPG『メタファー:リファンタジオ』がNintendo Switch 2 で本日発売。 ※本作の対象年齢は「15歳以上」です。",
+     "url": "https://www.nintendo.com/jp/topics/article/ca36364e-5117-4881-9688-ea2d023a7b45",
+     "source": "official",
+     "first_seen": "2026-11-12T10:59+09:00"
+    },
     {
      "date": "2026-11-11",
      "title": "ニュースリリース「Nintendo Switch 2 ソフト『ゼルダの伝説 時のオカリナ』の世界累計販売本数が発売後4日間で520万本を突破」を公開しました。",
@@ -410,34 +438,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/b197b37a-9255-41f2-932f-6583f010254f",
      "source": "official",
      "first_seen": "2026-10-20T17:53+09:00"
-    },
-    {
-     "date": "2026-10-16",
-     "title": "ニンテンドーeショップ新作ソフト情報 10/16(金)号。",
-     "url": "https://www.nintendo.com/jp/topics/article/d99e9c21-98d1-48cd-b732-7daaf6084fda",
-     "source": "official",
-     "first_seen": "2026-10-16T12:48+09:00"
-    },
-    {
-     "date": "2026-10-16",
-     "title": "Nintendo Switch 2 ソフト『ゼルダの伝説 時のオカリナ』のCMを公開しました。",
-     "url": "https://www.nintendo.com/jp/games/switch2/aa9ja/index.html",
-     "source": "official",
-     "first_seen": "2026-10-15T05:03+09:00"
-    },
-    {
-     "date": "2026-10-15",
-     "title": "Nintendo Switch 2『ゼルダの伝説 時のオカリナ』の紹介映像を公開。新要素「万魔殿」などもご紹介。",
-     "url": "https://www.nintendo.com/jp/topics/article/d053fb5f-e501-4da3-9a8c-609922c8c895",
-     "source": "official",
-     "first_seen": "2026-10-15T10:31+09:00"
-    },
-    {
-     "date": "2026-10-15",
-     "title": "遊びが広がる有料追加コンテンツ『ファイアーエムブレム 万紫千紅 エキスパンション・パス』が本日発売。最新映像も公開中。",
-     "url": "https://www.nintendo.com/jp/topics/article/e5e61cdf-3507-453a-b3d6-29b61a056646",
-     "source": "official",
-     "first_seen": "2026-10-15T10:31+09:00"
     }
    ]
   },
@@ -3520,6 +3520,13 @@
    ],
    "items": [
     {
+     "date": "2026-11-12",
+     "title": "製品・サービス 食洗機導入で年間3.4日分の「ゆとり時間」創出、くらしの質向上の可能性を示唆",
+     "url": "https://news.panasonic.com/jp/press/jn261112-1",
+     "source": "official",
+     "first_seen": "2026-11-12T10:59+09:00"
+    },
+    {
      "date": "2026-11-11",
      "time": "10:21",
      "title": "確認書",
@@ -3936,13 +3943,6 @@
      "url": "https://news.panasonic.com/jp/stories/18954",
      "source": "official",
      "first_seen": "2026-09-24T00:00+09:00"
-    },
-    {
-     "date": "2026-09-16",
-     "title": "3 2026年9月16日 技術・研究開発 プレスリリース パナソニック エナジー、リチウムイオン電池の研究開発拠点「エナジーイノベーションスクエア」を大阪・門真に新設し本格稼働を開始",
-     "url": "https://news.panasonic.com/jp/press/jn260916-2",
-     "source": "official",
-     "first_seen": "2026-09-16T00:00+09:00"
     }
    ]
   },
