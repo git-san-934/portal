@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-12T09:01+09:00",
+ "generated_at": "2026-11-12T17:17+09:00",
  "report_date": "2026-11-12",
  "days": [
   {
@@ -40,6 +40,95 @@
      "type": "1年高値更新",
      "dir": "上昇",
      "detail": "136.82020年=100"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_ETF",
+     "name": "日銀保有 ETF（金銭の信託）",
+     "obs": "2026-11-10",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "369,222億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_REIT",
+     "name": "日銀保有 J-REIT（金銭の信託）",
+     "obs": "2026-11-10",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "6,499億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_CORP_BOND",
+     "name": "日銀保有 社債",
+     "obs": "2026-11-10",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "9,027億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_FX",
+     "name": "日銀 外国為替（資産）",
+     "obs": "2026-11-10",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "120,732億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_GOV_DEP",
+     "name": "政府預金",
+     "obs": "2026-11-10",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "6期移動平均が18期移動平均を下抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_REPO",
+     "name": "日銀 売現先勘定",
+     "obs": "2026-11-10",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "6期移動平均が18期移動平均を下抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261110.xlsx",
+     "name": "日本銀行が保有する国債の銘柄別残高",
+     "url": "https://www.boj.or.jp/statistics/boj/other/mei/release/2026/mei261110.xlsx",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261112a.htm",
+     "name": "バーゼル銀行監督委員会による「統合されたガイドライン及びサウンド・プラクティス」の最終化及び市中協議文書「技術的改訂―統合されたガイドライン及びサウンド・プラクティス」の公表について",
+     "url": "https://www.boj.or.jp/finsys/intlact_fs/kisei/kis261112a.htm",
+     "time": "17:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/set/bffail/sjgb2610.pdf",
+     "name": "フェイルの発生状況（10月）",
+     "url": "https://www.boj.or.jp/statistics/set/bffail/sjgb2610.pdf",
+     "time": "16:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/koen_2026/ko261112a.htm",
+     "name": "【挨拶】浅田審議委員「わが国の経済・物価情勢と金融政策」（長崎）",
+     "url": "https://www.boj.or.jp/about/press/koen_2026/ko261112a.htm",
+     "time": "10:30"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261110.htm",
+     "name": "営業毎旬報告（11月10日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261110.htm",
+     "time": "10:00"
     },
     {
      "kind": "news",
@@ -1327,9 +1416,9 @@
      "id": "ESTAT_TRADE_IMPORTS_YOY",
      "name": "貿易統計 輸入額 前年同月比",
      "obs": "2026-09",
-     "value": "18.9",
+     "value": "18.5",
      "unit": "%",
-     "change": "-9.200%pt"
+     "change": "-9.400%pt"
     },
     {
      "kind": "release",
@@ -1363,9 +1452,9 @@
      "id": "ESTAT_TRADE_IM_USA_YOY",
      "name": "貿易統計 輸入 対米国 前年同月比",
      "obs": "2026-09",
-     "value": "44.8",
+     "value": "44",
      "unit": "%",
-     "change": "-10.400%pt"
+     "change": "-11.200%pt"
     },
     {
      "kind": "release",
@@ -1435,9 +1524,9 @@
      "id": "ESTAT_TRADE_IM_EU_YOY",
      "name": "貿易統計 輸入 対EU 前年同月比",
      "obs": "2026-09",
-     "value": "-0.1",
+     "value": "-0.5",
      "unit": "%",
-     "change": "-20.500%pt"
+     "change": "-20.900%pt"
     },
     {
      "kind": "release",
@@ -1471,9 +1560,9 @@
      "id": "ESTAT_TRADE_IM_ASEAN_YOY",
      "name": "貿易統計 輸入 対ASEAN 前年同月比",
      "obs": "2026-09",
-     "value": "16.1",
+     "value": "15.7",
      "unit": "%",
-     "change": "-10.900%pt"
+     "change": "-11.300%pt"
     },
     {
      "kind": "release",
@@ -3513,10 +3602,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-11",
-   "date": "2026-11-10",
-   "value": "1.784",
-   "change": "+0.006%pt",
+   "updated": "2026-11-12",
+   "date": "2026-11-11",
+   "value": "1.861",
+   "change": "+0.077%pt",
    "implication": "2年債利回りは今後1〜2年の政策金利予想をよく映す。上昇は追加利上げ観測の強まりを示す。",
    "source": [
     "財務省 国債金利情報",
@@ -3531,10 +3620,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-11",
-   "date": "2026-11-10",
-   "value": "2.748",
-   "change": "+0.024%pt",
+   "updated": "2026-11-12",
+   "date": "2026-11-11",
+   "value": "2.84",
+   "change": "+0.092%pt",
    "implication": "10年債利回りの上昇は債券価格の下落を意味し、住宅ローン固定金利や企業の借入コストの上昇、REIT・高PER株には逆風、利ざや面で銀行・保険株には追い風とされる。日米金利差が縮めば円高要因にもなりうる。",
    "source": [
     "財務省 国債金利情報",
@@ -3549,10 +3638,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-11",
-   "date": "2026-11-10",
-   "value": "3.935",
-   "change": "+0.024%pt",
+   "updated": "2026-11-12",
+   "date": "2026-11-11",
+   "value": "3.99",
+   "change": "+0.055%pt",
    "implication": "超長期金利の上昇は財政や物価への懸念（タームプレミアム）の高まりを映すことが多く、生保・年金の需要動向にも左右される。",
    "source": [
     "財務省 国債金利情報",
@@ -4577,8 +4666,8 @@
    "category": "国際収支・貿易",
    "updated": "2026-10-21",
    "date": "2026-09",
-   "value": "18.9",
-   "change": "-9.200%pt",
+   "value": "18.5",
+   "change": "-9.400%pt",
    "implication": "輸入の伸び。資源価格・為替の動きを強く映す。",
    "source": [
     "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
@@ -4649,8 +4738,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-10-21",
    "date": "2026-09",
-   "value": "44.8",
-   "change": "-10.400%pt",
+   "value": "44",
+   "change": "-11.200%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
@@ -4793,8 +4882,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-10-21",
    "date": "2026-09",
-   "value": "-0.1",
-   "change": "-20.500%pt",
+   "value": "-0.5",
+   "change": "-20.900%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
@@ -4865,8 +4954,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-10-21",
    "date": "2026-09",
-   "value": "16.1",
-   "change": "-10.900%pt",
+   "value": "15.7",
+   "change": "-11.300%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
@@ -5124,21 +5213,291 @@
     "財務省 貿易統計（税関の速報・e-Stat 貿易概況）",
     "https://www.customs.go.jp/toukei/info/index.htm"
    ]
+  },
+  "ACM_TOTAL": {
+   "name": "日銀 総資産（営業毎旬報告）",
+   "db": "ACM",
+   "code": "TOTAL",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "6,258,195",
+   "change": "-0.06%",
+   "implication": "日銀の総資産。縮小は量的引き締め（QT）の進み具合を示し、長期金利の上昇圧力・円の下支え要因とされる。",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_JGB": {
+   "name": "日銀保有 国債",
+   "db": "ACM",
+   "code": "JGB",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "5,049,367",
+   "change": "-0.07%",
+   "implication": "日銀の国債保有残高。減少は買入れ減額と償還による QT。国債の需給が緩み長期金利の上昇要因になりうる。",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_TBILL": {
+   "name": "日銀保有 国庫短期証券",
+   "db": "ACM",
+   "code": "TBILL",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "0",
+   "change": null,
+   "implication": "",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_ETF": {
+   "name": "日銀保有 ETF（金銭の信託）",
+   "db": "ACM",
+   "code": "ETF",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "369,222",
+   "change": "-0.02%",
+   "implication": "日銀のETF保有（簿価）。処分が進むと株式需給の重しになりうるが、処分は極めて緩やかな計画。",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_REIT": {
+   "name": "日銀保有 J-REIT（金銭の信託）",
+   "db": "ACM",
+   "code": "REIT",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "6,499",
+   "change": "-0.02%",
+   "implication": "",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_CORP_BOND": {
+   "name": "日銀保有 社債",
+   "db": "ACM",
+   "code": "CORP_BOND",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "9,027",
+   "change": "-3.86%",
+   "implication": "",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_LOANS": {
+   "name": "日銀 貸付金",
+   "db": "ACM",
+   "code": "LOANS",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "684,162",
+   "change": "+0.00%",
+   "implication": "日銀の貸付金（共通担保オペ・貸出支援基金など）。増加は資金供給の拡大。",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_LSF": {
+   "name": "日銀 貸出支援基金",
+   "db": "ACM",
+   "code": "LSF",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "356,645",
+   "change": "+0.00%",
+   "implication": "",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_FX": {
+   "name": "日銀 外国為替（資産）",
+   "db": "ACM",
+   "code": "FX",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "120,732",
+   "change": "+0.13%",
+   "implication": "",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_BANKNOTES": {
+   "name": "発行銀行券",
+   "db": "ACM",
+   "code": "BANKNOTES",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "1,140,785",
+   "change": "-0.09%",
+   "implication": "",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_CURRENT_DEP": {
+   "name": "日銀当座預金（営業毎旬報告）",
+   "db": "ACM",
+   "code": "CURRENT_DEP",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "4,135,636",
+   "change": "-1.17%",
+   "implication": "日銀当座預金。市場に供給された資金量の目安。減少は資金供給の縮小で、短期金利の上振れ要因になりうる。",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_OTHER_DEP": {
+   "name": "日銀 その他預金（海外中銀等）",
+   "db": "ACM",
+   "code": "OTHER_DEP",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "440,692",
+   "change": "+1.94%",
+   "implication": "",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_GOV_DEP": {
+   "name": "政府預金",
+   "db": "ACM",
+   "code": "GOV_DEP",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "42,846",
+   "change": "+32.51%",
+   "implication": "",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_REPO": {
+   "name": "日銀 売現先勘定",
+   "db": "ACM",
+   "code": "REPO",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "337,532",
+   "change": "+8.85%",
+   "implication": "",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
+  },
+  "ACM_PROVISIONS": {
+   "name": "日銀 引当金勘定",
+   "db": "ACM",
+   "code": "PROVISIONS",
+   "freq": "J",
+   "unit": "億円",
+   "kind": "level",
+   "category": "日銀の資金供給",
+   "updated": "2026-11-12",
+   "date": "2026-11-10",
+   "value": "109,566",
+   "change": "+0.00%",
+   "implication": "",
+   "source": [
+    "日本銀行 営業毎旬報告",
+    "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"
+   ]
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-12T09:01+09:00",
+  "checked_at": "2026-11-12T17:17+09:00",
   "counts": {
-   "new": 8,
-   "unchanged": 94,
+   "new": 3,
+   "unchanged": 114,
    "error": 0,
    "stale": 0
   },
-  "total": 102,
+  "total": 117,
   "problems": [],
   "other_errors": []
  },
- "trade_updated": "2026-10-29",
+ "trade_updated": "2026-11-12",
  "tankan_latest": "2026-09",
  "disclaimer": "※資産クラスとの関係は過去に一般的に観察されてきた傾向の整理で、将来の値動きや個別銘柄の売買を示すものではありません。"
 }
