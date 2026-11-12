@@ -29920,6 +29920,7 @@ https://www.keyence.co.jp/support/recoder/trus/setsumei7.jsp
 https://www.keyence.co.jp/support/recoder/trus/setsumei8.jsp
 https://www.keyence.co.jp/support/registration/
 https://www.keyence.co.jp/support/repair/
+https://www.keyence.co.jp/support/software-activation/kv-intelligence/cancellation/
 https://www.keyence.co.jp/support/software-activation/kv-intelligence/terms-conditions/
 https://www.keyence.co.jp/support/startup-guide/fr/
 https://www.keyence.co.jp/support/strength/

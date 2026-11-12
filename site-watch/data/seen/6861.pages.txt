@@ -57,6 +57,7 @@ https://www.keyence.co.jp/investor/stock/stakeholder.jsp
 https://www.keyence.co.jp/investor/strategy.jsp
 https://www.keyence.co.jp/jobs/
 https://www.keyence.co.jp/jobs/privacy.jsp
+https://www.keyence.co.jp/keyence-id/terms-of-use/
 https://www.keyence.co.jp/landing/req/general/ai-assistant.jsp
 https://www.keyence.co.jp/news-events/20261102-kv-intelligence.jsp
 https://www.keyence.co.jp/privacy/
