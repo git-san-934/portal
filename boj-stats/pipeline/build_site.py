@@ -24,6 +24,7 @@ SOURCES = {
     "CPI": ("総務省統計局 消費者物価指数", "https://www.stat.go.jp/data/cpi/1.html"),
     "STAT": ("総務省統計局", "https://www.stat.go.jp/"),
     "ESTAT": ("政府統計の総合窓口 e-Stat", "https://www.e-stat.go.jp/"),
+    "ACM": ("日本銀行 営業毎旬報告", "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"),
 }
 TRADE = ("財務省 貿易統計（税関の速報・e-Stat 貿易概況）", "https://www.customs.go.jp/toukei/info/index.htm")
 
@@ -31,7 +32,7 @@ TRADE = ("財務省 貿易統計（税関の速報・e-Stat 貿易概況）", "h
 CATEGORIES = [
     ("短期金利・為替", lambda s: s["db"] in ("FM01", "FM04", "FM08", "IR01")),
     ("国債利回り", lambda s: s["db"] == "MOF"),
-    ("日銀の資金供給", lambda s: s["db"] in ("MD01", "MD06", "BS01")),
+    ("日銀の資金供給", lambda s: s["db"] in ("MD01", "MD06", "BS01", "ACM")),
     ("物価", lambda s: s["db"] in ("PR01", "PR02", "CPI") or s["code"].startswith(("CPI_", "KOURI_"))),
     ("お金の量・貸出", lambda s: s["db"] in ("MD02", "MD13", "IR04", "LA05")),
     ("景況感・家計の資産", lambda s: s["db"] in ("CO", "FF")),

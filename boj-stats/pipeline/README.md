@@ -10,6 +10,7 @@
 | analyze.py | 変化検知。reports/YYYY-MM-DD.md, reports/latest.json, reports/signals_log.csv（検知履歴） |
 | status.py | 取り込みの成功・失敗を系列ごとに記録。reports/status.json（系列ごとの状態）, reports/fetch_history.csv（実行ごとの記録） |
 | fetch_boj_news.py | 日本銀行ホームページ「新着情報（総合）」のRSSを reports/boj_news.csv に蓄積（RSSは約1か月分なので毎回足していく）。為替相場のお知らせは除く。ページの新着に「日銀」として載る |
+| fetch_acmai.py | 日銀「営業毎旬報告」（日銀の貸借対照表、毎月10日・20日・月末現在）の公表ページの表を data/BOJ_ACMAI.csv（全項目の縦持ち、億円）に蓄積し、主要項目を ACM_<CODE>.csv にする（2016年1月〜）。CSV に無い回の HTML だけ読む。series.json の freq "J" は旬次 |
 | fetch_tankan.py | 日銀「短観（概要）」の各回の zip（Excel）から業況判断DI・需給/在庫/価格・設備・雇用人員・資金繰り/貸出態度/借入金利水準・企業の物価見通しを data/tankan.json に蓄積（2021年3月調査〜）。毎回は今の5年分の一覧ページだけを見て、新しい回の zip があるときだけ取る。ページは tankan.html |
 | run_daily.sh | 取得→取り込み状況の記録→分析をまとめて実行（日次ルーチン用） |
 | raw/ | APIの生レスポンス（日付ごと） |
