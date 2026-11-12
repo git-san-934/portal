@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-12T10:59+09:00",
+ "updated_at": "2026-11-12T11:29+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -451,6 +451,22 @@
     "https://www.ussnet.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-11-12",
+     "time": "11:22",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZG0I",
+     "source": "edinet",
+     "first_seen": "2026-11-12T11:29+09:00"
+    },
+    {
+     "date": "2026-11-12",
+     "time": "11:21",
+     "title": "半期報告書-第47期(2026/04/01-2026/09/30)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZG0C",
+     "source": "edinet",
+     "first_seen": "2026-11-12T11:29+09:00"
+    },
     {
      "date": "2026-11-10",
      "time": "15:40",
