@@ -1,5 +1,6 @@
 // 「最新の決算短信」の節: cf/data/tanshin.json (cf/scripts/fetch_tanshin.py が TDnet の決算短信から作る。単位は億円、1株あたりは円) から描く。
-// 「最新の半期」の節のあと(なければ footer の前)に差し込む。有報の分析 → 半期 → 短信と、新しい情報ほど下に並ぶ。短信がない銘柄では何もしない。
+// 最新の情報としてページの最上部に置く。上期の数字がページ上部にあればそのすぐ下、なければ header の直後に差し込む。
+// ページの並びは「最新の半期」→「最新の決算短信」→ 有報の分析。短信がない銘柄では何もしない。
 // あわせて、ページ上部に Yahoo!ファイナンスへのリンクを出す(短信がない銘柄でも出す)。
 (function () {
   const me = document.currentScript;
@@ -77,8 +78,13 @@
 
     const sec = document.createElement('section');
     sec.innerHTML = h;
-    const half = [...document.querySelectorAll('section > h2')].find(e => e.textContent.trim().startsWith('最新の半期'));
-    const foot = document.querySelector('footer');
-    if (half) half.parentNode.after(sec); else if (foot) foot.parentNode.insertBefore(sec, foot); else document.querySelector('.wrap').appendChild(sec);
+    sec.id = 'cf-tanshin';
+    const head = document.querySelector('.wrap > header');
+    const half = document.getElementById('cf-half');
+    const halfTop = half && head && half.previousElementSibling === head;
+    if (halfTop) half.after(sec);
+    else if (head) head.after(sec);
+    else if (back) (document.querySelector('a.yahoo') || back).after(sec);
+    else document.querySelector('.wrap').prepend(sec);
   }).catch(() => {});
 })();
