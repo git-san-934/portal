@@ -1,12 +1,12 @@
 {
- "updated_at": "2026-11-13T02:48+09:00",
+ "updated_at": "2026-11-13T03:20+09:00",
  "latest_price_date": "2026-11-11",
  "rules": {
   "stop_buffer": 0.99,
   "rr": 3.0
  },
  "summary": {
-  "picks": 28,
+  "picks": 31,
   "with_data": 23,
   "avg_ret_pct": 1.69,
   "win_rate_pct": 69.6,
@@ -24,6 +24,45 @@
   "n_5d": 14
  },
  "rows": [
+  {
+   "date": "2026-11-13",
+   "dates": [
+    "2026-11-13"
+   ],
+   "price_date": "2026-11-12",
+   "code": "1762",
+   "name": "高松コンストラクショングループ",
+   "rank": 1,
+   "base": null,
+   "analysis_close": 4450,
+   "status": "株価データなし"
+  },
+  {
+   "date": "2026-11-13",
+   "dates": [
+    "2026-11-13"
+   ],
+   "price_date": "2026-11-12",
+   "code": "4118",
+   "name": "カネカ",
+   "rank": 2,
+   "base": null,
+   "analysis_close": 6485,
+   "status": "株価データなし"
+  },
+  {
+   "date": "2026-11-13",
+   "dates": [
+    "2026-11-13"
+   ],
+   "price_date": "2026-11-12",
+   "code": "1808",
+   "name": "長谷工コーポレーション",
+   "rank": 3,
+   "base": null,
+   "analysis_close": 2827.5,
+   "status": "株価データなし"
+  },
   {
    "date": "2026-11-11",
    "dates": [
