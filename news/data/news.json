@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-12T11:29+09:00",
+ "updated_at": "2026-11-12T12:19+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1013,6 +1013,14 @@
     "https://www.enplas.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-11-12",
+     "time": "12:14",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZG44",
+     "source": "edinet",
+     "first_seen": "2026-11-12T12:19+09:00"
+    },
     {
      "date": "2026-11-11",
      "time": "17:02",
@@ -4100,6 +4108,13 @@
     "https://www.mirait-one.com/info/"
    ],
    "items": [
+    {
+     "date": "2026-11-12",
+     "title": "IRサイト更新情報(月次受注状況のお知らせ(10月分))",
+     "url": "https://www.mirait-one.com/info/002030.html",
+     "source": "official",
+     "first_seen": "2026-11-12T12:19+09:00"
+    },
     {
      "date": "2026-11-09",
      "time": "15:01",
