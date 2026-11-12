@@ -147,3 +147,38 @@ def usable(rec):
 def order(rec):
     """どの短信が新しいか: 決算期・四半期・発表日の順"""
     return (rec["fyEnd"] or "", rec["quarter"], rec.get("date", ""), rec.get("time", ""))
+
+
+# 決算短信の履歴(cf/data/tanshin_hist.json)。TDnet は直近1か月分しか載らないので、
+# 読んだ短信の数字はここに残し続け、過去の短信との比較のグラフに使う。決算期・四半期ごとに1件。
+HIST_VERSION = 1  # 上げると履歴が空から始まる(TDnet から取り直せない)ので、上げないこと
+HIST_KEYS = ("fyEnd", "quarter", "date", "cons", "std")
+HIST_FLOWS = ("sales", "opinc", "ord", "pretax", "net", "eps")
+
+
+def hist_entry(rec):
+    e = {k: rec.get(k) for k in HIST_KEYS}
+    for part in ("actual", "prior", "forecast"):
+        e[part] = {k: (rec.get(part) or {}).get(k) for k in HIST_FLOWS}
+    if rec.get("range"):
+        e["range"] = {k: v for k, v in rec["range"].items() if k in HIST_FLOWS}
+    return e
+
+
+def hist_add(hist, code, rec):
+    """短信を履歴に入れる。同じ決算期・四半期の短信がもうあれば、発表日が同じか新しいもの(訂正など)で置き換える。
+    入れた・置き換えたときは True"""
+    if not usable(rec):
+        return False
+    e = hist_entry(rec)
+    rows = hist.setdefault(code, [])
+    for i, old in enumerate(rows):
+        if (old["fyEnd"], old["quarter"]) == (e["fyEnd"], e["quarter"]):
+            if (e.get("date") or "") < (old.get("date") or "") or old == e:
+                return False
+            rows[i] = e
+            break
+    else:
+        rows.append(e)
+    rows.sort(key=lambda r: (r["fyEnd"], r["quarter"]))
+    return True
