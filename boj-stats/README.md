@@ -23,7 +23,7 @@ https://git-san-934.github.io/portal/boj-stats/
 
 ## 更新
 
-`.github/workflows/update-boj-stats.yml` が平日 10:15 と 18:30(日本時間)に
+`.github/workflows/update-boj-stats.yml` が平日 7:14・8:14・8:44・10:15・18:30(日本時間)に
 `pipeline/run_daily.sh`(取得→検知)と `pipeline/build_site.py` を実行し、変わったデータをコミットしてページを再デプロイします。
 GitHub の Actions 画面から「Run workflow」で手動でも動かせます。
 
