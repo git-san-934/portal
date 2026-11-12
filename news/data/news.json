@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-12T12:51+09:00",
+ "updated_at": "2026-11-12T20:52+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,20 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-12",
+     "title": "タブレット・スマートフォン向けアプリ「かおルイージ」、「かおピーチ」を配信開始。そのほか、「マイマリオ」の最新情報もご紹介。",
+     "url": "https://www.nintendo.com/jp/topics/article/482f5918-f83f-453f-90c1-78c1cc02065c",
+     "source": "official",
+     "first_seen": "2026-11-12T20:52+09:00"
+    },
+    {
+     "date": "2026-11-12",
+     "title": "「仕事を読み解くキーワード」のページを更新しました。任天堂ではたらく社員の声を追加しています。",
+     "url": "https://www.nintendo.co.jp/jobs/keyword/index.html",
+     "source": "official",
+     "first_seen": "2026-11-12T20:52+09:00"
+    },
     {
      "date": "2026-11-12",
      "title": "『ピクミン4 Nintendo Switch 2 Edition + だれでもチャレンジ! ダンドリ検定』は本日発売。小芝風花さんがダンドリ検定に挑む長編映像も公開中。",
@@ -424,20 +438,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/a5ec42eb-efb3-4c90-95b0-618e143da7e2",
      "source": "official",
      "first_seen": "2026-10-22T21:27+09:00"
-    },
-    {
-     "date": "2026-10-22",
-     "title": "もし、「ファイナルファンタジー」がドットのまま進化を遂げていたら――。HD-2Dで描かれるシリーズ最新作『ファイナルファンタジー レゾナンス』がNintendo Switch 2 / Nintendo Switchで本日発売。 ※本作の対象年齢は「15歳以上」です。",
-     "url": "https://www.nintendo.com/jp/topics/article/9f8d849f-9379-4fc7-9c1b-a6ad18c82f35",
-     "source": "official",
-     "first_seen": "2026-10-22T21:27+09:00"
-    },
-    {
-     "date": "2026-10-20",
-     "title": "『モンスターハンターワイルズ』の序盤が遊べる体験版がNintendo Switch 2 で本日より配信開始。製品版へのセーブデータ引き継ぎも可能。 ※本作の対象年齢は「15歳以上」です。",
-     "url": "https://www.nintendo.com/jp/topics/article/b197b37a-9255-41f2-932f-6583f010254f",
-     "source": "official",
-     "first_seen": "2026-10-20T17:53+09:00"
     }
    ]
   },
@@ -621,6 +621,22 @@
     "https://www.soc.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-11-12",
+     "time": "13:01",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZDMM",
+     "source": "edinet",
+     "first_seen": "2026-11-12T20:52+09:00"
+    },
+    {
+     "date": "2026-11-12",
+     "time": "13:00",
+     "title": "半期報告書-第164期(2026/04/01-2027/03/31)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZDK3",
+     "source": "edinet",
+     "first_seen": "2026-11-12T20:52+09:00"
+    },
     {
      "date": "2026-11-11",
      "title": "自己株式取得に係る事項の決定に関するお知らせ",
@@ -1215,6 +1231,13 @@
     "https://www.fuji.co.jp/"
    ],
    "items": [
+    {
+     "date": "2026-11-12",
+     "title": "お知らせ 製品・事業 製品サイト再開のお知らせ(電子部品実装ロボット / 移乗サポートロボット)",
+     "url": "https://www.fuji.co.jp/news/20261112.html",
+     "source": "official",
+     "first_seen": "2026-11-12T20:52+09:00"
+    },
     {
      "date": "2026-11-09",
      "time": "14:53",
@@ -3031,6 +3054,35 @@
     "https://www.nippon-chem.co.jp/news/feed/"
    ],
    "items": [
+    {
+     "date": "2026-11-12",
+     "time": "16:00",
+     "title": "2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261112575304.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-12T20:52+09:00"
+    },
+    {
+     "date": "2026-11-12",
+     "title": "中間配当金のお支払いに関するお知らせ",
+     "url": "https://www.nippon-chem.co.jp/news/14374",
+     "source": "official",
+     "first_seen": "2026-11-12T20:52+09:00"
+    },
+    {
+     "date": "2026-11-12",
+     "title": "2027年3月期第2四半期 決算補足説明資料",
+     "url": "https://www.nippon-chem.co.jp/news/14476",
+     "source": "official",
+     "first_seen": "2026-11-12T20:52+09:00"
+    },
+    {
+     "date": "2026-11-12",
+     "title": "2027年3月期第2四半期 決算短信",
+     "url": "https://www.nippon-chem.co.jp/news/14470",
+     "source": "official",
+     "first_seen": "2026-11-12T20:52+09:00"
+    },
     {
      "date": "2026-11-10",
      "time": "10:40",
