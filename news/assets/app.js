@@ -82,7 +82,14 @@
     const fresh = [];
     for (const s of data.stocks) for (const it of s.items) if (isFresh(it) && pass(it)) fresh.push([it, s]);
     fresh.sort((a, b) => (b[0].date + (b[0].time || "")).localeCompare(a[0].date + (a[0].time || "")));
-    $("fresh").replaceChildren(...groupByDay(fresh).flatMap((g) => groupNodes(g, true)));
+    // 会社ごとに間をあけて区切る(見やすくするため)
+    $("fresh").replaceChildren(
+      ...groupByDay(fresh).flatMap((g, i) => {
+        const nodes = groupNodes(g, true);
+        if (i > 0) nodes[0].classList.add("co-start");
+        return nodes;
+      })
+    );
     if (!fresh.length) $("fresh").append(el("li", "empty", "今日の日付の新しい情報はまだありません"));
     $("fresh-panel").hidden = false;
 

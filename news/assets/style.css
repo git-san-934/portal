@@ -65,7 +65,7 @@ h1 { font-size: 1.5rem; }
 
 .panel {
   background: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem;
-  padding: 1rem 1.1rem; box-shadow: var(--shadow); margin-bottom: 1rem;
+  padding: 1rem 1.1rem; box-shadow: var(--shadow); margin-bottom: 1.6rem;
 }
 .panel-title { font-size: 1.05rem; display: flex; align-items: baseline; gap: 0.5rem; flex-wrap: wrap; margin-bottom: 0.5rem; }
 .code { color: var(--text-sub); font-size: 0.8rem; font-weight: 400; }
@@ -80,6 +80,8 @@ h1 { font-size: 1.5rem; }
 .news { list-style: disc; padding-left: 1.2rem; }
 .item { padding: 0.35rem 0.3rem; border-radius: 0.4rem; }
 .item.fresh { background: var(--fresh-bg); }
+/* 新着欄: 会社が変わるところで間をあけ、うすい線で区切る */
+.news > .co-start { margin-top: 0.9rem; padding-top: 0.6rem; border-top: 1px solid var(--border); border-radius: 0 0 0.4rem 0.4rem; }
 .item::marker { color: var(--text-sub); }
 .meta { display: flex; flex-wrap: wrap; gap: 0.4rem; align-items: center; font-size: 0.75rem; color: var(--text-sub); }
 .title { display: block; font-size: 0.93rem; overflow-wrap: anywhere; }
