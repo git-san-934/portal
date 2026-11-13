@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-13T12:26+09:00",
+ "updated_at": "2026-11-13T20:36+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -519,6 +519,30 @@
     "https://www.mizuho-fg.co.jp/release/index.html"
    ],
    "items": [
+    {
+     "date": "2026-11-13",
+     "time": "15:30",
+     "title": "2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261112576848.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-13T20:36+09:00"
+    },
+    {
+     "date": "2026-11-13",
+     "time": "15:30",
+     "title": "中間配当ならびに配当予想の修正について",
+     "url": "https://www.release.tdnet.info/inbs/140120261112576559.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-13T20:36+09:00"
+    },
+    {
+     "date": "2026-11-13",
+     "time": "15:30",
+     "title": "自己株式取得に係る事項の決定および自己株式消却に係る事項の決定に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261112576513.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-13T20:36+09:00"
+    },
     {
      "date": "2026-10-13",
      "time": "13:07",
@@ -1231,6 +1255,13 @@
     "https://www.fuji.co.jp/"
    ],
    "items": [
+    {
+     "date": "2026-11-13",
+     "title": "お知らせ IR 2027年3月期 第2四半期(中間期)決算説明会 書き起こし 新規ウィンドウを開きます",
+     "url": "https://finance.logmi.jp/articles/385985",
+     "source": "official",
+     "first_seen": "2026-11-13T20:36+09:00"
+    },
     {
      "date": "2026-11-12",
      "title": "お知らせ 製品・事業 製品サイト再開のお知らせ(電子部品実装ロボット / 移乗サポートロボット)",
@@ -3103,6 +3134,13 @@
      "first_seen": "2026-11-13T10:27+09:00"
     },
     {
+     "date": "2026-11-13",
+     "title": "メールシステム障害に関するお知らせ",
+     "url": "https://www.nippon-chem.co.jp/news/14528",
+     "source": "official",
+     "first_seen": "2026-11-13T20:36+09:00"
+    },
+    {
      "date": "2026-11-12",
      "time": "16:00",
      "title": "2027年3月期 第2四半期(中間期)決算短信〔日本基準〕(連結)",
@@ -3645,6 +3683,13 @@
    "items": [
     {
      "date": "2026-11-13",
+     "title": "製品・サービス インフラ管理DXサービス「LD-Map(エルディマップ)」愛媛県新居浜市で初の本格導入",
+     "url": "https://news.panasonic.com/jp/press/jn261113-1",
+     "source": "official",
+     "first_seen": "2026-11-13T20:36+09:00"
+    },
+    {
+     "date": "2026-11-13",
      "title": "製品・サービス 粉塵や水濡れ、過酷な温度環境にも対応し、現場を止めない堅牢タブレットPC「FZ-G3」登場",
      "url": "https://news.panasonic.com/jp/press/jn261113-2",
      "source": "official",
@@ -4060,13 +4105,6 @@
      "url": "https://news.panasonic.com/jp/press/jn260928-2",
      "source": "official",
      "first_seen": "2026-09-28T00:00+09:00"
-    },
-    {
-     "date": "2026-09-25",
-     "title": "6 2026年9月25日 製品・サービス トピックス 市販市場向けカーナビゲーションの生産を2027年3月までに終了、生産終了後もアフターサービスを提供",
-     "url": "https://news.panasonic.com/jp/topics/206878",
-     "source": "official",
-     "first_seen": "2026-09-25T00:00+09:00"
     }
    ]
   },
