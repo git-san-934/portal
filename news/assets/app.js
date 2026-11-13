@@ -1,5 +1,4 @@
 (() => {
-  const FRESH_HOURS = 72;
   const SHOW_DAYS = 8; // 銘柄ごとに最初に見せる日数(1日1件。それより古い日はまとめて折りたたむ)
   const LABEL = { official: "公式", tdnet: "適時開示", edinet: "EDINET", sec: "SEC" };
   let data = null;
@@ -21,7 +20,10 @@
     const wd = "日月火水木金土"[new Date(y, m - 1, day).getDay()];
     return `${y}/${m}/${day}(${wd})`;
   };
-  const isFresh = (it) => Date.now() - new Date(it.first_seen).getTime() < FRESH_HOURS * 3600e3;
+  // 新着 = 記事の日付が今日(日本時間)のもの
+  const todayJST = () => new Intl.DateTimeFormat("sv-SE", { timeZone: "Asia/Tokyo" }).format(new Date());
+  let today = todayJST();
+  const isFresh = (it) => it.date === today;
   const pass = (it) => filter === "all" || it.source === filter;
 
   function item(it, stock) {
@@ -76,11 +78,19 @@
   }
 
   function render() {
+    today = todayJST();
     const fresh = [];
     for (const s of data.stocks) for (const it of s.items) if (isFresh(it) && pass(it)) fresh.push([it, s]);
     fresh.sort((a, b) => (b[0].date + (b[0].time || "")).localeCompare(a[0].date + (a[0].time || "")));
-    $("fresh").replaceChildren(...groupByDay(fresh).flatMap((g) => groupNodes(g, true)));
-    if (!fresh.length) $("fresh").append(el("li", "empty", "この3日間に見つけた新しい情報はありません"));
+    // 会社ごとに間をあけて区切る(見やすくするため)
+    $("fresh").replaceChildren(
+      ...groupByDay(fresh).flatMap((g, i) => {
+        const nodes = groupNodes(g, true);
+        if (i > 0) nodes[0].classList.add("co-start");
+        return nodes;
+      })
+    );
+    if (!fresh.length) $("fresh").append(el("li", "empty", "今日の日付の新しい情報はまだありません"));
     $("fresh-panel").hidden = false;
 
     const jump = [];
