@@ -22681,6 +22681,7 @@ https://www.keyence.co.jp/products/vision/blog/no-programming-vision-inspection-
 https://www.keyence.co.jp/products/vision/blog/ocr-ocv-difference-print-inspection.jsp
 https://www.keyence.co.jp/products/vision/blog/product-type-discrimination-image-processing-guide.jsp
 https://www.keyence.co.jp/products/vision/blog/robot-vision-2d-3d-selection-guide.jsp
+https://www.keyence.co.jp/products/vision/blog/seal-overlap-foreign-matter-inspection.jsp
 https://www.keyence.co.jp/products/vision/blog/vision-inspection-support-and-startup-assistance.jsp
 https://www.keyence.co.jp/products/vision/blog/vision-sensor-applications-selection-guide.jsp
 https://www.keyence.co.jp/products/vision/blog/vision-sensor-minor-stoppage-countermeasure.jsp
