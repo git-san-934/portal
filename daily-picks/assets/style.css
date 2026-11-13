@@ -154,3 +154,19 @@ footer { margin-top: 2.5rem; text-align: center; font-size: 0.8rem; color: var(-
 .card-head .pl { margin-left: 0; }
 .card-head .card-name { flex: 1 1 9rem; }
 .results .name .pl { display: block; width: fit-content; margin: 0.15rem 0 0; }
+
+/* ---------- 過去1年のチャート ---------- */
+.chart { margin-top: 0.6rem; }
+.chart-box { font-size: 0.8rem; color: var(--text-sub); min-height: 2rem; }
+.chart-svg { display: block; width: 100%; height: auto; }
+.chart-svg .grid { stroke: var(--border); stroke-width: 1; }
+.chart-svg .tick { fill: var(--text-sub); font-size: 15px; }
+.chart-svg .line { fill: none; stroke: var(--accent); stroke-width: 2; stroke-linejoin: round; }
+.chart-svg .ma { fill: none; stroke: var(--text-sub); stroke-width: 1.5; stroke-dasharray: 5 4; }
+.chart-svg .dot { fill: var(--accent); stroke: var(--card-bg); stroke-width: 1.5; }
+.chart-legend { display: flex; flex-wrap: wrap; gap: 0.3rem 0.9rem; font-size: 0.75rem; color: var(--text-sub); margin-top: 0.2rem; }
+.chart-legend .lg-line::before, .chart-legend .lg-ma::before {
+  content: ""; display: inline-block; width: 1.2em; vertical-align: middle; margin-right: 0.3em;
+}
+.chart-legend .lg-line::before { border-top: 2px solid var(--accent); }
+.chart-legend .lg-ma::before { border-top: 2px dashed var(--text-sub); }

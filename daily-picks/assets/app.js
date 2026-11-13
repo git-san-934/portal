@@ -29,6 +29,80 @@
 
   var perf = {}; // "price_date|code" -> performance.json の行
 
+  // ---------- 過去1年のチャート(data/charts/<price_date>_<code>.json) ----------
+  var SVGNS = "http://www.w3.org/2000/svg";
+  function svg(tag, attrs) {
+    var e = document.createElementNS(SVGNS, tag);
+    for (var k in attrs) e.setAttribute(k, attrs[k]);
+    return e;
+  }
+  function dnum(iso) { var p = iso.split("-").map(Number); return Date.UTC(p[0], p[1] - 1, p[2]) / 864e5; }
+  function yen(v) { return Number(v).toLocaleString("ja-JP", { maximumFractionDigits: 1 }); }
+
+  function drawChart(box, c) {
+    var pts = c.close || [];
+    if (pts.length < 2) { box.textContent = "チャートのデータがありません"; return; }
+    var W = 600, H = 220, L = 8, R = 72, T = 14, B = 26;
+    var x0 = dnum(pts[0][0]), x1 = dnum(pts[pts.length - 1][0]);
+    var vals = pts.map(function (q) { return q[1]; }).concat((c.ma40w || []).map(function (q) { return q[1]; }));
+    var lo = Math.min.apply(null, vals), hi = Math.max.apply(null, vals), pad = (hi - lo) * 0.08 || 1;
+    lo -= pad; hi += pad;
+    function X(d) { return L + (dnum(d) - x0) / (x1 - x0 || 1) * (W - L - R); }
+    function Y(v) { return T + (hi - v) / (hi - lo) * (H - T - B); }
+    function path(list) {
+      return list.filter(function (q) { var n = dnum(q[0]); return n >= x0 && n <= x1; })
+        .map(function (q, i) { return (i ? "L" : "M") + X(q[0]).toFixed(1) + " " + Y(q[1]).toFixed(1); }).join("");
+    }
+    var s = svg("svg", { viewBox: "0 0 " + W + " " + H, class: "chart-svg", role: "img",
+      "aria-label": "過去1年の終値チャート" });
+    // 横線と価格目盛り(右側)
+    for (var i = 0; i <= 3; i++) {
+      var v = lo + pad + (hi - lo - 2 * pad) * i / 3, y = Y(v);
+      s.appendChild(svg("line", { x1: L, x2: W - R, y1: y, y2: y, class: "grid" }));
+      var t = svg("text", { x: W - R + 6, y: y + 4, class: "tick" }); t.textContent = yen(Math.round(v)); s.appendChild(t);
+    }
+    // 月の目盛り(3か月ごと)
+    var d0 = new Date(x0 * 864e5), m = new Date(Date.UTC(d0.getUTCFullYear(), d0.getUTCMonth() + 1, 1));
+    while (m.getTime() / 864e5 <= x1) {
+      if (m.getUTCMonth() % 3 === 0) {
+        var iso = m.toISOString().slice(0, 10), x = X(iso);
+        s.appendChild(svg("line", { x1: x, x2: x, y1: T, y2: H - B, class: "grid" }));
+        var mt = svg("text", { x: x, y: H - 6, class: "tick", "text-anchor": "middle" });
+        mt.textContent = (m.getUTCMonth() === 0 ? m.getUTCFullYear() + "/" : "") + (m.getUTCMonth() + 1) + "月";
+        s.appendChild(mt);
+      }
+      m = new Date(Date.UTC(m.getUTCFullYear(), m.getUTCMonth() + 1, 1));
+    }
+    if (c.ma40w && c.ma40w.length > 1) s.appendChild(svg("path", { d: path(c.ma40w), class: "ma" }));
+    s.appendChild(svg("path", { d: path(pts), class: "line" }));
+    var last = pts[pts.length - 1], lx = X(last[0]), ly = Y(last[1]);
+    s.appendChild(svg("circle", { cx: lx, cy: ly, r: 3.5, class: "dot" }));
+    box.appendChild(s);
+
+    var closes = pts.map(function (q) { return q[1]; });
+    var mx = Math.max.apply(null, closes), mn = Math.min.apply(null, closes);
+    var first = pts[0][1], chg = (last[1] / first - 1) * 100;
+    var leg = el("p", "chart-legend");
+    leg.appendChild(el("span", "lg-line", "終値"));
+    if (c.ma40w && c.ma40w.length > 1) leg.appendChild(el("span", "lg-ma", "40週線(200日線の目安)"));
+    leg.appendChild(el("span", null, "1年の高値 " + yen(mx) + "円・安値 " + yen(mn) + "円・1年で " +
+      (chg >= 0 ? "+" : "−") + Math.abs(chg).toFixed(0) + "%"));
+    box.appendChild(leg);
+  }
+
+  function chartBox(p, day) {
+    var wrap = el("div", "chart");
+    wrap.appendChild(el("p", "sub-title", "過去1年の株価"));
+    var box = el("div", "chart-box", "チャートを読み込み中...");
+    wrap.appendChild(box);
+    var pd = day.price_date || day.date;
+    fetch("data/charts/" + pd + "_" + encodeURIComponent(p.code) + ".json")
+      .then(function (r) { if (!r.ok) throw new Error(r.status); return r.json(); })
+      .then(function (c) { box.textContent = ""; drawChart(box, c); })
+      .catch(function () { box.textContent = "チャートのデータがありません"; });
+    return wrap;
+  }
+
   function plText(r) {
     var v = r.ret_pct;
     var t = Math.abs(v) < 0.05 ? 0 : v;
@@ -72,6 +146,8 @@
     card.appendChild(tally);
 
     if (p.headline) card.appendChild(el("p", "headline", p.headline));
+
+    card.appendChild(chartBox(p, day));
 
     if (p.conditions && p.conditions.length) {
       var det = el("details", "conds");

@@ -12,6 +12,8 @@ https://git-san-934.github.io/portal/daily-picks/
   - 1日分: `date`(選んだ日)、`price_date`(終値の日付)、`summary`、`scope`(どこから絞り込んだか)、`picks`(3銘柄)
   - 1銘柄: `rank`、`code`(4桁などの証券コード)、`name`、`market`、`close`、`headline`、
     `conditions`(12件。`no`・`label`・`value`・`mark` は ◎ / ○ / △ / × / 不明)、`risks`、`sources`(`label`・`url`)
+- `data/charts/<price_date>_<code>.json` — 各銘柄カードの「過去1年の株価」チャート用。分析に使った終値の日までの1年分の終値(日次がある期間は日次、それより前は週次)と40週線
+  - `scripts/make_charts.py --tse-db <tse-price-db のパス>` が `picks.json` のまだ無い銘柄の分を作ります(分析のたびに実行してコミット)
 - 銘柄名は Yahoo!ファイナンス(`https://finance.yahoo.co.jp/quote/<code>.T`)にリンクします
 - 分析は Claude の定期タスクが火〜土の 3:17(JST、深夜)に前日の終値で行い(土曜は金曜の終値)、`data/picks.json` に足して main に直接コミットします(『今日の3銘柄 (YYYY-MM-DD)』)
 - ページの「分析をやり直す」は、タイトル『今日の3銘柄を再分析』の Issue を作る GitHub の画面を開きます。Claude の定期タスクが毎時その Issue を確かめ、あれば最新の終値で分析し直して `picks.json` を更新し、Issue を閉じます
