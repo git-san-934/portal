@@ -33,6 +33,11 @@
     const t = new Date(iso);
     return `${t.getMonth() + 1}/${t.getDate()} ${String(t.getHours()).padStart(2, "0")}:${String(t.getMinutes()).padStart(2, "0")}`;
   };
+  const relDay = (date) => {
+    const t = new Date();
+    const diff = Math.round((new Date(t.getFullYear(), t.getMonth(), t.getDate()) - date) / 864e5);
+    return diff === 0 ? "今日" : diff === 1 ? "昨日" : "";
+  };
   const isFresh = (it) => Date.now() - new Date(it.found_at).getTime() < FRESH_HOURS * 3600e3;
   const shortUrl = (u) => {
     try {
@@ -88,11 +93,28 @@
       if (!byCode.has(it.code)) byCode.set(it.code, []);
       byCode.get(it.code).push(it);
     }
+    // 曜日ごとに区切る。週(月曜はじまり)が変わるところに週の見出しを入れる
     const blocks = [];
+    let week = null;
     for (const [d, byCode] of days) {
-      const block = el("div", "day");
+      const [y, m, day] = d.split("-").map(Number);
+      const date = new Date(y, m - 1, day);
+      const wd = date.getDay();
+      const monday = new Date(y, m - 1, day - ((wd + 6) % 7));
+      const sunday = new Date(monday.getFullYear(), monday.getMonth(), monday.getDate() + 6);
+      const wk = `${monday.getMonth() + 1}月${monday.getDate()}日〜${sunday.getMonth() + 1}月${sunday.getDate()}日`;
+      if (wk !== week) {
+        week = wk;
+        blocks.push(el("p", "week-title", `${wk}の週`));
+      }
+      const block = el("section", `day wd-${wd}`);
       const n = [...byCode.values()].reduce((a, v) => a + v.length, 0);
-      block.append(el("h3", "day-title", `${fmtDate(d)} に見つけたもの(${n} 件)`));
+      const h = el("h3", "day-title");
+      h.append(el("span", "wd", "日月火水木金土"[wd]), el("span", "md", `${m}月${day}日`));
+      const rel = relDay(date);
+      if (rel) h.append(el("span", "rel", rel));
+      h.append(el("span", "n", `${byCode.size} 社・${n} 件`));
+      block.append(h);
       for (const its of byCode.values()) block.append(list(its, names));
       blocks.push(block);
     }
