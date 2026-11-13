@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-13T07:08+09:00",
+ "updated_at": "2026-11-13T10:27+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2261,12 +2261,36 @@
    ],
    "items": [
     {
+     "date": "2026-11-12",
+     "title": "Cerebras lifts annual sales forecast on strong AI-linked demand, shares surge News",
+     "url": "https://www.reuters.com/business/cerebras-raises-annual-sales-forecast-strong-ai-linked-demand-2026-11-12/",
+     "source": "official",
+     "first_seen": "2026-11-13T10:27+09:00",
+     "title_ja": "セレブラス、AI関連の強い需要を受けて年間売上高予想を引き上げ、株価急上昇 ニュース"
+    },
+    {
+     "date": "2026-11-12",
+     "title": "Cerebras surges 17% after beating on quarterly revenue and announcing Microsoft deal News",
+     "url": "https://www.cnbc.com/2026/11/12/cerebras-systems-cbrs-q3-earnings-report-2026.html",
+     "source": "official",
+     "first_seen": "2026-11-13T10:27+09:00",
+     "title_ja": "Cerebras、四半期売上高を上回ったこととMicrosoftとの提携発表を受けて17%急騰 ニュース"
+    },
+    {
+     "date": "2026-11-12",
+     "title": "AI Chipmaker Cerebras Tops Q3 Views, Adds Big Customers November 12, 2026 News",
+     "url": "https://www.investors.com/news/technology/cerebras-stock-cbrs-q3-2026-earnings/",
+     "source": "official",
+     "first_seen": "2026-11-13T10:27+09:00",
+     "title_ja": "AI チップメーカー Cerebras、第 3 四半期の閲覧数でトップ、大口顧客を追加 2026 年 11 月 12 日"
+    },
+    {
      "date": "2026-09-28",
-     "title": "Cerebras to supply AI systems to cloud computing startup Gimlet Labs News",
+     "title": "Cerebras to supply AI systems to cloud computing startup Gimlet Labs September 28, 2026 News",
      "url": "https://www.reuters.com/technology/cerebras-supply-ai-systems-cloud-computing-startup-gimlet-labs-2026-09-28/",
      "source": "official",
      "first_seen": "2026-09-29T18:19+09:00",
-     "title_ja": "Cerebras、クラウドコンピューティングスタートアップのGimlet LabsにAIシステムを供給へ ニュース"
+     "title_ja": "Cerebras、クラウド コンピューティングのスタートアップ Gimlet Labs に AI システムを供給へ 2026 年 9 月 28 日 ニュース"
     },
     {
      "date": "2026-09-28",
@@ -3062,6 +3086,22 @@
     "https://www.nippon-chem.co.jp/news/feed/"
    ],
    "items": [
+    {
+     "date": "2026-11-13",
+     "time": "09:44",
+     "title": "確認書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZG8Q",
+     "source": "edinet",
+     "first_seen": "2026-11-13T10:27+09:00"
+    },
+    {
+     "date": "2026-11-13",
+     "time": "09:42",
+     "title": "半期報告書-第169期(2026/04/01-2027/03/31)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZG8L",
+     "source": "edinet",
+     "first_seen": "2026-11-13T10:27+09:00"
+    },
     {
      "date": "2026-11-12",
      "time": "16:00",
