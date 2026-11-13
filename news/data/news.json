@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-13T10:27+09:00",
+ "updated_at": "2026-11-13T11:06+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,20 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-13",
+     "title": "「Hello! インディー」ソニックたちと力を合わせてゴールを目指せ『SONIC PICO PARK』",
+     "url": "https://www.nintendo.com/jp/topics/article/5280ccbd-f23c-4820-8cbb-6f1e9bdf5998",
+     "source": "official",
+     "first_seen": "2026-11-13T11:06+09:00"
+    },
+    {
+     "date": "2026-11-13",
+     "title": "ニンテンドーeショップ新作ソフト情報 11/13(金)号。",
+     "url": "https://www.nintendo.com/jp/topics/article/f5182976-316a-4bc7-9d99-8278bcc0c497",
+     "source": "official",
+     "first_seen": "2026-11-13T11:06+09:00"
+    },
     {
      "date": "2026-11-12",
      "title": "タブレット・スマートフォン向けアプリ「かおルイージ」、「かおピーチ」を配信開始。そのほか、「マイマリオ」の最新情報もご紹介。",
@@ -422,20 +436,6 @@
      "date": "2026-10-22",
      "title": "キャリア採用「製品法規制対応エンジニア」(京都勤務)の募集要項を掲載しました。 「仕事を読み解くキーワード」のページも更新しています。",
      "url": "https://www.nintendo.co.jp/jobs/career/index.html",
-     "source": "official",
-     "first_seen": "2026-10-22T21:27+09:00"
-    },
-    {
-     "date": "2026-10-22",
-     "title": "子供から大人まで、世代を超えて、体感スポーツ。Nintendo Switch 2 ソフト『Nintendo Switch Sports Resort』は本日発売。",
-     "url": "https://www.nintendo.com/jp/topics/article/84999aa9-7844-4d76-970f-d7f8093edc03",
-     "source": "official",
-     "first_seen": "2026-10-22T21:27+09:00"
-    },
-    {
-     "date": "2026-10-22",
-     "title": "麦わらの一味と、この海で一番の“おいしい”をお届け。『ONE PIECE 海のごちそうレストラン』がNintendo Switch 2 / Nintendo Switchで本日発売。",
-     "url": "https://www.nintendo.com/jp/topics/article/a5ec42eb-efb3-4c90-95b0-618e143da7e2",
      "source": "official",
      "first_seen": "2026-10-22T21:27+09:00"
     }
@@ -3644,6 +3644,13 @@
    ],
    "items": [
     {
+     "date": "2026-11-13",
+     "title": "製品・サービス 粉塵や水濡れ、過酷な温度環境にも対応し、現場を止めない堅牢タブレットPC「FZ-G3」登場",
+     "url": "https://news.panasonic.com/jp/press/jn261113-2",
+     "source": "official",
+     "first_seen": "2026-11-13T11:06+09:00"
+    },
+    {
      "date": "2026-11-12",
      "title": "製品・サービス 食洗機導入で年間3.4日分の「ゆとり時間」創出、くらしの質向上の可能性を示唆",
      "url": "https://news.panasonic.com/jp/press/jn261112-1",
@@ -3675,7 +3682,7 @@
     },
     {
      "date": "2026-11-11",
-     "title": "技術・研究開発 パナソニックHD、「現場起点のPhysical AI」の研究開発を加速",
+     "title": "1 2026年11月11日 技術・研究開発 プレスリリース パナソニックHD、「現場起点のPhysical AI」の研究開発を加速",
      "url": "https://news.panasonic.com/jp/press/jn261111-2",
      "source": "official",
      "first_seen": "2026-11-11T20:28+09:00"
@@ -4060,13 +4067,6 @@
      "url": "https://news.panasonic.com/jp/topics/206878",
      "source": "official",
      "first_seen": "2026-09-25T00:00+09:00"
-    },
-    {
-     "date": "2026-09-24",
-     "title": "5 2026年9月24日 企業・経営 Stories 松下幸之助「最高の経営とは」――パナソニックの歴史ものがたり Episode 10",
-     "url": "https://news.panasonic.com/jp/stories/18954",
-     "source": "official",
-     "first_seen": "2026-09-24T00:00+09:00"
     }
    ]
   },
