@@ -1,12 +1,12 @@
 {
- "updated_at": "2026-11-14T02:26+09:00",
+ "updated_at": "2026-11-14T03:21+09:00",
  "latest_price_date": "2026-11-13",
  "rules": {
   "stop_buffer": 0.99,
   "rr": 3.0
  },
  "summary": {
-  "picks": 31,
+  "picks": 34,
   "with_data": 31,
   "avg_ret_pct": 2.7,
   "win_rate_pct": 87.1,
@@ -26,6 +26,45 @@
   "n_10d": 3
  },
  "rows": [
+  {
+   "date": "2026-11-14",
+   "dates": [
+    "2026-11-14"
+   ],
+   "price_date": "2026-11-13",
+   "code": "1762",
+   "name": "高松コンストラクショングループ",
+   "rank": 1,
+   "base": null,
+   "analysis_close": 4495,
+   "status": "これから"
+  },
+  {
+   "date": "2026-11-14",
+   "dates": [
+    "2026-11-14"
+   ],
+   "price_date": "2026-11-13",
+   "code": "4118",
+   "name": "カネカ",
+   "rank": 2,
+   "base": null,
+   "analysis_close": 6533,
+   "status": "これから"
+  },
+  {
+   "date": "2026-11-14",
+   "dates": [
+    "2026-11-14"
+   ],
+   "price_date": "2026-11-13",
+   "code": "4097",
+   "name": "高圧ガス工業",
+   "rank": 3,
+   "base": null,
+   "analysis_close": 1240,
+   "status": "株価データなし"
+  },
   {
    "date": "2026-11-13",
    "dates": [
