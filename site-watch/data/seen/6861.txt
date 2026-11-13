@@ -26525,6 +26525,7 @@ https://www.keyence.co.jp/ss/general/manufacture-tips/habit.jsp
 https://www.keyence.co.jp/ss/general/manufacture-tips/heat-stress-prevention.jsp
 https://www.keyence.co.jp/ss/general/manufacture-tips/heinrich-law.jsp
 https://www.keyence.co.jp/ss/general/manufacture-tips/human-error.jsp
+https://www.keyence.co.jp/ss/general/manufacture-tips/humanoid-robot.jsp
 https://www.keyence.co.jp/ss/general/manufacture-tips/industrial-accident.jsp
 https://www.keyence.co.jp/ss/general/manufacture-tips/industrial-engineering.jsp
 https://www.keyence.co.jp/ss/general/manufacture-tips/industry.jsp
