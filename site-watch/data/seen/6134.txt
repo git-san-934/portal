@@ -568,6 +568,7 @@ https://www.fuji.co.jp/cn/news/2023/
 https://www.fuji.co.jp/cn/news/2024/
 https://www.fuji.co.jp/cn/news/2025/
 https://www.fuji.co.jp/cn/news/2026/
+https://www.fuji.co.jp/cn/news/20261112.html
 https://www.fuji.co.jp/cn/news/assets/pdf/2417_FAC_UTCN.pdf
 https://www.fuji.co.jp/cn/news/assets/pdf/2425_OkazakiNewFactoryCN.pdf
 https://www.fuji.co.jp/cn/news/assets/pdf/2501_INJ2025_C.pdf
@@ -822,6 +823,7 @@ https://www.fuji.co.jp/en/news/2025/
 https://www.fuji.co.jp/en/news/20250901.html
 https://www.fuji.co.jp/en/news/2026/
 https://www.fuji.co.jp/en/news/20260603.html
+https://www.fuji.co.jp/en/news/20261112.html
 https://www.fuji.co.jp/en/news/assets/pdf/2023-03-01_TS_donation2023_E.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/2023-07-07_doc.pdf
 https://www.fuji.co.jp/en/news/assets/pdf/2023-09-14_VC_DCP2023E.pdf
