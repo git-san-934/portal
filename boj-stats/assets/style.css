@@ -109,9 +109,17 @@ footer p + p { margin-top: 0.4rem; }
 code { font-size: 0.75rem; }
 
 /* ---- 日銀統計の新着 ---- */
-.day { margin-bottom: 0.9rem; }
-.day:last-child { margin-bottom: 0; }
-.day-title { font-size: 0.9rem; font-weight: 700; margin-bottom: 0.2rem; display: flex; gap: 0.4rem; align-items: center; }
+/* 日ごとの区切り: 日付の帯 + 日と日の間の線。帯はスクロール中も上に残す */
+.day { padding-bottom: 0.6rem; }
+.day + .day, .more .day { border-top: 2px solid var(--border); padding-top: 0.8rem; }
+.day:last-child { padding-bottom: 0; }
+.day-title {
+  position: sticky; top: 0; z-index: 1;
+  font-size: 0.95rem; font-weight: 700; margin: 0 -0.5rem 0.3rem; padding: 0.35rem 0.6rem;
+  display: flex; gap: 0.5rem; align-items: center;
+  background: var(--bg); border-left: 4px solid var(--accent); border-radius: 0.3rem;
+}
+.day-title .count { font-size: 0.75rem; font-weight: 400; color: var(--text-sub); }
 .news .item a.title { font-weight: 600; }
 .sub { display: block; font-size: 0.82rem; color: var(--text-sub); }
 .badge.release { color: var(--official); }
