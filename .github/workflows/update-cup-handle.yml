@@ -1,0 +1,56 @@
+name: カップウィズハンドル銘柄を更新
+
+on:
+  schedule:
+    # 平日 16:40 JST(引け後)と 20:10 JST(予備。GitHub の定期実行は遅れたり飛ばされたりするため)
+    - cron: "40 7 * * 1-5"
+    - cron: "10 11 * * 1-5"
+  workflow_dispatch:
+  push:
+    branches: [main]
+    paths:
+      - cup-handle/scripts/**
+      - .github/workflows/update-cup-handle.yml
+
+permissions:
+  contents: write # 結果の JSON をコミットする
+  actions: write # 更新後に Pages のデプロイを起動する
+
+concurrency:
+  group: cup-handle
+  cancel-in-progress: false
+
+jobs:
+  update:
+    runs-on: ubuntu-latest
+    timeout-minutes: 40
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - run: pip install -r cup-handle/scripts/requirements.txt
+      - name: 全銘柄の株価と決算を取得して抽出
+        run: python cup-handle/scripts/screen.py
+      - name: コミット
+        id: commit
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git add cup-handle/data/result.json cup-handle/data/history.json
+          if git diff --cached --quiet; then
+            echo "変更なし"
+            exit 0
+          fi
+          git commit -m "カップウィズハンドル銘柄を更新 ($(TZ=Asia/Tokyo date +%F))"
+          for i in 1 2 3; do
+            git pull --rebase origin main && git push origin HEAD:main && break
+            sleep 5
+          done
+          echo "changed=true" >> "$GITHUB_OUTPUT"
+      # GITHUB_TOKEN での push では deploy.yml が自動で動かないため、明示的に起動する
+      - name: GitHub Pages を再デプロイ
+        if: steps.commit.outputs.changed == 'true'
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: gh workflow run deploy.yml --ref main
