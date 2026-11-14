@@ -1,0 +1,211 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>ボックス上放れ</title>
+  <meta name="description" content="ダーバスのボックス理論で、東証の全銘柄から毎日の買い・売りの合図を出す" />
+  <meta name="theme-color" content="#f7f5f0" />
+  <style>
+    :root {
+      --bg: #f7f5f0; --card-bg: #ffffff; --text: #23201b; --text-sub: #6b645a; --border: #e5e0d6;
+      --accent: #c8502d; --accent-text: #ffffff; --line: #3d6fa8; --up: #2f7d4f; --down: #c8502d;
+      --box: rgba(61, 111, 168, 0.12);
+      --shadow: 0 1px 3px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.05);
+    }
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #1c1a17; --card-bg: #262320; --text: #f0ece4; --text-sub: #a89f92; --border: #38342e;
+        --accent: #e0662f; --accent-text: #1c1a17; --line: #7fb0e6; --up: #6cc08b; --down: #f08a5d;
+        --box: rgba(127, 176, 230, 0.16);
+        --shadow: 0 1px 3px rgba(0, 0, 0, 0.3), 0 8px 24px rgba(0, 0, 0, 0.35);
+      }
+    }
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+    body { font-family: system-ui, -apple-system, "Hiragino Kaku Gothic ProN", "Yu Gothic", "Meiryo", sans-serif;
+      background: var(--bg); color: var(--text); line-height: 1.6; -webkit-font-smoothing: antialiased; padding: 1.5rem 1rem 4rem; }
+    .wrap { max-width: 52rem; margin: 0 auto; }
+    a.back { color: var(--text-sub); font-size: 0.85rem; text-decoration: none; }
+    h1 { font-size: 1.4rem; margin: 0.4rem 0 0.2rem; }
+    h2 { font-size: 1.05rem; margin: 1.6rem 0 0.2rem; }
+    .sub { color: var(--text-sub); font-size: 0.8rem; margin-bottom: 0.6rem; }
+    .lead { color: var(--text-sub); font-size: 0.9rem; }
+    .meta { color: var(--text-sub); font-size: 0.8rem; margin: 0.8rem 0 0.6rem; }
+    .card { background: var(--card-bg); border: 1px solid var(--border); border-radius: 1rem; box-shadow: var(--shadow); }
+    .picks { display: grid; gap: 1rem; grid-template-columns: repeat(auto-fill, minmax(20rem, 1fr)); }
+    .pick { padding: 1rem 1.1rem; min-width: 0; }
+    .pick .nm { font-weight: 700; font-size: 1.05rem; color: inherit; text-decoration: none; }
+    .pick .cd { display: block; color: var(--text-sub); font-size: 0.8rem; }
+    .kv { display: grid; grid-template-columns: repeat(3, 1fr); gap: 0.3rem 0.6rem; margin-top: 0.6rem; font-size: 0.8rem; }
+    .kv div span { display: block; color: var(--text-sub); font-size: 0.7rem; }
+    .kv b { font-variant-numeric: tabular-nums; }
+    svg.ch { display: block; width: 100%; height: 130px; margin-top: 0.6rem; }
+    svg.ch polyline { fill: none; stroke: var(--line); stroke-width: 1.4; }
+    svg.ch rect { fill: var(--box); }
+    svg.ch .sl { stroke: var(--down); stroke-dasharray: 4 3; stroke-width: 1; }
+    svg.ch text { fill: var(--text-sub); font-size: 9px; }
+    .legend { font-size: 0.7rem; color: var(--text-sub); margin-top: 0.2rem; }
+    .tbl { overflow-x: auto; }
+    table { width: 100%; border-collapse: collapse; font-size: 0.85rem; }
+    th, td { padding: 0.5rem 0.55rem; text-align: right; border-bottom: 1px solid var(--border); white-space: nowrap; }
+    th { font-size: 0.72rem; color: var(--text-sub); font-weight: 600; background: var(--bg); }
+    th:first-child, td:first-child { text-align: left; position: sticky; left: 0; }
+    td:first-child { background: var(--card-bg); }
+    tr:last-child td { border-bottom: none; }
+    td a { color: inherit; font-weight: 700; text-decoration: none; }
+    td .s { display: block; font-size: 0.72rem; color: var(--text-sub); }
+    .num { font-variant-numeric: tabular-nums; }
+    .pos { color: var(--up); } .neg { color: var(--down); }
+    .tag { font-size: 0.7rem; font-weight: 700; border-radius: 999px; padding: 0.05rem 0.5rem; background: var(--down); color: var(--accent-text); }
+    .more { display: block; width: 100%; font: inherit; font-size: 0.85rem; padding: 0.6rem; background: none; border: none;
+      border-top: 1px solid var(--border); color: var(--accent); cursor: pointer; }
+    .hist li { list-style: none; font-size: 0.85rem; padding: 0.35rem 0; border-bottom: 1px solid var(--border); }
+    .hist li:last-child { border-bottom: none; }
+    .hist li b { display: inline-block; min-width: 6.5rem; font-variant-numeric: tabular-nums; }
+    .notes { color: var(--text-sub); font-size: 0.8rem; margin-top: 1rem; line-height: 1.8; }
+    .notes ol { padding-left: 1.3rem; }
+    .empty { padding: 1rem; color: var(--text-sub); font-size: 0.9rem; }
+    .err { color: var(--down); }
+    @media (max-width: 560px) { .col-x { display: none; } }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <a class="back" href="../">← わたしのアプリ</a>
+    <h1>ボックス上放れ</h1>
+    <p class="lead">ダーバスのボックス理論で、東証（プライム・スタンダード・グロース）の全銘柄から、ボックスを上に抜けた買いの合図と、損切りラインを割った売りの合図を毎日出します。</p>
+    <p class="meta" id="meta">読み込み中…</p>
+
+    <h2 id="t-buy">買いの合図</h2>
+    <p class="sub">最新の終値でボックスの上限を上抜けた銘柄です。ルールでは翌営業日の寄付きで買います。</p>
+    <div class="picks" id="buys"></div>
+
+    <h2 id="t-sell">売りの合図</h2>
+    <p class="sub">保有中（シミュレーション）の銘柄のうち、最新の終値で損切りラインを割った銘柄です。翌営業日の寄付きで売ります。</p>
+    <div class="card tbl"><table><thead><tr><th>銘柄</th><th>買った日</th><th>損益</th><th>終値</th><th>損切りライン</th></tr></thead><tbody id="sells"></tbody></table></div>
+
+    <h2 id="t-hold">保有中の銘柄と損切りライン</h2>
+    <p class="sub">過去1年に買いの合図が出て、まだ売りの合図が出ていない銘柄です。損切りラインは新しいボックスができるたびに上がります。</p>
+    <div class="card tbl">
+      <table><thead><tr><th>銘柄</th><th>買った日</th><th>買値</th><th>終値</th><th>損益</th><th>損切りライン</th><th class="col-x">ラインまで</th><th class="col-x">ボックス更新</th></tr></thead>
+      <tbody id="holds"></tbody></table>
+      <button type="button" class="more" id="more-holds" hidden>すべて表示</button>
+    </div>
+
+    <h2 id="t-watch">上放れ間近</h2>
+    <p class="sub">ボックスができていて、終値が上限まで5%以内の銘柄です。</p>
+    <div class="card tbl"><table><thead><tr><th>銘柄</th><th>終値</th><th>上限まで</th><th>上限</th><th>下限</th><th class="col-x">ボックス幅</th><th class="col-x">日数</th></tr></thead><tbody id="watch"></tbody></table></div>
+
+    <h2>これまでの合図</h2>
+    <ul class="card hist" id="hist" style="padding:0.3rem 1rem"></ul>
+
+    <div class="notes">
+      <p><b>売買のルール</b>（日足、分割調整済み）</p>
+      <ol>
+        <li>52週の新高値をつけた後、3日間その高値を超えなければ、そこがボックスの上限</li>
+        <li>その後3日間安値を更新しなければ、そこがボックスの下限</li>
+        <li>ボックス幅15%以内、ボックス期間10日以上、50日平均の売買代金5,000万円以上</li>
+        <li><b>買い：</b>終値が上限を上抜けたら、翌営業日の寄付きで買う</li>
+        <li><b>損切りライン：</b>ボックスの下限の10%下。保有中に新しいボックスができるたびに引き上げる（下げない）</li>
+        <li><b>売り：</b>終値が損切りラインを割ったら、翌営業日の寄付きで売る。利益確定の目標値は置かない</li>
+      </ol>
+      <p style="margin-top:0.6rem" id="bt-note"></p>
+      <p style="margin-top:0.6rem">業績（四半期の営業利益・売上の伸び）とビッグチェンジ（新製品・新事業など）は判定していません。合図が出た銘柄は、決算短信やニュースで確認してください。データは Yahoo Finance から平日の夕方と夜に GitHub Actions が自動で更新します。機械的な判定で、投資の助言ではありません。</p>
+    </div>
+  </div>
+  <script>
+    const pct = (v, plus = true) => v == null ? "—" : (plus && v > 0 ? "+" : "") + (v * 100).toFixed(1) + "%";
+    const yen = (v) => v == null ? "—" : v.toLocaleString("ja-JP", { maximumFractionDigits: 1 });
+    const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
+    const link = (s) => `<a href="https://finance.yahoo.co.jp/quote/${s.code}.T" target="_blank" rel="noopener">${esc(s.name)}</a><span class="s">${s.code} ・ ${esc(s.market)}</span>`;
+    const cls = (v) => v > 0 ? "pos" : v < 0 ? "neg" : "";
+    const BT = "過去5年（2022〜2026年）の検証では、この条件で3,900回ほどの取引があり、勝率・損益は検証結果のとおりです。";
+
+    function chart(s) {
+      const d = s.chart?.dates || [], c = s.chart?.close || [];
+      if (c.length < 2) return "";
+      const W = 320, H = 130, pad = 4;
+      const lo = Math.min(...c, s.stop), hi = Math.max(...c, s.box_top);
+      const x = (i) => (i / (c.length - 1)) * W;
+      const y = (v) => H - pad - ((v - lo) / (hi - lo || 1)) * (H - pad * 2 - 10);
+      const i0 = Math.max(0, d.indexOf(s.box_start));
+      const pts = c.map((v, i) => `${x(i).toFixed(1)},${y(v).toFixed(1)}`).join(" ");
+      return `<svg class="ch" viewBox="0 0 ${W} ${H}" preserveAspectRatio="none" role="img" aria-label="${esc(s.name)}の1年チャート">
+        <rect x="${x(i0)}" y="${y(s.box_top)}" width="${W - x(i0)}" height="${Math.max(1, y(s.box_bot) - y(s.box_top))}"/>
+        <line class="sl" x1="0" x2="${W}" y1="${y(s.stop)}" y2="${y(s.stop)}"/>
+        <polyline points="${pts}"/>
+        <text x="2" y="10">${d[0]}</text><text x="${W - 2}" y="10" text-anchor="end">${d[d.length - 1]}</text>
+      </svg>`;
+    }
+    function buyCard(s) {
+      return `<div class="card pick">
+        <a class="nm" href="https://finance.yahoo.co.jp/quote/${s.code}.T" target="_blank" rel="noopener">${esc(s.name)}</a>
+        <span class="cd">${s.code} ・ ${esc(s.market)} ・ ${esc(s.sector)}</span>
+        ${chart(s)}
+        <div class="legend">青い帯＝ボックス、赤の点線＝損切りライン（下限の10%下）</div>
+        <div class="kv">
+          <div><span>終値</span><b>${yen(s.last)}</b></div>
+          <div><span>ボックス上限</span><b>${yen(s.box_top)}</b></div>
+          <div><span>上限から</span><b>${pct(s.above_top)}</b></div>
+          <div><span>ボックス下限</span><b>${yen(s.box_bot)}</b></div>
+          <div><span>損切りライン</span><b>${yen(s.stop)}</b></div>
+          <div><span>ボックス</span><b>${s.box_days}日・幅${pct(s.width, false)}</b></div>
+        </div>
+      </div>`;
+    }
+    let holds = [], showAll = false;
+    function renderHolds() {
+      const list = showAll ? holds : holds.slice(0, 30);
+      document.getElementById("holds").innerHTML = list.map((s) => `<tr>
+        <td>${link(s)}</td><td class="num">${s.entry_date}</td><td class="num">${yen(s.entry)}</td><td class="num">${yen(s.last)}</td>
+        <td class="num ${cls(s.ret)}">${pct(s.ret)}</td><td class="num">${yen(s.stop)}</td>
+        <td class="num col-x">${pct(s.to_stop)}</td><td class="num col-x">${s.n_boxes}回</td></tr>`).join("")
+        || `<tr><td colspan="8" class="empty">保有中の銘柄はありません。</td></tr>`;
+      const b = document.getElementById("more-holds");
+      b.hidden = showAll || holds.length <= 30;
+      b.textContent = `すべて表示（${holds.length}銘柄）`;
+    }
+    document.getElementById("more-holds").addEventListener("click", () => { showAll = true; renderHolds(); });
+
+    async function load() {
+      const meta = document.getElementById("meta");
+      try {
+        const [r, h] = await Promise.all([
+          fetch(`data/result.json?t=${Date.now()}`, { cache: "no-store" }),
+          fetch(`data/history.json?t=${Date.now()}`, { cache: "no-store" }),
+        ]);
+        if (!r.ok) throw new Error(`HTTP ${r.status}`);
+        const d = await r.json();
+        const sells = d.holds.filter((s) => s.sell_signal);
+        holds = d.holds.filter((s) => !s.sell_signal);
+        meta.textContent = `${d.price_date} の終値 ・ 対象 ${d.universe.toLocaleString()}銘柄 ・ 更新 ${d.generated_at}（日本時間）`;
+        document.getElementById("t-buy").textContent = `買いの合図（${d.buys.length}）`;
+        document.getElementById("t-sell").textContent = `売りの合図（${sells.length}）`;
+        document.getElementById("t-hold").textContent = `保有中の銘柄と損切りライン（${holds.length}）`;
+        document.getElementById("t-watch").textContent = `上放れ間近（${d.watch_total}）`;
+        document.getElementById("buys").innerHTML = d.buys.length ? d.buys.map(buyCard).join("")
+          : `<div class="card empty">今日は買いの合図が出た銘柄はありません。</div>`;
+        document.getElementById("sells").innerHTML = sells.map((s) => `<tr><td>${link(s)}</td><td class="num">${s.entry_date}</td>
+          <td class="num ${cls(s.ret)}">${pct(s.ret)}</td><td class="num">${yen(s.last)}</td><td class="num">${yen(s.stop)}</td></tr>`).join("")
+          || `<tr><td colspan="5" class="empty">今日は売りの合図が出た銘柄はありません。</td></tr>`;
+        renderHolds();
+        document.getElementById("watch").innerHTML = d.watch.map((s) => `<tr><td>${link(s)}</td><td class="num">${yen(s.last)}</td>
+          <td class="num">${pct(s.to_top)}</td><td class="num">${yen(s.box_top)}</td><td class="num">${yen(s.box_bot)}</td>
+          <td class="num col-x">${pct(s.width, false)}</td><td class="num col-x">${s.box_days}日</td></tr>`).join("")
+          || `<tr><td colspan="7" class="empty">該当なし</td></tr>`;
+        if (d.backtest) document.getElementById("bt-note").textContent = d.backtest;
+        if (h.ok) {
+          const hist = (await h.json()).slice().reverse();
+          const names = (a) => a.map((p) => `${esc(p.name)}（${p.code}）`).join("、");
+          document.getElementById("hist").innerHTML = hist.map((x) => `<li><b>${x.price_date}</b>${
+            x.buys.length ? "買い：" + names(x.buys) : ""}${x.buys.length && x.sells.length ? "　" : ""}${
+            x.sells.length ? "売り：" + names(x.sells) : ""}${!x.buys.length && !x.sells.length ? '<span class="s">合図なし</span>' : ""}</li>`).join("");
+        }
+      } catch (e) {
+        meta.innerHTML = `<span class="err">データを読み込めませんでした（${esc(e.message)}）</span>`;
+      }
+    }
+    load();
+  </script>
+</body>
+</html>
