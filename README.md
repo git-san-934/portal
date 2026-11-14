@@ -23,6 +23,7 @@ https://git-san-934.github.io/portal/
 - `lev3watch/` — 掲載アプリの1つ「3倍ブル見張り台」の本体。案1(SPY が200日平均の+3%超で UPRO、−3%未満で現金)の合図と、米国株指数の3倍ブル5本(TQQQ・UPRO・UDOW・TNA・MIDU)の1年高値からの下落率を、GitHub Actions が火〜土の 7:20・9:20 に Yahoo Finance から取得して更新します。`data/history.json` は2026-10-23までの検証結果(3倍は再現値)で固定です。
 - `float-screen/` — 掲載アプリの1つ「銘柄スクリーニング」の本体(このリポジトリ内に同梱)。データ(`float-screen/data/screen.json`)は stock-yukasyouken-jigyou リポジトリの有価証券報告書データから作っています。
 - `daily-picks/` — 掲載アプリの1つ「今日の3銘柄」の本体(このリポジトリ内に同梱)。本の12条件で選んだ日本株3銘柄を、Claude の定期タスクが火〜土の未明に `daily-picks/data/picks.json` へ足していきます。詳細は `daily-picks/README.md` を参照。
+- `cup-handle/` — 掲載アプリの1つ「カップウィズハンドル」の本体(このリポジトリ内に同梱)。東証の全銘柄(プライム・スタンダード・グロース)の株価と四半期決算を GitHub Actions が平日 16:40・20:10 に Yahoo Finance から取得し、カップウィズハンドル型で売上高・営業利益が前年同期比+20%以上の銘柄を `cup-handle/data/result.json` に書き出します。判定ロジックは `cup-handle/scripts/cwh.py`。
 - `ad-watch/` — 掲載アプリの1つ「広告費ウォッチ」の本体(このリポジトリ内に同梱)。広告宣伝費・売上高・営業利益は GitHub Actions が毎日 EDINET の有価証券報告書から自動で集めます。詳細は `ad-watch/README.md` を参照。
 
 ## 掲載しているアプリ
@@ -32,6 +33,7 @@ https://git-san-934.github.io/portal/
 | ユーチューブ要約 | https://git-san-934.github.io/youtube-yoyaku/ |
 | 日経4.3ブル 暴落買いナビ | https://git-san-934.github.io/portal/nikkei43/ |
 | 日経平均PER 買い時・売り時 | https://git-san-934.github.io/portal/nikkei-per/ |
+| カップウィズハンドル | https://git-san-934.github.io/portal/cup-handle/ |
 | 今日の3銘柄 | https://git-san-934.github.io/portal/daily-picks/ |
 | 持ち株チェック | https://git-san-934.github.io/portal/holdings/ |
 | 持ち株の新着情報 | https://git-san-934.github.io/portal/news/ |
