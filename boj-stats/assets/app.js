@@ -53,6 +53,7 @@
         if (!groups.has(k)) groups.set(k, []);
         groups.get(k).push(it);
       }
+      h.insertBefore(el("span", "count", `${groups.size}件`), h.querySelector(".badge"));
       const ul = el("ul", "news");
       for (const g of groups.values()) {
         const it = g[0];
