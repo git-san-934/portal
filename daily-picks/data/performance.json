@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-14T05:07+09:00",
+ "updated_at": "2026-11-14T11:55+09:00",
  "latest_price_date": "2026-11-13",
  "rules": {
   "stop_buffer": 0.99,
@@ -63,7 +63,7 @@
    "rank": 3,
    "base": null,
    "analysis_close": 1240,
-   "status": "株価データなし"
+   "status": "これから"
   },
   {
    "date": "2026-11-13",
@@ -88,7 +88,7 @@
    "last_date": "2026-11-13",
    "last_close": 4495.0,
    "ret_pct": 0.9,
-   "max_up_pct": 0.9,
+   "max_up_pct": 1.01,
    "max_down_pct": -1.46,
    "horizon": {
     "1": 0.9
@@ -213,7 +213,7 @@
    "last_date": "2026-11-13",
    "last_close": 4495.0,
    "ret_pct": 5.89,
-   "max_up_pct": 5.89,
+   "max_up_pct": 6.01,
    "max_down_pct": -0.24,
    "horizon": {
     "1": 4.83
