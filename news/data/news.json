@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-15T11:05+09:00",
+ "updated_at": "2026-11-15T11:44+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1554,10 +1554,9 @@
    "name": "キオクシアHD",
    "market": "JP",
    "home": "https://www.kioxia-holdings.com/ja-jp/",
-   "official_status": "ok",
+   "official_status": "取得できませんでした",
    "official_pages": [
-    "https://www.kioxia-holdings.com/ja-jp/news.html",
-    "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
+    "https://www.kioxia-holdings.com/ja-jp/news.html"
    ],
    "items": [
     {
@@ -1626,6 +1625,30 @@
      "url": "https://www.kioxia.com/ja-jp/about/news/2026/20261102-1.html",
      "source": "official",
      "first_seen": "2026-11-02T08:53+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "time": "18:45",
+     "title": "2027年3月期 第2四半期(中間期)決算短信〔IFRS〕(連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261030561535.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T00:00+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "time": "18:45",
+     "title": "株主還元方針及び剰余金の配当(中間配当・初配)に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261030561562.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T00:00+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "time": "18:45",
+     "title": "連結子会社間の合併に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261030561544.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T00:00+09:00"
     },
     {
      "date": "2026-10-30",
