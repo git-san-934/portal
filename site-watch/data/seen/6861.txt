@@ -8314,7 +8314,9 @@ https://www.keyence.co.jp/products/controls/plc-building/kv-7000/models/kv-nc32e
 https://www.keyence.co.jp/products/controls/plc-building/kv-7000/models/kv-nc32ex/
 https://www.keyence.co.jp/products/controls/plc-building/kv-7000/models/kv-nc32ext/
 https://www.keyence.co.jp/products/controls/plc-building/kv-7000/models/kv-nc4ad/
+https://www.keyence.co.jp/products/controls/plc-building/kv-7000/models/kv-nc4adg/
 https://www.keyence.co.jp/products/controls/plc-building/kv-7000/models/kv-nc4tp/
+https://www.keyence.co.jp/products/controls/plc-building/kv-7000/models/kv-nc8adg/
 https://www.keyence.co.jp/products/controls/plc-building/kv-7000/models/kv-nc8er/
 https://www.keyence.co.jp/products/controls/plc-building/kv-7000/models/kv-pu1/
 https://www.keyence.co.jp/products/controls/plc-building/kv-7000/models/kv-rc16br/
@@ -8584,7 +8586,9 @@ https://www.keyence.co.jp/products/controls/plc-building/kv-8000/models/kv-nc32e
 https://www.keyence.co.jp/products/controls/plc-building/kv-8000/models/kv-nc32exe/
 https://www.keyence.co.jp/products/controls/plc-building/kv-8000/models/kv-nc32ext/
 https://www.keyence.co.jp/products/controls/plc-building/kv-8000/models/kv-nc4ad/
+https://www.keyence.co.jp/products/controls/plc-building/kv-8000/models/kv-nc4adg/
 https://www.keyence.co.jp/products/controls/plc-building/kv-8000/models/kv-nc4tp/
+https://www.keyence.co.jp/products/controls/plc-building/kv-8000/models/kv-nc8adg/
 https://www.keyence.co.jp/products/controls/plc-building/kv-8000/models/kv-nc8er/
 https://www.keyence.co.jp/products/controls/plc-building/kv-8000/models/kv-pu1/
 https://www.keyence.co.jp/products/controls/plc-building/kv-8000/models/kv-rc16br/
@@ -8758,6 +8762,10 @@ https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-ec01/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-ep02/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-fl20v/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-h1g-dl/
+https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-inl1/
+https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-inp1/
+https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-inp10/
+https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-inp3/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-l20v/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-l21v/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-m32g/
@@ -8790,7 +8798,9 @@ https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-nc32ex/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-nc32exe/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-nc32ext/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-nc4ad/
+https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-nc4adg/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-nc4tp/
+https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-nc8adg/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-nc8er/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-pu1/
 https://www.keyence.co.jp/products/controls/plc-building/kv-x/models/kv-rc16br/
@@ -8991,7 +9001,9 @@ https://www.keyence.co.jp/products/controls/plc-package/kv_nano/models/kv-nc32ex
 https://www.keyence.co.jp/products/controls/plc-package/kv_nano/models/kv-nc32ext/
 https://www.keyence.co.jp/products/controls/plc-package/kv_nano/models/kv-nc32t/
 https://www.keyence.co.jp/products/controls/plc-package/kv_nano/models/kv-nc4ad/
+https://www.keyence.co.jp/products/controls/plc-package/kv_nano/models/kv-nc4adg/
 https://www.keyence.co.jp/products/controls/plc-package/kv_nano/models/kv-nc4tp/
+https://www.keyence.co.jp/products/controls/plc-package/kv_nano/models/kv-nc8adg/
 https://www.keyence.co.jp/products/controls/plc-package/kv_nano/models/kv-nc8er/
 https://www.keyence.co.jp/products/controls/plc-package/kv_nano/models/op-35331/
 https://www.keyence.co.jp/products/controls/plc-package/kv_nano/models/op-42143/
