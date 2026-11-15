@@ -64,6 +64,14 @@
     .hist li b { display: inline-block; min-width: 6.5rem; font-variant-numeric: tabular-nums; }
     .notes { color: var(--text-sub); font-size: 0.8rem; margin-top: 1rem; line-height: 1.8; }
     .notes ol { padding-left: 1.3rem; }
+    .fd { display: inline-flex; gap: 2px; }
+    .fd i { font-style: normal; font-size: 0.68rem; width: 1.15rem; height: 1.15rem; line-height: 1.15rem; text-align: center;
+      border-radius: 4px; border: 1px solid var(--border); color: var(--text-sub); }
+    .fd i.on { background: var(--up); border-color: var(--up); color: var(--accent-text); }
+    .filter { display: flex; align-items: center; gap: 0.4rem; font-size: 0.85rem; margin: 0.8rem 0 0; cursor: pointer; }
+    .filter input { width: 1.05rem; height: 1.05rem; accent-color: var(--accent); }
+    .links { font-size: 0.75rem; margin-top: 0.5rem; }
+    .links a { color: var(--accent); margin-right: 0.8rem; }
     .empty { padding: 1rem; color: var(--text-sub); font-size: 0.9rem; }
     .err { color: var(--down); }
     @media (max-width: 560px) { .col-x { display: none; } }
@@ -75,6 +83,7 @@
     <h1>ボックス上放れ</h1>
     <p class="lead">ダーバスのボックス理論で、東証（プライム・スタンダード・グロース）の全銘柄から、ボックスを上に抜けた買いの合図と、損切りラインを割った売りの合図を毎日出します。</p>
     <p class="meta" id="meta">読み込み中…</p>
+    <label class="filter"><input type="checkbox" id="f-fund" /> 業績の条件③（直近の四半期 営業利益+20%・売上+10%）を満たす銘柄だけ表示</label>
 
     <h2 id="t-buy">買いの合図</h2>
     <p class="sub">最新の終値でボックスの上限を上抜けた銘柄です。ルールでは翌営業日の寄付きで買います。</p>
@@ -82,19 +91,19 @@
 
     <h2 id="t-sell">売りの合図</h2>
     <p class="sub">保有中（シミュレーション）の銘柄のうち、最新の終値で損切りラインを割った銘柄です。翌営業日の寄付きで売ります。</p>
-    <div class="card tbl"><table><thead><tr><th>銘柄</th><th>買った日</th><th>損益</th><th>終値</th><th>損切りライン</th></tr></thead><tbody id="sells"></tbody></table></div>
+    <div class="card tbl"><table><thead><tr><th>銘柄</th><th>買った日</th><th>損益</th><th>終値</th><th>損切りライン</th><th>業績</th></tr></thead><tbody id="sells"></tbody></table></div>
 
     <h2 id="t-hold">保有中の銘柄と損切りライン</h2>
     <p class="sub">過去1年に買いの合図が出て、まだ売りの合図が出ていない銘柄です。損切りラインは新しいボックスができるたびに上がります。</p>
     <div class="card tbl">
-      <table><thead><tr><th>銘柄</th><th>買った日</th><th>買値</th><th>終値</th><th>損益</th><th>損切りライン</th><th class="col-x">ラインまで</th><th class="col-x">ボックス更新</th></tr></thead>
+      <table><thead><tr><th>銘柄</th><th>買った日</th><th>買値</th><th>終値</th><th>損益</th><th>損切りライン</th><th>業績</th><th class="col-x">ラインまで</th><th class="col-x">ボックス更新</th></tr></thead>
       <tbody id="holds"></tbody></table>
       <button type="button" class="more" id="more-holds" hidden>すべて表示</button>
     </div>
 
     <h2 id="t-watch">上放れ間近</h2>
     <p class="sub">ボックスができていて、終値が上限まで5%以内の銘柄です。</p>
-    <div class="card tbl"><table><thead><tr><th>銘柄</th><th>終値</th><th>上限まで</th><th>上限</th><th>下限</th><th class="col-x">ボックス幅</th><th class="col-x">日数</th></tr></thead><tbody id="watch"></tbody></table></div>
+    <div class="card tbl"><table><thead><tr><th>銘柄</th><th>終値</th><th>上限まで</th><th>業績</th><th class="col-x">四半期 売上／営業利益</th><th>上限</th><th>下限</th><th class="col-x">ボックス幅</th><th class="col-x">日数</th></tr></thead><tbody id="watch"></tbody></table></div>
 
     <h2>これまでの合図</h2>
     <ul class="card hist" id="hist" style="padding:0.3rem 1rem"></ul>
@@ -110,7 +119,8 @@
         <li><b>売り：</b>終値が損切りラインを割ったら、翌営業日の寄付きで売る。利益確定の目標値は置かない</li>
       </ol>
       <p style="margin-top:0.6rem" id="bt-note"></p>
-      <p style="margin-top:0.6rem">業績（四半期の営業利益・売上の伸び）とビッグチェンジ（新製品・新事業など）は判定していません。合図が出た銘柄は、決算短信やニュースで確認してください。データは Yahoo Finance から平日の夕方と夜に GitHub Actions が自動で更新します。機械的な判定で、投資の助言ではありません。</p>
+      <p style="margin-top:0.6rem"><b>業績の4条件</b>（Yahoo Finance の決算から判定。緑が満たしている条件）：①前の年も通期の営業利益+5%以上　②直近の通期営業利益+20%以上　③直近の四半期の営業利益が前年同期比+20%以上かつ売上+10%以上（最も重要）　④通期の営業利益率が改善。Yahoo は日本株の決算の反映が1四半期ほど遅れることがあります。</p>
+      <p style="margin-top:0.6rem">ビッグチェンジ（新製品・新事業・M&amp;A・政策・新経営陣）は自動では判定できません。買いの合図の銘柄にはニュースと適時開示へのリンクを付けているので、そこで確認してください。データは Yahoo Finance から平日の夕方と夜に GitHub Actions が自動で更新します。機械的な判定で、投資の助言ではありません。</p>
     </div>
   </div>
   <script>
@@ -119,6 +129,11 @@
     const esc = (s) => String(s ?? "").replace(/[&<>"]/g, (c) => ({ "&": "&amp;", "<": "&lt;", ">": "&gt;", '"': "&quot;" }[c]));
     const link = (s) => `<a href="https://finance.yahoo.co.jp/quote/${s.code}.T" target="_blank" rel="noopener">${esc(s.name)}</a><span class="s">${s.code} ・ ${esc(s.market)}</span>`;
     const cls = (v) => v > 0 ? "pos" : v < 0 ? "neg" : "";
+    const fd = (s) => `<span class="fd" title="①前年も営業利益+5%以上 ②通期営業利益+20%以上 ③直近四半期 営業利益+20%・売上+10% ④利益率改善">${
+      ["c1", "c2", "c3", "c4"].map((k, i) => `<i class="${s[k] ? "on" : ""}">${"①②③④"[i]}</i>`).join("")}</span>`;
+    const qg = (s) => s.q_sales_g == null ? "—" : `${pct(s.q_sales_g)}／${s.q_op_g == null ? (s.q_note || "—") : pct(s.q_op_g)}`;
+    const onlyFund = () => document.getElementById("f-fund").checked;
+    const filt = (a) => onlyFund() ? a.filter((s) => s.c3) : a;
     const BT = "過去5年（2022〜2026年）の検証では、この条件で3,900回ほどの取引があり、勝率・損益は検証結果のとおりです。";
 
     function chart(s) {
@@ -150,23 +165,50 @@
           <div><span>ボックス下限</span><b>${yen(s.box_bot)}</b></div>
           <div><span>損切りライン</span><b>${yen(s.stop)}</b></div>
           <div><span>ボックス</span><b>${s.box_days}日・幅${pct(s.width, false)}</b></div>
+          <div><span>四半期 売上</span><b class="${cls(s.q_sales_g)}">${pct(s.q_sales_g)}</b></div>
+          <div><span>四半期 営業利益</span><b class="${cls(s.q_op_g)}">${s.q_op_g == null ? esc(s.q_note || "—") : pct(s.q_op_g)}</b></div>
+          <div><span>通期 営業利益</span><b class="${cls(s.a_op_g)}">${pct(s.a_op_g)}</b></div>
         </div>
+        <div class="kv" style="grid-template-columns:1fr"><div><span>業績の4条件</span>${fd(s)}</div></div>
+        <div class="links">ビッグチェンジを確認：<a href="https://kabutan.jp/stock/news?code=${s.code}" target="_blank" rel="noopener">ニュース</a><a href="https://www.release.tdnet.info/onsf/TDJFSearch/I_head?q=${s.code}" target="_blank" rel="noopener">適時開示</a></div>
       </div>`;
     }
     let holds = [], showAll = false;
     function renderHolds() {
-      const list = showAll ? holds : holds.slice(0, 30);
+      const all = filt(holds), list = showAll ? all : all.slice(0, 30);
       document.getElementById("holds").innerHTML = list.map((s) => `<tr>
         <td>${link(s)}</td><td class="num">${s.entry_date}</td><td class="num">${yen(s.entry)}</td><td class="num">${yen(s.last)}</td>
-        <td class="num ${cls(s.ret)}">${pct(s.ret)}</td><td class="num">${yen(s.stop)}</td>
+        <td class="num ${cls(s.ret)}">${pct(s.ret)}</td><td class="num">${yen(s.stop)}</td><td>${fd(s)}</td>
         <td class="num col-x">${pct(s.to_stop)}</td><td class="num col-x">${s.n_boxes}回</td></tr>`).join("")
-        || `<tr><td colspan="8" class="empty">保有中の銘柄はありません。</td></tr>`;
+        || `<tr><td colspan="9" class="empty">保有中の銘柄はありません。</td></tr>`;
       const b = document.getElementById("more-holds");
-      b.hidden = showAll || holds.length <= 30;
-      b.textContent = `すべて表示（${holds.length}銘柄）`;
+      b.hidden = showAll || all.length <= 30;
+      b.textContent = `すべて表示（${all.length}銘柄）`;
+      document.getElementById("t-hold").textContent = `保有中の銘柄と損切りライン（${all.length}）`;
     }
     document.getElementById("more-holds").addEventListener("click", () => { showAll = true; renderHolds(); });
 
+    let DATA = null;
+    function renderAll() {
+      const d = DATA; if (!d) return;
+      const sells = filt(d.holds.filter((s) => s.sell_signal));
+      holds = d.holds.filter((s) => !s.sell_signal);
+      const buys = filt(d.buys), watch = filt(d.watch);
+      document.getElementById("t-buy").textContent = `買いの合図（${buys.length}）`;
+      document.getElementById("t-sell").textContent = `売りの合図（${sells.length}）`;
+      document.getElementById("t-watch").textContent = onlyFund() ? `上放れ間近（業績③を満たす ${watch.length}）` : `上放れ間近（${d.watch_total}）`;
+      document.getElementById("buys").innerHTML = buys.length ? buys.map(buyCard).join("")
+        : `<div class="card empty">${onlyFund() && d.buys.length ? "買いの合図は出ていますが、業績の条件③を満たす銘柄はありません。" : "今日は買いの合図が出た銘柄はありません。"}</div>`;
+      document.getElementById("sells").innerHTML = sells.map((s) => `<tr><td>${link(s)}</td><td class="num">${s.entry_date}</td>
+        <td class="num ${cls(s.ret)}">${pct(s.ret)}</td><td class="num">${yen(s.last)}</td><td class="num">${yen(s.stop)}</td><td>${fd(s)}</td></tr>`).join("")
+        || `<tr><td colspan="6" class="empty">今日は売りの合図が出た銘柄はありません。</td></tr>`;
+      renderHolds();
+      document.getElementById("watch").innerHTML = watch.map((s) => `<tr><td>${link(s)}</td><td class="num">${yen(s.last)}</td>
+        <td class="num">${pct(s.to_top)}</td><td>${fd(s)}</td><td class="num col-x">${qg(s)}</td><td class="num">${yen(s.box_top)}</td><td class="num">${yen(s.box_bot)}</td>
+        <td class="num col-x">${pct(s.width, false)}</td><td class="num col-x">${s.box_days}日</td></tr>`).join("")
+        || `<tr><td colspan="9" class="empty">該当なし</td></tr>`;
+    }
+    document.getElementById("f-fund").addEventListener("change", () => { showAll = false; renderAll(); });
     async function load() {
       const meta = document.getElementById("meta");
       try {
@@ -176,23 +218,9 @@
         ]);
         if (!r.ok) throw new Error(`HTTP ${r.status}`);
         const d = await r.json();
-        const sells = d.holds.filter((s) => s.sell_signal);
-        holds = d.holds.filter((s) => !s.sell_signal);
+        DATA = d;
         meta.textContent = `${d.price_date} の終値 ・ 対象 ${d.universe.toLocaleString()}銘柄 ・ 更新 ${d.generated_at}（日本時間）`;
-        document.getElementById("t-buy").textContent = `買いの合図（${d.buys.length}）`;
-        document.getElementById("t-sell").textContent = `売りの合図（${sells.length}）`;
-        document.getElementById("t-hold").textContent = `保有中の銘柄と損切りライン（${holds.length}）`;
-        document.getElementById("t-watch").textContent = `上放れ間近（${d.watch_total}）`;
-        document.getElementById("buys").innerHTML = d.buys.length ? d.buys.map(buyCard).join("")
-          : `<div class="card empty">今日は買いの合図が出た銘柄はありません。</div>`;
-        document.getElementById("sells").innerHTML = sells.map((s) => `<tr><td>${link(s)}</td><td class="num">${s.entry_date}</td>
-          <td class="num ${cls(s.ret)}">${pct(s.ret)}</td><td class="num">${yen(s.last)}</td><td class="num">${yen(s.stop)}</td></tr>`).join("")
-          || `<tr><td colspan="5" class="empty">今日は売りの合図が出た銘柄はありません。</td></tr>`;
-        renderHolds();
-        document.getElementById("watch").innerHTML = d.watch.map((s) => `<tr><td>${link(s)}</td><td class="num">${yen(s.last)}</td>
-          <td class="num">${pct(s.to_top)}</td><td class="num">${yen(s.box_top)}</td><td class="num">${yen(s.box_bot)}</td>
-          <td class="num col-x">${pct(s.width, false)}</td><td class="num col-x">${s.box_days}日</td></tr>`).join("")
-          || `<tr><td colspan="7" class="empty">該当なし</td></tr>`;
+        renderAll();
         if (d.backtest) document.getElementById("bt-note").textContent = d.backtest;
         if (h.ok) {
           const hist = (await h.json()).slice().reverse();

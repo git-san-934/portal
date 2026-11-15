@@ -3,6 +3,7 @@ import io, json, os, re, sys, time, datetime as dt
 import numpy as np, pandas as pd, requests, yfinance as yf
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from box import scan, RULE
+from fund import add_fundamentals
 
 DATA = os.path.join(os.path.dirname(os.path.abspath(__file__)), "..", "data")
 MARKETS = ["プライム（内国株式）", "スタンダード（内国株式）", "グロース（内国株式）"]
@@ -11,7 +12,8 @@ HOLD_DAYS = 365
 # 2026-11-15 に過去5年の東証全銘柄で検証した結果(同じルール)
 BACKTEST = ("過去5年（2022〜2026年）の東証全銘柄での検証：取引2,815回、勝率52%、平均損益+11.9%"
             "（平均の勝ち+34.0%・平均の負け-12.1%）、平均保有156日。同じ期間に TOPIX を持った場合より平均1.5%低い結果でした。"
-            "上場廃止の銘柄は含まないため、実際より良く出ている可能性があります。")   # この日数以内に買いシグナルが出て、まだ保有中の銘柄を表示する
+            "上場廃止の銘柄は含まないため、実際より良く出ている可能性があります。"
+            "業績で絞った検証では、通期の営業利益+20%以上かつ利益率改善の銘柄に限ると平均+11.2%（TOPIX比-0.7%）、減益の銘柄は平均+8.6%（TOPIX比-3.8%）でした。")   # この日数以内に買いシグナルが出て、まだ保有中の銘柄を表示する
 
 
 def universe():
@@ -74,11 +76,15 @@ def main():
             if width <= RULE["width_max"] and dist <= 0.05:
                 watch.append(dict(base, box_top=r(b["top"]), box_bot=r(b["bot"]), width=r(width, 4),
                                   box_days=days, to_top=r(dist, 4), ready=days >= RULE["min_box_days"]))
+    watch_total = len(watch)
+    watch.sort(key=lambda x: x["to_top"]); watch = watch[:60]
+    print("fundamentals", len(buys) + len(holds) + len(watch), flush=True)
+    add_fundamentals(buys + holds + watch)
     buys.sort(key=lambda x: x["width"]); holds.sort(key=lambda x: x["entry_date"], reverse=True)
-    watch.sort(key=lambda x: x["to_top"])
+    watch.sort(key=lambda x: (-x.get("score", 0), x["to_top"]))
     price_date = str(last_date.date())
     out = dict(generated_at=dt.datetime.now(JST).strftime("%Y-%m-%d %H:%M"), price_date=price_date,
-               universe=len(uni), rule=RULE, backtest=BACKTEST, buys=buys, holds=holds, watch=watch[:60], watch_total=len(watch))
+               universe=len(uni), rule=RULE, backtest=BACKTEST, buys=buys, holds=holds, watch=watch, watch_total=watch_total)
     os.makedirs(DATA, exist_ok=True)
     json.dump(out, open(os.path.join(DATA, "result.json"), "w", encoding="utf-8"), ensure_ascii=False, separators=(",", ":"))
     hp = os.path.join(DATA, "history.json")
