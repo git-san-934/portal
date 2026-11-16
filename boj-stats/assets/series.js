@@ -118,14 +118,29 @@
     const COLORS = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)"];
     const names = SeriesGroups.labels(pair.map((x) => feed.series[x].name));
     const num = (v) => v.toLocaleString("ja-JP", { maximumFractionDigits: group.scale > 1 ? 0 : 1 });
+    // 断層(基準・調査の見直し)は線を切り、下に注記する
+    const breaks = Object.entries(group.breaks || {}).filter(([d]) => ds.indexOf(d) > 0);
+    const note = $("chart-note");
+    note.textContent = [
+      ...breaks.map(([, t]) => `縦の点線: ${t}(線を切っています)。`),
+      ...(group.from && !years ? [`${group.from}。`] : []),
+    ].join(" ");
+    note.hidden = !note.textContent;
+    // 長い期間は横軸に年の目盛り(5年おきなど)
+    const span = ds.length ? +ds[ds.length - 1].slice(0, 4) - +ds[0].slice(0, 4) : 0;
+    const step = span > 15 ? 5 : span > 7 ? 2 : 1;
+    const ticks = span > 3 ? ds.filter((d) => /Q1$/.test(d) && +d.slice(0, 4) % step === 0).map((d) => ({ at: d, text: d.slice(0, 4) })) : null;
     MultiLine.draw($("chart"), $("chart-legend"), {
       months: ds,
+      breaks: breaks.map(([d]) => d),
+      xTicks: ticks,
       lines: pair.map((x, i) => ({ name: names[i], color: COLORS[i], val: (d) => vals[i][d] })),
       fmtX: fmtObs,
       fmt: (v) => (isFinite(v) ? `${num(v)}${group.unit}` : "-"),
       tick: (v) => num(Math.round(v)),
       signed: group.signed,
-      dots: true,
+      trim: false,
+      dots: ds.length <= 45,
       label: group.name,
     });
   }
@@ -174,7 +189,8 @@
       if (pairSets) $("chart-head").textContent = `${group.name}(${group.unit})`;
       const marks = sigs.map((r) => r.obs_date);
       const ranges = s.freq === "D" ? [["3か月", 0.25], ["1年", 1], ["3年", 3], ["10年", 10], ["全期間", 0]] : [["3年", 3], ["5年", 5], ["10年", 10], ["全期間", 0]];
-      const def = s.freq === "D" ? 1 : s.freq === "Q" ? 10 : 5;
+      // 組の系列(短観・資金循環)は約30年分あるので、初期表示は全期間
+      const def = s.freq === "D" ? 1 : pairSets ? 0 : s.freq === "Q" ? 10 : 5;
       const nav = $("ranges");
       ranges.forEach(([label, y]) => {
         const b = el("button", null, label);

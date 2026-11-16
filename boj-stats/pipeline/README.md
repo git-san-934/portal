@@ -6,7 +6,7 @@
 | ファイル | 役割 |
 |---|---|
 | series.json | 取得する系列の一覧（DB・系列コード・頻度・種類）。ここに追記すれば対象が増える |
-| fetch.py | APIから取得して data/<DB>_<CODE>.csv に追記・改定反映。`python3 fetch.py discover FM08 D` で日次系列の候補一覧 |
+| fetch.py | APIから取得して data/<DB>_<CODE>.csv に追記・改定反映。`python3 fetch.py discover FM08 D` で日次系列の候補一覧 | 。`python3 fetch.py --backfill` で series.json の "since" を持つ系列（短観の業況判断DI・資金循環の家計）を長期分（1995年〜）取り直す |
 | analyze.py | 変化検知。reports/YYYY-MM-DD.md, reports/latest.json, reports/signals_log.csv（検知履歴） |
 | status.py | 取り込みの成功・失敗を系列ごとに記録。reports/status.json（系列ごとの状態）, reports/fetch_history.csv（実行ごとの記録） |
 | fetch_boj_news.py | 日本銀行ホームページ「新着情報（総合）」のRSSを reports/boj_news.csv に蓄積（RSSは約1か月分なので毎回足していく）。為替相場のお知らせは除く。ページの新着に「日銀」として載る |

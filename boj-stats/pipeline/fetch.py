@@ -4,6 +4,7 @@
 使い方:
   python3 fetch.py                 # series.json の全系列を取得して CSV に追記・更新
   python3 fetch.py --years 5       # 初回など、過去5年分を取得（既定: 既存データがあれば直近3か月、無ければ10年）
+  python3 fetch.py --backfill      # series.json で "since"（YYYYMM）を持つ系列だけ、その時点から取り直す（長期の過去分用）
   python3 fetch.py discover FM08   # DB内の系列一覧（コード・名称・頻度）を表示。新しい系列を探すとき用
 
 蓄積形式: data/<DB>_<CODE>.csv（date,value）。同じ日付は最新の取得値で上書き（改定に追随）。
@@ -113,8 +114,10 @@ def norm_date(s, freq="M"):
     return s
 
 
-def fetch(years=None):
+def fetch(years=None, backfill=False):
     series = load_series()
+    if backfill:  # 長期の過去分: "since" を持つ系列だけ取る
+        series = [s for s in series if s.get("since")]
     today = dt.date.today()
     rawdir = os.path.join(RAW, today.isoformat())
     os.makedirs(DATA, exist_ok=True)
@@ -135,6 +138,9 @@ def fetch(years=None):
                 has_all = all(os.path.exists(csv_path(db, s["code"])) for s in chunk)
                 back = years * 12 if years else (3 if has_all else 120)
                 start = (today.replace(day=1) - dt.timedelta(days=31 * back)).strftime("%Y%m")
+                since = min((s["since"] for s in chunk if s.get("since")), default=None)
+                if since and (backfill or not has_all):  # 長期の系列は無いとき・取り直すときは "since" から
+                    start = since
                 if freq == "Q":  # 四半期の開始期は YYYY0Q
                     start = start[:4] + "01"
                 params = {"db": db, "code": ",".join(s["code"] for s in chunk), "startDate": start}
@@ -208,4 +214,4 @@ if __name__ == "__main__":
     if args and args[0] == "discover":
         sys.exit(discover(args[1], args[2] if len(args) > 2 else None))
     years = int(args[args.index("--years") + 1]) if "--years" in args else None
-    sys.exit(guarded("BOJ", lambda: fetch(years)))
+    sys.exit(guarded("BOJ", lambda: fetch(years, backfill="--backfill" in args)))
