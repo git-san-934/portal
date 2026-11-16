@@ -114,8 +114,9 @@
   }
 
   // 見出しの横の「(YYYY/M/D 更新)」: その中の系列で最後に新しい値が入った日
+  const lastUpdated = (list) => list.map(([, s]) => s.updated).filter(Boolean).sort().pop() || "";
   const titleDate = (list) => {
-    const d = list.map(([, s]) => s.updated).filter(Boolean).sort().pop();
+    const d = lastUpdated(list);
     return d ? el("span", "title-date", ` (${fmtDay(d)} 更新)`) : "";
   };
 
@@ -128,7 +129,6 @@
     };
     // 毎日値が出る系列(金利・為替・国債利回り)はこのページに表示しない
 
-    const jump = [];
     // 「短期金利・為替」の分類はこのページに表示しない(取得と系列ページは残す)
     const HIDDEN_CATS = new Set(["短期金利・為替"]);
     const cats = data.categories.map((c, i) => {
@@ -151,11 +151,12 @@
       a.href = `#c${i}`;
       // 上の分類リンクから飛んだときは開いて見せる
       a.addEventListener("click", () => { sec.open = true; });
-      jump.push(a);
-      return sec;
+      return { sec, a, last: lastUpdated(list) };
     });
-    $("jump").replaceChildren(...jump);
-    $("cats").replaceChildren(...cats.filter(Boolean));
+    // 更新日の新しい分類から並べる(同じ日なら元の順)
+    const shown = cats.filter(Boolean).sort((x, y) => y.last.localeCompare(x.last));
+    $("jump").replaceChildren(...shown.map((x) => x.a));
+    $("cats").replaceChildren(...shown.map((x) => x.sec));
     const target = location.hash && document.getElementById(location.hash.slice(1));
     if (target && target.matches("details.cat")) target.open = true;
   }
