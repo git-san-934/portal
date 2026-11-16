@@ -38,12 +38,15 @@
     貸出態度: { name: "金融機関の貸出態度", def: "「緩い」−「厳しい」", lines: SIZES.map((s) => [s, "全産業"]) },
     借入金利水準: { name: "借入金利水準", def: "「上昇」−「低下」", lines: SIZES.map((s) => [s, "全産業"]) },
   };
+  // 表示する期間(判断DIの2つのグラフで共通)
+  const RANGES = { 5: "直近5年", 10: "直近10年", all: "全期間" };
   const params = new URLSearchParams(location.search);
   const state = {
     view: BIZ_VIEWS[params.get("v")] ? params.get("v") : "main",
     ind: INDUSTRIES.includes(params.get("ind")) ? params.get("ind") : "製造業",
     other: OTHERS[params.get("o")] ? params.get("o") : "販売価格",
     price: params.get("p") === "all" ? "all" : "sales",
+    range: RANGES[params.get("r")] ? params.get("r") : "all",
   };
   let T, latest, fc;
 
@@ -56,6 +59,7 @@
     if (state.view === "ind") p.set("ind", state.ind);
     if (state.other !== "販売価格") p.set("o", state.other);
     if (state.price !== "sales") p.set("p", state.price);
+    if (state.range !== "all") p.set("r", state.range);
     const q = p.toString();
     history.replaceState(null, "", q ? `?${q}` : location.pathname);
   }
@@ -72,11 +76,47 @@
     );
   }
 
+  // 期間で絞った調査回(先頭は値のある最初の回にそろえる)
+  function surveysIn(item, specs) {
+    let xs = T.surveys;
+    if (state.range !== "all") {
+      const from = `${+latest.slice(0, 4) - +state.range}${latest.slice(4)}`;
+      xs = xs.filter((d) => d > from);
+    }
+    const first = xs.findIndex((d) => specs.some(([s, i]) => get(item, s, i, "最近")[d] != null));
+    return first < 0 ? [] : xs.slice(first);
+  }
+
+  // 横軸の目盛り: 期間の長さに応じて 1・2・5 年おきの3月調査
+  function yearTicks(xs) {
+    const span = +xs[xs.length - 1].slice(0, 4) - +xs[0].slice(0, 4);
+    const step = span > 15 ? 5 : span > 7 ? 2 : 1;
+    return xs.filter((d) => d.endsWith("-03") && +d.slice(0, 4) % step === 0).map((d) => ({ at: d, text: `${d.slice(0, 4)}` }));
+  }
+
+  // 断層(調査の見直し)の注記
+  function breakNote(box, xs) {
+    const br = Object.entries((T.history && T.history.breaks) || {}).filter(([d]) => xs.indexOf(d) > 0);
+    box.textContent = br.map(([d, t]) => `縦の点線: ${t}(線を切っています)。`).join(" ");
+    box.hidden = !br.length;
+  }
+
+  function rangeButtons(box) {
+    buttons(box, Object.entries(RANGES), state.range, (k) => {
+      state.range = k;
+      saveUrl();
+      renderBiz();
+      renderOther();
+    });
+  }
+
   // 判断DIの折れ線: 実線が各回の「最近」、最新回から次の期への破線が「先行き」
-  function drawDI(box, legend, item, specs) {
+  function drawDI(box, legend, item, specs, note) {
     const specsWith = specs.filter(([s, i]) => Object.keys(get(item, s, i, "最近")).length);
     const hasFc = specsWith.some(([s, i]) => get(item, s, i, "先行き")[latest] != null);
-    const xs = hasFc ? [...T.surveys, fc] : T.surveys;
+    const base = surveysIn(item, specsWith);
+    const xs = hasFc ? [...base, fc] : base;
+    const ticks = yearTicks(base);
     const lines = [];
     specsWith.forEach(([s, i], n) => {
       const rec = get(item, s, i, "最近");
@@ -91,11 +131,13 @@
         });
     });
     MultiLine.draw(box, legend, {
-      months: xs, lines, signed: true, dots: true,
+      months: xs, lines, signed: true, dots: xs.length <= 45,
       fmtX: (d) => (d === fc ? `${fmtSurvey(d)}(先行き)` : `${fmtSurvey(d)}調査`),
       fmt: signed, tick: (v) => Math.round(v),
+      xTicks: ticks, breaks: Object.keys((T.history && T.history.breaks) || {}),
       label: `${item}の推移`,
     });
+    if (note) breakNote(note, base);
     return specsWith;
   }
 
@@ -128,7 +170,8 @@
     const sel = $("biz-ind");
     sel.hidden = state.view !== "ind";
     const specs = BIZ_VIEWS[state.view].lines();
-    const shown = drawDI($("biz-chart"), $("biz-legend"), "業況判断", specs);
+    rangeButtons($("biz-range"));
+    const shown = drawDI($("biz-chart"), $("biz-legend"), "業況判断", specs, $("biz-break"));
     table($("biz-table"), "業況判断", shown);
   }
 
@@ -141,7 +184,8 @@
     const o = OTHERS[state.other];
     $("other-name").textContent = `${o.name}判断`;
     $("other-def").textContent = `${o.def}(%ポイント)`;
-    const shown = drawDI($("other-chart"), $("other-legend"), state.other, o.lines);
+    rangeButtons($("other-range"));
+    const shown = drawDI($("other-chart"), $("other-legend"), state.other, o.lines, $("other-break"));
     table($("other-table"), state.other, shown);
   }
 
