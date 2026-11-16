@@ -17,7 +17,9 @@
   ];
   // 合図(−30%以下)が続く間は EVERY 日に1回だけ追加する(続いた1日目・3日目・5日目…)。−30%より上に戻ると数え直す
   const EVERY = 2;
+  // 2026-11-16 から「毎日の金額だけ(追加なし)」が標準。追加買いは設定で選んだときだけ計算する
   const SCALE_OPTIONS = [
+    { key: 0, label: "なし(毎日だけ)" },
     { key: 0.5, label: "控えめ(½)" },
     { key: 1, label: "ふつう" },
     { key: 2, label: "多め(×2)" },
@@ -38,7 +40,8 @@
   const REBUY_TH = -0.2;
   const REBUY_FRAC = 0.1;
   const TAX = 0.20315; // 特定口座の譲渡益課税
-  const DEFAULTS = { start: "2026-09-28", daily: 10000, scale: 1, period: "y1" };
+  const DEFAULTS = { start: "2026-09-28", daily: 10000, scale: 0, period: "y1" };
+  const SETTINGS_VERSION = 2; // 2: 追加なしを標準にした(以前に保存した追加額の設定は「なし」に戻す)
 
   const $ = (id) => document.getElementById(id);
   const statusEl = $("status");
@@ -82,7 +85,8 @@
   function loadSettings() {
     try {
       const s = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
-      return { ...DEFAULTS, ...s };
+      if (s.v !== SETTINGS_VERSION) s.scale = DEFAULTS.scale;
+      return { ...DEFAULTS, ...s, v: SETTINGS_VERSION };
     } catch {
       return { ...DEFAULTS };
     }
@@ -147,6 +151,7 @@
   function planExtras(start, end, scale) {
     const extras = {};
     const skips = new Set();
+    if (!(scale > 0)) return { extras, skips };
     for (let j = start; j <= end; j++) {
       const t = tierOf(state.dd[j]);
       if (!t) continue;
@@ -237,11 +242,14 @@
     const today = plan.extras[last + 1];
     const extra = today ? today.a : 0;
 
-    $("advice").classList.toggle("on", t > 0);
+    const noExtra = !(scale > 0);
+    $("advice").classList.toggle("on", t > 0 && !noExtra);
     $("advice-when").textContent = `${dateJa(state.dates[last])} の基準価額で判定 → 次の営業日 ${nextWeekday(state.dates[last])} の注文`;
     const amount = $("advice-amount");
     amount.textContent = "";
-    if (t > 0 && today) {
+    if (noExtra) {
+      amount.textContent = `いつもどおり ${man(daily)}(追加買いなし)`;
+    } else if (t > 0 && today) {
       amount.append(`${man(daily)} `, Object.assign(el("span", "plus"), { textContent: `+ 追加 ${man(extra)}` }));
     } else {
       amount.textContent = t > 0 ? `いつもどおり ${man(daily)}(追加は見送り)` : `いつもどおり ${man(daily)}`;
@@ -249,7 +257,9 @@
 
     const next = TIERS[t]; // 次の段階(なければ undefined)
     let reason = `20日高値(${yen(state.high[last])})から ${pctText(dd)}。`;
-    if (t === 0) {
+    if (noExtra) {
+      reason += "下がっても上がっても、毎日同じ金額だけ買います(2026年11月16日から追加買いはやめました)。";
+    } else if (t === 0) {
       reason += `追加買いの目安(−30%)まで、あと ${(Math.abs(TIERS[0].th - dd) * 100).toFixed(1)}ポイントです。`;
     } else {
       reason += `第${t}段階の暴落ラインを下回っています(合図が続いて${state.streak[last]}日目)。`;
@@ -260,6 +270,7 @@
 
     const ladder = $("ladder");
     ladder.textContent = "";
+    ladder.style.display = noExtra ? "none" : "";
     const steps = [{ th: null, amount: 0, color: "var(--border)" }, ...TIERS];
     steps.forEach((s, i) => {
       const box = el("div", "step" + (i === t ? " current" : ""));
@@ -277,7 +288,7 @@
     const staleDays = (Date.now() - parseISO(state.dates[last]).getTime()) / 86400000;
     $("advice-note").textContent =
       (staleDays > 4 ? "⚠ データが数日更新されていません。最新の基準価額を確かめてから判断してください。 " : "") +
-      `金額の下の値は、今の20日高値で換算した基準価額の目安です。−30%以下が続く間、追加は${EVERY}日に1回です。追加額の大きさは「自分の積立シミュレーション」で変えられます。`;
+      (noExtra ? "追加買いを試算したいときは「自分の積立シミュレーション」の「追加額の大きさ」で選べます。" : `金額の下の値は、今の20日高値で換算した基準価額の目安です。−30%以下が続く間、追加は${EVERY}日に1回です。追加額の大きさは「自分の積立シミュレーション」で変えられます。`);
   }
 
   // ---------- 売り時 ----------
@@ -559,7 +570,7 @@
     item(el("i", "ln"), "基準価額");
     item(el("i", "ln high"), "20日高値");
     item(el("i", "ln ma"), "200日平均");
-    TIERS.forEach((t) => {
+    if (scale > 0) TIERS.forEach((t) => {
       const pt = el("i", "pt");
       pt.style.background = t.color;
       item(pt, `+${man(t.amount * scale)}の日`);
@@ -631,7 +642,9 @@
   // ---------- 過去の成績 ----------
 
   function renderBacktest() {
-    const { daily, scale } = state.settings;
+    const { daily } = state.settings;
+    const ref = !(state.settings.scale > 0); // 追加なしの設定なら、参考として「ふつう」の追加ルールと比べる
+    const scale = ref ? 1 : state.settings.scale;
     const years = [...new Set(state.dates.map((d) => d.slice(0, 4)))];
     const rows = [];
     years.forEach((y) => {
@@ -647,7 +660,7 @@
     const table = $("bt-table");
     table.textContent = "";
     const head = el("tr");
-    ["年", "毎日だけ", "追加ルールあり", "差", "追加回数", "追加額"].forEach((h) => head.append(el("th", null, h)));
+    ["年", "毎日だけ", ref ? "追加ルールあり(参考)" : "追加ルールあり", "差", "追加回数", "追加額"].forEach((h) => head.append(el("th", null, h)));
     table.append(head);
     [...rows, total].forEach((r, idx) => {
       const tr = el("tr", idx === rows.length ? "total" : null);
@@ -667,6 +680,7 @@
     const maxYear = rows.reduce((a, b) => (b.rule.extra > a.rule.extra ? b : a), rows[0]);
     const avg = rows.reduce((a, b) => a + b.rule.extra, 0) / rows.length;
     $("bt-sub").textContent =
+      (ref ? "今の設定は「毎日だけ」です。参考に、以前の追加ルール(ふつう)を足した場合と比べています。" : "") +
       `毎日 ${man(daily)} を買い続けた場合と、そこに暴落時の追加(${TIERS.map((t) => man(t.amount * scale)).join(" / ")}、−30%以下が続く間は${EVERY}日に1回)を足した場合の、その年の投資額に対する年末時点の損益率です。` +
       `追加ありの方が良かった年は ${rows.length}年中 ${wins}年。追加額は平均で年 ${man(avg)}、最も多かった ${maxYear.label} は ${man(maxYear.rule.extra)} でした。`;
   }
