@@ -16,6 +16,7 @@ window.MultiLine = (() => {
   // lines の各要素は dash(破線)、noLegend(凡例に出さない)、tip(d)(吹き出しの値。値が無ければ吹き出しに出さない)も持てる
   //         xTicks: [{at, text}](横軸の目盛り。指定すると両端の日付の代わりに出す),
   //         breaks: [d](その点の手前で線を切り、縦の点線を引く。系列の断層用),
+  //         nice: true(縦軸の目盛りを切りのよい数に。tick(v, 小数の桁数) で呼ぶ),
   //         trim: false(signed の縦軸で上下1%を切らない。DIなど極端な値も見せたい系列用)
   function draw(box, legend, opts) {
     const { months: ms, lines, extra = [], yoy } = opts;
@@ -28,7 +29,8 @@ window.MultiLine = (() => {
         ...lines.filter((s) => !s.noLegend).map((s) => {
           const sp = el("span");
           const i = el("i");
-          i.style.background = s.color;
+          // 破線の系列は凡例も破線にする
+          i.style.background = s.dash ? `repeating-linear-gradient(90deg, ${s.color} 0 4px, transparent 4px 7px)` : s.color;
           sp.append(i, s.name);
           return sp;
         })
@@ -52,9 +54,24 @@ window.MultiLine = (() => {
       lo = Math.min(0, sorted[Math.floor(sorted.length * cut)]);
       hi = Math.max(0, sorted[Math.ceil(sorted.length * (1 - cut)) - 1]);
     }
-    const pad = (hi - lo) * 0.06 || 1;
-    if (signed) lo -= pad;
-    hi += pad;
+    // nice: 縦軸の目盛りを切りのよい数(1・2・2.5・5 の10のべき倍)にそろえる
+    let ticks = null;
+    if (opts.nice) {
+      const raw = (hi - lo) / 4 || 1;
+      const mag = 10 ** Math.floor(Math.log10(raw));
+      const k = [1, 2, 2.5, 5, 10].find((x) => x * mag >= raw - 1e-12);
+      const step = k * mag;
+      lo = Math.floor(lo / step + 1e-9) * step;
+      hi = Math.ceil(hi / step - 1e-9) * step;
+      if (hi === lo) hi = lo + step;
+      const dg = Math.max(0, -Math.floor(Math.log10(step) + 1e-9)) + (k === 2.5 && step < 10 ? 1 : 0);
+      ticks = [];
+      for (let v = lo; v <= hi + step / 2; v += step) ticks.push({ v: Math.abs(v) < step / 1e6 ? 0 : v, dg });
+    } else {
+      const pad = (hi - lo) * 0.06 || 1;
+      if (signed) lo -= pad;
+      hi += pad;
+    }
     const sx = (i) => L + (i / (ms.length - 1)) * (W - L - R);
     const sy = (v) => T + (1 - (Math.max(lo, Math.min(hi, v)) - lo) / (hi - lo)) * (H - T - B);
     const ns = "http://www.w3.org/2000/svg";
@@ -69,10 +86,9 @@ window.MultiLine = (() => {
       svg.append(e);
       return e;
     };
-    for (let i = 0; i <= 4; i++) {
-      const v = lo + ((hi - lo) * i) / 4;
-      add("line", { class: "grid", x1: L, x2: W - R, y1: sy(v), y2: sy(v) });
-      add("text", { x: L - 6, y: sy(v) + 4, "text-anchor": "end" }, tick(v));
+    for (const t of ticks || [0, 1, 2, 3, 4].map((i) => ({ v: lo + ((hi - lo) * i) / 4 }))) {
+      add("line", { class: "grid", x1: L, x2: W - R, y1: sy(t.v), y2: sy(t.v) });
+      add("text", { x: L - 6, y: sy(t.v) + 4, "text-anchor": "end" }, tick(t.v, t.dg));
     }
     if (lo < 0 && hi > 0) add("line", { class: "grid", x1: L, x2: W - R, y1: sy(0), y2: sy(0), "stroke-dasharray": "4 3" });
     const idx = Object.fromEntries(ms.map((d, i) => [d, i]));
