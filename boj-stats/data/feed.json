@@ -1,7 +1,19 @@
 {
- "generated_at": "2026-11-16T12:10+09:00",
+ "generated_at": "2026-11-16T16:58+09:00",
  "report_date": "2026-11-16",
  "days": [
+  {
+   "date": "2026-11-16",
+   "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/koen_2026/ko261116a.htm",
+     "name": "【講演】高田審議委員「わが国の経済・物価情勢と金融政策：日本のマネー・資本市場転換、山は動くか」（徳島経済同友会）",
+     "url": "https://www.boj.or.jp/about/press/koen_2026/ko261116a.htm",
+     "time": "13:00"
+    }
+   ]
+  },
   {
    "date": "2026-11-13",
    "items": [
@@ -5505,7 +5517,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-16T12:10+09:00",
+  "checked_at": "2026-11-16T16:58+09:00",
   "counts": {
    "new": 0,
    "unchanged": 117,
