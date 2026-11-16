@@ -126,13 +126,7 @@
       ["系列", "最新値・前回比"].forEach((t) => tr.append(el("th", null, t)));
       return tr;
     };
-    const daily = $("daily");
-    daily.replaceChildren(head());
-    // 短期金利(無担保コール・基準貸付利率)と為替は表示しない。国債利回りだけを出す
-    const HIDDEN_DAILY = /^(FM01|FM08|IR01)_/;
-    const dailyList = entries.filter(([id, s]) => s.freq === "D" && !HIDDEN_DAILY.test(id));
-    dailyList.forEach(([id, s]) => daily.append(row(id, s)));
-    $("daily-updated").replaceChildren(titleDate(dailyList));
+    // 毎日値が出る系列(金利・為替・国債利回り)はこのページに表示しない
 
     const jump = [];
     const cats = data.categories.map((c, i) => {
