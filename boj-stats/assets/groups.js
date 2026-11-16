@@ -31,6 +31,9 @@ window.SeriesGroups = (() => {
       dash: ["ACM_LSF"],
       scale: 10000,
       unit: "兆円",
+      // 営業毎旬報告は2016年分から。それより前は日銀勘定の月末残高(BS01、1998年4月〜)を pipeline/data/history/ に置いて足す
+      history: ["ACM_TOTAL", "ACM_JGB", "ACM_CURRENT_DEP", "ACM_BANKNOTES", "ACM_LOANS"],
+      note: "2015年以前は日銀勘定の月末残高(1998年4月から)。貸出支援基金は2016年から",
     },
     {
       name: "日銀の資産 国債・貸付金以外(営業毎旬報告)",
@@ -39,6 +42,8 @@ window.SeriesGroups = (() => {
       scale: 10000,
       unit: "兆円",
       digits: 1,
+      history: ["ACM_ETF", "ACM_TBILL", "ACM_FX", "ACM_CORP_BOND", "ACM_REIT"],
+      note: "2015年以前は日銀勘定の月末残高。国庫短期証券は2001年4月、社債は2009年3月、ETF・J-REITは2010年12月から",
     },
     {
       name: "日銀の負債・引当金 当座預金・銀行券以外(営業毎旬報告)",
@@ -47,6 +52,8 @@ window.SeriesGroups = (() => {
       scale: 10000,
       unit: "兆円",
       digits: 1,
+      history: ["ACM_GOV_DEP", "ACM_OTHER_DEP", "ACM_REPO", "ACM_PROVISIONS"],
+      note: "2015年以前は日銀勘定の月末残高(1998年4月から)。売現先勘定は2001年4月から",
     },
     {
       name: "マネタリーベースと日銀当座預金・日銀保有長期国債(月次)",
@@ -55,6 +62,7 @@ window.SeriesGroups = (() => {
       dash: ["MD06_MASDM_at_07"],
       scale: 10000,
       unit: "兆円",
+      note: "日銀当座預金(増減要因の表)は1998年4月、日銀保有 長期国債は2001年4月から",
     },
     {
       name: "金融調節の国債買入と資金過不足(月次)",
@@ -84,7 +92,7 @@ window.SeriesGroups = (() => {
       unit: "%",
       digits: 1,
       signed: true,
-      note: "実線は全国、点線は東京都区部(全国より1か月早く公表)",
+      note: "実線は全国、点線は東京都区部(全国より1か月早く公表)。2020年以前(東京は2025年以前)は2020年基準の長期時系列の指数から計算した前年比で、公表値と0.1ほど違うことがある",
     },
     // ---- お金の量・貸出 ----
     {
@@ -93,6 +101,12 @@ window.SeriesGroups = (() => {
       labels: ["M2", "M3", "銀行貸出(総貸出平残)"],
       unit: "%",
       digits: 1,
+      signed: true, // 銀行貸出は1998〜2005年などにマイナス
+      // 系列の断層: ids を付けるとその系列だけ線を切る
+      breaks: {
+        "2004-04": { text: "M2・M3は2004年3月以前はマネーサプライ統計(M2+CD・M3+CD)で、マネーストック統計とは連続しない", ids: ["MD02_MAM1YAM2M2MO", "MD02_MAM1YAM3M3MO"] },
+      },
+      note: "M3は1997年1月から",
     },
     {
       name: "貸出約定平均金利 国内銀行(新規・残高)",
@@ -107,6 +121,7 @@ window.SeriesGroups = (() => {
       labels: ["企業向け", "個人向け"],
       unit: "%pt",
       signed: true,
+      from: "調査は2000年4-6月期から",
     },
     // ---- 貿易(国別・品目別) ----
     {
@@ -114,6 +129,7 @@ window.SeriesGroups = (() => {
       ids: ["ESTAT_TRADE_EX_USA", "ESTAT_TRADE_EX_CHINA", "ESTAT_TRADE_EX_ASEAN", "ESTAT_TRADE_EX_EU", "ESTAT_TRADE_EX_TAIWAN"],
       labels: ["米国", "中国", "ASEAN", "EU", "台湾"],
       unit: "億円",
+      note: "2008年11月以前は税関「輸出入額の推移」の地域別月次。EU・ASEANは各時点の加盟国の合計(EUは2004年5月・2007年1月・2013年7月に拡大、2020年2月から英国を除く)",
       digits: 0,
     },
     {
@@ -121,6 +137,7 @@ window.SeriesGroups = (() => {
       ids: ["ESTAT_TRADE_IM_USA", "ESTAT_TRADE_IM_CHINA", "ESTAT_TRADE_IM_ASEAN", "ESTAT_TRADE_IM_EU"],
       labels: ["米国", "中国", "ASEAN", "EU"],
       unit: "億円",
+      note: "2008年11月以前は税関「輸出入額の推移」の地域別月次。EU・ASEANは各時点の加盟国の合計(EUは2004年5月・2007年1月・2013年7月に拡大、2020年2月から英国を除く)",
       digits: 0,
     },
     {
@@ -128,6 +145,7 @@ window.SeriesGroups = (() => {
       ids: ["ESTAT_TRADE_EX_USA_YOY", "ESTAT_TRADE_EX_CHINA_YOY", "ESTAT_TRADE_EX_ASEAN_YOY", "ESTAT_TRADE_EX_EU_YOY", "ESTAT_TRADE_EX_TAIWAN_YOY"],
       labels: ["米国", "中国", "ASEAN", "EU", "台湾"],
       unit: "%",
+      note: "2008年11月以前は税関「輸出入額の推移」の地域別月次。EU・ASEANは各時点の加盟国の合計(EUは2004年5月・2007年1月・2013年7月に拡大、2020年2月から英国を除く)",
       digits: 1,
       signed: true,
       years: 3, // 月々の振れが大きいので初期表示は3年
@@ -137,6 +155,7 @@ window.SeriesGroups = (() => {
       ids: ["ESTAT_TRADE_IM_USA_YOY", "ESTAT_TRADE_IM_CHINA_YOY", "ESTAT_TRADE_IM_ASEAN_YOY", "ESTAT_TRADE_IM_EU_YOY"],
       labels: ["米国", "中国", "ASEAN", "EU"],
       unit: "%",
+      note: "2008年11月以前は税関「輸出入額の推移」の地域別月次。EU・ASEANは各時点の加盟国の合計(EUは2004年5月・2007年1月・2013年7月に拡大、2020年2月から英国を除く)",
       digits: 1,
       signed: true,
       years: 3, // 月々の振れが大きいので初期表示は3年
@@ -148,7 +167,7 @@ window.SeriesGroups = (() => {
       dash: ["ESTAT_TRADE_EX_TW_MEM_DIE"],
       unit: "億円",
       digits: 0,
-      note: "メモリ(未組立、点線)は集積回路 計の内数",
+      note: "メモリ(未組立、点線)は集積回路 計の内数。半導体等製造装置とメモリ3品目は2007年の品目番号(HS)改正で新設された番号のため2007年から",
     },
     {
       name: "貿易統計 台湾向け半導体関連の輸出 前年同月比",
@@ -159,7 +178,7 @@ window.SeriesGroups = (() => {
       digits: 1,
       signed: true,
       years: 3, // 月々の振れが大きいので初期表示は3年
-      note: "DRAMは金額が小さく前年比が数千%に振れるため、この図には入れていません",
+      note: "DRAMは金額が小さく前年比が数千%に振れるため、この図には入れていません。半導体等製造装置とメモリは2008年から(品目番号の新設が2007年)",
     },
   ];
   // 表示しない系列(取得は続ける)

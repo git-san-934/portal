@@ -53,7 +53,8 @@
    "freq": "M",
    "unit": "億円",
    "kind": "level",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "MD01",
@@ -62,7 +63,8 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "MD01",
@@ -71,7 +73,8 @@
    "freq": "M",
    "unit": "億円",
    "kind": "level",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "MD06",
@@ -80,7 +83,8 @@
    "freq": "M",
    "unit": "億円",
    "kind": "level",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "MD06",
@@ -89,7 +93,8 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "MD06",
@@ -98,7 +103,8 @@
    "freq": "M",
    "unit": "億円",
    "kind": "flow",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "BS01",
@@ -107,7 +113,8 @@
    "freq": "M",
    "unit": "億円",
    "kind": "level",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "MOF",
@@ -143,7 +150,8 @@
    "freq": "M",
    "unit": "2020年=100",
    "kind": "level",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "PR01",
@@ -152,7 +160,8 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "PR01",
@@ -161,7 +170,8 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "PR02",
@@ -170,7 +180,8 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "MD02",
@@ -179,7 +190,8 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "MD02",
@@ -188,7 +200,8 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "MD13",
@@ -197,7 +210,8 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "IR04",
@@ -206,7 +220,8 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "IR04",
@@ -215,7 +230,8 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "FM04",
@@ -233,7 +249,8 @@
    "freq": "Q",
    "unit": "%pt",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "LA05",
@@ -242,7 +259,8 @@
    "freq": "Q",
    "unit": "%pt",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "CO",
@@ -1364,5 +1382,5 @@
  ],
  "_note_trade_goods_countries": "国別概況品別表から、これらの国（税関の国コード: 米国304・中国105・台湾106）向けの主な品目の月次輸出額を data/trade_goods_by_country.json に蓄積（系列ページの品目内訳）",
  "_note_acm": "db ACM は日銀 営業毎旬報告（旬次: 毎月10日・20日・月末現在）。fetch_acmai.py が公表ページの HTML から取る。freq J = 旬",
- "_note_since": "since（YYYYMM）を持つ系列は、CSV が無いときと fetch.py --backfill のときにその時点から取る（長期の推移用。資金循環の四半期は1997年10-12月期から）。"
+ "_note_since": "since（YYYYMM）を持つ系列は、CSV が無いときと fetch.py --backfill のときにその時点から取る（長期の推移用。資金循環の四半期は1997年10-12月期から）。API の外の系列の過去分（営業毎旬報告・消費者物価・国別貿易・台湾向け品目）は backfill_history.py で一度だけ埋める。"
 }
