@@ -5,12 +5,13 @@
 既にある日付の値は書き換えない（最近の値は日々の取り込みの公表値を優先）。何度実行しても結果は同じ。
 
   python3 backfill_history.py            # 全部
-  python3 backfill_history.py acm cpi    # 一部だけ（acm / cpi / trade / hs）
+  python3 backfill_history.py acm cpi    # 一部だけ（acm / cpi / trade / trade_total / hs）
 
 - acm   … 営業毎旬報告は日銀サイトに2016年分からしかないため、日銀勘定の月末残高（時系列統計 BS01、月次）で
           それより前を補う。旬次の系列とは別の data/history/ACM_<CODE>.csv（日付は月末日）に置き、合成グラフだけが使う
 - cpi   … 消費者物価 全国・東京都区部: 2020年基準の長期時系列（e-Stat、1970年〜の指数）から前年同月比を作る
 - trade … 国・地域別の輸出入額: 税関「輸出入額の推移」の地域別・月別 CSV（1979年〜、千円）。前年同月比も作る
+- trade_total … 輸出額・輸入額・差引（世界計）: 同じく世界・月別 CSV
 - hs    … 台湾向けの品目（品別国別表、e-Stat 1988年〜）: 2015年までの年を読む。半導体等製造装置(8486)・
           メモリ(854232…)は HS2007 で新設された番号のため2007年から
 BOJ 時系列統計 API の系列は series.json の "since" と fetch.py --backfill で取る（ここでは扱わない）。
@@ -140,6 +141,29 @@ def trade():
                 fill(ypath, {d: v for d, v in yoy(allv).items() if d < yfirst}, f"ESTAT_{code}_YOY")
 
 
+def trade_total():
+    """輸出額・輸入額・差引（世界計）。税関の世界・月別"""
+    rows = list(csv.reader(io.StringIO(get(CUSTOMS.format("d41ma")).decode("cp932"))))
+    head = rows[2]
+    val = {"EXPORTS": {}, "IMPORTS": {}}
+    for r in rows[4:]:
+        if r and re.fullmatch(r"\d{4}/\d\d", r[0]) and int(r[0][:4]) >= START - 1 and r[1].strip() not in ("", "0"):
+            d = r[0].replace("/", "-")
+            val["EXPORTS"][d] = int(r[head.index("Exp-Total")])
+            val["IMPORTS"][d] = int(r[head.index("Imp-Total")])
+    val["BALANCE"] = {d: v - val["IMPORTS"][d] for d, v in val["EXPORTS"].items() if d in val["IMPORTS"]}
+    for key, x in val.items():
+        code = f"TRADE_{key}"
+        path = csv_path("ESTAT", code)
+        first = min(read_csv(path))
+        fill(path, {d: str(round(v / 1e5)) for d, v in x.items() if d < first and d >= f"{START}-01"}, f"ESTAT_{code}（税関 d41ma）")
+        ypath = csv_path("ESTAT", code + "_YOY")
+        if os.path.exists(ypath):
+            allv = {d: float(v) for d, v in read_csv(path).items()}
+            yfirst = min(read_csv(ypath))
+            fill(ypath, {d: v for d, v in yoy(allv).items() if d < yfirst}, f"ESTAT_{code}_YOY")
+
+
 # ---- 台湾向けの品目（品別国別表） ----
 HS_LIST = ("https://www.e-stat.go.jp/stat-search/files?page=1&layout=datalist&cycle=1&toukei=00350300"
            "&tstat=000001013141&tclass1=000001013180&tclass2=000001013181&tclass3val=0")
@@ -210,6 +234,6 @@ def hs():
 
 
 if __name__ == "__main__":
-    jobs = {"acm": acm, "cpi": cpi, "trade": trade, "hs": hs}
+    jobs = {"acm": acm, "cpi": cpi, "trade": trade, "trade_total": trade_total, "hs": hs}
     for name in sys.argv[1:] or jobs:
         jobs[name]()
