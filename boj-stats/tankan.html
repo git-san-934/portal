@@ -48,13 +48,21 @@
       <p class="note sub" id="price-note"></p>
     </section>
 
+    <section class="panel">
+      <h2 class="panel-title">参考: 販売価格判断DI(1995年〜) <span class="code">「上昇」−「下落」(%ポイント)</span></h2>
+      <p class="note sub">企業の物価見通し(%)は2014年3月調査からしかないため、価格の向きを30年さかのぼって見る参考として、自社の販売価格が3か月前より「上昇」と答えた企業の割合から「下落」の割合を引いたDIを並べます。物価見通しとは単位も質問も違う(上の%とは比べられない)点に注意してください。</p>
+      <div class="legend" id="pref-legend"></div>
+      <div class="chart tchart" id="pref-chart"></div>
+      <p class="note sub" id="pref-break" hidden></p>
+    </section>
+
     <footer>
-      <p>出典: 2021年3月調査以降は<a href="https://www.boj.or.jp/statistics/tk/gaiyo/2026/index.htm" target="_blank" rel="noopener">日本銀行 短観(概要)</a>の各回の Excel(zip)(2020年12月調査は2021年3月調査の前回の値)。2020年9月調査以前の判断DIは<a href="https://www.stat-search.boj.or.jp/" target="_blank" rel="noopener">日本銀行 時系列統計データ検索サイト</a>の全国短観・判断項目(「予測」の値を、予測した調査回の先行きとして表示)。企業の物価見通しは2020年12月調査以降のみです。</p>
+      <p>出典: 2021年3月調査以降は<a href="https://www.boj.or.jp/statistics/tk/gaiyo/2026/index.htm" target="_blank" rel="noopener">日本銀行 短観(概要)</a>の各回の Excel(zip)(2020年12月調査は2021年3月調査の前回の値)。2020年9月調査以前の判断DIは<a href="https://www.stat-search.boj.or.jp/" target="_blank" rel="noopener">日本銀行 時系列統計データ検索サイト</a>の全国短観・判断項目(「予測」の値を、予測した調査回の先行きとして表示)。企業の物価見通しは同じサイトの全国短観・企業の物価見通し(2014年3月調査〜)です。</p>
       <p>※2004年3月調査で調査対象企業と規模の区分(常用雇用者数から資本金へ)が見直されたため、2003年12月調査以前とは連続しません(グラフでは縦の点線で線を切っています)。はん用・生産用・業務用機械は2010年3月調査、情報サービス・対事業所サービス・対個人サービス・宿泊・飲食サービスは2004年3月調査からの系列です。</p>
       <p>※各回の値はその回に公表された値です。調査対象企業の定例の見直し(おおむね3年ごと。2024年3月調査など)があった回は、日銀が公表する変化幅が見直し後の企業で計算し直した前回値との差のため、ここでの「変化」と一致しないことがあります。</p>
     </footer>
   </div>
   <script src="assets/linechart.js?v=20261116a"></script>
-  <script src="assets/tankan.js?v=20261116a"></script>
+  <script src="assets/tankan.js?v=20261116b"></script>
 </body>
 </html>

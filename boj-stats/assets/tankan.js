@@ -77,10 +77,10 @@
   }
 
   // 期間で絞った調査回(先頭は値のある最初の回にそろえる)
-  function surveysIn(item, specs) {
+  function surveysIn(item, specs, range = state.range) {
     let xs = T.surveys;
-    if (state.range !== "all") {
-      const from = `${+latest.slice(0, 4) - +state.range}${latest.slice(4)}`;
+    if (range !== "all") {
+      const from = `${+latest.slice(0, 4) - +range}${latest.slice(4)}`;
       xs = xs.filter((d) => d > from);
     }
     const first = xs.findIndex((d) => specs.some(([s, i]) => get(item, s, i, "最近")[d] != null));
@@ -111,10 +111,10 @@
   }
 
   // 判断DIの折れ線: 実線が各回の「最近」、最新回から次の期への破線が「先行き」
-  function drawDI(box, legend, item, specs, note) {
+  function drawDI(box, legend, item, specs, note, range) {
     const specsWith = specs.filter(([s, i]) => Object.keys(get(item, s, i, "最近")).length);
     const hasFc = specsWith.some(([s, i]) => get(item, s, i, "先行き")[latest] != null);
-    const base = surveysIn(item, specsWith);
+    const base = surveysIn(item, specsWith, range);
     const xs = hasFc ? [...base, fc] : base;
     const ticks = yearTicks(base);
     const lines = [];
@@ -203,7 +203,7 @@
     });
     const xs = T.surveys.filter((d) => lines.some((s) => isFinite(s.val(d))));
     MultiLine.draw($("price-chart"), $("price-legend"), {
-      months: xs, lines, dots: true,
+      months: xs, lines, dots: xs.length <= 45, xTicks: xs.length ? yearTicks(xs) : [],
       fmtX: (d) => `${fmtSurvey(d)}調査`,
       fmt: (v) => (isFinite(v) ? `${v.toFixed(1)}%` : "-"),
       tick: (v) => `${v.toFixed(1)}%`,
@@ -213,6 +213,12 @@
       state.price === "sales"
         ? "自社の主な製品・サービスの販売価格が、現在の水準から何%変わると見ているか(全規模・全産業の平均)。"
         : "消費者物価が前年比で何%上がると見ているか(全規模・全産業の平均)。";
+    $("price-note").textContent += ` 短観でこの質問が始まった${xs.length ? fmtSurvey(xs[0]) : ""}調査からの値です。それより前は下の販売価格判断DIを参考にしてください。`;
+  }
+
+  // 参考: 物価見通しの無い時期も見られるよう、販売価格判断DIを全期間で
+  function renderPriceRef() {
+    drawDI($("pref-chart"), $("pref-legend"), "販売価格", OTHERS.販売価格.lines, $("pref-break"), "all");
   }
 
   function init() {
@@ -233,6 +239,7 @@
     renderBiz();
     renderOther();
     renderPrice();
+    renderPriceRef();
   }
 
   fetch(`pipeline/data/tankan.json?t=${Date.now()}`)
