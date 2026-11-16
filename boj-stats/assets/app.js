@@ -31,12 +31,13 @@
   };
   const dirCls = (s) => (!s || /^[+-]0(\.0+)?(%|%pt)?$/.test(s) ? "" : /^[+上]/.test(s) ? "up" : s && /^[-−低]/.test(s) ? "down" : "");
   const link = (id) => `series.html?id=${encodeURIComponent(id)}`;
+  const SG = window.SeriesGroups || { GROUPS: [], HIDDEN: new Set(), of: () => null, labels: (x) => x };
 
   function renderFeed() {
     const box = $("feed");
     box.replaceChildren();
     const days = data.days
-      .map((d) => ({ date: d.date, items: d.items.filter((it) => filter === "all" || it.kind === filter) }))
+      .map((d) => ({ date: d.date, items: d.items.filter((it) => (filter === "all" || it.kind === filter) && !SG.HIDDEN.has(it.id)) }))
       .filter((d) => d.items.length);
     const today = todayJst();
     const todays = days.filter((d) => d.date === today);
@@ -113,6 +114,26 @@
     return tr;
   }
 
+  // まとめて表示する組の1行: 名前は組の名前、値は系列ごとに並べる
+  function groupRow(g, series) {
+    const tr = el("tr");
+    const td = el("td");
+    const a = el("a", null, g.name);
+    a.href = link(g.ids[0]);
+    const dates = g.ids.map((x) => series[x].date).filter(Boolean).sort();
+    td.append(a, el("span", "sub", dates.length ? `${fmtObs(dates[dates.length - 1])}時点` : "未取得"));
+    const v = el("td", "num");
+    const names = SG.labels(g.ids.map((x) => series[x].name));
+    g.ids.forEach((x, i) => {
+      const s = series[x];
+      const line = el("span", "sub");
+      line.append(`${names[i]} ${s.value != null ? `${s.value} ${s.unit}` : "-"} `, el("span", dirCls(s.change), s.change || ""));
+      v.append(line);
+    });
+    tr.append(td, v);
+    return tr;
+  }
+
   // 見出しの横の「(YYYY/M/D 更新)」: その中の系列で最後に新しい値が入った日
   const lastUpdated = (list) => list.map(([, s]) => s.updated).filter(Boolean).sort().pop() || "";
   const titleDate = (list) => {
@@ -133,19 +154,32 @@
     const HIDDEN_CATS = new Set(["短期金利・為替"]);
     const cats = data.categories.map((c, i) => {
       if (HIDDEN_CATS.has(c)) return null;
-      const list = entries.filter(([, s]) => s.category === c && s.freq !== "D");
+      const list = entries.filter(([id, s]) => s.category === c && s.freq !== "D" && !SG.HIDDEN.has(id));
       if (!list.length) return null;
       // 分類ごとの表は最初は閉じておき、見出しを押すと開く
       const sec = el("details", "panel cat");
       sec.id = `c${i}`;
       const sum = el("summary");
       const h = el("h2", "panel-title", c);
-      h.append(el("span", "count", `${list.length}系列`), titleDate(list));
+      const cnt = el("span", "count");
+      h.append(cnt, titleDate(list));
       sum.append(h);
       sec.append(sum);
       const t = el("table", "vals");
       t.append(head());
-      list.forEach(([id, s]) => t.append(row(id, s)));
+      const done = new Set();
+      list.forEach(([id, s]) => {
+        if (SG.HIDDEN.has(id) || done.has(id)) return;
+        const g = SG.of(id);
+        // 組の系列がそろっていれば1行にまとめる(個別の行は出さない)
+        if (g && g.ids.every((x) => data.series[x])) {
+          g.ids.forEach((x) => done.add(x));
+          t.append(groupRow(g, data.series));
+          return;
+        }
+        t.append(row(id, s));
+      });
+      cnt.textContent = `${t.rows.length - 1}系列`;
       sec.append(t);
       const a = el("a", null, c);
       a.href = `#c${i}`;
