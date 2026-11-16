@@ -1,5 +1,6 @@
 (() => {
-  const SHOW_DAYS = 14; // 最初に見せる日数(残りは「さらに表示」)
+  // 新着は当日(日本時間)の分だけ表示する
+  const todayJst = () => new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Tokyo" });
   let data = null;
   let filter = "all";
 
@@ -37,14 +38,17 @@
     const days = data.days
       .map((d) => ({ date: d.date, items: d.items.filter((it) => filter === "all" || it.kind === filter) }))
       .filter((d) => d.items.length);
-    if (!days.length) {
-      box.append(el("p", "empty", "該当する新着はありません"));
+    const today = todayJst();
+    const todays = days.filter((d) => d.date === today);
+    if (!todays.length) {
+      const last = days[0];
+      box.append(el("p", "empty", `今日(${fmtDate(today)})の新着はまだありません` + (last ? `。最後の新着は ${fmtDate(last.date)} です` : "")));
       return;
     }
     const dayBlock = (d) => {
       const sec = el("div", "day");
       const h = el("h3", "day-title", fmtDate(d.date));
-      if (d.date === data.report_date) h.append(el("span", "badge new", "今日"));
+      if (d.date === todayJst()) h.append(el("span", "badge new", "今日"));
       sec.append(h);
       // 同じ系列の検知は1行にまとめる
       const groups = new Map();
@@ -94,13 +98,7 @@
       sec.append(ul);
       return sec;
     };
-    days.slice(0, SHOW_DAYS).forEach((d) => box.append(dayBlock(d)));
-    if (days.length > SHOW_DAYS) {
-      const more = el("details", "more");
-      more.append(el("summary", null, `さらに ${days.length - SHOW_DAYS} 日分`));
-      days.slice(SHOW_DAYS).forEach((d) => more.append(dayBlock(d)));
-      box.append(more);
-    }
+    todays.forEach((d) => box.append(dayBlock(d)));
   }
 
   function row(id, s) {
