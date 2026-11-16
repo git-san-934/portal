@@ -168,9 +168,9 @@ code { font-size: 0.75rem; }
 .tip b { display: block; font-size: 0.78rem; }
 .tip i { display: inline-block; width: 0.6rem; height: 3px; border-radius: 2px; margin-right: 0.3rem; vertical-align: middle; }
 .swatch { display: inline-block; width: 0.7rem; height: 3px; border-radius: 2px; margin-right: 0.4rem; vertical-align: middle; }
-:root { --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s-other: #9a958c; }
+:root { --s1: #2a78d6; --s2: #eb6834; --s3: #1baf7a; --s4: #eda100; --s5: #e87ba4; --s6: #7b5fd0; --s-other: #9a958c; }
 @media (prefers-color-scheme: dark) {
-  :root { --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s-other: #7d776d; }
+  :root { --s1: #3987e5; --s2: #d95926; --s3: #199e70; --s4: #c98500; --s5: #d55181; --s6: #9478e6; --s-other: #7d776d; }
 }
 .vals th, .vals td.cname { white-space: nowrap; }
 .tchart ~ .note { margin-top: 0.3rem; }

@@ -115,13 +115,17 @@
       return m;
     });
     const ds = [...xs.keys()].sort((a, b) => xs.get(a) - xs.get(b));
-    const COLORS = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)"];
-    const names = SeriesGroups.labels(pair.map((x) => feed.series[x].name));
-    const num = (v) => v.toLocaleString("ja-JP", { maximumFractionDigits: group.scale > 1 ? 0 : 1 });
+    const color = (i) => `var(--s${group.colors ? group.colors[i] : i + 1})`;
+    const names = SeriesGroups.names(group, feed.series);
+    const digits = group.digits ?? (group.scale > 1 ? 0 : 1);
+    const num = (v) => v.toLocaleString("ja-JP", { maximumFractionDigits: digits });
+    // 縦軸の目盛りは切りのよい数(MultiLine の nice)。小数の桁は目盛りの間隔に合わせる
+    const tickNum = (v, dg = 0) => v.toLocaleString("ja-JP", { minimumFractionDigits: dg, maximumFractionDigits: dg });
     // 断層(基準・調査の見直し)は線を切り、下に注記する
     const breaks = Object.entries(group.breaks || {}).filter(([d]) => ds.indexOf(d) > 0);
     const note = $("chart-note");
     note.textContent = [
+      ...(group.note ? [`${group.note}。`] : []),
       ...breaks.map(([, t]) => `縦の点線: ${t}(線を切っています)。`),
       ...(group.from && !years ? [`${group.from}。`] : []),
     ].join(" ");
@@ -129,18 +133,20 @@
     // 長い期間は横軸に年の目盛り(5年おきなど)
     const span = ds.length ? +ds[ds.length - 1].slice(0, 4) - +ds[0].slice(0, 4) : 0;
     const step = span > 15 ? 5 : span > 7 ? 2 : 1;
-    const ticks = span > 3 ? ds.filter((d) => /Q1$/.test(d) && +d.slice(0, 4) % step === 0).map((d) => ({ at: d, text: d.slice(0, 4) })) : null;
+    const yr = (d) => +d.slice(0, 4);
+    const ticks = span > 3 ? ds.filter((d, i) => i > 0 && yr(d) !== yr(ds[i - 1]) && yr(d) % step === 0).map((d) => ({ at: d, text: String(yr(d)) })) : null;
     MultiLine.draw($("chart"), $("chart-legend"), {
       months: ds,
       breaks: breaks.map(([d]) => d),
       xTicks: ticks,
-      lines: pair.map((x, i) => ({ name: names[i], color: COLORS[i], val: (d) => vals[i][d] })),
+      lines: pair.map((x, i) => ({ name: names[i], color: color(i), dash: (group.dash || []).includes(x), val: (d) => vals[i][d] })),
       fmtX: fmtObs,
       fmt: (v) => (isFinite(v) ? `${num(v)}${group.unit}` : "-"),
-      tick: (v) => num(Math.round(v)),
+      tick: tickNum,
+      nice: true,
       signed: group.signed,
       trim: false,
-      dots: ds.length <= 45,
+      dots: ds.length <= 45 && pair.length <= 3, // 線が多いと点で見づらい
       label: group.name,
     });
   }
@@ -189,8 +195,9 @@
       if (pairSets) $("chart-head").textContent = `${group.name}(${group.unit})`;
       const marks = sigs.map((r) => r.obs_date);
       const ranges = s.freq === "D" ? [["3か月", 0.25], ["1年", 1], ["3年", 3], ["10年", 10], ["全期間", 0]] : [["3年", 3], ["5年", 5], ["10年", 10], ["全期間", 0]];
-      // 組の系列(短観・資金循環)は約30年分あるので、初期表示は全期間
-      const def = s.freq === "D" ? 1 : pairSets ? 0 : s.freq === "Q" ? 10 : 5;
+      // 四半期の組(短観・資金循環など)は初期表示を全期間に
+      // 前年比など振れの大きい組は group.years(3年など)から
+      const def = s.freq === "D" ? 1 : pairSets && group.years != null ? group.years : pairSets && s.freq === "Q" ? 0 : s.freq === "Q" ? 10 : 5;
       const nav = $("ranges");
       ranges.forEach(([label, y]) => {
         const b = el("button", null, label);

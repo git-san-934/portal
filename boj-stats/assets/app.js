@@ -123,7 +123,7 @@
     const dates = g.ids.map((x) => series[x].date).filter(Boolean).sort();
     td.append(a, el("span", "sub", dates.length ? `${fmtObs(dates[dates.length - 1])}時点` : "未取得"));
     const v = el("td", "num");
-    const names = SG.labels(g.ids.map((x) => series[x].name));
+    const names = SG.names ? SG.names(g, series) : SG.labels(g.ids.map((x) => series[x].name));
     g.ids.forEach((x, i) => {
       const s = series[x];
       const line = el("span", "sub");
