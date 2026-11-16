@@ -138,22 +138,29 @@
     const cats = data.categories.map((c, i) => {
       const list = entries.filter(([, s]) => s.category === c && s.freq !== "D");
       if (!list.length) return null;
-      const sec = el("section", "panel");
+      // 分類ごとの表は最初は閉じておき、見出しを押すと開く
+      const sec = el("details", "panel cat");
       sec.id = `c${i}`;
+      const sum = el("summary");
       const h = el("h2", "panel-title", c);
-      h.append(titleDate(list));
-      sec.append(h);
+      h.append(el("span", "count", `${list.length}系列`), titleDate(list));
+      sum.append(h);
+      sec.append(sum);
       const t = el("table", "vals");
       t.append(head());
       list.forEach(([id, s]) => t.append(row(id, s)));
       sec.append(t);
       const a = el("a", null, c);
       a.href = `#c${i}`;
+      // 上の分類リンクから飛んだときは開いて見せる
+      a.addEventListener("click", () => { sec.open = true; });
       jump.push(a);
       return sec;
     });
     $("jump").replaceChildren(...jump);
     $("cats").replaceChildren(...cats.filter(Boolean));
+    const target = location.hash && document.getElementById(location.hash.slice(1));
+    if (target && target.matches("details.cat")) target.open = true;
   }
 
   // 取り込み状況: 失敗した系列・長く更新の無い系列があれば、最終更新の下に出す

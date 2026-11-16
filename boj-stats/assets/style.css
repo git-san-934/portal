@@ -84,6 +84,14 @@ h1 { font-size: 1.5rem; }
 .jump { display: flex; flex-wrap: wrap; gap: 0.35rem 0.8rem; font-size: 0.85rem; margin: 0 0 1rem; }
 .jump a { color: var(--text-sub); }
 .jump a.has-new { color: var(--accent); font-weight: 700; }
+/* 分類ごとの表(折りたたみ) */
+details.cat > summary { cursor: pointer; list-style: none; }
+details.cat > summary::-webkit-details-marker { display: none; }
+details.cat > summary .panel-title { margin-bottom: 0; }
+details.cat > summary .panel-title::before { content: "▸"; color: var(--text-sub); font-size: 0.85rem; width: 0.8rem; }
+details.cat[open] > summary .panel-title::before { content: "▾"; }
+details.cat[open] > summary .panel-title { margin-bottom: 0.5rem; }
+details.cat .panel-title .count { font-size: 0.75rem; font-weight: 400; color: var(--text-sub); }
 
 .links { font-size: 0.8rem; display: flex; gap: 0.8rem; flex-wrap: wrap; margin-bottom: 0.4rem; }
 .warn { color: var(--text-sub); }
@@ -177,3 +185,4 @@ code { font-size: 0.75rem; }
 }
 .tchart + .note.sub, .tchart + .vals { margin-top: 0.4rem; }
 .tchart circle { stroke: var(--card-bg); stroke-width: 1; }
+#feed > .empty { margin-left: 0; }
