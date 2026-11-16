@@ -129,7 +129,10 @@
     // 毎日値が出る系列(金利・為替・国債利回り)はこのページに表示しない
 
     const jump = [];
+    // 「短期金利・為替」の分類はこのページに表示しない(取得と系列ページは残す)
+    const HIDDEN_CATS = new Set(["短期金利・為替"]);
     const cats = data.categories.map((c, i) => {
+      if (HIDDEN_CATS.has(c)) return null;
       const list = entries.filter(([, s]) => s.category === c && s.freq !== "D");
       if (!list.length) return null;
       // 分類ごとの表は最初は閉じておき、見出しを押すと開く
