@@ -251,7 +251,8 @@
    "freq": "Q",
    "unit": "%pt",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "CO",
@@ -260,7 +261,8 @@
    "freq": "Q",
    "unit": "%pt",
    "kind": "rate",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "CO",
@@ -278,7 +280,8 @@
    "freq": "Q",
    "unit": "億円",
    "kind": "level",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "FF",
@@ -287,7 +290,8 @@
    "freq": "Q",
    "unit": "億円",
    "kind": "level",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "FF",
@@ -296,7 +300,8 @@
    "freq": "Q",
    "unit": "億円",
    "kind": "level",
-   "verified": true
+   "verified": true,
+   "since": "199501"
   },
   {
    "db": "BP01",
@@ -1358,5 +1363,6 @@
   "106"
  ],
  "_note_trade_goods_countries": "国別概況品別表から、これらの国（税関の国コード: 米国304・中国105・台湾106）向けの主な品目の月次輸出額を data/trade_goods_by_country.json に蓄積（系列ページの品目内訳）",
- "_note_acm": "db ACM は日銀 営業毎旬報告（旬次: 毎月10日・20日・月末現在）。fetch_acmai.py が公表ページの HTML から取る。freq J = 旬"
+ "_note_acm": "db ACM は日銀 営業毎旬報告（旬次: 毎月10日・20日・月末現在）。fetch_acmai.py が公表ページの HTML から取る。freq J = 旬",
+ "_note_since": "since（YYYYMM）を持つ系列は、CSV が無いときと fetch.py --backfill のときにその時点から取る（長期の推移用。資金循環の四半期は1997年10-12月期から）。"
 }

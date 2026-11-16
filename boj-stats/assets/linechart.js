@@ -15,7 +15,8 @@ window.MultiLine = (() => {
   //         fmtX(d): 横軸と吹き出しの日付(省略で「YYYY年M月」), signed: 0をまたぐ値(yoy と同じ縦軸の取り方), dots: 点を打つ }
   // lines の各要素は dash(破線)、noLegend(凡例に出さない)、tip(d)(吹き出しの値。値が無ければ吹き出しに出さない)も持てる
   //         xTicks: [{at, text}](横軸の目盛り。指定すると両端の日付の代わりに出す),
-  //         breaks: [d](その点の手前で線を切り、縦の点線を引く。系列の断層用)
+  //         breaks: [d](その点の手前で線を切り、縦の点線を引く。系列の断層用),
+  //         trim: false(signed の縦軸で上下1%を切らない。DIなど極端な値も見せたい系列用)
   function draw(box, legend, opts) {
     const { months: ms, lines, extra = [], yoy } = opts;
     const signed = yoy || opts.signed;
@@ -45,10 +46,11 @@ window.MultiLine = (() => {
     }
     let lo = 0, hi = Math.max(...vals, 1);
     if (signed) {
-      // 前年が小さい月の極端な伸び率で軸がつぶれないよう、上下1%を切る
+      // 前年が小さい月の極端な伸び率で軸がつぶれないよう、上下1%を切る(trim: false なら切らない)
       const sorted = [...vals].sort((a, b) => a - b);
-      lo = Math.min(0, sorted[Math.floor(sorted.length * 0.01)]);
-      hi = Math.max(0, sorted[Math.ceil(sorted.length * 0.99) - 1]);
+      const cut = opts.trim === false ? 0 : 0.01;
+      lo = Math.min(0, sorted[Math.floor(sorted.length * cut)]);
+      hi = Math.max(0, sorted[Math.ceil(sorted.length * (1 - cut)) - 1]);
     }
     const pad = (hi - lo) * 0.06 || 1;
     if (signed) lo -= pad;
