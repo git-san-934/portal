@@ -97,12 +97,46 @@
     box.replaceChildren(svg);
   }
 
+  // 組になっている系列は、組の系列を重ねて一つのグラフに描く(assets/groups.js)
+  const group = window.SeriesGroups ? SeriesGroups.of(id) : null;
+  const pair = group ? group.ids : null;
+  const loadCsv = (x) => fetch(`pipeline/data/${encodeURIComponent(x)}.csv?t=${Date.now()}`).then((r) => (r.ok ? r.text() : ""));
+  const toPoints = (text) =>
+    (text ? parseCSV(text).filter((r) => r.value !== "" && r.value != null) : [])
+      .map((r) => ({ d: r.date, x: toX(r.date), v: +r.value }))
+      .filter((p) => !isNaN(p.x) && !isNaN(p.v));
+
+  function drawGroup(feed, sets, years) {
+    const last = Math.max(...sets.map((p) => (p.length ? p[p.length - 1].x : 0)));
+    const xs = new Map();
+    const vals = sets.map((pts) => {
+      const m = {};
+      for (const p of pts) if (!years || p.x >= last - years) { m[p.d] = p.v / group.scale; xs.set(p.d, p.x); }
+      return m;
+    });
+    const ds = [...xs.keys()].sort((a, b) => xs.get(a) - xs.get(b));
+    const COLORS = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)"];
+    const names = SeriesGroups.labels(pair.map((x) => feed.series[x].name));
+    const num = (v) => v.toLocaleString("ja-JP", { maximumFractionDigits: group.scale > 1 ? 0 : 1 });
+    MultiLine.draw($("chart"), $("chart-legend"), {
+      months: ds,
+      lines: pair.map((x, i) => ({ name: names[i], color: COLORS[i], val: (d) => vals[i][d] })),
+      fmtX: fmtObs,
+      fmt: (v) => (isFinite(v) ? `${num(v)}${group.unit}` : "-"),
+      tick: (v) => num(Math.round(v)),
+      signed: group.signed,
+      dots: true,
+      label: group.name,
+    });
+  }
+
   Promise.all([
     fetch(`data/feed.json?t=${Date.now()}`).then((r) => r.json()),
-    fetch(`pipeline/data/${encodeURIComponent(id)}.csv?t=${Date.now()}`).then((r) => (r.ok ? r.text() : "")),
+    loadCsv(id),
     fetch(`pipeline/reports/signals_log.csv?t=${Date.now()}`).then((r) => (r.ok ? r.text() : "")),
+    Promise.all((pair || []).map(loadCsv)),
   ])
-    .then(([feed, csv, log]) => {
+    .then(([feed, csv, log, pairCsv]) => {
       const s = feed.series[id];
       if (!s) {
         $("name").textContent = "系列が見つかりません";
@@ -134,8 +168,10 @@
       });
       if (!sigs.length) ul.append(el("li", "empty", "まだ検知した変化はありません"));
 
-      const rows = csv ? parseCSV(csv).filter((r) => r.value !== "" && r.value != null) : [];
-      const points = rows.map((r) => ({ d: r.date, x: toX(r.date), v: +r.value })).filter((p) => !isNaN(p.x) && !isNaN(p.v));
+      const points = toPoints(csv);
+      const pairSets = pair && pair.every((x) => feed.series[x]) ? pairCsv.map(toPoints) : null;
+      const draw = (y) => (pairSets ? drawGroup(feed, pairSets, y) : drawChart(points, marks, y));
+      if (pairSets) $("chart-head").textContent = `${group.name}(${group.unit})`;
       const marks = sigs.map((r) => r.obs_date);
       const ranges = s.freq === "D" ? [["3か月", 0.25], ["1年", 1], ["3年", 3], ["10年", 10], ["全期間", 0]] : [["3年", 3], ["5年", 5], ["10年", 10], ["全期間", 0]];
       const def = s.freq === "D" ? 1 : s.freq === "Q" ? 10 : 5;
@@ -146,11 +182,11 @@
         b.setAttribute("aria-pressed", String(y === def));
         b.addEventListener("click", () => {
           nav.querySelectorAll("button").forEach((x) => x.setAttribute("aria-pressed", String(x === b)));
-          drawChart(points, marks, y);
+          draw(y);
         });
         nav.append(b);
       });
-      drawChart(points, marks, def);
+      draw(def);
 
       const tbl = $("recent");
       const head = el("tr");
