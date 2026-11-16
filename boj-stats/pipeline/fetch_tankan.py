@@ -10,16 +10,38 @@
 - 需給・在庫・価格判断（大企業・中小企業）、生産・営業用設備判断、雇用人員判断、
   資金繰り・金融機関の貸出態度・借入金利水準判断、企業の物価見通し（販売価格・物価全般の 1/3/5年後）
 各回の値はその回の公表値（前回分の改定は採らない）。2021年3月調査の zip に載る前回（2020年12月調査）だけは前回欄から入れる。
+
+zip の無い 2020年9月調査以前（HIST_FROM 以降、約30年分）の判断DIは、日銀 時系列統計データ検索サイトの API（DB "CO"、
+全国短観・判断項目）から一度だけ取って同じ JSON に足す（backfill_history）。API の「予測」は予測先の期に置かれているので、
+1期前の調査回の「先行き」に置き直す。2004年3月調査で調査対象企業や規模区分が見直されたため、2003年12月調査以前とは連続しない
+（JSON の history.breaks に入れ、ページで線を切る）。企業の物価見通し（2014年3月調査〜）は過去分を入れていない。
 結果は last_fetch.json の errors に「TANKAN: …」で残る（fetch.py の後に実行する前提）。
 """
-import datetime as dt, io, json, os, re, unicodedata, urllib.request, zipfile
+import datetime as dt, io, json, os, re, time, unicodedata, urllib.request, zipfile
 import xlsx
-from fetch import ROOT, RAW, load_summary, save_summary, guarded
+from fetch import ROOT, RAW, api, load_summary, save_summary, guarded
 
 BASE = "https://www.boj.or.jp"
 OUT = os.path.join(ROOT, "data", "tankan.json")
 SIZES = {"大企業": "大企業", "中堅企業": "中堅企業", "中小企業": "中小企業", "全規模合計": "全規模合計"}
 UA = {"User-Agent": "boj-stats-collector/1.0"}
+
+
+# 過去分（日銀API）。系列コードは TK99F + 業種(4桁) + 判断項目(3桁) + "GCQ" + 実績0/予測1 + 規模(1桁) + "000"
+HIST_FROM = "1995-03"
+HIST_ITEMS = {"業況判断": "601", "国内需給": "602", "海外需給": "603", "製品在庫": "604", "流通在庫": "605",
+              "設備": "607", "雇用人員": "608", "資金繰り": "609", "貸出態度": "612", "借入金利水準": "613",
+              "販売価格": "614", "仕入価格": "615"}
+HIST_INDS = {"全産業": "0000", "製造業": "1000", "素材業種": "3030", "加工業種": "3040", "繊維": "1020", "木材・木製品": "1030",
+             "紙・パルプ": "1050", "化学": "1060", "石油・石炭製品": "1070", "窯業・土石製品": "1100", "鉄鋼": "1110",
+             "非鉄金属": "1120", "食料品": "1010", "金属製品": "1130", "はん用機械": "1141", "生産用機械": "1142",
+             "業務用機械": "1143", "電気機械": "1150", "造船・重機等": "1185", "自動車": "1180",
+             "非製造業": "2000", "建設": "2011", "不動産": "2012", "物品賃貸": "2090", "卸売": "2021", "小売": "2024",
+             "運輸・郵便": "2040", "通信": "2050", "情報サービス": "2051", "電気・ガス": "2060",
+             "対事業所サービス": "2081", "対個人サービス": "2082", "宿泊・飲食サービス": "2100"}
+HIST_NO_FORECAST = {"製品在庫", "流通在庫", "資金繰り", "貸出態度"}  # 「予測」の系列が無い（無いコードを混ぜると API は 400 を返す）
+HIST_SIZES = {"全規模合計": "0", "大企業": "1", "中堅企業": "2", "中小企業": "3"}
+HIST_BREAKS = {"2004-03": "2004年3月調査で調査対象企業と規模の区分（常用雇用者数から資本金へ）を見直したため、2003年12月調査以前とは連続しない"}
 
 
 def get(url):
@@ -327,6 +349,75 @@ def merge(data, survey, rows, url):
     data["surveys"] = sorted(surveys)
 
 
+def hist_code(key, forecast):
+    item, size, ind = key.split("|")
+    if item not in HIST_ITEMS or ind not in HIST_INDS or size not in HIST_SIZES or (forecast and item in HIST_NO_FORECAST):
+        return None
+    return f"TK99F{HIST_INDS[ind]}{HIST_ITEMS[item]}GCQ{1 if forecast else 0}{HIST_SIZES[size]}000"
+
+
+def quarter_survey(q, shift=0):
+    """API の四半期 199501 → 調査回 "1995-03"。shift=-1 で1期前"""
+    y, n = int(str(q)[:4]), int(str(q)[4:]) + shift
+    if n <= 0:
+        y, n = y - 1, n + 4
+    return f"{y}-{n * 3:02d}"
+
+
+def backfill_history(data, rawdir):
+    """zip の無い古い調査回の判断DIを日銀APIから足す。zip から入れた回の値は上書きしない"""
+    first_zip = min(data["sources"])
+    codes = {}
+    for key in data["series"]:
+        for kind, fc in (("最近", False), ("先行き", True)):
+            c = hist_code(key, fc)
+            if c:
+                codes[c] = (key, kind)
+    y, m = int(HIST_FROM[:4]), int(HIST_FROM[5:])
+    start = f"{y}{(m - 1) // 3 + 1:02d}"
+    added, surveys = 0, set()
+    clist = sorted(codes)
+    for i in range(0, len(clist), 200):
+        params = {"db": "CO", "code": ",".join(clist[i:i + 200]), "startDate": start}
+        pos = None
+        while True:
+            if pos:
+                params["startPosition"] = pos
+            res = api("getDataCode", **params)
+            os.makedirs(rawdir, exist_ok=True)
+            with open(os.path.join(rawdir, f"CO_hist_{i}_{pos or 0}.json"), "w", encoding="utf-8") as f:
+                json.dump(res, f, ensure_ascii=False)
+            if str(res.get("STATUS")) != "200":
+                raise ValueError(f"日銀API {res.get('MESSAGEID')} {res.get('MESSAGE')}")
+            for d in res.get("RESULTSET") or []:
+                key, kind = codes[d["SERIES_CODE"]]
+                v = d.get("VALUES") or {}
+                for q, val in zip(v.get("SURVEY_DATES") or [], v.get("VALUES") or []):
+                    if val is None or val == "":
+                        continue
+                    s = quarter_survey(q, -1 if kind == "先行き" else 0)
+                    if s < HIST_FROM or s >= first_zip:
+                        continue
+                    vals = data["series"][key].setdefault(kind, {})
+                    if s in vals:
+                        continue
+                    vals[s] = num(str(val))
+                    added += 1
+                    surveys.add(s)
+            pos = res.get("NEXTPOSITION")
+            if not pos:
+                break
+            time.sleep(2)
+        time.sleep(2)
+    if not added:
+        raise ValueError("過去分が返らなかった")
+    data["surveys"] = sorted(set(data["surveys"]) | surveys)
+    data["history"] = {"from": HIST_FROM, "until": max(surveys),
+                       "source": "https://www.stat-search.boj.or.jp/ （全国短観・判断項目）", "breaks": HIST_BREAKS}
+    print(f"短観 過去分 {HIST_FROM}〜{max(surveys)}: {added}件")
+    return added
+
+
 def main():
     summary = load_summary()
     today = dt.date.today()
@@ -364,15 +455,24 @@ def main():
         save_summary(summary)
         if not added:
             return 1
-    if added:
+    hist = 0
+    if data["sources"] and (data.get("history") or {}).get("from") != HIST_FROM:
+        try:
+            hist = backfill_history(data, rawdir)
+        except Exception as e:
+            summary["errors"].append(f"TANKAN: 短観 過去分（日銀API） {type(e).__name__}: {e}")
+            save_summary(summary)
+    if added or hist:
         data["latest"] = max(data["sources"])
-        data["updated"] = today.isoformat()
+        if added:
+            data["updated"] = today.isoformat()
         tmp = OUT + ".tmp"
         with open(tmp, "w", encoding="utf-8") as f:
             json.dump(data, f, ensure_ascii=False, separators=(",", ":"), sort_keys=True)
         os.replace(tmp, OUT)
-        summary["updated"].append({"db": "TANKAN", "code": "gaiyo", "new": len(added), "revised": 0, "latest": data["latest"]})
-        save_summary(summary)
+        if added:
+            summary["updated"].append({"db": "TANKAN", "code": "gaiyo", "new": len(added), "revised": 0, "latest": data["latest"]})
+            save_summary(summary)
     else:
         print(f"短観: 新しい回なし（最新 {data['latest']}）")
     return 0

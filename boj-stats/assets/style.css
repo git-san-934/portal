@@ -185,4 +185,7 @@ code { font-size: 0.75rem; }
 }
 .tchart + .note.sub, .tchart + .vals { margin-top: 0.4rem; }
 .tchart circle { stroke: var(--card-bg); stroke-width: 1; }
+.tchart .brk { stroke: var(--text-sub); stroke-width: 1; stroke-dasharray: 2 3; }
+.range { margin: -0.5rem 0 0.6rem; }
+.range button { font-size: 0.78rem; padding: 0.15rem 0.6rem; }
 #feed > .empty { margin-left: 0; }

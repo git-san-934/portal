@@ -6,14 +6,14 @@
   <title>短観の推移 - 日銀統計の新着</title>
   <meta name="description" content="日銀短観(概要)の業況判断DIなどを調査回ごとの折れ線で表示" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261019a" />
+  <link rel="stylesheet" href="assets/style.css?v=20261116a" />
 </head>
 <body>
   <div class="wrap">
     <p class="back"><a href="./">← 日銀統計の新着</a></p>
     <header>
       <h1>短観の推移 <span class="title-date" id="title-date"></span></h1>
-      <p class="intro">日本銀行の「全国企業短期経済観測調査(短観)」の概要から、企業の景況感(業況判断)や価格・人手・資金繰りの判断を調査回ごとに並べます。短観は3・6・9・12月の年4回で、新しい回が公表されると自動で取り込みます。</p>
+      <p class="intro">日本銀行の「全国企業短期経済観測調査(短観)」の概要から、企業の景況感(業況判断)や価格・人手・資金繰りの判断を調査回ごとに並べます。短観は3・6・9・12月の年4回で、新しい回が公表されると自動で取り込みます。判断DIは1995年3月調査から、約30年分をさかのぼって表示します(期間は切り替えられます)。</p>
       <p class="updated" id="status">読み込み中...</p>
     </header>
 
@@ -22,17 +22,21 @@
       <p class="note sub">景気が「良い」と答えた企業の割合から「悪い」の割合を引いた値。プラスなら良いと感じる企業の方が多いことを表します。</p>
       <nav class="filters" id="biz-views" aria-label="表示する系列"></nav>
       <select id="biz-ind" class="ind-select" aria-label="業種" hidden></select>
+      <nav class="filters range" id="biz-range" aria-label="表示する期間"></nav>
       <div class="legend" id="biz-legend"></div>
       <div class="chart tchart" id="biz-chart"></div>
       <p class="note sub" id="fc-note"></p>
+      <p class="note sub" id="biz-break" hidden></p>
       <table class="vals" id="biz-table"></table>
     </section>
 
     <section class="panel">
       <h2 class="panel-title"><span id="other-name">その他の判断</span> <span class="code" id="other-def"></span></h2>
       <nav class="filters" id="other-items" aria-label="判断の種類"></nav>
+      <nav class="filters range" id="other-range" aria-label="表示する期間"></nav>
       <div class="legend" id="other-legend"></div>
       <div class="chart tchart" id="other-chart"></div>
+      <p class="note sub" id="other-break" hidden></p>
       <table class="vals" id="other-table"></table>
     </section>
 
@@ -45,11 +49,12 @@
     </section>
 
     <footer>
-      <p>出典: <a href="https://www.boj.or.jp/statistics/tk/gaiyo/2026/index.htm" target="_blank" rel="noopener">日本銀行 短観(概要)</a>の各回の Excel(zip)。2021年3月調査以降(グラフの最初の点 2020年12月調査は2021年3月調査の前回の値)。</p>
-      <p>※各回の値はその回に公表された値です。調査対象企業の見直しがあった回(2024年3月調査など)は、日銀が公表する変化幅が見直し後の企業で計算し直した前回値との差のため、ここでの「変化」と一致しないことがあります。</p>
+      <p>出典: 2021年3月調査以降は<a href="https://www.boj.or.jp/statistics/tk/gaiyo/2026/index.htm" target="_blank" rel="noopener">日本銀行 短観(概要)</a>の各回の Excel(zip)(2020年12月調査は2021年3月調査の前回の値)。2020年9月調査以前の判断DIは<a href="https://www.stat-search.boj.or.jp/" target="_blank" rel="noopener">日本銀行 時系列統計データ検索サイト</a>の全国短観・判断項目(「予測」の値を、予測した調査回の先行きとして表示)。企業の物価見通しは2020年12月調査以降のみです。</p>
+      <p>※2004年3月調査で調査対象企業と規模の区分(常用雇用者数から資本金へ)が見直されたため、2003年12月調査以前とは連続しません(グラフでは縦の点線で線を切っています)。はん用・生産用・業務用機械は2010年3月調査、情報サービス・対事業所サービス・対個人サービス・宿泊・飲食サービスは2004年3月調査からの系列です。</p>
+      <p>※各回の値はその回に公表された値です。調査対象企業の定例の見直し(おおむね3年ごと。2024年3月調査など)があった回は、日銀が公表する変化幅が見直し後の企業で計算し直した前回値との差のため、ここでの「変化」と一致しないことがあります。</p>
     </footer>
   </div>
-  <script src="assets/linechart.js?v=20261019a"></script>
-  <script src="assets/tankan.js?v=20261019a"></script>
+  <script src="assets/linechart.js?v=20261116a"></script>
+  <script src="assets/tankan.js?v=20261116a"></script>
 </body>
 </html>

@@ -14,6 +14,8 @@ window.MultiLine = (() => {
   //         fmt(v): 吹き出しの値(省略で億円/%), tick(v): 軸の目盛り(省略で整数),
   //         fmtX(d): 横軸と吹き出しの日付(省略で「YYYY年M月」), signed: 0をまたぐ値(yoy と同じ縦軸の取り方), dots: 点を打つ }
   // lines の各要素は dash(破線)、noLegend(凡例に出さない)、tip(d)(吹き出しの値。値が無ければ吹き出しに出さない)も持てる
+  //         xTicks: [{at, text}](横軸の目盛り。指定すると両端の日付の代わりに出す),
+  //         breaks: [d](その点の手前で線を切り、縦の点線を引く。系列の断層用)
   function draw(box, legend, opts) {
     const { months: ms, lines, extra = [], yoy } = opts;
     const signed = yoy || opts.signed;
@@ -71,13 +73,30 @@ window.MultiLine = (() => {
       add("text", { x: L - 6, y: sy(v) + 4, "text-anchor": "end" }, tick(v));
     }
     if (lo < 0 && hi > 0) add("line", { class: "grid", x1: L, x2: W - R, y1: sy(0), y2: sy(0), "stroke-dasharray": "4 3" });
-    add("text", { x: L, y: H - 6 }, fmtX(ms[0]));
-    add("text", { x: W - R, y: H - 6, "text-anchor": "end" }, fmtX(ms[ms.length - 1]));
+    const idx = Object.fromEntries(ms.map((d, i) => [d, i]));
+    if (opts.xTicks) {
+      for (const t of opts.xTicks) {
+        const i = idx[t.at];
+        if (i == null) continue;
+        add("line", { class: "grid", x1: sx(i), x2: sx(i), y1: H - B, y2: H - B + 4 });
+        const anchor = sx(i) < L + 20 ? "start" : sx(i) > W - R - 20 ? "end" : "middle";
+        add("text", { x: sx(i), y: H - 6, "text-anchor": anchor }, t.text);
+      }
+    } else {
+      add("text", { x: L, y: H - 6 }, fmtX(ms[0]));
+      add("text", { x: W - R, y: H - 6, "text-anchor": "end" }, fmtX(ms[ms.length - 1]));
+    }
+    const breaks = new Set((opts.breaks || []).filter((d) => idx[d] > 0));
+    for (const d of breaks) {
+      const x = sx(idx[d] - 0.5);
+      add("line", { class: "brk", x1: x, x2: x, y1: T, y2: H - B });
+    }
     for (const s of [...lines].reverse()) {
       let d = "", pen = false;
       ms.forEach((mo, i) => {
         const v = s.val(mo);
         if (!isFinite(v)) { pen = false; return; }
+        if (breaks.has(mo)) pen = false;
         d += `${pen ? "L" : "M"}${sx(i).toFixed(1)},${sy(v).toFixed(1)}`;
         pen = true;
       });
