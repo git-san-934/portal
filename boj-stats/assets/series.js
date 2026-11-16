@@ -100,7 +100,7 @@
   // 組になっている系列は、組の系列を重ねて一つのグラフに描く(assets/groups.js)
   const group = window.SeriesGroups ? SeriesGroups.of(id) : null;
   const pair = group ? group.ids : null;
-  const loadCsv = (x) => fetch(`pipeline/data/${encodeURIComponent(x)}.csv?t=${Date.now()}`).then((r) => (r.ok ? r.text() : ""));
+  const loadCsv = (x, dir = "") => fetch(`pipeline/data/${dir}${encodeURIComponent(x)}.csv?t=${Date.now()}`).then((r) => (r.ok ? r.text() : ""));
   const toPoints = (text) =>
     (text ? parseCSV(text).filter((r) => r.value !== "" && r.value != null) : [])
       .map((r) => ({ d: r.date, x: toX(r.date), v: +r.value }))
@@ -122,11 +122,14 @@
     // 縦軸の目盛りは切りのよい数(MultiLine の nice)。小数の桁は目盛りの間隔に合わせる
     const tickNum = (v, dg = 0) => v.toLocaleString("ja-JP", { minimumFractionDigits: dg, maximumFractionDigits: dg });
     // 断層(基準・調査の見直し)は線を切り、下に注記する
-    const breaks = Object.entries(group.breaks || {}).filter(([d]) => ds.indexOf(d) > 0);
+    // 値は注記の文字列か {text, ids}(ids の系列だけ線を切る)
+    const breaks = Object.entries(group.breaks || {})
+      .map(([d, b]) => [d, typeof b === "string" ? { text: b } : b])
+      .filter(([d]) => ds.indexOf(d) > 0);
     const note = $("chart-note");
     note.textContent = [
       ...(group.note ? [`${group.note}。`] : []),
-      ...breaks.map(([, t]) => `縦の点線: ${t}(線を切っています)。`),
+      ...breaks.map(([, b]) => `縦の点線: ${b.text}(線を切っています)。`),
       ...(group.from && !years ? [`${group.from}。`] : []),
     ].join(" ");
     note.hidden = !note.textContent;
@@ -137,9 +140,13 @@
     const ticks = span > 3 ? ds.filter((d, i) => i > 0 && yr(d) !== yr(ds[i - 1]) && yr(d) % step === 0).map((d) => ({ at: d, text: String(yr(d)) })) : null;
     MultiLine.draw($("chart"), $("chart-legend"), {
       months: ds,
+      xAt: (d) => xs.get(d), // 時間に比例した横軸(月末値と旬次が混ざる組のため)
       breaks: breaks.map(([d]) => d),
       xTicks: ticks,
-      lines: pair.map((x, i) => ({ name: names[i], color: color(i), dash: (group.dash || []).includes(x), val: (d) => vals[i][d] })),
+      lines: pair.map((x, i) => ({
+        name: names[i], color: color(i), dash: (group.dash || []).includes(x), val: (d) => vals[i][d],
+        cut: new Set(breaks.filter(([, b]) => !b.ids || b.ids.includes(x)).map(([d]) => d)),
+      })),
       fmtX: fmtObs,
       fmt: (v) => (isFinite(v) ? `${num(v)}${group.unit}` : "-"),
       tick: tickNum,
@@ -155,7 +162,9 @@
     fetch(`data/feed.json?t=${Date.now()}`).then((r) => r.json()),
     loadCsv(id),
     fetch(`pipeline/reports/signals_log.csv?t=${Date.now()}`).then((r) => (r.ok ? r.text() : "")),
-    Promise.all((pair || []).map(loadCsv)),
+    // 組の系列の過去分が別ファイル(pipeline/data/history/)にあるものは、それより前の期間に足す(営業毎旬報告の2015年以前など)
+    Promise.all((pair || []).map((x) =>
+      Promise.all([loadCsv(x), (group.history || []).includes(x) ? loadCsv(x, "history/") : ""]))),
   ])
     .then(([feed, csv, log, pairCsv]) => {
       const s = feed.series[id];
@@ -190,14 +199,18 @@
       if (!sigs.length) ul.append(el("li", "empty", "まだ検知した変化はありません"));
 
       const points = toPoints(csv);
-      const pairSets = pair && pair.every((x) => feed.series[x]) ? pairCsv.map(toPoints) : null;
+      const withHistory = ([main, past]) => {
+        const pts = toPoints(main);
+        const first = pts.length ? pts[0].x : Infinity;
+        return [...toPoints(past).filter((p) => p.x < first), ...pts];
+      };
+      const pairSets = pair && pair.every((x) => feed.series[x]) ? pairCsv.map(withHistory) : null;
       const draw = (y) => (pairSets ? drawGroup(feed, pairSets, y) : drawChart(points, marks, y));
       if (pairSets) $("chart-head").textContent = `${group.name}(${group.unit})`;
       const marks = sigs.map((r) => r.obs_date);
-      const ranges = s.freq === "D" ? [["3か月", 0.25], ["1年", 1], ["3年", 3], ["10年", 10], ["全期間", 0]] : [["3年", 3], ["5年", 5], ["10年", 10], ["全期間", 0]];
-      // 四半期の組(短観・資金循環など)は初期表示を全期間に
-      // 前年比など振れの大きい組は group.years(3年など)から
-      const def = s.freq === "D" ? 1 : pairSets && group.years != null ? group.years : pairSets && s.freq === "Q" ? 0 : s.freq === "Q" ? 10 : 5;
+      const ranges = s.freq === "D" ? [["3か月", 0.25], ["1年", 1], ["3年", 3], ["10年", 10], ["全期間", 0]] : [["3年", 3], ["5年", 5], ["10年", 10], ["20年", 20], ["全期間", 0]];
+      // 組は約30年分あるので初期表示は全期間。月々の振れが大きい前年比の組は group.years(3年など)から
+      const def = s.freq === "D" ? 1 : pairSets ? group.years ?? 0 : s.freq === "Q" ? 10 : 5;
       const nav = $("ranges");
       ranges.forEach(([label, y]) => {
         const b = el("button", null, label);
