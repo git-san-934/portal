@@ -1,5 +1,5 @@
 {
-  "date": "2026-11-16",
+  "date": "2026-11-17",
   "alerts": [
     {
       "type": "1年安値更新",
@@ -240,6 +240,16 @@
       "code": "CPI_CORECORE_YOY",
       "name": "消費者物価（全国・生鮮食品及びエネルギーを除く総合）前年比",
       "implication": "エネルギーも除いた「コアコアCPI」は物価の基調（賃金・サービス価格の転嫁）を映す。これが2%を超えて続くかが利上げ継続の鍵とされる。"
+    },
+    {
+      "type": "トレンド転換",
+      "date": "2026-10",
+      "dir": "上昇",
+      "detail": "3期移動平均が12期移動平均を上抜け",
+      "db": "STAT",
+      "code": "CPI_TKY_CORECORE_YOY",
+      "name": "消費者物価（東京都区部・生鮮食品及びエネルギーを除く総合）前年比",
+      "implication": "東京都区部のコアコア。物価の基調を早めに確認できる。"
     },
     {
       "type": "1年安値更新",
@@ -533,49 +543,49 @@
       "value": 5325717.0,
       "prev": 5328464.0,
       "change": "-0.05%",
-      "n": 125
+      "n": 382
     },
     "MABS1AN11@": {
       "date": "2026-10",
       "value": -13.6,
       "prev": -15.2,
       "change": "+1.600%pt",
-      "n": 125
+      "n": 382
     },
     "MABS1AN113": {
       "date": "2026-10",
       "value": 4139317.0,
       "prev": 4136678.0,
       "change": "+0.06%",
-      "n": 125
+      "n": 382
     },
     "MASDM@07": {
       "date": "2026-10",
       "value": 4184554.0,
       "prev": 4165953.0,
       "change": "+0.45%",
-      "n": 125
+      "n": 343
     },
     "MASDM58": {
       "date": "2026-10",
       "value": 21363.0,
       "prev": 23172.0,
       "change": "-1,809億円",
-      "n": 125
+      "n": 382
     },
     "MASDM4": {
       "date": "2026-10",
       "value": -2383.0,
       "prev": -62600.0,
       "change": "+60,217億円",
-      "n": 125
+      "n": 382
     },
     "MABJMA5B": {
       "date": "2026-10",
       "value": 5052773.0,
       "prev": 5040079.0,
       "change": "+0.25%",
-      "n": 125
+      "n": 307
     },
     "JGB2Y": {
       "date": "2026-11-13",
@@ -603,63 +613,63 @@
       "value": 136.8,
       "prev": 135.8,
       "change": "+0.73%",
-      "n": 125
+      "n": 382
     },
     "PRCG20_2200000000%": {
       "date": "2026-10",
       "value": 7.1,
       "prev": 6.8,
       "change": "+0.300%pt",
-      "n": 125
+      "n": 382
     },
     "PRCG20_2600000000%": {
       "date": "2026-10",
       "value": 24.8,
       "prev": 23.8,
       "change": "+1.000%pt",
-      "n": 125
+      "n": 382
     },
     "PRCS20_5200000000%": {
       "date": "2026-09",
       "value": 3.7,
       "prev": 3.5,
       "change": "+0.200%pt",
-      "n": 124
+      "n": 381
     },
     "MAM1YAM2M2MO": {
       "date": "2026-10",
       "value": 1.7,
       "prev": 1.9,
       "change": "-0.200%pt",
-      "n": 125
+      "n": 382
     },
     "MAM1YAM3M3MO": {
       "date": "2026-10",
       "value": 0.9,
       "prev": 1.1,
       "change": "-0.200%pt",
-      "n": 125
+      "n": 358
     },
     "FAAPOBAL1@": {
       "date": "2026-10",
       "value": 5.6,
       "prev": 5.7,
       "change": "-0.100%pt",
-      "n": 125
+      "n": 382
     },
     "DLLR2CIDBNL1": {
       "date": "2026-08",
       "value": 1.782,
       "prev": 1.706,
       "change": "+0.076%pt",
-      "n": 123
+      "n": 380
     },
     "DLLR2CIDBST1": {
       "date": "2026-08",
       "value": 1.51,
       "prev": 1.483,
       "change": "+0.027%pt",
-      "n": 123
+      "n": 380
     },
     "STTACLUTS1": {
       "date": "2026-10",
@@ -673,28 +683,28 @@
       "value": 3.0,
       "prev": -1.0,
       "change": "+4.000%pt",
-      "n": 44
+      "n": 107
     },
     "DLLSDLPH": {
       "date": "2026Q4",
       "value": 5.0,
       "prev": 3.0,
       "change": "+2.000%pt",
-      "n": 44
+      "n": 107
     },
     "TK99F1000601GCQ01000": {
       "date": "2026Q3",
       "value": 24.0,
       "prev": 22.0,
       "change": "+2.000%pt",
-      "n": 43
+      "n": 127
     },
     "TK99F2000601GCQ01000": {
       "date": "2026Q3",
       "value": 35.0,
       "prev": 37.0,
       "change": "-2.000%pt",
-      "n": 43
+      "n": 127
     },
     "TK99F0000204HCQ00000": {
       "date": "2026Q3",
@@ -708,21 +718,21 @@
       "value": 25191289.0,
       "prev": 24063427.0,
       "change": "+4.58%",
-      "n": 42
+      "n": 115
     },
     "FOF_FFAS430A100": {
       "date": "2026Q2",
       "value": 11315943.0,
       "prev": 11257015.0,
       "change": "+0.52%",
-      "n": 42
+      "n": 115
     },
     "FOF_FFAS430A334": {
       "date": "2026Q2",
       "value": 6789608.0,
       "prev": 5900773.0,
       "change": "+14.03%",
-      "n": 42
+      "n": 115
     },
     "BPBP6JYNCB": {
       "date": "2026-09",
@@ -799,42 +809,42 @@
       "value": 2.1,
       "prev": 1.9,
       "change": "+0.200%pt",
-      "n": 69
+      "n": 381
     },
     "CPI_CORE_YOY": {
       "date": "2026-09",
       "value": 2.1,
       "prev": 1.7,
       "change": "+0.400%pt",
-      "n": 69
+      "n": 381
     },
     "CPI_CORECORE_YOY": {
       "date": "2026-09",
       "value": 2.4,
       "prev": 1.9,
       "change": "+0.500%pt",
-      "n": 69
+      "n": 381
     },
     "CPI_TKY_ALL_YOY": {
       "date": "2026-10",
       "value": 2.8,
       "prev": 2.7,
       "change": "+0.100%pt",
-      "n": 10
+      "n": 382
     },
     "CPI_TKY_CORE_YOY": {
       "date": "2026-10",
       "value": 2.6,
       "prev": 2.7,
       "change": "-0.100%pt",
-      "n": 10
+      "n": 382
     },
     "CPI_TKY_CORECORE_YOY": {
       "date": "2026-10",
       "value": 2.6,
       "prev": 2.9,
       "change": "-0.300%pt",
-      "n": 10
+      "n": 382
     },
     "CTI_TOTAL_REAL": {
       "date": "2026-09",
@@ -967,245 +977,245 @@
       "value": 109539.0,
       "prev": 100433.0,
       "change": "+9,106億円",
-      "n": 226
+      "n": 381
     },
     "TRADE_IMPORTS": {
       "date": "2026-09",
       "value": 115103.0,
       "prev": 111639.0,
       "change": "+3,464億円",
-      "n": 226
+      "n": 381
     },
     "TRADE_BALANCE": {
       "date": "2026-09",
       "value": -5565.0,
       "prev": -11206.0,
       "change": "+5,641億円",
-      "n": 226
+      "n": 381
     },
     "TRADE_EXPORTS_YOY": {
       "date": "2026-09",
       "value": 16.5,
       "prev": 19.3,
       "change": "-2.800%pt",
-      "n": 214
+      "n": 369
     },
     "TRADE_IMPORTS_YOY": {
       "date": "2026-09",
       "value": 18.5,
       "prev": 27.9,
       "change": "-9.400%pt",
-      "n": 214
+      "n": 369
     },
     "TRADE_EX_USA": {
       "date": "2026-09",
       "value": 19620.0,
       "prev": 17244.0,
       "change": "+2,376億円",
-      "n": 214
+      "n": 381
     },
     "TRADE_EX_USA_YOY": {
       "date": "2026-09",
       "value": 22.9,
       "prev": 24.9,
       "change": "-2.000%pt",
-      "n": 202
+      "n": 369
     },
     "TRADE_IM_USA": {
       "date": "2026-09",
       "value": 15703.0,
       "prev": 16550.0,
       "change": "-847億円",
-      "n": 214
+      "n": 381
     },
     "TRADE_IM_USA_YOY": {
       "date": "2026-09",
       "value": 44.0,
       "prev": 55.2,
       "change": "-11.200%pt",
-      "n": 202
+      "n": 369
     },
     "TRADE_EX_CHINA": {
       "date": "2026-09",
       "value": 17280.0,
       "prev": 18091.0,
       "change": "-811億円",
-      "n": 214
+      "n": 381
     },
     "TRADE_EX_CHINA_YOY": {
       "date": "2026-09",
       "value": 8.5,
       "prev": 20.5,
       "change": "-12.000%pt",
-      "n": 202
+      "n": 369
     },
     "TRADE_IM_CHINA": {
       "date": "2026-09",
       "value": 27574.0,
       "prev": 23624.0,
       "change": "+3,950億円",
-      "n": 214
+      "n": 381
     },
     "TRADE_IM_CHINA_YOY": {
       "date": "2026-09",
       "value": 16.4,
       "prev": 22.5,
       "change": "-6.100%pt",
-      "n": 202
+      "n": 369
     },
     "TRADE_EX_EU": {
       "date": "2026-09",
       "value": 9843.0,
       "prev": 8664.0,
       "change": "+1,179億円",
-      "n": 214
+      "n": 381
     },
     "TRADE_EX_EU_YOY": {
       "date": "2026-09",
       "value": 10.4,
       "prev": 11.0,
       "change": "-0.600%pt",
-      "n": 202
+      "n": 369
     },
     "TRADE_IM_EU": {
       "date": "2026-09",
       "value": 11264.0,
       "prev": 10971.0,
       "change": "+293億円",
-      "n": 214
+      "n": 381
     },
     "TRADE_IM_EU_YOY": {
       "date": "2026-09",
       "value": -0.5,
       "prev": 20.4,
       "change": "-20.900%pt",
-      "n": 202
+      "n": 369
     },
     "TRADE_EX_ASEAN": {
       "date": "2026-09",
       "value": 17171.0,
       "prev": 14820.0,
       "change": "+2,351億円",
-      "n": 214
+      "n": 381
     },
     "TRADE_EX_ASEAN_YOY": {
       "date": "2026-09",
       "value": 25.0,
       "prev": 22.3,
       "change": "+2.700%pt",
-      "n": 202
+      "n": 369
     },
     "TRADE_IM_ASEAN": {
       "date": "2026-09",
       "value": 18414.0,
       "prev": 17944.0,
       "change": "+470億円",
-      "n": 214
+      "n": 381
     },
     "TRADE_IM_ASEAN_YOY": {
       "date": "2026-09",
       "value": 15.7,
       "prev": 27.0,
       "change": "-11.300%pt",
-      "n": 202
+      "n": 369
     },
     "TRADE_EX_TAIWAN": {
       "date": "2026-09",
       "value": 9182.0,
       "prev": 8861.0,
       "change": "+321億円",
-      "n": 214
+      "n": 381
     },
     "TRADE_EX_TAIWAN_YOY": {
       "date": "2026-09",
       "value": 37.7,
       "prev": 39.7,
       "change": "-2.000%pt",
-      "n": 202
+      "n": 369
     },
     "TRADE_EX_TW_NAND": {
       "date": "2026-09",
       "value": 364.2,
       "prev": 181.0,
       "change": "+183億円",
-      "n": 129
+      "n": 237
     },
     "TRADE_EX_TW_NAND_YOY": {
       "date": "2026-09",
       "value": 493.6,
       "prev": 68.7,
       "change": "+424.900%pt",
-      "n": 117
+      "n": 225
     },
     "TRADE_EX_TW_DRAM": {
       "date": "2026-09",
       "value": 3.3,
       "prev": 1.8,
       "change": "+1億円",
-      "n": 129
+      "n": 237
     },
     "TRADE_EX_TW_DRAM_YOY": {
       "date": "2026-09",
       "value": 3292.8,
       "prev": 1133.3,
       "change": "+2159.500%pt",
-      "n": 106
+      "n": 213
     },
     "TRADE_EX_TW_MEM_DIE": {
       "date": "2026-09",
       "value": 1658.6,
       "prev": 1520.9,
       "change": "+138億円",
-      "n": 129
+      "n": 237
     },
     "TRADE_EX_TW_MEM_DIE_YOY": {
       "date": "2026-09",
       "value": 88.2,
       "prev": 86.0,
       "change": "+2.200%pt",
-      "n": 117
+      "n": 225
     },
     "TRADE_EX_TW_MLCC": {
       "date": "2026-09",
       "value": 153.6,
       "prev": 136.6,
       "change": "+17億円",
-      "n": 129
+      "n": 381
     },
     "TRADE_EX_TW_MLCC_YOY": {
       "date": "2026-09",
       "value": 70.9,
       "prev": 55.0,
       "change": "+15.900%pt",
-      "n": 117
+      "n": 369
     },
     "TRADE_EX_TW_IC": {
       "date": "2026-09",
       "value": 2390.0,
       "prev": 2078.7,
       "change": "+311億円",
-      "n": 129
+      "n": 381
     },
     "TRADE_EX_TW_IC_YOY": {
       "date": "2026-09",
       "value": 97.2,
       "prev": 66.2,
       "change": "+31.000%pt",
-      "n": 117
+      "n": 369
     },
     "TRADE_EX_TW_SEMI_EQUIP": {
       "date": "2026-09",
       "value": 1180.1,
       "prev": 1077.3,
       "change": "+103億円",
-      "n": 129
+      "n": 237
     },
     "TRADE_EX_TW_SEMI_EQUIP_YOY": {
       "date": "2026-09",
       "value": 64.2,
       "prev": 30.7,
       "change": "+33.500%pt",
-      "n": 117
+      "n": 225
     },
     "TOTAL": {
       "date": "2026-11-10",

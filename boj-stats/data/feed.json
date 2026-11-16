@@ -1,7 +1,21 @@
 {
- "generated_at": "2026-11-16T20:02+09:00",
- "report_date": "2026-11-16",
+ "generated_at": "2026-11-17T04:46+09:00",
+ "report_date": "2026-11-17",
  "days": [
+  {
+   "date": "2026-11-17",
+   "items": [
+    {
+     "kind": "signal",
+     "id": "STAT_CPI_TKY_CORECORE_YOY",
+     "name": "消費者物価（東京都区部・生鮮食品及びエネルギーを除く総合）前年比",
+     "obs": "2026-10",
+     "type": "トレンド転換",
+     "dir": "上昇",
+     "detail": "3期移動平均が12期移動平均を上抜け"
+    }
+   ]
+  },
   {
    "date": "2026-11-16",
    "items": [
@@ -5538,7 +5552,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-16T20:02+09:00",
+  "checked_at": "2026-11-17T04:46+09:00",
   "counts": {
    "new": 0,
    "unchanged": 117,
