@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-16T11:47+09:00",
+ "updated_at": "2026-11-16T21:04+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-16",
+     "title": "「スプラトゥーン レイダース イカすアートブック」発売決定&予約開始。Nintendo Storeの数量限定特典もご紹介。",
+     "url": "https://www.nintendo.com/jp/topics/article/c73c1b54-c93c-4895-aaaa-8ced4b6508cb",
+     "source": "official",
+     "first_seen": "2026-11-16T21:04+09:00"
+    },
     {
      "date": "2026-11-13",
      "title": "「Hello! インディー」ソニックたちと力を合わせてゴールを目指せ『SONIC PICO PARK』",
@@ -431,13 +438,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/461cdc7d-b50c-4e76-88fd-2eccc3d50336",
      "source": "official",
      "first_seen": "2026-10-23T10:34+09:00"
-    },
-    {
-     "date": "2026-10-22",
-     "title": "キャリア採用「製品法規制対応エンジニア」(京都勤務)の募集要項を掲載しました。 「仕事を読み解くキーワード」のページも更新しています。",
-     "url": "https://www.nintendo.co.jp/jobs/career/index.html",
-     "source": "official",
-     "first_seen": "2026-10-22T21:27+09:00"
     }
    ]
   },
@@ -3157,6 +3157,13 @@
     "https://www.nippon-chem.co.jp/news/feed/"
    ],
    "items": [
+    {
+     "date": "2026-11-16",
+     "title": "メールシステム障害 復旧のお知らせ",
+     "url": "https://www.nippon-chem.co.jp/news/14572",
+     "source": "official",
+     "first_seen": "2026-11-16T21:04+09:00"
+    },
     {
      "date": "2026-11-13",
      "time": "09:44",
