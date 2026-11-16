@@ -14,7 +14,8 @@
 zip の無い 2020年9月調査以前（HIST_FROM 以降、約30年分）の判断DIは、日銀 時系列統計データ検索サイトの API（DB "CO"、
 全国短観・判断項目）から一度だけ取って同じ JSON に足す（backfill_history）。API の「予測」は予測先の期に置かれているので、
 1期前の調査回の「先行き」に置き直す。2004年3月調査で調査対象企業や規模区分が見直されたため、2003年12月調査以前とは連続しない
-（JSON の history.breaks に入れ、ページで線を切る）。企業の物価見通し（2014年3月調査〜）は過去分を入れていない。
+（JSON の history.breaks に入れ、ページで線を切る）。企業の物価見通し（全規模・全産業の平均）は API に 2014年3月調査からあるので、
+そこから足す（HIST_PRICE_CODES）。HIST_VERSION を上げると、次の実行で過去分を取り直す（入っている値は上書きしない）。
 結果は last_fetch.json の errors に「TANKAN: …」で残る（fetch.py の後に実行する前提）。
 """
 import datetime as dt, io, json, os, re, time, unicodedata, urllib.request, zipfile
@@ -29,6 +30,10 @@ UA = {"User-Agent": "boj-stats-collector/1.0"}
 
 # 過去分（日銀API）。系列コードは TK99F + 業種(4桁) + 判断項目(3桁) + "GCQ" + 実績0/予測1 + 規模(1桁) + "000"
 HIST_FROM = "1995-03"
+HIST_VERSION = 2
+# 企業の物価見通しの平均（全規模・全産業）。2014年3月調査から
+HIST_PRICE_CODES = {"物価見通し 販売価格": {"1年後": "TK99F0000201HCQ00000", "3年後": "TK99F0000202HCQ00000", "5年後": "TK99F0000203HCQ00000"},
+                    "物価見通し 物価全般": {"1年後": "TK99F0000204HCQ00000", "3年後": "TK99F0000205HCQ00000", "5年後": "TK99F0000206HCQ00000"}}
 HIST_ITEMS = {"業況判断": "601", "国内需給": "602", "海外需給": "603", "製品在庫": "604", "流通在庫": "605",
               "設備": "607", "雇用人員": "608", "資金繰り": "609", "貸出態度": "612", "借入金利水準": "613",
               "販売価格": "614", "仕入価格": "615"}
@@ -373,6 +378,9 @@ def backfill_history(data, rawdir):
             c = hist_code(key, fc)
             if c:
                 codes[c] = (key, kind)
+    for item, hz in HIST_PRICE_CODES.items():
+        for kind, c in hz.items():
+            codes[c] = (f"{item}|全規模合計|全産業", kind)
     y, m = int(HIST_FROM[:4]), int(HIST_FROM[5:])
     start = f"{y}{(m - 1) // 3 + 1:02d}"
     added, surveys = 0, set()
@@ -395,10 +403,10 @@ def backfill_history(data, rawdir):
                 for q, val in zip(v.get("SURVEY_DATES") or [], v.get("VALUES") or []):
                     if val is None or val == "":
                         continue
-                    s = quarter_survey(q, -1 if kind == "先行き" else 0)
+                    s = quarter_survey(q, -1 if kind == "先行き" else 0)  # 物価見通しは調査回の期に置かれている
                     if s < HIST_FROM or s >= first_zip:
                         continue
-                    vals = data["series"][key].setdefault(kind, {})
+                    vals = data["series"].setdefault(key, {}).setdefault(kind, {})
                     if s in vals:
                         continue
                     vals[s] = num(str(val))
@@ -409,12 +417,12 @@ def backfill_history(data, rawdir):
                 break
             time.sleep(2)
         time.sleep(2)
-    if not added:
+    if not added and not data.get("history"):
         raise ValueError("過去分が返らなかった")
     data["surveys"] = sorted(set(data["surveys"]) | surveys)
-    data["history"] = {"from": HIST_FROM, "until": max(surveys),
-                       "source": "https://www.stat-search.boj.or.jp/ （全国短観・判断項目）", "breaks": HIST_BREAKS}
-    print(f"短観 過去分 {HIST_FROM}〜{max(surveys)}: {added}件")
+    data["history"] = {"from": HIST_FROM, "version": HIST_VERSION, "until": max(s for s in data["surveys"] if s < first_zip),
+                       "source": "https://www.stat-search.boj.or.jp/ （全国短観・判断項目、企業の物価見通し）", "breaks": HIST_BREAKS}
+    print(f"短観 過去分 {HIST_FROM}〜{data['history']['until']}: {added}件")
     return added
 
 
@@ -456,7 +464,7 @@ def main():
         if not added:
             return 1
     hist = 0
-    if data["sources"] and (data.get("history") or {}).get("from") != HIST_FROM:
+    if data["sources"] and (data.get("history") or {}).get("version") != HIST_VERSION:
         try:
             hist = backfill_history(data, rawdir)
         except Exception as e:

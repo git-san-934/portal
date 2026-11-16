@@ -19,7 +19,7 @@ https://git-san-934.github.io/portal/boj-stats/
 | `pipeline/data/*.csv` | 系列ごとの蓄積データ(系列ページのチャートもここを読む) |
 | `pipeline/reports/signals_log.csv` | 検知の履歴 |
 | `pipeline/reports/releases_log.csv` | 公表を見つけた日の記録 |
-| `tankan.html`, `assets/tankan.js` | 短観(概要)の業況判断DIなどの推移。`pipeline/data/tankan.json`(`pipeline/fetch_tankan.py` が作る)を読む。2021年3月調査以降は短観(概要)の zip、2020年9月調査以前(1995年3月調査〜)の判断DIは日銀APIの全国短観・判断項目から一度だけ取り込む(2004年3月調査で断層) |
+| `tankan.html`, `assets/tankan.js` | 短観(概要)の業況判断DIなどの推移。`pipeline/data/tankan.json`(`pipeline/fetch_tankan.py` が作る)を読む。2021年3月調査以降は短観(概要)の zip、2020年9月調査以前(1995年3月調査〜)の判断DIは日銀APIの全国短観・判断項目から一度だけ取り込む(2004年3月調査で断層)。企業の物価見通しは同じAPIから2014年3月調査以降 |
 
 ## 更新
 
