@@ -128,7 +128,9 @@
     };
     const daily = $("daily");
     daily.replaceChildren(head());
-    const dailyList = entries.filter(([, s]) => s.freq === "D");
+    // 短期金利(無担保コール・基準貸付利率)と為替は表示しない。国債利回りだけを出す
+    const HIDDEN_DAILY = /^(FM01|FM08|IR01)_/;
+    const dailyList = entries.filter(([id, s]) => s.freq === "D" && !HIDDEN_DAILY.test(id));
     dailyList.forEach(([id, s]) => daily.append(row(id, s)));
     $("daily-updated").replaceChildren(titleDate(dailyList));
 
