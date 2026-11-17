@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-17T14:17+09:00",
+ "generated_at": "2026-11-17T18:12+09:00",
  "report_date": "2026-11-17",
  "days": [
   {
@@ -13,6 +13,13 @@
      "type": "トレンド転換",
      "dir": "上昇",
      "detail": "3期移動平均が12期移動平均を上抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/intl_finance/meeting/group/gro261117a.htm",
+     "name": "金融安定理事会による「クロスボーダー送金の改善に向けたG20ロードマップ：2026年統合進捗報告書」の公表について",
+     "url": "https://www.boj.or.jp/intl_finance/meeting/group/gro261117a.htm",
+     "time": "17:00"
     },
     {
      "kind": "news",
@@ -5559,7 +5566,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-17T14:17+09:00",
+  "checked_at": "2026-11-17T18:12+09:00",
   "counts": {
    "new": 0,
    "unchanged": 117,
