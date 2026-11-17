@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-17T14:05+09:00",
+ "updated_at": "2026-11-17T21:29+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1560,6 +1560,13 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-11-17",
+     "title": "AEO制度に基づく「特定輸出者」の承認を取得",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20261117-1.html",
+     "source": "official",
+     "first_seen": "2026-11-17T21:29+09:00"
+    },
     {
      "date": "2026-11-10",
      "time": "13:07",
