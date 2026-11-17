@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-17T12:08+09:00",
+ "updated_at": "2026-11-17T13:09+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-17",
+     "title": "Nintendo Switch 2『スプラトゥーン レイダース』の体験版を配信中。",
+     "url": "https://www.nintendo.com/jp/topics/article/cc5713ab-c529-4d4f-b1c3-06b1cf46f690",
+     "source": "official",
+     "first_seen": "2026-11-17T13:09+09:00"
+    },
     {
      "date": "2026-11-16",
      "title": "「スプラトゥーン レイダース イカすアートブック」発売決定&予約開始。Nintendo Storeの数量限定特典もご紹介。",
@@ -429,13 +436,6 @@
      "date": "2026-10-23",
      "title": "限界なき戦場。『Call of Duty®: Modern Warfare® 4』がNintendo Switch 2 で本日発売。 ※本作の対象年齢は「18歳以上」です。",
      "url": "https://www.nintendo.com/jp/topics/article/66e77dbe-a23e-4e33-8ddb-fe0bf34098d5",
-     "source": "official",
-     "first_seen": "2026-10-23T10:34+09:00"
-    },
-    {
-     "date": "2026-10-23",
-     "title": "ニンテンドーeショップ新作ソフト情報 10/23(金)号。",
-     "url": "https://www.nintendo.com/jp/topics/article/461cdc7d-b50c-4e76-88fd-2eccc3d50336",
      "source": "official",
      "first_seen": "2026-10-23T10:34+09:00"
     }
