@@ -79,6 +79,7 @@ https://www.soc.co.jp/?p=88404&post_type=post
 https://www.soc.co.jp/?p=88527&post_type=post
 https://www.soc.co.jp/?p=88702&post_type=post
 https://www.soc.co.jp/?p=88754&post_type=post
+https://www.soc.co.jp/?p=89253&post_type=post
 https://www.soc.co.jp/asbestos/
 https://www.soc.co.jp/asbestos/52559/
 https://www.soc.co.jp/asbestos/52561/
@@ -545,6 +546,7 @@ https://www.soc.co.jp/information/88035/
 https://www.soc.co.jp/information/88236/
 https://www.soc.co.jp/information/88245/
 https://www.soc.co.jp/information/88360/
+https://www.soc.co.jp/information/89253/
 https://www.soc.co.jp/information/page/2/
 https://www.soc.co.jp/information/page/2/tochigi
 https://www.soc.co.jp/information/page/3/
@@ -3089,6 +3091,7 @@ https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/tochigi/radiation338.
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/tochigi/radiation339.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/tochigi/radiation340.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/tochigi/radiation341.pdf
+https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/tochigi/radiation342.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/tochigi/radiation95.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/tochigi/radiation96.pdf
 https://www.soc.co.jp/sys/wp-content/themes/soc/assets/pdf/tochigi/radiation97.pdf

@@ -95,6 +95,7 @@ https://smt.fuji.co.jp/product_tools/
 https://smt.fuji.co.jp/service_support/
 https://smt.fuji.co.jp/service_support/fuji_showroom
 https://smt.fuji.co.jp/service_support/jisso_demo
+https://smt.fuji.co.jp/service_support/jisso_demo/
 https://smt.fuji.co.jp/service_support/tech_info
 https://smt.fuji.co.jp/service_support/tech_info/
 https://smt.fuji.co.jp/sitemap/

@@ -171,6 +171,7 @@ https://smt.fuji.co.jp/cn/product_tools/
 https://smt.fuji.co.jp/cn/service_support/
 https://smt.fuji.co.jp/cn/service_support/fuji_showroom
 https://smt.fuji.co.jp/cn/service_support/jisso_demo
+https://smt.fuji.co.jp/cn/service_support/jisso_demo/
 https://smt.fuji.co.jp/cn/service_support/tech_info
 https://smt.fuji.co.jp/cn/service_support/tech_info/
 https://smt.fuji.co.jp/cn/sitemap
@@ -195,6 +196,7 @@ https://smt.fuji.co.jp/column_smt/
 https://smt.fuji.co.jp/conatact
 https://smt.fuji.co.jp/contact
 https://smt.fuji.co.jp/contact/
+https://smt.fuji.co.jp/contact/index.html
 https://smt.fuji.co.jp/contact_customer_support/
 https://smt.fuji.co.jp/contact_other/
 https://smt.fuji.co.jp/contact_sales/
@@ -292,6 +294,7 @@ https://smt.fuji.co.jp/en/product_tools/
 https://smt.fuji.co.jp/en/service_support/
 https://smt.fuji.co.jp/en/service_support/fuji_showroom
 https://smt.fuji.co.jp/en/service_support/jisso_demo
+https://smt.fuji.co.jp/en/service_support/jisso_demo/
 https://smt.fuji.co.jp/en/service_support/tech_info
 https://smt.fuji.co.jp/en/service_support/tech_info/
 https://smt.fuji.co.jp/en/sitemap
@@ -434,6 +437,7 @@ https://smt.fuji.co.jp/service_support/fma
 https://smt.fuji.co.jp/service_support/fmc
 https://smt.fuji.co.jp/service_support/fuji_showroom
 https://smt.fuji.co.jp/service_support/jisso_demo
+https://smt.fuji.co.jp/service_support/jisso_demo/
 https://smt.fuji.co.jp/service_support/refurbish
 https://smt.fuji.co.jp/service_support/tech_info
 https://smt.fuji.co.jp/service_support/tech_info/
@@ -526,6 +530,7 @@ https://smt.fuji.co.jp/topics/8155
 https://smt.fuji.co.jp/topics/8932
 https://smt.fuji.co.jp/video_library/
 https://smt.fuji.co.jp/wechat/
+https://smt.fuji.co.jp/wechat/index.html
 https://smt.fuji.co.jp/wp-content/uploads/2026/03/fsf_tabel_20260310_J.pdf
 https://www.fuji.co.jp/
 https://www.fuji.co.jp/about/rs/inj2023
