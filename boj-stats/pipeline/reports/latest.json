@@ -3,9 +3,9 @@
   "alerts": [
     {
       "type": "1年安値更新",
-      "date": "2026-11-13",
+      "date": "2026-11-16",
       "dir": "低下",
-      "detail": "1.105ドル/ユーロ",
+      "detail": "1.1025ドル/ユーロ",
       "db": "FM08",
       "code": "FXERD31",
       "name": "ユーロドル 9時（東京市場）",
@@ -302,14 +302,94 @@
       "implication": "コメ5kgの店頭価格。消費者物価の食料を左右し、家計の体感物価に影響する。"
     },
     {
-      "type": "トレンド転換",
-      "date": "2026-09",
-      "dir": "低下",
-      "detail": "3期移動平均が12期移動平均を下抜け",
+      "type": "1年高値更新",
+      "date": "2026-10",
+      "dir": "上昇",
+      "detail": "117,688億円",
       "db": "ESTAT",
-      "code": "TRADE_EX_EU_YOY",
-      "name": "貿易統計 輸出 対EU 前年同月比",
+      "code": "TRADE_EXPORTS",
+      "name": "貿易統計 輸出額（財務省・通関ベース）",
+      "implication": "通関ベースの輸出額。国際収支より約1か月半早く出る。海外景気と円安の影響を受け、製造業・輸出関連株の業績の先行指標。"
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-10",
+      "dir": "上昇",
+      "detail": "122,453億円",
+      "db": "ESTAT",
+      "code": "TRADE_IMPORTS",
+      "name": "貿易統計 輸入額（財務省・通関ベース）",
+      "implication": "通関ベースの輸入額。原油・LNGなど資源価格と円安で膨らみやすい。"
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-10",
+      "dir": "上昇",
+      "detail": "21,739億円",
+      "db": "ESTAT",
+      "code": "TRADE_EX_USA",
+      "name": "貿易統計 輸出 対米国",
+      "implication": "米国向け輸出。自動車が中心で、米国の景気と関税の影響を受けやすい。"
+    },
+    {
+      "type": "急変",
+      "date": "2026-10",
+      "dir": "低下",
+      "detail": "-24.300%pt（z=-2.7）",
+      "db": "ESTAT",
+      "code": "TRADE_IM_USA_YOY",
+      "name": "貿易統計 輸入 対米国 前年同月比",
       "implication": ""
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-10",
+      "dir": "上昇",
+      "detail": "28,426億円",
+      "db": "ESTAT",
+      "code": "TRADE_IM_CHINA",
+      "name": "貿易統計 輸入 対中国",
+      "implication": ""
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-10",
+      "dir": "上昇",
+      "detail": "11,078億円",
+      "db": "ESTAT",
+      "code": "TRADE_EX_EU",
+      "name": "貿易統計 輸出 対EU",
+      "implication": ""
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-10",
+      "dir": "上昇",
+      "detail": "18,648億円",
+      "db": "ESTAT",
+      "code": "TRADE_EX_ASEAN",
+      "name": "貿易統計 輸出 対ASEAN",
+      "implication": ""
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-10",
+      "dir": "上昇",
+      "detail": "34.8%",
+      "db": "ESTAT",
+      "code": "TRADE_EX_ASEAN_YOY",
+      "name": "貿易統計 輸出 対ASEAN 前年同月比",
+      "implication": ""
+    },
+    {
+      "type": "1年高値更新",
+      "date": "2026-10",
+      "dir": "上昇",
+      "detail": "9,772億円",
+      "db": "ESTAT",
+      "code": "TRADE_EX_TAIWAN",
+      "name": "貿易統計 輸出 対台湾",
+      "implication": "台湾向け輸出。半導体の受託製造（TSMCなど）向けの装置・材料・部品が多く、AI・半導体の設備投資の目安。"
     },
     {
       "type": "急変",
@@ -484,39 +564,39 @@
   ],
   "latest": {
     "STRDCLUCON": {
-      "date": "2026-11-13",
-      "value": 1.229,
-      "prev": 1.227,
-      "change": "+0.002%pt",
-      "n": 2554
+      "date": "2026-11-16",
+      "value": 1.228,
+      "prev": 1.229,
+      "change": "-0.001%pt",
+      "n": 2555
     },
     "STRDCLUCV": {
-      "date": "2026-11-13",
-      "value": 36127.0,
-      "prev": 35679.0,
-      "change": "+1.25%",
-      "n": 2409
+      "date": "2026-11-16",
+      "value": 35207.0,
+      "prev": 36127.0,
+      "change": "-2.58%",
+      "n": 2410
     },
     "FXERD04": {
-      "date": "2026-11-13",
-      "value": 159.85,
-      "prev": 159.71,
-      "change": "+0.09%",
-      "n": 2554
+      "date": "2026-11-16",
+      "value": 159.53,
+      "prev": 159.85,
+      "change": "-0.20%",
+      "n": 2555
     },
     "FXERD31": {
-      "date": "2026-11-13",
-      "value": 1.105,
-      "prev": 1.1094,
-      "change": "-0.40%",
-      "n": 2554
+      "date": "2026-11-16",
+      "value": 1.1025,
+      "prev": 1.105,
+      "change": "-0.23%",
+      "n": 2555
     },
     "MADR1Z@D": {
-      "date": "2026-11-15",
+      "date": "2026-11-16",
       "value": 1.5,
       "prev": 1.5,
       "change": "+0.000%pt",
-      "n": 3820
+      "n": 3821
     },
     "MABS1AN11": {
       "date": "2026-10",
@@ -568,25 +648,25 @@
       "n": 307
     },
     "JGB2Y": {
-      "date": "2026-11-16",
+      "date": "2026-11-17",
       "value": 1.878,
-      "prev": 1.882,
-      "change": "-0.004%pt",
-      "n": 12979
+      "prev": 1.878,
+      "change": "+0.000%pt",
+      "n": 12980
     },
     "JGB10Y": {
-      "date": "2026-11-16",
-      "value": 2.927,
-      "prev": 2.899,
-      "change": "+0.028%pt",
-      "n": 9979
+      "date": "2026-11-17",
+      "value": 2.925,
+      "prev": 2.927,
+      "change": "-0.002%pt",
+      "n": 9980
     },
     "JGB30Y": {
-      "date": "2026-11-16",
-      "value": 4.062,
-      "prev": 4.038,
-      "change": "+0.024%pt",
-      "n": 6663
+      "date": "2026-11-17",
+      "value": 4.069,
+      "prev": 4.062,
+      "change": "+0.007%pt",
+      "n": 6664
     },
     "PRCG20_2200000000": {
       "date": "2026-10",
@@ -953,165 +1033,165 @@
       "n": 18
     },
     "TRADE_EXPORTS": {
-      "date": "2026-09",
-      "value": 109539.0,
-      "prev": 100433.0,
-      "change": "+9,106億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 117688.0,
+      "prev": 109539.0,
+      "change": "+8,149億円",
+      "n": 382
     },
     "TRADE_IMPORTS": {
-      "date": "2026-09",
-      "value": 115103.0,
-      "prev": 111639.0,
-      "change": "+3,464億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 122453.0,
+      "prev": 115103.0,
+      "change": "+7,350億円",
+      "n": 382
     },
     "TRADE_BALANCE": {
-      "date": "2026-09",
-      "value": -5565.0,
-      "prev": -11206.0,
-      "change": "+5,641億円",
-      "n": 381
+      "date": "2026-10",
+      "value": -4765.0,
+      "prev": -5565.0,
+      "change": "+800億円",
+      "n": 382
     },
     "TRADE_EXPORTS_YOY": {
-      "date": "2026-09",
-      "value": 16.5,
-      "prev": 19.3,
-      "change": "-2.800%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 20.5,
+      "prev": 16.5,
+      "change": "+4.000%pt",
+      "n": 370
     },
     "TRADE_IMPORTS_YOY": {
-      "date": "2026-09",
-      "value": 18.5,
-      "prev": 27.9,
-      "change": "-9.400%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 21.6,
+      "prev": 18.5,
+      "change": "+3.100%pt",
+      "n": 370
     },
     "TRADE_EX_USA": {
-      "date": "2026-09",
-      "value": 19620.0,
-      "prev": 17244.0,
-      "change": "+2,376億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 21739.0,
+      "prev": 19620.0,
+      "change": "+2,119億円",
+      "n": 382
     },
     "TRADE_EX_USA_YOY": {
-      "date": "2026-09",
-      "value": 22.9,
-      "prev": 24.9,
-      "change": "-2.000%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 23.9,
+      "prev": 22.9,
+      "change": "+1.000%pt",
+      "n": 370
     },
     "TRADE_IM_USA": {
-      "date": "2026-09",
-      "value": 15703.0,
-      "prev": 16550.0,
-      "change": "-847億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 14834.0,
+      "prev": 15703.0,
+      "change": "-869億円",
+      "n": 382
     },
     "TRADE_IM_USA_YOY": {
-      "date": "2026-09",
-      "value": 44.0,
-      "prev": 55.2,
-      "change": "-11.200%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 19.7,
+      "prev": 44.0,
+      "change": "-24.300%pt",
+      "n": 370
     },
     "TRADE_EX_CHINA": {
-      "date": "2026-09",
-      "value": 17280.0,
-      "prev": 18091.0,
-      "change": "-811億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 19373.0,
+      "prev": 17280.0,
+      "change": "+2,093億円",
+      "n": 382
     },
     "TRADE_EX_CHINA_YOY": {
-      "date": "2026-09",
-      "value": 8.5,
-      "prev": 20.5,
-      "change": "-12.000%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 13.3,
+      "prev": 8.5,
+      "change": "+4.800%pt",
+      "n": 370
     },
     "TRADE_IM_CHINA": {
-      "date": "2026-09",
-      "value": 27574.0,
-      "prev": 23624.0,
-      "change": "+3,950億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 28426.0,
+      "prev": 27574.0,
+      "change": "+852億円",
+      "n": 382
     },
     "TRADE_IM_CHINA_YOY": {
-      "date": "2026-09",
-      "value": 16.4,
-      "prev": 22.5,
-      "change": "-6.100%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 14.7,
+      "prev": 16.4,
+      "change": "-1.700%pt",
+      "n": 370
     },
     "TRADE_EX_EU": {
-      "date": "2026-09",
-      "value": 9843.0,
-      "prev": 8664.0,
-      "change": "+1,179億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 11078.0,
+      "prev": 9843.0,
+      "change": "+1,235億円",
+      "n": 382
     },
     "TRADE_EX_EU_YOY": {
-      "date": "2026-09",
-      "value": 10.4,
-      "prev": 11.0,
-      "change": "-0.600%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 22.1,
+      "prev": 10.4,
+      "change": "+11.700%pt",
+      "n": 370
     },
     "TRADE_IM_EU": {
-      "date": "2026-09",
-      "value": 11264.0,
-      "prev": 10971.0,
-      "change": "+293億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 12214.0,
+      "prev": 11264.0,
+      "change": "+950億円",
+      "n": 382
     },
     "TRADE_IM_EU_YOY": {
-      "date": "2026-09",
-      "value": -0.5,
-      "prev": 20.4,
-      "change": "-20.900%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 20.1,
+      "prev": -0.5,
+      "change": "+20.600%pt",
+      "n": 370
     },
     "TRADE_EX_ASEAN": {
-      "date": "2026-09",
-      "value": 17171.0,
-      "prev": 14820.0,
-      "change": "+2,351億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 18648.0,
+      "prev": 17171.0,
+      "change": "+1,477億円",
+      "n": 382
     },
     "TRADE_EX_ASEAN_YOY": {
-      "date": "2026-09",
-      "value": 25.0,
-      "prev": 22.3,
-      "change": "+2.700%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 34.8,
+      "prev": 25.0,
+      "change": "+9.800%pt",
+      "n": 370
     },
     "TRADE_IM_ASEAN": {
-      "date": "2026-09",
-      "value": 18414.0,
-      "prev": 17944.0,
-      "change": "+470億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 19482.0,
+      "prev": 18414.0,
+      "change": "+1,068億円",
+      "n": 382
     },
     "TRADE_IM_ASEAN_YOY": {
-      "date": "2026-09",
-      "value": 15.7,
-      "prev": 27.0,
-      "change": "-11.300%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 20.5,
+      "prev": 15.7,
+      "change": "+4.800%pt",
+      "n": 370
     },
     "TRADE_EX_TAIWAN": {
-      "date": "2026-09",
-      "value": 9182.0,
-      "prev": 8861.0,
-      "change": "+321億円",
-      "n": 381
+      "date": "2026-10",
+      "value": 9772.0,
+      "prev": 9182.0,
+      "change": "+590億円",
+      "n": 382
     },
     "TRADE_EX_TAIWAN_YOY": {
-      "date": "2026-09",
-      "value": 37.7,
-      "prev": 39.7,
-      "change": "-2.000%pt",
-      "n": 369
+      "date": "2026-10",
+      "value": 42.7,
+      "prev": 37.7,
+      "change": "+5.000%pt",
+      "n": 370
     },
     "TRADE_EX_TW_NAND": {
       "date": "2026-09",
