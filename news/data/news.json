@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-18T13:28+09:00",
+ "updated_at": "2026-11-18T21:16+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,13 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-18",
+     "title": "「サウンド系 ワークショップ」のお申し込み受付を開始しました。",
+     "url": "https://www.nintendo.co.jp/jobs/recruit/event/sound_workshop.html",
+     "source": "official",
+     "first_seen": "2026-11-18T21:16+09:00"
+    },
     {
      "date": "2026-11-18",
      "title": "『スプラトゥーン3』の更新データVer.12.0.0を本日配信。さまざまなアイテムが手に入るゲームニュースも配信中。",
@@ -429,13 +436,6 @@
      "date": "2026-10-23",
      "title": "【10月27日追加】「ファミリーコンピュータ&スーパーファミコン&ゲームボーイ Nintendo Classics」に追加タイトルを配信開始。",
      "url": "https://www.nintendo.com/jp/topics/article/fb255ded-796c-40fa-b234-f062b3b06894",
-     "source": "official",
-     "first_seen": "2026-10-23T10:34+09:00"
-    },
-    {
-     "date": "2026-10-23",
-     "title": "『オバケイドロ2』が10月26日から期間限定で遊び放題。Nintendo Switch Online加入者限定イベント「いっせいトライアル」開催。",
-     "url": "https://www.nintendo.com/jp/topics/article/cf86eecc-833d-4291-a473-a1b60ff9f9e5",
      "source": "official",
      "first_seen": "2026-10-23T10:34+09:00"
     }
@@ -3735,6 +3735,13 @@
    ],
    "items": [
     {
+     "date": "2026-11-18",
+     "title": "製品・サービス パナソニック エレクトリックワークス、Appleウォレットの社員証を利用可能に",
+     "url": "https://news.panasonic.com/jp/press/jn261118-1",
+     "source": "official",
+     "first_seen": "2026-11-18T21:16+09:00"
+    },
+    {
      "date": "2026-11-17",
      "title": "製品・サービス LUMIX初のコンパクトシネマカメラ LUMIX SHX1(AU-SHX1)発売",
      "url": "https://news.panasonic.com/jp/press/jn261117-3",
@@ -3743,7 +3750,7 @@
     },
     {
      "date": "2026-11-16",
-     "title": "製品・サービス EV充電インフラソリューション「Charge-ment」(チャージメント)がEVコンセントに対応開始。既設のEVコンセントを活用したまま「Charge-ment」が導入可能に",
+     "title": "4 2026年11月16日 製品・サービス プレスリリース EV充電インフラソリューション「Charge-ment」(チャージメント)がEVコンセントに対応開始。既設のEVコンセントを活用したまま「Charge-ment」が導入可能に",
      "url": "https://news.panasonic.com/jp/press/jn261116-1",
      "source": "official",
      "first_seen": "2026-11-16T11:22+09:00"
@@ -4151,13 +4158,6 @@
      "url": "https://news.panasonic.com/jp/press/jn260930-2",
      "source": "official",
      "first_seen": "2026-09-30T00:00+09:00"
-    },
-    {
-     "date": "2026-09-29",
-     "title": "4 2026年9月29日 製品・サービス プレスリリース パナソニックがヘアードライヤー ナノケア EH-NB70を発売",
-     "url": "https://news.panasonic.com/jp/press/jn260929-2",
-     "source": "official",
-     "first_seen": "2026-09-29T00:00+09:00"
     }
    ]
   },
