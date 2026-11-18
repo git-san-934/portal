@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-18T08:24+09:00",
+ "updated_at": "2026-11-18T11:35+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2422,6 +2422,14 @@
     "https://www.circle.com/pressroom"
    ],
    "items": [
+    {
+     "date": "2026-11-18",
+     "title": "DBS and Circle Expand Institutional Access to USDC in Asia Eligible institutional clients will have direct access to USDC issuance and redemption supported by near-instant, 24/7 USD-USDC settlement ca",
+     "url": "https://www.circle.com/pressroom/dbs-and-circle-expand-institutional-access-to-usdc-in-asia",
+     "source": "official",
+     "first_seen": "2026-11-18T11:35+09:00",
+     "title_ja": "DBSとCircleがアジアにおけるUSDCへの機関アクセスを拡大 適格な機関顧客は、ほぼ即時の24時間365日のUSD-USDC決済サポートによりUSDCの発行と償還に直接アクセスできるようになります。"
+    },
     {
      "date": "2026-11-13",
      "title": "Circle Names Dante Disparte Vice Chairman, Strategy and Global Affairs and Mandeep Walia Chief Compliance and Risk Officer and Chief Operating Officer Having helped build Circle since 2021, Disparte a",
