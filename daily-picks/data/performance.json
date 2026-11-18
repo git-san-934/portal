@@ -1,29 +1,29 @@
 {
- "updated_at": "2026-11-18T06:24+09:00",
- "latest_price_date": "2026-11-16",
+ "updated_at": "2026-11-19T00:59+09:00",
+ "latest_price_date": "2026-11-17",
  "rules": {
   "stop_buffer": 0.99,
   "rr": 3.0
  },
  "summary": {
   "picks": 40,
-  "with_data": 34,
-  "avg_ret_pct": 1.97,
-  "win_rate_pct": 70.6,
+  "with_data": 37,
+  "avg_ret_pct": 1.02,
+  "win_rate_pct": 48.6,
   "best": "コナミグループ",
   "worst": "丸文",
-  "closed": 10,
-  "closed_wins": 2,
-  "closed_sum_r": -0.31,
-  "open": 24,
-  "avg_1d_pct": 0.48,
-  "n_1d": 34,
-  "avg_3d_pct": 0.27,
-  "n_3d": 28,
+  "closed": 16,
+  "closed_wins": 3,
+  "closed_sum_r": -0.86,
+  "open": 21,
+  "avg_1d_pct": 0.36,
+  "n_1d": 37,
+  "avg_3d_pct": 0.16,
+  "n_3d": 31,
   "avg_5d_pct": 0.74,
   "n_5d": 23,
-  "avg_10d_pct": 4.47,
-  "n_10d": 7
+  "avg_10d_pct": 2.3,
+  "n_10d": 10
  },
  "rows": [
   {
@@ -37,7 +37,7 @@
    "rank": 1,
    "base": null,
    "analysis_close": 1253,
-   "status": "株価データなし"
+   "status": "これから"
   },
   {
    "date": "2026-11-18",
@@ -50,7 +50,7 @@
    "rank": 2,
    "base": null,
    "analysis_close": 4395,
-   "status": "株価データなし"
+   "status": "これから"
   },
   {
    "date": "2026-11-18",
@@ -63,7 +63,7 @@
    "rank": 3,
    "base": null,
    "analysis_close": 6335,
-   "status": "株価データなし"
+   "status": "これから"
   },
   {
    "date": "2026-11-16",
@@ -75,9 +75,27 @@
    "code": "4097",
    "name": "高圧ガス工業",
    "rank": 1,
-   "base": null,
+   "base": 1279.0,
    "analysis_close": 1279,
-   "status": "これから"
+   "entry_date": "2026-11-17",
+   "gap_pct": 0.0,
+   "support": 1175.0,
+   "support_date": "2026-11-06",
+   "stop": 1163.2,
+   "target": 1626.4,
+   "risk_pct": 9.1,
+   "target_pct": 27.2,
+   "days_held": 1,
+   "last_date": "2026-11-17",
+   "last_close": 1253.0,
+   "ret_pct": -2.03,
+   "max_up_pct": 1.95,
+   "max_down_pct": -2.03,
+   "horizon": {
+    "1": -2.03
+   },
+   "status": "保有中",
+   "open_r": -0.22
   },
   {
    "date": "2026-11-16",
@@ -89,9 +107,27 @@
    "code": "1762",
    "name": "高松コンストラクショングループ",
    "rank": 2,
-   "base": null,
+   "base": 4410.0,
    "analysis_close": 4465,
-   "status": "これから"
+   "entry_date": "2026-11-17",
+   "gap_pct": -1.23,
+   "support": 3910.0,
+   "support_date": "2026-11-06",
+   "stop": 3870.9,
+   "target": 6027.3,
+   "risk_pct": 12.2,
+   "target_pct": 36.7,
+   "days_held": 1,
+   "last_date": "2026-11-17",
+   "last_close": 4395.0,
+   "ret_pct": -0.34,
+   "max_up_pct": 0.57,
+   "max_down_pct": -1.47,
+   "horizon": {
+    "1": -0.34
+   },
+   "status": "保有中",
+   "open_r": -0.03
   },
   {
    "date": "2026-11-16",
@@ -103,9 +139,27 @@
    "code": "4118",
    "name": "カネカ",
    "rank": 3,
-   "base": null,
+   "base": 6373.0,
    "analysis_close": 6435,
-   "status": "これから"
+   "entry_date": "2026-11-17",
+   "gap_pct": -0.96,
+   "support": 5940.0,
+   "support_date": "2026-11-06",
+   "stop": 5880.6,
+   "target": 7850.2,
+   "risk_pct": 7.7,
+   "target_pct": 23.2,
+   "days_held": 1,
+   "last_date": "2026-11-17",
+   "last_close": 6335.0,
+   "ret_pct": -0.6,
+   "max_up_pct": 0.42,
+   "max_down_pct": -2.09,
+   "horizon": {
+    "1": -0.6
+   },
+   "status": "保有中",
+   "open_r": -0.08
   },
   {
    "date": "2026-11-14",
@@ -126,17 +180,17 @@
    "target": 6527.3,
    "risk_pct": 14.6,
    "target_pct": 43.9,
-   "days_held": 1,
-   "last_date": "2026-11-16",
-   "last_close": 4465.0,
-   "ret_pct": -1.54,
+   "days_held": 2,
+   "last_date": "2026-11-17",
+   "last_close": 4395.0,
+   "ret_pct": -3.09,
    "max_up_pct": 1.65,
-   "max_down_pct": -1.87,
+   "max_down_pct": -4.19,
    "horizon": {
     "1": -1.54
    },
    "status": "保有中",
-   "open_r": -0.11
+   "open_r": -0.21
   },
   {
    "date": "2026-11-14",
@@ -157,17 +211,23 @@
    "target": 8742.2,
    "risk_pct": 10.8,
    "target_pct": 32.5,
-   "days_held": 1,
-   "last_date": "2026-11-16",
-   "last_close": 6435.0,
-   "ret_pct": -2.44,
+   "days_held": 2,
+   "last_date": "2026-11-17",
+   "last_close": 6335.0,
+   "ret_pct": -3.96,
    "max_up_pct": 0.59,
-   "max_down_pct": -2.44,
+   "max_down_pct": -5.4,
    "horizon": {
     "1": -2.44
    },
-   "status": "保有中",
-   "open_r": -0.23
+   "exit": {
+    "date": "2026-11-17",
+    "price": 6335.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -3.96,
+    "r": -0.36
+   },
+   "status": "高値後の安値割れ"
   },
   {
    "date": "2026-11-14",
@@ -188,17 +248,17 @@
    "target": 1590.4,
    "risk_pct": 8.4,
    "target_pct": 25.2,
-   "days_held": 1,
-   "last_date": "2026-11-16",
-   "last_close": 1279.0,
-   "ret_pct": 0.71,
+   "days_held": 2,
+   "last_date": "2026-11-17",
+   "last_close": 1253.0,
+   "ret_pct": -1.34,
    "max_up_pct": 4.65,
-   "max_down_pct": -0.31,
+   "max_down_pct": -1.34,
    "horizon": {
     "1": 0.71
    },
    "status": "保有中",
-   "open_r": 0.08
+   "open_r": -0.16
   },
   {
    "date": "2026-11-13",
@@ -219,17 +279,18 @@
    "target": 6207.3,
    "risk_pct": 13.1,
    "target_pct": 39.3,
-   "days_held": 2,
-   "last_date": "2026-11-16",
-   "last_close": 4465.0,
-   "ret_pct": 0.22,
+   "days_held": 3,
+   "last_date": "2026-11-17",
+   "last_close": 4395.0,
+   "ret_pct": -1.35,
    "max_up_pct": 3.48,
-   "max_down_pct": -1.46,
+   "max_down_pct": -2.47,
    "horizon": {
-    "1": 0.9
+    "1": 0.9,
+    "3": -1.35
    },
    "status": "保有中",
-   "open_r": 0.02
+   "open_r": -0.1
   },
   {
    "date": "2026-11-13",
@@ -250,17 +311,24 @@
    "target": 8386.2,
    "risk_pct": 9.6,
    "target_pct": 28.9,
-   "days_held": 2,
-   "last_date": "2026-11-16",
-   "last_close": 6435.0,
-   "ret_pct": -1.11,
+   "days_held": 3,
+   "last_date": "2026-11-17",
+   "last_close": 6335.0,
+   "ret_pct": -2.64,
    "max_up_pct": 1.97,
-   "max_down_pct": -1.29,
+   "max_down_pct": -4.1,
    "horizon": {
-    "1": 0.4
+    "1": 0.4,
+    "3": -2.64
    },
-   "status": "保有中",
-   "open_r": -0.11
+   "exit": {
+    "date": "2026-11-17",
+    "price": 6335.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -2.64,
+    "r": -0.27
+   },
+   "status": "高値後の安値割れ"
   },
   {
    "date": "2026-11-13",
@@ -281,17 +349,18 @@
    "target": 2916.5,
    "risk_pct": 3.3,
    "target_pct": 9.8,
-   "days_held": 2,
-   "last_date": "2026-11-16",
-   "last_close": 2707.5,
-   "ret_pct": 1.9,
+   "days_held": 3,
+   "last_date": "2026-11-17",
+   "last_close": 2688.0,
+   "ret_pct": 1.17,
    "max_up_pct": 2.65,
    "max_down_pct": -1.19,
    "horizon": {
-    "1": 0.87
+    "1": 0.87,
+    "3": 1.17
    },
    "status": "保有中",
-   "open_r": 0.58
+   "open_r": 0.36
   },
   {
    "date": "2026-11-11",
@@ -313,10 +382,10 @@
    "target": 1684.3,
    "risk_pct": 4.9,
    "target_pct": 14.7,
-   "days_held": 3,
-   "last_date": "2026-11-16",
-   "last_close": 1508.0,
-   "ret_pct": 2.72,
+   "days_held": 4,
+   "last_date": "2026-11-17",
+   "last_close": 1496.0,
+   "ret_pct": 1.91,
    "max_up_pct": 3.34,
    "max_down_pct": -0.07,
    "horizon": {
@@ -324,7 +393,7 @@
     "3": 2.72
    },
    "status": "保有中",
-   "open_r": 0.55
+   "open_r": 0.39
   },
   {
    "date": "2026-11-12",
@@ -345,10 +414,10 @@
    "target": 5367.3,
    "risk_pct": 8.8,
    "target_pct": 26.4,
-   "days_held": 3,
-   "last_date": "2026-11-16",
-   "last_close": 4465.0,
-   "ret_pct": 5.18,
+   "days_held": 4,
+   "last_date": "2026-11-17",
+   "last_close": 4395.0,
+   "ret_pct": 3.53,
    "max_up_pct": 8.6,
    "max_down_pct": -0.24,
    "horizon": {
@@ -356,7 +425,7 @@
     "3": 5.18
    },
    "status": "保有中",
-   "open_r": 0.59
+   "open_r": 0.4
   },
   {
    "date": "2026-11-11",
@@ -377,10 +446,10 @@
    "target": 1470.2,
    "risk_pct": 6.9,
    "target_pct": 20.8,
-   "days_held": 3,
-   "last_date": "2026-11-16",
-   "last_close": 1228.0,
-   "ret_pct": 0.9,
+   "days_held": 4,
+   "last_date": "2026-11-17",
+   "last_close": 1227.0,
+   "ret_pct": 0.82,
    "max_up_pct": 1.56,
    "max_down_pct": -0.9,
    "horizon": {
@@ -388,7 +457,7 @@
     "3": 0.9
    },
    "status": "保有中",
-   "open_r": 0.13
+   "open_r": 0.12
   },
   {
    "date": "2026-11-11",
@@ -409,12 +478,12 @@
    "target": 1213.4,
    "risk_pct": 6.0,
    "target_pct": 18.0,
-   "days_held": 3,
-   "last_date": "2026-11-16",
-   "last_close": 1018.0,
-   "ret_pct": -0.97,
+   "days_held": 4,
+   "last_date": "2026-11-17",
+   "last_close": 1011.0,
+   "ret_pct": -1.65,
    "max_up_pct": 0.49,
-   "max_down_pct": -1.26,
+   "max_down_pct": -1.65,
    "horizon": {
     "1": -0.19,
     "3": -0.97
@@ -447,18 +516,24 @@
    "target": 7194.2,
    "risk_pct": 5.3,
    "target_pct": 15.9,
-   "days_held": 3,
-   "last_date": "2026-11-16",
-   "last_close": 6435.0,
-   "ret_pct": 3.64,
+   "days_held": 4,
+   "last_date": "2026-11-17",
+   "last_close": 6335.0,
+   "ret_pct": 2.03,
    "max_up_pct": 6.86,
    "max_down_pct": -0.23,
    "horizon": {
     "1": 4.45,
     "3": 3.64
    },
-   "status": "保有中",
-   "open_r": 0.69
+   "exit": {
+    "date": "2026-11-17",
+    "price": 6335.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": 2.03,
+    "r": 0.38
+   },
+   "status": "高値後の安値割れ"
   },
   {
    "date": "2026-11-10",
@@ -479,8 +554,8 @@
    "target": 2171.4,
    "risk_pct": 7.0,
    "target_pct": 21.0,
-   "days_held": 5,
-   "last_date": "2026-11-16",
+   "days_held": 6,
+   "last_date": "2026-11-17",
    "last_close": 1844.0,
    "ret_pct": 2.79,
    "max_up_pct": 4.07,
@@ -512,10 +587,10 @@
    "target": 1491.3,
    "risk_pct": 8.1,
    "target_pct": 24.3,
-   "days_held": 5,
-   "last_date": "2026-11-16",
-   "last_close": 1228.0,
-   "ret_pct": 2.33,
+   "days_held": 6,
+   "last_date": "2026-11-17",
+   "last_close": 1227.0,
+   "ret_pct": 2.25,
    "max_up_pct": 3.33,
    "max_down_pct": -0.08,
    "horizon": {
@@ -524,7 +599,7 @@
     "5": 2.33
    },
    "status": "保有中",
-   "open_r": 0.29
+   "open_r": 0.28
   },
   {
    "date": "2026-11-10",
@@ -545,10 +620,10 @@
    "target": 588.2,
    "risk_pct": 7.9,
    "target_pct": 23.6,
-   "days_held": 5,
-   "last_date": "2026-11-16",
-   "last_close": 480.0,
-   "ret_pct": 0.84,
+   "days_held": 6,
+   "last_date": "2026-11-17",
+   "last_close": 472.0,
+   "ret_pct": -0.84,
    "max_up_pct": 1.68,
    "max_down_pct": -3.78,
    "horizon": {
@@ -556,8 +631,14 @@
     "3": 0.0,
     "5": 0.84
    },
-   "status": "保有中",
-   "open_r": 0.11
+   "exit": {
+    "date": "2026-11-17",
+    "price": 472.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -0.84,
+    "r": -0.11
+   },
+   "status": "高値後の安値割れ"
   },
   {
    "date": "2026-11-07",
@@ -578,19 +659,19 @@
    "target": 3959.3,
    "risk_pct": 11.7,
    "target_pct": 35.1,
-   "days_held": 6,
-   "last_date": "2026-11-16",
-   "last_close": 2931.0,
-   "ret_pct": 0.03,
+   "days_held": 7,
+   "last_date": "2026-11-17",
+   "last_close": 2877.0,
+   "ret_pct": -1.81,
    "max_up_pct": 2.9,
-   "max_down_pct": -1.26,
+   "max_down_pct": -1.81,
    "horizon": {
     "1": 0.44,
     "3": -1.09,
     "5": 0.14
    },
    "status": "保有中",
-   "open_r": 0.0
+   "open_r": -0.15
   },
   {
    "date": "2026-11-07",
@@ -611,11 +692,11 @@
    "target": 3286.4,
    "risk_pct": 10.3,
    "target_pct": 30.8,
-   "days_held": 6,
-   "last_date": "2026-11-16",
-   "last_close": 2617.0,
-   "ret_pct": 4.14,
-   "max_up_pct": 4.62,
+   "days_held": 7,
+   "last_date": "2026-11-17",
+   "last_close": 2654.0,
+   "ret_pct": 5.61,
+   "max_up_pct": 6.61,
    "max_down_pct": 0.0,
    "horizon": {
     "1": 2.07,
@@ -623,7 +704,7 @@
     "5": 2.11
    },
    "status": "保有中",
-   "open_r": 0.4
+   "open_r": 0.55
   },
   {
    "date": "2026-11-07",
@@ -644,11 +725,11 @@
    "target": 2855.9,
    "risk_pct": 9.5,
    "target_pct": 28.4,
-   "days_held": 6,
-   "last_date": "2026-11-16",
-   "last_close": 2360.5,
-   "ret_pct": 6.09,
-   "max_up_pct": 6.79,
+   "days_held": 7,
+   "last_date": "2026-11-17",
+   "last_close": 2432.0,
+   "ret_pct": 9.3,
+   "max_up_pct": 9.44,
    "max_down_pct": -1.03,
    "horizon": {
     "1": 2.52,
@@ -656,7 +737,7 @@
     "5": 5.44
    },
    "status": "保有中",
-   "open_r": 0.64
+   "open_r": 0.98
   },
   {
    "date": "2026-11-06",
@@ -677,10 +758,10 @@
    "target": 2350.0,
    "risk_pct": 10.9,
    "target_pct": 32.6,
-   "days_held": 7,
-   "last_date": "2026-11-16",
-   "last_close": 1794.0,
-   "ret_pct": 1.21,
+   "days_held": 8,
+   "last_date": "2026-11-17",
+   "last_close": 1756.5,
+   "ret_pct": -0.9,
    "max_up_pct": 3.67,
    "max_down_pct": -6.77,
    "horizon": {
@@ -688,8 +769,14 @@
     "3": -0.11,
     "5": 1.83
    },
-   "status": "保有中",
-   "open_r": 0.11
+   "exit": {
+    "date": "2026-11-17",
+    "price": 1756.5,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -0.9,
+    "r": -0.08
+   },
+   "status": "高値後の安値割れ"
   },
   {
    "date": "2026-11-06",
@@ -710,11 +797,11 @@
    "target": 3105.1,
    "risk_pct": 8.8,
    "target_pct": 26.3,
-   "days_held": 7,
-   "last_date": "2026-11-16",
-   "last_close": 2673.0,
-   "ret_pct": 8.75,
-   "max_up_pct": 8.79,
+   "days_held": 8,
+   "last_date": "2026-11-17",
+   "last_close": 2672.0,
+   "ret_pct": 8.71,
+   "max_up_pct": 9.24,
    "max_down_pct": 0.0,
    "horizon": {
     "1": 1.06,
@@ -722,7 +809,7 @@
     "5": 5.21
    },
    "status": "保有中",
-   "open_r": 1.0
+   "open_r": 0.99
   },
   {
    "date": "2026-11-06",
@@ -743,10 +830,10 @@
    "target": 2734.9,
    "risk_pct": 9.7,
    "target_pct": 29.2,
-   "days_held": 7,
-   "last_date": "2026-11-16",
-   "last_close": 2111.0,
-   "ret_pct": -0.24,
+   "days_held": 8,
+   "last_date": "2026-11-17",
+   "last_close": 2100.0,
+   "ret_pct": -0.76,
    "max_up_pct": 0.43,
    "max_down_pct": -4.82,
    "horizon": {
@@ -755,7 +842,7 @@
     "5": -1.51
    },
    "status": "保有中",
-   "open_r": -0.02
+   "open_r": -0.08
   },
   {
    "date": "2026-11-04",
@@ -777,10 +864,10 @@
    "target": 7008.4,
    "risk_pct": 11.4,
    "target_pct": 34.2,
-   "days_held": 8,
-   "last_date": "2026-11-16",
-   "last_close": 5358.0,
-   "ret_pct": 2.57,
+   "days_held": 9,
+   "last_date": "2026-11-17",
+   "last_close": 5160.0,
+   "ret_pct": -1.23,
    "max_up_pct": 4.61,
    "max_down_pct": -6.68,
    "horizon": {
@@ -788,8 +875,14 @@
     "3": -1.03,
     "5": 0.75
    },
-   "status": "保有中",
-   "open_r": 0.23
+   "exit": {
+    "date": "2026-11-17",
+    "price": 5160.0,
+    "reason": "高値後の安値割れ",
+    "ret_pct": -1.23,
+    "r": -0.11
+   },
+   "status": "高値後の安値割れ"
   },
   {
    "date": "2026-11-05",
@@ -810,10 +903,10 @@
    "target": 1190.3,
    "risk_pct": 10.8,
    "target_pct": 32.4,
-   "days_held": 8,
-   "last_date": "2026-11-16",
-   "last_close": 884.0,
-   "ret_pct": -1.67,
+   "days_held": 9,
+   "last_date": "2026-11-17",
+   "last_close": 886.0,
+   "ret_pct": -1.45,
    "max_up_pct": 2.0,
    "max_down_pct": -7.56,
    "horizon": {
@@ -822,7 +915,7 @@
     "5": -2.0
    },
    "status": "保有中",
-   "open_r": -0.15
+   "open_r": -0.13
   },
   {
    "date": "2026-11-04",
@@ -844,10 +937,10 @@
    "target": 3093.4,
    "risk_pct": 15.9,
    "target_pct": 47.7,
-   "days_held": 8,
-   "last_date": "2026-11-16",
-   "last_close": 2060.0,
-   "ret_pct": -1.67,
+   "days_held": 9,
+   "last_date": "2026-11-17",
+   "last_close": 2011.0,
+   "ret_pct": -4.01,
    "max_up_pct": 4.73,
    "max_down_pct": -11.31,
    "horizon": {
@@ -883,10 +976,10 @@
    "target": 2044.4,
    "risk_pct": 13.3,
    "target_pct": 40.0,
-   "days_held": 8,
-   "last_date": "2026-11-16",
-   "last_close": 1574.0,
-   "ret_pct": 7.81,
+   "days_held": 9,
+   "last_date": "2026-11-17",
+   "last_close": 1558.0,
+   "ret_pct": 6.71,
    "max_up_pct": 9.11,
    "max_down_pct": -0.75,
    "horizon": {
@@ -895,7 +988,7 @@
     "5": 4.73
    },
    "status": "保有中",
-   "open_r": 0.59
+   "open_r": 0.5
   },
   {
    "date": "2026-11-02",
@@ -917,16 +1010,17 @@
    "target": 3522.4,
    "risk_pct": 20.0,
    "target_pct": 60.1,
-   "days_held": 9,
-   "last_date": "2026-11-16",
-   "last_close": 2060.0,
-   "ret_pct": -6.36,
+   "days_held": 10,
+   "last_date": "2026-11-17",
+   "last_close": 2011.0,
+   "ret_pct": -8.59,
    "max_up_pct": 3.64,
    "max_down_pct": -15.55,
    "horizon": {
     "1": -5.14,
     "3": -11.36,
-    "5": -6.5
+    "5": -6.5,
+    "10": -8.59
    },
    "exit": {
     "date": "2026-11-06",
@@ -957,16 +1051,17 @@
    "target": 1217.5,
    "risk_pct": 23.9,
    "target_pct": 71.7,
-   "days_held": 9,
-   "last_date": "2026-11-16",
-   "last_close": 700.0,
-   "ret_pct": -1.27,
+   "days_held": 10,
+   "last_date": "2026-11-17",
+   "last_close": 706.0,
+   "ret_pct": -0.42,
    "max_up_pct": 6.63,
    "max_down_pct": -10.01,
    "horizon": {
     "1": -0.99,
     "3": -8.04,
-    "5": -0.71
+    "5": -0.71,
+    "10": -0.42
    },
    "exit": {
     "date": "2026-11-06",
@@ -997,16 +1092,17 @@
    "target": 2969.5,
    "risk_pct": 8.9,
    "target_pct": 26.8,
-   "days_held": 9,
-   "last_date": "2026-11-16",
-   "last_close": 2415.0,
-   "ret_pct": 3.16,
+   "days_held": 10,
+   "last_date": "2026-11-17",
+   "last_close": 2359.0,
+   "ret_pct": 0.77,
    "max_up_pct": 6.58,
    "max_down_pct": -6.54,
    "horizon": {
     "1": -1.37,
     "3": -4.36,
-    "5": 2.99
+    "5": 2.99,
+    "10": 0.77
    },
    "exit": {
     "date": "2026-11-06",
@@ -1037,10 +1133,10 @@
    "target": 4322.4,
    "risk_pct": 17.3,
    "target_pct": 52.0,
-   "days_held": 10,
-   "last_date": "2026-11-16",
-   "last_close": 2954.0,
-   "ret_pct": 3.87,
+   "days_held": 11,
+   "last_date": "2026-11-17",
+   "last_close": 2919.0,
+   "ret_pct": 2.64,
    "max_up_pct": 4.43,
    "max_down_pct": -4.22,
    "horizon": {
@@ -1050,7 +1146,7 @@
     "10": 3.87
    },
    "status": "保有中",
-   "open_r": 0.22
+   "open_r": 0.15
   },
   {
    "date": "2026-10-31",
@@ -1071,10 +1167,10 @@
    "target": 1221.5,
    "risk_pct": 24.0,
    "target_pct": 72.0,
-   "days_held": 10,
-   "last_date": "2026-11-16",
-   "last_close": 700.0,
-   "ret_pct": -1.41,
+   "days_held": 11,
+   "last_date": "2026-11-17",
+   "last_close": 706.0,
+   "ret_pct": -0.56,
    "max_up_pct": 6.48,
    "max_down_pct": -10.14,
    "horizon": {
@@ -1112,10 +1208,10 @@
    "target": 41492.9,
    "risk_pct": 18.5,
    "target_pct": 55.6,
-   "days_held": 10,
-   "last_date": "2026-11-16",
-   "last_close": 29875.0,
-   "ret_pct": 12.06,
+   "days_held": 11,
+   "last_date": "2026-11-17",
+   "last_close": 29530.0,
+   "ret_pct": 10.77,
    "max_up_pct": 13.92,
    "max_down_pct": -2.81,
    "horizon": {
@@ -1125,7 +1221,7 @@
     "10": 12.06
    },
    "status": "保有中",
-   "open_r": 0.65
+   "open_r": 0.58
   },
   {
    "date": "2026-10-30",
@@ -1146,10 +1242,10 @@
    "target": 5681.2,
    "risk_pct": 9.5,
    "target_pct": 28.5,
-   "days_held": 10,
-   "last_date": "2026-11-16",
-   "last_close": 4460.0,
-   "ret_pct": 0.9,
+   "days_held": 11,
+   "last_date": "2026-11-17",
+   "last_close": 4530.0,
+   "ret_pct": 2.49,
    "max_up_pct": 5.2,
    "max_down_pct": -7.81,
    "horizon": {
@@ -1186,10 +1282,10 @@
    "target": 2724.6,
    "risk_pct": 13.0,
    "target_pct": 39.1,
-   "days_held": 11,
-   "last_date": "2026-11-16",
-   "last_close": 2062.0,
-   "ret_pct": 5.26,
+   "days_held": 12,
+   "last_date": "2026-11-17",
+   "last_close": 2070.0,
+   "ret_pct": 5.67,
    "max_up_pct": 7.91,
    "max_down_pct": -2.91,
    "horizon": {
@@ -1226,10 +1322,10 @@
    "target": 1157.5,
    "risk_pct": 22.3,
    "target_pct": 66.8,
-   "days_held": 11,
-   "last_date": "2026-11-16",
-   "last_close": 700.0,
-   "ret_pct": 0.86,
+   "days_held": 12,
+   "last_date": "2026-11-17",
+   "last_close": 706.0,
+   "ret_pct": 1.73,
    "max_up_pct": 8.93,
    "max_down_pct": -8.07,
    "horizon": {
@@ -1266,10 +1362,10 @@
    "target": 3818.3,
    "risk_pct": 1.7,
    "target_pct": 5.0,
-   "days_held": 11,
-   "last_date": "2026-11-16",
-   "last_close": 3910.0,
-   "ret_pct": 7.57,
+   "days_held": 12,
+   "last_date": "2026-11-17",
+   "last_close": 3865.0,
+   "ret_pct": 6.33,
    "max_up_pct": 11.14,
    "max_down_pct": 0.0,
    "horizon": {
