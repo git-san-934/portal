@@ -1,12 +1,12 @@
 {
- "updated_at": "2026-11-19T02:26+09:00",
+ "updated_at": "2026-11-19T03:21+09:00",
  "latest_price_date": "2026-11-17",
  "rules": {
   "stop_buffer": 0.99,
   "rr": 3.0
  },
  "summary": {
-  "picks": 40,
+  "picks": 43,
   "with_data": 37,
   "avg_ret_pct": 1.02,
   "win_rate_pct": 48.6,
@@ -26,6 +26,45 @@
   "n_10d": 10
  },
  "rows": [
+  {
+   "date": "2026-11-19",
+   "dates": [
+    "2026-11-19"
+   ],
+   "price_date": "2026-11-18",
+   "code": "4097",
+   "name": "高圧ガス工業",
+   "rank": 1,
+   "base": null,
+   "analysis_close": 1230,
+   "status": "株価データなし"
+  },
+  {
+   "date": "2026-11-19",
+   "dates": [
+    "2026-11-19"
+   ],
+   "price_date": "2026-11-18",
+   "code": "1762",
+   "name": "高松コンストラクショングループ",
+   "rank": 2,
+   "base": null,
+   "analysis_close": 4345,
+   "status": "株価データなし"
+  },
+  {
+   "date": "2026-11-19",
+   "dates": [
+    "2026-11-19"
+   ],
+   "price_date": "2026-11-18",
+   "code": "4972",
+   "name": "綜研化学",
+   "rank": 3,
+   "base": null,
+   "analysis_close": 5160,
+   "status": "株価データなし"
+  },
   {
    "date": "2026-11-18",
    "dates": [
