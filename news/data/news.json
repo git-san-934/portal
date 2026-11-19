@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-19T10:59+09:00",
+ "updated_at": "2026-11-19T11:46+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1255,6 +1255,13 @@
     "https://www.fuji.co.jp/"
    ],
    "items": [
+    {
+     "date": "2026-11-19",
+     "title": "お知らせ IR 名証 IR エキスポ2026 出展のお知らせ",
+     "url": "https://www.fuji.co.jp/news/_ir_2026.html",
+     "source": "official",
+     "first_seen": "2026-11-19T11:46+09:00"
+    },
     {
      "date": "2026-11-13",
      "title": "お知らせ IR 2027年3月期 第2四半期(中間期)決算説明会 書き起こし 新規ウィンドウを開きます",
@@ -3728,6 +3735,13 @@
    "items": [
     {
      "date": "2026-11-19",
+     "title": "技術・研究開発 「生きがいを、経済の力に。」パナソニックHDが人口減少社会での一人ひとりの潜在価値を社会の力に変える新たな仕組み「共助の水道事業」を始動",
+     "url": "https://news.panasonic.com/jp/press/jn261119-1",
+     "source": "official",
+     "first_seen": "2026-11-19T11:46+09:00"
+    },
+    {
+     "date": "2026-11-19",
      "title": "企業・経営 Blue Yonderが新CEOの就任を発表",
      "url": "https://news.panasonic.com/jp/press/jn261119-4",
      "source": "official",
@@ -3735,7 +3749,7 @@
     },
     {
      "date": "2026-11-18",
-     "title": "製品・サービス パナソニック エレクトリックワークス、Appleウォレットの社員証を利用可能に",
+     "title": "3 2026年11月18日 製品・サービス プレスリリース パナソニック エレクトリックワークス、Appleウォレットの社員証を利用可能に",
      "url": "https://news.panasonic.com/jp/press/jn261118-1",
      "source": "official",
      "first_seen": "2026-11-18T21:16+09:00"
@@ -4141,13 +4155,6 @@
      "date": "2026-10-01",
      "title": "6 2026年10月1日 企業・経営 プレスリリース パナソニック HVAC & CC株式会社 執行役員の人事について",
      "url": "https://news.panasonic.com/jp/press/jn261001-3",
-     "source": "official",
-     "first_seen": "2026-10-01T00:00+09:00"
-    },
-    {
-     "date": "2026-10-01",
-     "title": "5 2026年10月1日 製品・サービス プレスリリース パナソニック、歯科医院専売モデル「ドルツ デンティストリー」シリーズを開発",
-     "url": "https://news.panasonic.com/jp/press/jn261001-2",
      "source": "official",
      "first_seen": "2026-10-01T00:00+09:00"
     }
