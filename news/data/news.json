@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-19T13:14+09:00",
+ "updated_at": "2026-11-19T21:10+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -638,11 +638,9 @@
    "name": "住友大阪セメント",
    "market": "JP",
    "home": "https://www.soc.co.jp/",
-   "official_status": "ok",
+   "official_status": "取得できませんでした",
    "official_pages": [
-    "https://www.soc.co.jp/news/",
-    "https://www.soc.co.jp/news/feed/",
-    "https://www.soc.co.jp/ir/news/"
+    "https://www.soc.co.jp/news/"
    ],
    "items": [
     {
@@ -660,6 +658,38 @@
      "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZDK3",
      "source": "edinet",
      "first_seen": "2026-11-12T20:52+09:00"
+    },
+    {
+     "date": "2026-11-11",
+     "time": "14:30",
+     "title": "2027年3月期第2四半期(中間期)決算短信〔日本基準〕(連結)",
+     "url": "https://www.release.tdnet.info/inbs/140120261110571375.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-11T00:00+09:00"
+    },
+    {
+     "date": "2026-11-11",
+     "time": "14:30",
+     "title": "2026年度(2027年3月期) 第2四半期(中間期)決算説明資料",
+     "url": "https://www.release.tdnet.info/inbs/140120261110571413.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-11T00:00+09:00"
+    },
+    {
+     "date": "2026-11-11",
+     "time": "14:30",
+     "title": "2027年3月期第2四半期(中間期)業績予想と実績との差異及び通期業績予想の修正に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261110571443.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-11T00:00+09:00"
+    },
+    {
+     "date": "2026-11-11",
+     "time": "14:30",
+     "title": "自己株式取得に係る事項の決定に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261110571532.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-11-11T00:00+09:00"
     },
     {
      "date": "2026-11-11",
@@ -1046,11 +1076,9 @@
    "name": "エンプラス",
    "market": "JP",
    "home": "https://www.enplas.co.jp/",
-   "official_status": "ok",
+   "official_status": "取得できませんでした",
    "official_pages": [
-    "https://www.enplas.co.jp/news/",
-    "https://www.enplas.co.jp/category/news/feed/",
-    "https://www.enplas.co.jp/ir/news/"
+    "https://www.enplas.co.jp/news/"
    ],
    "items": [
     {
@@ -1083,6 +1111,30 @@
      "url": "https://www.release.tdnet.info/inbs/140120261030560759.pdf",
      "source": "tdnet",
      "first_seen": "2026-10-30T19:28+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "time": "15:30",
+     "title": "機構改革及び人事異動に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261030561351.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T00:00+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "time": "15:30",
+     "title": "2027年3月期 第2四半期(中間期)連結業績予想と実績の差異および 通期連結業績予想の修正ならびに配当予想の修正に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261030561017.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T00:00+09:00"
+    },
+    {
+     "date": "2026-10-30",
+     "time": "15:30",
+     "title": "剰余金の配当(中間配当)に関するお知らせ",
+     "url": "https://www.release.tdnet.info/inbs/140120261030561062.pdf",
+     "source": "tdnet",
+     "first_seen": "2026-10-30T00:00+09:00"
     },
     {
      "date": "2026-10-30",
@@ -3529,6 +3581,22 @@
    "official_status": "取得できませんでした",
    "official_pages": [],
    "items": [
+    {
+     "date": "2026-11-19",
+     "time": "15:53",
+     "title": "変更報告書(提出: SH Investment, Inc)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZILX",
+     "source": "edinet",
+     "first_seen": "2026-11-19T21:10+09:00"
+    },
+    {
+     "date": "2026-11-19",
+     "time": "15:31",
+     "title": "大量保有報告書(提出: ゼナーアセットマネジメントエルエルピー)",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZI17",
+     "source": "edinet",
+     "first_seen": "2026-11-19T21:10+09:00"
+    },
     {
      "date": "2026-11-10",
      "time": "16:47",
