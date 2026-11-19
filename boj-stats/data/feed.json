@@ -1,10 +1,17 @@
 {
- "generated_at": "2026-11-19T13:33+09:00",
+ "generated_at": "2026-11-19T17:45+09:00",
  "report_date": "2026-11-19",
  "days": [
   {
    "date": "2026-11-19",
    "items": [
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/reri/index.htm",
+     "name": "実質輸出入の動向",
+     "url": "https://www.boj.or.jp/research/research_data/reri/index.htm",
+     "time": "16:00"
+    },
     {
      "kind": "news",
      "id": "https://www.boj.or.jp/mopo/diet/d_state/dst261119a.htm",
@@ -5885,7 +5892,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-19T13:33+09:00",
+  "checked_at": "2026-11-19T17:45+09:00",
   "counts": {
    "new": 0,
    "unchanged": 117,
