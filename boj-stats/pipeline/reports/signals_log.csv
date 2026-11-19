@@ -154,3 +154,4 @@ detected_on,obs_date,db,code,name,type,dir,detail
 2026-11-18,2026-10,ESTAT,TRADE_EX_ASEAN,貿易統計 輸出 対ASEAN,1年高値更新,上昇,"18,648億円"
 2026-11-18,2026-10,ESTAT,TRADE_EX_ASEAN_YOY,貿易統計 輸出 対ASEAN 前年同月比,1年高値更新,上昇,34.8%
 2026-11-18,2026-10,ESTAT,TRADE_EX_TAIWAN,貿易統計 輸出 対台湾,1年高値更新,上昇,"9,772億円"
+2026-11-19,2026-11-17,FM08,FXERD31,ユーロドル 9時（東京市場）,1年安値更新,低下,1.0998ドル/ユーロ
