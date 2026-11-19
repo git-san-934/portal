@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-19T07:53+09:00",
+ "updated_at": "2026-11-19T10:59+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,20 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-19",
+     "title": "『カラオケJOYSOUND for Nintendo Switch』のNintendo Switch 2 向け無料アップデートを本日より配信。本体の内蔵マイクで、別売のマイクがなくてもカラオケが楽しめる。",
+     "url": "https://www.nintendo.com/jp/topics/article/9e9fce02-b4d6-4f31-a6ad-efced93a24d7",
+     "source": "official",
+     "first_seen": "2026-11-19T10:59+09:00"
+    },
+    {
+     "date": "2026-11-19",
+     "title": "Nintendo Storeでホリデーキャンペーンを開催中。ダウンロードソフトを手渡しでプレゼントできる「ダウンロード版ギフトセット」も。",
+     "url": "https://www.nintendo.com/jp/topics/article/4a65892c-ff07-4760-aae5-36c23f24b7dd",
+     "source": "official",
+     "first_seen": "2026-11-19T10:59+09:00"
+    },
     {
      "date": "2026-11-18",
      "title": "「サウンド系 ワークショップ」のお申し込み受付を開始しました。",
@@ -424,20 +438,6 @@
      "url": "https://www.nintendo.com/jp/character/splatoon/gallery/index.html",
      "source": "official",
      "first_seen": "2026-10-23T17:50+09:00"
-    },
-    {
-     "date": "2026-10-23",
-     "title": "「デザイン系 社員懇談会&ポートフォリオ相談会 ハードウェア制作(プロダクトデザイン)」のお申し込み受付を開始しました。",
-     "url": "https://www.nintendo.co.jp/jobs/recruit/event/design_product.html",
-     "source": "official",
-     "first_seen": "2026-10-23T17:50+09:00"
-    },
-    {
-     "date": "2026-10-23",
-     "title": "【10月27日追加】「ファミリーコンピュータ&スーパーファミコン&ゲームボーイ Nintendo Classics」に追加タイトルを配信開始。",
-     "url": "https://www.nintendo.com/jp/topics/article/fb255ded-796c-40fa-b234-f062b3b06894",
-     "source": "official",
-     "first_seen": "2026-10-23T10:34+09:00"
     }
    ]
   },
@@ -1553,6 +1553,13 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-11-19",
+     "title": "「サステナビリティ」を更新しました。",
+     "url": "https://www.kioxia-holdings.com/ja-jp/sustainability.html",
+     "source": "official",
+     "first_seen": "2026-11-19T10:59+09:00"
+    },
     {
      "date": "2026-11-17",
      "title": "AEO制度に基づく「特定輸出者」の承認を取得",
@@ -3720,6 +3727,13 @@
    ],
    "items": [
     {
+     "date": "2026-11-19",
+     "title": "企業・経営 Blue Yonderが新CEOの就任を発表",
+     "url": "https://news.panasonic.com/jp/press/jn261119-4",
+     "source": "official",
+     "first_seen": "2026-11-19T10:59+09:00"
+    },
+    {
      "date": "2026-11-18",
      "title": "製品・サービス パナソニック エレクトリックワークス、Appleウォレットの社員証を利用可能に",
      "url": "https://news.panasonic.com/jp/press/jn261118-1",
@@ -3728,7 +3742,7 @@
     },
     {
      "date": "2026-11-17",
-     "title": "製品・サービス LUMIX初のコンパクトシネマカメラ LUMIX SHX1(AU-SHX1)発売",
+     "title": "1 2026年11月17日 製品・サービス プレスリリース LUMIX初のコンパクトシネマカメラ LUMIX SHX1(AU-SHX1)発売",
      "url": "https://news.panasonic.com/jp/press/jn261117-3",
      "source": "official",
      "first_seen": "2026-11-18T01:29+09:00"
@@ -4136,13 +4150,6 @@
      "url": "https://news.panasonic.com/jp/press/jn261001-2",
      "source": "official",
      "first_seen": "2026-10-01T00:00+09:00"
-    },
-    {
-     "date": "2026-09-30",
-     "title": "6 2026年9月30日 製品・サービス プレスリリース 充電式ニッケル水素電池「エネループ」に対応したUSB Type-C入力の急速充電器を新発売",
-     "url": "https://news.panasonic.com/jp/press/jn260930-1",
-     "source": "official",
-     "first_seen": "2026-09-30T00:00+09:00"
     }
    ]
   },
