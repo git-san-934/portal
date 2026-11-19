@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-19T12:49+09:00",
+ "updated_at": "2026-11-19T13:14+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -3735,6 +3735,13 @@
    "items": [
     {
      "date": "2026-11-19",
+     "title": "製品・サービス パナソニックが卓上にも置ける次亜塩素酸 空間除菌脱臭機「ジアイーノ」F-ML1000Dを発売",
+     "url": "https://news.panasonic.com/jp/press/jn261119-3",
+     "source": "official",
+     "first_seen": "2026-11-19T13:14+09:00"
+    },
+    {
+     "date": "2026-11-19",
      "title": "技術・研究開発 「生きがいを、経済の力に。」パナソニックHDが人口減少社会での一人ひとりの潜在価値を社会の力に変える新たな仕組み「共助の水道事業」を始動",
      "url": "https://news.panasonic.com/jp/press/jn261119-1",
      "source": "official",
@@ -4150,13 +4157,6 @@
      "url": "https://news.panasonic.com/jp/topics/206902",
      "source": "official",
      "first_seen": "2026-10-05T00:00+09:00"
-    },
-    {
-     "date": "2026-10-01",
-     "title": "6 2026年10月1日 企業・経営 プレスリリース パナソニック HVAC & CC株式会社 執行役員の人事について",
-     "url": "https://news.panasonic.com/jp/press/jn261001-3",
-     "source": "official",
-     "first_seen": "2026-10-01T00:00+09:00"
     }
    ]
   },
