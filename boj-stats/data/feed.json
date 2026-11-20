@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-20T12:08+09:00",
+ "generated_at": "2026-11-20T13:00+09:00",
  "report_date": "2026-11-20",
  "days": [
   {
@@ -40,6 +40,13 @@
      "type": "トレンド転換",
      "dir": "上昇",
      "detail": "3期移動平均が12期移動平均を上抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/release_2026/rel261120a.htm",
+     "name": "情報セキュリティ・セミナー「モノをどう見分け、どう認証するか」開催のお知らせ",
+     "url": "https://www.boj.or.jp/about/release_2026/rel261120a.htm",
+     "time": "13:00"
     },
     {
      "kind": "news",
@@ -5940,10 +5947,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-20T12:08+09:00",
+  "checked_at": "2026-11-20T13:00+09:00",
   "counts": {
-   "new": 3,
-   "unchanged": 114,
+   "new": 0,
+   "unchanged": 117,
    "error": 0,
    "stale": 0
   },
