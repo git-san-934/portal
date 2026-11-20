@@ -9130,6 +9130,16 @@ https://www.keyence.co.jp/products/controls/wireless-system/ws-1000/voice/sanoh.
 https://www.keyence.co.jp/products/controls/wireless-system/ws-1000/voice/togoh.jsp
 https://www.keyence.co.jp/products/controls/wireless-system/ws-1000/voice/ykk.jsp
 https://www.keyence.co.jp/products/development-support/
+https://www.keyence.co.jp/products/development-support/blog/
+https://www.keyence.co.jp/products/development-support/blog/aging-long-run-test-automation.jsp
+https://www.keyence.co.jp/products/development-support/blog/board-function-test-automation.jsp
+https://www.keyence.co.jp/products/development-support/blog/custom-test-jig-replacement.jsp
+https://www.keyence.co.jp/products/development-support/blog/embedded-hils-alternative-test.jsp
+https://www.keyence.co.jp/products/development-support/blog/embedded-integration-test-automation.jsp
+https://www.keyence.co.jp/products/development-support/blog/function-generator-alternative-signal-test.jsp
+https://www.keyence.co.jp/products/development-support/blog/noise-abnormal-condition-test-automation.jsp
+https://www.keyence.co.jp/products/development-support/blog/oscilloscope-waveform-automatic-judgment.jsp
+https://www.keyence.co.jp/products/development-support/blog/sensor-communication-device-emulation.jsp
 https://www.keyence.co.jp/products/development-support/verification-system/
 https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/
 https://www.keyence.co.jp/products/development-support/verification-system/tc-3000/downloads/
