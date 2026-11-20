@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-20T09:07+09:00",
+ "generated_at": "2026-11-20T12:08+09:00",
  "report_date": "2026-11-20",
  "days": [
   {
@@ -40,6 +40,13 @@
      "type": "トレンド転換",
      "dir": "上昇",
      "detail": "3期移動平均が12期移動平均を上抜け"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/research/imes/mes/mes_261120.htm",
+     "name": "金融研究所 英文機関誌 Monetary and Economic Studies（第44巻）",
+     "url": "https://www.boj.or.jp/research/imes/mes/mes_261120.htm",
+     "time": "11:00"
     }
    ]
   },
@@ -4049,10 +4056,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-19",
-   "date": "2026-11-18",
-   "value": "1.872",
-   "change": "-0.006%pt",
+   "updated": "2026-11-20",
+   "date": "2026-11-19",
+   "value": "1.853",
+   "change": "-0.019%pt",
    "implication": "2年債利回りは今後1〜2年の政策金利予想をよく映す。上昇は追加利上げ観測の強まりを示す。",
    "source": [
     "財務省 国債金利情報",
@@ -4067,10 +4074,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-19",
-   "date": "2026-11-18",
-   "value": "2.916",
-   "change": "-0.009%pt",
+   "updated": "2026-11-20",
+   "date": "2026-11-19",
+   "value": "2.87",
+   "change": "-0.046%pt",
    "implication": "10年債利回りの上昇は債券価格の下落を意味し、住宅ローン固定金利や企業の借入コストの上昇、REIT・高PER株には逆風、利ざや面で銀行・保険株には追い風とされる。日米金利差が縮めば円高要因にもなりうる。",
    "source": [
     "財務省 国債金利情報",
@@ -4085,10 +4092,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-19",
-   "date": "2026-11-18",
-   "value": "4.082",
-   "change": "+0.013%pt",
+   "updated": "2026-11-20",
+   "date": "2026-11-19",
+   "value": "4.03",
+   "change": "-0.052%pt",
    "implication": "超長期金利の上昇は財政や物価への懸念（タームプレミアム）の高まりを映すことが多く、生保・年金の需要動向にも左右される。",
    "source": [
     "財務省 国債金利情報",
@@ -5933,10 +5940,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-20T09:07+09:00",
+  "checked_at": "2026-11-20T12:08+09:00",
   "counts": {
-   "new": 8,
-   "unchanged": 109,
+   "new": 3,
+   "unchanged": 114,
    "error": 0,
    "stale": 0
   },
