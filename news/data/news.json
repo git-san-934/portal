@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-20T13:00+09:00",
+ "updated_at": "2026-11-20T21:12+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -4383,6 +4383,13 @@
     "https://www.mirait-one.com/info/"
    ],
    "items": [
+    {
+     "date": "2026-11-20",
+     "title": "株式会社森とみずのちからとの協定解除のお知らせ",
+     "url": "https://www.mirait-one.com/info/002035.html",
+     "source": "official",
+     "first_seen": "2026-11-20T21:12+09:00"
+    },
     {
      "date": "2026-11-12",
      "title": "IRサイト更新情報(月次受注状況のお知らせ(10月分))",
