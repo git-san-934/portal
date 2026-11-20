@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-20T10:53+09:00",
+ "updated_at": "2026-11-20T11:34+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1614,6 +1614,13 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-11-20",
+     "title": "「学研 まんがでよくわかるシリーズ」の「フラッシュメモリのひみつ【増補改訂版】」の寄贈について",
+     "url": "https://www.kioxia.com/ja-jp/about/news/2026/20261120-1.html",
+     "source": "official",
+     "first_seen": "2026-11-20T11:34+09:00"
+    },
     {
      "date": "2026-11-19",
      "title": "「サステナビリティ」を更新しました。",
