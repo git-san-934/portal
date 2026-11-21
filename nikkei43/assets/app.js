@@ -40,13 +40,18 @@
   const REBUY_TH = -0.2;
   const REBUY_FRAC = 0.1;
   const TAX = 0.20315; // 特定口座の譲渡益課税
-  const DEFAULTS = { start: "2026-09-28", daily: 10000, scale: 0, period: "y1" };
-  const SETTINGS_VERSION = 2; // 2: 追加なしを標準にした(以前に保存した追加額の設定は「なし」に戻す)
+  const DEFAULTS = { start: "2026-09-28", daily: 5000, scale: 0, period: "y1" };
+  // 3: 2026-11-24 から毎日5千円に減額(以前に保存した毎日の金額は5千円に戻す)。2: 追加なしを標準にした
+  const SETTINGS_VERSION = 3;
+  // 自分の積立で、この日までは毎日1万円で買っていた(それ以降は設定の「毎日の金額」)
+  const PAST_DAILY = { until: "2026-11-20", amount: 10000 };
 
   const $ = (id) => document.getElementById(id);
   const statusEl = $("status");
 
   const yen = (v) => `${Math.round(v).toLocaleString("ja-JP")}円`;
+  // 1万円未満は「5,000円」のように円で出す
+  const amt = (v) => (v < 10000 ? yen(v) : man(v));
   const man = (v) => {
     const m = v / 10000;
     return `${m.toLocaleString("ja-JP", { maximumFractionDigits: m < 10 ? 1 : 0 })}万円`;
@@ -85,7 +90,10 @@
   function loadSettings() {
     try {
       const s = JSON.parse(localStorage.getItem(STORE_KEY) || "{}");
-      if (s.v !== SETTINGS_VERSION) s.scale = DEFAULTS.scale;
+      if (s.v !== SETTINGS_VERSION) {
+        s.scale = DEFAULTS.scale;
+        s.daily = DEFAULTS.daily;
+      }
       return { ...DEFAULTS, ...s, v: SETTINGS_VERSION };
     } catch {
       return { ...DEFAULTS };
@@ -170,8 +178,9 @@
     const { extras } = scale > 0 ? planExtras(start, end - 1, scale) : { extras: {} };
     for (let i = start; i <= end; i++) {
       const nav = state.nav[i];
-      units += daily / nav;
-      invested += daily;
+      const d = typeof daily === "function" ? daily(i) : daily;
+      units += d / nav;
+      invested += d;
       {
         const a = extras[i] ? extras[i].a : 0;
         if (a) {
@@ -197,11 +206,12 @@
     for (let i = start; i <= end; i++) {
       const nav = state.nav[i];
       const a = extras[i] ? extras[i].a : 0;
+      const d = typeof daily === "function" ? daily(i) : daily;
       const fromCash = Math.min(cash, a);
       cash -= fromCash;
-      invested += daily + a - fromCash;
-      units += (daily + a) / nav;
-      cost += daily + a;
+      invested += d + a - fromCash;
+      units += (d + a) / nav;
+      cost += d + a;
       if (i > start && state.rebuy[i - 1] && cash > 0) {
         const r = cash * REBUY_FRAC;
         cash -= r;
@@ -228,6 +238,12 @@
     return { invested, hold, cash, value, units, cost, sells, sigs, lastSig, taxPaid, ret: invested ? value / invested - 1 : 0 };
   }
 
+  // 自分の積立の毎日の金額: PAST_DAILY.until までは実際に買った1万円、それ以降は設定の金額
+  const myDaily = () => {
+    const daily = state.settings.daily;
+    return (i) => (state.dates[i] <= PAST_DAILY.until ? PAST_DAILY.amount : daily);
+  };
+
   // 自分の積立の開始日(のデータ上の位置)。まだデータがなければ -1
   const startIndex = () => state.dates.findIndex((d) => d >= state.settings.start);
 
@@ -248,11 +264,11 @@
     const amount = $("advice-amount");
     amount.textContent = "";
     if (noExtra) {
-      amount.textContent = `いつもどおり ${man(daily)}(追加買いなし)`;
+      amount.textContent = `いつもどおり ${amt(daily)}(追加買いなし)`;
     } else if (t > 0 && today) {
-      amount.append(`${man(daily)} `, Object.assign(el("span", "plus"), { textContent: `+ 追加 ${man(extra)}` }));
+      amount.append(`${amt(daily)} `, Object.assign(el("span", "plus"), { textContent: `+ 追加 ${man(extra)}` }));
     } else {
-      amount.textContent = t > 0 ? `いつもどおり ${man(daily)}(追加は見送り)` : `いつもどおり ${man(daily)}`;
+      amount.textContent = t > 0 ? `いつもどおり ${amt(daily)}(追加は見送り)` : `いつもどおり ${amt(daily)}`;
     }
 
     const next = TIERS[t]; // 次の段階(なければ undefined)
@@ -301,7 +317,7 @@
     const rebuy = state.rebuy[last];
     const { start, daily, scale } = state.settings;
     const s = startIndex();
-    const q = s >= 0 ? simulateSell(s, last, daily, scale) : null;
+    const q = s >= 0 ? simulateSell(s, last, myDaily(), scale) : null;
     const sig = q != null && q.lastSig === last;
     const cooling = q != null && !sig && q.lastSig >= s && last - q.lastSig <= SELL_GAP;
     const avg = q && q.units > 0 ? q.cost / q.units : null; // 平均取得単価(1万口あたり)
@@ -543,7 +559,7 @@
     const { extras } = planExtras(0, state.nav.length - 2, scale);
     // 売りの印は、自分の積立の開始日からの持ち分で出た合図の次の営業日(実際に売る日)
     const st = startIndex();
-    const sold = new Set(st >= 0 ? simulateSell(st, state.nav.length - 1, state.settings.daily, scale).sigs.map((j) => j + 1) : []);
+    const sold = new Set(st >= 0 ? simulateSell(st, state.nav.length - 1, myDaily(), scale).sigs.map((j) => j + 1) : []);
     const marks = [];
     for (let i = Math.max(1, s); i <= e; i++) {
       const x = extras[i];
@@ -620,7 +636,7 @@
       return;
     }
     const e = state.dates.length - 1;
-    const r = simulate(s, e, daily, scale);
+    const r = simulate(s, e, myDaily(), scale);
     const pl = r.value - r.invested;
     box.append(
       tile("投資額", yen(r.invested), r.extra ? `うち追加 ${man(r.extra)}` : null),
@@ -629,7 +645,7 @@
       tile("平均取得単価", yen(r.invested / r.units), "1万口あたり"),
       tile("投資した日数", `${e - s + 1}日`, `追加 ${r.count}回`)
     );
-    const q = simulateSell(s, e, daily, scale);
+    const q = simulateSell(s, e, myDaily(), scale);
     // 現金から払った暴落買いの分は外から入れずに済んだお金なので、差に足す
     const diff = q.value + (r.invested - q.invested) - r.value;
     box.append(
