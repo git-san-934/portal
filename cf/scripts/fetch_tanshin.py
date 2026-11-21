@@ -3,6 +3,7 @@
 
 TDnet の公開ページ(www.release.tdnet.info)は直近1か月分の開示しか載せないので、毎日動かして取りこぼさないようにする。
 一度読んだ短信は tanshin.json の seen に残し、次からは読まない。
+読んだ短信の数字は、過去の短信と比べられるよう cf/data/tanshin_hist.json にも残し続ける(古い短信は TDnet から消えて取り直せないため)。
 GitHub Actions(.github/workflows/update-cf-tanshin.yml)から実行される。
 """
 
@@ -25,6 +26,7 @@ JST = timezone(timedelta(hours=9))
 DAYS = int(os.environ.get("TANSHIN_DAYS", 31))
 CF_DIR = Path(__file__).resolve().parent.parent
 OUT_PATH = CF_DIR / "data" / "tanshin.json"
+HIST_PATH = CF_DIR / "data" / "tanshin_hist.json"
 HEADERS = {"User-Agent": "Mozilla/5.0 (portal-cf-tanshin)"}
 
 ROW_RE = re.compile(r"<tr>(.*?)</tr>", re.S)
@@ -131,6 +133,12 @@ def main():
         out = {"v": tanshin.VERSION, "companies": {}, "seen": []}
     comp = out["companies"]
     seen = set(out["seen"])
+    hist_out = load(HIST_PATH, {})
+    if hist_out.get("v") != tanshin.HIST_VERSION:
+        hist_out = {"v": tanshin.HIST_VERSION, "companies": {}}
+    hist = hist_out["companies"]
+    # 履歴を始める前に読んだ最新の短信も、履歴に入れておく
+    added = sum(tanshin.hist_add(hist, code, rec) for code, rec in comp.items())
     today = datetime.now(JST).date()
     todo = []
     for i in range(DAYS):
@@ -159,6 +167,9 @@ def main():
             continue
         rec = tanshin.extract(facts, doc["title"])
         rec.update({"date": doc["date"], "time": doc["time"], "title": doc["title"], "doc": name})
+        # 履歴には、訂正などで出直した古い期の短信も入れる
+        if doc["code"] in codes:
+            added += tanshin.hist_add(hist, doc["code"], rec)
         old = comp.get(doc["code"])
         # 訂正で古い期の短信が出直すこともあるので、決算期・四半期が同じか新しいものだけ使う
         if tanshin.usable(rec) and (old is None or tanshin.order(rec) >= tanshin.order(old)):
@@ -174,8 +185,12 @@ def main():
     out["seen"] = sorted(s for s in seen if s[4:12] >= limit)
     if changed or "updated" not in out:
         out["updated"] = today.isoformat()
+    # 履歴は一覧から外した銘柄の分も残す(取り直せないため)
+    if added or "updated" not in hist_out:
+        hist_out["updated"] = today.isoformat()
+        HIST_PATH.write_text(json.dumps(hist_out, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n", encoding="utf-8")
     OUT_PATH.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":"), sort_keys=True) + "\n", encoding="utf-8")
-    log(f"{changed} 社の短信を新しくしました。{len(comp)} 社の短信があります")
+    log(f"{changed} 社の短信を新しくしました。{len(comp)} 社の短信があります。履歴に {added} 件を入れました")
 
 
 if __name__ == "__main__":
