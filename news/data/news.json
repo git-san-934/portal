@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-23T12:44+09:00",
+ "updated_at": "2026-11-23T22:41+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -2926,6 +2926,14 @@
     "q4:https://ir.schrodinger.com"
    ],
    "items": [
+    {
+     "date": "2026-11-23",
+     "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
+     "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-6ec037fc8/default.aspx",
+     "source": "official",
+     "first_seen": "2026-11-23T22:41+09:00",
+     "title_ja": "シュレディンガー、ナスダック上場規則5635(c)(4)に基づく誘致助成金を報告"
+    },
     {
      "date": "2026-11-04",
      "title": "Schrödinger Reports Third Quarter 2026 Financial Results",
