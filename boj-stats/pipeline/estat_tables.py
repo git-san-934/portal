@@ -2,12 +2,12 @@
 """e-Stat の新着（政府統計コード・公開日）から、その日に公表された表を探して中身をテキストにする。
 
 - released(toukei, day): ファイル一覧（新しい順）から公開日が day の表を返す。
-  [{"title", "path", "period", "url", "type"}]。Excel → CSV → それ以外の順に1つ選ぶ（PDF だけの表は url が None）
+  [{"title", "path", "period", "url", "type", "pdf"}]。Excel → CSV の順に1つ選ぶ（無ければ url は None）。PDF があれば pdf に URL
 - table_text(url, type): Excel（xlsx）と CSV を「列をタブで区切った行」のテキストにする（分析の材料）。
   シートが多い・行が長い表は先頭から上限まで。古い Excel 形式（xls）は標準ライブラリでは読めないので None
 標準ライブラリのみ（xlsx は xlsx.py）。
 """
-import csv, html, io, re, urllib.request
+import csv, html, io, os, re, shutil, subprocess, tempfile, urllib.request
 
 import xlsx
 
@@ -56,6 +56,8 @@ def released(toukei, day, pages=2):
                 "period": period.group(1).strip() if period else "",
                 "url": f"{ESTAT}/stat-search/file-download?statInfId={best[0]}&fileKind={best[1]}" if best else None,
                 "type": best[2] if best else (dls[0][2] if dls else ""),
+                # Excel・CSV が無い表は PDF の URL（日次チェックでダウンロードして読む）
+                "pdf": next((f"{ESTAT}/stat-search/file-download?statInfId={u}&fileKind={k}" for u, k, t in dls if t == "PDF"), None),
             })
         if older or not arts:
             break
@@ -111,6 +113,20 @@ def table_text(url, type_, limit=MAX_CHARS):
         if sum(len(p) for p in parts) > limit:
             break
     return "\n\n".join(parts)[:limit] or None
+
+
+def pdf_text(url, pages=4, limit=MAX_CHARS):
+    """PDF の先頭ページをテキストにする（pdftotext があるときだけ。無ければ None で、PDF を直接読む）。"""
+    if not url or not shutil.which("pdftotext"):
+        return None
+    with tempfile.TemporaryDirectory() as d:
+        path = os.path.join(d, "a.pdf")
+        with open(path, "wb") as f:
+            f.write(_get(url))
+        r = subprocess.run(["pdftotext", "-layout", "-l", str(pages), path, "-"], capture_output=True, timeout=120)
+    text = re.sub(r"[ \t]{3,}", "  ", r.stdout.decode("utf-8", "replace"))
+    text = re.sub(r"\n{3,}", "\n\n", text).strip()
+    return text[:limit] or None
 
 
 if __name__ == "__main__":
