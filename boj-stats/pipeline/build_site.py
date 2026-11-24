@@ -26,7 +26,9 @@ SOURCES = {
     "ESTAT": ("政府統計の総合窓口 e-Stat", "https://www.e-stat.go.jp/"),
     "ACM": ("日本銀行 営業毎旬報告", "https://www.boj.or.jp/statistics/boj/other/acmai/index.htm"),
 }
-TRADE = ("財務省 貿易統計（税関の速報・e-Stat 貿易概況）", "https://www.customs.go.jp/toukei/info/index.htm")
+# (名前, URL) の組を並べたもの。系列ページの出典に順にリンクを出す
+TRADE = ("財務省 貿易統計（税関の速報）", "https://www.customs.go.jp/toukei/info/index.htm",
+         "政府統計の総合窓口 e-Stat（貿易概況・品別国別表）", "https://www.e-stat.go.jp/")
 
 # (見出し, 判定) の順に最初に当てはまったカテゴリに入れる
 CATEGORIES = [

@@ -6,6 +6,13 @@
   const COUNTRY = "106";
   const { el, fmtMonth, fmtVal } = MultiLine;
   const $ = (x) => document.getElementById(x);
+  const estatLink = () => {
+    const a = el("a", null, "政府統計の総合窓口(e-Stat)");
+    a.href = "https://www.e-stat.go.jp/";
+    a.target = "_blank";
+    a.rel = "noopener";
+    return a;
+  };
   const state = { yoy: !!hit[2], avg: 1 };
   const compact = (v) => {
     const a = Math.abs(v);
@@ -72,11 +79,11 @@
         });
         $("qp-qty-head").textContent = `数量${yoy ? "(前年同月比)" : `(${unit})`}`;
         $("qp-price-head").textContent = `単価${yoy ? "(前年同月比)" : `(${pu})`}`;
-        $("qp-note").textContent =
+        $("qp-note").replaceChildren(
           `直近5年。${state.avg === 3 ? "3か月の平均(単価は3か月の輸出額合計÷数量合計)。" : ""}` +
           "単価は輸出額÷数量で出した平均単価で、容量や種類など中身の構成が変わっても動きます。" +
           (yoy ? "極端な値は軸の端で切っています。" : "") +
-          "出典: 財務省 貿易統計 品別国別表(e-Stat)。";
+          "出典: 財務省 貿易統計 品別国別表、", estatLink(), "。");
 
         const tbl = $("qp-table");
         const head = el("tr");
