@@ -1,5 +1,6 @@
 (() => {
-  // 新着は当日(日本時間)の分だけ表示する
+  // 新着は最新の新着日とその前の営業日の分を表示する(前の営業日 = それより前で新着のある平日。
+  // 月曜なら前の金曜、祝日明けなら祝日の前の日。間の土日・祝日に新着があればそれも出す)
   const todayJst = () => new Date().toLocaleDateString("sv-SE", { timeZone: "Asia/Tokyo" });
   let data = null;
   let filter = "all";
@@ -40,10 +41,23 @@
       .map((d) => ({ date: d.date, items: d.items.filter((it) => (filter === "all" || it.kind === filter) && !SG.HIDDEN.has(it.id)) }))
       .filter((d) => d.items.length);
     const today = todayJst();
-    const todays = days.filter((d) => d.date === today);
+    // 表示する期間は絞り込みに関係なく、すべての新着の日付で決める
+    const all = data.days.filter((d) => d.items.some((it) => !SG.HIDDEN.has(it.id))).map((d) => d.date);
+    if (!all.length) {
+      box.append(el("p", "empty", "新着はまだありません"));
+      return;
+    }
+    const latest = all[0];
+    const isWeekday = (d) => {
+      const [y, m, day] = d.split("-").map(Number);
+      const w = new Date(y, m - 1, day).getDay();
+      return w !== 0 && w !== 6;
+    };
+    const prev = all.find((d) => d < latest && isWeekday(d)) || latest;
+    const todays = days.filter((d) => d.date >= prev && d.date <= latest);
+    if (latest !== today) box.append(el("p", "empty", `今日(${fmtDate(today)})の新着はまだありません。${fmtDate(latest)} とその前の営業日の分です`));
     if (!todays.length) {
-      const last = days[0];
-      box.append(el("p", "empty", `今日(${fmtDate(today)})の新着はまだありません` + (last ? `。最後の新着は ${fmtDate(last.date)} です` : "")));
+      box.append(el("p", "empty", "この条件の新着はありません"));
       return;
     }
     const dayBlock = (d) => {
