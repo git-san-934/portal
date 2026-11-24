@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-24T15:58+09:00",
+ "updated_at": "2026-11-24T23:18+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -646,9 +646,11 @@
    "name": "住友大阪セメント",
    "market": "JP",
    "home": "https://www.soc.co.jp/",
-   "official_status": "取得できませんでした",
+   "official_status": "ok",
    "official_pages": [
-    "https://www.soc.co.jp/news/"
+    "https://www.soc.co.jp/news/",
+    "https://www.soc.co.jp/news/feed/",
+    "https://www.soc.co.jp/ir/news/"
    ],
    "items": [
     {
@@ -2499,6 +2501,14 @@
    ],
    "items": [
     {
+     "date": "2026-11-24",
+     "title": "Paribu and Circle Sign MOU to Explore USDC Access and Onchain Finance in Türkiye Paribu and Circle International Bermuda Limited today announced they have signed a memorandum of understanding (MOU) to",
+     "url": "https://www.circle.com/pressroom/paribu-and-circle-sign-mou-to-explore-usdc-access-and-onchain-finance-in-turkiye",
+     "source": "official",
+     "first_seen": "2026-11-24T23:18+09:00",
+     "title_ja": "パリブとサークル、トゥルキエでUSDCアクセスとオンチェーン・ファイナンスを検討する覚書に署名 パリブとサークル・インターナショナル・バミューダ・リミテッドは本日、以下の覚書（MOU）に署名したと発表した。"
+    },
+    {
      "date": "2026-11-18",
      "title": "DBS and Circle Expand Institutional Access to USDC in Asia Eligible institutional clients will have direct access to USDC issuance and redemption supported by near-instant, 24/7 USD-USDC settlement ca",
      "url": "https://www.circle.com/pressroom/dbs-and-circle-expand-institutional-access-to-usdc-in-asia",
@@ -3836,6 +3846,13 @@
    "items": [
     {
      "date": "2026-11-24",
+     "title": "環境・サステナビリティ / Stories 窓や壁がエネルギーを生み出す ガラス型ペロブスカイト太陽電池、本格量産への挑戦",
+     "url": "https://news.panasonic.com/jp/stories/19179",
+     "source": "official",
+     "first_seen": "2026-11-24T23:18+09:00"
+    },
+    {
+     "date": "2026-11-24",
      "title": "企業・経営 パナソニック サイクルテック、中核拠点・柏原工場に53年ぶりとなる新棟が完成し稼働を開始",
      "url": "https://news.panasonic.com/jp/press/jn261124-1",
      "source": "official",
@@ -4078,7 +4095,7 @@
     },
     {
      "date": "2026-10-28",
-     "title": "企業・経営 / Stories 欧州で挑む、次世代データセンター冷却――液冷システム事業化の舞台裏",
+     "title": "4 2026年10月28日 製品・サービス Stories 欧州で挑む、次世代データセンター冷却――液冷システム事業化の舞台裏",
      "url": "https://news.panasonic.com/jp/stories/19111",
      "source": "official",
      "first_seen": "2026-10-28T15:07+09:00"
@@ -4251,13 +4268,6 @@
      "url": "https://news.panasonic.com/jp/press/jn261006-2",
      "source": "official",
      "first_seen": "2026-10-06T00:00+09:00"
-    },
-    {
-     "date": "2026-10-06",
-     "title": "6 2026年10月6日 製品・サービス プレスリリース 現場映像活用サービス「Cameleo」が新たに「AI定期巡回」を2026年12月より提供開始",
-     "url": "https://news.panasonic.com/jp/press/jn261006-1",
-     "source": "official",
-     "first_seen": "2026-10-06T00:00+09:00"
     }
    ]
   },
@@ -4272,25 +4282,25 @@
    ],
    "items": [
     {
-     "date": "2026-11-10",
-     "title": "11月18日は「電線の日」 ~暮らしや社会を支える電線の役割を知っていただく機会に~",
-     "url": "https://sumitomoelectric.com/jp/press/2026/11/prs133",
-     "source": "official",
-     "first_seen": "2026-11-10T13:39+09:00"
-    },
-    {
-     "date": "2026-11-10",
-     "title": "その他 11月18日は「電線の日」 ~暮らしや社会を支える電線の役割を知っていただく機会に~",
+     "date": "2026-11-24",
+     "title": "その他 松本会長 Photo Diaryを更新しました",
      "url": "https://sumitomoelectric.com/jp/pr-news-articles?top=178",
      "source": "official",
      "first_seen": "2026-10-02T00:00+09:00"
     },
     {
-     "date": "2026-11-04",
+     "date": "2026-11-24",
      "title": "松本会長 Photo Diaryを更新しました",
      "url": "https://sumitomoelectric.com/jp/news/new_photo_diary",
      "source": "official",
      "first_seen": "2026-08-19T00:00+09:00"
+    },
+    {
+     "date": "2026-11-10",
+     "title": "11月18日は「電線の日」 ~暮らしや社会を支える電線の役割を知っていただく機会に~",
+     "url": "https://sumitomoelectric.com/jp/press/2026/11/prs133",
+     "source": "official",
+     "first_seen": "2026-11-10T13:39+09:00"
     },
     {
      "date": "2026-11-02",
