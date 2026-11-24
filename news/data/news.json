@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-24T03:45+09:00",
+ "updated_at": "2026-11-24T11:48+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,20 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-24",
+     "title": "【11月24日追加】「ニンテンドー ゲームキューブ Nintendo Classics」に『ウェーブレース ブルーストーム』を追加。",
+     "url": "https://www.nintendo.com/jp/topics/article/8cf1e987-b681-4b53-a68e-483b8d455ee7",
+     "source": "official",
+     "first_seen": "2026-11-24T11:48+09:00"
+    },
+    {
+     "date": "2026-11-24",
+     "title": "ダンドリよくテトリミノを消してテト1を目指せ。テト1カップ「ピクミン4 ダンドリ検定 コラボ祭!」開催。",
+     "url": "https://www.nintendo.com/jp/topics/article/50c12352-5a94-4241-b91b-968a01aab5b2",
+     "source": "official",
+     "first_seen": "2026-11-24T11:48+09:00"
+    },
     {
      "date": "2026-11-20",
      "title": "ニンテンドーeショップ新作ソフト情報 11/20(金)号。",
@@ -424,20 +438,6 @@
      "url": "https://www.nintendo.com/jp/topics/article/d8cda5f3-adbe-403c-98e1-66d69711d293",
      "source": "official",
      "first_seen": "2026-10-29T10:56+09:00"
-    },
-    {
-     "date": "2026-10-29",
-     "title": "「Hello! インディー」おそうじはパンダにおまかせ!?『バオバオのほっこりクリーニングサービス』",
-     "url": "https://www.nintendo.com/jp/topics/article/01b4a338-028e-44c2-8266-b8567a081f0a",
-     "source": "official",
-     "first_seen": "2026-10-29T10:56+09:00"
-    },
-    {
-     "date": "2026-10-28",
-     "title": "『Minecraft』が、より鮮やかなグラフィックにアップデートしてNintendo Switch 2 に登場。本日より発売開始。",
-     "url": "https://www.nintendo.com/jp/topics/article/c8c6ed2b-cff7-4ff5-8953-32bd770e2537",
-     "source": "official",
-     "first_seen": "2026-10-28T10:40+09:00"
     }
    ]
   },
@@ -3827,6 +3827,13 @@
    ],
    "items": [
     {
+     "date": "2026-11-24",
+     "title": "製品・サービス ローカル環境で利用可能な議事録作成AIアプリケーション「Panasonic PC Edge AI Note Taker」を提供開始",
+     "url": "https://news.panasonic.com/jp/press/jn261124-2",
+     "source": "official",
+     "first_seen": "2026-11-24T11:48+09:00"
+    },
+    {
      "date": "2026-11-20",
      "title": "4 2026年11月20日 イベント・スポンサー活動 トピックス 「COMNEXT 第4回 次世代 通信技術&ソリューション展」パナソニック インダストリーブースの展示概要と見どころ",
      "url": "https://news.panasonic.com/jp/topics/206968",
@@ -3842,7 +3849,7 @@
     },
     {
      "date": "2026-11-19",
-     "title": "技術・研究開発 「生きがいを、経済の力に。」パナソニックHDが人口減少社会での一人ひとりの潜在価値を社会の力に変える新たな仕組み「共助の水道事業」を始動",
+     "title": "3 2026年11月19日 技術・研究開発 プレスリリース 「生きがいを、経済の力に。」パナソニックHDが人口減少社会での一人ひとりの潜在価値を社会の力に変える新たな仕組み「共助の水道事業」を始動",
      "url": "https://news.panasonic.com/jp/press/jn261119-1",
      "source": "official",
      "first_seen": "2026-11-19T11:46+09:00"
@@ -4241,13 +4248,6 @@
      "date": "2026-10-05",
      "title": "5 2026年10月5日 技術・研究開発 プレスリリース パナソニック ホールディングス、健康状態の変化の兆しを捉えるAI技術「予兆ソリューション」を開発",
      "url": "https://news.panasonic.com/jp/press/jn261005-1",
-     "source": "official",
-     "first_seen": "2026-10-05T00:00+09:00"
-    },
-    {
-     "date": "2026-10-05",
-     "title": "5 2026年10月5日 サステナビリティ トピックス パナソニック、冷蔵庫AIカメラで無理なく手軽な「使いきり(食品ロス削減)」をサポート ~大阪府主催「食品ロス削減キャンペーン」キックオフイベントに出展~",
-     "url": "https://news.panasonic.com/jp/topics/206901",
      "source": "official",
      "first_seen": "2026-10-05T00:00+09:00"
     }
