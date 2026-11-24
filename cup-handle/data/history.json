@@ -102,5 +102,19 @@
    }
   ],
   "pattern_hits": 48
+ },
+ {
+  "price_date": "2026-11-24",
+  "passed": [
+   {
+    "code": "3003",
+    "name": "ヒューリック"
+   },
+   {
+    "code": "4377",
+    "name": "ワンキャリア"
+   }
+  ],
+  "pattern_hits": 48
  }
 ]
