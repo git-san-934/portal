@@ -81,6 +81,20 @@ IMPLICATIONS = {
     "CTI_TOTAL_REAL": "総消費動向指数（実質）の水準。",
     "LFS_UNEMP_RATE": "完全失業率の上昇は労働需給の緩みを示し、賃金上昇の勢いが弱まる要因。利上げ観測の後退につながりやすく、債券にはプラス、円安方向とされる。",
     "LFS_EMPLOYED": "就業者数の増加は雇用の底堅さを示し、個人消費や賃金の下支えになる。",
+    "JUCHU_CORE": "設備投資の先行指標。民需(船舶・電力を除く)の増加は数か月先の設備投資の強さを示し、景気の底堅さとして株式(特に機械・資本財)にプラス、日銀の利上げ判断を後押ししやすい。月々の振れが大きいので3か月移動平均で見る。",
+    "JUCHU_MFG": "製造業からの機械受注。製造業の設備投資意欲を示し、輸出・生産の先行きとあわせて見る。",
+    "JUCHU_NONMFG": "非製造業(船舶・電力を除く)からの機械受注。人手不足対応のソフトウェア・省力化投資などサービス業の設備投資を映す。",
+    "JUCHU_FOREIGN": "海外からの機械受注。海外の設備投資需要を示し、輸出や円相場の影響を受けやすい。",
+    "CI_LEADING": "景気の数か月先を示す指数。上昇は景気拡大の継続を示唆し株式にプラス、金利上昇・円高方向の材料とされる。",
+    "CI_COINCIDENT": "景気の現状を示す指数。内閣府の基調判断(改善・足踏み・悪化など)はこの指数の動きで機械的に決まる。上昇は景気拡大で、株式にプラス、日銀の利上げ判断を後押ししやすい。",
+    "CI_LAGGING": "景気に遅れて動く指数(雇用・在庫・物価など)。景気の転換点を後から確認するのに使う。",
+    "IIP_PROD": "鉱工業(製造業など)の生産量。上昇は景気拡大を示し、輸出・設備投資とあわせて景気の現状を見る中心指標。GDPの財の部分の動きを先取りする。",
+    "IIP_SHIP": "鉱工業の出荷量。需要の強さを示す。出荷が生産より強ければ在庫が減り、増産につながりやすい。",
+    "IIP_INV": "鉱工業の在庫量。出荷が弱いまま在庫が増えると減産(在庫調整)の前触れとされる。",
+    "IIP_INV_RATIO": "在庫÷出荷の比率。上昇は需要に比べて在庫がだぶつき始めたことを示し、生産の下押し要因とされる。",
+    "MK_WAGE_YOY": "名目賃金(現金給与総額)の伸び。賃金上昇の持続は日銀が利上げの条件とする「賃金と物価の好循環」の中心指標で、上振れは利上げ観測を強め、債券には逆風、円高方向とされる。",
+    "MK_SCHED_YOY": "基本給にあたる所定内給与の伸び。賞与や残業に左右されず、賃金の基調(ベースアップの浸透)を見るのに使う。",
+    "MK_REAL_YOY": "物価上昇を差し引いた実質賃金の伸び。プラスが定着すると消費の回復が見込まれ、景気・物価の持続性を示す材料になる。",
     "SVC_SALES_YOY": "サービス産業の売上高の伸び。個人・企業のサービス需要の強さを示し、物価（サービス価格）の上昇とあわせて見ると実質的な需要の強さがわかる。",
     "SVC_ICT_YOY": "情報通信業の売上高。IT・通信投資の強さの目安。",
     "SVC_HOTEL_FOOD_YOY": "宿泊・飲食の売上高。インバウンドや外食需要を映し、旅行・外食関連株に関係する。",
@@ -261,12 +275,20 @@ def main():
         with open(log, encoding="utf-8") as f:
             seen = {(r["obs_date"], r["db"], r["code"], r["type"]) for r in csv.DictReader(f)}
     fresh = [a for a in alerts if (a["date"], a["db"], a["code"], a["type"]) not in seen]
+    # 新しく追加した系列（build_site.py の公表の記録にまだ無い系列）の初回の検知は、過去の公表分なので
+    # 検知日を空にして記録し、新着には出さない（同じ検知は以後も記録済みとして扱われる）
+    rel = os.path.join(REPORTS, "releases_log.csv")
+    recorded = None
+    if os.path.exists(rel):
+        with open(rel, encoding="utf-8") as f:
+            recorded = {(r["db"], r["code"]) for r in csv.DictReader(f)}
     with open(log, "a", encoding="utf-8", newline="") as f:
         w = csv.writer(f)
         if new:
             w.writerow(["detected_on", "obs_date", "db", "code", "name", "type", "dir", "detail"])
         for a in fresh:  # 同じ観測日・系列・種類の検知は一度だけ記録する
-            w.writerow([today, a["date"], a["db"], a["code"], a["name"], a["type"], a["dir"], a["detail"]])
+            day = today if recorded is None or (a["db"], a["code"]) in recorded else ""
+            w.writerow([day, a["date"], a["db"], a["code"], a["name"], a["type"], a["dir"], a["detail"]])
     print(f"新規の検知: {len(fresh)}件")
     print("\n".join(md))
 

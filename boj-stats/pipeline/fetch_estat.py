@@ -13,6 +13,10 @@
 家計調査 長期時系列 表1-1（二人以上の世帯）: KAKEI_CONS_REAL_YOY ほか実質前年比、KAKEI_CONS_AMOUNT 消費支出額
 小売物価統計 第2表 東京都区部小売価格（直近13か月）: KOURI_TKY_RICE / EGG / GASOLINE
 住民基本台帳人口移動報告 月報 表1: IDOU_TOKYO_AREA_NET / IDOU_TOKYO_NET 転入超過数
+機械受注統計 長期系列（主要需要者別・季調、億円）: JUCHU_CORE（民需・船舶電力除く）/ JUCHU_MFG / JUCHU_NONMFG / JUCHU_FOREIGN
+景気動向指数 長期系列（CI、2020年=100）: CI_LEADING / CI_COINCIDENT / CI_LAGGING
+鉱工業指数（2020年=100、季調。時系列データ＋直近月の速報）: IIP_PROD / IIP_SHIP / IIP_INV / IIP_INV_RATIO
+毎月勤労統計（5人以上・調査産業計の前年比。累積データ＋実質賃金の速報）: MK_WAGE_YOY / MK_SCHED_YOY / MK_REAL_YOY
 財務省 貿易統計 貿易概況（CSV、直近約25か月）: series.json で "trade" を指定した TRADE_* 系列
   （州別の総額、地域(国)別、主要商品別の輸出・輸入。億円の原数値か前年同月比）。速報→確報の改定は毎月のファイルで上書きされる。
   品目や国を足すときは series.json に1件追加するだけでよい（見出しは表の英語表記: 例 "MOTOR VEHICLES", "USA"）
@@ -617,13 +621,169 @@ def labour(rawdir):
 
 
 # (エラーに付ける名前, 取得関数, その取得元の系列コードの接頭辞)。名前と接頭辞は status.py が失敗した系列を見分けるのにも使う
+# ---- 主要統計の追加（e-Stat の新着に数値を添えるため。2026-11-24） ----
+def _files(list_url):
+    """一覧ページのファイル（statInfId, fileKind, 直前の表題）を並び順に返す。"""
+    page = get(list_url).decode("utf-8", "replace")
+    out = []
+    for m in re.finditer(r"file-download\?statInfId=(\d+)&(?:amp;)?fileKind=(\d)", page):
+        before = re.sub(r"\s+", " ", html.unescape(re.sub(r"<[^>]+>", " ", page[max(0, m.start() - 1200):m.start()])))
+        out.append((m.group(1), m.group(2), before[-260:]))
+    return out
+
+
+def _pick(list_url, label):
+    """表題に label を含む最後のファイルの URL（一覧は古い順なので最後が最新）。"""
+    hits = [(u, k) for u, k, t in _files(list_url) if label in t]
+    hits = [h for h in hits if h[1] == "0"] or hits  # 同じ表が fileKind=0(xlsx) と 2 で並ぶ一覧では xlsx を使う
+    if not hits:
+        raise RuntimeError(f"{label} のファイルが一覧に見つからない")
+    u, k = hits[-1]
+    return f"{ESTAT}/stat-search/file-download?statInfId={u}&fileKind={k}"
+
+
+def _save(rawdir, name, body):
+    with open(os.path.join(rawdir, name), "wb") as f:
+        f.write(body)
+    return body
+
+
+def _num(x):
+    x = (x or "").strip()
+    return x if re.fullmatch(r"-?\d+(\.\d+)?(E-?\d+)?", x) else None
+
+
+JUCHU_LIST = (ESTAT + "/stat-search/files?page=1&toukei=00100401&tstat=000001017809&cycle=0"
+              "&tclass1=000001043546&layout=datalist&tclass2val=0")
+# 機械受注 長期系列 主要需要者別（季調系列・月）: 列位置 → (系列, 見出しに含まれるはずの文字)
+JUCHU_COLUMNS = {"JUCHU_FOREIGN": (5, "外"), "JUCHU_CORE": (9, "電力"), "JUCHU_MFG": (10, "製"),
+                 "JUCHU_NONMFG": (13, "電力")}
+
+
+def machinery(rawdir):
+    """機械受注統計 長期系列（主要需要者別、2005年4月〜）。百万円 → 億円。"""
+    body = _save(rawdir, "juchu_long.xlsx", get(_pick(JUCHU_LIST, "主要需要者別機械受注額")))
+    rows = xlsx.read_sheet(body, 1)
+    if "季調" not in " ".join(rows[1]):
+        raise RuntimeError("機械受注 長期系列の2枚目が季調系列(月)でない")
+    head = [" ".join(r[i] if i < len(r) else "" for r in rows[3:6]) for i in range(14)]
+    out = {}
+    for code, (col, word) in JUCHU_COLUMNS.items():
+        if word not in head[col].replace("　", ""):
+            raise RuntimeError(f"機械受注の列 {col} の見出しが想定と違う: {head[col]}")
+        out[code] = {f"{r[1]}-{int(r[2]):02d}": str(round(float(r[col]) / 100))
+                     for r in rows if len(r) > col and re.fullmatch(r"\d{4}", r[1] or "")
+                     and re.fullmatch(r"\d{1,2}", r[2] or "") and _num(r[col])}
+    return out
+
+
+CI_LIST = ESTAT + "/stat-search/files?page=1&toukei=00100406&tstat=000001011734"
+CI_COLUMNS = {"CI_LEADING": 3, "CI_COINCIDENT": 4, "CI_LAGGING": 5}
+
+
+def business_cycle(rawdir):
+    """景気動向指数 長期系列（CI、2020年=100）。最新の公表回（一覧の最後の「月次」）のファイルを使う。"""
+    page = get(CI_LIST).decode("utf-8", "replace")
+    links = re.findall(r'href="(/stat-search/files\?[^"]*tclass2=\d+[^"]*)"[^>]*>\s*(?:<[^>]+>\s*)*月次', page)
+    if not links:
+        raise RuntimeError("景気動向指数の公表回が一覧に見つからない")
+    body = _save(rawdir, "ci_long.xlsx", get(_pick(ESTAT + html.unescape(links[-1]), "長期系列")))
+    rows = xlsx.read_sheet(body, 0)
+    head = next(r for r in rows if "先行指数" in r)
+    if [head[c] for c in CI_COLUMNS.values()] != ["先行指数", "一致指数", "遅行指数"]:
+        raise RuntimeError(f"景気動向指数 長期系列の列が想定と違う: {head[:6]}")
+    return {code: {f"{r[1]}-{int(r[2]):02d}": r[c] for r in rows
+                   if len(r) > c and re.fullmatch(r"\d{4}", r[1] or "") and re.fullmatch(r"\d{1,2}", r[2] or "") and _num(r[c])}
+            for code, c in CI_COLUMNS.items()}
+
+
+IIP_TS_LIST = (ESTAT + "/stat-search/files?page=1&toukei=00550300&tstat=000001022877&cycle=0"
+               "&tclass1=000001205860&layout=datalist&tclass2val=0")
+IIP_MONTH_LIST = (ESTAT + "/stat-search/files?page=1&layout=datalist&cycle=1&toukei=00550300&tstat=000001022877"
+                  "&tclass1=000001078035&tclass2val=0&year={}0&month={}")
+IIP_SHEETS = {"IIP_PROD": 1, "IIP_SHIP": 2, "IIP_INV": 3, "IIP_INV_RATIO": 4}  # 時系列ファイル（業種別・月次・季調）
+IIP_LATEST_COLS = {"IIP_PROD": 1, "IIP_SHIP": 5, "IIP_INV": 9, "IIP_INV_RATIO": 13}  # 月ごとの速報・確報ファイル
+
+
+def industrial(rawdir):
+    """鉱工業指数（2020年=100、季調）。時系列データ（確報まで、2018年〜）に、直近の月の速報・確報ファイルを重ねる。"""
+    body = _save(rawdir, "iip_ts.xlsx", get(_pick(IIP_TS_LIST, "業種別／月次／季節調整済指数")))
+    out = {}
+    for code, sh in IIP_SHEETS.items():
+        rows = xlsx.read_sheet(body, sh)
+        ym = next(r for r in rows if r and r[0] == "品目番号")
+        total = next(r for r in rows if len(r) > 1 and r[1] == "鉱工業")
+        out[code] = {f"{m[:4]}-{m[4:]}": v for m, v in zip(ym[3:], total[3:]) if re.fullmatch(r"\d{6}", m) and _num(v)}
+    d = dt.date.today().replace(day=1)
+    for _ in range(3):  # 速報は翌月末に出る。今月・前月・前々月の一覧を新しい順に探す
+        try:
+            url = _pick(IIP_MONTH_LIST.format(d.year, MONTH_CODE[d.month]), "鉱工業（生産・出荷・在庫）指数")
+        except RuntimeError:
+            d = (d - dt.timedelta(days=1)).replace(day=1)
+            continue
+        rows = xlsx.read_sheet(_save(rawdir, "iip_latest.xlsx", get(url)), 0)
+        if "生産" not in rows[2][1] or "在庫率" not in rows[2][13]:
+            raise RuntimeError("鉱工業指数の月次ファイルの列が想定と違う")
+        for r in rows:
+            m = re.fullmatch(r"(\d{4})00(\d{2})(\d{2})", r[0] if r else "")
+            if m and m.group(2) == m.group(3):  # 月の行（四半期は 0709 のように前後が違う）
+                for code, c in IIP_LATEST_COLS.items():
+                    if len(r) > c and _num(r[c]):
+                        out[code][f"{m.group(1)}-{m.group(2)}"] = str(round(float(r[c]), 1))
+        break
+    return out
+
+
+MK_LIST = ESTAT + "/stat-search/files?page=1&toukei=00450071&tstat=000001011791&cycle=0&tclass1={}&layout=datalist&tclass2val=0"
+MK_CUM_LIST = (ESTAT + "/stat-search/files?page=1&toukei=00450071&tstat=000001011791&cycle=0"
+               "&tclass1=000001035519&tclass2=000001144508&layout=datalist&tclass3val=0")
+# 実数・指数累積データ（伸び率）の列 → 系列。調査産業計(TL)・5人以上(T)・就業形態計(0)
+MK_COLUMNS = {"MK_WAGE_YOY": "現金給与総額", "MK_SCHED_YOY": "所定内給与", "MK_REAL_YOY": "実質賃金指数（現金給与総額）"}
+MK_SINCE = "2000"
+
+
+def wages(rawdir):
+    """毎月勤労統計 全国調査。累積データ（確報、16MB の CSV）は新しい月が載ったときだけ読み、
+    実質賃金の前年比は最新の速報（表番号6、最新月だけ）で先に埋める。"""
+    out = {c: {} for c in MK_COLUMNS}
+    files = _files(MK_CUM_LIST)
+    cum = next(((u, k, t) for u, k, t in files if "指数・伸び率" in t), None)
+    if not cum:
+        raise RuntimeError("毎月勤労統計 累積データ（指数・伸び率）が一覧に見つからない")
+    m = re.search(r"調査年月 (\d{4})年(\d{1,2})月", cum[2])
+    have = max(read_csv(csv_path("ESTAT", "MK_WAGE_YOY")) or [""])
+    if not m or f"{m.group(1)}-{int(m.group(2)):02d}" > have:
+        body = get(f"{ESTAT}/stat-search/file-download?statInfId={cum[0]}&fileKind={cum[1]}")
+        rows = csv.reader(io.StringIO(body.decode("cp932")))
+        head = next(rows)
+        idx = {code: head.index(col) for code, col in MK_COLUMNS.items()}
+        for r in rows:
+            if (r[0].startswith("伸び率") and r[3].strip() == "TL" and r[4] == "T" and r[5] == "0"
+                    and re.fullmatch(r"\d{2}", r[2]) and r[1] >= MK_SINCE):
+                for code, i in idx.items():
+                    if _num(r[i]):
+                        out[code][f"{r[1]}-{r[2]}"] = r[i]
+    real = _pick(MK_LIST.format("000001027694"), "実質賃金指数表 (消費者物価指数 (総合)")
+    rows = xlsx.read_sheet(_save(rawdir, "maikin_real.xlsx", get(real)), 0)
+    if "５人以上" not in " ".join(rows[1]) or "調査産業計" not in " ".join(rows[3]):
+        raise RuntimeError("毎月勤労統計 実質賃金指数表の区分が想定と違う")
+    for r in rows:
+        if len(r) > 3 and re.fullmatch(r"\d{4}", r[0]) and re.fullmatch(r"\d{1,2}", r[1]) and _num(r[3]):
+            out["MK_REAL_YOY"][f"{r[0]}-{int(r[1]):02d}"] = str(round(float(r[3]), 1))
+    return out
+
+
 SOURCES = (("労働力調査", labour, ("LFS_",)),
            ("サービス産業動態統計", services, ("SVC_",)),
            ("人口推計", population, ("POP_",)),
            ("家計調査", kakei, ("KAKEI_",)),
            ("小売物価統計", kouri, ("KOURI_",)),
            ("住民基本台帳人口移動報告", idou, ("IDOU_",)),
-           ("貿易統計", trade, ("TRADE_",)))
+           ("貿易統計", trade, ("TRADE_",)),
+           ("機械受注統計", machinery, ("JUCHU_",)),
+           ("景気動向指数", business_cycle, ("CI_",)),
+           ("鉱工業指数", industrial, ("IIP_",)),
+           ("毎月勤労統計", wages, ("MK_",)))
 
 
 def main():

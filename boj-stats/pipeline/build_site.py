@@ -5,6 +5,8 @@ run_daily.sh（取得→status.py→analyze.py）の後に実行する。
 - 公表: 月次・四半期の系列で、最新の観測期が前回と変わったもの（reports/releases_log.csv に記録）
 - 変化検知: reports/signals_log.csv（analyze.py が書く）
 - 日銀の新着: reports/boj_news.csv（fetch_boj_news.py が書く。日本銀行ホームページの新着情報）
+- e-Stat の新着: reports/estat_news.csv（fetch_estat_news.py が書く。政府統計の総合窓口の新着情報）。
+  取り込み済みの系列がある統計（ESTAT_LINKS）には、その系列の最新値・前回比・検知を添える
 日次の系列（金利・為替など）は毎日値が入るので新着には載せず、「毎日の値」に最新値を出す。
 標準ライブラリのみ。
 """
@@ -30,6 +32,27 @@ SOURCES = {
 TRADE = ("財務省 貿易統計（税関の速報）", "https://www.customs.go.jp/toukei/info/index.htm",
          "政府統計の総合窓口 e-Stat（貿易概況・品別国別表）", "https://www.e-stat.go.jp/")
 
+# e-Stat の新着（政府統計コード）→ 取り込み済みの系列。新着に最新値・前回比を添えて分析する
+ESTAT_LINKS = {
+    "00200573": ["CPI_CPI_ALL_YOY", "CPI_CPI_CORE_YOY", "CPI_CPI_CORECORE_YOY",  # 消費者物価指数
+                 "STAT_CPI_TKY_ALL_YOY", "STAT_CPI_TKY_CORE_YOY", "STAT_CPI_TKY_CORECORE_YOY"],
+    "00200571": ["ESTAT_KOURI_TKY_RICE", "ESTAT_KOURI_TKY_EGG", "ESTAT_KOURI_TKY_GASOLINE"],  # 小売物価統計調査
+    "00200531": ["ESTAT_LFS_UNEMP_RATE", "ESTAT_LFS_EMPLOYED"],  # 労働力調査
+    "00200561": ["ESTAT_KAKEI_CONS_REAL_YOY", "ESTAT_KAKEI_GOODS_REAL_YOY", "ESTAT_KAKEI_SVC_REAL_YOY",
+                 "ESTAT_KAKEI_CONS_AMOUNT"],  # 家計調査
+    "00200546": ["ESTAT_SVC_SALES_YOY", "ESTAT_SVC_ICT_YOY", "ESTAT_SVC_HOTEL_FOOD_YOY"],  # サービス産業動態統計調査
+    "00200524": ["ESTAT_POP_TOTAL", "ESTAT_POP_NET_MIGRATION"],  # 人口推計
+    "00200523": ["ESTAT_IDOU_TOKYO_AREA_NET", "ESTAT_IDOU_TOKYO_NET"],  # 住民基本台帳人口移動報告
+    "00200567": ["STAT_CTI_TOTAL_REAL", "STAT_CTI_TOTAL_REAL_YOY"],  # 消費動向指数
+    "00350300": ["ESTAT_TRADE_EXPORTS_YOY", "ESTAT_TRADE_IMPORTS_YOY", "ESTAT_TRADE_BALANCE",
+                 "ESTAT_TRADE_EX_USA_YOY", "ESTAT_TRADE_EX_CHINA_YOY"],  # 普通貿易統計
+    "00100401": ["ESTAT_JUCHU_CORE", "ESTAT_JUCHU_MFG", "ESTAT_JUCHU_NONMFG", "ESTAT_JUCHU_FOREIGN"],  # 機械受注統計調査
+    "00100406": ["ESTAT_CI_LEADING", "ESTAT_CI_COINCIDENT", "ESTAT_CI_LAGGING"],  # 景気動向指数
+    "00550300": ["ESTAT_IIP_PROD", "ESTAT_IIP_SHIP", "ESTAT_IIP_INV", "ESTAT_IIP_INV_RATIO"],  # 鉱工業指数
+    "00450071": ["ESTAT_MK_WAGE_YOY", "ESTAT_MK_SCHED_YOY", "ESTAT_MK_REAL_YOY"],  # 毎月勤労統計調査
+}
+ESTAT_FRESH_DAYS = 3  # 新着の日からこの日数前以降に新しい値が入った系列を「今回の公表分」とみなす
+
 # (見出し, 判定) の順に最初に当てはまったカテゴリに入れる
 CATEGORIES = [
     ("短期金利・為替", lambda s: s["db"] in ("FM01", "FM04", "FM08", "IR01")),
@@ -40,6 +63,7 @@ CATEGORIES = [
     ("景況感・家計の資産", lambda s: s["db"] in ("CO", "FF")),
     ("貿易（国別・品目別）", lambda s: s["code"].startswith(("TRADE_EX_", "TRADE_IM_"))),
     ("国際収支・貿易", lambda s: s["db"] == "BP01" or s["code"].startswith("TRADE_")),
+    ("生産・受注・景気", lambda s: s["code"].startswith(("JUCHU_", "CI_", "IIP_"))),
     ("消費・雇用・人口", lambda s: True),
 ]
 
@@ -195,6 +219,32 @@ def main():
             tankan_latest = json.load(f).get("latest")
     except (OSError, ValueError):
         pass
+
+    # e-Stat の新着情報（fetch_estat_news.py が書く）。取り込み済みの統計は系列の値と当日の検知を添える
+    signals_by = {}
+    for d, items in days.items():
+        for it in items:
+            if it["kind"] == "signal":
+                signals_by.setdefault(it["id"], []).append(dict(it, day=d))
+    for r in read_rows(os.path.join(REPORTS, "estat_news.csv")):
+        if r["date"] < since:
+            continue
+        ids = [x for x in ESTAT_LINKS.get(r["toukei"], []) if x in info]
+        lo = (dt.date.fromisoformat(r["date"]) - dt.timedelta(days=ESTAT_FRESH_DAYS)).isoformat()
+        fresh = [x for x in ids if (info[x]["updated"] or "") >= lo]
+        stats = []
+        for x in fresh or ids:
+            s = info[x]
+            stats.append({
+                "id": x, "name": s["name"], "obs": s["date"], "value": s["value"], "unit": s["unit"],
+                "change": s["change"], "fresh": x in fresh,
+                "signals": [{"type": g["type"], "dir": g["dir"], "detail": g["detail"]}
+                            for g in signals_by.get(x, []) if g["day"] >= r["date"]],
+            })
+        days.setdefault(r["date"], []).append({
+            "kind": "estat", "id": f"estat:{r['toukei'] or r['name']}", "name": r["name"], "url": r["url"],
+            "org": r["org"], "status": r["status"], "info": r["info"], "stats": stats,
+        })
 
     out = {
         "generated_at": dt.datetime.now().astimezone().isoformat(timespec="minutes"),

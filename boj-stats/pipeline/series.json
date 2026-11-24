@@ -1322,6 +1322,132 @@
    "unit": "億円",
    "kind": "level",
    "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "JUCHU_CORE",
+   "name": "機械受注 民需（船舶・電力を除く）季節調整値",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "JUCHU_MFG",
+   "name": "機械受注 製造業 季節調整値",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "JUCHU_NONMFG",
+   "name": "機械受注 非製造業（船舶・電力を除く）季節調整値",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "JUCHU_FOREIGN",
+   "name": "機械受注 外需 季節調整値",
+   "freq": "M",
+   "unit": "億円",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "CI_LEADING",
+   "name": "景気動向指数 CI 先行指数",
+   "freq": "M",
+   "unit": "（2020年=100）",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "CI_COINCIDENT",
+   "name": "景気動向指数 CI 一致指数",
+   "freq": "M",
+   "unit": "（2020年=100）",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "CI_LAGGING",
+   "name": "景気動向指数 CI 遅行指数",
+   "freq": "M",
+   "unit": "（2020年=100）",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "IIP_PROD",
+   "name": "鉱工業指数 生産（季節調整済）",
+   "freq": "M",
+   "unit": "（2020年=100）",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "IIP_SHIP",
+   "name": "鉱工業指数 出荷（季節調整済）",
+   "freq": "M",
+   "unit": "（2020年=100）",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "IIP_INV",
+   "name": "鉱工業指数 在庫（季節調整済）",
+   "freq": "M",
+   "unit": "（2020年=100）",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "IIP_INV_RATIO",
+   "name": "鉱工業指数 在庫率（季節調整済）",
+   "freq": "M",
+   "unit": "（2020年=100）",
+   "kind": "level",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "MK_WAGE_YOY",
+   "name": "毎月勤労統計 現金給与総額 前年比（5人以上）",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "MK_SCHED_YOY",
+   "name": "毎月勤労統計 所定内給与 前年比（5人以上）",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
+  },
+  {
+   "db": "ESTAT",
+   "code": "MK_REAL_YOY",
+   "name": "毎月勤労統計 実質賃金 前年比（5人以上）",
+   "freq": "M",
+   "unit": "%",
+   "kind": "rate",
+   "verified": true
   }
  ],
  "trade_by_country": [

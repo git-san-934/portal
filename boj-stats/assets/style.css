@@ -133,6 +133,11 @@ code { font-size: 0.75rem; }
 .badge.release { color: var(--official); }
 .badge.signal { color: var(--tdnet); }
 .badge.news { color: var(--sec); }
+.badge.estat { color: var(--edinet); }
+.note { color: var(--text-sub); font-size: 0.78rem; }
+.estat-rest > summary { cursor: pointer; font-size: 0.9rem; display: flex; gap: 0.4rem; align-items: center; }
+.estat-list { list-style: none; padding-left: 0.2rem; margin-top: 0.3rem; font-size: 0.85rem; }
+.estat-list li { padding: 0.15rem 0; overflow-wrap: anywhere; }
 .up { color: #c0392b; }
 .down { color: #1a5fb4; }
 @media (prefers-color-scheme: dark) { .up { color: #ff8a7a; } .down { color: #8ab8ff; } }
@@ -189,3 +194,7 @@ code { font-size: 0.75rem; }
 .range { margin: -0.5rem 0 0.6rem; }
 .range button { font-size: 0.78rem; padding: 0.15rem 0.6rem; }
 #feed > .empty { margin-left: 0; }
+.estat-rest > summary { list-style: none; }
+.estat-rest > summary::-webkit-details-marker { display: none; }
+.estat-rest > summary::after { content: "▸ 開く"; color: var(--text-sub); font-size: 0.75rem; }
+.estat-rest[open] > summary::after { content: "▾ 閉じる"; }

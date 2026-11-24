@@ -123,6 +123,43 @@ window.SeriesGroups = (() => {
       signed: true,
       from: "調査は2000年4-6月期から",
     },
+    // ---- 生産・受注・景気 ----
+    {
+      name: "景気動向指数 CI(先行・一致・遅行)",
+      ids: ["ESTAT_CI_LEADING", "ESTAT_CI_COINCIDENT", "ESTAT_CI_LAGGING"],
+      labels: ["先行", "一致", "遅行"],
+      unit: "2020年=100",
+      digits: 1,
+    },
+    {
+      name: "鉱工業指数 生産・出荷・在庫・在庫率(季節調整済)",
+      ids: ["ESTAT_IIP_PROD", "ESTAT_IIP_SHIP", "ESTAT_IIP_INV", "ESTAT_IIP_INV_RATIO"],
+      labels: ["生産", "出荷", "在庫", "在庫率"],
+      dash: ["ESTAT_IIP_INV", "ESTAT_IIP_INV_RATIO"],
+      unit: "2020年=100",
+      digits: 1,
+      note: "2018年1月から(2020年基準)",
+    },
+    {
+      name: "機械受注(季節調整値)",
+      ids: ["ESTAT_JUCHU_CORE", "ESTAT_JUCHU_MFG", "ESTAT_JUCHU_NONMFG", "ESTAT_JUCHU_FOREIGN"],
+      labels: ["民需(船舶・電力を除く)", "製造業", "非製造業(船舶・電力を除く)", "外需"],
+      dash: ["ESTAT_JUCHU_FOREIGN"],
+      unit: "億円",
+      digits: 0,
+      note: "2005年4月から",
+    },
+    // ---- 消費・雇用・人口 ----
+    {
+      name: "毎月勤労統計 賃金の前年比(5人以上・調査産業計)",
+      ids: ["ESTAT_MK_WAGE_YOY", "ESTAT_MK_SCHED_YOY", "ESTAT_MK_REAL_YOY"],
+      labels: ["現金給与総額(名目)", "所定内給与", "実質賃金"],
+      unit: "%",
+      digits: 1,
+      signed: true,
+      years: 10,
+      note: "名目は確報(翌々月下旬)、実質賃金は速報(翌々月上旬)から取り込み",
+    },
     // ---- 国際収支・貿易 ----
     {
       name: "貿易統計 輸出額・輸入額と差引(財務省・通関ベース)",
