@@ -251,7 +251,7 @@
       T = d;
       latest = d.latest;
       fc = nextQuarter(latest);
-      $("title-date").textContent = `(${fmtSurvey(latest)}調査まで)`;
+      $("title-date").textContent = `(${fmtSurvey(latest)}調査まで${d.updated ? `・${fmtDay(d.updated)} 更新` : ""})`;
       const src = d.sources[latest];
       $("status").replaceChildren(
         `最新: ${fmtSurvey(latest)}調査`,

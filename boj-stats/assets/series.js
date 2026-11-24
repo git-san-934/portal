@@ -173,7 +173,9 @@
         return;
       }
       document.title = `${s.name} - 日銀統計の新着`;
-      $("name").textContent = s.name;
+      // 見出しの横の「(YYYY/M/D 更新)」: 最後に新しい値が入った日(組のグラフなら組の中で最も新しい日)
+      const upd = (pair || [id]).map((x) => (feed.series[x] || {}).updated).filter(Boolean).sort().pop();
+      $("name").replaceChildren(s.name, upd ? el("span", "title-date", ` (${upd.split("-").map(Number).join("/")} 更新)`) : "");
       $("cat").textContent = s.category;
       $("latest").replaceChildren(s.value != null ? `${s.value}` : "-", el("small", null, s.unit));
       $("meta").replaceChildren(s.date ? `${fmtObs(s.date)}時点` : "", s.change ? " 前回比 " : "", el("span", dirCls(s.change), s.change || ""));
