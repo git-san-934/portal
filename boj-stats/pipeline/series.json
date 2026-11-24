@@ -220,6 +220,7 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
+   "stale_days": 75,
    "verified": true,
    "since": "199501"
   },
@@ -230,6 +231,7 @@
    "freq": "M",
    "unit": "%",
    "kind": "rate",
+   "stale_days": 75,
    "verified": true,
    "since": "199501"
   },

@@ -20,6 +20,7 @@ STATUS = os.path.join(REPORTS, "status.json")
 HISTORY = os.path.join(REPORTS, "fetch_history.csv")
 # 新しい値が最後に入ってからこの日数を超えたら stale。公表の間隔＋祝日・公表の遅れの余裕
 STALE_DAYS = {"D": 8, "J": 20, "M": 50, "Q": 110}  # J = 旬（営業毎旬報告）
+# 系列ごとに series.json の "stale_days" で上書きできる（貸出約定平均金利は公表の間隔が約2か月あくため 75 日）
 OTHER_DBS = ("MOF", "CPI", "STAT", "ESTAT", "ACM")  # 日銀API以外（fetch.py の外で取る）
 # "STAT 東京都区部CPI: ..." のような取得元単位のエラーと、その取得元の系列コードの接頭辞
 SOURCE_PREFIXES = {f"{db} {name}": prefixes
@@ -70,7 +71,7 @@ def main():
         last_new = today if is_new or not p.get("last_new") else p["last_new"]
         if errs:
             state = "error"
-        elif (dt.date.fromisoformat(today) - dt.date.fromisoformat(last_new)).days > STALE_DAYS.get(s["freq"], 50):
+        elif (dt.date.fromisoformat(today) - dt.date.fromisoformat(last_new)).days > s.get("stale_days", STALE_DAYS.get(s["freq"], 50)):
             state = "stale"
         else:
             state = "new" if is_new else "unchanged"
