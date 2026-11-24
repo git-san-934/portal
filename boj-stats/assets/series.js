@@ -177,8 +177,17 @@
       $("cat").textContent = s.category;
       $("latest").replaceChildren(s.value != null ? `${s.value}` : "-", el("small", null, s.unit));
       $("meta").replaceChildren(s.date ? `${fmtObs(s.date)}時点` : "", s.change ? " 前回比 " : "", el("span", dirCls(s.change), s.change || ""));
-      $("source").textContent = s.source[0];
-      $("source").href = s.source[1];
+      // source は (名前, URL) の組を並べた配列
+      const links = [];
+      for (let i = 0; i + 1 < s.source.length; i += 2) {
+        const a = el("a", null, s.source[i]);
+        a.href = s.source[i + 1];
+        a.target = "_blank";
+        a.rel = "noopener";
+        if (links.length) links.push("・");
+        links.push(a);
+      }
+      $("source").replaceChildren(...links);
       $("code").textContent = `(系列コード ${s.db} ${s.code})`;
       $("disclaimer").textContent = feed.disclaimer;
       if (s.implication) {

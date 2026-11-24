@@ -7,6 +7,13 @@
   const yoy = !!hit[2];
   const { el, fmtMonth, fmtVal } = MultiLine;
   const $ = (x) => document.getElementById(x);
+  const estatLink = () => {
+    const a = el("a", null, "政府統計の総合窓口(e-Stat)");
+    a.href = "https://www.e-stat.go.jp/";
+    a.target = "_blank";
+    a.rel = "noopener";
+    return a;
+  };
   const COLORS = ["var(--s1)", "var(--s2)", "var(--s3)", "var(--s4)", "var(--s5)"];
   let avg = 1;
 
@@ -37,10 +44,10 @@
           yoy,
           label: `${cname}向け輸出の主な品目`,
         });
-        $("goods-note").textContent =
+        $("goods-note").replaceChildren(
           `直近5年。${avg === 3 ? "3か月の平均(前年比は3か月合計どうし)。" : ""}` +
           (yoy ? "極端な値は軸の端で切っています。" : "単位は億円。") +
-          `表は${fmtMonth(d)}の輸出額と前年同月比、「3か月」は直近3か月合計の前年比。出典: 財務省 貿易統計 国別概況品別表(e-Stat)。`;
+          `表は${fmtMonth(d)}の輸出額と前年同月比、「3か月」は直近3か月合計の前年比。出典: 財務省 貿易統計 国別概況品別表、`, estatLink(), "。");
 
         const tbl = $("goods-table");
         const head = el("tr");
