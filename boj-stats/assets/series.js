@@ -199,7 +199,7 @@
       const ul = $("signals");
       sigs.forEach((r) => {
         const li = el("li", "item");
-        li.append(el("span", "meta", `${fmtObs(r.obs_date)}分(${r.detected_on} に検知)`));
+        li.append(el("span", "meta", `${fmtObs(r.obs_date)}分` + (r.detected_on ? `(${r.detected_on} に検知)` : "(取り込み開始時の検知)")));
         const t = el("span", "title");
         t.append(el("span", dirCls(r.dir), `${r.type}・${r.dir}`), `: ${r.detail}`);
         li.append(t);

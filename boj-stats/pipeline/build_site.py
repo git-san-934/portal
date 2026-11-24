@@ -46,6 +46,10 @@ ESTAT_LINKS = {
     "00200567": ["STAT_CTI_TOTAL_REAL", "STAT_CTI_TOTAL_REAL_YOY"],  # 消費動向指数
     "00350300": ["ESTAT_TRADE_EXPORTS_YOY", "ESTAT_TRADE_IMPORTS_YOY", "ESTAT_TRADE_BALANCE",
                  "ESTAT_TRADE_EX_USA_YOY", "ESTAT_TRADE_EX_CHINA_YOY"],  # 普通貿易統計
+    "00100401": ["ESTAT_JUCHU_CORE", "ESTAT_JUCHU_MFG", "ESTAT_JUCHU_NONMFG", "ESTAT_JUCHU_FOREIGN"],  # 機械受注統計調査
+    "00100406": ["ESTAT_CI_LEADING", "ESTAT_CI_COINCIDENT", "ESTAT_CI_LAGGING"],  # 景気動向指数
+    "00550300": ["ESTAT_IIP_PROD", "ESTAT_IIP_SHIP", "ESTAT_IIP_INV", "ESTAT_IIP_INV_RATIO"],  # 鉱工業指数
+    "00450071": ["ESTAT_MK_WAGE_YOY", "ESTAT_MK_SCHED_YOY", "ESTAT_MK_REAL_YOY"],  # 毎月勤労統計調査
 }
 ESTAT_FRESH_DAYS = 3  # 新着の日からこの日数前以降に新しい値が入った系列を「今回の公表分」とみなす
 
@@ -59,6 +63,7 @@ CATEGORIES = [
     ("景況感・家計の資産", lambda s: s["db"] in ("CO", "FF")),
     ("貿易（国別・品目別）", lambda s: s["code"].startswith(("TRADE_EX_", "TRADE_IM_"))),
     ("国際収支・貿易", lambda s: s["db"] == "BP01" or s["code"].startswith("TRADE_")),
+    ("生産・受注・景気", lambda s: s["code"].startswith(("JUCHU_", "CI_", "IIP_"))),
     ("消費・雇用・人口", lambda s: True),
 ]
 
