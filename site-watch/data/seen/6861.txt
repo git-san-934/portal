@@ -30097,6 +30097,7 @@ https://www.keyence.co.jp/support/user/controls/kv-x/connection_guide/kv-x_gc-10
 https://www.keyence.co.jp/support/user/controls/kv-x/connection_guide/kv-x_iv4/
 https://www.keyence.co.jp/support/user/controls/kv-x/connection_guide/kv-x_ix/
 https://www.keyence.co.jp/support/user/controls/kv-x/connection_guide/kv-x_lj-s/
+https://www.keyence.co.jp/support/user/controls/kv-x/connection_guide/kv-x_mk-r1000/
 https://www.keyence.co.jp/support/user/controls/kv-x/connection_guide/kv-x_mp-f/
 https://www.keyence.co.jp/support/user/controls/kv-x/connection_guide/kv-x_nq/
 https://www.keyence.co.jp/support/user/controls/kv-x/connection_guide/kv-x_nu-ep1/
