@@ -18,7 +18,8 @@ window.MultiLine = (() => {
   //         breaks: [d](その点の手前で線を切り、縦の点線を引く。系列の断層用),
   //         xAt(d): 横位置の数値(年の小数など。指定すると時間に比例した横軸),
   //         nice: true(縦軸の目盛りを切りのよい数に。tick(v, 小数の桁数) で呼ぶ),
-  //         trim: false(signed の縦軸で上下1%を切らない。DIなど極端な値も見せたい系列用)
+  //         trim: false(signed の縦軸で上下1%を切らない。DIなど極端な値も見せたい系列用),
+  //         zero: false(縦軸を0から始めない)
   function draw(box, legend, opts) {
     const { months: ms, lines, extra = [], yoy } = opts;
     const signed = yoy || opts.signed;
@@ -47,8 +48,9 @@ window.MultiLine = (() => {
       box.replaceChildren(el("p", "empty", "チャートを描くだけの値がありません"));
       return;
     }
-    let lo = 0, hi = Math.max(...vals, 1);
-    if (signed) {
+    // zero: false なら縦軸を0から始めず、値の幅に合わせる(水準が大きく動きの小さい系列用)
+    let lo = opts.zero === false ? Math.min(...vals) : 0, hi = opts.zero === false ? Math.max(...vals) : Math.max(...vals, 1);
+    if (signed && opts.zero !== false) {
       // 前年が小さい月の極端な伸び率で軸がつぶれないよう、上下1%を切る(trim: false なら切らない)
       const sorted = [...vals].sort((a, b) => a - b);
       const cut = opts.trim === false ? 0 : 0.01;
@@ -70,7 +72,7 @@ window.MultiLine = (() => {
       for (let v = lo; v <= hi + step / 2; v += step) ticks.push({ v: Math.abs(v) < step / 1e6 ? 0 : v, dg });
     } else {
       const pad = (hi - lo) * 0.06 || 1;
-      if (signed) lo -= pad;
+      if (signed || opts.zero === false) lo -= pad;
       hi += pad;
     }
     // xAt(d) があれば横位置は時間の比率(月次と旬次が混ざる系列でも時間の幅をそろえる)。無ければ点の順番で等間隔

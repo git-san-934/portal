@@ -141,6 +141,12 @@
       const sub = el("span", "sub analysis");
       if (a.period) sub.append(el("span", "note", `${a.period} `));
       sub.append(a.headline);
+      // 分析ページ(グラフ・ポイント・この統計とは)へ
+      if (a.date && a.toukei) {
+        const go = el("a", "analysis-link", a.charts && a.charts.length ? "グラフで見る →" : "詳しく見る →");
+        go.href = `estat.html?key=${encodeURIComponent(`${a.date}|${a.toukei}`)}`;
+        sub.append(" ", go);
+      }
       li.append(sub);
       if ((a.points && a.points.length) || (a.tables && a.tables.length)) {
         const det = el("details", "analysis-more");
