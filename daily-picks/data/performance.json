@@ -1,5 +1,5 @@
 {
- "updated_at": "2026-11-25T05:26+09:00",
+ "updated_at": "2026-11-25T07:48+09:00",
  "latest_price_date": "2026-11-24",
  "rules": {
   "stop_buffer": 0.99,
@@ -8,7 +8,7 @@
  "summary": {
   "picks": 49,
   "with_data": 46,
-  "avg_ret_pct": -1.45,
+  "avg_ret_pct": -1.47,
   "win_rate_pct": 28.3,
   "best": "コナミグループ",
   "worst": "サンユウ",
@@ -1568,10 +1568,10 @@
    "target": 4322.4,
    "risk_pct": 17.3,
    "target_pct": 52.0,
-   "days_held": 14,
-   "last_date": "2026-11-20",
-   "last_close": 2822.0,
-   "ret_pct": -0.77,
+   "days_held": 15,
+   "last_date": "2026-11-24",
+   "last_close": 2802.0,
+   "ret_pct": -1.48,
    "max_up_pct": 4.43,
    "max_down_pct": -4.22,
    "horizon": {
