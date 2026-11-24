@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-24T18:05+09:00",
+ "generated_at": "2026-11-24T18:17+09:00",
  "report_date": "2026-11-24",
  "days": [
   {
@@ -285,6 +285,259 @@
       }
      ],
      "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00500227",
+     "name": "畜産物流通調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00500227",
+     "org": "農林水産省",
+     "status": "新着",
+     "info": "https://www.maff.go.jp/j/tokei/kouhyou/tikusan_ryutu/index.html",
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00500227",
+      "name": "畜産物流通調査",
+      "org": "農林水産省",
+      "period": "2026年11月2日〜10日",
+      "headline": "と畜場統計の日別速報（11月2日〜10日の7日分）が公表。11月4日の全国のと畜頭数は豚3万8,175頭、成牛2,897頭",
+      "points": [
+       "11月2日は豚3万5,546頭・成牛2,811頭、祝日の3日は豚2万902頭・成牛723頭と少なかった",
+       "全国推計値では4日の豚6万9,300頭、成牛5,120頭"
+      ],
+      "tables": [
+       {
+        "title": "日別(令和8年11月4日) 全国",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040529853&fileKind=1"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     },
+     "published": "2026-11-20"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00500215",
+     "name": "作物統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00500215",
+     "org": "農林水産省",
+     "status": "新着",
+     "info": "https://www.maff.go.jp/j/tokei/kouhyou/sakumotu/index.html",
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00500215",
+      "name": "作物統計調査",
+      "org": "農林水産省",
+      "period": "令和8年産（10月25日現在）",
+      "headline": "令和8年産水稲の主食用予想収穫量は706万6,000tで前年産比11万5,000t減（98%）、作況単収指数は101",
+      "points": [
+       "主食用作付面積は135万9,000haで前年産比8,000ha減。10a当たり予想収量は521kg（前年産比99%）",
+       "子実用の予想収穫量は793万1,000tで14万1,000t増（102%）、作付面積は146万haで3万5,000ha増",
+       "福島（主食用収穫量90%）、秋田（94%）、新潟（95%）が減少。次回（収穫期）は12月上旬公表予定"
+      ],
+      "tables": [
+       {
+        "title": "令和8年産水稲の作付面積及び10月25日現在の予想収穫量（速報）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040463686&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     },
+     "published": "2026-11-20"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450232",
+     "name": "高校・中学新卒者の就職内定状況等",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450232",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/toukei/list/159-1.html",
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00450232",
+      "name": "高校・中学新卒者の就職内定状況等",
+      "org": "厚生労働省",
+      "period": "2026年9月末現在",
+      "headline": "来春卒業予定の高校生の9月末の就職内定率は59.1%で前年同期比4.3ポイント低下、求人倍率は3.85倍（同0.09ポイント低下）",
+      "points": [
+       "求人数47万4,719人（前年比1.7%減）、求職者数12万3,239人（0.5%増）、内定者数7万2,847人（6.3%減）",
+       "産業別では医療・福祉（−2,551人）、卸売・小売（−2,145人）、建設（−1,909人）の求人が減少",
+       "規模別では従業員29人以下の求人が3.9%減の一方、1,000人以上は7.9%増。中学新卒の求人倍率は0.90倍"
+      ],
+      "tables": [
+       {
+        "title": "高校・中学新卒者の求人・求職・就職内定状況（令和8年9月末）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040524558&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     },
+     "published": "2026-11-20"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00400402",
+     "name": "大学・短期大学・高等専門学校及び専修学校卒業予定者の就職内定状況等調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00400402",
+     "org": "文部科学省",
+     "status": "新着",
+     "info": "",
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00400402",
+      "name": "大学等卒業予定者の就職内定状況等調査",
+      "org": "文部科学省",
+      "period": "2026年10月1日現在",
+      "headline": "来春卒業予定の大学生の10月1日時点の就職内定率は73.0%で前年同期比0.4ポイント低下、就職希望率も73.0%と2.8ポイント低下",
+      "points": [
+       "短大42.2%（+3.8）、高専94.0%（+2.0）、専修学校57.4%（−5.1）。専修学校を含む総計は69.5%（−0.6）",
+       "大学は理系76.9%（+3.3）、文系72.2%（−1.2）。男子73.4%（+1.9）に対し女子72.6%（−3.2）",
+       "地域差が大きく、中国・四国62.1%（−12.9）、中部66.9%（−8.8）が低下、九州70.7%（+7.5）は上昇"
+      ],
+      "tables": [
+       {
+        "title": "令和8年度 就職内定状況調査（10月1日現在）公表資料",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040525807&fileKind=0"
+       },
+       {
+        "title": "10月1日現在の就職内定率の推移",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040525808&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     },
+     "published": "2026-11-20"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00350500",
+     "name": "外貨準備等の状況",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00350500",
+     "org": "財務省",
+     "status": "更新",
+     "info": "https://www.mof.go.jp/policy/international_policy/reference/official_reserve_assets/index.htm",
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00350500",
+      "name": "外貨準備等の状況",
+      "org": "財務省",
+      "period": "2026年10月末",
+      "headline": "10月末の外貨準備は1兆1,791億ドルで前月末比7億ドル増、前年同月末（1兆3,474億ドル）比では12.5%減",
+      "points": [
+       "内訳は証券8,346億ドル、預金1,507億ドル、金1,064億ドル（前月末1,136億ドル）、SDR606億ドル",
+       "1月末の1兆3,948億ドルから減少が続き、8月は前月末比796億ドル減と落ち込みが大きかった"
+      ],
+      "tables": [
+       {
+        "title": "外貨準備等の状況 時系列",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040443371&fileKind=1"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     },
+     "published": "2026-11-20"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00350482",
+     "name": "産業投資現在高",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00350482",
+     "org": "財務省",
+     "status": "新着",
+     "info": "https://www.mof.go.jp/policy/filp/reference/flf_balance/index.html",
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00350482",
+      "name": "産業投資現在高",
+      "org": "財務省",
+      "period": "2026年10月末",
+      "headline": "10月末の産業投資現在高は7兆7,191億円で前月末比37億円増、前年度末比883億円減",
+      "points": [
+       "ほぼ全額が出資金で7兆7,180億円（政府関係機関3兆3,018億円、特別法人4兆4,162億円）",
+       "前月末からの増加は特別法人出資金の37億円。貸付金は11億円で横ばい"
+      ],
+      "tables": [
+       {
+        "title": "産業投資現在高（令和8年10月末）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040524538&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     },
+     "published": "2026-11-20"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00350481",
+     "name": "財政投融資計画月別実行状況",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00350481",
+     "org": "財務省",
+     "status": "新着",
+     "info": "https://www.mof.go.jp/policy/filp/reference/zaitojisseki/data.htm",
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00350481",
+      "name": "財政投融資計画月別実行状況",
+      "org": "財務省",
+      "period": "2026年10月",
+      "headline": "令和8年度の財政投融資は10月実績6,257億円、4〜10月累計5兆3,827億円で、計画と繰越の合計21兆5,488億円の約25%",
+      "points": [
+       "10月の内訳は財政融資1,874億円、政府保証4,346億円、産業投資37億円",
+       "国際協力銀行は10月4,253億円（累計2兆785億円）で最大の実行先",
+       "地方公共団体向け貸付は10月135億円、累計1兆802億円（5月に9,981億円が集中）"
+      ],
+      "tables": [
+       {
+        "title": "財政投融資の実績（令和8年度）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040477215&fileKind=0"
+       },
+       {
+        "title": "地方公共団体向け貸付実績",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040456825&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     },
+     "published": "2026-11-20"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00350401",
+     "name": "財政融資資金現在高",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00350401",
+     "org": "財務省",
+     "status": "新着",
+     "info": "https://www.mof.go.jp/policy/filp/reference/flf_balance/data.html",
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00350401",
+      "name": "財政融資資金現在高",
+      "org": "財務省",
+      "period": "2026年10月末",
+      "headline": "10月末の財政融資資金現在高は118兆6,296億円で前月末比6,233億円減、前年度末比では4兆8,256億円減",
+      "points": [
+       "負債側は預託金が30兆9,594億円で前月末比2兆1,541億円減（うち特別会計預託金2兆3,676億円減）",
+       "公債（財投債）は86兆8,330億円で前月末比1兆5,280億円増。資産側の貸付金は117兆361億円（同502億円増）",
+       "有価証券は国庫短期証券1兆3,997億円（前月末比同額増）。現金預金は1,938億円で同2兆732億円減"
+      ],
+      "tables": [
+       {
+        "title": "財政融資資金現在高（令和8年10月末）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040529906&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     },
+     "published": "2026-11-20"
     }
    ]
   },
@@ -384,7 +637,25 @@
      "status": "新着",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/tikusan_ryutu/index.html",
      "stats": [],
-     "analysis": null
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00500227",
+      "name": "畜産物流通調査",
+      "org": "農林水産省",
+      "period": "2026年11月2日〜10日",
+      "headline": "と畜場統計の日別速報（11月2日〜10日の7日分）が公表。11月4日の全国のと畜頭数は豚3万8,175頭、成牛2,897頭",
+      "points": [
+       "11月2日は豚3万5,546頭・成牛2,811頭、祝日の3日は豚2万902頭・成牛723頭と少なかった",
+       "全国推計値では4日の豚6万9,300頭、成牛5,120頭"
+      ],
+      "tables": [
+       {
+        "title": "日別(令和8年11月4日) 全国",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040529853&fileKind=1"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -395,7 +666,26 @@
      "status": "新着",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/sakumotu/index.html",
      "stats": [],
-     "analysis": null
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00500215",
+      "name": "作物統計調査",
+      "org": "農林水産省",
+      "period": "令和8年産（10月25日現在）",
+      "headline": "令和8年産水稲の主食用予想収穫量は706万6,000tで前年産比11万5,000t減（98%）、作況単収指数は101",
+      "points": [
+       "主食用作付面積は135万9,000haで前年産比8,000ha減。10a当たり予想収量は521kg（前年産比99%）",
+       "子実用の予想収穫量は793万1,000tで14万1,000t増（102%）、作付面積は146万haで3万5,000ha増",
+       "福島（主食用収穫量90%）、秋田（94%）、新潟（95%）が減少。次回（収穫期）は12月上旬公表予定"
+      ],
+      "tables": [
+       {
+        "title": "令和8年産水稲の作付面積及び10月25日現在の予想収穫量（速報）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040463686&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -406,7 +696,26 @@
      "status": "新着",
      "info": "https://www.mhlw.go.jp/toukei/list/159-1.html",
      "stats": [],
-     "analysis": null
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00450232",
+      "name": "高校・中学新卒者の就職内定状況等",
+      "org": "厚生労働省",
+      "period": "2026年9月末現在",
+      "headline": "来春卒業予定の高校生の9月末の就職内定率は59.1%で前年同期比4.3ポイント低下、求人倍率は3.85倍（同0.09ポイント低下）",
+      "points": [
+       "求人数47万4,719人（前年比1.7%減）、求職者数12万3,239人（0.5%増）、内定者数7万2,847人（6.3%減）",
+       "産業別では医療・福祉（−2,551人）、卸売・小売（−2,145人）、建設（−1,909人）の求人が減少",
+       "規模別では従業員29人以下の求人が3.9%減の一方、1,000人以上は7.9%増。中学新卒の求人倍率は0.90倍"
+      ],
+      "tables": [
+       {
+        "title": "高校・中学新卒者の求人・求職・就職内定状況（令和8年9月末）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040524558&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -417,7 +726,30 @@
      "status": "新着",
      "info": "",
      "stats": [],
-     "analysis": null
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00400402",
+      "name": "大学等卒業予定者の就職内定状況等調査",
+      "org": "文部科学省",
+      "period": "2026年10月1日現在",
+      "headline": "来春卒業予定の大学生の10月1日時点の就職内定率は73.0%で前年同期比0.4ポイント低下、就職希望率も73.0%と2.8ポイント低下",
+      "points": [
+       "短大42.2%（+3.8）、高専94.0%（+2.0）、専修学校57.4%（−5.1）。専修学校を含む総計は69.5%（−0.6）",
+       "大学は理系76.9%（+3.3）、文系72.2%（−1.2）。男子73.4%（+1.9）に対し女子72.6%（−3.2）",
+       "地域差が大きく、中国・四国62.1%（−12.9）、中部66.9%（−8.8）が低下、九州70.7%（+7.5）は上昇"
+      ],
+      "tables": [
+       {
+        "title": "令和8年度 就職内定状況調査（10月1日現在）公表資料",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040525807&fileKind=0"
+       },
+       {
+        "title": "10月1日現在の就職内定率の推移",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040525808&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -428,7 +760,25 @@
      "status": "更新",
      "info": "https://www.mof.go.jp/policy/international_policy/reference/official_reserve_assets/index.htm",
      "stats": [],
-     "analysis": null
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00350500",
+      "name": "外貨準備等の状況",
+      "org": "財務省",
+      "period": "2026年10月末",
+      "headline": "10月末の外貨準備は1兆1,791億ドルで前月末比7億ドル増、前年同月末（1兆3,474億ドル）比では12.5%減",
+      "points": [
+       "内訳は証券8,346億ドル、預金1,507億ドル、金1,064億ドル（前月末1,136億ドル）、SDR606億ドル",
+       "1月末の1兆3,948億ドルから減少が続き、8月は前月末比796億ドル減と落ち込みが大きかった"
+      ],
+      "tables": [
+       {
+        "title": "外貨準備等の状況 時系列",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040443371&fileKind=1"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -439,7 +789,25 @@
      "status": "新着",
      "info": "https://www.mof.go.jp/policy/filp/reference/flf_balance/index.html",
      "stats": [],
-     "analysis": null
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00350482",
+      "name": "産業投資現在高",
+      "org": "財務省",
+      "period": "2026年10月末",
+      "headline": "10月末の産業投資現在高は7兆7,191億円で前月末比37億円増、前年度末比883億円減",
+      "points": [
+       "ほぼ全額が出資金で7兆7,180億円（政府関係機関3兆3,018億円、特別法人4兆4,162億円）",
+       "前月末からの増加は特別法人出資金の37億円。貸付金は11億円で横ばい"
+      ],
+      "tables": [
+       {
+        "title": "産業投資現在高（令和8年10月末）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040524538&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -450,7 +818,30 @@
      "status": "新着",
      "info": "https://www.mof.go.jp/policy/filp/reference/zaitojisseki/data.htm",
      "stats": [],
-     "analysis": null
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00350481",
+      "name": "財政投融資計画月別実行状況",
+      "org": "財務省",
+      "period": "2026年10月",
+      "headline": "令和8年度の財政投融資は10月実績6,257億円、4〜10月累計5兆3,827億円で、計画と繰越の合計21兆5,488億円の約25%",
+      "points": [
+       "10月の内訳は財政融資1,874億円、政府保証4,346億円、産業投資37億円",
+       "国際協力銀行は10月4,253億円（累計2兆785億円）で最大の実行先",
+       "地方公共団体向け貸付は10月135億円、累計1兆802億円（5月に9,981億円が集中）"
+      ],
+      "tables": [
+       {
+        "title": "財政投融資の実績（令和8年度）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040477215&fileKind=0"
+       },
+       {
+        "title": "地方公共団体向け貸付実績",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040456825&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -461,7 +852,26 @@
      "status": "新着",
      "info": "https://www.mof.go.jp/policy/filp/reference/flf_balance/data.html",
      "stats": [],
-     "analysis": null
+     "analysis": {
+      "date": "2026-11-20",
+      "toukei": "00350401",
+      "name": "財政融資資金現在高",
+      "org": "財務省",
+      "period": "2026年10月末",
+      "headline": "10月末の財政融資資金現在高は118兆6,296億円で前月末比6,233億円減、前年度末比では4兆8,256億円減",
+      "points": [
+       "負債側は預託金が30兆9,594億円で前月末比2兆1,541億円減（うち特別会計預託金2兆3,676億円減）",
+       "公債（財投債）は86兆8,330億円で前月末比1兆5,280億円増。資産側の貸付金は117兆361億円（同502億円増）",
+       "有価証券は国庫短期証券1兆3,997億円（前月末比同額増）。現金預金は1,938億円で同2兆732億円減"
+      ],
+      "tables": [
+       {
+        "title": "財政融資資金現在高（令和8年10月末）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040529906&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -8848,7 +9258,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-24T18:05+09:00",
+  "checked_at": "2026-11-24T18:17+09:00",
   "counts": {
    "new": 0,
    "unchanged": 131,
