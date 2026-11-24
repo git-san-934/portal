@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-24T17:12+09:00",
+ "generated_at": "2026-11-24T17:50+09:00",
  "report_date": "2026-11-24",
  "days": [
   {
@@ -68,7 +68,27 @@
      "org": "国土交通省",
      "status": "新着",
      "info": "https://www.mlit.go.jp/k-toukei/tetudouyusou.html",
-     "stats": []
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-24",
+      "toukei": "00600350",
+      "name": "鉄道輸送統計調査",
+      "org": "国土交通省",
+      "period": "2026年9月分（速報）",
+      "headline": "9月の鉄道旅客は20.0億人で前年同月比0.6%増と小幅増。一方、貨物は299万トンで4.7%減、トンキロは10.5%減と落ち込みが大きい",
+      "points": [
+       "旅客はJR（0.7%増）・民鉄（0.6%増）とも小幅増で、人キロも0.2%増と横ばい圏",
+       "貨物の減少はコンテナ（162万トン、12.7%減）が中心。車扱は137万トンで6.8%増",
+       "コンテナ貨物のトンキロは11.1%減で、長距離の輸送が細っている（物流需要や代替輸送の動きに注意）"
+      ],
+      "tables": [
+       {
+        "title": "鉄道輸送統計速報",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040531704&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -78,7 +98,27 @@
      "org": "国土交通省",
      "status": "新着",
      "info": "https://www.mlit.go.jp/k-toukei/zousenzoukitoukei.html",
-     "stats": []
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-24",
+      "toukei": "00600300",
+      "name": "造船造機統計調査",
+      "org": "国土交通省",
+      "period": "2026年7〜9月期（造機・速報）",
+      "headline": "舶用機械の製造額は7月589億円（前年同月比24.3%増）から8月380億円（5.1%減）、9月473億円（10.3%減）と減速",
+      "points": [
+       "1〜9月累計の製造額は4,308億円で前年同期比3.9%増。うちディーゼル機関は2,454億円（6.3%増）だが台数は9,480基（17.9%減）で、大型機へのシフト",
+       "1万馬力以上のディーゼル機関は9月の金額が前年同月の約52%と大きく減少",
+       "船外機は1〜9月で1,067億円（4.6%減）、ポンプは474億円（16.7%増）"
+      ],
+      "tables": [
+       {
+        "title": "造機統計四半期速報",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040533396&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -88,7 +128,27 @@
      "org": "厚生労働省",
      "status": "更新",
      "info": "https://www.mhlw.go.jp/toukei/list/151-2.html",
-     "stats": []
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-24",
+      "toukei": "00450376",
+      "name": "介護事業実態調査（介護従事者処遇状況等調査）",
+      "org": "厚生労働省",
+      "period": "令和8年7月（前年7月との比較）",
+      "headline": "処遇改善加算を取る事業所の介護職員（月給・常勤）の平均給与は34万8,690円で、1年前から1万6,690円（5.0%）増と前年調査（2.0%増）を上回る伸び",
+      "points": [
+       "基本給等は1万1,130円（4.4%）増。ベースアップ分を分けて把握する事業所では、ベア分は平均7,600円（2.9%）",
+       "賃上げの方法はベースアップ49.2%、賞与等40.7%、定期昇給39.6%。理由は令和8年度の報酬改定（55.2%）や国の補助金（51.1%）",
+       "加算の取得率は96.1%。全産業の賃上げ率と比べた介護の賃金格差の縮小度合いが、人手確保の焦点"
+      ],
+      "tables": [
+       {
+        "title": "令和８年度介護従事者処遇状況等調査結果のポイント",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040527257&fileKind=2"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -98,7 +158,27 @@
      "org": "厚生労働省",
      "status": "更新",
      "info": "https://www.mhlw.go.jp/toukei/list/78-23.html",
-     "stats": []
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-24",
+      "toukei": "00450372",
+      "name": "介護事業実態調査（介護事業経営実態調査）",
+      "org": "厚生労働省",
+      "period": "令和7年度決算（令和8年5月調査）",
+      "headline": "介護サービス全体の平均収支差率（利益率に相当）は令和7年度決算で4.3%と、前年度の4.7%から0.4ポイント低下",
+      "points": [
+       "施設は低水準が続く: 特養（介護老人福祉施設）0.7%（0.7pt低下）、老健0.8%、介護医療院2.3%",
+       "通所介護（デイサービス）は1.4%と4.8pt低下し悪化が目立つ。訪問リハ6.1%（4.7pt低下）、訪問看護8.5%も低下",
+       "訪問介護は11.3%（1.7pt上昇）、福祉用具貸与11.8%（6.4pt上昇）と改善。次の介護報酬改定の基礎資料になる"
+      ],
+      "tables": [
+       {
+        "title": "令和８年度介護事業経営実態調査結果の概要",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040527237&fileKind=2"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -108,7 +188,27 @@
      "org": "厚生労働省",
      "status": "新着",
      "info": "https://www.mhlw.go.jp/toukei/list/81-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-24",
+      "toukei": "00450011",
+      "name": "人口動態調査",
+      "org": "厚生労働省",
+      "period": "2026年9月分（速報）",
+      "headline": "9月の出生は5万9,194人で前年同月比2.2%減、死亡は12万418人（0.1%増）で、自然減は6万1,224人と前年より1,483人拡大",
+      "points": [
+       "1〜9月累計の出生は52万3,304人（前年同期比0.3%減）と減少は小幅。死亡は114万5,536人（4.5%減）で自然減は前年より縮小",
+       "婚姻は9月2万7,887組（1.4%増）、1〜9月累計37万6,018組（2.3%増）と増加が続く。離婚は9月に9.8%減",
+       "過去1年間の出生は70万4,049人（0.3%減）。婚姻の増加が出生の下げ止まりにつながるかが今後の焦点"
+      ],
+      "tables": [
+       {
+        "title": "人口動態統計速報 令和８年９月分",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040527115&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -118,7 +218,31 @@
      "org": "文部科学省",
      "status": "新着",
      "info": "https://www.mext.go.jp/b_menu/toukei/chousa01/jouhouka/1259933.htm",
-     "stats": []
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-24",
+      "toukei": "00400306",
+      "name": "学校における教育の情報化の実態等に関する調査",
+      "org": "文部科学省",
+      "period": "2025年度（令和8年3月現在）",
+      "headline": "公立学校の学習者用PCは1,187.7万台で児童生徒1人当たり1.1台と、GIGAスクールの1人1台が定着",
+      "points": [
+       "普通教室の92.5%に大型提示装置（電子黒板・大型ディスプレイ等）、99.4%が無線LANなどでインターネットに接続",
+       "教員の指導者用PC整備率は138.0%（前年度136.3%）。コンピュータ教室に置くPCは39.7万台（前年度49.8万台）と減少",
+       "体育館の校内LAN接続は74.2%と、普通教室に比べて整備が遅れている"
+      ],
+      "tables": [
+       {
+        "title": "コンピュータ整備の実態等（1）コンピュータの台数",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040530985&fileKind=0"
+       },
+       {
+        "title": "コンピュータ整備の実態等（2）周辺機器設置場所",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040530986&fileKind=0"
+       }
+      ],
+      "analyzed_on": "2026-11-24"
+     }
     },
     {
      "kind": "estat",
@@ -159,7 +283,8 @@
        "fresh": true,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     }
    ]
   },
@@ -258,7 +383,8 @@
      "org": "農林水産省",
      "status": "新着",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/tikusan_ryutu/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -268,7 +394,8 @@
      "org": "農林水産省",
      "status": "新着",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/sakumotu/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -278,7 +405,8 @@
      "org": "厚生労働省",
      "status": "新着",
      "info": "https://www.mhlw.go.jp/toukei/list/159-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -288,7 +416,8 @@
      "org": "文部科学省",
      "status": "新着",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -298,7 +427,8 @@
      "org": "財務省",
      "status": "更新",
      "info": "https://www.mof.go.jp/policy/international_policy/reference/official_reserve_assets/index.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -308,7 +438,8 @@
      "org": "財務省",
      "status": "新着",
      "info": "https://www.mof.go.jp/policy/filp/reference/flf_balance/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -318,7 +449,8 @@
      "org": "財務省",
      "status": "新着",
      "info": "https://www.mof.go.jp/policy/filp/reference/zaitojisseki/data.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -328,7 +460,8 @@
      "org": "財務省",
      "status": "新着",
      "info": "https://www.mof.go.jp/policy/filp/reference/flf_balance/data.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -375,7 +508,8 @@
        "fresh": true,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -416,7 +550,8 @@
        "fresh": false,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -453,7 +588,8 @@
         }
        ]
       }
-     ]
+     ],
+     "analysis": null
     }
    ]
   },
@@ -482,7 +618,8 @@
      "org": "経済産業省",
      "status": "新着",
      "info": "https://www.meti.go.jp/policy/safety_security/industrial_safety/sangyo/mine/2017_newpage/toukei.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -492,7 +629,8 @@
      "org": "厚生労働省",
      "status": "新着",
      "info": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/database/seido/kokumin_nenpo.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -502,7 +640,8 @@
      "org": "財務省",
      "status": "更新",
      "info": "https://www.mof.go.jp/policy/international_policy/reference/offshore/index.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -553,7 +692,8 @@
        "fresh": true,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     }
    ]
   },
@@ -870,7 +1010,8 @@
      "org": "観光庁",
      "status": "新着",
      "info": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/shohidoko.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -880,7 +1021,8 @@
      "org": "資源エネルギー庁",
      "status": "新着",
      "info": "https://www.enecho.meti.go.jp/statistics/energy_consumption/ec003/",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -890,7 +1032,8 @@
      "org": "文部科学省",
      "status": "新着",
      "info": "https://www.mext.go.jp/b_menu/toukei/chousa08/21seiki/1380892.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -900,7 +1043,8 @@
      "org": "消費者庁",
      "status": "新着",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -910,7 +1054,8 @@
      "org": "内閣官房",
      "status": "新着",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -948,7 +1093,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/statistics/details/kkoji_list.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -958,7 +1104,8 @@
      "org": "経済産業省",
      "status": "",
      "info": "https://www.meti.go.jp/statistics/tyo/sanzi/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -968,7 +1115,8 @@
      "org": "警察庁",
      "status": "",
      "info": "https://www.npa.go.jp/publications/statistics/koutsuu/index_jiko.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -978,7 +1126,8 @@
      "org": "警察庁",
      "status": "",
      "info": "https://www.npa.go.jp/publications/statistics/sousa/statistics.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -1021,7 +1170,8 @@
      "org": "資源エネルギー庁",
      "status": "",
      "info": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl001/results.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1031,7 +1181,8 @@
      "org": "資源エネルギー庁",
      "status": "",
      "info": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl005/",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1041,7 +1192,8 @@
      "org": "資源エネルギー庁",
      "status": "",
      "info": "https://www.enecho.meti.go.jp/statistics/petroleum_and_lpgas/pl004/",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1051,7 +1203,8 @@
      "org": "経済産業省",
      "status": "",
      "info": "https://www.meti.go.jp/statistics/tyo/entyoio/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1061,7 +1214,8 @@
      "org": "経済産業省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1112,7 +1266,8 @@
        "fresh": true,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1122,7 +1277,8 @@
      "org": "経済産業省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1132,7 +1288,8 @@
      "org": "経済産業省",
      "status": "",
      "info": "https://www.meti.go.jp/statistics/tyo/seidou/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1142,7 +1299,8 @@
      "org": "経済産業省",
      "status": "",
      "info": "https://www.meti.go.jp/statistics/tyo/syoudou/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1152,7 +1310,8 @@
      "org": "法務省",
      "status": "",
      "info": "https://www.moj.go.jp/isa/policies/statistics/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1162,7 +1321,8 @@
      "org": "消費者庁",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1172,7 +1332,8 @@
      "org": "内閣府",
      "status": "",
      "info": "https://www.esri.cao.go.jp/jp/sna/menu.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -1201,7 +1362,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/statistics/details/kkoji_list.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1211,7 +1373,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/105-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1221,7 +1384,8 @@
      "org": "消費者庁",
      "status": "",
      "info": "https://www.caa.go.jp/policies/policy/consumer_research/research_report/survey_003/",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -1375,7 +1539,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/k-toukei/jidousya/jidousya.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1436,7 +1601,8 @@
        "fresh": true,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1446,7 +1612,8 @@
      "org": "人事院",
      "status": "",
      "info": "https://www.jinji.go.jp/kouho_houdo/toukei/0311_minkankyuuyo/minkankyuuyo.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -1775,7 +1942,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1785,7 +1953,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/statistics/details/kkoji_list.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1826,7 +1995,8 @@
        "fresh": true,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1836,7 +2006,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/80-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1846,7 +2017,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/79-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1856,7 +2028,8 @@
      "org": "財務省",
      "status": "",
      "info": "https://www.mof.go.jp/policy/international_policy/reference/itn_transactions_in_securities/index.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1866,7 +2039,8 @@
      "org": "財務省",
      "status": "",
      "info": "https://www.mof.go.jp/policy/international_policy/reference/balance_of_payments/index.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1876,7 +2050,8 @@
      "org": "財務省",
      "status": "",
      "info": "https://www.mof.go.jp/jgbs/reference/gbb/data.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1886,7 +2061,8 @@
      "org": "総務省",
      "status": "",
      "info": "https://www.stat.go.jp/data/kstm/index.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1923,7 +2099,8 @@
         }
        ]
       }
-     ]
+     ],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -1933,7 +2110,8 @@
      "org": "総務省",
      "status": "",
      "info": "https://www.stat.go.jp/data/joukyou/index.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2002,7 +2180,8 @@
        "fresh": true,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2033,7 +2212,8 @@
        "fresh": false,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2043,7 +2223,8 @@
      "org": "内閣府",
      "status": "",
      "info": "https://www5.cao.go.jp/keizai3/watcher/watcher_menu.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -2093,7 +2274,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/12-23.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2103,7 +2285,8 @@
      "org": "財務省",
      "status": "",
      "info": "https://www.mof.go.jp/policy/international_policy/reference/feio/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2113,7 +2296,8 @@
      "org": "財務省",
      "status": "",
      "info": "https://www.mof.go.jp/policy/international_policy/reference/gaitametokkai/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2123,7 +2307,8 @@
      "org": "総務省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2164,7 +2349,8 @@
        "fresh": true,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     }
    ]
   },
@@ -2226,7 +2412,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2236,7 +2423,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/database/seido/kenpo_zyoukyou.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -2317,7 +2505,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/mokuryu/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2327,7 +2516,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/noucen/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -2413,7 +2603,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/kokusai/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2423,7 +2614,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/74-16.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -2636,7 +2828,8 @@
      "org": "観光庁",
      "status": "",
      "info": "https://www.mlit.go.jp/kankocho/tokei_hakusyo/shukuhakutokei.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2646,7 +2839,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2656,7 +2850,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2666,7 +2861,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2676,7 +2872,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/statistics/details/kkoji_list.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2686,7 +2883,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/statistics/details/jutaku_list.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2696,7 +2894,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/statistics/details/kgyo_list.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2706,7 +2905,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/statistics/details/kkoji_list.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2716,7 +2916,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/statistics/details/jutaku_list.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2726,7 +2927,8 @@
      "org": "資源エネルギー庁",
      "status": "",
      "info": "https://www.enecho.meti.go.jp/statistics/gas/ga001/",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2736,7 +2938,8 @@
      "org": "経済産業省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2746,7 +2949,8 @@
      "org": "経済産業省",
      "status": "",
      "info": "https://www.meti.go.jp/statistics/tyo/utiwake/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2756,7 +2960,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/oil/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2766,7 +2971,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/einou/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2776,7 +2982,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/suisan_ryutu/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2786,7 +2993,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/noubukka/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2796,7 +3004,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/gyokei/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2806,7 +3015,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/noukei/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2816,7 +3026,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2826,7 +3037,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/bunya/iryouhoken/database/zenpan/iryou_doukou.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2836,7 +3048,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/150-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2846,7 +3059,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/114-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2856,7 +3070,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/113-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2866,7 +3081,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/109-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2876,7 +3092,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/list15-19.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2886,7 +3103,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/45-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2896,7 +3114,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/38-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2906,7 +3125,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/37-21.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2916,7 +3136,8 @@
      "org": "国税庁",
      "status": "",
      "info": "https://www.nta.go.jp/publication/statistics/kokuzeicho/minkan/top.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2926,7 +3147,8 @@
      "org": "財務省",
      "status": "",
      "info": "https://www.mof.go.jp/jgbs/reference/appendix/syoukan/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2936,7 +3158,8 @@
      "org": "総務省",
      "status": "",
      "info": "https://www.stat.go.jp/data/zenkokukakei/2024/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2946,7 +3169,8 @@
      "org": "総務省",
      "status": "",
      "info": "https://www.stat.go.jp",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2956,7 +3180,8 @@
      "org": "総務省",
      "status": "",
      "info": "https://www.stat.go.jp/data/ssds/index.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -2966,7 +3191,8 @@
      "org": "内閣府",
      "status": "",
      "info": "https://www.esri.cao.go.jp/jp/sna/menu.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -3188,7 +3414,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/k-toukei/koukuuyusoutoukei.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3198,7 +3425,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/k-toukei/naikouyusoutoukei.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3208,7 +3436,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/seika_orosi/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3218,7 +3447,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000086501.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3228,7 +3458,8 @@
      "org": "財務省",
      "status": "",
      "info": "https://www.customs.go.jp/toukei/info/index.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3238,7 +3469,8 @@
      "org": "財務省",
      "status": "",
      "info": "https://www.customs.go.jp/toukei/info/index.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3248,7 +3480,8 @@
      "org": "内閣府",
      "status": "",
      "info": "https://www.esri.cao.go.jp/jp/stat/shouhi/menu_shouhi.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -3277,7 +3510,19 @@
      "org": "環境省",
      "status": "",
      "info": "https://www.env.go.jp/earth/ondanka/ghg/kateiCO2tokei.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00600340",
+     "name": "内航船舶輸送統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/database?page=1&toukei=00600340",
+     "org": "国土交通省",
+     "status": "",
+     "info": "https://www.mlit.go.jp/k-toukei/naikouyusoutoukei.html",
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3287,7 +3532,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/k-toukei/kouwan.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3297,7 +3543,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3307,7 +3554,8 @@
      "org": "総務省",
      "status": "",
      "info": "https://www.stat.go.jp/data/kkj/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -3379,7 +3627,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/gyunyu/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3389,7 +3638,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/tokutei_sakumotu/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3399,7 +3649,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/database/seido/kokuho_jittai.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3409,7 +3660,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/itiran/#list07_02",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3419,7 +3671,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/36-19.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3450,7 +3703,8 @@
        "fresh": true,
        "signals": []
       }
-     ]
+     ],
+     "analysis": null
     }
    ]
   },
@@ -3465,7 +3719,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3475,7 +3730,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3485,7 +3741,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/gyunyu_doukou/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3495,7 +3752,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/mokuzai/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3505,7 +3763,8 @@
      "org": "法務省",
      "status": "",
      "info": "https://www.moj.go.jp/isa/policies/statistics/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3515,7 +3774,8 @@
      "org": "法務省",
      "status": "",
      "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3525,7 +3785,8 @@
      "org": "法務省",
      "status": "",
      "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3535,7 +3796,8 @@
      "org": "法務省",
      "status": "",
      "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3545,7 +3807,8 @@
      "org": "法務省",
      "status": "",
      "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3555,7 +3818,8 @@
      "org": "法務省",
      "status": "",
      "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3565,7 +3829,8 @@
      "org": "法務省",
      "status": "",
      "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3575,7 +3840,8 @@
      "org": "法務省",
      "status": "",
      "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -3692,7 +3958,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/k-toukei/nenryousyouhiryou.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3702,7 +3969,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/k-toukei/tetsudousyaryou.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -3712,7 +3980,8 @@
      "org": "内閣府",
      "status": "",
      "info": "https://www5.cao.go.jp/keizai3/watcher/watcher_menu.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -4008,7 +4277,8 @@
      "org": "観光庁",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -4018,7 +4288,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/iryouhoken/database/seido/kouki_houkoku.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -4098,7 +4369,8 @@
      "org": "防衛省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -4174,7 +4446,8 @@
      "org": "環境省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -4327,7 +4600,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/k-toukei/tetudouyusou.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -4342,7 +4616,8 @@
      "org": "スポーツ庁",
      "status": "",
      "info": "https://www.mext.go.jp/sports/b_menu/toukei/chousa04/tairyoku/1368148.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -4473,7 +4748,8 @@
      "org": "財務省",
      "status": "",
      "info": "https://www.mof.go.jp/jgbs/reference/appendix/suii/index.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -4757,7 +5033,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/sankan_siharai/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -4767,7 +5044,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/95-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -4777,7 +5055,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/112-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -5099,7 +5378,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/youki_housou/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5109,7 +5389,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/77-16.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5119,7 +5400,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/76-16.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -5239,7 +5521,8 @@
      "org": "財務省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5249,7 +5532,8 @@
      "org": "財務省",
      "status": "",
      "info": "https://www.mof.go.jp/policy/filp/reference/zaitou_swap/jisshijyoukyou.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -5317,7 +5601,8 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/jibie/index.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5327,7 +5612,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/139-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5337,7 +5623,8 @@
      "org": "文部科学省",
      "status": "",
      "info": "https://www.mext.go.jp/b_menu/toukei/chousa01/shidou/1267646.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5347,7 +5634,8 @@
      "org": "文部科学省",
      "status": "",
      "info": "https://www.mext.go.jp/b_menu/toukei/001/index05.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5357,7 +5645,8 @@
      "org": "総務省",
      "status": "",
      "info": "https://www.e-stat.go.jp/en/data/nsdp/",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5367,7 +5656,8 @@
      "org": "総務省",
      "status": "",
      "info": "https://www.soumu.go.jp/main_sosiki/onkyu_toukatsu/onkyu_toukei.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5377,7 +5667,8 @@
      "org": "総務省",
      "status": "",
      "info": "https://www.soumu.go.jp/main_sosiki/onkyu_toukatsu/onkyu_toukei.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5387,7 +5678,8 @@
      "org": "人事院",
      "status": "",
      "info": "https://www.jinji.go.jp/kouho_houdo/toukei/0111_kinmujouken/kinmujouken.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -5402,7 +5694,8 @@
      "org": "国土交通省",
      "status": "",
      "info": "https://www.mlit.go.jp/k-toukei/naikouyusoutoukei.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5412,7 +5705,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/43-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5422,7 +5716,8 @@
      "org": "国税庁",
      "status": "",
      "info": "https://www.nta.go.jp/publication/statistics/kokuzeicho/minkan/top.htm",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5432,7 +5727,8 @@
      "org": "総務省",
      "status": "",
      "info": "https://www.stat.go.jp",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5442,7 +5738,8 @@
      "org": "総務省",
      "status": "",
      "info": "",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -5714,7 +6011,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/96-1.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -5724,7 +6022,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/list/36-19.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -5739,7 +6038,8 @@
      "org": "厚生労働省",
      "status": "",
      "info": "https://www.mhlw.go.jp/toukei/itiran/gaiyo/k-eisei.html",
-     "stats": []
+     "stats": [],
+     "analysis": null
     }
    ]
   },
@@ -8548,7 +8848,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-24T17:12+09:00",
+  "checked_at": "2026-11-24T17:50+09:00",
   "counts": {
    "new": 0,
    "unchanged": 131,
