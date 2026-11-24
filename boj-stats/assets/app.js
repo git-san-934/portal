@@ -60,8 +60,14 @@
       }
       h.insertBefore(el("span", "count", `${groups.size}件`), h.querySelector(".badge"));
       const ul = el("ul", "news");
+      // e-Stat の新着: 取り込み済みの統計は値を添えて1行ずつ、ほかはまとめて折りたたむ。
+      // その統計の系列の公表・変化は e-Stat の行にまとめるので、個別の行は出さない
+      const estat = d.items.filter((it) => it.kind === "estat");
+      const merged = new Set(estat.flatMap((it) => (it.stats || []).map((x) => x.id)));
+      for (const it of estat.filter((x) => x.stats && x.stats.length)) ul.append(estatItem(it));
       for (const g of groups.values()) {
         const it = g[0];
+        if (it.kind === "estat" || ((it.kind === "release" || it.kind === "signal") && merged.has(it.id))) continue;
         const li = el("li", "item");
         if (it.kind === "news") {
           // 日銀ホームページの新着情報: 日銀のページへ直接リンク
@@ -96,10 +102,70 @@
         }
         ul.append(li);
       }
+      const rest = estat.filter((x) => !(x.stats && x.stats.length));
+      if (rest.length) ul.append(estatRest(rest));
+      // 件数は e-Stat にまとめた系列を除いて数え直す
+      h.querySelector(".count").textContent = `${ul.children.length - (rest.length ? 1 : 0) + rest.length}件`;
       sec.append(ul);
       return sec;
     };
     todays.forEach((d) => box.append(dayBlock(d)));
+  }
+
+  // e-Stat の新着の見出し部分(バッジ・新着/更新・組織)
+  function estatMeta(it) {
+    const meta = el("span", "meta");
+    meta.append(el("span", "badge estat", "e-Stat"));
+    if (it.status) meta.append(el("span", null, it.status));
+    if (it.org) meta.append(el("span", null, it.org));
+    return meta;
+  }
+  const extLink = (cls, text, url) => {
+    const a = el("a", cls, text);
+    if (isWebUrl(url)) a.href = url;
+    a.target = "_blank";
+    a.rel = "noopener";
+    return a;
+  };
+
+  // 取り込み済みの統計: 系列ごとに最新値・前回比と、その日の検知を出す
+  function estatItem(it) {
+    const li = el("li", "item");
+    li.append(estatMeta(it), extLink("title", it.name, it.url));
+    for (const x of it.stats) {
+      const sub = el("span", "sub");
+      const a = el("a", null, x.name);
+      a.href = link(x.id);
+      sub.append(a, ` ${x.obs ? fmtObs(x.obs) : ""} `);
+      sub.append(x.value != null ? `${x.value} ${x.unit}` : "値なし");
+      if (x.change) sub.append("(前回比 ", el("span", dirCls(x.change), x.change), ")");
+      if (!x.fresh) sub.append(el("span", "note", " ・取り込み済みの最新値"));
+      li.append(sub);
+      for (const g of x.signals || []) {
+        const s2 = el("span", "sub signal-line");
+        s2.append(el("span", dirCls(g.dir), `${g.type}・${g.dir}`), `: ${g.detail}`);
+        li.append(s2);
+      }
+    }
+    return li;
+  }
+
+  // 値を取り込んでいない統計: 件数だけ見せて、中身は折りたたむ
+  function estatRest(list) {
+    const li = el("li", "item");
+    const det = el("details", "estat-rest");
+    const sum = el("summary");
+    sum.append(el("span", "badge estat", "e-Stat"), ` ほかの政府統計の新着 ${list.length}件`);
+    det.append(sum);
+    const ul = el("ul", "estat-list");
+    for (const it of list) {
+      const li2 = el("li");
+      li2.append(extLink(null, it.name, it.url), el("span", "note", ` ${it.org}${it.status ? "・" + it.status : ""}`));
+      ul.append(li2);
+    }
+    det.append(ul);
+    li.append(det);
+    return li;
   }
 
   function row(id, s) {
