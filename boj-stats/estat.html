@@ -1,0 +1,51 @@
+<!doctype html>
+<html lang="ja">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>政府統計の分析 - 日銀統計の新着</title>
+  <meta name="theme-color" content="#f7f5f0" />
+  <link rel="stylesheet" href="assets/style.css?v=20261124d" />
+</head>
+<body>
+  <div class="wrap">
+    <p class="back"><a href="./">← 日銀統計の新着</a></p>
+    <header>
+      <p class="code" id="cat"></p>
+      <h1 id="name">読み込み中...</h1>
+      <p class="estat-period" id="period"></p>
+      <p class="estat-headline" id="headline"></p>
+    </header>
+
+    <div id="charts"></div>
+
+    <section class="panel" id="points-panel" hidden>
+      <h2 class="panel-title">ポイント</h2>
+      <ul class="estat-points" id="points"></ul>
+    </section>
+
+    <section class="panel" id="about-panel" hidden>
+      <h2 class="panel-title">この統計とは</h2>
+      <p class="note" id="about"></p>
+    </section>
+
+    <section class="panel">
+      <h2 class="panel-title">もとにした表</h2>
+      <ul class="estat-list" id="tables"></ul>
+      <p class="note sub" id="analyzed"></p>
+    </section>
+
+    <section class="panel" id="history-panel" hidden>
+      <h2 class="panel-title">この統計の過去の分析</h2>
+      <ul class="news" id="history"></ul>
+    </section>
+
+    <footer>
+      <p>出典: 政府統計の総合窓口（e-Stat）に公表された表。数値は表から読んだもので、文章とグラフは Claude がまとめました。</p>
+      <p>※資産クラスとの関係は過去に一般的に観察されてきた傾向の整理で、将来の値動きや個別銘柄の売買を示すものではありません。</p>
+    </footer>
+  </div>
+  <script src="assets/linechart.js?v=20261124d"></script>
+  <script src="assets/estat.js?v=20261124d"></script>
+</body>
+</html>

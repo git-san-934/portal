@@ -202,3 +202,20 @@ code { font-size: 0.75rem; }
 .analysis-more > summary { cursor: pointer; font-size: 0.78rem; color: var(--link); margin-top: 0.15rem; }
 .analysis-more .points { font-size: 0.82rem; padding-left: 1.1rem; margin: 0.3rem 0; }
 .analysis-more .points li { margin: 0.15rem 0; }
+
+/* 政府統計の分析ページ(estat.html) */
+.estat-period { color: var(--text-sub); font-size: 0.85rem; margin-top: 0.3rem; }
+.estat-headline { font-size: 1.05rem; font-weight: 600; line-height: 1.6; margin-top: 0.6rem; padding: 0.7rem 0.9rem; background: var(--fresh-bg); border-radius: 0.6rem; }
+.estat-chart-head { margin-top: 0; }
+.estat-points { padding-left: 1.2rem; font-size: 0.92rem; line-height: 1.65; }
+.estat-points li + li { margin-top: 0.35rem; }
+.hbar { display: grid; gap: 0.45rem; margin-top: 0.5rem; }
+.hb-row { display: grid; grid-template-columns: minmax(5.5rem, min(30%, 11rem)) 1fr; gap: 0.5rem; align-items: center; }
+.hb-label { font-size: 0.8rem; line-height: 1.3; overflow-wrap: anywhere; }
+.hb-bars { display: grid; gap: 2px; min-width: 0; }
+.hb-line { display: grid; grid-template-columns: 1fr 5.8rem; gap: 0.35rem; align-items: center; }
+.hb-track { position: relative; height: 0.8rem; }
+.hb-bar { position: absolute; top: 0; bottom: 0; border-radius: 2px; }
+.hb-zero { position: absolute; top: -2px; bottom: -2px; width: 1px; background: var(--text-sub); }
+.hb-val { font-size: 0.75rem; text-align: right; font-variant-numeric: tabular-nums; white-space: nowrap; color: var(--text-sub); }
+.analysis-link { font-size: 0.78rem; margin-left: 0.3rem; white-space: nowrap; }
