@@ -6,7 +6,8 @@ run_daily.sh（取得→status.py→analyze.py）の後に実行する。
 - 変化検知: reports/signals_log.csv（analyze.py が書く）
 - 日銀の新着: reports/boj_news.csv（fetch_boj_news.py が書く。日本銀行ホームページの新着情報）
 - e-Stat の新着: reports/estat_news.csv（fetch_estat_news.py が書く。政府統計の総合窓口の新着情報）。
-  取り込み済みの系列がある統計（ESTAT_LINKS）には、その系列の最新値・前回比・検知を添える
+  取り込み済みの系列がある統計（ESTAT_LINKS）には、その系列の最新値・前回比・検知を添える。
+  ほかの統計には日次チェックの分析（reports/estat_analysis.json）を添える
 日次の系列（金利・為替など）は毎日値が入るので新着には載せず、「毎日の値」に最新値を出す。
 標準ライブラリのみ。
 """
@@ -220,7 +221,13 @@ def main():
     except (OSError, ValueError):
         pass
 
-    # e-Stat の新着情報（fetch_estat_news.py が書く）。取り込み済みの統計は系列の値と当日の検知を添える
+    # e-Stat の新着情報（fetch_estat_news.py が書く）。取り込み済みの統計は系列の値と当日の検知を添える。
+    # ほかの統計は、日次チェック（Claude）が公表された表を読んで書いた分析（reports/estat_analysis.json、estat_save.py）を添える
+    try:
+        with open(os.path.join(REPORTS, "estat_analysis.json"), encoding="utf-8") as f:
+            analyses = json.load(f).get("items", {})
+    except (OSError, ValueError):
+        analyses = {}
     signals_by = {}
     for d, items in days.items():
         for it in items:
@@ -241,10 +248,16 @@ def main():
                 "signals": [{"type": g["type"], "dir": g["dir"], "detail": g["detail"]}
                             for g in signals_by.get(x, []) if g["day"] >= r["date"]],
             })
-        days.setdefault(r["date"], []).append({
+        item = {
             "kind": "estat", "id": f"estat:{r['toukei'] or r['name']}", "name": r["name"], "url": r["url"],
             "org": r["org"], "status": r["status"], "info": r["info"], "stats": stats,
-        })
+            "analysis": analyses.get(f"{r['date']}|{r['toukei'] or r['name']}"),
+        }
+        days.setdefault(r["date"], []).append(item)
+        # 公表の翌日以降に分析した分は、分析した日の新着にも「M/D 公表分の分析」として出す
+        a = item["analysis"]
+        if a and a["analyzed_on"] > r["date"] and a["analyzed_on"] >= since:
+            days.setdefault(a["analyzed_on"], []).append(dict(item, published=r["date"]))
 
     out = {
         "generated_at": dt.datetime.now().astimezone().isoformat(timespec="minutes"),

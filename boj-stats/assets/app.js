@@ -64,7 +64,8 @@
       // その統計の系列の公表・変化は e-Stat の行にまとめるので、個別の行は出さない
       const estat = d.items.filter((it) => it.kind === "estat");
       const merged = new Set(estat.flatMap((it) => (it.stats || []).map((x) => x.id)));
-      for (const it of estat.filter((x) => x.stats && x.stats.length)) ul.append(estatItem(it));
+      const shown = (x) => (x.stats && x.stats.length) || x.analysis;
+      for (const it of estat.filter(shown)) ul.append(estatItem(it));
       for (const g of groups.values()) {
         const it = g[0];
         if (it.kind === "estat" || ((it.kind === "release" || it.kind === "signal") && merged.has(it.id))) continue;
@@ -102,7 +103,7 @@
         }
         ul.append(li);
       }
-      const rest = estat.filter((x) => !(x.stats && x.stats.length));
+      const rest = estat.filter((x) => !shown(x));
       if (rest.length) ul.append(estatRest(rest));
       // 件数は e-Stat にまとめた系列を除いて数え直す
       h.querySelector(".count").textContent = `${ul.children.length - (rest.length ? 1 : 0) + rest.length}件`;
@@ -131,8 +132,34 @@
   // 取り込み済みの統計: 系列ごとに最新値・前回比と、その日の検知を出す
   function estatItem(it) {
     const li = el("li", "item");
-    li.append(estatMeta(it), extLink("title", it.name, it.url));
-    for (const x of it.stats) {
+    const meta = estatMeta(it);
+    if (it.published) meta.append(el("span", null, `${fmtDay(it.published)} 公表分の分析`));
+    li.append(meta, extLink("title", it.name, it.url));
+    const a = it.analysis;
+    if (a) {
+      // 日次チェックの分析: 要点の1文を出し、詳しい点と読んだ表は折りたたむ
+      const sub = el("span", "sub analysis");
+      if (a.period) sub.append(el("span", "note", `${a.period} `));
+      sub.append(a.headline);
+      li.append(sub);
+      if ((a.points && a.points.length) || (a.tables && a.tables.length)) {
+        const det = el("details", "analysis-more");
+        det.append(el("summary", null, "詳しく"));
+        const pts = el("ul", "points");
+        for (const p of a.points || []) pts.append(el("li", null, p));
+        det.append(pts);
+        const src = el("p", "note");
+        src.append("読んだ表: ");
+        (a.tables || []).forEach((t, i) => {
+          if (i) src.append("、");
+          src.append(t.url ? extLink(null, t.title, t.url) : t.title);
+        });
+        src.append(`(${fmtDay(a.analyzed_on)} 日次チェックで分析)`);
+        det.append(src);
+        li.append(det);
+      }
+    }
+    for (const x of it.stats || []) {
       const sub = el("span", "sub");
       const a = el("a", null, x.name);
       a.href = link(x.id);
@@ -155,7 +182,7 @@
     const li = el("li", "item");
     const det = el("details", "estat-rest");
     const sum = el("summary");
-    sum.append(el("span", "badge estat", "e-Stat"), ` ほかの政府統計の新着 ${list.length}件`);
+    sum.append(el("span", "badge estat", "e-Stat"), ` まだ分析していない政府統計の新着 ${list.length}件`);
     det.append(sum);
     const ul = el("ul", "estat-list");
     for (const it of list) {
@@ -164,6 +191,7 @@
       ul.append(li2);
     }
     det.append(ul);
+    det.append(el("p", "note", "公表された表は、平日朝の日次チェック(6:52〜9:52)で読んで分析し、ここに載せます。"));
     li.append(det);
     return li;
   }

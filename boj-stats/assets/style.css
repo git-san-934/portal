@@ -198,3 +198,7 @@ code { font-size: 0.75rem; }
 .estat-rest > summary::-webkit-details-marker { display: none; }
 .estat-rest > summary::after { content: "▸ 開く"; color: var(--text-sub); font-size: 0.75rem; }
 .estat-rest[open] > summary::after { content: "▾ 閉じる"; }
+.analysis { color: var(--text); }
+.analysis-more > summary { cursor: pointer; font-size: 0.78rem; color: var(--link); margin-top: 0.15rem; }
+.analysis-more .points { font-size: 0.82rem; padding-left: 1.1rem; margin: 0.3rem 0; }
+.analysis-more .points li { margin: 0.15rem 0; }
