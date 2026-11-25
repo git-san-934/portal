@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-25T07:35+09:00",
+ "updated_at": "2026-11-25T09:28+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1093,6 +1093,13 @@
     "https://www.enplas.co.jp/ir/news/"
    ],
    "items": [
+    {
+     "date": "2026-11-25",
+     "title": "次世代ワイヤレス技術講座における当社レンズアンテナを用いた計測事例紹介のお知らせ",
+     "url": "https://www.enplas.co.jp/news/business-news/9856/",
+     "source": "official",
+     "first_seen": "2026-11-25T09:28+09:00"
+    },
     {
      "date": "2026-11-12",
      "time": "12:14",
