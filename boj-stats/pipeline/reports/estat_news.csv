@@ -1,4 +1,7 @@
 date,status,org,name,toukei,url,info
+2026-11-25,新着,国土交通省,主要建設資材需給・価格動向調査,00600060,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00600060,
+2026-11-25,新着,国土交通省,建設労働需給調査,00600050,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00600050,
+2026-11-25,新着,厚生労働省,労働災害動向調査,00450100,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450100,https://www.mhlw.go.jp/toukei/list/44-23.html
 2026-11-25,新着,厚生労働省,毎月勤労統計調査,00450071,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450071,https://www.mhlw.go.jp/toukei/list/30-1.html
 2026-11-25,新着,法務省,出入国管理統計,00250011,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250011,https://www.moj.go.jp/isa/policies/statistics/index.html
 2026-11-25,新着,法務省,人権侵犯事件統計,00250010,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250010,https://www.moj.go.jp/housei/toukei/toukei_index2.html
@@ -8,6 +11,7 @@ date,status,org,name,toukei,url,info
 2026-11-25,新着,法務省,検察統計調査,00250003,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250003,https://www.moj.go.jp/housei/toukei/toukei_index2.html
 2026-11-25,新着,法務省,登記統計,00250002,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250002,https://www.moj.go.jp/housei/toukei/toukei_index2.html
 2026-11-25,新着,法務省,訟務事件統計,00250001,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250001,https://www.moj.go.jp/housei/toukei/toukei_index2.html
+2026-11-25,更新,内閣府,景気ウォッチャー調査,00100001,https://www.e-stat.go.jp/stat-search/database?page=1&toukei=00100001,https://www5.cao.go.jp/keizai3/watcher/watcher_menu.html
 2026-11-24,新着,国土交通省,鉄道輸送統計調査,00600350,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00600350,https://www.mlit.go.jp/k-toukei/tetudouyusou.html
 2026-11-24,新着,国土交通省,造船造機統計調査,00600300,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00600300,https://www.mlit.go.jp/k-toukei/zousenzoukitoukei.html
 2026-11-24,更新,厚生労働省,介護事業実態調査（介護従事者処遇状況等調査）,00450376,https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450376,https://www.mhlw.go.jp/toukei/list/151-2.html

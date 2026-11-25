@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-25T13:56+09:00",
+ "generated_at": "2026-11-25T14:29+09:00",
  "report_date": "2026-11-25",
  "days": [
   {
@@ -241,6 +241,13 @@
     },
     {
      "kind": "news",
+     "id": "https://www.boj.or.jp/research/research_data/cpi/index.htm",
+     "name": "消費者物価のコア指標",
+     "url": "https://www.boj.or.jp/research/research_data/cpi/index.htm",
+     "time": "14:00"
+    },
+    {
+     "kind": "news",
      "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261120.htm",
      "name": "営業毎旬報告（11月20日現在）",
      "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261120.htm",
@@ -259,6 +266,39 @@
      "name": "企業向けサービス価格指数（10月）",
      "url": "https://www.boj.or.jp/statistics/pi/cspi_release/sppi2610.pdf",
      "time": "08:50"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00600060",
+     "name": "主要建設資材需給・価格動向調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00600060",
+     "org": "国土交通省",
+     "status": "新着",
+     "info": "",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00600050",
+     "name": "建設労働需給調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00600050",
+     "org": "国土交通省",
+     "status": "新着",
+     "info": "",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450100",
+     "name": "労働災害動向調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450100",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/toukei/list/44-23.html",
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -393,6 +433,17 @@
      "org": "法務省",
      "status": "新着",
      "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00100001",
+     "name": "景気ウォッチャー調査",
+     "url": "https://www.e-stat.go.jp/stat-search/database?page=1&toukei=00100001",
+     "org": "内閣府",
+     "status": "更新",
+     "info": "https://www5.cao.go.jp/keizai3/watcher/watcher_menu.html",
      "stats": [],
      "analysis": null
     }
@@ -10962,10 +11013,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-25T13:56+09:00",
+  "checked_at": "2026-11-25T14:29+09:00",
   "counts": {
-   "new": 26,
-   "unchanged": 105,
+   "new": 0,
+   "unchanged": 131,
    "error": 0,
    "stale": 0
   },
