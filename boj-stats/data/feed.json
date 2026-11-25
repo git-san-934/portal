@@ -1,7 +1,403 @@
 {
- "generated_at": "2026-11-25T05:19+09:00",
+ "generated_at": "2026-11-25T13:56+09:00",
  "report_date": "2026-11-25",
  "days": [
+  {
+   "date": "2026-11-25",
+   "items": [
+    {
+     "kind": "release",
+     "id": "PR02_PRCS20_5200000000%",
+     "name": "企業向けサービス価格指数 前年比",
+     "obs": "2026-10",
+     "value": "4.2",
+     "unit": "%",
+     "change": "+0.400%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_TOTAL",
+     "name": "日銀 総資産（営業毎旬報告）",
+     "obs": "2026-11-20",
+     "value": "6,271,130",
+     "unit": "億円",
+     "change": "+0.21%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_JGB",
+     "name": "日銀保有 国債",
+     "obs": "2026-11-20",
+     "value": "5,062,113",
+     "unit": "億円",
+     "change": "+0.25%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_TBILL",
+     "name": "日銀保有 国庫短期証券",
+     "obs": "2026-11-20",
+     "value": "0",
+     "unit": "億円",
+     "change": null
+    },
+    {
+     "kind": "release",
+     "id": "ACM_ETF",
+     "name": "日銀保有 ETF（金銭の信託）",
+     "obs": "2026-11-20",
+     "value": "369,105",
+     "unit": "億円",
+     "change": "-0.03%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_REIT",
+     "name": "日銀保有 J-REIT（金銭の信託）",
+     "obs": "2026-11-20",
+     "value": "6,493",
+     "unit": "億円",
+     "change": "-0.09%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_CORP_BOND",
+     "name": "日銀保有 社債",
+     "obs": "2026-11-20",
+     "value": "9,002",
+     "unit": "億円",
+     "change": "-0.28%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_LOANS",
+     "name": "日銀 貸付金",
+     "obs": "2026-11-20",
+     "value": "684,169",
+     "unit": "億円",
+     "change": "+0.00%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_LSF",
+     "name": "日銀 貸出支援基金",
+     "obs": "2026-11-20",
+     "value": "356,645",
+     "unit": "億円",
+     "change": "+0.00%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_FX",
+     "name": "日銀 外国為替（資産）",
+     "obs": "2026-11-20",
+     "value": "121,063",
+     "unit": "億円",
+     "change": "+0.27%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_BANKNOTES",
+     "name": "発行銀行券",
+     "obs": "2026-11-20",
+     "value": "1,141,992",
+     "unit": "億円",
+     "change": "+0.11%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_CURRENT_DEP",
+     "name": "日銀当座預金（営業毎旬報告）",
+     "obs": "2026-11-20",
+     "value": "4,101,026",
+     "unit": "億円",
+     "change": "-0.84%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_OTHER_DEP",
+     "name": "日銀 その他預金（海外中銀等）",
+     "obs": "2026-11-20",
+     "value": "454,290",
+     "unit": "億円",
+     "change": "+3.09%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_GOV_DEP",
+     "name": "政府預金",
+     "obs": "2026-11-20",
+     "value": "34,246",
+     "unit": "億円",
+     "change": "-20.07%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_REPO",
+     "name": "日銀 売現先勘定",
+     "obs": "2026-11-20",
+     "value": "382,121",
+     "unit": "億円",
+     "change": "+13.21%"
+    },
+    {
+     "kind": "release",
+     "id": "ACM_PROVISIONS",
+     "name": "日銀 引当金勘定",
+     "obs": "2026-11-20",
+     "value": "109,566",
+     "unit": "億円",
+     "change": "+0.00%"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_MK_WAGE_YOY",
+     "name": "毎月勤労統計 現金給与総額 前年比（5人以上）",
+     "obs": "2026-09",
+     "value": "4.4",
+     "unit": "%",
+     "change": "+0.500%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_MK_SCHED_YOY",
+     "name": "毎月勤労統計 所定内給与 前年比（5人以上）",
+     "obs": "2026-09",
+     "value": "3.6",
+     "unit": "%",
+     "change": "-0.200%pt"
+    },
+    {
+     "kind": "signal",
+     "id": "PR02_PRCS20_5200000000%",
+     "name": "企業向けサービス価格指数 前年比",
+     "obs": "2026-10",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "4.2%"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_ETF",
+     "name": "日銀保有 ETF（金銭の信託）",
+     "obs": "2026-11-20",
+     "type": "急変",
+     "dir": "低下",
+     "detail": "-0.03%（z=-2.6）"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_ETF",
+     "name": "日銀保有 ETF（金銭の信託）",
+     "obs": "2026-11-20",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "369,105億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_REIT",
+     "name": "日銀保有 J-REIT（金銭の信託）",
+     "obs": "2026-11-20",
+     "type": "急変",
+     "dir": "低下",
+     "detail": "-0.09%（z=-6.3）"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_REIT",
+     "name": "日銀保有 J-REIT（金銭の信託）",
+     "obs": "2026-11-20",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "6,493億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_CORP_BOND",
+     "name": "日銀保有 社債",
+     "obs": "2026-11-20",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "9,002億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ACM_FX",
+     "name": "日銀 外国為替（資産）",
+     "obs": "2026-11-20",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "121,063億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_MK_WAGE_YOY",
+     "name": "毎月勤労統計 現金給与総額 前年比（5人以上）",
+     "obs": "2026-09",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "4.4%"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261120.htm",
+     "name": "営業毎旬報告（11月20日現在）",
+     "url": "https://www.boj.or.jp/statistics/boj/other/acmai/release/2026/ac261120.htm",
+     "time": "10:00"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/dl/loan/yaku/yaku2609.pdf",
+     "name": "貸出約定平均金利（9月）",
+     "url": "https://www.boj.or.jp/statistics/dl/loan/yaku/yaku2609.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/statistics/pi/cspi_release/sppi2610.pdf",
+     "name": "企業向けサービス価格指数（10月）",
+     "url": "https://www.boj.or.jp/statistics/pi/cspi_release/sppi2610.pdf",
+     "time": "08:50"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450071",
+     "name": "毎月勤労統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450071",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/toukei/list/30-1.html",
+     "stats": [
+      {
+       "id": "ESTAT_MK_WAGE_YOY",
+       "name": "毎月勤労統計 現金給与総額 前年比（5人以上）",
+       "obs": "2026-09",
+       "value": "4.4",
+       "unit": "%",
+       "change": "+0.500%pt",
+       "fresh": true,
+       "signals": [
+        {
+         "type": "1年高値更新",
+         "dir": "上昇",
+         "detail": "4.4%"
+        }
+       ]
+      },
+      {
+       "id": "ESTAT_MK_SCHED_YOY",
+       "name": "毎月勤労統計 所定内給与 前年比（5人以上）",
+       "obs": "2026-09",
+       "value": "3.6",
+       "unit": "%",
+       "change": "-0.200%pt",
+       "fresh": true,
+       "signals": []
+      },
+      {
+       "id": "ESTAT_MK_REAL_YOY",
+       "name": "毎月勤労統計 実質賃金 前年比（5人以上）",
+       "obs": "2026-09",
+       "value": "2",
+       "unit": "%",
+       "change": "+0.400%pt",
+       "fresh": true,
+       "signals": []
+      }
+     ],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00250011",
+     "name": "出入国管理統計",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250011",
+     "org": "法務省",
+     "status": "新着",
+     "info": "https://www.moj.go.jp/isa/policies/statistics/index.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00250010",
+     "name": "人権侵犯事件統計",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250010",
+     "org": "法務省",
+     "status": "新着",
+     "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00250007",
+     "name": "保護統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250007",
+     "org": "法務省",
+     "status": "新着",
+     "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00250006",
+     "name": "少年矯正統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250006",
+     "org": "法務省",
+     "status": "新着",
+     "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00250005",
+     "name": "矯正統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250005",
+     "org": "法務省",
+     "status": "新着",
+     "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00250003",
+     "name": "検察統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250003",
+     "org": "法務省",
+     "status": "新着",
+     "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00250002",
+     "name": "登記統計",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250002",
+     "org": "法務省",
+     "status": "新着",
+     "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00250001",
+     "name": "訟務事件統計",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00250001",
+     "org": "法務省",
+     "status": "新着",
+     "info": "https://www.moj.go.jp/housei/toukei/toukei_index2.html",
+     "stats": [],
+     "analysis": null
+    }
+   ]
+  },
   {
    "date": "2026-11-24",
    "items": [
@@ -3680,20 +4076,26 @@
       {
        "id": "ESTAT_MK_WAGE_YOY",
        "name": "毎月勤労統計 現金給与総額 前年比（5人以上）",
-       "obs": "2026-08",
-       "value": "3.9",
+       "obs": "2026-09",
+       "value": "4.4",
        "unit": "%",
-       "change": "-0.400%pt",
+       "change": "+0.500%pt",
        "fresh": true,
-       "signals": []
+       "signals": [
+        {
+         "type": "1年高値更新",
+         "dir": "上昇",
+         "detail": "4.4%"
+        }
+       ]
       },
       {
        "id": "ESTAT_MK_SCHED_YOY",
        "name": "毎月勤労統計 所定内給与 前年比（5人以上）",
-       "obs": "2026-08",
-       "value": "3.8",
+       "obs": "2026-09",
+       "value": "3.6",
        "unit": "%",
-       "change": "+0.000%pt",
+       "change": "-0.200%pt",
        "fresh": true,
        "signals": []
       },
@@ -3701,9 +4103,9 @@
        "id": "ESTAT_MK_REAL_YOY",
        "name": "毎月勤労統計 実質賃金 前年比（5人以上）",
        "obs": "2026-09",
-       "value": "2.3",
+       "value": "2",
        "unit": "%",
-       "change": "+0.700%pt",
+       "change": "+0.400%pt",
        "fresh": true,
        "signals": []
       }
@@ -5279,9 +5681,9 @@
      "id": "PR02_PRCS20_5200000000%",
      "name": "企業向けサービス価格指数 前年比",
      "obs": "2026-09",
-     "value": "3.7",
+     "value": "3.8",
      "unit": "%",
-     "change": "+0.200%pt"
+     "change": "+0.300%pt"
     },
     {
      "kind": "release",
@@ -8138,10 +8540,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "短期金利・為替",
-   "updated": "2026-11-24",
-   "date": "2026-11-19",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
    "value": "1.228",
-   "change": "+0.001%pt",
+   "change": "+0.000%pt",
    "implication": "短期金利の上昇は利上げ・引締め方向のシグナル。一般に債券（特に短中期）価格には下押し、円には上昇（円高）圧力、銀行株には利ざや改善期待でプラス、REIT・不動産や高PERのグロース株には逆風とされる。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -8156,10 +8558,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-11-24",
-   "date": "2026-11-19",
-   "value": "35,992",
-   "change": "-0.01%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "38,629",
+   "change": "+7.33%",
    "implication": "出来高の増加は短期金融市場の取引活発化（金利がつく環境への移行、市場機能の回復）を示すことが多い。直接の価格シグナルではなく、金利変化の裏付けとして見る。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -8174,10 +8576,10 @@
    "unit": "円/ドル",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-11-24",
-   "date": "2026-11-19",
-   "value": "159.7",
-   "change": "+0.22%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "159.2",
+   "change": "-0.31%",
    "implication": "ドル円の上昇（円安）は一般に輸出関連株や外貨建て資産の円換算額にプラス、輸入物価経由で物価上昇圧力となり、日銀の引締め観測を強めることがある。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -8192,10 +8594,10 @@
    "unit": "ドル/ユーロ",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-11-24",
-   "date": "2026-11-19",
-   "value": "1.0972",
-   "change": "-0.19%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "1.0968",
+   "change": "-0.04%",
    "implication": "ユーロドルの上昇はドル全面安を示す。ドル円と合わせて見ると、円安/円高がドル要因か円要因かの切り分けに使える。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -8210,8 +8612,8 @@
    "unit": "%",
    "kind": "rate",
    "category": "短期金利・為替",
-   "updated": "2026-11-24",
-   "date": "2026-11-19",
+   "updated": "2026-11-25",
+   "date": "2026-11-23",
    "value": "1.5",
    "change": "+0.000%pt",
    "implication": "基準貸付利率は政策金利の変更に連動しやすい。上昇なら利上げ局面入り/継続を示し、影響はコールレート上昇時と同方向でより強い。",
@@ -8354,10 +8756,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-24",
-   "date": "2026-11-20",
-   "value": "1.826",
-   "change": "-0.027%pt",
+   "updated": "2026-11-25",
+   "date": "2026-11-24",
+   "value": "1.783",
+   "change": "-0.043%pt",
    "implication": "2年債利回りは今後1〜2年の政策金利予想をよく映す。上昇は追加利上げ観測の強まりを示す。",
    "source": [
     "財務省 国債金利情報",
@@ -8372,10 +8774,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-24",
-   "date": "2026-11-20",
-   "value": "2.838",
-   "change": "-0.032%pt",
+   "updated": "2026-11-25",
+   "date": "2026-11-24",
+   "value": "2.781",
+   "change": "-0.057%pt",
    "implication": "10年債利回りの上昇は債券価格の下落を意味し、住宅ローン固定金利や企業の借入コストの上昇、REIT・高PER株には逆風、利ざや面で銀行・保険株には追い風とされる。日米金利差が縮めば円高要因にもなりうる。",
    "source": [
     "財務省 国債金利情報",
@@ -8390,10 +8792,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-24",
-   "date": "2026-11-20",
-   "value": "4.014",
-   "change": "-0.016%pt",
+   "updated": "2026-11-25",
+   "date": "2026-11-24",
+   "value": "3.99",
+   "change": "-0.024%pt",
    "implication": "超長期金利の上昇は財政や物価への懸念（タームプレミアム）の高まりを映すことが多く、生保・年金の需要動向にも左右される。",
    "source": [
     "財務省 国債金利情報",
@@ -8462,10 +8864,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "updated": "2026-10-27",
-   "date": "2026-09",
-   "value": "3.7",
-   "change": "+0.200%pt",
+   "updated": "2026-11-25",
+   "date": "2026-10",
+   "value": "4.2",
+   "change": "+0.400%pt",
    "implication": "企業向けサービス価格は人件費の比率が高く、賃金上昇の価格転嫁を映す。上昇が続けば物価の基調の強さを示し、利上げ観測につながりやすい。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -10044,10 +10446,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "6,258,195",
-   "change": "-0.06%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "6,271,130",
+   "change": "+0.21%",
    "implication": "日銀の総資産。縮小は量的引き締め（QT）の進み具合を示し、長期金利の上昇圧力・円の下支え要因とされる。",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10062,10 +10464,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "5,049,367",
-   "change": "-0.07%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "5,062,113",
+   "change": "+0.25%",
    "implication": "日銀の国債保有残高。減少は買入れ減額と償還による QT。国債の需給が緩み長期金利の上昇要因になりうる。",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10080,8 +10482,8 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
    "value": "0",
    "change": null,
    "implication": "",
@@ -10098,10 +10500,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "369,222",
-   "change": "-0.02%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "369,105",
+   "change": "-0.03%",
    "implication": "日銀のETF保有（簿価）。処分が進むと株式需給の重しになりうるが、処分は極めて緩やかな計画。",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10116,10 +10518,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "6,499",
-   "change": "-0.02%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "6,493",
+   "change": "-0.09%",
    "implication": "",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10134,10 +10536,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "9,027",
-   "change": "-3.86%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "9,002",
+   "change": "-0.28%",
    "implication": "",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10152,9 +10554,9 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "684,162",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "684,169",
    "change": "+0.00%",
    "implication": "日銀の貸付金（共通担保オペ・貸出支援基金など）。増加は資金供給の拡大。",
    "source": [
@@ -10170,8 +10572,8 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
    "value": "356,645",
    "change": "+0.00%",
    "implication": "",
@@ -10188,10 +10590,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "120,732",
-   "change": "+0.13%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "121,063",
+   "change": "+0.27%",
    "implication": "",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10206,10 +10608,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "1,140,785",
-   "change": "-0.09%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "1,141,992",
+   "change": "+0.11%",
    "implication": "",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10224,10 +10626,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "4,135,636",
-   "change": "-1.17%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "4,101,026",
+   "change": "-0.84%",
    "implication": "日銀当座預金。市場に供給された資金量の目安。減少は資金供給の縮小で、短期金利の上振れ要因になりうる。",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10242,10 +10644,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "440,692",
-   "change": "+1.94%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "454,290",
+   "change": "+3.09%",
    "implication": "",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10260,10 +10662,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "42,846",
-   "change": "+32.51%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "34,246",
+   "change": "-20.07%",
    "implication": "",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10278,10 +10680,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
-   "value": "337,532",
-   "change": "+8.85%",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
+   "value": "382,121",
+   "change": "+13.21%",
    "implication": "",
    "source": [
     "日本銀行 営業毎旬報告",
@@ -10296,8 +10698,8 @@
    "unit": "億円",
    "kind": "level",
    "category": "日銀の資金供給",
-   "updated": "2026-11-12",
-   "date": "2026-11-10",
+   "updated": "2026-11-25",
+   "date": "2026-11-20",
    "value": "109,566",
    "change": "+0.00%",
    "implication": "",
@@ -10512,10 +10914,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "updated": "2026-11-24",
-   "date": "2026-08",
-   "value": "3.9",
-   "change": "-0.400%pt",
+   "updated": "2026-11-25",
+   "date": "2026-09",
+   "value": "4.4",
+   "change": "+0.500%pt",
    "implication": "名目賃金(現金給与総額)の伸び。賃金上昇の持続は日銀が利上げの条件とする「賃金と物価の好循環」の中心指標で、上振れは利上げ観測を強め、債券には逆風、円高方向とされる。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -10530,10 +10932,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "消費・雇用・人口",
-   "updated": "2026-11-24",
-   "date": "2026-08",
-   "value": "3.8",
-   "change": "+0.000%pt",
+   "updated": "2026-11-25",
+   "date": "2026-09",
+   "value": "3.6",
+   "change": "-0.200%pt",
    "implication": "基本給にあたる所定内給与の伸び。賞与や残業に左右されず、賃金の基調(ベースアップの浸透)を見るのに使う。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -10550,8 +10952,8 @@
    "category": "消費・雇用・人口",
    "updated": "2026-11-24",
    "date": "2026-09",
-   "value": "2.3",
-   "change": "+0.700%pt",
+   "value": "2",
+   "change": "+0.400%pt",
    "implication": "物価上昇を差し引いた実質賃金の伸び。プラスが定着すると消費の回復が見込まれ、景気・物価の持続性を示す材料になる。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -10560,34 +10962,15 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-25T05:18+09:00",
+  "checked_at": "2026-11-25T13:56+09:00",
   "counts": {
-   "new": 0,
-   "unchanged": 129,
+   "new": 26,
+   "unchanged": 105,
    "error": 0,
-   "stale": 2
+   "stale": 0
   },
   "total": 131,
-  "problems": [
-   {
-    "id": "IR04_DLLR2CIDBNL1",
-    "name": "貸出約定平均金利 新規・国内銀行",
-    "state": "stale",
-    "error": null,
-    "latest": "2026-08",
-    "last_ok": "2026-11-25",
-    "last_new": "2026-10-05"
-   },
-   {
-    "id": "IR04_DLLR2CIDBST1",
-    "name": "貸出約定平均金利 残高・国内銀行",
-    "state": "stale",
-    "error": null,
-    "latest": "2026-08",
-    "last_ok": "2026-11-25",
-    "last_new": "2026-10-05"
-   }
-  ],
+  "problems": [],
   "other_errors": []
  },
  "trade_updated": "2026-11-12",
