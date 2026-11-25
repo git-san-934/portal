@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-25T14:27+09:00",
+ "updated_at": "2026-11-25T22:31+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -1626,6 +1626,28 @@
    "items": [
     {
      "date": "2026-11-25",
+     "time": "15:21",
+     "title": "臨時報告書",
+     "url": "https://disclosure2.edinet-fsa.go.jp/WZEK0040.aspx?S100ZJWK",
+     "source": "edinet",
+     "first_seen": "2026-11-25T22:31+09:00"
+    },
+    {
+     "date": "2026-11-25",
+     "title": "連結子会社からの配当金受領に関するお知らせ",
+     "url": "https://ssl4.eir-parts.net/doc/285A/tdnet/2922019/00.pdf",
+     "source": "official",
+     "first_seen": "2026-11-25T22:31+09:00"
+    },
+    {
+     "date": "2026-11-25",
+     "title": "執行役員人事について",
+     "url": "https://www.kioxia-holdings.com/ja-jp/news/2026/20261125-1.html",
+     "source": "official",
+     "first_seen": "2026-11-25T22:31+09:00"
+    },
+    {
+     "date": "2026-11-25",
      "title": "AI向け次世代低遅延・高性能フラッシュメモリ「XL-FLASHTM第3世代」の参考展示について",
      "url": "https://www.kioxia.com/ja-jp/business/news/2026/20261125-1.html",
      "source": "official",
@@ -2944,6 +2966,14 @@
    ],
    "items": [
     {
+     "date": "2026-11-25",
+     "title": "Schrödinger Acquires ENPICOM to Establish End-to-End Computational Platform for Biologics Discovery",
+     "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Acquires-ENPICOM-to-Establish-End-to-End-Computational-Platform-for-Biologics-Discovery/default.aspx",
+     "source": "official",
+     "first_seen": "2026-11-25T22:31+09:00",
+     "title_ja": "シュレディンガー、生物製剤発見のためのエンドツーエンドの計算プラットフォームを確立するためにENPICOMを買収"
+    },
+    {
      "date": "2026-11-23",
      "title": "Schrödinger Reports Inducement Grants under Nasdaq Listing Rule 5635(c)(4)",
      "url": "https://ir.schrodinger.com/press-releases/news-details/2026/Schrdinger-Reports-Inducement-Grants-under-Nasdaq-Listing-Rule-5635c4-6ec037fc8/default.aspx",
@@ -3852,6 +3882,20 @@
    ],
    "items": [
     {
+     "date": "2026-11-25",
+     "title": "製品・サービス パナソニック コネクトの本人確認ソリューションが、足利銀行の全134店舗の窓口に本格導入",
+     "url": "https://news.panasonic.com/jp/press/jn261125-3",
+     "source": "official",
+     "first_seen": "2026-11-25T22:31+09:00"
+    },
+    {
+     "date": "2026-11-25",
+     "title": "企業・経営 パナソニック エナジー、知財戦略の先進企業として「Asia IP Elite 2026」に初選出",
+     "url": "https://news.panasonic.com/jp/press/jn261125-1",
+     "source": "official",
+     "first_seen": "2026-11-25T22:31+09:00"
+    },
+    {
      "date": "2026-11-24",
      "title": "環境・サステナビリティ / Stories 窓や壁がエネルギーを生み出す ガラス型ペロブスカイト太陽電池、本格量産への挑戦",
      "url": "https://news.panasonic.com/jp/stories/19179",
@@ -3860,14 +3904,14 @@
     },
     {
      "date": "2026-11-24",
-     "title": "企業・経営 パナソニック サイクルテック、中核拠点・柏原工場に53年ぶりとなる新棟が完成し稼働を開始",
+     "title": "6 2026年11月24日 企業・経営 プレスリリース パナソニック サイクルテック、中核拠点・柏原工場に53年ぶりとなる新棟が完成し稼働を開始",
      "url": "https://news.panasonic.com/jp/press/jn261124-1",
      "source": "official",
      "first_seen": "2026-11-24T13:57+09:00"
     },
     {
      "date": "2026-11-24",
-     "title": "製品・サービス ローカル環境で利用可能な議事録作成AIアプリケーション「Panasonic PC Edge AI Note Taker」を提供開始",
+     "title": "5 2026年11月24日 製品・サービス プレスリリース ローカル環境で利用可能な議事録作成AIアプリケーション「Panasonic PC Edge AI Note Taker」を提供開始",
      "url": "https://news.panasonic.com/jp/press/jn261124-2",
      "source": "official",
      "first_seen": "2026-11-24T11:48+09:00"
@@ -4261,20 +4305,6 @@
      "url": "https://news.panasonic.com/jp/topics/206906",
      "source": "official",
      "first_seen": "2026-10-08T06:06+09:00"
-    },
-    {
-     "date": "2026-10-07",
-     "title": "4 2026年10月7日 製品・サービス プレスリリース 現場教育の効率化と標準化を支援する「AI動画ガイド作成サービス」を提供開始",
-     "url": "https://news.panasonic.com/jp/press/jn261007-1",
-     "source": "official",
-     "first_seen": "2026-10-07T18:23+09:00"
-    },
-    {
-     "date": "2026-10-06",
-     "title": "2 2026年10月6日 製品・サービス プレスリリース 住宅用次世代防犯ソリューションの実現に向けてGoogle Homeと協業",
-     "url": "https://news.panasonic.com/jp/press/jn261006-2",
-     "source": "official",
-     "first_seen": "2026-10-06T00:00+09:00"
     }
    ]
   },
