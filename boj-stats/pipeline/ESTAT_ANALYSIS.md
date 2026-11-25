@@ -1,8 +1,14 @@
 # e-Stat 新着の分析（日次チェックの手順）
 
 新着ページ（boj-stats/index.html）の e-Stat の行には、取り込み済みの系列がある統計（build_site.py の ESTAT_LINKS）は数値が自動で付く。
-それ以外の統計は、平日朝の日次チェック（Claude のルーチン、6:52〜9:52 JST）が公表された表を読んで分析を書き、
-`reports/estat_analysis.json` に足してページに載せる（API 料金のかからない定額の範囲で動かすため）。
+それ以外の統計は、Claude が公表された表を読んで分析を書き、`reports/estat_analysis.json` に足してページに載せる
+（どれも API 料金のかからない定額プランの範囲で動かす）。分析するのは次の3つ:
+
+- 平日朝の日次チェック（Claude の定期タスク、6:52〜9:52 JST）
+- 平日夕方の定期タスク（17:41 JST）。10時以降に公表された分を当日中に載せる
+- 新着ページの「Claudeで分析」ボタン。依頼の Issue を作ると `.github/workflows/request-boj-estat-analysis.yml` が
+  Claude Code（claude-code-action、定額プランの OAuth トークン `CLAUDE_CODE_OAUTH_TOKEN` だけを使う）を動かす。
+  シークレットが無いときは Claude を動かさず Issue に案内を書いて閉じる
 
 ## 手順（毎回）
 
