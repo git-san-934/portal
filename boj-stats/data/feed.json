@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-25T17:50+09:00",
+ "generated_at": "2026-11-25T18:52+09:00",
  "report_date": "2026-11-25",
  "days": [
   {
@@ -657,6 +657,17 @@
        "signals": []
       }
      ],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450045",
+     "name": "中高年者縦断調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450045",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/toukei/list/29-6.html",
+     "stats": [],
      "analysis": null
     },
     {
@@ -8193,6 +8204,17 @@
     },
     {
      "kind": "estat",
+     "id": "estat:00450482",
+     "name": "「調剤医療費の動向」調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450482",
+     "org": "厚生労働省",
+     "status": "",
+     "info": "https://www.mhlw.go.jp/bunya/iryouhoken/database/zenpan/cyouzai_doukou_itiran.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
      "id": "estat:00450471",
      "name": "保健師活動領域調査",
      "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450471",
@@ -11435,7 +11457,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-25T17:50+09:00",
+  "checked_at": "2026-11-25T18:52+09:00",
   "counts": {
    "new": 0,
    "unchanged": 131,
