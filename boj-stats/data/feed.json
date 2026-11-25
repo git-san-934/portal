@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-25T18:52+09:00",
- "report_date": "2026-11-25",
+ "generated_at": "2026-11-26T04:32+09:00",
+ "report_date": "2026-11-26",
  "days": [
   {
    "date": "2026-11-25",
@@ -676,7 +676,7 @@
      "name": "人口動態調査",
      "url": "https://www.e-stat.go.jp/stat-search/database?page=1&toukei=00450011",
      "org": "厚生労働省",
-     "status": "更新",
+     "status": "新着",
      "info": "https://www.mhlw.go.jp/toukei/list/81-1.html",
      "stats": [],
      "analysis": {
@@ -5613,6 +5613,17 @@
      "org": "農林水産省",
      "status": "",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/noukei/index.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450482",
+     "name": "「調剤医療費の動向」調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450482",
+     "org": "厚生労働省",
+     "status": "",
+     "info": "https://www.mhlw.go.jp/bunya/iryouhoken/database/zenpan/cyouzai_doukou_itiran.html",
      "stats": [],
      "analysis": null
     },
@@ -11457,7 +11468,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-25T18:52+09:00",
+  "checked_at": "2026-11-26T04:32+09:00",
   "counts": {
    "new": 0,
    "unchanged": 131,
