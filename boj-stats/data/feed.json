@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-26T13:11+09:00",
+ "generated_at": "2026-11-26T14:04+09:00",
  "report_date": "2026-11-26",
  "days": [
   {
@@ -22,6 +22,24 @@
      "value": "1.583",
      "unit": "%",
      "change": "+0.073%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_IDOU_TOKYO_AREA_NET",
+     "name": "東京圏の転入超過数（住民基本台帳）",
+     "obs": "2026-10",
+     "value": "2,632",
+     "unit": "人",
+     "change": "-1,171人"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_IDOU_TOKYO_NET",
+     "name": "東京都の転入超過数（住民基本台帳）",
+     "obs": "2026-10",
+     "value": "-771",
+     "unit": "人",
+     "change": "-1,633人"
     },
     {
      "kind": "signal",
@@ -56,6 +74,102 @@
      "name": "【挨拶】田村審議委員「わが国の経済・物価情勢と金融政策」（山梨）",
      "url": "https://www.boj.or.jp/about/press/koen_2026/ko261126a.htm",
      "time": "10:00"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00551011",
+     "name": "総合エネルギー統計補足調査（電気事業者の発電量内訳等調査）",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00551011",
+     "org": "資源エネルギー庁",
+     "status": "新着",
+     "info": "https://www.enecho.meti.go.jp/statistics/total_energy001/",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450751",
+     "name": "年金記録に係る訂正請求の受付・処理状況",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450751",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/stf/seisakunitsuite/bunya/0000086501.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00200523",
+     "name": "住民基本台帳人口移動報告",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200523",
+     "org": "総務省",
+     "status": "新着",
+     "info": "https://www.stat.go.jp/data/idou/index.htm",
+     "stats": [
+      {
+       "id": "ESTAT_IDOU_TOKYO_AREA_NET",
+       "name": "東京圏の転入超過数（住民基本台帳）",
+       "obs": "2026-10",
+       "value": "2,632",
+       "unit": "人",
+       "change": "-1,171人",
+       "fresh": true,
+       "signals": []
+      },
+      {
+       "id": "ESTAT_IDOU_TOKYO_NET",
+       "name": "東京都の転入超過数（住民基本台帳）",
+       "obs": "2026-10",
+       "value": "-771",
+       "unit": "人",
+       "change": "-1,633人",
+       "fresh": true,
+       "signals": []
+      }
+     ],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00100406",
+     "name": "景気動向指数",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00100406",
+     "org": "内閣府",
+     "status": "新着",
+     "info": "https://www.esri.cao.go.jp/jp/stat/di/menu_di.html",
+     "stats": [
+      {
+       "id": "ESTAT_CI_LEADING",
+       "name": "景気動向指数 CI 先行指数",
+       "obs": "2026-09",
+       "value": "116.4",
+       "unit": "（2020年=100）",
+       "change": "-1.36%",
+       "fresh": true,
+       "signals": []
+      },
+      {
+       "id": "ESTAT_CI_COINCIDENT",
+       "name": "景気動向指数 CI 一致指数",
+       "obs": "2026-09",
+       "value": "119.5",
+       "unit": "（2020年=100）",
+       "change": "+0.59%",
+       "fresh": true,
+       "signals": []
+      },
+      {
+       "id": "ESTAT_CI_LAGGING",
+       "name": "景気動向指数 CI 遅行指数",
+       "obs": "2026-09",
+       "value": "116",
+       "unit": "（2020年=100）",
+       "change": "+3.20%",
+       "fresh": true,
+       "signals": []
+      }
+     ],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -6472,20 +6586,20 @@
       {
        "id": "ESTAT_IDOU_TOKYO_AREA_NET",
        "name": "東京圏の転入超過数（住民基本台帳）",
-       "obs": "2026-09",
-       "value": "3,803",
+       "obs": "2026-10",
+       "value": "2,632",
        "unit": "人",
-       "change": "+542人",
+       "change": "-1,171人",
        "fresh": true,
        "signals": []
       },
       {
        "id": "ESTAT_IDOU_TOKYO_NET",
        "name": "東京都の転入超過数（住民基本台帳）",
-       "obs": "2026-09",
-       "value": "862",
+       "obs": "2026-10",
+       "value": "-771",
        "unit": "人",
-       "change": "-182人",
+       "change": "-1,633人",
        "fresh": true,
        "signals": []
       }
@@ -10393,10 +10507,10 @@
    "unit": "人",
    "kind": "flow",
    "category": "消費・雇用・人口",
-   "updated": "2026-10-27",
-   "date": "2026-09",
-   "value": "3,803",
-   "change": "+542人",
+   "updated": "2026-11-26",
+   "date": "2026-10",
+   "value": "2,632",
+   "change": "-1,171人",
    "implication": "東京圏への人口の流入超過。首都圏の住宅需要や不動産（REIT）の下支え要因。3〜4月の転勤・進学期に大きく膨らむ季節性がある。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -10411,10 +10525,10 @@
    "unit": "人",
    "kind": "flow",
    "category": "消費・雇用・人口",
-   "updated": "2026-10-27",
-   "date": "2026-09",
-   "value": "862",
-   "change": "-182人",
+   "updated": "2026-11-26",
+   "date": "2026-10",
+   "value": "-771",
+   "change": "-1,633人",
    "implication": "東京都への流入超過。都心の住宅・オフィス需要の目安。3〜4月に大きい季節性がある。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -11645,10 +11759,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-26T13:11+09:00",
+  "checked_at": "2026-11-26T14:04+09:00",
   "counts": {
-   "new": 10,
-   "unchanged": 121,
+   "new": 2,
+   "unchanged": 129,
    "error": 0,
    "stale": 0
   },

@@ -1109,18 +1109,18 @@
       "n": 15
     },
     "IDOU_TOKYO_AREA_NET": {
-      "date": "2026-09",
-      "value": 3803.0,
-      "prev": 3261.0,
-      "change": "+542人",
-      "n": 18
+      "date": "2026-10",
+      "value": 2632.0,
+      "prev": 3803.0,
+      "change": "-1,171人",
+      "n": 19
     },
     "IDOU_TOKYO_NET": {
-      "date": "2026-09",
-      "value": 862.0,
-      "prev": 1044.0,
-      "change": "-182人",
-      "n": 18
+      "date": "2026-10",
+      "value": -771.0,
+      "prev": 862.0,
+      "change": "-1,633人",
+      "n": 19
     },
     "TRADE_EXPORTS": {
       "date": "2026-10",
