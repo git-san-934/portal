@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-26T18:30+09:00",
- "report_date": "2026-11-26",
+ "generated_at": "2026-11-27T04:14+09:00",
+ "report_date": "2026-11-27",
  "days": [
   {
    "date": "2026-11-26",
@@ -6087,6 +6087,17 @@
     },
     {
      "kind": "estat",
+     "id": "estat:00450402",
+     "name": "「医科医療費の動向」調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450402",
+     "org": "厚生労働省",
+     "status": "",
+     "info": "https://www.mhlw.go.jp/bunya/iryouhoken/database/zenpan/cyouzai_doukou_itiran.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
      "id": "estat:00450399",
      "name": "「医療費の動向」調査",
      "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450399",
@@ -11915,7 +11926,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-26T18:30+09:00",
+  "checked_at": "2026-11-27T04:14+09:00",
   "counts": {
    "new": 0,
    "unchanged": 131,
