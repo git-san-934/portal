@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-26T02:37+09:00",
+ "updated_at": "2026-11-26T09:03+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -3123,6 +3123,14 @@
     "spacex:"
    ],
    "items": [
+    {
+     "date": "2026-11-25",
+     "title": "SpaceX to Invest in the Next Generation of Americans",
+     "url": "https://ir.spacex.com/updates/releases-details/2026/SpaceX-to-Invest-in-the-Next-Generation-of-Americans-2026-r_LYQ5cH94/default.aspx",
+     "source": "official",
+     "first_seen": "2026-11-26T09:03+09:00",
+     "title_ja": "SpaceX、次世代のアメリカ人に投資へ"
+    },
     {
      "date": "2026-11-13",
      "title": "Restoring Boca Chica Beach",
