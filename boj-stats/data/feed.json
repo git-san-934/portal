@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-26T17:46+09:00",
+ "generated_at": "2026-11-26T18:30+09:00",
  "report_date": "2026-11-26",
  "days": [
   {
@@ -241,6 +241,17 @@
       "tables": [],
       "analyzed_on": "2026-11-26"
      }
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00400304",
+     "name": "児童生徒の問題行動・不登校等生徒指導上の諸課題に関する調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00400304",
+     "org": "文部科学省",
+     "status": "新着",
+     "info": "https://www.mext.go.jp/b_menu/toukei/chousa01/shidou/1267646.htm",
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -11904,7 +11915,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-26T17:46+09:00",
+  "checked_at": "2026-11-26T18:30+09:00",
   "counts": {
    "new": 0,
    "unchanged": 131,
