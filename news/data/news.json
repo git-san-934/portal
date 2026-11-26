@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-26T09:03+09:00",
+ "updated_at": "2026-11-26T12:03+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -15,6 +15,20 @@
     "https://www.nintendo.co.jp/news/whatsnew.xml"
    ],
    "items": [
+    {
+     "date": "2026-11-26",
+     "title": "2026冬『Nintendo Switch Sports Resort』・『トモダチコレクション わくわく生活/リズム天国 ミラクルスターズ』のCMを公開しました。 ミラクルスターズ",
+     "url": "https://www.nintendo.com/jp/hardware/2026-winter/index.html",
+     "source": "official",
+     "first_seen": "2026-11-26T12:03+09:00"
+    },
+    {
+     "date": "2026-11-26",
+     "title": "Nintendo Switch 2 ソフト『ゼノブレイド3 Nintendo Switch 2 Edition』の紹介映像を公開しました。 ※本作の対象年齢は「15歳以上」です。",
+     "url": "https://www.nintendo.com/jp/games/switch2/az3hg/index.html",
+     "source": "official",
+     "first_seen": "2026-11-26T12:03+09:00"
+    },
     {
      "date": "2026-11-25",
      "title": "『マリオカート ワールド』の無料アップデートが本日配信。いつものコースをアレンジした8つの新コースや、サバイバルの新ルートを追加。",
@@ -422,20 +436,6 @@
      "date": "2026-10-29",
      "title": "み~んなあつまれ、サンリオキャラクターの世界へ。『サンリオ パーティランド』がNintendo Switch 2 / Nintendo Switchで本日発売。",
      "url": "https://www.nintendo.com/jp/topics/article/535d4142-2649-4eeb-b0c2-00c801c95fd4",
-     "source": "official",
-     "first_seen": "2026-10-29T10:56+09:00"
-    },
-    {
-     "date": "2026-10-29",
-     "title": "「Indie World 2026.10.28」を公開しました。 ※本記事には、対象年齢「16歳以上」のタイトルも含まれます。",
-     "url": "https://www.nintendo.com/jp/topics/article/d3010ec2-7658-4ad8-b25d-5bf54abf6849",
-     "source": "official",
-     "first_seen": "2026-10-29T10:56+09:00"
-    },
-    {
-     "date": "2026-10-29",
-     "title": "「Hello! インディー」1ターンで勝負が決まる『One Turn Kill』",
-     "url": "https://www.nintendo.com/jp/topics/article/3f2dcaf9-b6bf-40a2-8335-ddbb6108397e",
      "source": "official",
      "first_seen": "2026-10-29T10:56+09:00"
     }
@@ -1624,6 +1624,20 @@
     "https://www.kioxia-holdings.com/ja-jp/ir/news.html"
    ],
    "items": [
+    {
+     "date": "2026-11-26",
+     "title": "GPUとのダイレクトアクセスによってAIシステムの実効メモリ容量を拡張可能なSuper High IOPS SSD「KIOXIA GP2シリーズ」の開発について",
+     "url": "https://www.kioxia.com/ja-jp/business/news/2026/20261126-2.html",
+     "source": "official",
+     "first_seen": "2026-11-26T12:03+09:00"
+    },
+    {
+     "date": "2026-11-26",
+     "title": "キオクシアとNVIDIAのコラボレーションで、SSDを活用したHBMの実効容量拡張に向けたAI向け実証を開始",
+     "url": "https://www.kioxia.com/ja-jp/business/news/2026/20261126-1.html",
+     "source": "official",
+     "first_seen": "2026-11-26T12:03+09:00"
+    },
     {
      "date": "2026-11-25",
      "time": "15:21",
