@@ -1,6 +1,6 @@
 {
  "version": 2,
- "updated_at": "2026-11-26T22:11+09:00",
+ "updated_at": "2026-11-27T02:19+09:00",
  "tdnet": "ok",
  "edinet": "ok",
  "sec": "取得できませんでした",
@@ -3905,6 +3905,20 @@
    "items": [
     {
      "date": "2026-11-25",
+     "title": "3 2026年11月25日 企業・経営 トピックス パナソニック オートモーティブシステムズが「PRIDE指標2026」で最高評価「ゴールド」を受賞",
+     "url": "https://news.panasonic.com/jp/topics/206974",
+     "source": "official",
+     "first_seen": "2026-11-27T02:19+09:00"
+    },
+    {
+     "date": "2026-11-25",
+     "title": "4 2026年11月25日 イベント・スポンサー活動 トピックス パナソニック インダストリーが「SEMICON Japan 2026」に出展 ~AI・ネットワーク技術の進化を支える電子材料・半導体製造装置向けFAソリューションを紹介~",
+     "url": "https://news.panasonic.com/jp/topics/206972",
+     "source": "official",
+     "first_seen": "2026-11-27T02:19+09:00"
+    },
+    {
+     "date": "2026-11-25",
      "title": "製品・サービス パナソニック コネクトの本人確認ソリューションが、足利銀行の全134店舗の窓口に本格導入",
      "url": "https://news.panasonic.com/jp/press/jn261125-3",
      "source": "official",
@@ -3968,7 +3982,7 @@
     },
     {
      "date": "2026-11-19",
-     "title": "3 2026年11月19日 企業・経営 プレスリリース Blue Yonderが新CEOの就任を発表",
+     "title": "5 2026年11月19日 企業・経営 プレスリリース Blue Yonderが新CEOの就任を発表",
      "url": "https://news.panasonic.com/jp/press/jn261119-4",
      "source": "official",
      "first_seen": "2026-11-19T10:59+09:00"
@@ -4313,20 +4327,6 @@
      "url": "https://news.panasonic.com/jp/press/jn261013-3",
      "source": "official",
      "first_seen": "2026-10-13T16:30+09:00"
-    },
-    {
-     "date": "2026-10-09",
-     "title": "5 2026年10月9日 製品・サービス プレスリリース パナソニックEWとライナフがマンションのオートロック入館管理システムの普及に向けた協業を開始",
-     "url": "https://news.panasonic.com/jp/press/jn261009-1",
-     "source": "official",
-     "first_seen": "2026-10-09T11:32+09:00"
-    },
-    {
-     "date": "2026-10-08",
-     "title": "4 2026年10月8日 サステナビリティ プレスリリース パナソニック、ベトナム・フィリピンで使用済み家電の回収・再資源化実証を開始",
-     "url": "https://news.panasonic.com/jp/press/jn261008-1",
-     "source": "official",
-     "first_seen": "2026-10-08T19:56+09:00"
     }
    ]
   },
