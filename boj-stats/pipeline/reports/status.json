@@ -1,9 +1,9 @@
 {
- "checked_at": "2026-11-26T14:04+09:00",
+ "checked_at": "2026-11-26T14:31+09:00",
  "date": "2026-11-26",
  "counts": {
-  "new": 2,
-  "unchanged": 129,
+  "new": 0,
+  "unchanged": 131,
   "error": 0,
   "stale": 0
  },
@@ -794,7 +794,7 @@
    "db": "ESTAT",
    "code": "IDOU_TOKYO_AREA_NET",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-10",
    "last_new": "2026-11-26",
    "last_ok": "2026-11-26",
@@ -806,7 +806,7 @@
    "db": "ESTAT",
    "code": "IDOU_TOKYO_NET",
    "freq": "M",
-   "state": "new",
+   "state": "unchanged",
    "latest": "2026-10",
    "last_new": "2026-11-26",
    "last_ok": "2026-11-26",
