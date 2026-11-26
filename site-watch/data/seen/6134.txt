@@ -34,6 +34,7 @@ https://hug.fuji.co.jp/en/faq/
 https://hug.fuji.co.jp/en/guide/
 https://hug.fuji.co.jp/en/products/
 https://hug.fuji.co.jp/en/testimonials/
+https://hug.fuji.co.jp/facility-map/
 https://hug.fuji.co.jp/faq/
 https://hug.fuji.co.jp/guide/
 https://hug.fuji.co.jp/introduction/
@@ -43,9 +44,11 @@ https://hug.fuji.co.jp/news/548/
 https://hug.fuji.co.jp/news/640/
 https://hug.fuji.co.jp/news/649/
 https://hug.fuji.co.jp/news/658/
+https://hug.fuji.co.jp/news/664/
 https://hug.fuji.co.jp/news/685/
 https://hug.fuji.co.jp/news/699/
 https://hug.fuji.co.jp/news/712/
+https://hug.fuji.co.jp/news/721/
 https://hug.fuji.co.jp/news/expo/
 https://hug.fuji.co.jp/news/info/
 https://hug.fuji.co.jp/news/page/2/
