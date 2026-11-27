@@ -34,22 +34,18 @@ def dump(u, n=40):
                 if r: print("  END", r[:16])
 
 import json
-for u in ["/automation/markets/statistics-derivatives/monthly-statistics/json/monthly_statistics_report_yearlist.json",
-          "/automation/markets/statistics-derivatives/daily/json/daily_report_monthlylist.json",
-          "/markets/statistics-derivatives/daily/daily_report_monthlylist.json"]:
+for u in ["/automation/markets/statistics-derivatives/monthly-statistics/json/monthly_statistics_report2024.json",
+          "/automation/markets/statistics-derivatives/daily/json/daily_report_202611.json",
+          "/automation/markets/statistics-derivatives/daily/json/daily_report_202601.json"]:
     try:
         t = get(u).decode("utf-8-sig", "replace")
-        print("=== JSON", u, len(t)); print("  ", t[:1500]); print("  END", t[-400:])
+        print("=== JSON", u, len(t)); print("  ", t[:2500]);
+        print("  ALL", sorted(set(re.findall(r'"([^"]+\.(?:pdf|xlsx?|csv|zip))"', t)))[:400])
     except Exception as e:
         print("NG", u, e)
-js = get("/public/javascripts/backnumber.js").decode("utf-8", "replace")
-print("=== JS backnumber", len(js))
-for m in sorted(set(re.findall(r"[\"']([^\"']*(?:json|automation)[^\"']*)[\"']", js))): print("  J", m)
-print(js[:3000])
-# 建玉 xlsx の 別紙1 合計行
-raw = get("/markets/derivatives/trading-volume/t13vrt0000026aes-att/20261126open_interest.xlsx")
-for title, rs in rows(raw, "x.xlsx"):
-    if title.startswith("別紙1"):
-        for r in rs:
-            if any(isinstance(c, str) and ("合計" in c or "計" == c.strip()) for c in r): print("  SUM", [c for c in r if c not in (None, "")])
-        print("  rows", len(rs))
+t = get("/markets/statistics-derivatives/daily/index.html").decode("utf-8", "replace")
+for m in re.finditer(r"<script[^>]*>(.*?)</script>", t, re.S):
+    if "json" in m[1]: print("=== SCRIPT", m[1][:3000])
+t = get("/markets/statistics-derivatives/monthly-statistics/index.html").decode("utf-8", "replace")
+for m in re.finditer(r"<script[^>]*>(.*?)</script>", t, re.S):
+    if "json" in m[1]: print("=== SCRIPT2", m[1][:3000])
