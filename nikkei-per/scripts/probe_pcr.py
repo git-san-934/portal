@@ -16,3 +16,5 @@ s = defaultdict(lambda: [0, 0])
 for k, v in d.items():
     if v[4] == "m": s[k[:7]][0] += v[0]; s[k[:7]][1] += v[1]
 for k in sorted(s)[-6:]: print("  CMP", k, s[k], m.get(k))
+import json
+print("JSONDUMP" + json.dumps({"pcr": d, "pcr_m": m}, ensure_ascii=False, separators=(",", ":")))
