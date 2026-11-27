@@ -11,7 +11,7 @@ JPX と日経のサイトには最近の分しか置かれていないもの(裁
                  (日々の .xls。裁定取引に係る現物ポジションの売り・買いの合計 千株。置かれているのは直近の約20営業日)
   先物の投資部門別 : JPX「投資部門別取引状況」 https://www.jpx.co.jp/markets/statistics-derivatives/sector/index.html
                  (週次の CSV。商品・投資部門ごとの売り・買いの数量と金額。置かれているのは直近の約5週)
-  日経平均VI   : 日経平均プロフィルの日次 CSV(2023年〜)
+  日経平均VI   : 日経平均プロフィルの日次 CSV(2023年〜)と月次 CSV(2016年〜、月末の終値)
   VIX(米国)  : CBOE の日次 CSV(1990年〜)。取れないときは FRED の VIXCLS
   日経225オプションのプット・コール(プットコールレシオ用):
     日次 : JPX「月間統計資料」の指数オプション取引状況(日別) SIOP_D_YYYYMM.xlsx(2024年1月〜、前月分まで)
@@ -45,6 +45,7 @@ PROGRAM_PAGE = JPX + "/markets/statistics-equities/program/index.html"
 SECTOR_PAGE = JPX + "/markets/statistics-derivatives/sector/index.html"
 NK = "https://indexes.nikkei.co.jp/nkave"
 VI_CSV = NK + "/historical/nikkei_stock_average_vi_daily_jp.csv"
+VI_M_CSV = NK + "/historical/nikkei_stock_average_vi_monthly_jp.csv"
 VIX_CSV = "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv"
 VIX_FRED = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS"
 MSTAT_YEARS = JPX + "/automation/markets/statistics-derivatives/monthly-statistics/json/monthly_statistics_report_yearlist.json"
@@ -54,7 +55,7 @@ OUT = Path(__file__).resolve().parent.parent / "data" / "sentiment.json"
 JST = timezone(timedelta(hours=9))
 
 
-KEYS = ("margin", "arbitrage", "futures", "vi", "pcr", "pcr_m", "vix")
+KEYS = ("margin", "arbitrage", "futures", "vi", "vi_m", "pcr", "pcr_m", "vix")
 
 
 def get(url: str, binary=False):
@@ -239,6 +240,17 @@ def vi() -> dict:
     return out
 
 
+def vi_monthly() -> dict:
+    """日経平均VIの月ごとの終値(YYYY-MM)。日次の CSV は2023年からしか無いので、それより前は月次で見る。"""
+    out = {}
+    for ln in get(VI_M_CSV).strip().splitlines()[1:]:
+        c = [x.strip('"') for x in ln.split(",")]
+        v = num(c[1]) if len(c) > 1 else None
+        if v is not None and re.match(r"\d{4}/\d{2}", c[0]):
+            out[c[0][:7].replace("/", "-")] = v
+    return out
+
+
 def vix() -> dict:
     """米国 VIX の日ごとの終値。CBOE(DATE,OPEN,HIGH,LOW,CLOSE、日付は MM/DD/YYYY)、だめなら FRED(observation_date,VIXCLS)。"""
     out = {}
@@ -369,7 +381,7 @@ def main() -> int:
             old = {}
     data = {k: old.get(k, {}) for k in KEYS}
     ok = 0
-    for key, fn in (("margin", margin), ("arbitrage", arbitrage), ("futures", futures), ("vi", vi), ("vix", vix),
+    for key, fn in (("margin", margin), ("arbitrage", arbitrage), ("futures", futures), ("vi", vi), ("vi_m", vi_monthly), ("vix", vix),
                     ("pcr", lambda: pcr_daily(data["pcr"])), ("pcr_m", pcr_monthly)):
         try:
             got = fn()
@@ -397,6 +409,7 @@ def main() -> int:
             "vi": "日: 日経平均VI 終値",
             "pcr": "日: 日経225オプション [プット取引高, コール取引高, プット建玉, コール建玉, 出所 m=月間統計資料 d=建玉残高状況(概算)]",
             "pcr_m": "月: 日経225オプション [プット取引高, コール取引高]",
+            "vi_m": "月: 日経平均VI 月末の終値",
             "vix": "日(米国の日付): VIX 終値",
         },
     }

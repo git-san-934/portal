@@ -514,25 +514,24 @@ def margin_report():
     return {"weeks": weeks, "now": now, "rank": rank, "rank_years": 3}
 
 
-# 米国の VIX(恐怖指数)。チャートに出すだけ(売買の合図にはしない)
-VIX_FROM = "2004-01-01"
-
-
-def vix_report():
+# 日経平均VI(日本版の恐怖指数)。チャートに出すだけ(売買の合図にはしない)
+def vi_report():
     path = DATA / "sentiment.json"
     if not path.exists():
         return None
     try:
-        v = json.loads(path.read_text(encoding="utf-8")).get("vix") or {}
+        sj = json.loads(path.read_text(encoding="utf-8"))
     except ValueError:
         return None
-    days = [[d, x] for d, x in sorted(v.items()) if d >= VIX_FROM]
+    v, vm = sj.get("vi") or {}, sj.get("vi_m") or {}
+    days = [[d, x] for d, x in sorted(v.items())]
+    months = [[k, x] for k, x in sorted(vm.items())]
     if not days:
         return None
     last = days[-1]
     past = [x for _, x in days[-250 * 3:]]
     rank = round(sum(x < last[1] for x in past) / len(past), 3)
-    return {"days": days, "now": last, "rank": rank, "rank_years": 3}
+    return {"days": days, "months": months, "now": last, "rank": rank, "rank_days": len(past)}
 
 
 # プットコールレシオ(日経225オプションのプット取引高 ÷ コール取引高)。売買の合図にはせず、目安として表示する
@@ -650,13 +649,13 @@ def main() -> int:
     margin = margin_report()
     if margin:
         print(f"  margin: {len(margin['weeks'])}週 いま {margin['now']}")
-    vix = vix_report()
-    if vix:
-        print(f"  vix: {len(vix['days'])}日 いま {vix['now']}")
+    vi = vi_report()
+    if vi:
+        print(f"  vi: {len(vi['days'])}日 いま {vi['now']}")
     pcr = pcr_report()
     if pcr:
         print(f"  pcr: 日次 {len(pcr['days'])}日 月次 {len(pcr['months'])}か月 いま {pcr['now']}")
-    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "patterns": patterns, "tests": tests, "series": series, "heat": heat, "margin": margin, "vix": vix, "pcr": pcr,
+    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "patterns": patterns, "tests": tests, "series": series, "heat": heat, "margin": margin, "vi": vi, "pcr": pcr,
            "settings": {"fixed": [FIXED_LOW, FIXED_HIGH], "rel_years": list(REL_YEARS), "rel_sigma": REL_SIGMA,
                         "event_gap_days": EVENT_GAP_DAYS, "basis_change": BASIS_CHANGE,
                         "per_columns": list(PER_COLUMNS), "rel_exclude_above": REL_EXCLUDE_ABOVE}}
