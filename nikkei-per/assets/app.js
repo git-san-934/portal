@@ -240,6 +240,14 @@
     return `<div class="stat"><div class="k">信用残・信用倍率</div><div class="v">${n[3] == null ? "—" : n[3].toFixed(2) + "倍"}</div><div class="s">買い残 ${cho(n[2])}・売り残 ${cho(n[1])}・${fmtD(n[0])}の週${r == null ? "" : `・信用倍率は過去${M.rank_years}年で高い方から${Math.max(1, Math.round((1 - r) * 100))}%`}</div></div>`;
   }
 
+  function vixStat() {
+    const V = state.data.vix;
+    if (!V || !V.now) return "";
+    const [d, x] = V.now, r = V.rank;
+    const lv = x >= 30 ? "恐怖が強い" : x >= 20 ? "やや不安" : "落ち着いている";
+    return `<div class="stat"><div class="k">VIX(米国の恐怖指数)</div><div class="v">${x.toFixed(1)}</div><div class="s">${lv}・過去${V.rank_years}年で高い方から${Math.max(1, Math.round((1 - r) * 100))}%・${fmtD(d)}(米国)</div></div>`;
+  }
+
   function renderTrade() {
     const T = state.data.trade;
     if (!T) return;
@@ -264,6 +272,7 @@
       <div class="stat"><div class="k">PBR の買いの線の株価(${R.buy_pbr}倍)</div><div class="v zone-b">${yen(bp)}</div><div class="s">${pbrS}</div></div>
       ${heatStat()}
       ${marginStat()}
+      ${vixStat()}
       ${pcrStat()}
       <div class="stat"><div class="k">PER の買いの線(${PER_LO}倍)の株価</div><div class="v zone-b">${yen(now.close * PER_LO / now.per)}</div><div class="s">${perS}</div></div>`;
 
@@ -370,10 +379,31 @@
         ymin: 0, right: nk, yfmt: (x) => x + "倍", tfmt: (x) => x.toFixed(2) + "倍", tipExtra: wk,
       });
     }
+    // ⑦ VIX(米国の日付。日本の営業日には、その日までの最新の値を使う)
+    const V = d.vix;
+    $("vix-box").hidden = !V;
+    if (V) {
+      let w = -1;
+      const at = dd.map((x) => {
+        while (w + 1 < V.days.length && V.days[w + 1][0] <= x) w++;
+        return w >= 0 && toT(x) - toT(V.days[w][0]) <= 5 * DAY ? V.days[w] : null;
+      });
+      lineChart($("ch-vix"), {
+        d: dd, t: tt, h: 220, label: "VIX",
+        series: [
+          { n: "20", v: dd.map(() => 20), c: "--sub", w: 1, dash: "3 4", noTip: true },
+          { n: "30", v: dd.map(() => 30), c: "--in", w: 1, dash: "3 4", noTip: true },
+          { n: "VIX", v: at.map((x) => (x ? x[1] : null)), c: "--c2", w: 1.75 },
+        ],
+        ymin: 0, ymax: 60, right: nk, yfmt: (x) => String(x), tfmt: (x) => x.toFixed(1),
+        tipExtra: (k) => (at[k] ? `VIX は米国 ${fmtD(at[k][0])}` : ""),
+      });
+    }
     $("chnote").textContent = "PER は30倍より上を上端に貼りつけて表示しています(2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました)。売りの合図は出していません。" +
       (zones ? ` ①の薄い色の期間は「過熱のサイン」の点灯中です。信用取引の買い残(金額)が1年前からどれだけ増えたかが、過去${H.rule.years}年の中で上位${Math.round(H.rule.top * 100)}%に入った週(公表を待つため申込日の${H.rule.lag_days}日後から)に点灯します。` : "") +
       (P ? ` ④のプットコールレシオは、日経225オプションのプットの取引高をコールの取引高で割ったものです(JPX の統計)。高いほど下落に備える取引が多く、悲観が強いことを表します(日経225オプションはいつも1倍を超えがちです)。日ごとの値は${P.days.length ? fmtD(P.days[0][0]) : "—"}から、月ごとの値は${P.months.length ? P.months[0][0].replace("-", "/") : "—"}からです。前月までは月間統計資料の確定値、今月は毎日ためた概算値です。売買の合図ではなく目安です。` : "") +
-      (M ? ` ⑤⑥の信用残は、信用取引の買い残・売り残の合計です(JPX の「信用取引現在高」、週ごと、申込日の数営業日後に公表)。買い残が多いほど、あとで売られる株が多いことを表します。信用倍率は買い残の株数を売り残の株数で割ったもので、高いほど買いに偏っています。売買の合図ではなく目安です。` : "");
+      (M ? ` ⑤⑥の信用残は、信用取引の買い残・売り残の合計です(JPX の「信用取引現在高」、週ごと、申込日の数営業日後に公表)。買い残が多いほど、あとで売られる株が多いことを表します。信用倍率は買い残の株数を売り残の株数で割ったもので、高いほど買いに偏っています。売買の合図ではなく目安です。` : "") +
+      (V ? ` ⑦の VIX は、米国の S&P 500 オプションから計算される「恐怖指数」です(CBOE)。20前後がふだん、30を超えると市場の不安が強いとされます。60より上は上端に表示しています。米国の日付の値を、日本のその日までの最新の値として描いています。売買の合図ではなく目安です。` : "");
   }
 
   function seg(box, options, key, onChange) {
