@@ -6,7 +6,7 @@
   <title>日経平均PER・PBR 買いの合図</title>
   <meta name="description" content="日経平均の PBR が1.2倍を下から上に抜けた日、PER が14倍を割った日を買いの合図として毎日判定し、合図のあとの値動きを確かめるページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261104s" />
+  <link rel="stylesheet" href="assets/style.css?v=20261127p" />
 </head>
 <body>
 
@@ -64,12 +64,23 @@
     <span><span class="mk sq b">買</span>PBR の買いの合図</span>
   </div>
   <div class="chart" id="ch-pbr"></div>
+
+  <div id="pcr-box" hidden>
+  <h3>④ プットコールレシオ(日経225オプション)</h3>
+  <div class="legend">
+    <span><i style="background:var(--muted)"></i>日ごと</span>
+    <span><i style="background:var(--c1)"></i><span id="pcr-ma"></span>日平均</span>
+    <span><i class="dash" style="border-color:var(--c2)"></i>月ごと(2014年12月〜)</span>
+    <span><i class="dash" style="border-color:var(--sub)"></i>1倍</span>
+  </div>
+  <div class="chart" id="ch-pcr"></div>
+  </div>
   <p class="note" id="chnote"></p>
 
 </section>
 
 </main>
 </div>
-<script src="assets/app.js?v=20261104s"></script>
+<script src="assets/app.js?v=20261127p"></script>
 </body>
 </html>
