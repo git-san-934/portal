@@ -6,7 +6,7 @@
   <title>日経平均PER・PBR 買いの合図</title>
   <meta name="description" content="日経平均の PBR が1.2倍を下から上に抜けた日、PER が14倍を割った日を買いの合図として毎日判定し、合図のあとの値動きを確かめるページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261127p" />
+  <link rel="stylesheet" href="assets/style.css?v=20261127m" />
 </head>
 <body>
 
@@ -75,12 +75,27 @@
   </div>
   <div class="chart" id="ch-pcr"></div>
   </div>
+  <div id="margin-box" hidden>
+  <h3>⑤ 信用残(信用取引の買い残・売り残)</h3>
+  <div class="legend">
+    <span><i style="background:var(--c1)"></i>買い残(金額)</span>
+    <span><i style="background:var(--c2)"></i>売り残(金額)</span>
+    <span><i class="box h"></i>過熱のサイン点灯中</span>
+  </div>
+  <div class="chart" id="ch-mg"></div>
+
+  <h3>⑥ 信用倍率(買い残 ÷ 売り残)</h3>
+  <div class="legend">
+    <span><i style="background:var(--c4)"></i>信用倍率(株数)</span>
+  </div>
+  <div class="chart" id="ch-mr"></div>
+  </div>
   <p class="note" id="chnote"></p>
 
 </section>
 
 </main>
 </div>
-<script src="assets/app.js?v=20261127p"></script>
+<script src="assets/app.js?v=20261127m"></script>
 </body>
 </html>

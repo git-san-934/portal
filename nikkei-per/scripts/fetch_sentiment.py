@@ -137,13 +137,18 @@ def margin() -> dict:
             continue  # 一般・制度別の表。合計は mtsk と同じ
         # 2002年〜の表(_mtsk.xls)は合計が 9〜12 列目、直近の週の表(.xlsx)は 13〜16 列目
         at = 8 if name.endswith("_mtsk.xls") else 12
+        got = 0
         for _, rows in sheet_rows(get(url, binary=True), name):
             for r in rows:
                 d = to_date(r[0]) if r else None
                 v = [num(c) for c in r[1 + at:5 + at]] if d else []
                 if d and len(v) == 4 and all(x is not None for x in v):
                     out[d] = [int(x) for x in v]
+                    got += 1
+            if not got:  # 取れなかった表は、どこがずれているか分かるように先頭を出しておく
+                print(f"  信用残 {name}: 0 件 先頭 {[r[:18] for r in rows[:12]]}")
             break
+        print(f"  信用残 {name}: {got} 件")
     return out
 
 

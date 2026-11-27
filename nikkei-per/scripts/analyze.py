@@ -495,6 +495,25 @@ def heat_report():
     return {"rule": {"top": HEAT_TOP, "years": HEAT_YEARS, "lag_days": HEAT_LAG_DAYS},
             "weeks": weeks, "now": weeks[-1] if weeks else None, "count_on": len(on)}
 
+# 信用残(信用取引の買い残・売り残の合計)と信用倍率。チャートに出すだけ(売買の合図にはしない)
+def margin_report():
+    path = DATA / "sentiment.json"
+    if not path.exists():
+        return None
+    try:
+        m = json.loads(path.read_text(encoding="utf-8")).get("margin") or {}
+    except ValueError:
+        return None
+    # 週ごとに [申込日, 売り残 金額(百万円), 買い残 金額(百万円), 信用倍率(買い残 株数 ÷ 売り残 株数)]
+    weeks = [[d, v[1], v[3], round(v[2] / v[0], 2) if v[0] else None] for d, v in sorted(m.items())]
+    if not weeks:
+        return None
+    rat = [w[3] for w in weeks[-52 * 3:] if w[3] is not None]
+    now = weeks[-1]
+    rank = round(sum(r < now[3] for r in rat) / len(rat), 3) if now[3] is not None and len(rat) >= 52 else None
+    return {"weeks": weeks, "now": now, "rank": rank, "rank_years": 3}
+
+
 # プットコールレシオ(日経225オプションのプット取引高 ÷ コール取引高)。売買の合図にはせず、目安として表示する
 PCR_MA = 20  # 平均をとる営業日数(20日分のプット合計 ÷ コール合計)
 PCR_RANK_DAYS = 500  # いまの平均が過去どのくらいの位置かを比べる日数(約2年)
@@ -607,10 +626,13 @@ def main() -> int:
     heat = heat_report()
     if heat:
         print(f"  heat: 点灯 {heat['count_on']}週 / {len(heat['weeks'])}週 いま {heat['now']}")
+    margin = margin_report()
+    if margin:
+        print(f"  margin: {len(margin['weeks'])}週 いま {margin['now']}")
     pcr = pcr_report()
     if pcr:
         print(f"  pcr: 日次 {len(pcr['days'])}日 月次 {len(pcr['months'])}か月 いま {pcr['now']}")
-    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "patterns": patterns, "tests": tests, "series": series, "heat": heat, "pcr": pcr,
+    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "patterns": patterns, "tests": tests, "series": series, "heat": heat, "margin": margin, "pcr": pcr,
            "settings": {"fixed": [FIXED_LOW, FIXED_HIGH], "rel_years": list(REL_YEARS), "rel_sigma": REL_SIGMA,
                         "event_gap_days": EVENT_GAP_DAYS, "basis_change": BASIS_CHANGE,
                         "per_columns": list(PER_COLUMNS), "rel_exclude_above": REL_EXCLUDE_ABOVE}}
