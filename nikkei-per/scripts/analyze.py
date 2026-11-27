@@ -495,6 +495,42 @@ def heat_report():
     return {"rule": {"top": HEAT_TOP, "years": HEAT_YEARS, "lag_days": HEAT_LAG_DAYS},
             "weeks": weeks, "now": weeks[-1] if weeks else None, "count_on": len(on)}
 
+# プットコールレシオ(日経225オプションのプット取引高 ÷ コール取引高)。売買の合図にはせず、目安として表示する
+PCR_MA = 20  # 平均をとる営業日数(20日分のプット合計 ÷ コール合計)
+PCR_RANK_DAYS = 500  # いまの平均が過去どのくらいの位置かを比べる日数(約2年)
+
+
+def pcr_report():
+    path = DATA / "sentiment.json"
+    if not path.exists():
+        return None
+    try:
+        sj = json.loads(path.read_text(encoding="utf-8"))
+    except ValueError:
+        return None
+    d, m = sj.get("pcr") or {}, sj.get("pcr_m") or {}
+    if not d and not m:
+        return None
+    ds = [k for k in sorted(d) if d[k][1] > 0]
+    days = []
+    for i, k in enumerate(ds):
+        w = ds[max(0, i - PCR_MA + 1):i + 1]
+        # 間が空いた日(取れなかった期間)をまたぐ平均は出さない
+        ok = len(w) == PCR_MA and (date.fromisoformat(k) - date.fromisoformat(w[0])).days <= PCR_MA * 2
+        ma = round(sum(d[x][0] for x in w) / sum(d[x][1] for x in w), 3) if ok else None
+        days.append([k, d[k][0], d[k][1], round(d[k][0] / d[k][1], 3), ma, d[k][4] if len(d[k]) > 4 else "m"])
+    months = [[k, round(v[0] / v[1], 3)] for k, v in sorted(m.items()) if v[1]]
+    now = None
+    if days:
+        last = days[-1]
+        mas = [x[4] for x in days[-PCR_RANK_DAYS:] if x[4] is not None]
+        lastma = next((x for x in reversed(days) if x[4] is not None), None)
+        rank = round(sum(v < lastma[4] for v in mas) / len(mas), 3) if lastma and len(mas) >= 60 else None
+        now = {"date": last[0], "ratio": last[3], "ma_date": lastma[0] if lastma else None,
+               "ma": lastma[4] if lastma else None, "rank": rank, "rank_days": len(mas)}
+    return {"rule": {"ma": PCR_MA, "rank_days": PCR_RANK_DAYS}, "days": days, "months": months, "now": now}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
@@ -571,7 +607,10 @@ def main() -> int:
     heat = heat_report()
     if heat:
         print(f"  heat: 点灯 {heat['count_on']}週 / {len(heat['weeks'])}週 いま {heat['now']}")
-    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "patterns": patterns, "tests": tests, "series": series, "heat": heat,
+    pcr = pcr_report()
+    if pcr:
+        print(f"  pcr: 日次 {len(pcr['days'])}日 月次 {len(pcr['months'])}か月 いま {pcr['now']}")
+    out = {"updated": now, "ready": True, "info": info, "current": cur, "trade": trade, "patterns": patterns, "tests": tests, "series": series, "heat": heat, "pcr": pcr,
            "settings": {"fixed": [FIXED_LOW, FIXED_HIGH], "rel_years": list(REL_YEARS), "rel_sigma": REL_SIGMA,
                         "event_gap_days": EVENT_GAP_DAYS, "basis_change": BASIS_CHANGE,
                         "per_columns": list(PER_COLUMNS), "rel_exclude_above": REL_EXCLUDE_ABOVE}}

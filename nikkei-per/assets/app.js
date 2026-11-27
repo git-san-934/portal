@@ -201,6 +201,14 @@
     return `<div class="stat"><div class="k">過熱のサイン(信用の買い残)</div><div class="v ${on ? "zone-h" : ""}">${on ? "点灯中" : "消えている"}</div><div class="s">買い残が1年前より ${pct(n[2], 0)}(過去${H.rule.years}年で上位${Math.max(1, Math.round((1 - n[3]) * 100))}%)・${fmtD(n[0])}の週${since && since !== n[0] ? `・${fmtD(since)}の週から` : ""}</div></div>`;
   }
 
+  function pcrStat() {
+    const P = state.data.pcr;
+    if (!P || !P.now || P.now.ma == null) return "";
+    const n = P.now, r = n.rank;
+    const lv = r == null ? "" : r >= 0.8 ? "いつもより高い(下落への備えが多い)" : r <= 0.2 ? "いつもより低い(楽観ぎみ)" : "いつもどおり";
+    return `<div class="stat"><div class="k">プットコールレシオ(${P.rule.ma}日平均)</div><div class="v">${n.ma.toFixed(2)}倍</div><div class="s">${fmtD(n.ma_date)}まで${r == null ? "" : `・過去約${Math.round(n.rank_days / 250)}年で高い方から${Math.max(1, Math.round((1 - r) * 100))}%・${lv}`}・最新 ${fmtD(n.date)} ${n.ratio.toFixed(2)}倍</div></div>`;
+  }
+
   function renderTrade() {
     const T = state.data.trade;
     if (!T) return;
@@ -224,6 +232,7 @@
       <div class="stat"><div class="k">PBR / PER</div><div class="v">${now.pbr.toFixed(2)}倍 / ${now.per.toFixed(1)}倍</div><div class="s">日経平均 ${yen(now.close)}(${fmtD(T.to)})</div></div>
       <div class="stat"><div class="k">PBR の買いの線の株価(${R.buy_pbr}倍)</div><div class="v zone-b">${yen(bp)}</div><div class="s">${pbrS}</div></div>
       ${heatStat()}
+      ${pcrStat()}
       <div class="stat"><div class="k">PER の買いの線(${PER_LO}倍)の株価</div><div class="v zone-b">${yen(now.close * PER_LO / now.per)}</div><div class="s">${perS}</div></div>`;
 
   }
@@ -283,8 +292,30 @@
       marks: pbrT.map(pbrMark((t) => t.pbr)), ymin: 0,
       yfmt: (x) => x.toFixed(1) + "倍", tfmt: (x) => x.toFixed(2) + "倍",
     });
+    // ④ プットコールレシオ
+    const P = d.pcr;
+    $("pcr-box").hidden = !P;
+    if (P) {
+      const byD = {}, byM = {};
+      P.days.forEach((x) => (byD[x[0]] = x));
+      P.months.forEach((x) => (byM[x[0]] = x[1]));
+      $("pcr-ma").textContent = P.rule.ma;
+      lineChart($("ch-pcr"), {
+        d: dd, t: tt, h: 220, label: "プットコールレシオ",
+        series: [
+          { n: "1倍", v: dd.map(() => 1), c: "--sub", w: 1, dash: "3 4", noTip: true },
+          { n: "月ごと", v: dd.map((x) => byM[x.slice(0, 7)] ?? null), c: "--c2", w: 1.5, dash: "5 4" },
+          { n: "日ごと", v: dd.map((x) => (byD[x] ? byD[x][3] : null)), c: "--muted", w: 1 },
+          { n: `${P.rule.ma}日平均`, v: dd.map((x) => (byD[x] ? byD[x][4] : null)), c: "--c1", w: 2 },
+        ],
+        ymin: 0, ymax: 3,
+        yfmt: (x) => x.toFixed(1) + "倍", tfmt: (x) => x.toFixed(2) + "倍",
+        tipExtra: (k) => { const x = byD[dd[k]]; return x ? `プット ${x[1].toLocaleString("ja-JP")} · コール ${x[2].toLocaleString("ja-JP")}${x[5] === "d" ? "(概算)" : ""}` : ""; },
+      });
+    }
     $("chnote").textContent = "PER は30倍より上を上端に貼りつけて表示しています(2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました)。売りの合図は出していません。" +
-      (zones ? ` ①の薄い色の期間は「過熱のサイン」の点灯中です。信用取引の買い残(金額)が1年前からどれだけ増えたかが、過去${H.rule.years}年の中で上位${Math.round(H.rule.top * 100)}%に入った週(公表を待つため申込日の${H.rule.lag_days}日後から)に点灯します。` : "");
+      (zones ? ` ①の薄い色の期間は「過熱のサイン」の点灯中です。信用取引の買い残(金額)が1年前からどれだけ増えたかが、過去${H.rule.years}年の中で上位${Math.round(H.rule.top * 100)}%に入った週(公表を待つため申込日の${H.rule.lag_days}日後から)に点灯します。` : "") +
+      (P ? ` ④のプットコールレシオは、日経225オプションのプットの取引高をコールの取引高で割ったものです(JPX の統計)。高いほど下落に備える取引が多く、悲観が強いことを表します(日経225オプションはいつも1倍を超えがちです)。日ごとの値は${P.days.length ? fmtD(P.days[0][0]) : "—"}から、月ごとの値は${P.months.length ? P.months[0][0].replace("-", "/") : "—"}からです。前月までは月間統計資料の確定値、今月は毎日ためた概算値です。売買の合図ではなく目安です。` : "");
   }
 
   function seg(box, options, key, onChange) {

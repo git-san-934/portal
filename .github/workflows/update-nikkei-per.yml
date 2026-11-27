@@ -68,7 +68,7 @@ jobs:
           else
             python nikkei-per/scripts/fetch_per.py
           fi
-      # 信用残・裁定残・先物の投資部門別・日経VI をためていく(JPX には直近の分しか無いものがあるため毎回取る)。
+      # 信用残・裁定残・先物の投資部門別・日経VI・オプションのプット/コールをためていく(JPX には直近の分しか無いものがあるため毎回取る)。
       # 取れなくても PER の更新は続ける
       - name: 需給データを取得
         if: github.event_name != 'pull_request'
