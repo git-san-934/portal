@@ -383,16 +383,15 @@ def main() -> int:
             ok += bool(got)
         except Exception as e:  # noqa: BLE001
             print(f"{key}: 失敗 {e}", file=sys.stderr)
-    # TEMP 調査: 日経平均VIの過去分の取得元
-    for u in [NK + "/statistics/dataload?list=vi&year=2010&month=1", NK + "/statistics/dataload?list=vi&year=2022&month=12",
-              NK + "/statistics/dataload?list=nk225vi&year=2022&month=12", NK + "/archives/data?list=vi",
-              NK + "/index/profile?idx=nk225vi", NK + "/historical/nikkei_stock_average_vi_daily_en.csv",
-              NK + "/historical/nikkei_stock_average_vi_monthly_jp.csv"]:
+    # TEMP 調査: 日経平均VIの月ごとの日次表
+    for y, mo in ((1998, 1), (2001, 1), (2010, 1), (2022, 12)):
         try:
-            t = get(u)
-            print(f"  TEMP {u} {len(t)} {re.sub(r'\s+', ' ', t[:300])!r} links={[x for x in re.findall(r'href="([^"]+)"', t) if 'vi' in x.lower() or 'csv' in x.lower()][:15]}")
+            t = get(NK + f"/statistics/dataload?list=vi&year={y}&month={mo}")
+            rows = re.findall(r"<tr[^>]*>(.*?)</tr>", t, re.S)
+            cells = [[re.sub(r"<[^>]+>|\s+", " ", c).strip() for c in re.findall(r"<t[dh][^>]*>(.*?)</t[dh]>", r, re.S)] for r in rows]
+            print(f"  TEMP vi {y}-{mo}: {len(cells)}行 {cells[:4]} … {cells[-1:]}")
         except Exception as e:  # noqa: BLE001
-            print(f"  TEMP {u} 失敗 {e}")
+            print(f"  TEMP vi {y}-{mo} 失敗 {e}")
     if args.check:
         return 0 if ok else 1
     if not ok:
