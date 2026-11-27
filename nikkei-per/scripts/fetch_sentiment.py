@@ -1,7 +1,7 @@
 """需給・過熱感のデータを取り、../data/sentiment.json にためていく。
 
 JPX と日経のサイトには最近の分しか置かれていないもの(裁定残・先物の投資部門別)があるので、
-平日の自動更新のたびに取り、前に取った分とまとめて保存する。ページの表示にはまだ使っていない。
+平日の自動更新のたびに取り、前に取った分とまとめて保存する。
 
 取得元:
   信用取引残高 : JPX「信用取引現在高」 https://www.jpx.co.jp/markets/statistics-equities/margin/05.html
@@ -11,6 +11,14 @@ JPX と日経のサイトには最近の分しか置かれていないもの(裁
   先物の投資部門別 : JPX「投資部門別取引状況」 https://www.jpx.co.jp/markets/statistics-derivatives/sector/index.html
                  (週次の CSV。商品・投資部門ごとの売り・買いの数量と金額。置かれているのは直近の約5週)
   日経平均VI   : 日経平均プロフィルの日次 CSV(2023年〜)
+  日経225オプションのプット・コール(プットコールレシオ用):
+    日次 : JPX「月間統計資料」の指数オプション取引状況(日別) SIOP_D_YYYYMM.xlsx(2024年1月〜、前月分まで)
+           https://www.jpx.co.jp/markets/statistics-derivatives/monthly-statistics/index.html
+    当月 : JPX「取引高・建玉残高」のデリバティブ建玉残高状況(概算) YYYYMMDDopen_interest.xlsx(置かれているのは前営業日の1日分)
+           https://www.jpx.co.jp/markets/derivatives/trading-volume/index.html
+           月間統計資料が出たら、その月の日は月間統計資料の値で置き換える
+    月次 : JPX「取引総括表(月間)」 soukatsu_M.xlsx(2014年12月〜)
+           https://www.jpx.co.jp/markets/statistics-derivatives/trading-volume/index.html
 
 使い方:
   python fetch_sentiment.py --check   # 取れるかの確認だけ。件数を表示し、ファイルは書かない
@@ -34,8 +42,14 @@ PROGRAM_PAGE = JPX + "/markets/statistics-equities/program/index.html"
 SECTOR_PAGE = JPX + "/markets/statistics-derivatives/sector/index.html"
 NK = "https://indexes.nikkei.co.jp/nkave"
 VI_CSV = NK + "/historical/nikkei_stock_average_vi_daily_jp.csv"
+MSTAT_YEARS = JPX + "/automation/markets/statistics-derivatives/monthly-statistics/json/monthly_statistics_report_yearlist.json"
+OI_PAGE = JPX + "/markets/derivatives/trading-volume/index.html"
+SOUKATSU_M = JPX + "/automation/markets/statistics-derivatives/trading-volume/files/soukatsu_M.xlsx"
 OUT = Path(__file__).resolve().parent.parent / "data" / "sentiment.json"
 JST = timezone(timedelta(hours=9))
+
+
+KEYS = ("margin", "arbitrage", "futures", "vi", "pcr", "pcr_m")
 
 
 def get(url: str, binary=False):
@@ -184,6 +198,100 @@ def vi() -> dict:
     return out
 
 
+def _nums15(row):
+    """SIOP_D の1行から 取引高・取引金額・権利行使・ギブアップ・建玉 の(プット, コール, 合計)×5 の15個を取り出す。
+    最高・最低の印(◎●)は別のセルに入っているので除き、「－」は 0 とする。"""
+    out = []
+    for c in row[3:]:
+        if isinstance(c, (int, float)):
+            out.append(float(c))
+        elif isinstance(c, str) and c.strip() in ("－", "-", "―"):
+            out.append(0.0)
+    return out
+
+
+def pcr_daily(old: dict) -> dict:
+    """日経225オプションの日ごとの [プット取引高, コール取引高, プット建玉, コール建玉, 出所]。
+    出所 "m" は月間統計資料(確定)、"d" は日々の建玉残高状況(概算)。"""
+    import json as _json
+    years = _json.loads(get(MSTAT_YEARS))["TableDatas"]
+    files = []
+    for y in years:
+        tbl = _json.loads(get(y["Jsonfile"] if y["Jsonfile"].startswith("http") else JPX + y["Jsonfile"]))["TableDatas"]
+        for r in tbl:
+            if "指数オプション" in r.get("Quotations", ""):
+                files += [v for k, v in r.items() if k != "Quotations" and isinstance(v, str) and v.endswith(".xlsx")]
+    have = {d[:7] for d, v in old.items() if len(v) > 4 and v[4] == "m"}
+    files = sorted(set(files))
+    out = {}
+    for i, f in enumerate(files):
+        m = re.search(r"_(\d{4})(\d{2})\.xlsx$", f)
+        ym = f"{m[1]}-{m[2]}"
+        if ym in have and i < len(files) - 1:
+            continue  # 取り込み済みの月は取り直さない(最新の月だけは念のため毎回)
+        for _, rows in sheet_rows(get(JPX + f, binary=True), f):
+            for r in rows:
+                if len(r) < 3 or r[1] != "日経225オプション":
+                    continue
+                # 月日は月初めの日だけ「11.1」、ほかは日だけ「2」
+                t = str(int(r[0])) if isinstance(r[0], float) and r[0].is_integer() else str(r[0]).strip()
+                v = _nums15(r)
+                if not re.fullmatch(r"(\d{1,2}\.)?\d{1,2}", t) or len(v) < 15:
+                    continue
+                try:
+                    d = date(int(m[1]), int(m[2]), int(t.split(".")[-1])).isoformat()
+                except ValueError:
+                    continue
+                if abs(v[0] + v[1] - v[2]) > 0.5 or abs(v[12] + v[13] - v[14]) > 0.5:
+                    print(f"pcr: {d} の列が読めませんでした(プット+コール≠合計) {v}", file=sys.stderr)
+                    continue
+                if v[0] + v[1] > 0:
+                    out[d] = [int(v[0]), int(v[1]), int(v[12]), int(v[13]), "m"]
+            break
+    # 月間統計資料にまだ無い最近の日: 建玉残高状況(概算)の「プット合計」「コール合計」
+    page = get(OI_PAGE)
+    for url in links(page, r"open_interest\.xlsx$"):
+        md = re.search(r"/(\d{4})(\d{2})(\d{2})open_interest\.xlsx$", url)
+        if not md:
+            continue
+        d = f"{md[1]}-{md[2]}-{md[3]}"
+        put = call = None
+        for title, rows in sheet_rows(get(url, binary=True), url):
+            if not title.startswith("別紙1"):
+                continue
+            for r in rows:
+                for j, c in enumerate(r):
+                    if isinstance(c, str) and c.strip() in ("プット合計", "コール合計") and j + 2 < len(r):
+                        vals = (num(r[j + 1]), num(r[j + 2]))
+                        if None not in vals:
+                            if c.strip() == "プット合計":
+                                put = vals
+                            else:
+                                call = vals
+            break
+        if put and call and d not in out and (old.get(d, [None] * 5)[4] != "m"):
+            out[d] = [int(put[0]), int(call[0]), int(put[1]), int(call[1]), "d"]
+    return out
+
+
+def pcr_monthly() -> dict:
+    """日経225オプションの月ごとの [プット取引高, コール取引高](2014年12月〜)。"""
+    out = {}
+    for _, rows in sheet_rows(get(SOUKATSU_M, binary=True), "soukatsu_M.xlsx"):
+        for r in rows:
+            if len(r) < 8 or r[0] != "日経225オプション" or r[2] not in ("プット", "コール"):
+                continue
+            try:
+                ym = f"{int(float(r[4])):04d}-{int(float(r[5])):02d}"
+            except (TypeError, ValueError):
+                continue
+            vol = num(r[7])
+            if vol is not None:
+                out.setdefault(ym, [None, None])[0 if r[2] == "プット" else 1] = int(vol)
+        break
+    return {k: v for k, v in out.items() if None not in v}
+
+
 def main() -> int:
     ap = argparse.ArgumentParser()
     ap.add_argument("--check", action="store_true")
@@ -194,9 +302,10 @@ def main() -> int:
             old = json.loads(OUT.read_text(encoding="utf-8"))
         except ValueError:
             old = {}
-    data = {k: old.get(k, {}) for k in ("margin", "arbitrage", "futures", "vi")}
+    data = {k: old.get(k, {}) for k in KEYS}
     ok = 0
-    for key, fn in (("margin", margin), ("arbitrage", arbitrage), ("futures", futures), ("vi", vi)):
+    for key, fn in (("margin", margin), ("arbitrage", arbitrage), ("futures", futures), ("vi", vi),
+                    ("pcr", lambda: pcr_daily(data["pcr"])), ("pcr_m", pcr_monthly)):
         try:
             got = fn()
             if key == "futures":
@@ -221,9 +330,11 @@ def main() -> int:
             "arbitrage": "日: [売りポジション 合計(千株), 買いポジション 合計(千株)]",
             "futures": "週: 商品コード→投資部門コード→[売 数量, 買 数量, 売 金額(円), 買 金額(円)]",
             "vi": "日: 日経平均VI 終値",
+            "pcr": "日: 日経225オプション [プット取引高, コール取引高, プット建玉, コール建玉, 出所 m=月間統計資料 d=建玉残高状況(概算)]",
+            "pcr_m": "月: 日経225オプション [プット取引高, コール取引高]",
         },
     }
-    for k in ("margin", "arbitrage", "futures", "vi"):
+    for k in KEYS:
         out[k] = dict(sorted(data[k].items()))
     OUT.write_text(json.dumps(out, ensure_ascii=False, separators=(",", ":")) + "\n", encoding="utf-8")
     print(f"{OUT.name} を書きました({OUT.stat().st_size // 1024} KB)")
