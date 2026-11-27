@@ -1,12 +1,12 @@
 {
- "updated_at": "2026-11-28T02:35+09:00",
+ "updated_at": "2026-11-28T03:19+09:00",
  "latest_price_date": "2026-11-26",
  "rules": {
   "stop_buffer": 0.99,
   "rr": 3.0
  },
  "summary": {
-  "picks": 52,
+  "picks": 55,
   "with_data": 49,
   "avg_ret_pct": 0.44,
   "win_rate_pct": 51.0,
@@ -26,6 +26,45 @@
   "n_10d": 28
  },
  "rows": [
+  {
+   "date": "2026-11-28",
+   "dates": [
+    "2026-11-28"
+   ],
+   "price_date": "2026-11-27",
+   "code": "3321",
+   "name": "ミタチ産業",
+   "rank": 1,
+   "base": null,
+   "analysis_close": 1748,
+   "status": "株価データなし"
+  },
+  {
+   "date": "2026-11-28",
+   "dates": [
+    "2026-11-28"
+   ],
+   "price_date": "2026-11-27",
+   "code": "1762",
+   "name": "高松コンストラクショングループ",
+   "rank": 2,
+   "base": null,
+   "analysis_close": 4610,
+   "status": "株価データなし"
+  },
+  {
+   "date": "2026-11-28",
+   "dates": [
+    "2026-11-28"
+   ],
+   "price_date": "2026-11-27",
+   "code": "4097",
+   "name": "高圧ガス工業",
+   "rank": 3,
+   "base": null,
+   "analysis_close": 1273,
+   "status": "株価データなし"
+  },
   {
    "date": "2026-11-26",
    "dates": [
