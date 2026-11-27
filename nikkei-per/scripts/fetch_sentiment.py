@@ -6,6 +6,7 @@ JPX と日経のサイトには最近の分しか置かれていないもの(裁
 取得元:
   信用取引残高 : JPX「信用取引現在高」 https://www.jpx.co.jp/markets/statistics-equities/margin/05.html
                  (2002年〜の週次の .xls と、直近の週の .xlsx。合計の売残・買残の株数と金額)
+                 直近の数週は https://www.jpx.co.jp/markets/statistics-equities/margin/04.html の YYYYMMDD_mtcurrent.xlsx
   裁定残       : JPX「プログラム売買・裁定取引」 https://www.jpx.co.jp/markets/statistics-equities/program/index.html
                  (日々の .xls。裁定取引に係る現物ポジションの売り・買いの合計 千株。置かれているのは直近の約20営業日)
   先物の投資部門別 : JPX「投資部門別取引状況」 https://www.jpx.co.jp/markets/statistics-derivatives/sector/index.html
@@ -38,6 +39,7 @@ from pathlib import Path
 UA = "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/126.0 Safari/537.36"
 JPX = "https://www.jpx.co.jp"
 MARGIN_PAGE = JPX + "/markets/statistics-equities/margin/05.html"
+WEEKLY_PAGE = JPX + "/markets/statistics-equities/margin/04.html"
 PROGRAM_PAGE = JPX + "/markets/statistics-equities/program/index.html"
 SECTOR_PAGE = JPX + "/markets/statistics-derivatives/sector/index.html"
 NK = "https://indexes.nikkei.co.jp/nkave"
@@ -137,14 +139,50 @@ def margin() -> dict:
             continue  # 一般・制度別の表。合計は mtsk と同じ
         # 2002年〜の表(_mtsk.xls)は合計が 9〜12 列目、直近の週の表(.xlsx)は 13〜16 列目
         at = 8 if name.endswith("_mtsk.xls") else 12
+        got = 0
         for _, rows in sheet_rows(get(url, binary=True), name):
             for r in rows:
                 d = to_date(r[0]) if r else None
                 v = [num(c) for c in r[1 + at:5 + at]] if d else []
                 if d and len(v) == 4 and all(x is not None for x in v):
                     out[d] = [int(x) for x in v]
+                    got += 1
+            if not got:  # 取れなかった表は、どこがずれているか分かるように先頭を出しておく
+                print(f"  信用残 {name}: 0 件 先頭 {[r[:18] for r in rows[:12]]}")
             break
+        print(f"  信用残 {name}: {got} 件")
+    # 直近の週は「信用取引現在高」(04.html)の週ごとの表(YYYYMMDD_mtcurrent.xlsx、日付は申込日)にしか無い
+    for url in links(get(WEEKLY_PAGE), r"_mtcurrent\.xlsx$"):
+        name = url.rsplit("/", 1)[-1]
+        try:
+            v = mtcurrent(get(url, binary=True), name)
+        except Exception as e:  # noqa: BLE001
+            print(f"  信用残 {name}: 失敗 {e}")
+            continue
+        d = f"{name[:4]}-{name[4:6]}-{name[6:8]}"
+        if not v:
+            print(f"  信用残 {name}: 合計の行が見つからない")
+        elif d in out:
+            print(f"  信用残 {name}: 年次の表と{'一致' if out[d] == v else f'違う {out[d]} / {v}'}")
+        else:
+            out[d] = v
+            print(f"  信用残 {name}: {v}")
     return out
+
+
+def mtcurrent(raw: bytes, name: str):
+    """週ごとの表の「信用取引残高合計」(二市場)の [売残 株数, 売残 金額, 買残 株数, 買残 金額]。"""
+    for _, rows in sheet_rows(raw, name):
+        for i, r in enumerate(rows):
+            if not any(isinstance(c, str) and "Total Outstanding Margin" in c for c in r):
+                continue
+            k = next(j for j, c in enumerate(r) if isinstance(c, str) and c.startswith("株数"))
+            nxt = rows[i + 1]
+            sh, val = [num(c) for c in r[k + 1:k + 4]], [num(c) for c in nxt[k + 1:k + 4]]
+            if None in (sh[0], sh[2], val[0], val[2]):
+                return None
+            return [int(sh[0]), int(val[0]), int(sh[2]), int(val[2])]
+    return None
 
 
 def arbitrage() -> dict:
