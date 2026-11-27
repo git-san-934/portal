@@ -54,7 +54,7 @@
 
   function lineChart(host, o) {
     host.innerHTML = "";
-    const W = host.clientWidth || 640, H = o.h || 260, m = { l: 52, r: 12, t: 10, b: 24 };
+    const W = host.clientWidth || 640, H = o.h || 260, m = { l: 52, r: o.right ? 50 : 12, t: 10, b: 24 };
     const svg = el("svg", { viewBox: `0 0 ${W} ${H}`, role: "img", "aria-label": o.label || "" }, host);
     const t = o.t, n = t.length, iw = W - m.l - m.r, ih = H - m.t - m.b;
     const t0 = t[0], t1 = t[n - 1];
@@ -67,6 +67,18 @@
     const clipped = o.ymax != null && hi > o.ymax;
     if (clipped) hi = o.ymax;
     const Y = (v) => Math.max(m.t, m.t + ih - ((v - lo) / (hi - lo)) * ih);
+    // 右軸(主の線の背景として、日経平均などを細く重ねる)
+    let Y2 = Y, rlo = 0, rhi = 1;
+    const R = o.right ? { ...o.right, r: true } : null;
+    if (R) {
+      rlo = Infinity; rhi = -Infinity;
+      for (const v of R.v) if (v != null) { rlo = Math.min(rlo, v); rhi = Math.max(rhi, v); }
+      if (rlo === Infinity) { rlo = 0; rhi = 1; }
+      const rp = (rhi - rlo) * 0.05 || 1; rlo -= rp; rhi += rp;
+      Y2 = (v) => m.t + ih - ((v - rlo) / (rhi - rlo)) * ih;
+    }
+    const all = R ? [R, ...o.series] : o.series; // 右軸の線は先に描いて、主の線の下にする
+    const YY = (s) => (s.r ? Y2 : Y);
     // 買い時・売り時の期間の塗り
     if (o.zones) {
       let s = -1, z = null;
@@ -83,6 +95,14 @@
     for (let v = Math.ceil(lo / st) * st; v <= hi; v += st) {
       el("line", { x1: m.l, x2: W - m.r, y1: Y(v), y2: Y(v), stroke: css("--grid"), "stroke-width": 1 }, svg);
       el("text", { x: m.l - 6, y: Y(v) + 4, "text-anchor": "end" }, svg).textContent = o.yfmt(v);
+    }
+    if (R) {
+      const st2 = niceStep((rhi - rlo) / 4);
+      for (let v = Math.ceil(rlo / st2) * st2; v <= rhi; v += st2) {
+        el("line", { x1: W - m.r, x2: W - m.r + 4, y1: Y2(v), y2: Y2(v), stroke: css(R.c) }, svg);
+        el("text", { x: W - m.r + 6, y: Y2(v) + 4, "text-anchor": "start", style: `fill:${css(R.c)}` }, svg).textContent = R.yfmt(v);
+      }
+      el("line", { x1: W - m.r, x2: W - m.r, y1: m.t, y2: m.t + ih, stroke: css(R.c), "stroke-width": 1, opacity: 0.5 }, svg);
     }
     // x の目盛り
     const span = (t1 - t0) / (365.25 * DAY);
@@ -110,10 +130,11 @@
       flush();
     }
     // 線
-    for (const s of o.series) {
+    for (const s of all) {
       let p = "", pen = false;
-      s.v.forEach((v, i) => { if (v == null) { pen = false; return; } p += (pen ? "L" : "M") + X(i).toFixed(1) + "," + Y(v).toFixed(1); pen = true; });
-      el("path", { d: p, fill: "none", stroke: css(s.c), "stroke-width": s.w || 2, "stroke-linejoin": "round", "stroke-linecap": "round", "stroke-dasharray": s.dash || "" }, svg);
+      const Ys = YY(s);
+      s.v.forEach((v, i) => { if (v == null) { pen = false; return; } p += (pen ? "L" : "M") + X(i).toFixed(1) + "," + Ys(v).toFixed(1); pen = true; });
+      el("path", { d: p, fill: "none", stroke: css(s.c), "stroke-width": s.w || 2, "stroke-linejoin": "round", "stroke-linecap": "round", "stroke-dasharray": s.dash || "", opacity: s.op || 1 }, svg);
     }
     // 線の名前(右端)
     for (const s of o.series) {
@@ -142,7 +163,7 @@
     }
     // ホバー
     const cross = el("line", { y1: m.t, y2: m.t + ih, stroke: css("--sub"), "stroke-width": 1, opacity: 0 }, svg);
-    const dots = o.series.map((s) => el("circle", { r: 4, fill: css(s.c), stroke: css("--card"), "stroke-width": 2, opacity: 0 }, svg));
+    const dots = all.map((s) => el("circle", { r: 4, fill: css(s.c), stroke: css("--card"), "stroke-width": 2, opacity: 0 }, svg));
     const tip = document.createElement("div"); tip.className = "tip"; tip.hidden = true; host.appendChild(tip);
     const hit = el("rect", { x: m.l, y: m.t, width: iw, height: ih, fill: "transparent" }, svg);
     const move = (ev) => {
@@ -153,11 +174,11 @@
       if (a > 0 && tt - t[a - 1] < t[a] - tt) a--;
       const i = a;
       cross.setAttribute("x1", X(i)); cross.setAttribute("x2", X(i)); cross.setAttribute("opacity", 0.5);
-      o.series.forEach((s, k) => { const v = s.v[i]; if (v == null) { dots[k].setAttribute("opacity", 0); return; } dots[k].setAttribute("cx", X(i)); dots[k].setAttribute("cy", Y(v)); dots[k].setAttribute("opacity", 1); });
+      all.forEach((s, k) => { const v = s.v[i]; if (v == null) { dots[k].setAttribute("opacity", 0); return; } dots[k].setAttribute("cx", X(i)); dots[k].setAttribute("cy", YY(s)(v)); dots[k].setAttribute("opacity", 1); });
       const mk = markAt[i];
       tip.innerHTML = `<div class="d">${fmtD(o.d[i])}${o.tipExtra ? " · " + o.tipExtra(i) : ""}</div>` +
         (mk ? `<div><b style="color:${css(mk.c || (mk.k === "b" ? "--in" : "--out"))}">${mk.k === "b" ? "▲ " : "▼ "}${esc(mk.t)}</b></div>` : "") +
-        o.series.filter((s) => !s.noTip).map((s) => `<div><i style="background:${css(s.c)}"></i>${s.n}　<b>${s.v[i] == null ? "—" : o.tfmt(s.v[i])}</b></div>`).join("");
+        o.series.concat(R ? [R] : []).filter((s) => !s.noTip).map((s) => `<div><i style="background:${css(s.c)}"></i>${s.n}　<b>${s.v[i] == null ? "—" : (s.tfmt || o.tfmt)(s.v[i])}</b></div>`).join("");
       tip.hidden = false;
       const px = (X(i) * r.width) / W, hw = r.width;
       tip.style.left = Math.min(Math.max(0, px + 12), hw - tip.offsetWidth) + "px";
@@ -263,6 +284,7 @@
     const pbrMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: "b", c: "--pbr-b", tc: "#1a1a1a", sq: true, big: true, t: `PBR の買いの合図(PBR ${t.pbr.toFixed(2)}倍)` });
     const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: "b", big: true, t: `PER の買いの合図(PER ${t.per.toFixed(1)}倍)` });
     const tip = (k) => `PER ${S.per[idx[k]].toFixed(1)}倍 · PBR ${S.pbr[idx[k]].toFixed(2)}倍`;
+    const nk = { n: "日経平均(右軸)", v: v("close"), c: "--line", w: 1.25, op: 0.6, yfmt: (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP")), tfmt: (x) => yen(x) };
     const yenAx = (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP"));
     // 過熱のサイン(信用取引の買い残)が点灯していた期間を塗る
     const H = d.heat;
@@ -315,10 +337,10 @@
         series: [
           { n: "1倍", v: dd.map(() => 1), c: "--sub", w: 1, dash: "3 4", noTip: true },
           { n: "月ごと", v: dd.map((x) => byM[x.slice(0, 7)] ?? null), c: "--c2", w: 1.5, dash: "5 4" },
-          { n: "日ごと", v: dd.map((x) => (byD[x] ? byD[x][3] : null)), c: "--muted", w: 1 },
+          { n: "日ごと", v: dd.map((x) => (byD[x] ? byD[x][3] : null)), c: "--muted", w: 1, op: 0.55 },
           { n: `${P.rule.ma}日平均`, v: dd.map((x) => (byD[x] ? byD[x][4] : null)), c: "--c1", w: 2 },
         ],
-        ymin: 0, ymax: 3,
+        ymin: 0, ymax: 3, right: nk,
         yfmt: (x) => x.toFixed(1) + "倍", tfmt: (x) => x.toFixed(2) + "倍",
         tipExtra: (k) => { const x = byD[dd[k]]; return x ? `プット ${x[1].toLocaleString("ja-JP")} · コール ${x[2].toLocaleString("ja-JP")}${x[5] === "d" ? "(概算)" : ""}` : ""; },
       });
@@ -339,12 +361,12 @@
           { n: "売り残", v: at.map((x) => (x ? x[1] / 1e6 : null)), c: "--c2", w: 1.75 },
           { n: "買い残", v: at.map((x) => (x ? x[2] / 1e6 : null)), c: "--c1", w: 2 },
         ],
-        ymin: 0, yfmt: (x) => x + "兆", tfmt: (x) => x.toFixed(2) + "兆円", tipExtra: wk,
+        ymin: 0, right: nk, yfmt: (x) => x + "兆", tfmt: (x) => x.toFixed(2) + "兆円", tipExtra: wk,
       });
       lineChart($("ch-mr"), {
         d: dd, t: tt, h: 200, label: "信用倍率",
         series: [{ n: "信用倍率", v: at.map((x) => (x ? x[3] : null)), c: "--c4", w: 2 }],
-        ymin: 0, yfmt: (x) => x + "倍", tfmt: (x) => x.toFixed(2) + "倍", tipExtra: wk,
+        ymin: 0, right: nk, yfmt: (x) => x + "倍", tfmt: (x) => x.toFixed(2) + "倍", tipExtra: wk,
       });
     }
     $("chnote").textContent = "PER は30倍より上を上端に貼りつけて表示しています(2009年春はリーマン・ショック後に利益が大きく減り、PER が100倍を超えました)。売りの合図は出していません。" +
