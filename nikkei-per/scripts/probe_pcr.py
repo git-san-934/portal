@@ -34,18 +34,15 @@ def dump(u, n=40):
                 if r: print("  END", r[:16])
 
 import json
-for u in ["/automation/markets/statistics-derivatives/monthly-statistics/json/monthly_statistics_report2024.json",
-          "/automation/markets/statistics-derivatives/daily/json/daily_report_202611.json",
-          "/automation/markets/statistics-derivatives/daily/json/daily_report_202601.json"]:
-    try:
-        t = get(u).decode("utf-8-sig", "replace")
-        print("=== JSON", u, len(t)); print("  ", t[:2500]);
-        print("  ALL", sorted(set(re.findall(r'"([^"]+\.(?:pdf|xlsx?|csv|zip))"', t)))[:400])
-    except Exception as e:
-        print("NG", u, e)
-t = get("/markets/statistics-derivatives/daily/index.html").decode("utf-8", "replace")
-for m in re.finditer(r"<script[^>]*>(.*?)</script>", t, re.S):
-    if "json" in m[1]: print("=== SCRIPT", m[1][:3000])
-t = get("/markets/statistics-derivatives/monthly-statistics/index.html").decode("utf-8", "replace")
-for m in re.finditer(r"<script[^>]*>(.*?)</script>", t, re.S):
-    if "json" in m[1]: print("=== SCRIPT2", m[1][:3000])
+t = get("/automation/markets/statistics-derivatives/monthly-statistics/json/monthly_statistics_report2024.json").decode("utf-8-sig")
+for r in json.loads(t)["TableDatas"]: print("  Q", r["Quotations"], r.get("Jan"))
+B = "/automation/markets/statistics-derivatives/monthly-statistics/"
+for u in [B+"json/monthly_statistics_report2023.json", B+"json/monthly_statistics_report2016.json"]:
+    try: get(u); print("OK", u)
+    except Exception as e: print("NG", u, e)
+for y in (2014, 2016, 2018, 2020, 2022, 2023):
+    for ext in ("xlsx", "xls", "pdf"):
+        u = f"{B}files/{y}/SIOP_D_{y}06.{ext}"
+        try: n = len(get(u)); print("OK", u, n)
+        except Exception as e: print("NG", u, e)
+dump(B + "files/2024/SIOP_D_202401.xlsx", 60)
