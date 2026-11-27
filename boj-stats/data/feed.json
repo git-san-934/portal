@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T10:04+09:00",
+ "generated_at": "2026-11-27T13:15+09:00",
  "report_date": "2026-11-27",
  "days": [
   {
@@ -240,6 +240,13 @@
      "detail": "79%"
     },
     {
+     "kind": "news",
+     "id": "https://www.boj.or.jp/about/press/koen_2026/ko261127a.htm",
+     "name": "【講演】神山理事「デジタルマネーと決済：新たなパラダイムへの移行」（IMF MCM-OAP Seminar in Tokyo）",
+     "url": "https://www.boj.or.jp/about/press/koen_2026/ko261127a.htm",
+     "time": "10:15"
+    },
+    {
      "kind": "estat",
      "id": "estat:00600670",
      "name": "民間住宅ローンの実態に関する調査",
@@ -247,6 +254,28 @@
      "org": "国土交通省",
      "status": "更新",
      "info": "",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00600370",
+     "name": "自動車燃料消費量調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00600370",
+     "org": "国土交通省",
+     "status": "新着",
+     "info": "https://www.mlit.go.jp/k-toukei/nenryousyouhiryou.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00501000",
+     "name": "木材需給表",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00501000",
+     "org": "林野庁",
+     "status": "新着",
+     "info": "https://www.maff.go.jp/j/tokei/kouhyou/mokuzai_zyukyu/index.html",
      "stats": [],
      "analysis": null
     },
@@ -12682,7 +12711,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-27T10:04+09:00",
+  "checked_at": "2026-11-27T13:15+09:00",
   "counts": {
    "new": 0,
    "unchanged": 131,
