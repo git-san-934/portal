@@ -6,6 +6,7 @@
   const NS = "http://www.w3.org/2000/svg";
   const DAY = 86400000;
   const RANGES = [
+    { key: "6m", label: "6か月", years: 0.5 },
     { key: "1y", label: "1年", years: 1 },
     { key: "3y", label: "3年", years: 3 },
     { key: "10y", label: "10年", years: 10 },

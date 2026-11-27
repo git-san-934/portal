@@ -131,16 +131,13 @@ def margin() -> dict:
     """週ごとの合計の [売残 株数, 売残 金額, 買残 株数, 買残 金額](千株・百万円)。"""
     page = get(MARGIN_PAGE)
     out = {}
-    # TEMP 調査: ほかの信用取引のページにある表
-    for pg in ("index.html", "01.html", "02.html", "03.html", "04.html", "06.html"):
-        try:
-            u = MARGIN_PAGE.rsplit("/", 1)[0] + "/" + pg
-            t = get(u)
-            ti = re.search(r"<title>(.*?)</title>", t, re.S)
-            print(f"  TEMP {pg} {ti.group(1).strip() if ti else ''} {links(t, r'[.](xlsx?|csv|pdf)$')[:8]}")
-        except Exception as e:  # noqa: BLE001
-            print(f"  TEMP {pg} {e}")
-    print(f"  TEMP 05 {links(page, r'[.](xlsx?|csv|pdf)$')}")
+    # TEMP 調査: 週ごとの信用取引現在高(04.html)の表の中身
+    t = get(MARGIN_PAGE.rsplit("/", 1)[0] + "/04.html")
+    u = [x for x in links(t, r"mtcurrent[.]xlsx$")][-1]
+    for sn, rows in sheet_rows(get(u, binary=True), u):
+        print(f"  TEMP {u} {sn} {len(rows)}行")
+        for r in rows[:40]:
+            print(f"  TEMP  {r[:20]}")
     for url in links(page, r"\.xlsx?$"):
         name = url.rsplit("/", 1)[-1]
         if name.endswith("_mtgk.xls"):
