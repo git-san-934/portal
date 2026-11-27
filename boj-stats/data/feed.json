@@ -1,10 +1,178 @@
 {
- "generated_at": "2026-11-27T06:59+09:00",
+ "generated_at": "2026-11-27T09:09+09:00",
  "report_date": "2026-11-27",
  "days": [
   {
    "date": "2026-11-27",
    "items": [
+    {
+     "kind": "release",
+     "id": "STAT_CPI_TKY_ALL_YOY",
+     "name": "消費者物価（東京都区部・総合）前年比",
+     "obs": "2026-11",
+     "value": "2.8",
+     "unit": "%",
+     "change": "+0.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "STAT_CPI_TKY_CORE_YOY",
+     "name": "消費者物価（東京都区部・生鮮食品を除く総合）前年比",
+     "obs": "2026-11",
+     "value": "2.9",
+     "unit": "%",
+     "change": "+0.300%pt"
+    },
+    {
+     "kind": "release",
+     "id": "STAT_CPI_TKY_CORECORE_YOY",
+     "name": "消費者物価（東京都区部・生鮮食品及びエネルギーを除く総合）前年比",
+     "obs": "2026-11",
+     "value": "2.5",
+     "unit": "%",
+     "change": "-0.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KOURI_TKY_RICE",
+     "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
+     "obs": "2026-11",
+     "value": "3,544",
+     "unit": "円",
+     "change": "-4.16%"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KOURI_TKY_EGG",
+     "name": "東京都区部 小売価格 鶏卵 1パック",
+     "obs": "2026-11",
+     "value": "324",
+     "unit": "円",
+     "change": "+0.00%"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_KOURI_TKY_GASOLINE",
+     "name": "東京都区部 小売価格 ガソリン 1L",
+     "obs": "2026-11",
+     "value": "172",
+     "unit": "円",
+     "change": "+0.00%"
+    },
+    {
+     "kind": "signal",
+     "id": "STAT_CPI_TKY_ALL_YOY",
+     "name": "消費者物価（東京都区部・総合）前年比",
+     "obs": "2026-11",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "2.8%"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_KOURI_TKY_RICE",
+     "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
+     "obs": "2026-11",
+     "type": "1年安値更新",
+     "dir": "低下",
+     "detail": "3,544円"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00200573",
+     "name": "消費者物価指数",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200573",
+     "org": "総務省",
+     "status": "新着",
+     "info": "https://www.stat.go.jp/data/cpi/index.htm",
+     "stats": [
+      {
+       "id": "STAT_CPI_TKY_ALL_YOY",
+       "name": "消費者物価（東京都区部・総合）前年比",
+       "obs": "2026-11",
+       "value": "2.8",
+       "unit": "%",
+       "change": "+0.100%pt",
+       "fresh": true,
+       "signals": [
+        {
+         "type": "1年高値更新",
+         "dir": "上昇",
+         "detail": "2.8%"
+        }
+       ]
+      },
+      {
+       "id": "STAT_CPI_TKY_CORE_YOY",
+       "name": "消費者物価（東京都区部・生鮮食品を除く総合）前年比",
+       "obs": "2026-11",
+       "value": "2.9",
+       "unit": "%",
+       "change": "+0.300%pt",
+       "fresh": true,
+       "signals": []
+      },
+      {
+       "id": "STAT_CPI_TKY_CORECORE_YOY",
+       "name": "消費者物価（東京都区部・生鮮食品及びエネルギーを除く総合）前年比",
+       "obs": "2026-11",
+       "value": "2.5",
+       "unit": "%",
+       "change": "-0.100%pt",
+       "fresh": true,
+       "signals": []
+      }
+     ],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00200571",
+     "name": "小売物価統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200571",
+     "org": "総務省",
+     "status": "新着",
+     "info": "https://www.stat.go.jp/data/kouri/index.htm",
+     "stats": [
+      {
+       "id": "ESTAT_KOURI_TKY_RICE",
+       "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
+       "obs": "2026-11",
+       "value": "3,544",
+       "unit": "円",
+       "change": "-4.16%",
+       "fresh": true,
+       "signals": [
+        {
+         "type": "1年安値更新",
+         "dir": "低下",
+         "detail": "3,544円"
+        }
+       ]
+      },
+      {
+       "id": "ESTAT_KOURI_TKY_EGG",
+       "name": "東京都区部 小売価格 鶏卵 1パック",
+       "obs": "2026-11",
+       "value": "324",
+       "unit": "円",
+       "change": "+0.00%",
+       "fresh": true,
+       "signals": []
+      },
+      {
+       "id": "ESTAT_KOURI_TKY_GASOLINE",
+       "name": "東京都区部 小売価格 ガソリン 1L",
+       "obs": "2026-11",
+       "value": "172",
+       "unit": "円",
+       "change": "+0.00%",
+       "fresh": true,
+       "signals": []
+      }
+     ],
+     "analysis": null
+    },
     {
      "kind": "estat",
      "id": "estat:00400304",
@@ -3753,6 +3921,42 @@
        "change": "-0.200%pt",
        "fresh": true,
        "signals": []
+      },
+      {
+       "id": "STAT_CPI_TKY_ALL_YOY",
+       "name": "消費者物価（東京都区部・総合）前年比",
+       "obs": "2026-11",
+       "value": "2.8",
+       "unit": "%",
+       "change": "+0.100%pt",
+       "fresh": true,
+       "signals": [
+        {
+         "type": "1年高値更新",
+         "dir": "上昇",
+         "detail": "2.8%"
+        }
+       ]
+      },
+      {
+       "id": "STAT_CPI_TKY_CORE_YOY",
+       "name": "消費者物価（東京都区部・生鮮食品を除く総合）前年比",
+       "obs": "2026-11",
+       "value": "2.9",
+       "unit": "%",
+       "change": "+0.300%pt",
+       "fresh": true,
+       "signals": []
+      },
+      {
+       "id": "STAT_CPI_TKY_CORECORE_YOY",
+       "name": "消費者物価（東京都区部・生鮮食品及びエネルギーを除く総合）前年比",
+       "obs": "2026-11",
+       "value": "2.5",
+       "unit": "%",
+       "change": "-0.100%pt",
+       "fresh": true,
+       "signals": []
       }
      ],
      "analysis": null
@@ -3769,31 +3973,37 @@
       {
        "id": "ESTAT_KOURI_TKY_RICE",
        "name": "東京都区部 小売価格 うるち米コシヒカリ 5kg",
-       "obs": "2026-10",
-       "value": "3,698",
+       "obs": "2026-11",
+       "value": "3,544",
        "unit": "円",
-       "change": "-8.71%",
-       "fresh": false,
-       "signals": []
+       "change": "-4.16%",
+       "fresh": true,
+       "signals": [
+        {
+         "type": "1年安値更新",
+         "dir": "低下",
+         "detail": "3,544円"
+        }
+       ]
       },
       {
        "id": "ESTAT_KOURI_TKY_EGG",
        "name": "東京都区部 小売価格 鶏卵 1パック",
-       "obs": "2026-10",
+       "obs": "2026-11",
        "value": "324",
        "unit": "円",
        "change": "+0.00%",
-       "fresh": false,
+       "fresh": true,
        "signals": []
       },
       {
        "id": "ESTAT_KOURI_TKY_GASOLINE",
        "name": "東京都区部 小売価格 ガソリン 1L",
-       "obs": "2026-10",
+       "obs": "2026-11",
        "value": "172",
        "unit": "円",
        "change": "+0.00%",
-       "fresh": false,
+       "fresh": true,
        "signals": []
       }
      ],
@@ -9711,10 +9921,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "短期金利・為替",
-   "updated": "2026-11-26",
-   "date": "2026-11-24",
+   "updated": "2026-11-27",
+   "date": "2026-11-25",
    "value": "1.227",
-   "change": "-0.001%pt",
+   "change": "+0.000%pt",
    "implication": "短期金利の上昇は利上げ・引締め方向のシグナル。一般に債券（特に短中期）価格には下押し、円には上昇（円高）圧力、銀行株には利ざや改善期待でプラス、REIT・不動産や高PERのグロース株には逆風とされる。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -9729,10 +9939,10 @@
    "unit": "億円",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-11-26",
-   "date": "2026-11-24",
-   "value": "34,660",
-   "change": "-10.27%",
+   "updated": "2026-11-27",
+   "date": "2026-11-25",
+   "value": "33,319",
+   "change": "-3.87%",
    "implication": "出来高の増加は短期金融市場の取引活発化（金利がつく環境への移行、市場機能の回復）を示すことが多い。直接の価格シグナルではなく、金利変化の裏付けとして見る。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -9747,10 +9957,10 @@
    "unit": "円/ドル",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-11-26",
-   "date": "2026-11-24",
-   "value": "159.35",
-   "change": "+0.09%",
+   "updated": "2026-11-27",
+   "date": "2026-11-25",
+   "value": "159.22",
+   "change": "-0.08%",
    "implication": "ドル円の上昇（円安）は一般に輸出関連株や外貨建て資産の円換算額にプラス、輸入物価経由で物価上昇圧力となり、日銀の引締め観測を強めることがある。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -9765,10 +9975,10 @@
    "unit": "ドル/ユーロ",
    "kind": "level",
    "category": "短期金利・為替",
-   "updated": "2026-11-26",
-   "date": "2026-11-24",
-   "value": "1.0908",
-   "change": "-0.55%",
+   "updated": "2026-11-27",
+   "date": "2026-11-25",
+   "value": "1.0962",
+   "change": "+0.50%",
    "implication": "ユーロドルの上昇はドル全面安を示す。ドル円と合わせて見ると、円安/円高がドル要因か円要因かの切り分けに使える。",
    "source": [
     "日本銀行 時系列統計データ検索サイト",
@@ -9783,8 +9993,8 @@
    "unit": "%",
    "kind": "rate",
    "category": "短期金利・為替",
-   "updated": "2026-11-26",
-   "date": "2026-11-24",
+   "updated": "2026-11-27",
+   "date": "2026-11-25",
    "value": "1.5",
    "change": "+0.000%pt",
    "implication": "基準貸付利率は政策金利の変更に連動しやすい。上昇なら利上げ局面入り/継続を示し、影響はコールレート上昇時と同方向でより強い。",
@@ -10539,10 +10749,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "updated": "2026-10-30",
-   "date": "2026-10",
-   "value": "2.7",
-   "change": "+0.000%pt",
+   "updated": "2026-11-27",
+   "date": "2026-11",
+   "value": "2.8",
+   "change": "+0.100%pt",
    "implication": "東京都区部の総合。全国の先行指標。",
    "source": [
     "総務省統計局",
@@ -10557,10 +10767,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "updated": "2026-10-30",
-   "date": "2026-10",
-   "value": "2.6",
-   "change": "-0.100%pt",
+   "updated": "2026-11-27",
+   "date": "2026-11",
+   "value": "2.9",
+   "change": "+0.300%pt",
    "implication": "東京都区部のコアCPIは全国より約1か月早く公表され、全国の先行指標として市場が注目する。",
    "source": [
     "総務省統計局",
@@ -10575,10 +10785,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "物価",
-   "updated": "2026-10-30",
-   "date": "2026-10",
-   "value": "2.6",
-   "change": "-0.300%pt",
+   "updated": "2026-11-27",
+   "date": "2026-11",
+   "value": "2.5",
+   "change": "-0.100%pt",
    "implication": "東京都区部のコアコア。物価の基調を早めに確認できる。",
    "source": [
     "総務省統計局",
@@ -10827,10 +11037,10 @@
    "unit": "円",
    "kind": "level",
    "category": "物価",
-   "updated": "2026-10-30",
-   "date": "2026-10",
-   "value": "3,698",
-   "change": "-8.71%",
+   "updated": "2026-11-27",
+   "date": "2026-11",
+   "value": "3,544",
+   "change": "-4.16%",
    "implication": "コメ5kgの店頭価格。消費者物価の食料を左右し、家計の体感物価に影響する。",
    "source": [
     "政府統計の総合窓口 e-Stat",
@@ -10845,8 +11055,8 @@
    "unit": "円",
    "kind": "level",
    "category": "物価",
-   "updated": "2026-10-30",
-   "date": "2026-10",
+   "updated": "2026-11-27",
+   "date": "2026-11",
    "value": "324",
    "change": "+0.00%",
    "implication": "鶏卵の店頭価格。鳥インフルエンザなど供給要因で動きやすい。",
@@ -10863,8 +11073,8 @@
    "unit": "円",
    "kind": "level",
    "category": "物価",
-   "updated": "2026-10-30",
-   "date": "2026-10",
+   "updated": "2026-11-27",
+   "date": "2026-11",
    "value": "172",
    "change": "+0.00%",
    "implication": "ガソリンの店頭価格。原油価格・為替・補助金の影響を受け、消費者物価のエネルギーを左右する。",
@@ -12133,10 +12343,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-27T06:59+09:00",
+  "checked_at": "2026-11-27T09:09+09:00",
   "counts": {
-   "new": 0,
-   "unchanged": 131,
+   "new": 11,
+   "unchanged": 120,
    "error": 0,
    "stale": 0
   },
