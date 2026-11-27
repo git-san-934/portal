@@ -284,7 +284,7 @@
     const pbrMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: "b", c: "--pbr-b", tc: "#1a1a1a", sq: true, big: true, t: `PBR の買いの合図(PBR ${t.pbr.toFixed(2)}倍)` });
     const perMark = (y) => (t) => ({ i: pos[t.date], y: y(t), k: "b", big: true, t: `PER の買いの合図(PER ${t.per.toFixed(1)}倍)` });
     const tip = (k) => `PER ${S.per[idx[k]].toFixed(1)}倍 · PBR ${S.pbr[idx[k]].toFixed(2)}倍`;
-    const nk = { n: "日経平均(右軸)", v: v("close"), c: "--line", w: 1.25, op: 0.6, yfmt: (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP")), tfmt: (x) => yen(x) };
+    const nk = { n: "日経平均(右軸)", v: v("close"), c: "--nk", w: 1.75, op: 0.9, yfmt: (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP")), tfmt: (x) => yen(x) };
     const yenAx = (x) => (x >= 10000 ? (x / 10000).toLocaleString("ja-JP") + "万" : x.toLocaleString("ja-JP"));
     // 過熱のサイン(信用取引の買い残)が点灯していた期間を塗る
     const H = d.heat;

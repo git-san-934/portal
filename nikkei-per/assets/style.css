@@ -122,4 +122,6 @@ a.reload{text-decoration:none}
 @media (prefers-color-scheme:dark){:root{--heat:rgba(255,160,60,.2)}}
 .legend i.box.h{background:var(--heat)}
 .zone-h{color:#c46a00;font-weight:700}@media (prefers-color-scheme:dark){.zone-h{color:#ffa94d}}
-.legend i.nk{background:var(--line);height:2px;opacity:.6}
+:root{--nk:#e0a800}
+@media (prefers-color-scheme:dark){:root{--nk:#ffd23f}}
+.legend i.nk{background:var(--nk);height:3px}
