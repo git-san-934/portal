@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T09:52+09:00",
+ "generated_at": "2026-11-27T10:00+09:00",
  "report_date": "2026-11-27",
  "days": [
   {
@@ -238,6 +238,173 @@
      "type": "1年高値更新",
      "dir": "上昇",
      "detail": "79%"
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00350320",
+     "name": "船舶・航空機統計",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00350320",
+     "org": "財務省",
+     "status": "新着",
+     "info": "https://www.customs.go.jp/toukei/info/index.htm",
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-27",
+      "toukei": "00350320",
+      "name": "船舶・航空機統計",
+      "org": "財務省",
+      "period": "2026年10月分（1〜10月確報）",
+      "headline": "外国貿易のために入港した船舶・航空機の国籍別統計の10月分が公表された。10月の航空機の入港は韓国籍7,032機、日本籍6,231機",
+      "points": [
+       "1〜10月の航空機の入港は韓国籍66,602機、日本籍60,410機、台湾籍26,148機、中国籍21,188機",
+       "1〜10月の船舶の入港は韓国籍8,455隻、香港籍6,716隻、シンガポール籍5,456隻、日本籍4,874隻"
+      ],
+      "tables": [
+       {
+        "title": "国籍別船舶入港表（全国分）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040532170&fileKind=1"
+       },
+       {
+        "title": "国籍別航空機入港表（全国分）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040532172&fileKind=1"
+       }
+      ],
+      "analyzed_on": "2026-11-27",
+      "about": "外国との貿易のために日本の港・空港に入った船と航空機の数や積み下ろした貨物の量を、国籍別に財務省がまとめる統計。"
+     }
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00350310",
+     "name": "特殊貿易統計",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00350310",
+     "org": "財務省",
+     "status": "新着",
+     "info": "https://www.customs.go.jp/toukei/info/index.htm",
+     "stats": [],
+     "analysis": {
+      "date": "2026-11-27",
+      "toukei": "00350310",
+      "name": "特殊貿易統計",
+      "org": "財務省",
+      "period": "2026年10月分（金統計・船用品積込統計）",
+      "headline": "金統計と船用品積込統計の10月分が公表された。金貨など（HS 7118.90）の韓国向け輸出は10月が44.7億円で、1〜10月累計は418.6億円",
+      "points": [
+       "韓国向けの金貨などの輸出は毎月40億円前後で推移（最少は6月の27.9億円、最多は8月の49.3億円）",
+       "船用品積込統計では、日本籍の船への外国貨物の鉱物油の積込みは1〜10月で421,958kl・303億円"
+      ],
+      "tables": [
+       {
+        "title": "金統計品別国別表（輸出）",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040532164&fileKind=1"
+       },
+       {
+        "title": "船用品積込統計",
+        "url": "https://www.e-stat.go.jp/stat-search/file-download?statInfId=000040532166&fileKind=1"
+       }
+      ],
+      "analyzed_on": "2026-11-27",
+      "about": "通常の貿易統計とは別に、金（地金・金貨など）の国別の輸出入や、外国へ向かう船に積み込む燃料・食料などの量を財務省がまとめる統計。",
+      "charts": [
+       {
+        "title": "韓国向け 金貨など（HS 7118.90）の輸出額",
+        "type": "bar",
+        "unit": "億円",
+        "labels": [
+         "1月",
+         "2月",
+         "3月",
+         "4月",
+         "5月",
+         "6月",
+         "7月",
+         "8月",
+         "9月",
+         "10月"
+        ],
+        "series": [
+         {
+          "name": "輸出額",
+          "values": [
+           41.2,
+           40.4,
+           47.8,
+           44.0,
+           39.8,
+           27.9,
+           43.3,
+           49.3,
+           40.0,
+           44.7
+          ]
+         }
+        ],
+        "note": "表の千円を億円に直した値"
+       }
+      ]
+     }
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00350300",
+     "name": "普通貿易統計",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00350300",
+     "org": "財務省",
+     "status": "新着",
+     "info": "https://www.customs.go.jp/toukei/info/index.htm",
+     "stats": [
+      {
+       "id": "ESTAT_TRADE_EXPORTS_YOY",
+       "name": "貿易統計 輸出額 前年同月比",
+       "obs": "2026-10",
+       "value": "20.5",
+       "unit": "%",
+       "change": "+4.000%pt",
+       "fresh": false,
+       "signals": []
+      },
+      {
+       "id": "ESTAT_TRADE_IMPORTS_YOY",
+       "name": "貿易統計 輸入額 前年同月比",
+       "obs": "2026-10",
+       "value": "21.6",
+       "unit": "%",
+       "change": "+3.100%pt",
+       "fresh": false,
+       "signals": []
+      },
+      {
+       "id": "ESTAT_TRADE_BALANCE",
+       "name": "貿易統計 差引（輸出−輸入）",
+       "obs": "2026-10",
+       "value": "-4,807",
+       "unit": "億円",
+       "change": "+834億円",
+       "fresh": false,
+       "signals": []
+      },
+      {
+       "id": "ESTAT_TRADE_EX_USA_YOY",
+       "name": "貿易統計 輸出 対米国 前年同月比",
+       "obs": "2026-10",
+       "value": "23.9",
+       "unit": "%",
+       "change": "+1.000%pt",
+       "fresh": false,
+       "signals": []
+      },
+      {
+       "id": "ESTAT_TRADE_EX_CHINA_YOY",
+       "name": "貿易統計 輸出 対中国 前年同月比",
+       "obs": "2026-10",
+       "value": "13.3",
+       "unit": "%",
+       "change": "+4.800%pt",
+       "fresh": false,
+       "signals": []
+      }
+     ],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -10299,10 +10466,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-26",
-   "date": "2026-11-25",
-   "value": "1.731",
-   "change": "-0.052%pt",
+   "updated": "2026-11-27",
+   "date": "2026-11-26",
+   "value": "1.747",
+   "change": "+0.016%pt",
    "implication": "2年債利回りは今後1〜2年の政策金利予想をよく映す。上昇は追加利上げ観測の強まりを示す。",
    "source": [
     "財務省 国債金利情報",
@@ -10317,10 +10484,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-26",
-   "date": "2026-11-25",
-   "value": "2.713",
-   "change": "-0.068%pt",
+   "updated": "2026-11-27",
+   "date": "2026-11-26",
+   "value": "2.704",
+   "change": "-0.009%pt",
    "implication": "10年債利回りの上昇は債券価格の下落を意味し、住宅ローン固定金利や企業の借入コストの上昇、REIT・高PER株には逆風、利ざや面で銀行・保険株には追い風とされる。日米金利差が縮めば円高要因にもなりうる。",
    "source": [
     "財務省 国債金利情報",
@@ -10335,10 +10502,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "国債利回り",
-   "updated": "2026-11-26",
-   "date": "2026-11-25",
-   "value": "3.998",
-   "change": "+0.008%pt",
+   "updated": "2026-11-27",
+   "date": "2026-11-26",
+   "value": "3.956",
+   "change": "-0.042%pt",
    "implication": "超長期金利の上昇は財政や物価への懸念（タームプレミアム）の高まりを映すことが多く、生保・年金の需要動向にも左右される。",
    "source": [
     "財務省 国債金利情報",
@@ -12505,10 +12672,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-27T09:52+09:00",
+  "checked_at": "2026-11-27T10:00+09:00",
   "counts": {
-   "new": 23,
-   "unchanged": 108,
+   "new": 3,
+   "unchanged": 128,
    "error": 0,
    "stale": 0
   },
