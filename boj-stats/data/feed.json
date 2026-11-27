@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T13:15+09:00",
+ "generated_at": "2026-11-27T14:05+09:00",
  "report_date": "2026-11-27",
  "days": [
   {
@@ -270,12 +270,78 @@
     },
     {
      "kind": "estat",
+     "id": "estat:00600340",
+     "name": "内航船舶輸送統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00600340",
+     "org": "国土交通省",
+     "status": "新着",
+     "info": "https://www.mlit.go.jp/k-toukei/naikouyusoutoukei.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
      "id": "estat:00501000",
      "name": "木材需給表",
      "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00501000",
      "org": "林野庁",
      "status": "新着",
      "info": "https://www.maff.go.jp/j/tokei/kouhyou/mokuzai_zyukyu/index.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450482",
+     "name": "「調剤医療費の動向」調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450482",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/bunya/iryouhoken/database/zenpan/cyouzai_doukou_itiran.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450402",
+     "name": "「医科医療費の動向」調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450402",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/bunya/iryouhoken/database/zenpan/cyouzai_doukou_itiran.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450399",
+     "name": "「医療費の動向」調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450399",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/bunya/iryouhoken/database/zenpan/iryou_doukou.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450108",
+     "name": "労働争議統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450108",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/toukei/list/14-22.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450011",
+     "name": "人口動態調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450011",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/toukei/list/81-1.html",
      "stats": [],
      "analysis": null
     },
@@ -539,6 +605,17 @@
        "signals": []
       }
      ],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00200251",
+     "name": "地方財政状況調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00200251",
+     "org": "総務省",
+     "status": "新着",
+     "info": "",
+     "stats": [],
      "analysis": null
     },
     {
@@ -12711,7 +12788,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-27T13:15+09:00",
+  "checked_at": "2026-11-27T14:05+09:00",
   "counts": {
    "new": 0,
    "unchanged": 131,
