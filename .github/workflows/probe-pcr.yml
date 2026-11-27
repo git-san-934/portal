@@ -1,0 +1,12 @@
+name: probe-pcr (一時)
+on:
+  push:
+    branches: [nikkei-per-pcr]
+    paths: [nikkei-per/scripts/probe_pcr.py, .github/workflows/probe-pcr.yml]
+jobs:
+  probe:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - run: pip install -q xlrd openpyxl pdfplumber
+      - run: python nikkei-per/scripts/probe_pcr.py
