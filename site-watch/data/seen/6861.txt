@@ -30624,6 +30624,7 @@ https://www.keyence.co.jp/support/user/static/sj-f700/
 https://www.keyence.co.jp/support/user/static/sj-f700/manual/
 https://www.keyence.co.jp/support/user/static/sj-f700/software/
 https://www.keyence.co.jp/support/user/static/sj-q/
+https://www.keyence.co.jp/support/user/static/sj-q/maintenance/
 https://www.keyence.co.jp/support/user/static/sj-q/manual/
 https://www.keyence.co.jp/support/user/static/sj-q/video/
 https://www.keyence.co.jp/support/user/static/sk/
