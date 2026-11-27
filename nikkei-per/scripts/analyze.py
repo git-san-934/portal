@@ -520,16 +520,18 @@ def vi_report():
     if not path.exists():
         return None
     try:
-        v = json.loads(path.read_text(encoding="utf-8")).get("vi") or {}
+        sj = json.loads(path.read_text(encoding="utf-8"))
     except ValueError:
         return None
+    v, vm = sj.get("vi") or {}, sj.get("vi_m") or {}
     days = [[d, x] for d, x in sorted(v.items())]
+    months = [[k, x] for k, x in sorted(vm.items())]
     if not days:
         return None
     last = days[-1]
     past = [x for _, x in days[-250 * 3:]]
     rank = round(sum(x < last[1] for x in past) / len(past), 3)
-    return {"days": days, "now": last, "rank": rank, "rank_days": len(past)}
+    return {"days": days, "months": months, "now": last, "rank": rank, "rank_days": len(past)}
 
 
 # プットコールレシオ(日経225オプションのプット取引高 ÷ コール取引高)。売買の合図にはせず、目安として表示する
