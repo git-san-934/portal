@@ -6,6 +6,7 @@ JPX と日経のサイトには最近の分しか置かれていないもの(裁
 取得元:
   信用取引残高 : JPX「信用取引現在高」 https://www.jpx.co.jp/markets/statistics-equities/margin/05.html
                  (2002年〜の週次の .xls と、直近の週の .xlsx。合計の売残・買残の株数と金額)
+                 直近の数週は https://www.jpx.co.jp/markets/statistics-equities/margin/04.html の YYYYMMDD_mtcurrent.xlsx
   裁定残       : JPX「プログラム売買・裁定取引」 https://www.jpx.co.jp/markets/statistics-equities/program/index.html
                  (日々の .xls。裁定取引に係る現物ポジションの売り・買いの合計 千株。置かれているのは直近の約20営業日)
   先物の投資部門別 : JPX「投資部門別取引状況」 https://www.jpx.co.jp/markets/statistics-derivatives/sector/index.html
