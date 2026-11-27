@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T14:05+09:00",
+ "generated_at": "2026-11-27T14:25+09:00",
  "report_date": "2026-11-27",
  "days": [
   {
@@ -276,6 +276,17 @@
      "org": "国土交通省",
      "status": "新着",
      "info": "https://www.mlit.go.jp/k-toukei/naikouyusoutoukei.html",
+     "stats": [],
+     "analysis": null
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00600300",
+     "name": "造船造機統計調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00600300",
+     "org": "国土交通省",
+     "status": "新着",
+     "info": "https://www.mlit.go.jp/k-toukei/zousenzoukitoukei.html",
      "stats": [],
      "analysis": null
     },
@@ -12788,7 +12799,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-27T14:05+09:00",
+  "checked_at": "2026-11-27T14:25+09:00",
   "counts": {
    "new": 0,
    "unchanged": 131,
