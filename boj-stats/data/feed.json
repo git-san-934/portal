@@ -1,6 +1,6 @@
 {
- "generated_at": "2026-11-27T18:41+09:00",
- "report_date": "2026-11-27",
+ "generated_at": "2026-11-28T04:09+09:00",
+ "report_date": "2026-11-28",
  "days": [
   {
    "date": "2026-11-27",
@@ -780,6 +780,17 @@
       "analyzed_on": "2026-11-27",
       "about": "障害年金を受け取っている人の暮らしや仕事、世帯の状況を厚生労働省が数年ごとに調べる統計。"
      }
+    },
+    {
+     "kind": "estat",
+     "id": "estat:00450403",
+     "name": "「歯科医療費の動向」調査",
+     "url": "https://www.e-stat.go.jp/stat-search/files?page=1&toukei=00450403",
+     "org": "厚生労働省",
+     "status": "新着",
+     "info": "https://www.mhlw.go.jp/bunya/iryouhoken/database/zenpan/cyouzai_doukou.html",
+     "stats": [],
+     "analysis": null
     },
     {
      "kind": "estat",
@@ -13397,7 +13408,7 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-27T18:41+09:00",
+  "checked_at": "2026-11-28T04:09+09:00",
   "counts": {
    "new": 0,
    "unchanged": 131,
