@@ -32,14 +32,24 @@ def dump(u, n=40):
             for r in rs[-5:]:
                 r = [c for c in r if c not in (None, "")]
                 if r: print("  END", r[:16])
-for p in ["/markets/statistics-derivatives/monthly-statistics/index.html", "/markets/statistics-derivatives/daily/index.html", "/markets/derivatives/open-interest/index.html", "/markets/statistics-derivatives/monthly-statistics/02.html"]:
-    t = get(p).decode("utf-8", "replace")
-    print("=== PAGE", p)
-    for s in sorted(set(re.findall(r'(?:src|href|data-[a-z-]+)="([^"]+)"', t))):
-        if re.search(r"\.(js|json|xls|xlsx|csv|pdf)|automation|att/", s): print("  R", s)
-    for s in sorted(set(re.findall(r'["\']([^"\']+\.(?:json|csv|xlsx?|pdf))["\']', t))): print("  Q", s)
-    i = t.find("オプション")
-    print("  TXT", re.sub(r"<[^>]+>", " ", t[i-300:i+600]).split()[:80] if i >= 0 else "-")
-dump("/automation/markets/statistics-derivatives/trading-volume/files/soukatsu_M.xlsx", 30)
-dump("/markets/statistics-derivatives/trading-volume/nlsgeu000004j469-att/tv_ts202610.xls", 60)
-dump("/markets/derivatives/trading-volume/t13vrt0000026aes-att/20261126open_interest.xlsx", 50)
+
+import json
+for u in ["/automation/markets/statistics-derivatives/monthly-statistics/json/monthly_statistics_report_yearlist.json",
+          "/automation/markets/statistics-derivatives/daily/json/daily_report_monthlylist.json",
+          "/markets/statistics-derivatives/daily/daily_report_monthlylist.json"]:
+    try:
+        t = get(u).decode("utf-8-sig", "replace")
+        print("=== JSON", u, len(t)); print("  ", t[:1500]); print("  END", t[-400:])
+    except Exception as e:
+        print("NG", u, e)
+js = get("/public/javascripts/backnumber.js").decode("utf-8", "replace")
+print("=== JS backnumber", len(js))
+for m in sorted(set(re.findall(r"[\"']([^\"']*(?:json|automation)[^\"']*)[\"']", js))): print("  J", m)
+print(js[:3000])
+# 建玉 xlsx の 別紙1 合計行
+raw = get("/markets/derivatives/trading-volume/t13vrt0000026aes-att/20261126open_interest.xlsx")
+for title, rs in rows(raw, "x.xlsx"):
+    if title.startswith("別紙1"):
+        for r in rs:
+            if any(isinstance(c, str) and ("合計" in c or "計" == c.strip()) for c in r): print("  SUM", [c for c in r if c not in (None, "")])
+        print("  rows", len(rs))
