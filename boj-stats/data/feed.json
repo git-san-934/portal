@@ -1,5 +1,5 @@
 {
- "generated_at": "2026-11-27T09:21+09:00",
+ "generated_at": "2026-11-27T09:52+09:00",
  "report_date": "2026-11-27",
  "days": [
   {
@@ -60,6 +60,114 @@
      "change": "+0.00%"
     },
     {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_NAND",
+     "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み）",
+     "obs": "2026-10",
+     "value": "165.1",
+     "unit": "億円",
+     "change": "-199億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_NAND_YOY",
+     "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み） 前年同月比",
+     "obs": "2026-10",
+     "value": "99.1",
+     "unit": "%",
+     "change": "-394.500%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_DRAM",
+     "name": "貿易統計 台湾向け輸出 DRAM（組立済み）",
+     "obs": "2026-10",
+     "value": "0.5",
+     "unit": "億円",
+     "change": "-3億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_DRAM_YOY",
+     "name": "貿易統計 台湾向け輸出 DRAM（組立済み） 前年同月比",
+     "obs": "2026-10",
+     "value": "260.5",
+     "unit": "%",
+     "change": "-3032.300%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_MEM_DIE",
+     "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ）",
+     "obs": "2026-10",
+     "value": "1,545",
+     "unit": "億円",
+     "change": "-114億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_MEM_DIE_YOY",
+     "name": "貿易統計 台湾向け輸出 メモリ（未組立のウエハー・チップ） 前年同月比",
+     "obs": "2026-10",
+     "value": "59.2",
+     "unit": "%",
+     "change": "-29.000%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_MLCC",
+     "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC）",
+     "obs": "2026-10",
+     "value": "167.4",
+     "unit": "億円",
+     "change": "+14億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_MLCC_YOY",
+     "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC） 前年同月比",
+     "obs": "2026-10",
+     "value": "79",
+     "unit": "%",
+     "change": "+8.100%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_IC",
+     "name": "貿易統計 台湾向け輸出 集積回路 計",
+     "obs": "2026-10",
+     "value": "2,197",
+     "unit": "億円",
+     "change": "-193億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_IC_YOY",
+     "name": "貿易統計 台湾向け輸出 集積回路 計 前年同月比",
+     "obs": "2026-10",
+     "value": "65.3",
+     "unit": "%",
+     "change": "-31.900%pt"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_SEMI_EQUIP",
+     "name": "貿易統計 台湾向け輸出 半導体等製造装置",
+     "obs": "2026-10",
+     "value": "1,296",
+     "unit": "億円",
+     "change": "+116億円"
+    },
+    {
+     "kind": "release",
+     "id": "ESTAT_TRADE_EX_TW_SEMI_EQUIP_YOY",
+     "name": "貿易統計 台湾向け輸出 半導体等製造装置 前年同月比",
+     "obs": "2026-10",
+     "value": "54.2",
+     "unit": "%",
+     "change": "-10.000%pt"
+    },
+    {
      "kind": "signal",
      "id": "STAT_CPI_TKY_ALL_YOY",
      "name": "消費者物価（東京都区部・総合）前年比",
@@ -76,6 +184,60 @@
      "type": "1年安値更新",
      "dir": "低下",
      "detail": "3,544円"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_NAND",
+     "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み）",
+     "obs": "2026-10",
+     "type": "急変",
+     "dir": "低下",
+     "detail": "-199億円（z=-2.8）"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_NAND_YOY",
+     "name": "貿易統計 台湾向け輸出 フラッシュメモリ（NANDなど、組立済み） 前年同月比",
+     "obs": "2026-10",
+     "type": "急変",
+     "dir": "低下",
+     "detail": "-394.500%pt（z=-3.5）"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_DRAM",
+     "name": "貿易統計 台湾向け輸出 DRAM（組立済み）",
+     "obs": "2026-10",
+     "type": "急変",
+     "dir": "低下",
+     "detail": "-3億円（z=-2.5）"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_DRAM",
+     "name": "貿易統計 台湾向け輸出 DRAM（組立済み）",
+     "obs": "2026-10",
+     "type": "トレンド転換",
+     "dir": "低下",
+     "detail": "3期移動平均が12期移動平均を下抜け"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_MLCC",
+     "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC）",
+     "obs": "2026-10",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "167.4億円"
+    },
+    {
+     "kind": "signal",
+     "id": "ESTAT_TRADE_EX_TW_MLCC_YOY",
+     "name": "貿易統計 台湾向け輸出 積層セラミックコンデンサ（MLCC） 前年同月比",
+     "obs": "2026-10",
+     "type": "1年高値更新",
+     "dir": "上昇",
+     "detail": "79%"
     },
     {
      "kind": "estat",
@@ -4161,27 +4323,27 @@
      "id": "ESTAT_TRADE_EXPORTS",
      "name": "貿易統計 輸出額（財務省・通関ベース）",
      "obs": "2026-10",
-     "value": "117,688",
+     "value": "117,655",
      "unit": "億円",
-     "change": "+8,149億円"
+     "change": "+8,116億円"
     },
     {
      "kind": "release",
      "id": "ESTAT_TRADE_IMPORTS",
      "name": "貿易統計 輸入額（財務省・通関ベース）",
      "obs": "2026-10",
-     "value": "122,453",
+     "value": "122,462",
      "unit": "億円",
-     "change": "+7,350億円"
+     "change": "+7,283億円"
     },
     {
      "kind": "release",
      "id": "ESTAT_TRADE_BALANCE",
      "name": "貿易統計 差引（輸出−輸入）",
      "obs": "2026-10",
-     "value": "-4,765",
+     "value": "-4,807",
      "unit": "億円",
-     "change": "+800億円"
+     "change": "+834億円"
     },
     {
      "kind": "release",
@@ -4206,9 +4368,9 @@
      "id": "ESTAT_TRADE_EX_USA",
      "name": "貿易統計 輸出 対米国",
      "obs": "2026-10",
-     "value": "21,739",
+     "value": "21,736",
      "unit": "億円",
-     "change": "+2,119億円"
+     "change": "+2,116億円"
     },
     {
      "kind": "release",
@@ -4224,27 +4386,27 @@
      "id": "ESTAT_TRADE_IM_USA",
      "name": "貿易統計 輸入 対米国",
      "obs": "2026-10",
-     "value": "14,834",
+     "value": "14,838",
      "unit": "億円",
-     "change": "-869億円"
+     "change": "-870億円"
     },
     {
      "kind": "release",
      "id": "ESTAT_TRADE_IM_USA_YOY",
      "name": "貿易統計 輸入 対米国 前年同月比",
      "obs": "2026-10",
-     "value": "19.7",
+     "value": "19.8",
      "unit": "%",
-     "change": "-24.300%pt"
+     "change": "-24.200%pt"
     },
     {
      "kind": "release",
      "id": "ESTAT_TRADE_EX_CHINA",
      "name": "貿易統計 輸出 対中国",
      "obs": "2026-10",
-     "value": "19,373",
+     "value": "19,370",
      "unit": "億円",
-     "change": "+2,093億円"
+     "change": "+2,090億円"
     },
     {
      "kind": "release",
@@ -4260,9 +4422,9 @@
      "id": "ESTAT_TRADE_IM_CHINA",
      "name": "貿易統計 輸入 対中国",
      "obs": "2026-10",
-     "value": "28,426",
+     "value": "28,428",
      "unit": "億円",
-     "change": "+852億円"
+     "change": "+844億円"
     },
     {
      "kind": "release",
@@ -4278,9 +4440,9 @@
      "id": "ESTAT_TRADE_EX_EU",
      "name": "貿易統計 輸出 対EU",
      "obs": "2026-10",
-     "value": "11,078",
+     "value": "11,075",
      "unit": "億円",
-     "change": "+1,235億円"
+     "change": "+1,232億円"
     },
     {
      "kind": "release",
@@ -4296,9 +4458,9 @@
      "id": "ESTAT_TRADE_IM_EU",
      "name": "貿易統計 輸入 対EU",
      "obs": "2026-10",
-     "value": "12,214",
+     "value": "12,216",
      "unit": "億円",
-     "change": "+950億円"
+     "change": "+951億円"
     },
     {
      "kind": "release",
@@ -4314,45 +4476,45 @@
      "id": "ESTAT_TRADE_EX_ASEAN",
      "name": "貿易統計 輸出 対ASEAN",
      "obs": "2026-10",
-     "value": "18,648",
+     "value": "18,646",
      "unit": "億円",
-     "change": "+1,477億円"
+     "change": "+1,475億円"
     },
     {
      "kind": "release",
      "id": "ESTAT_TRADE_EX_ASEAN_YOY",
      "name": "貿易統計 輸出 対ASEAN 前年同月比",
      "obs": "2026-10",
-     "value": "34.8",
+     "value": "34.7",
      "unit": "%",
-     "change": "+9.800%pt"
+     "change": "+9.700%pt"
     },
     {
      "kind": "release",
      "id": "ESTAT_TRADE_IM_ASEAN",
      "name": "貿易統計 輸入 対ASEAN",
      "obs": "2026-10",
-     "value": "19,482",
+     "value": "19,484",
      "unit": "億円",
-     "change": "+1,068億円"
+     "change": "+1,035億円"
     },
     {
      "kind": "release",
      "id": "ESTAT_TRADE_IM_ASEAN_YOY",
      "name": "貿易統計 輸入 対ASEAN 前年同月比",
      "obs": "2026-10",
-     "value": "20.5",
+     "value": "20.6",
      "unit": "%",
-     "change": "+4.800%pt"
+     "change": "+4.900%pt"
     },
     {
      "kind": "release",
      "id": "ESTAT_TRADE_EX_TAIWAN",
      "name": "貿易統計 輸出 対台湾",
      "obs": "2026-10",
-     "value": "9,772",
+     "value": "9,769",
      "unit": "億円",
-     "change": "+590億円"
+     "change": "+587億円"
     },
     {
      "kind": "release",
@@ -5031,9 +5193,9 @@
        "id": "ESTAT_TRADE_BALANCE",
        "name": "貿易統計 差引（輸出−輸入）",
        "obs": "2026-10",
-       "value": "-4,765",
+       "value": "-4,807",
        "unit": "億円",
-       "change": "+800億円",
+       "change": "+834億円",
        "fresh": true,
        "signals": []
       },
@@ -7551,18 +7713,18 @@
      "id": "ESTAT_TRADE_IMPORTS",
      "name": "貿易統計 輸入額（財務省・通関ベース）",
      "obs": "2026-09",
-     "value": "115,103",
+     "value": "115,179",
      "unit": "億円",
-     "change": "+3,464億円"
+     "change": "+3,540億円"
     },
     {
      "kind": "release",
      "id": "ESTAT_TRADE_BALANCE",
      "name": "貿易統計 差引（輸出−輸入）",
      "obs": "2026-09",
-     "value": "-5,565",
+     "value": "-5,641",
      "unit": "億円",
-     "change": "+5,641億円"
+     "change": "+5,565億円"
     },
     {
      "kind": "release",
@@ -7605,9 +7767,9 @@
      "id": "ESTAT_TRADE_IM_USA",
      "name": "貿易統計 輸入 対米国",
      "obs": "2026-09",
-     "value": "15,703",
+     "value": "15,708",
      "unit": "億円",
-     "change": "-847億円"
+     "change": "-842億円"
     },
     {
      "kind": "release",
@@ -7641,9 +7803,9 @@
      "id": "ESTAT_TRADE_IM_CHINA",
      "name": "貿易統計 輸入 対中国",
      "obs": "2026-09",
-     "value": "27,574",
+     "value": "27,584",
      "unit": "億円",
-     "change": "+3,950億円"
+     "change": "+3,960億円"
     },
     {
      "kind": "release",
@@ -7677,9 +7839,9 @@
      "id": "ESTAT_TRADE_IM_EU",
      "name": "貿易統計 輸入 対EU",
      "obs": "2026-09",
-     "value": "11,264",
+     "value": "11,265",
      "unit": "億円",
-     "change": "+293億円"
+     "change": "+294億円"
     },
     {
      "kind": "release",
@@ -7713,9 +7875,9 @@
      "id": "ESTAT_TRADE_IM_ASEAN",
      "name": "貿易統計 輸入 対ASEAN",
      "obs": "2026-09",
-     "value": "18,414",
+     "value": "18,449",
      "unit": "億円",
-     "change": "+470億円"
+     "change": "+505億円"
     },
     {
      "kind": "release",
@@ -11129,8 +11291,8 @@
    "category": "国際収支・貿易",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "117,688",
-   "change": "+8,149億円",
+   "value": "117,655",
+   "change": "+8,116億円",
    "implication": "通関ベースの輸出額。国際収支より約1か月半早く出る。海外景気と円安の影響を受け、製造業・輸出関連株の業績の先行指標。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11149,8 +11311,8 @@
    "category": "国際収支・貿易",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "122,453",
-   "change": "+7,350億円",
+   "value": "122,462",
+   "change": "+7,283億円",
    "implication": "通関ベースの輸入額。原油・LNGなど資源価格と円安で膨らみやすい。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11169,8 +11331,8 @@
    "category": "国際収支・貿易",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "-4,765",
-   "change": "+800億円",
+   "value": "-4,807",
+   "change": "+834億円",
    "implication": "貿易収支（通関ベース、原数値）の赤字拡大は円売りの実需を示し、円安要因とされる。1月は赤字、3月は黒字に振れやすい季節性があるので前年同月と比べる。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11229,8 +11391,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "21,739",
-   "change": "+2,119億円",
+   "value": "21,736",
+   "change": "+2,116億円",
    "implication": "米国向け輸出。自動車が中心で、米国の景気と関税の影響を受けやすい。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11269,8 +11431,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "14,834",
-   "change": "-869億円",
+   "value": "14,838",
+   "change": "-870億円",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11289,8 +11451,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "19.7",
-   "change": "-24.300%pt",
+   "value": "19.8",
+   "change": "-24.200%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11309,8 +11471,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "19,373",
-   "change": "+2,093億円",
+   "value": "19,370",
+   "change": "+2,090億円",
    "implication": "中国向け輸出。半導体製造装置・電子部品・化学品が多く、中国の景気と輸出規制の影響を受ける。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11349,8 +11511,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "28,426",
-   "change": "+852億円",
+   "value": "28,428",
+   "change": "+844億円",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11389,8 +11551,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "11,078",
-   "change": "+1,235億円",
+   "value": "11,075",
+   "change": "+1,232億円",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11429,8 +11591,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "12,214",
-   "change": "+950億円",
+   "value": "12,216",
+   "change": "+951億円",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11469,8 +11631,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "18,648",
-   "change": "+1,477億円",
+   "value": "18,646",
+   "change": "+1,475億円",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11489,8 +11651,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "34.8",
-   "change": "+9.800%pt",
+   "value": "34.7",
+   "change": "+9.700%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11509,8 +11671,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "19,482",
-   "change": "+1,068億円",
+   "value": "19,484",
+   "change": "+1,035億円",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11529,8 +11691,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "20.5",
-   "change": "+4.800%pt",
+   "value": "20.6",
+   "change": "+4.900%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11549,8 +11711,8 @@
    "category": "貿易（国別・品目別）",
    "updated": "2026-11-18",
    "date": "2026-10",
-   "value": "9,772",
-   "change": "+590億円",
+   "value": "9,769",
+   "change": "+587億円",
    "implication": "台湾向け輸出。半導体の受託製造（TSMCなど）向けの装置・材料・部品が多く、AI・半導体の設備投資の目安。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11587,10 +11749,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "364.2",
-   "change": "+183億円",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "165.1",
+   "change": "-199億円",
    "implication": "台湾向けのフラッシュメモリ（組立済み）。NAND の需要と価格の動きを映す。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11607,10 +11769,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "493.6",
-   "change": "+424.900%pt",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "99.1",
+   "change": "-394.500%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11627,10 +11789,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "3.3",
-   "change": "+1億円",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "0.5",
+   "change": "-3億円",
    "implication": "台湾向けの DRAM（組立済み）。日本からの出荷は小さく、月ごとの振れが大きい。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11647,10 +11809,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "3,293",
-   "change": "+2159.500%pt",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "260.5",
+   "change": "-3032.300%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11667,10 +11829,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "1,659",
-   "change": "+138億円",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "1,545",
+   "change": "-114億円",
    "implication": "台湾向けのメモリのウエハー・チップ（未組立）。台湾で組み立てるNANDなどの素材で、メモリ需要の先行指標。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11687,10 +11849,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "88.2",
-   "change": "+2.200%pt",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "59.2",
+   "change": "-29.000%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11707,10 +11869,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "153.6",
-   "change": "+17億円",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "167.4",
+   "change": "+14億円",
    "implication": "台湾向けの積層セラミックコンデンサ。スマホ・PC・AIサーバーの部品需要を映し、村田製作所など電子部品株に関係する。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11727,10 +11889,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "70.9",
-   "change": "+15.900%pt",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "79",
+   "change": "+8.100%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11747,10 +11909,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "2,390",
-   "change": "+311億円",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "2,197",
+   "change": "-193億円",
    "implication": "台湾向けの集積回路の合計（メモリ・ロジックなど）。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11767,10 +11929,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "97.2",
-   "change": "+31.000%pt",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "65.3",
+   "change": "-31.900%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11787,10 +11949,10 @@
    "unit": "億円",
    "kind": "flow",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "1,180",
-   "change": "+103億円",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "1,296",
+   "change": "+116億円",
    "implication": "台湾向けの半導体製造装置。TSMCなどの設備投資の動きを映し、東京エレクトロンなど装置株に関係する。",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -11807,10 +11969,10 @@
    "unit": "%",
    "kind": "rate",
    "category": "貿易（国別・品目別）",
-   "updated": "2026-10-29",
-   "date": "2026-09",
-   "value": "64.2",
-   "change": "+33.500%pt",
+   "updated": "2026-11-27",
+   "date": "2026-10",
+   "value": "54.2",
+   "change": "-10.000%pt",
    "implication": "",
    "source": [
     "財務省 貿易統計（税関の速報）",
@@ -12343,10 +12505,10 @@
   }
  },
  "fetch_status": {
-  "checked_at": "2026-11-27T09:21+09:00",
+  "checked_at": "2026-11-27T09:52+09:00",
   "counts": {
-   "new": 11,
-   "unchanged": 120,
+   "new": 23,
+   "unchanged": 108,
    "error": 0,
    "stale": 0
   },
@@ -12354,7 +12516,7 @@
   "problems": [],
   "other_errors": []
  },
- "trade_updated": "2026-11-12",
+ "trade_updated": "2026-11-27",
  "tankan_latest": "2026-09",
  "disclaimer": "※資産クラスとの関係は過去に一般的に観察されてきた傾向の整理で、将来の値動きや個別銘柄の売買を示すものではありません。"
 }
