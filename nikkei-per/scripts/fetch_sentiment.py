@@ -383,6 +383,16 @@ def main() -> int:
             ok += bool(got)
         except Exception as e:  # noqa: BLE001
             print(f"{key}: 失敗 {e}", file=sys.stderr)
+    # TEMP 調査: 日経平均VIの過去分の取得元
+    for u in [NK + "/statistics/dataload?list=vi&year=2010&month=1", NK + "/statistics/dataload?list=vi&year=2022&month=12",
+              NK + "/statistics/dataload?list=nk225vi&year=2022&month=12", NK + "/archives/data?list=vi",
+              NK + "/index/profile?idx=nk225vi", NK + "/historical/nikkei_stock_average_vi_daily_en.csv",
+              NK + "/historical/nikkei_stock_average_vi_monthly_jp.csv"]:
+        try:
+            t = get(u)
+            print(f"  TEMP {u} {len(t)} {re.sub(r'\s+', ' ', t[:300])!r} links={[x for x in re.findall(r'href="([^"]+)"', t) if 'vi' in x.lower() or 'csv' in x.lower()][:15]}")
+        except Exception as e:  # noqa: BLE001
+            print(f"  TEMP {u} 失敗 {e}")
     if args.check:
         return 0 if ok else 1
     if not ok:
