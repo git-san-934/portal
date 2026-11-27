@@ -12,6 +12,7 @@ JPX と日経のサイトには最近の分しか置かれていないもの(裁
   先物の投資部門別 : JPX「投資部門別取引状況」 https://www.jpx.co.jp/markets/statistics-derivatives/sector/index.html
                  (週次の CSV。商品・投資部門ごとの売り・買いの数量と金額。置かれているのは直近の約5週)
   日経平均VI   : 日経平均プロフィルの日次 CSV(2023年〜)
+  VIX(米国)  : CBOE の日次 CSV(1990年〜)。取れないときは FRED の VIXCLS
   日経225オプションのプット・コール(プットコールレシオ用):
     日次 : JPX「月間統計資料」の指数オプション取引状況(日別) SIOP_D_YYYYMM.xlsx(2024年1月〜、前月分まで)
            https://www.jpx.co.jp/markets/statistics-derivatives/monthly-statistics/index.html
@@ -44,6 +45,8 @@ PROGRAM_PAGE = JPX + "/markets/statistics-equities/program/index.html"
 SECTOR_PAGE = JPX + "/markets/statistics-derivatives/sector/index.html"
 NK = "https://indexes.nikkei.co.jp/nkave"
 VI_CSV = NK + "/historical/nikkei_stock_average_vi_daily_jp.csv"
+VIX_CSV = "https://cdn.cboe.com/api/global/us_indices/daily_prices/VIX_History.csv"
+VIX_FRED = "https://fred.stlouisfed.org/graph/fredgraph.csv?id=VIXCLS"
 MSTAT_YEARS = JPX + "/automation/markets/statistics-derivatives/monthly-statistics/json/monthly_statistics_report_yearlist.json"
 OI_PAGE = JPX + "/markets/derivatives/trading-volume/index.html"
 SOUKATSU_M = JPX + "/automation/markets/statistics-derivatives/trading-volume/files/soukatsu_M.xlsx"
@@ -51,7 +54,7 @@ OUT = Path(__file__).resolve().parent.parent / "data" / "sentiment.json"
 JST = timezone(timedelta(hours=9))
 
 
-KEYS = ("margin", "arbitrage", "futures", "vi", "pcr", "pcr_m")
+KEYS = ("margin", "arbitrage", "futures", "vi", "pcr", "pcr_m", "vix")
 
 
 def get(url: str, binary=False):
@@ -236,6 +239,30 @@ def vi() -> dict:
     return out
 
 
+def vix() -> dict:
+    """米国 VIX の日ごとの終値。CBOE(DATE,OPEN,HIGH,LOW,CLOSE、日付は MM/DD/YYYY)、だめなら FRED(observation_date,VIXCLS)。"""
+    out = {}
+    try:
+        for ln in get(VIX_CSV).strip().splitlines()[1:]:
+            c = ln.split(",")
+            if len(c) >= 5 and c[0].count("/") == 2:
+                mo, dy, yr = c[0].split("/")
+                v = num(c[4])
+                if v is not None:
+                    out[f"{int(yr):04d}-{int(mo):02d}-{int(dy):02d}"] = round(v, 2)
+        print(f"  VIX: CBOE から {len(out)} 件")
+    except Exception as e:  # noqa: BLE001
+        print(f"  VIX: CBOE 失敗 {e}")
+    if not out:
+        for ln in get(VIX_FRED).strip().splitlines()[1:]:
+            c = ln.split(",")
+            v = num(c[1]) if len(c) > 1 else None
+            if v is not None and re.match(r"\d{4}-\d{2}-\d{2}$", c[0]):
+                out[c[0]] = round(v, 2)
+        print(f"  VIX: FRED から {len(out)} 件")
+    return out
+
+
 def _nums15(row):
     """SIOP_D の1行から 取引高・取引金額・権利行使・ギブアップ・建玉 の(プット, コール, 合計)×5 の15個を取り出す。
     最高・最低の印(◎●)は別のセルに入っているので除き、「－」は 0 とする。"""
@@ -342,7 +369,7 @@ def main() -> int:
             old = {}
     data = {k: old.get(k, {}) for k in KEYS}
     ok = 0
-    for key, fn in (("margin", margin), ("arbitrage", arbitrage), ("futures", futures), ("vi", vi),
+    for key, fn in (("margin", margin), ("arbitrage", arbitrage), ("futures", futures), ("vi", vi), ("vix", vix),
                     ("pcr", lambda: pcr_daily(data["pcr"])), ("pcr_m", pcr_monthly)):
         try:
             got = fn()
@@ -370,6 +397,7 @@ def main() -> int:
             "vi": "日: 日経平均VI 終値",
             "pcr": "日: 日経225オプション [プット取引高, コール取引高, プット建玉, コール建玉, 出所 m=月間統計資料 d=建玉残高状況(概算)]",
             "pcr_m": "月: 日経225オプション [プット取引高, コール取引高]",
+            "vix": "日(米国の日付): VIX 終値",
         },
     }
     for k in KEYS:
