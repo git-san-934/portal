@@ -83,7 +83,7 @@ header h1{font-size:1.3rem}
 .stat .v{font-size:1rem}
 .legend{gap:2px 10px;font-size:.75rem}
 .row{gap:10px}
-.seg button{padding:6px 16px;font-size:.85rem}
+.seg button{padding:6px 10px;font-size:.85rem}
 .bl{grid-template-columns:4.4rem 1fr 3.2rem;gap:8px;font-size:.8rem}
 .trades{font-size:.75rem}
 .tip{white-space:normal;max-width:15rem}
@@ -121,7 +121,7 @@ header h1{font-size:1.3rem}
       <span><span class="mk b">買</span>買い（UPROへ）</span>
       <span><span class="mk s">売</span>売り（現金へ）</span>
     </div>
-    <div class="seg" id="rng1"><button data-n="63" aria-pressed="false">3ヶ月</button><button data-n="126" aria-pressed="false">6ヶ月</button><button data-n="252" aria-pressed="true">1年</button><button data-n="756" aria-pressed="false">3年</button></div>
+    <div class="seg" id="rng1"><button data-n="63" aria-pressed="false">3ヶ月</button><button data-n="126" aria-pressed="false">6ヶ月</button><button data-n="252" aria-pressed="true">1年</button><button data-n="756" aria-pressed="false">3年</button><button data-n="1260" aria-pressed="false">5年</button><button data-n="0" aria-pressed="false">全期間</button></div>
   </div>
   <div class="chart" id="ch1"></div>
   <div><div class="tag" style="margin-bottom:4px">この3年の合図（売買は次の取引日の終値）</div><ul class="trades" id="trades"></ul></div>
@@ -285,17 +285,20 @@ document.getElementById('stats1').innerHTML = `
        : `<div class="stat"><div class="k">買いの線（平均+3%）</div><div class="v">${buy.toFixed(2)}</div><div class="s">あと ${pct(buy / p - 1)} 上がるとUPROへ</div></div>`}`;
 const TR = [];
 for (let i = 1; i < N; i++) if (S.st[i] !== S.st[i - 1]) TR.push({ i, k: S.st[i] ? 'b' : 's', t: (S.st[i] ? '買いの合図：次の取引日にUPROへ' : '売りの合図：次の取引日に現金へ') + '（SPY ' + S.p[i].toFixed(2) + '）' });
-document.getElementById('trades').innerHTML = TR.length ? TR.map(m => `<li><span class="mk ${m.k}">${m.k === 'b' ? '買' : '売'}</span>${fmtD(S.d[m.i])}　SPY ${S.p[m.i].toFixed(2)}</li>`).join('') : '<li>この3年は売買なし</li>';
+const TR3 = TR.filter(m => m.i >= N - 756); // 一覧は直近3年だけ
+document.getElementById('trades').innerHTML = TR3.length ? TR3.map(m => `<li><span class="mk ${m.k}">${m.k === 'b' ? '買' : '売'}</span>${fmtD(S.d[m.i])}　SPY ${S.p[m.i].toFixed(2)}</li>`).join('') : '<li>この3年は売買なし</li>';
 function draw1(k) {
-  const s = N - k;
+  const s = k > 0 ? Math.max(0, N - k) : 0, len = N - s; // k=0 は全期間
+  const big = len > 800; // 3年を超えたら合図は小さな三角にする（吹き出しだと重なる）
+  const xk = len > 2600 ? (d => String(Math.floor(+d.slice(0, 4) / 5) * 5)) : len > 300 ? (d => d.slice(0, 4)) : (d => d.slice(0, 7));
   lineChart(document.getElementById('ch1'), {
     d: S.d.slice(s), h: 260, label: 'SPYと200日平均',
     series: [{ n: 'SPY', v: S.p.slice(s), c: '--line', w: 1.75 }, { n: '200日平均', v: S.ma.slice(s), c: '--ma', w: 2 }],
-    bandFrom: S.ma.slice(s), shade: S.st.slice(s), mlabel: true, msize: 7,
+    bandFrom: S.ma.slice(s), shade: S.st.slice(s), mlabel: !big, msize: big ? 5 : 7,
     marks: TR.filter(m => m.i >= s).map(m => ({ i: m.i - s, y: S.p[m.i], k: m.k, t: m.t })),
     yfmt: v => v.toFixed(0), tfmt: v => v.toFixed(2),
     tipExtra: i => (S.st[s + i] ? '<b style="color:var(--in)">持つ</b>' : '<b style="color:var(--out)">現金</b>'),
-    xkey: k > 300 ? (d => d.slice(0, 4)) : (d => d.slice(0, 7)), xfmt: k > 300 ? (d => d.slice(0, 4)) : (d => (+d.slice(5, 7)) + '月')
+    xkey: xk, xfmt: len > 300 ? (d => d.slice(0, 4)) : (d => (+d.slice(5, 7)) + '月')
   });
 }
 document.querySelectorAll('#rng1 button').forEach(b => b.onclick = () => { k1 = +b.dataset.n; document.querySelectorAll('#rng1 button').forEach(x => x.setAttribute('aria-pressed', x === b)); draw1(k1); });

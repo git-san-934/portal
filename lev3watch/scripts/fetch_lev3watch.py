@@ -23,7 +23,8 @@ FUNDS = ["TQQQ", "UPRO", "UDOW", "TNA", "MIDU"]
 MA_DAYS = 200
 BAND = 0.03  # 200日平均から ±3%
 YEAR = 252  # 1年 = 252営業日
-KEEP = 756  # ページに載せる日数(約3年)
+KEEP = 756  # 3倍ブルの下落率を載せる日数(約3年)
+# SPY は200日平均が出せる日から全期間を載せる(チャートの「5年」「全期間」用)
 RETRIES = 3
 OUTLIER_WINDOW = 11
 OUTLIER_RATIO = 2.5
@@ -91,7 +92,7 @@ def main():
     ma = spy.rolling(MA_DAYS).mean()
     st = signal_states(spy.tolist(), ma.tolist())
     days = spy.index[-KEEP:]
-    tail = slice(-KEEP, None)
+    full = slice(MA_DAYS - 1, None)  # 200日平均が出る最初の日から
     print(f"{SIGNAL}: {days[-1].date()} close={spy.iloc[-1]:.2f} ma200={ma.iloc[-1]:.2f} state={st[-1]}")
 
     old_dd = old.get("dd", {})
@@ -117,10 +118,10 @@ def main():
         "source": "Yahoo Finance (yfinance)",
         "asof": dd["d"][-1],
         "spy": {
-            "d": dd["d"],
-            "p": [r(v, 2) for v in spy.iloc[tail].tolist()],
-            "ma": [r(v, 2) for v in ma.iloc[tail].tolist()],
-            "st": st[-KEEP:],
+            "d": [d.strftime("%Y-%m-%d") for d in spy.index[full]],
+            "p": [r(v, 2) for v in spy.iloc[full].tolist()],
+            "ma": [r(v, 2) for v in ma.iloc[full].tolist()],
+            "st": st[full],
         },
         "dd": dd,
         "stale": failed,
