@@ -6,7 +6,7 @@
   <title>日経4.3ブル 暴落買いナビ</title>
   <meta name="description" content="SBI日本株4.3ブルの基準価額を毎日分析し、暴落した日に追加でいくら買うか、上がりすぎた日にどれだけ売るかの目安を出すページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261128" />
+  <link rel="stylesheet" href="assets/style.css?v=20261128b" />
 </head>
 <body>
   <div class="wrap">
@@ -63,7 +63,16 @@
         <div class="table-wrap">
           <table class="bt" id="dev-peaks"></table>
         </div>
-        <p class="chart-note">2026-11-12 に検証したときは、乖離率だけで売るルール(例: +50%で売る)は、いまの「1年前の3倍」のルールに負けました。山のてっぺんの乖離率が +36%〜+291% とばらばらで、どこで売れば良いかが毎回違うためです。この表とグラフは、山の高さとそのあとの下げを目で比べるためのものです。</p>
+        <p class="chart-note" id="dev-peaks-note">2026-11-12 に検証したときは、乖離率だけで売るルール(例: +50%で売る)は、いまの「1年前の3倍」のルールに負けました。山のてっぺんの乖離率が +36%〜+291% とばらばらで、どこで売れば良いかが毎回違うためです。この表とグラフは、山の高さとそのあとの下げを目で比べるためのものです。</p>
+        <h3 class="chart-title" id="dev25">25日平均からの乖離率(短い目で見た上がりすぎ・下がりすぎ)</h3>
+        <p class="dev-now" id="dev25-now"></p>
+        <div class="legend" id="legend-dev25"></div>
+        <div class="chart-box mid" id="chart-dev25"></div>
+        <p class="chart-note">基準価額が25日平均(約1ヶ月の平均)より何%高い(低い)か。200日平均より短い目の「急に上がりすぎ・下がりすぎ」が見えます。点線の目安は、2018年以降の実際の基準価額で、それより上(下)だった日が上位(下位)何%かを書いています。4.3倍の商品なので、日経平均でよく言われる目安(±5〜10%)の4倍くらいの振れ幅になります。</p>
+        <h3 class="chart-title">25日平均より30%以上高くなった山と、そのあと</h3>
+        <div class="table-wrap">
+          <table class="bt" id="dev25-peaks"></table>
+        </div>
       </section>
 
       <!-- 自分の積立 -->
@@ -172,6 +181,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20261128"></script>
+  <script src="assets/app.js?v=20261128b"></script>
 </body>
 </html>

@@ -630,24 +630,67 @@
       tipFor,
       dotSeries: state.dd,
     });
-    state.charts = [setNav, setDd, renderDevChart(s, e)];
+    state.charts = [setNav, setDd, ...DEV_CFG.map((c) => renderDevChart(c, s, e))];
   }
 
-  // ---------- 200日平均からの乖離率(売り時の研究用) ----------
+  // ---------- 移動平均からの乖離率(売り時の研究用) ----------
 
-  // 目安の線。+50% は以前に試した「過熱」の売りの目安、−20% は今の売りルールの買い戻しの目安
-  const DEV_LINES = [
-    { v: 1, label: "+100%", color: "var(--up)" },
-    { v: 0.5, label: "+50% 過熱", color: "var(--up)" },
-    { v: 0.2, label: "+20%", color: "var(--high)" },
-    { v: 0, label: "0% 平均", color: "var(--ma)" },
-    { v: -0.2, label: "−20% 買い戻し", color: "var(--down)" },
+  // 移動平均(days 日)。データが足りない日は null
+  function movingAvg(days) {
+    const out = new Array(state.nav.length).fill(null);
+    let sum = 0;
+    for (let i = 0; i < state.nav.length; i++) {
+      sum += state.nav[i];
+      if (i >= days) sum -= state.nav[i - days];
+      if (i >= days - 1) out[i] = sum / days;
+    }
+    return out;
+  }
+
+  // 200日と25日の2つ。目安の線(lines)、山とみなす高さ(peakTh)、そのあとを見る日数(after)を分けている
+  // 200日: +50% は以前に試した「過熱」の売りの目安、−20% は今の売りルールの買い戻しの目安
+  // 25日: 2018年以降の実際の基準価額で、+20%以上は上位約10%、+30%以上は上位約3%、−20%以下は下位約7%、−30%以下は下位約3%の日
+  const DEV_CFG = [
+    {
+      key: "dev", days: 200, min: [-0.25, 0.55], peakTh: 0.3, gap: 20,
+      after: [{ k: 63, h: "3ヶ月後" }, { k: 245, h: "1年後" }], lowWin: 245, lowH: "1年以内の最大の下げ",
+      lines: [
+        { v: 1, label: "+100%", color: "var(--up)" },
+        { v: 0.5, label: "+50% 過熱", color: "var(--up)" },
+        { v: 0.2, label: "+20%", color: "var(--high)" },
+        { v: 0, label: "0% 平均", color: "var(--ma)" },
+        { v: -0.2, label: "−20% 買い戻し", color: "var(--down)" },
+      ],
+      stats: [0.2, 0.5, 1, -0.2],
+    },
+    {
+      key: "dev25", days: 25, min: [-0.35, 0.35], peakTh: 0.3, gap: 10,
+      after: [{ k: 5, h: "1週間後" }, { k: 21, h: "1ヶ月後" }, { k: 63, h: "3ヶ月後" }], lowWin: 63, lowH: "3ヶ月以内の最大の下げ",
+      lines: [
+        { v: 0.3, label: "+30% 上位3%", color: "var(--up)" },
+        { v: 0.2, label: "+20% 上位10%", color: "var(--high)" },
+        { v: 0, label: "0% 平均", color: "var(--ma)" },
+        { v: -0.2, label: "−20% 下位7%", color: "var(--down)" },
+        { v: -0.3, label: "−30% 下位3%", color: "var(--down)" },
+      ],
+      stats: [0.2, 0.3, -0.2, -0.3],
+    },
   ];
 
-  function renderDevChart(s, e) {
-    let lo = -0.25, hi = 0.55;
+  function devSeries(c) {
+    if (c.days === MA_DAYS) return { ma: state.ma, dev: state.dev };
+    if (!c.cache || c.cache.n !== state.nav.length || c.cache.last !== state.nav[state.nav.length - 1]) {
+      const ma = movingAvg(c.days);
+      c.cache = { n: state.nav.length, last: state.nav[state.nav.length - 1], ma, dev: ma.map((m, i) => (m == null ? null : state.nav[i] / m - 1)) };
+    }
+    return c.cache;
+  }
+
+  function renderDevChart(c, s, e) {
+    const { ma, dev } = devSeries(c);
+    let [lo, hi] = c.min;
     for (let i = s; i <= e; i++) {
-      const v = state.dev[i];
+      const v = dev[i];
       if (v == null) continue;
       lo = Math.min(lo, v);
       hi = Math.max(hi, v);
@@ -660,12 +703,12 @@
     for (let t = Math.ceil(lo / step) * step; t <= hi; t += step) ticks.push(Math.round(t * 100) / 100);
 
     // 上に離れた部分は赤、下に離れた部分は青で塗る
-    const up = state.dev.map((v) => (v == null ? null : Math.max(0, v)));
-    const down = state.dev.map((v) => (v == null ? null : Math.min(0, v)));
+    const up = dev.map((v) => (v == null ? null : Math.max(0, v)));
+    const down = dev.map((v) => (v == null ? null : Math.min(0, v)));
     const marks = [];
-    for (let i = s; i <= e; i++) if (state.sellSig[i] && state.dev[i] != null) marks.push({ i, v: state.dev[i], color: "var(--sell)", cls: "sell" });
+    for (let i = s; i <= e; i++) if (state.sellSig[i] && dev[i] != null) marks.push({ i, v: dev[i], color: "var(--sell)", cls: "sell" });
 
-    const legend = $("legend-dev");
+    const legend = $(`legend-${c.key}`);
     legend.textContent = "";
     const item = (iEl, text) => {
       const sp = el("span");
@@ -677,82 +720,83 @@
     sq.style.background = "var(--sell)";
     item(sq, `「1年前の${SELL_MULT}倍」の合図の日`);
 
-    return drawChart($("chart-dev"), {
+    return drawChart($(`chart-${c.key}`), {
       s, e, lo, hi,
       series: [
         { values: up, cls: "l-none", area: "a-dev-up", base: 0 },
         { values: down, cls: "l-none", area: "a-dev-down", base: 0 },
-        { values: state.dev, cls: "l-dev" },
+        { values: dev, cls: "l-dev" },
       ],
-      // 目安の線と同じ高さの目盛りは、目安の線の名前の方を出す
-      ticks: ticks.filter((t) => !DEV_LINES.some((h) => Math.abs(h.v - t) < 1e-9)),
+      // 目安の線と重なる高さの目盛りは出さず、目安の線の名前の方を出す
+      ticks: ticks.filter((t) => !c.lines.some((h) => Math.abs(h.v - t) < (hi - lo) * 0.06)),
       tickFmt: (v) => pctText(v, 0),
-      hlines: DEV_LINES.filter((h) => h.v >= lo && h.v <= hi),
+      hlines: c.lines.filter((h) => h.v >= lo && h.v <= hi),
       marks,
       tipFor: (i) =>
-        state.dev[i] == null
-          ? `${dateJa(state.dates[i])}\n200日平均はまだ出ません`
-          : `${dateJa(state.dates[i])}\n200日平均から ${pctText(state.dev[i])}\n基準価額 ${yen(state.nav[i])}\n200日平均 ${yen(state.ma[i])}` +
+        dev[i] == null
+          ? `${dateJa(state.dates[i])}\n${c.days}日平均はまだ出ません`
+          : `${dateJa(state.dates[i])}\n${c.days}日平均から ${pctText(dev[i])}\n基準価額 ${yen(state.nav[i])}\n${c.days}日平均 ${yen(ma[i])}` +
             (state.sellSig[i] ? `\n1年前の${SELL_MULT}倍の合図` : ""),
-      dotSeries: state.dev.map((v) => (v == null ? 0 : v)),
+      dotSeries: dev.map((v) => (v == null ? 0 : v)),
     });
   }
 
   // 今の乖離率と、過去の日の中での位置
-  function renderDevNow() {
+  function renderDevNow(c) {
+    const { ma, dev } = devSeries(c);
     const n = state.nav.length - 1;
-    const cur = state.dev[n];
-    const all = state.dev.filter((v) => v != null);
-    const box = $("dev-now");
+    const cur = dev[n];
+    const all = dev.filter((v) => v != null);
+    const box = $(`${c.key}-now`);
     box.textContent = "";
     if (cur == null || !all.length) return;
-    const share = (f) => all.filter(f).length / all.length;
-    const above = share((v) => v > cur);
+    const share = (t) => Math.round((all.filter((v) => (t > 0 ? v >= t : v <= t)).length / all.length) * 100);
+    const above = Math.round((all.filter((v) => v > cur).length / all.length) * 100);
+    const parts = c.stats.map((t, k) => `${pctText(t, 0)}${t > 0 ? "以上" : "以下"}${k ? "" : "だった日"}は ${share(t)}%`);
     box.append(
-      `今日(${dateJa(state.dates[n])})は200日平均(${yen(state.ma[n])})から `,
+      `今日(${dateJa(state.dates[n])})は${c.days}日平均(${yen(ma[n])})から `,
       el("b", pctClass(cur), pctText(cur)),
-      `。${dateJa(state.dates[MA_DAYS - 1])}以降の${all.length.toLocaleString("ja-JP")}日のうち、これより高かった日は ${Math.round(above * 100)}% です。` +
-        `+20%以上だった日は ${Math.round(share((v) => v >= 0.2) * 100)}%、+50%以上は ${Math.round(share((v) => v >= 0.5) * 100)}%、+100%以上は ${Math.round(share((v) => v >= 1) * 100)}%、−20%以下(買い戻しの目安)は ${Math.round(share((v) => v <= REBUY_TH) * 100)}%。`
+      `。${dateJa(state.dates[c.days - 1])}以降の${all.length.toLocaleString("ja-JP")}日のうち、これより高かった日は ${above}% です。${parts.join("、")}。`
     );
   }
 
-  // 乖離率が +30% を超えた山(20営業日以内に戻ってきたものは同じ山)ごとに、いちばん高かった日とそのあと
-  const PEAK_TH = 0.3;
-  function renderDevPeaks() {
-    const table = $("dev-peaks");
+  // 乖離率が peakTh を超えた山(gap 営業日以内に戻ってきたものは同じ山)ごとに、いちばん高かった日とそのあと
+  function renderDevPeaks(c) {
+    const { dev } = devSeries(c);
+    const table = $(`${c.key}-peaks`);
     table.textContent = "";
     const n = state.nav.length;
     const eps = [];
     let cur = null;
     for (let i = 0; i < n; i++) {
-      if (state.dev[i] == null || state.dev[i] < PEAK_TH) continue;
-      if (cur && i - cur.end <= 20) cur.end = i;
+      if (dev[i] == null || dev[i] < c.peakTh) continue;
+      if (cur && i - cur.end <= c.gap) cur.end = i;
       else eps.push((cur = { start: i, end: i }));
     }
     const head = el("tr");
-    ["山のてっぺん", "200日平均から", "基準価額", "3ヶ月後", "1年後", "1年以内の最大の下げ", "山の間の売りの合図"].forEach((h) => head.append(el("th", null, h)));
+    ["山のてっぺん", `${c.days}日平均から`, "基準価額", ...c.after.map((a) => a.h), c.lowH, "山の間の売りの合図"].forEach((h) => head.append(el("th", null, h)));
     table.append(head);
     eps.reverse().forEach((ep) => {
       let p = ep.start;
-      for (let i = ep.start; i <= ep.end; i++) if (state.dev[i] > state.dev[p]) p = i;
+      for (let i = ep.start; i <= ep.end; i++) if (dev[i] > dev[p]) p = i;
       const after = (k) => (p + k < n ? state.nav[p + k] / state.nav[p] - 1 : null);
       let low = state.nav[p];
-      for (let i = p; i < Math.min(n, p + 246); i++) low = Math.min(low, state.nav[i]);
+      for (let i = p; i < Math.min(n, p + c.lowWin + 1); i++) low = Math.min(low, state.nav[i]);
       const sigInEp = [];
       for (let i = ep.start; i <= ep.end; i++) if (state.sellSig[i]) sigInEp.push(i);
       const ongoing = ep.end >= n - 1;
       const tr = el("tr");
       tr.append(
         el("td", null, dateJa(state.dates[p]) + (ongoing ? "(続いている)" : "")),
-        el("td", pctClass(state.dev[p]), pctText(state.dev[p], 0)),
+        el("td", pctClass(dev[p]), pctText(dev[p], 0)),
         el("td", null, yen(state.nav[p]))
       );
-      [63, 245].forEach((k) => {
+      c.after.forEach(({ k }) => {
         const v = after(k);
         tr.append(el("td", pctClass(v), v == null ? "—" : pctText(v, 0)));
       });
       const dd = low / state.nav[p] - 1;
-      tr.append(el("td", pctClass(dd), pctText(dd, 0) + (p + 245 >= n ? "(途中)" : "")));
+      tr.append(el("td", pctClass(dd), pctText(dd, 0) + (p + c.lowWin >= n ? "(途中)" : "")));
       tr.append(el("td", null, sigInEp.length ? `${sigInEp.length}回(最初 ${state.dates[sigInEp[0]].slice(5).replace("-", "/")})` : "なし"));
       table.append(tr);
     });
@@ -861,8 +905,10 @@
     renderMine();
     renderBacktest();
     renderSellTable();
-    renderDevNow();
-    renderDevPeaks();
+    DEV_CFG.forEach((c) => {
+      renderDevNow(c);
+      renderDevPeaks(c);
+    });
   }
 
   function setupControls() {
