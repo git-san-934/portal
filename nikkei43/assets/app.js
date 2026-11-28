@@ -249,66 +249,6 @@
   // 自分の積立の開始日(のデータ上の位置)。まだデータがなければ -1
   const startIndex = () => state.dates.findIndex((d) => d >= state.settings.start);
 
-  // ---------- 今日のアドバイス ----------
-
-  function renderAdvice() {
-    const last = state.nav.length - 1;
-    const dd = state.dd[last];
-    const t = tierOf(dd);
-    const { daily, scale } = state.settings;
-    const plan = planExtras(0, last, scale);
-    const today = plan.extras[last + 1];
-    const extra = today ? today.a : 0;
-
-    const noExtra = !(scale > 0);
-    $("advice").classList.toggle("on", t > 0 && !noExtra);
-    $("advice-when").textContent = `${dateJa(state.dates[last])} の基準価額で判定 → 次の営業日 ${nextWeekday(state.dates[last])} の注文`;
-    const amount = $("advice-amount");
-    amount.textContent = "";
-    if (noExtra) {
-      amount.textContent = `いつもどおり ${amt(daily)}(追加買いなし)`;
-    } else if (t > 0 && today) {
-      amount.append(`${amt(daily)} `, Object.assign(el("span", "plus"), { textContent: `+ 追加 ${man(extra)}` }));
-    } else {
-      amount.textContent = t > 0 ? `いつもどおり ${amt(daily)}(追加は見送り)` : `いつもどおり ${amt(daily)}`;
-    }
-
-    const next = TIERS[t]; // 次の段階(なければ undefined)
-    let reason = `20日高値(${yen(state.high[last])})から ${pctText(dd)}。`;
-    if (noExtra) {
-      reason += "下がっても上がっても、毎日同じ金額だけ買います(2026年11月16日から追加買いはやめました)。";
-    } else if (t === 0) {
-      reason += `追加買いの目安(−30%)まで、あと ${(Math.abs(TIERS[0].th - dd) * 100).toFixed(1)}ポイントです。`;
-    } else {
-      reason += `第${t}段階の暴落ラインを下回っています(合図が続いて${state.streak[last]}日目)。`;
-      if (!today) reason += ` 追加は合図が続く間${EVERY}日に1回なので、今回は見送りです(次の合図の日に追加)。`;
-      else if (next) reason += ` さらに ${(Math.abs(next.th - dd) * 100).toFixed(1)}ポイント下がると追加額を ${man(next.amount * scale)} に増やします。`;
-    }
-    $("advice-reason").textContent = reason;
-
-    const ladder = $("ladder");
-    ladder.textContent = "";
-    ladder.style.display = noExtra ? "none" : "";
-    const steps = [{ th: null, amount: 0, color: "var(--border)" }, ...TIERS];
-    steps.forEach((s, i) => {
-      const box = el("div", "step" + (i === t ? " current" : ""));
-      const title = el("div");
-      const sw = el("span", "swatch");
-      sw.style.background = s.color;
-      title.append(sw, s.th == null ? "−30%より浅い" : `−${Math.round(-s.th * 100)}%以下`);
-      box.append(title, el("b", null, s.th == null ? "追加なし" : `+${man(s.amount * scale)}`));
-      box.append(
-        el("span", "lv", s.th == null ? `${yen(Math.floor(state.high[last] * (1 + TIERS[0].th)))}より上` : `${yen(Math.floor(state.high[last] * (1 + s.th)))}以下`)
-      );
-      ladder.append(box);
-    });
-
-    const staleDays = (Date.now() - parseISO(state.dates[last]).getTime()) / 86400000;
-    $("advice-note").textContent =
-      (staleDays > 4 ? "⚠ データが数日更新されていません。最新の基準価額を確かめてから判断してください。 " : "") +
-      (noExtra ? "追加買いを試算したいときは「自分の積立シミュレーション」の「追加額の大きさ」で選べます。" : `金額の下の値は、今の20日高値で換算した基準価額の目安です。−30%以下が続く間、追加は${EVERY}日に1回です。追加額の大きさは「自分の積立シミュレーション」で変えられます。`);
-  }
-
   function renderSellTable() {
     const table = $("sell-table");
     table.textContent = "";
@@ -837,7 +777,6 @@
   }
 
   function renderAll() {
-    renderAdvice();
     renderTiles();
     renderCharts();
     renderMine();
