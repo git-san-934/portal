@@ -6,13 +6,13 @@
   <title>日経4.3ブル 暴落買いナビ</title>
   <meta name="description" content="SBI日本株4.3ブルの基準価額を毎日分析し、暴落した日に追加でいくら買うか、上がりすぎた日にどれだけ売るかの目安を出すページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261128b" />
+  <link rel="stylesheet" href="assets/style.css?v=20261128c" />
 </head>
 <body>
   <div class="wrap">
     <header>
       <h1>日経4.3ブル 暴落買いナビ</h1>
-      <p class="intro">SBI日本株4.3ブル(協会コード 8931317C)の基準価額を毎日分析して、毎日の積立(2026年11月24日から毎日5千円、追加買いなし)の目安と、上がりすぎたときの「売り時」を出します。暴落時の追加買いは、設定で選んだときだけ試算します。</p>
+      <p class="intro">SBI日本株4.3ブル(協会コード 8931317C)の基準価額を毎日分析して、毎日の積立(2026年11月24日から毎日5千円、追加買いなし)の目安を出します。暴落時の追加買いは、設定で選んだときだけ試算します。</p>
       <p class="updated" id="status">読み込み中...</p>
       <p class="refresh">
         <button type="button" class="reload-btn" id="reload">最新データを読み込む</button>
@@ -29,15 +29,6 @@
         <p class="advice-reason" id="advice-reason"></p>
         <div class="ladder" id="ladder"></div>
         <p class="advice-note" id="advice-note"></p>
-      </section>
-
-      <!-- 売り時 -->
-      <section class="card advice sell" id="sell" aria-live="polite">
-        <p class="advice-label" id="sell-when"></p>
-        <p class="advice-amount" id="sell-action"></p>
-        <p class="advice-reason" id="sell-reason"></p>
-        <div class="ladder three" id="sell-ladder"></div>
-        <p class="advice-note" id="sell-note"></p>
       </section>
 
       <!-- 数字 -->
@@ -181,6 +172,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20261128b"></script>
+  <script src="assets/app.js?v=20261128c"></script>
 </body>
 </html>

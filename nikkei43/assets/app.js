@@ -309,67 +309,6 @@
       (noExtra ? "追加買いを試算したいときは「自分の積立シミュレーション」の「追加額の大きさ」で選べます。" : `金額の下の値は、今の20日高値で換算した基準価額の目安です。−30%以下が続く間、追加は${EVERY}日に1回です。追加額の大きさは「自分の積立シミュレーション」で変えられます。`);
   }
 
-  // ---------- 売り時 ----------
-
-  function renderSell() {
-    const last = state.nav.length - 1;
-    const nav = state.nav[last];
-    const yr = state.yr[last];
-    const ma = state.ma[last];
-    const rebuy = state.rebuy[last];
-    const { start, daily, scale } = state.settings;
-    const s = startIndex();
-    const q = s >= 0 ? simulateSell(s, last, myDaily(), scale) : null;
-    const sig = q != null && q.lastSig === last;
-    const cooling = q != null && !sig && q.lastSig >= s && last - q.lastSig <= SELL_GAP;
-    const avg = q && q.units > 0 ? q.cost / q.units : null; // 平均取得単価(1万口あたり)
-    const gain = avg ? nav / avg - 1 : null;
-    const doRebuy = rebuy && q != null && q.cash > 0;
-
-    $("sell").classList.toggle("on", sig || doRebuy);
-    $("sell-when").textContent = `売り時の判定(${dateJa(state.dates[last])} の基準価額)→ 次の営業日 ${nextWeekday(state.dates[last])} の注文`;
-    const action = $("sell-action");
-    action.textContent = "";
-    if (sig) action.append(Object.assign(el("span", "plus"), { textContent: `持ち分の1/4(約${man(q.units * nav * SELL_FRAC)})を売る` }));
-    else if (doRebuy) action.append(Object.assign(el("span", "plus"), { textContent: `現金の10%(${man(q.cash * REBUY_FRAC)})を買い戻す` }));
-    else action.textContent = q ? "売らずに持ち続ける" : "まだ持ち分がありません";
-
-    const base = state.nav[last - SELL_LOOKBACK];
-    let reason = q
-      ? `${dateJa(state.dates[s])} からの持ち分: 評価額 ${yen(q.hold)}・平均取得単価 ${yen(avg || 0)}(${pctText(gain)})${q.cash > 0 ? `・売って取ってある現金 ${yen(q.cash)}` : ""}。`
-      : `積立の開始日(${start})以降の基準価額がまだないので、売りの判定はできません。`;
-    if (yr != null) reason += ` 基準価額は1年前(${dateJa(state.dates[last - SELL_LOOKBACK])})の ${yen(base)} の ${yr.toFixed(2)}倍です。`;
-    if (sig) reason += `1年前の${SELL_MULT}倍を超え、持ち分にも利益が出ているので、1/4を利益確定します。`;
-    else if (cooling) reason += `${dateJa(state.dates[q.lastSig])} に売りの合図が出たので、20営業日あけます(次は早くて ${SELL_GAP + 1 - (last - q.lastSig)} 営業日後)。`;
-    else if (q && yr >= SELL_MULT) reason += `1年前の${SELL_MULT}倍は超えていますが、持ち分が含み損なので売りません。`;
-    else if (yr != null) reason += `売りの目安(1年前の${SELL_MULT}倍)まで、あと ${pctText(SELL_MULT / yr - 1)} です。`;
-    if (ma != null) {
-      reason += ` 200日平均(${yen(ma)})から ${pctText(nav / ma - 1)}。`;
-      if (rebuy) reason += doRebuy ? "買い戻しの目安(−20%)を下回っているので、現金の10%を買い戻します。" : "買い戻しの目安(−20%)を下回っていますが、売って取ってある現金はありません。";
-    }
-    $("sell-reason").textContent = reason;
-
-    const ladder = $("sell-ladder");
-    ladder.textContent = "";
-    const sellLv = Math.ceil(Math.max(base * SELL_MULT, avg || 0));
-    const steps = [
-      { on: sig, title: "売る", b: "持ち分の1/4", lv: `${yen(sellLv)}以上`, color: "var(--sell)" },
-      { on: !sig && !doRebuy, title: "持ち続ける", b: "何もしない", lv: "その間", color: "var(--border)" },
-      { on: doRebuy, title: "買い戻す", b: "現金の10%", lv: ma != null ? `${yen(Math.floor(ma * (1 + REBUY_TH)))}未満` : "—", color: "var(--ma)" },
-    ];
-    steps.forEach((x) => {
-      const box = el("div", "step" + (x.on ? " current" : ""));
-      const title = el("div");
-      const sw = el("span", "swatch");
-      sw.style.background = x.color;
-      title.append(sw, x.title);
-      box.append(title, el("b", null, x.b), el("span", "lv", x.lv));
-      ladder.append(box);
-    });
-    $("sell-note").textContent =
-      "判定は「自分の積立シミュレーション」の開始日・毎日の金額・追加額の設定どおりに買った持ち分で行います。売りは、基準価額が1年前の3倍以上で、しかも持ち分に利益が出ているとき(売りの目安は、1年前の3倍と平均取得単価の高い方)。売ったお金はまず暴落時の追加買いに使い、残りを買い戻しに回します。売った利益には約20%の税金がかかります。信託期間は 2027年9月7日まで(延長されることがあります)。";
-  }
-
   function renderSellTable() {
     const table = $("sell-table");
     table.textContent = "";
@@ -899,7 +838,6 @@
 
   function renderAll() {
     renderAdvice();
-    renderSell();
     renderTiles();
     renderCharts();
     renderMine();
