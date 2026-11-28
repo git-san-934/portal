@@ -6,7 +6,7 @@
   <title>日経4.3ブル 暴落買いナビ</title>
   <meta name="description" content="SBI日本株4.3ブルの基準価額を毎日分析し、暴落した日に追加でいくら買うか、上がりすぎた日にどれだけ売るかの目安を出すページ" />
   <meta name="theme-color" content="#f7f5f0" />
-  <link rel="stylesheet" href="assets/style.css?v=20261103b" />
+  <link rel="stylesheet" href="assets/style.css?v=20261128" />
 </head>
 <body>
   <div class="wrap">
@@ -53,7 +53,17 @@
         <div class="chart-box tall" id="chart-nav"></div>
         <h3 class="chart-title">20日高値からの下落率</h3>
         <div class="chart-box" id="chart-dd"></div>
-        <p class="chart-note">点線は追加買いの目安ライン(−30%・−40%・−50%・−70%)。チャートに触れると、その日の値が出ます。</p>
+        <p class="chart-note">点線は追加買いの目安ライン(−30%から5ポイントごと)。チャートに触れると、その日の値が出ます。</p>
+        <h3 class="chart-title" id="dev">200日平均からの乖離率(売り時の研究用)</h3>
+        <p class="dev-now" id="dev-now"></p>
+        <div class="legend" id="legend-dev"></div>
+        <div class="chart-box mid" id="chart-dev"></div>
+        <p class="chart-note">基準価額が200日平均より何%高い(低い)か。0%より上の赤い部分は平均より上に離れている、下の青い部分は平均より下です。点線は目安で、+50% は以前に試した「過熱」の売りの目安、−20% は今の売りルールで買い戻す目安です。◆は「1年前の3倍」の売りの合図が出た日(相場全体の合図。実際に売るのは、自分の持ち分に利益が出ているときだけ)。上の期間ボタンで「全期間」にすると、過去の山がまとめて見られます。</p>
+        <h3 class="chart-title">200日平均より30%以上高くなった山と、そのあと</h3>
+        <div class="table-wrap">
+          <table class="bt" id="dev-peaks"></table>
+        </div>
+        <p class="chart-note">2026-11-12 に検証したときは、乖離率だけで売るルール(例: +50%で売る)は、いまの「1年前の3倍」のルールに負けました。山のてっぺんの乖離率が +36%〜+291% とばらばらで、どこで売れば良いかが毎回違うためです。この表とグラフは、山の高さとそのあとの下げを目で比べるためのものです。</p>
       </section>
 
       <!-- 自分の積立 -->
@@ -162,6 +172,6 @@
     </footer>
   </div>
 
-  <script src="assets/app.js?v=20261103b"></script>
+  <script src="assets/app.js?v=20261128"></script>
 </body>
 </html>

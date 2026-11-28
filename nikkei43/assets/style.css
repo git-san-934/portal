@@ -181,6 +181,7 @@ main { display: flex; flex-direction: column; gap: 1rem; }
 .legend .ln.high { border-top: 2px dashed var(--high); }
 .legend .pt { width: 0.6rem; height: 0.6rem; border-radius: 50%; }
 .legend .ln.ma { border-top: 2px solid var(--ma); }
+.legend .ln.dev { border-top: 2px solid var(--text); }
 .legend .pt.sq { border-radius: 2px; transform: rotate(45deg); }
 
 .chart-title { font-size: 0.85rem; margin-top: 1.6rem; }
@@ -200,6 +201,24 @@ main { display: flex; flex-direction: column; gap: 1rem; }
 .mark.sell { border-radius: 2px; transform: rotate(45deg); width: 10px; height: 10px; margin: -5px 0 0 -5px; }
 .l-dd { fill: none; stroke: var(--accent); stroke-width: 2; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
 .a-dd { fill: color-mix(in srgb, var(--accent) 14%, transparent); stroke: none; }
+.chart-box.mid { height: 13rem; }
+.l-dev { fill: none; stroke: var(--text); stroke-width: 1.8; vector-effect: non-scaling-stroke; stroke-linejoin: round; }
+.l-none { fill: none; stroke: none; }
+.a-dev-up { fill: color-mix(in srgb, var(--up) 18%, transparent); stroke: none; }
+.a-dev-down { fill: color-mix(in srgb, var(--down) 18%, transparent); stroke: none; }
+.th-label {
+  position: absolute;
+  left: 0;
+  transform: translateY(-100%);
+  font-size: 0.62rem;
+  line-height: 1.2;
+  font-weight: 700;
+  pointer-events: none;
+  background: color-mix(in srgb, var(--card-bg) 75%, transparent);
+  padding-right: 0.2rem;
+  z-index: 1;
+}
+.dev-now { font-size: 0.85rem; margin: 0.2rem 0 0.2rem; }
 .grid-line { stroke: var(--grid); stroke-width: 1; vector-effect: non-scaling-stroke; }
 .th-line { stroke-width: 1.2; stroke-dasharray: 3 3; vector-effect: non-scaling-stroke; }
 .tick-label {
